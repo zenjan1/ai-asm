@@ -1,52 +1,41 @@
-# AI-ASM AArch64 Makefile
-# For Termux AArch64 environment
-# Tools: binutils (as, ld, objcopy), qemu-system-aarch64
+# AI-ASM AArch64 - Makefile for Termux
+# Toolchain: native binutils (as, ld) on AArch64
 
 AS      = as
 LD      = ld
 OBJCOPY = objcopy
 QEMU    = qemu-system-aarch64
-ASFLAGS = -mcpu=generic
+ASFLAGS = -march=armv8-a -g
+LDFLAGS = -T kernel/linker.ld -nostdlib
 
-KERNEL_DIR  = kernel
-BUILD_DIR   = build
-OUTPUT_ELF  = $(BUILD_DIR)/aiasm-aarch64.elf
-OUTPUT_BIN  = $(BUILD_DIR)/aiasm-aarch64.bin
-OUTPUT_RAW  = $(BUILD_DIR)/aiasm-aarch64.raw
+KERNEL_DIR = kernel
+BUILD_DIR  = build
+TARGET_ELF = $(BUILD_DIR)/kernel.elf
 
-ASM_SRCS = $(wildcard $(KERNEL_DIR)/*.asm)
-OBJS     = $(patsubst $(KERNEL_DIR)/%.asm,$(BUILD_DIR)/%.o,$(ASM_SRCS))
+SRCS = $(KERNEL_DIR)/kernel.asm \
+       $(KERNEL_DIR)/pl011.asm \
+       $(KERNEL_DIR)/log.asm \
+       $(KERNEL_DIR)/event.asm \
+       $(KERNEL_DIR)/utils.asm \
+       $(KERNEL_DIR)/shell.asm
 
-.PHONY: all clean test run
+OBJS = $(patsubst $(KERNEL_DIR)/%.asm,$(BUILD_DIR)/%.o,$(SRCS))
 
-all: $(OUTPUT_BIN) $(OUTPUT_RAW)
+.PHONY: all run clean
+
+all: $(TARGET_ELF)
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
 $(BUILD_DIR)/%.o: $(KERNEL_DIR)/%.asm | $(BUILD_DIR)
-	@echo "  AS  $<"
 	$(AS) $(ASFLAGS) -o $@ $<
 
-$(OUTPUT_ELF): $(OBJS)
-	@echo "  LD  $@"
-	$(LD) -T $(KERNEL_DIR)/linker.ld -o $@ $(OBJS)
-	@cp $@ $(OUTPUT_BIN)
+$(TARGET_ELF): $(OBJS)
+	$(LD) $(LDFLAGS) -o $@ $(OBJS)
+	@SIZE=$$(wc -c < $@); echo "kernel.elf: $${SIZE} bytes ($$(( SIZE / 1024 ))KB)"
 
-$(OUTPUT_BIN): $(OUTPUT_ELF)
-	@echo "  ELF:  $@ ($$(wc -c < $@) bytes)"
-
-$(OUTPUT_RAW): $(OUTPUT_ELF)
-	@echo "  OBJCOPY  $@"
-	$(OBJCOPY) -O binary $< $@
-	@echo "  RAW:  $@ ($$(wc -c < $@) bytes)"
-
-test: $(OUTPUT_BIN)
-	@echo "Running tests..."
-	./bin/aiasm-test
-
-run: $(OUTPUT_ELF)
-	@echo "Starting QEMU..."
+run: $(TARGET_ELF)
 	./run_kernel.sh
 
 clean:

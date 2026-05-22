@@ -1,224 +1,314 @@
 /*
  * aiasm-aarch64/kernel/shell.asm
- * Simple command-line shell for AI-ASM AArch64
- * Reads from PL011 UART, outputs to serial and VGA
+ * Serial interactive command shell - JSON output
  */
 .arch armv8-a
 
+.set CMD_BUF_SIZE, 64
+
 .text
 
+/* Command input buffer */
 .bss
 .align 4
-shell_input_buf:
-    .skip 128
+shell_cmd_buf:
+    .skip CMD_BUF_SIZE
 
 .text
 
 /* -----------------------------------------------------------------------------
- * Function: shell_start
- * Description: Start the interactive shell loop
- * Input: None
- * Output: Never returns
+ * Function: shell_run
+ * Description: Main shell loop - prompt, read, exec
+ * Input: none
+ * Output: never returns
  * Clobbered: all
  * Stack: variable
  * ----------------------------------------------------------------------------- */
-.global shell_start
-shell_start:
+.global shell_run
+shell_run:
     stp     x29, x30, [sp, #-16]!
-    mov     x29, sp
 
-    /* Print shell banner */
-    adrp    x0, shell_banner
-    add     x0, x0, :lo12:shell_banner
+    /* Print welcome */
+    adrp    x0, msg_shell_welcome
+    add     x0, x0, #:lo12:msg_shell_welcome
     bl      serial_puts
 
-    adrp    x0, shell_prompt
-    add     x0, x0, :lo12:shell_prompt
+shell_loop:
+    /* Print prompt */
+    adrp    x0, msg_prompt
+    add     x0, x0, #:lo12:msg_prompt
     bl      serial_puts
 
-1:
-    /* Read a line of input */
+    /* Read line */
     bl      shell_readline
 
-    /* Parse and execute command */
+    /* Execute command */
     bl      shell_exec
 
-    /* Print prompt again */
-    adrp    x0, shell_prompt
-    add     x0, x0, :lo12:shell_prompt
-    bl      serial_puts
-
-    b       1b
+    b       shell_loop
 
 /* -----------------------------------------------------------------------------
  * Function: shell_readline
- * Description: Read characters until newline, store in buffer
- * Input: None
+ * Description: Read characters until newline into buffer
+ * Input: none
  * Output: x0 = buffer pointer
- * Clobbered: x0, x1, x2
+ * Clobbered: x0, x1, x2, x3
  * Stack: 16 bytes
  * ----------------------------------------------------------------------------- */
 .global shell_readline
 shell_readline:
     stp     x29, x30, [sp, #-16]!
 
-    adrp    x0, shell_input_buf
-    add     x0, x0, :lo12:shell_input_buf
-    mov     x2, x0                /* Buffer start */
+    adrp    x0, shell_cmd_buf
+    add     x0, x0, #:lo12:shell_cmd_buf
+    mov     x2, x0              /* buffer start */
 
 1:
     bl      serial_getc
-    strb    w0, [x0]
-    add     x0, x0, #1
 
-    /* Echo character */
+    /* Echo back */
     bl      serial_putc
 
-    /* Check for newline or backspace */
-    cmp     w0, #'\r'
-    b.eq    2f
-    cmp     w0, #'\n'
-    b.eq    2f
-    cmp     w0, #0x7f             /* Backspace */
+    /* Handle special chars */
+    cmp     w0, #13             /* '\r' */
     b.eq    3f
-    cmp     w0, #0x08             /* Ctrl+H */
+    cmp     w0, #10             /* '\n' */
     b.eq    3f
+    cmp     w0, #8              /* backspace */
+    b.eq    shell_bs
+    cmp     w0, #127            /* del */
+    b.eq    shell_bs
+
+    /* Store char */
+    strb    w0, [x0]
+    add     x0, x0, #1
     b       1b
 
-2:
-    /* Terminate string */
+shell_bs:
+    cmp     x0, x2
+    b.eq    1b                  /* buffer empty, ignore */
+    sub     x0, x0, #1
+    /* Erase on terminal: BS SP BS */
+    mov     w0, #8
+    bl      serial_putc
+    mov     w0, #32
+    bl      serial_putc
+    mov     w0, #8
+    bl      serial_putc
+    b       1b
+
+3:
+    /* Null terminate */
     strb    wzr, [x0]
+    /* Print newline */
+    mov     x0, #10
+    bl      serial_putc
     mov     x0, x2
     ldp     x29, x30, [sp], #16
     ret
 
-3:
-    /* Handle backspace: move pointer back, print space + backspace */
-    cmp     x0, x2
-    b.eq    1b                    /* Don't go before buffer start */
-    sub     x0, x0, #1
-    mov     w0, #0x08             /* Backspace */
-    bl      serial_putc
-    mov     w0, #' '
-    bl      serial_putc
-    mov     w0, #0x08
-    bl      serial_putc
-    b       1b
-
 /* -----------------------------------------------------------------------------
  * Function: shell_exec
- * Description: Parse and execute a command from input buffer
- * Input: None
- * Clobbered: all
- * Stack: variable
+ * Description: Parse and execute command
+ * Input: none (uses shell_cmd_buf)
+ * Output: none
+ * Clobbered: x0-x5
+ * Stack: 16 bytes
  * ----------------------------------------------------------------------------- */
 .global shell_exec
 shell_exec:
     stp     x29, x30, [sp, #-16]!
 
-    adrp    x0, shell_input_buf
-    add     x0, x0, :lo12:shell_input_buf
+    adrp    x0, shell_cmd_buf
+    add     x0, x0, #:lo12:shell_cmd_buf
     ldrb    w0, [x0]
-    cbz     w0, shell_exec_done   /* Empty input */
+    cbz     w0, shell_done        /* empty line */
 
-    /* Compare "help" */
+    /* Match: help */
     adrp    x1, cmd_help
-    add     x1, x1, :lo12:cmd_help
-    adrp    x2, shell_input_buf
-    add     x2, x2, :lo12:shell_input_buf
+    add     x1, x1, #:lo12:cmd_help
+    adrp    x2, shell_cmd_buf
+    add     x2, x2, #:lo12:shell_cmd_buf
     bl      strcmp
-    cbz     x0, shell_do_help
+    cbz     x0, shell_help
 
-    /* Compare "version" */
+    /* Match: version */
     adrp    x1, cmd_version
-    add     x1, x1, :lo12:cmd_version
-    adrp    x2, shell_input_buf
-    add     x2, x2, :lo12:shell_input_buf
+    add     x1, x1, #:lo12:cmd_version
+    adrp    x2, shell_cmd_buf
+    add     x2, x2, #:lo12:shell_cmd_buf
     bl      strcmp
-    cbz     x0, shell_do_version
+    cbz     x0, shell_version
 
-    /* Compare "clear" */
-    adrp    x1, cmd_clear
-    add     x1, x1, :lo12:cmd_clear
-    adrp    x2, shell_input_buf
-    add     x2, x2, :lo12:shell_input_buf
+    /* Match: events */
+    adrp    x1, cmd_events
+    add     x1, x1, #:lo12:cmd_events
+    adrp    x2, shell_cmd_buf
+    add     x2, x2, #:lo12:shell_cmd_buf
     bl      strcmp
-    cbz     x0, shell_do_clear
+    cbz     x0, shell_events
 
-    /* Compare "log" */
+    /* Match: reboot */
+    adrp    x1, cmd_reboot
+    add     x1, x1, #:lo12:cmd_reboot
+    adrp    x2, shell_cmd_buf
+    add     x2, x2, #:lo12:shell_cmd_buf
+    bl      strcmp
+    cbz     x0, shell_reboot
+
+    /* Match: shutdown */
+    adrp    x1, cmd_shutdown
+    add     x1, x1, #:lo12:cmd_shutdown
+    adrp    x2, shell_cmd_buf
+    add     x2, x2, #:lo12:shell_cmd_buf
+    bl      strcmp
+    cbz     x0, shell_shutdown
+
+    /* Match: log N */
     adrp    x1, cmd_log
-    add     x1, x1, :lo12:cmd_log
-    adrp    x2, shell_input_buf
-    add     x2, x2, :lo12:shell_input_buf
-    bl      strcmp
-    cbz     x0, shell_do_log
+    add     x1, x1, #:lo12:cmd_log
+    adrp    x2, shell_cmd_buf
+    add     x2, x2, #:lo12:shell_cmd_buf
+    bl      strncmp           /* partial match for "log " */
+    cbz     x0, shell_log
 
-    /* Unknown command */
-    adrp    x0, msg_unknown_cmd
-    add     x0, x0, :lo12:msg_unknown_cmd
+    /* Unknown */
+    adrp    x0, msg_unknown
+    add     x0, x0, #:lo12:msg_unknown
     bl      serial_puts
+    b       shell_done
 
-shell_exec_done:
-    adrp    x0, msg_newline
-    add     x0, x0, :lo12:msg_newline
+shell_help:
+    adrp    x0, rsp_help
+    add     x0, x0, #:lo12:rsp_help
     bl      serial_puts
+    b       shell_done
+
+shell_version:
+    adrp    x0, rsp_version
+    add     x0, x0, #:lo12:rsp_version
+    bl      serial_puts
+    b       shell_done
+
+shell_events:
+    bl      event_dump
+    b       shell_done
+
+shell_reboot:
+    adrp    x0, rsp_reboot
+    add     x0, x0, #:lo12:rsp_reboot
+    bl      serial_puts
+    bl      shell_hang
+    b       shell_done
+
+shell_shutdown:
+    adrp    x0, rsp_shutdown
+    add     x0, x0, #:lo12:rsp_shutdown
+    bl      serial_puts
+    bl      shell_hang
+    b       shell_done
+
+shell_log:
+    /* Parse level digit after "log " */
+    adrp    x0, shell_cmd_buf
+    add     x0, x0, #:lo12:shell_cmd_buf
+    add     x0, x0, #4          /* skip "log " */
+    ldrb    w0, [x0]
+    sub     w0, w0, #'0'
+    cmp     w0, #3
+    b.gt    shell_log_bad
+
+    /* Set level */
+    bl      log_set_level
+
+    /* Print confirmation */
+    adrp    x0, rsp_log_set
+    add     x0, x0, #:lo12:rsp_log_set
+    bl      serial_puts
+    b       shell_done
+
+shell_log_bad:
+    adrp    x0, rsp_log_bad
+    add     x0, x0, #:lo12:rsp_log_bad
+    bl      serial_puts
+    b       shell_done
+
+shell_done:
     ldp     x29, x30, [sp], #16
     ret
 
-shell_do_help:
-    adrp    x0, msg_help
-    add     x0, x0, :lo12:msg_help
-    bl      serial_puts
-    b       shell_exec_done
+/* -----------------------------------------------------------------------------
+ * Function: shell_hang
+ * Description: Halt CPU (WFI loop)
+ * Input: none
+ * Output: none
+ * ----------------------------------------------------------------------------- */
+.global shell_hang
+shell_hang:
+1:
+    wfi
+    b       1b
 
-shell_do_version:
-    adrp    x0, msg_version
-    add     x0, x0, :lo12:msg_version
-    bl      serial_puts
-    b       shell_exec_done
+/* -----------------------------------------------------------------------------
+ * Function: strncmp
+ * Description: Compare first N chars of two strings
+ * Input: x0 = a, x1 = b, x2 = n (uses strlen of x1 as n)
+ * Actually: we compare a against b, returning 0 if a starts with b
+ * Input: x0 = a, x1 = prefix b
+ * Output: x0 = 0 if b is prefix of a
+ * Clobbered: x0-x3
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global strncmp
+strncmp:
+    stp     x29, x30, [sp, #-16]!
+1:
+    ldrb    w2, [x1], #1
+    cbz     w2, 2f              /* prefix exhausted -> match */
+    ldrb    w3, [x0], #1
+    cbz     w3, 3f              /* a ended but prefix didn't -> no match */
+    subs    w4, w2, w3
+    b.ne    3f
+    b       1b
+2:
+    mov     x0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+3:
+    mov     x0, x4
+    ldp     x29, x30, [sp], #16
+    ret
 
-shell_do_clear:
-    bl      vga_init
-    b       shell_exec_done
-
-shell_do_log:
-    adrp    x0, msg_log_test
-    add     x0, x0, :lo12:msg_log_test
-    bl      serial_puts
-    mov     w0, #1              /* INFO */
-    adrp    x1, event_shell
-    add     x1, x1, :lo12:event_shell
-    adrp    x2, data_shell_log
-    add     x2, x2, :lo12:data_shell_log
-    bl      log_event
-    b       shell_exec_done
-
-/* String constants */
+/* Read-only strings */
 .section .rodata
 .align 4
-shell_banner:
-    .asciz "\r\nAI-ASM AArch64 Shell v0.1\r\n"
-shell_prompt:
-    .asciz "aarch64> "
+msg_shell_welcome:
+    .asciz "\r\nAI-ASM AArch64 v0.1\r\n"
+msg_prompt:
+    .asciz "> "
 cmd_help:
     .asciz "help"
 cmd_version:
     .asciz "version"
-cmd_clear:
-    .asciz "clear"
+cmd_events:
+    .asciz "events"
+cmd_reboot:
+    .asciz "reboot"
+cmd_shutdown:
+    .asciz "shutdown"
 cmd_log:
-    .asciz "log"
-msg_unknown_cmd:
-    .asciz "Unknown command. Type 'help' for commands."
-msg_newline:
-    .asciz "\r\n"
-msg_help:
-    .asciz "Commands: help, version, clear, log\r\n"
-msg_version:
-    .asciz "AI-ASM AArch64 v0.1 - Pure Assembly AI OS\r\n"
-msg_log_test:
-    .asciz "Emitting test log event...\r\n"
-event_shell:
-    .asciz "shell_command"
-data_shell_log:
-    .asciz "{\"cmd\":\"log\",\"status\":\"ok\"}"
+    .asciz "log "
+msg_unknown:
+    .asciz "{\"error\":\"unknown command\"}\n"
+rsp_help:
+    .asciz "{\"commands\":[\"help\",\"version\",\"log 0|1|2|3\",\"events\",\"reboot\",\"shutdown\"]}\n"
+rsp_version:
+    .asciz "{\"version\":\"0.1-aarch64\",\"arch\":\"aarch64\",\"build\":\"pure-asm\"}\n"
+rsp_reboot:
+    .asciz "{\"action\":\"reboot\"}\n"
+rsp_shutdown:
+    .asciz "{\"action\":\"shutdown\"}\n"
+rsp_log_set:
+    .asciz "{\"level_set\":true}\n"
+rsp_log_bad:
+    .asciz "{\"error\":\"log level must be 0-3\"}\n"

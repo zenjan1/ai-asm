@@ -1,141 +1,58 @@
-# AI-ASM AArch64
+# AI-ASM AArch64 v0.1
 
-The world's first AArch64 AI-native operating system implemented in 100% pure assembly language.
-Designed for development and execution on Android Termux mobile devices.
+100% pure AArch64 assembly AI-native OS kernel for QEMU virt on Termux.
 
-## Features
-
-- **100% Pure AArch64 Assembly**: No C, no libc, no external dependencies
-- **AI-ASM Format**: All functions include structured AI-readable comments
-- **JSON Structured Logging**: All kernel output is machine-readable JSON
-- **Event Bus**: Full kernel observability through structured events
-- **Termux Native**: Runs on Termux with official `binutils` and `qemu-system-aarch64`
-- **Minimal Footprint**: Kernel < 128KB, build time < 10 seconds, raw binary 17KB
-
-## Prerequisites
-
-Install Termux packages:
+## 前置环境
 
 ```bash
 pkg update && pkg upgrade -y
 pkg install binutils qemu-system-aarch64 make git
 ```
 
-## Quick Start
+## 快速开始
 
 ```bash
-# Build
-make
-# or: ./bin/aiasm-build
-
-# Run in QEMU
-make run
-# or: ./run_kernel.sh
-
-# Run tests
-make test
-# or: ./bin/aiasm-test
-
-# Clean
-make clean
+make && make run
 ```
 
-## Architecture
-
-### Boot Flow
-
-1. `_start` - Entry point at 0x40080000 (QEMU virt load address)
-2. Exception masking (DAIF set)
-3. EL2/EL3 to EL1 transition (if needed)
-4. Stack setup (8KB at __stack_top)
-5. MMU and cache disable
-6. BSS zeroing
-7. GICv2 interrupt controller init
-8. PL011 UART init (0x09000000, 115200 8N1)
-9. ARM Generic Timer init
-10. Event bus init
-11. Structured JSON log init
-12. VGA framebuffer init
-13. Boot event published as JSON
-14. Shell interactive loop
-
-### Memory Map (QEMU virt)
-
-| Address       | Component              |
-|---------------|------------------------|
-| 0x40080000    | Kernel load address    |
-| 0x09000000    | PL011 UART             |
-| 0x08000000    | GICv2 Distributor      |
-| 0x08010000    | GICv2 CPU Interface    |
-| 0x40100000    | Framebuffer            |
-
-### Build Artifacts
-
-| File | Size | Description |
-|------|------|-------------|
-| `aiasm-aarch64.elf` | ~88KB | ELF executable with debug info |
-| `aiasm-aarch64.bin` | ~88KB | Copy of ELF for QEMU -kernel |
-| `aiasm-aarch64.raw` | ~17KB | Raw binary (no BSS/headers) |
-
-## Shell Commands
-
-| Command  | Description                    |
-|----------|--------------------------------|
-| `help`   | Show available commands        |
-| `version`| Print kernel version           |
-| `clear`  | Clear VGA screen               |
-| `log`    | Emit test JSON log event       |
-
-## Log Output Format
-
-All kernel output is single-line JSON:
-
-```json
-{"timestamp":0,"level":"INFO","event":"boot","data":{"version":"0.1-aarch64","arch":"aarch64"}}
-```
-
-## AI-ASM Format
-
-Every function follows this header template:
-
-```
-; -----------------------------------------------------------------------------
-; Function: name
-; Description: what it does
-; Input: x0 = ..., w1 = ...
-; Output: x0 = ..., never returns, etc.
-; Clobbered registers: x0, x1, ...
-; Stack: N bytes
-; -----------------------------------------------------------------------------
-```
-
-## Project Structure
+## 目录结构
 
 ```
 aiasm-aarch64/
-├── bin/
-│   ├── aiasm-build         # Build the kernel
-│   ├── aiasm-test          # Run automated tests
-│   └── aiasm-new           # Create new project from template
 ├── kernel/
-│   ├── kernel.asm          # Entry point, EL1 init, boot sequence
-│   ├── idt.asm             # Exception vector table
-│   ├── gic.asm             # GICv2 interrupt controller
-│   ├── timer.asm           # ARM Generic Timer
-│   ├── pl011.asm           # PL011 UART driver
-│   ├── vga.asm             # Framebuffer text driver
-│   ├── event.asm           # Kernel event bus
-│   ├── log.asm             # Structured JSON logging
-│   ├── shell.asm           # Interactive command shell
-│   ├── utils.asm           # Utility functions
-│   └── linker.ld           # AArch64 linker script
-├── tests/                  # Automated test cases
-├── examples/               # Example programs
+│   ├── kernel.asm      # 内核入口、初始化
+│   ├── pl011.asm       # PL011 串口驱动（轮询）
+│   ├── log.asm         # 结构化 JSON 日志
+│   ├── event.asm       # 内核事件总线（环形缓冲）
+│   ├── utils.asm       # memset/memcpy/strlen/itoa_buf/strcmp/strncmp
+│   ├── shell.asm       # 串口交互式 Shell
+│   └── linker.ld       # 链接脚本（入口 0x40080000）
 ├── Makefile
 ├── run_kernel.sh
 └── README.md
 ```
 
-## License
+## Shell 命令
 
-MIT
+| 命令 | 输出 |
+|------|------|
+| `help` | `{"commands":["help","version","log 0\|1\|2\|3","events","reboot","shutdown"]}` |
+| `version` | `{"version":"0.1-aarch64","arch":"aarch64","build":"pure-asm"}` |
+| `log 0~3` | `{"level_set":true}` |
+| `events` | 事件环形缓冲 JSON 数组 |
+| `reboot` | `{"action":"reboot"}` 后停机 |
+| `shutdown` | `{"action":"shutdown"}` 后停机 |
+
+## 日志格式
+
+```json
+{"ts":1,"level":"INFO","event":"event","data":{"version":"0.1-aarch64","arch":"aarch64"}}
+```
+
+## 技术规格
+
+- 加载地址：0x40080000
+- 串口：PL011 @ 0x09000000，115200 8N1，轮询
+- 内核栈：8KB
+- 事件缓冲：16 条目环形缓冲
+- 无 C 语言、无外部依赖、无 GIC、无 MMU

@@ -1,110 +1,186 @@
 /*
  * aiasm-aarch64/kernel/event.asm
- * Kernel event bus for AI-ASM AArch64
- * Provides full kernel observability, publishes events to log
+ * Kernel event bus - ring buffer + auto-log
+ * Holds up to 16 events
  */
 .arch armv8-a
 
+.set EVENT_MAX, 16
+
 .text
 
-/* Event buffer */
+/* Ring buffer state */
 .bss
 .align 4
-event_buffer:
-    .skip 256
+event_buf_type:
+    .skip EVENT_MAX * 4         /* 16 x u32 type IDs */
+event_buf_data:
+    .skip EVENT_MAX * 8         /* 16 x u64 data ptrs */
+event_head:
+    .skip 4
+event_count:
+    .skip 4
 
 .text
 
 /* -----------------------------------------------------------------------------
  * Function: event_init
- * Description: Initialize kernel event bus
- * Input: None
- * Output: None
- * Clobbered registers: x0, x1, x2
+ * Description: Initialize event ring buffer
+ * Input: none
+ * Output: none
+ * Clobbered: x0, x1, x2
  * Stack: 16 bytes
  * ----------------------------------------------------------------------------- */
 .global event_init
 event_init:
     stp     x29, x30, [sp, #-16]!
 
-    /* Clear event buffer */
-    adrp    x0, event_buffer
-    add     x0, x0, :lo12:event_buffer
-    mov     x1, #0
-    mov     x2, #256
-1:
-    cbz     x2, 2f
-    strb    w1, [x0], #1
-    sub     x2, x2, #1
-    b       1b
-2:
+    /* Zero type buffer */
+    adrp    x0, event_buf_type
+    add     x0, x0, #:lo12:event_buf_type
+    mov     w1, #0
+    mov     x2, #(EVENT_MAX * 4)
+    bl      memset
+
+    /* Zero data buffer */
+    adrp    x0, event_buf_data
+    add     x0, x0, #:lo12:event_buf_data
+    mov     x2, #(EVENT_MAX * 8)
+    bl      memset
+
+    /* head = 0, count = 0 */
+    adrp    x0, event_head
+    add     x0, x0, #:lo12:event_head
+    str     wzr, [x0]
+    str     wzr, [x0, #4]
+
     ldp     x29, x30, [sp], #16
     ret
 
 /* -----------------------------------------------------------------------------
  * Function: event_publish
- * Description: Publish an event to the kernel event bus (logs it)
- * Input: w0 = event type ID
- *        x1 = event data pointer
- *        w2 = event data length
- * Output: None
- * Clobbered registers: x0-x5
- * Stack: 24 bytes
+ * Description: Store event in ring buffer + auto-log
+ * Input: w0 = type ID, x1 = data ptr, w2 = data len (unused v0.1)
+ * Output: none
+ * Clobbered: x0-x7
+ * Stack: 16 bytes
  * ----------------------------------------------------------------------------- */
 .global event_publish
 event_publish:
-    stp     x29, x30, [sp, #-24]!
-    mov     x29, sp
-    stp     x19, x20, [sp, #16]
-    mov     x19, x1             /* Save data pointer */
-    mov     x20, x2             /* Save data length */
+    stp     x29, x30, [sp, #-16]!
+    mov     x3, x1              /* x3 = data ptr */
+    mov     x4, x0              /* x4 = type */
 
-    /* Build JSON log entry: {"event_type":N,"data":"..."} */
-    /* Start with prefix */
-    adrp    x0, msg_event_pub_prefix
-    add     x0, x0, :lo12:msg_event_pub_prefix
-    bl      serial_puts
+    /* x5 = &event_head */
+    adrp    x5, event_head
+    add     x5, x5, #:lo12:event_head
 
-    /* Print event type ID */
-    mov     x0, x0
-    uxtw    x0, w0
-    bl      print_number
+    /* w6 = head value */
+    ldr     w6, [x5]
 
-    /* Print data if present */
-    cbz     x19, 1f
-    adrp    x0, msg_event_data_prefix
-    add     x0, x0, :lo12:msg_event_data_prefix
-    bl      serial_puts
-    mov     x0, x19
-    bl      serial_puts
+    /* Store type: event_buf_type[head] = w4 */
+    adrp    x7, event_buf_type
+    add     x7, x7, #:lo12:event_buf_type
+    lsl     x1, x6, #2
+    add     x7, x7, x1
+    str     w4, [x7]
 
-1:
-    adrp    x0, msg_event_pub_suffix
-    add     x0, x0, :lo12:msg_event_pub_suffix
-    bl      serial_puts
+    /* Store data: event_buf_data[head] = x3 */
+    adrp    x7, event_buf_data
+    add     x7, x7, #:lo12:event_buf_data
+    lsl     x1, x6, #3
+    add     x7, x7, x1
+    str     x3, [x7]
 
-    /* Also log via structured logger */
-    mov     w0, #1              /* INFO level */
-    adrp    x1, event_name_publish
-    add     x1, x1, :lo12:event_name_publish
-    mov     x2, x19
+    /* head = (head + 1) % 16 */
+    add     w6, w6, #1
+    and     w6, w6, #(EVENT_MAX - 1)
+    str     w6, [x5]
+
+    /* count = min(count + 1, EVENT_MAX) */
+    ldr     w7, [x5, #4]
+    add     w7, w7, #1
+    cmp     w7, #EVENT_MAX
+    csel    w7, w7, w7, lt
+    str     w7, [x5, #4]
+
+    /* Auto-log: log_event(INFO, "event", x3) */
+    mov     w0, #1
+    adrp    x1, evt_name_pub
+    add     x1, x1, #:lo12:evt_name_pub
+    mov     x2, x3
     bl      log_event
 
-    ldp     x19, x20, [sp, #16]
-    ldp     x29, x30, [sp], #24
+    ldp     x29, x30, [sp], #16
     ret
 
-/* Need access to print_number from log.asm */
-.global print_number
+/* -----------------------------------------------------------------------------
+ * Function: event_dump
+ * Description: Print all buffered events as JSON array
+ * Input: none
+ * Output: none
+ * Clobbered: x0-x6
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global event_dump
+event_dump:
+    stp     x29, x30, [sp, #-16]!
 
-/* Event strings */
+    mov     x0, #91             /* '[' */
+    bl      serial_putc
+
+    adrp    x3, event_head
+    add     x3, x3, #:lo12:event_head
+    ldr     w4, [x3]            /* head */
+    ldr     w5, [x3, #4]        /* count */
+
+    /* start_idx = (head - count) % 16 */
+    sub     w4, w4, w5
+    and     w4, w4, #(EVENT_MAX - 1)
+    mov     x6, #0              /* first flag */
+
+1:
+    cbz     w5, 2f              /* done when count == 0 */
+
+    cbz     x6, 3f
+    mov     x0, #44             /* ',' */
+    bl      serial_putc
+3:
+    mov     x6, #1
+
+    /* Print type number */
+    adrp    x1, event_buf_type
+    add     x1, x1, #:lo12:event_buf_type
+    lsl     x2, x4, #2
+    add     x1, x1, x2
+    ldr     w0, [x1]
+
+    adrp    x1, itoa_tmp
+    add     x1, x1, #:lo12:itoa_tmp
+    bl      itoa_buf
+    mov     x0, x1
+    bl      serial_puts
+
+    add     w4, w4, #1
+    and     w4, w4, #(EVENT_MAX - 1)
+    sub     w5, w5, #1
+    b       1b
+
+2:
+    mov     x0, #93             /* ']' */
+    bl      serial_putc
+    mov     x0, #10             /* '\n' */
+    bl      serial_putc
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+.bss
+.align 4
+itoa_tmp:
+    .skip 24
+
 .section .rodata
 .align 4
-msg_event_pub_prefix:
-    .asciz "[EVENT] type="
-msg_event_data_prefix:
-    .asciz ", data="
-msg_event_pub_suffix:
-    .asciz "\n"
-event_name_publish:
-    .asciz "event_publish"
+evt_name_pub:
+    .asciz "event"

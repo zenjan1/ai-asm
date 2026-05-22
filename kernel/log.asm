@@ -1,235 +1,210 @@
 /*
  * aiasm-aarch64/kernel/log.asm
- * Structured JSON logging system for AI-ASM AArch64
- * All output is single-line JSON, machine-readable
+ * Structured JSON logging system - single-line JSON output via UART
  */
 .arch armv8-a
 
 .text
 
-/* Log levels */
-.set LOG_DEBUG, 0
-.set LOG_INFO,  1
-.set LOG_WARN,  2
-.set LOG_ERROR, 3
-
-/* Global: timestamp counter */
+/* Timestamp counter (simple incrementing) */
 .bss
 .align 4
-log_timestamp:
+log_ts:
     .skip 8
+
+.bss
+.align 4
+log_itoa_buf:
+    .skip 24
+
+.bss
+.align 4
+log_level:
+    .skip 4
 
 .text
 
 /* -----------------------------------------------------------------------------
  * Function: log_init
- * Description: Initialize structured logging system, print boot header
- * Input: None
- * Output: None
- * Clobbered registers: x0, x1, x2
+ * Description: Initialize logging system
+ * Input: none
+ * Output: none
+ * Clobbered: x0, x1
  * Stack: 16 bytes
  * ----------------------------------------------------------------------------- */
 .global log_init
 log_init:
     stp     x29, x30, [sp, #-16]!
-    mov     x29, sp
 
-    /* Initialize timestamp */
-    adrp    x0, log_timestamp
-    add     x0, x0, :lo12:log_timestamp
-    mov     x1, #0
-    str     x1, [x0]
+    /* Reset timestamp */
+    adrp    x0, log_ts
+    add     x0, x0, #:lo12:log_ts
+    str     xzr, [x0]
 
-    /* Print JSON boot message */
-    adrp    x0, msg_boot_json
-    add     x0, x0, :lo12:msg_boot_json
-    bl      serial_puts
+    /* Default log level = INFO (1) */
+    adrp    x0, log_level
+    add     x0, x0, #:lo12:log_level
+    mov     w1, #1
+    str     w1, [x0]
 
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: log_set_level
+ * Description: Set minimum log level
+ * Input: w0 = level (0-3)
+ * Output: none
+ * Clobbered: x0
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global log_set_level
+log_set_level:
+    stp     x29, x30, [sp, #-16]!
+    adrp    x0, log_level
+    add     x0, x0, #:lo12:log_level
+    str     w0, [x0]
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: log_get_level
+ * Description: Get current log level
+ * Input: none
+ * Output: w0 = level
+ * Clobbered: x0
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global log_get_level
+log_get_level:
+    stp     x29, x30, [sp, #-16]!
+    adrp    x0, log_level
+    add     x0, x0, #:lo12:log_level
+    ldr     w0, [x0]
     ldp     x29, x30, [sp], #16
     ret
 
 /* -----------------------------------------------------------------------------
  * Function: log_event
- * Description: Emit a structured JSON log line
+ * Description: Emit structured JSON log line
  * Input: w0 = level (0=DEBUG,1=INFO,2=WARN,3=ERROR)
- *        x1 = event name string pointer
- *        x2 = JSON data string pointer (may be empty)
- * Output: None
- * Clobbered registers: x0-x5
+ *        x1 = event name string
+ *        x2 = JSON data string
+ * Output: none
+ * Clobbered: x0-x5
  * Stack: 32 bytes
  * ----------------------------------------------------------------------------- */
 .global log_event
 log_event:
-    stp     x29, x30, [sp, #-32]!
-    mov     x29, sp
+    stp     x29, x30, [sp, #-48]!
     stp     x19, x20, [sp, #16]
-    mov     x19, x1             /* Save event name */
-    mov     x20, x2             /* Save data string */
+    str     x21, [sp, #32]
+    mov     w19, w0             /* save log level */
+    mov     x20, x1             /* save event name */
+    mov     x21, x2             /* save data string */
+
+    /* Check log level */
+    adrp    x3, log_level
+    add     x3, x3, #:lo12:log_level
+    ldr     w3, [x3]
+    cmp     w19, w3
+    b.lt    log_event_done      /* below minimum level, skip */
 
     /* Increment timestamp */
-    adrp    x3, log_timestamp
-    add     x3, x3, :lo12:log_timestamp
+    adrp    x3, log_ts
+    add     x3, x3, #:lo12:log_ts
     ldr     x4, [x3]
     add     x4, x4, #1
     str     x4, [x3]
 
-    /* Print: {"timestamp":NNN, */
-    adrp    x0, msg_json_prefix
-    add     x0, x0, :lo12:msg_json_prefix
+    /* Print: {"ts": */
+    adrp    x0, msg_log_prefix
+    add     x0, x0, #:lo12:msg_log_prefix
     bl      serial_puts
 
-    /* Print timestamp value */
-    mov     x0, x4
-    bl      print_number
-
-    /* Print: "level":" */
-    adrp    x0, msg_level_prefix
-    add     x0, x0, :lo12:msg_level_prefix
+    /* Print timestamp number */
+    adrp    x0, log_itoa_buf
+    add     x0, x0, #:lo12:log_itoa_buf
+    mov     x1, x0
+    bl      itoa_buf
+    mov     x0, x1
     bl      serial_puts
 
-    /* Print level string */
-    cmp     w0, #0
-    b.lt    1f
-    cmp     w0, #3
-    b.gt    1f
-    adrp    x5, level_strings
-    add     x5, x5, :lo12:level_strings
-    lsl     x0, x0, #3          /* level * 8 bytes per string */
-    add     x5, x5, x0
-    ldr     x0, [x5]
+    /* Print: ,"level":" */
+    adrp    x0, msg_level_pre
+    add     x0, x0, #:lo12:msg_level_pre
     bl      serial_puts
 
-1:
+    /* Print level name using saved level in w19 */
+    and     w5, w19, #3
+    adrp    x0, level_names
+    add     x0, x0, #:lo12:level_names
+    add     x0, x0, x5, lsl #3  /* level * 8 */
+    ldr     x0, [x0]
+    bl      serial_puts
+
     /* Print: ","event":" */
-    adrp    x0, msg_event_prefix
-    add     x0, x0, :lo12:msg_event_prefix
+    adrp    x0, msg_event_pre
+    add     x0, x0, #:lo12:msg_event_pre
     bl      serial_puts
 
     /* Print event name */
-    mov     x0, x19
-    bl      serial_puts
-
-    /* Print: " */
-    mov     x0, #'"'
-    bl      serial_putc
-
-    /* Print data if not null */
-    cbz     x20, 2f
-    /* Print: ,"data": */
-    adrp    x0, msg_data_prefix
-    add     x0, x0, :lo12:msg_data_prefix
-    bl      serial_puts
     mov     x0, x20
     bl      serial_puts
 
-2:
-    /* Print: "}\n */
-    adrp    x0, msg_json_suffix
-    add     x0, x0, :lo12:msg_json_suffix
+    /* Print: " */
+    mov     x0, #34             /* '"' */
+    bl      serial_putc
+
+    /* Print data if non-null */
+    cbz     x21, log_event_tail
+
+    /* Print: ,"data": */
+    adrp    x0, msg_data_pre
+    add     x0, x0, #:lo12:msg_data_pre
     bl      serial_puts
 
+    /* Print data */
+    mov     x0, x21
+    bl      serial_puts
+
+log_event_tail:
+    /* Print: }\n */
+    adrp    x0, msg_log_suffix
+    add     x0, x0, #:lo12:msg_log_suffix
+    bl      serial_puts
+
+log_event_done:
+    ldr     x21, [sp, #32]
     ldp     x19, x20, [sp, #16]
-    ldp     x29, x30, [sp], #32
+    ldp     x29, x30, [sp], #48
     ret
 
-/* -----------------------------------------------------------------------------
- * Function: log_boot_message
- * Description: Print boot JSON message
- * Input: x0 = message string (unused, uses built-in message)
- * Output: None
- * Clobbered: x0-x5
- * Stack: 16 bytes
- * ----------------------------------------------------------------------------- */
-.global log_boot_message
-log_boot_message:
-    stp     x29, x30, [sp, #-16]!
-
-    mov     w0, #LOG_INFO       /* level = INFO */
-    adrp    x1, event_name_boot
-    add     x1, x1, :lo12:event_name_boot
-    adrp    x2, data_boot
-    add     x2, x2, :lo12:data_boot
-    bl      log_event
-
-    ldp     x29, x30, [sp], #16
-    ret
-
-/* -----------------------------------------------------------------------------
- * Function: print_number
- * Description: Print a 64-bit unsigned integer in decimal
- * Input: x0 = number to print
- * Output: None
- * Clobbered: x0, x1, x2, x3
- * Stack: 16 bytes
- * ----------------------------------------------------------------------------- */
-.global print_number
-print_number:
-    stp     x29, x30, [sp, #-16]!
-    cbz     x0, print_zero
-
-    /* Build digits on stack */
-    mov     x29, sp
-    mov     x1, #0              /* digit count */
-    mov     x2, #10
-1:
-    udiv    x3, x0, x2
-    msub    x0, x3, x2, x0      /* x0 = remainder */
-    add     x0, x0, #'0'
-    sub     sp, sp, #1
-    strb    w0, [sp]
-    add     x1, x1, #1
-    mov     x0, x3
-    cbnz    x0, 1b
-
-    /* Print digits */
-2:
-    cbz     x1, 3f
-    ldrb    w0, [sp], #1
-    bl      serial_putc
-    sub     x1, x1, #1
-    b       2b
-3:
-    ldp     x29, x30, [sp], #16
-    ret
-
-print_zero:
-    mov     w0, #'0'
-    bl      serial_putc
-    ldp     x29, x30, [sp], #16
-    ret
-
-/* String data */
+/* Read-only data */
 .section .rodata
 .align 4
-msg_boot_json:
-    .asciz "{\"timestamp\":0,\"level\":\"INFO\",\"event\":\"boot\",\"data\":{\"version\":\"0.1-aarch64\",\"arch\":\"aarch64\"}}\n"
-
-msg_json_prefix:
-    .asciz "{\"timestamp\":"
-msg_level_prefix:
+msg_log_prefix:
+    .asciz "{\"ts\":"
+msg_level_pre:
     .asciz ",\"level\":\""
-msg_event_prefix:
+msg_event_pre:
     .asciz "\",\"event\":\""
-msg_data_prefix:
-    .asciz "\",\"data\":"
-msg_json_suffix:
+msg_data_pre:
+    .asciz ",\"data\":"
+msg_log_suffix:
     .asciz "}\n"
 
-level_strings:
-    .quad str_debug
-    .quad str_info
-    .quad str_warn
-    .quad str_error
-str_debug:
+    .align 3
+level_names:
+    .quad s_debug
+    .quad s_info
+    .quad s_warn
+    .quad s_error
+s_debug:
     .asciz "DEBUG"
-str_info:
+s_info:
     .asciz "INFO"
-str_warn:
+s_warn:
     .asciz "WARN"
-str_error:
+s_error:
     .asciz "ERROR"
-
-event_name_boot:
-    .asciz "boot"
-data_boot:
-    .asciz "{\"version\":\"0.1-aarch64\",\"arch\":\"aarch64\"}"
