@@ -1,0 +1,14 @@
+# Build artifacts
+build/
+*.o
+*.bin
+*.elf
+*.raw
+
+# Debug logs
+*.log
+aiasm_test.log
+
+# Editor
+*.swp
+*~
