@@ -1,0 +1,49 @@
+#!/bin/sh
+# aiasm-build - Build script for AI-ASM AArch64
+# Compiles all .asm files and links into a bare-metal binary
+set -e
+
+PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+KERNEL_DIR="$PROJECT_DIR/kernel"
+OUTPUT_DIR="$PROJECT_DIR/build"
+OUTPUT_ELF="$OUTPUT_DIR/aiasm-aarch64.elf"
+OUTPUT_BIN="$OUTPUT_DIR/aiasm-aarch64.bin"
+OUTPUT_RAW="$OUTPUT_DIR/aiasm-aarch64.raw"
+
+# Toolchain
+AS="as"
+LD="ld"
+OBJCOPY="objcopy"
+
+echo "[aiasm-build] Building AI-ASM AArch64 kernel..."
+
+mkdir -p "$OUTPUT_DIR"
+
+# Assemble all .asm files
+ASM_FILES="$KERNEL_DIR/kernel.asm $KERNEL_DIR/gic.asm $KERNEL_DIR/timer.asm $KERNEL_DIR/pl011.asm $KERNEL_DIR/vga.asm $KERNEL_DIR/event.asm $KERNEL_DIR/log.asm $KERNEL_DIR/shell.asm $KERNEL_DIR/utils.asm $KERNEL_DIR/idt.asm"
+
+OBJS=""
+for src in $ASM_FILES; do
+    base="$(basename "$src" .asm)"
+    obj="$OUTPUT_DIR/${base}.o"
+    echo "  AS  $base.asm"
+    $AS -mcpu=generic -o "$obj" "$src"
+    OBJS="$OBJS $obj"
+done
+
+# Link ELF
+echo "  LD  aiasm-aarch64.elf"
+$LD -T "$KERNEL_DIR/linker.ld" -o "$OUTPUT_ELF" $OBJS
+
+# Copy ELF as .bin for QEMU -kernel (QEMU loads ELF directly)
+cp "$OUTPUT_ELF" "$OUTPUT_BIN"
+
+# Also produce raw binary
+$OBJCOPY -O binary "$OUTPUT_ELF" "$OUTPUT_RAW"
+
+# Show binary sizes
+ELF_SIZE=$(wc -c < "$OUTPUT_ELF")
+RAW_SIZE=$(wc -c < "$OUTPUT_RAW")
+echo "[aiasm-build] Done!"
+echo "  ELF:   ${ELF_SIZE} bytes ($(( ELF_SIZE / 1024 ))KB)"
+echo "  RAW:   ${RAW_SIZE} bytes ($(( RAW_SIZE / 1024 ))KB)"

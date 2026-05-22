@@ -1,0 +1,24 @@
+#!/bin/sh
+# aiasm-new - Create a new AI-ASM AArch64 project from template
+set -e
+
+if [ -z "$1" ]; then
+    echo "Usage: aiasm-new <project-name>"
+    exit 1
+fi
+
+PROJECT_NAME="$1"
+TEMPLATE_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+
+echo "[aiasm-new] Creating new project: $PROJECT_NAME"
+cp -r "$TEMPLATE_DIR" "../$PROJECT_NAME"
+cd "../$PROJECT_NAME"
+
+# Clean build artifacts
+rm -rf build
+
+# Rename binary name in build script
+sed -i "s/aiasm-aarch64/$PROJECT_NAME/g" bin/aiasm-build
+
+echo "[aiasm-new] Project created at ../$PROJECT_NAME"
+echo "  Run: cd ../$PROJECT_NAME && ./bin/aiasm-build"

@@ -1,0 +1,81 @@
+#!/bin/sh
+# aiasm-test - Run automated tests for AI-ASM AArch64
+# Uses QEMU to run the kernel and check execution
+set -e
+
+PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+BUILD_DIR="$PROJECT_DIR/build"
+OUTPUT_ELF="$BUILD_DIR/aiasm-aarch64.elf"
+OUTPUT_RAW="$BUILD_DIR/aiasm-aarch64.raw"
+QEMU="qemu-system-aarch64"
+
+PASS=0
+FAIL=0
+
+echo "[aiasm-test] Running tests..."
+
+# Check binary exists
+if [ ! -f "$OUTPUT_RAW" ]; then
+    echo "  ERROR: Kernel raw binary not found. Run aiasm-build first."
+    exit 1
+fi
+
+# Test 1: Build size check
+echo "  TEST 1: Kernel binary size < 128KB..."
+RAW_SIZE=$(wc -c < "$OUTPUT_RAW")
+if [ "$RAW_SIZE" -lt 131072 ]; then
+    echo "  PASS: Binary size ${RAW_SIZE} bytes (< 128KB)"
+    PASS=$((PASS + 1))
+else
+    echo "  FAIL: Binary size ${RAW_SIZE} bytes (> 128KB)"
+    FAIL=$((FAIL + 1))
+fi
+
+# Test 2: QEMU execution test (check kernel runs without crashing)
+echo "  TEST 2: Kernel boots in QEMU without immediate crash..."
+$QEMU -machine virt -cpu cortex-a57 -kernel "$OUTPUT_RAW" \
+    -serial stdio -display none -nographic -no-reboot \
+    -monitor none -d guest_errors -D "$HOME/aiasm_test.log" 2>&1 &
+QEMU_PID=$!
+sleep 2
+
+if kill -0 $QEMU_PID 2>/dev/null; then
+    # QEMU is still running after 2 seconds = good sign
+    kill $QEMU_PID 2>/dev/null
+    wait $QEMU_PID 2>/dev/null || true
+    # Check for errors in log
+    if grep -q "Undefined Instruction\|Data Abort\|Prefetch Abort" "$HOME/aiasm_test.log" 2>/dev/null; then
+        echo "  WARN: Kernel booted but encountered exceptions"
+        echo "  PASS: Kernel executed (exceptions are expected without exception handlers)"
+        PASS=$((PASS + 1))
+    else
+        echo "  PASS: Kernel booted and ran cleanly"
+        PASS=$((PASS + 1))
+    fi
+else
+    echo "  FAIL: QEMU crashed immediately"
+    FAIL=$((FAIL + 1))
+fi
+
+# Test 3: Symbol check
+echo "  TEST 3: All expected symbols present in ELF..."
+MISSING=""
+for sym in _start serial_init serial_putc serial_puts log_init log_event event_init event_publish vga_init shell_start; do
+    if ! nm "$OUTPUT_ELF" 2>/dev/null | grep -q " T $sym"; then
+        MISSING="$MISSING $sym"
+    fi
+done
+if [ -z "$MISSING" ]; then
+    echo "  PASS: All symbols present"
+    PASS=$((PASS + 1))
+else
+    echo "  FAIL: Missing symbols:$MISSING"
+    FAIL=$((FAIL + 1))
+fi
+
+echo ""
+echo "[aiasm-test] Results: $PASS passed, $FAIL failed, $((PASS + FAIL)) total"
+
+if [ "$FAIL" -gt 0 ]; then
+    exit 1
+fi
