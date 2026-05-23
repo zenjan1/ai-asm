@@ -1,8 +1,14 @@
 /*
  * aiasm-aarch64/kernel/kernel.asm
- * Kernel entry point and initialization sequence v0.2
+ * Kernel entry point v0.3 — Wasm3 runtime host
  * Pure AArch64 assembly, load at 0x40080000
- * Adds: memory manager, timer, GIC, process scheduler, syscalls
+ *
+ * Boot sequence:
+ *   1. Setup stack, clear BSS
+ *   2. Init UART, memory manager
+ *   3. Init WASM3 runtime (C layer: wasm_host.c)
+ *   4. Load embedded Shell WASM module
+ *   5. Execute WASM _start
  */
 .arch armv8-a
 
@@ -10,20 +16,13 @@
 
 /* -----------------------------------------------------------------------------
  * Function: _start
- * Description: Kernel entry point. Sets up stack, clears BSS, initializes
- *              all subsystems (UART, log, memory, timer, GIC, processes, events),
- *              publishes boot event, and enters shell.
- * Input: x0 = device tree address (from bootloader, unused)
- * Output: never returns
- * Clobbered: all registers
- * Stack: 0 bytes (sets up stack first)
  * ----------------------------------------------------------------------------- */
 .global _start
 _start:
     /* Mask all exceptions */
     msr     daifset, #0xf
 
-    /* Setup stack pointer (8KB, high address, 16-byte aligned) */
+    /* Setup stack pointer (16KB, 16-byte aligned) */
     adrp    x0, __stack_top
     add     x0, x0, #:lo12:__stack_top
     mov     sp, x0
@@ -34,90 +33,72 @@ _start:
     /* Initialize PL011 UART */
     bl      serial_init
 
-    /* Initialize logging */
-    bl      log_init
+    /* Print boot banner using PC-relative adr */
+    adr     x0, boot_banner
+    bl      serial_puts
 
     /* Initialize physical memory manager */
     bl      mem_init
 
-    /* Debug: T = timer */
-    mov     x0, #'T'
-    bl      serial_putc
-
     /* Initialize ARM Generic Timer */
     bl      timer_init
 
-    /* Debug: G = GIC */
-    mov     x0, #'G'
-    bl      serial_putc
+    /* ---- Transition to WASM3 runtime ---- */
 
-    /* Initialize GICv2 interrupt controller */
-    bl      gic_init
+    /* wasm_host_init() */
+    bl      wasm_host_init
+    cbnz    x0, wasm_init_error
 
-    /* Debug: P = process */
-    mov     x0, #'P'
-    bl      serial_putc
+    /* wasm_host_load(&wasm_module_start, wasm_module_size) */
+    adr     x0, wasm_module_start
+    adr     x1, wasm_module_size
+    ldr     w1, [x1]
+    bl      wasm_host_load
+    cbnz    x0, wasm_load_error
 
-    /* Initialize process manager */
-    bl      proc_init
+    /* wasm_host_run() */
+    bl      wasm_host_run
+    cbnz    x0, wasm_run_error
 
-    /* Debug: E = event */
-    mov     x0, #'E'
-    bl      serial_putc
+    /* Done */
+    adr     x0, boot_done
+    bl      serial_puts
 
-    /* Initialize event bus */
-    bl      event_init
+1:  wfi
+    b       1b
 
-    /* Debug: S = shell */
-    mov     x0, #'S'
-    bl      serial_putc
+/* ----------------------------------------------------------------------------- */
+/* Error handlers                                                                 */
+/* ----------------------------------------------------------------------------- */
+wasm_init_error:
+    adr     x1, boot_wasm_init_err
+    bl      serial_puts
+    mov     x1, x0
+    bl      serial_puts
+    b       wasm_halt
 
-    /* Publish boot event with v0.2 info */
-    mov     w0, #1              /* INFO level */
-    adrp    x1, evt_boot
-    add     x1, x1, #:lo12:evt_boot
-    adrp    x2, data_boot_v2
-    add     x2, x2, #:lo12:data_boot_v2
-    bl      log_event
+wasm_load_error:
+    adr     x1, boot_wasm_load_err
+    bl      serial_puts
+    mov     x1, x0
+    bl      serial_puts
+    b       wasm_halt
 
-    /* Publish memory init event */
-    mov     w0, #1
-    adrp    x1, evt_mem_init
-    add     x1, x1, #:lo12:evt_mem_init
-    adrp    x2, data_mem_init
-    add     x2, x2, #:lo12:data_mem_init
-    bl      log_event
+wasm_run_error:
+    adr     x1, boot_wasm_run_err
+    bl      serial_puts
+    mov     x1, x0
+    bl      serial_puts
 
-    /* Publish timer init event */
-    mov     w0, #1
-    adrp    x1, evt_timer_init
-    add     x1, x1, #:lo12:evt_timer_init
-    adrp    x2, data_timer_init
-    add     x2, x2, #:lo12:data_timer_init
-    bl      log_event
+wasm_halt:
+    adr     x0, boot_halt
+    bl      serial_puts
+1:  wfi
+    b       1b
 
-    /* Publish scheduler init event */
-    mov     w0, #1
-    adrp    x1, evt_sched_init
-    add     x1, x1, #:lo12:evt_sched_init
-    adrp    x2, data_sched_init
-    add     x2, x2, #:lo12:data_sched_init
-    bl      log_event
-
-    /* Enter shell */
-    bl      shell_run
-
-    /* Should never reach here */
-    bl      shell_hang
-
-/* -----------------------------------------------------------------------------
- * Function: bss_clear
- * Description: Zero the BSS section
- * Input: none
- * Output: none
- * Clobbered: x0, x1
- * Stack: 16 bytes
- * ----------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------- */
+/* bss_clear                                                                     */
+/* ----------------------------------------------------------------------------- */
 bss_clear:
     stp     x29, x30, [sp, #-16]!
     adrp    x0, __bss_start
@@ -133,22 +114,19 @@ bss_clear:
     ldp     x29, x30, [sp], #16
     ret
 
-/* Read-only boot strings */
-.section .rodata
+/* ----------------------------------------------------------------------------- */
+/* Strings (placed in same section as code via -N linker)                         */
+/* ----------------------------------------------------------------------------- */
 .align 4
-evt_boot:
-    .asciz "boot"
-data_boot_v2:
-    .asciz "{\"version\":\"0.2-aarch64\",\"arch\":\"aarch64\",\"features\":\"mmu,process,syscall\"}"
-evt_mem_init:
-    .asciz "memory"
-data_mem_init:
-    .asciz "{\"status\":\"ok\",\"manager\":\"bitmap\"}"
-evt_timer_init:
-    .asciz "timer"
-data_timer_init:
-    .asciz "{\"status\":\"ok\",\"source\":\"cntvct\"}"
-evt_sched_init:
-    .asciz "scheduler"
-data_sched_init:
-    .asciz "{\"status\":\"ok\",\"algo\":\"round-robin\"}"
+boot_banner:
+    .asciz "\nAI-ASM AArch64 v0.3 - Wasm3 Runtime Host\n"
+boot_done:
+    .asciz "WASM returned.\n"
+boot_halt:
+    .asciz "System halted.\n"
+boot_wasm_init_err:
+    .asciz "WASM init error: "
+boot_wasm_load_err:
+    .asciz "WASM load error: "
+boot_wasm_run_err:
+    .asciz "WASM run error: "

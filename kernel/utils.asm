@@ -139,3 +139,78 @@ strcmp:
     mov     x0, x4
     ldp     x29, x30, [sp], #16
     ret
+
+/* -----------------------------------------------------------------------------
+ * Function: memmove
+ * Description: Copy memory with overlap handling
+ * Input: x0 = dest, x1 = src, x2 = length
+ * Output: x0 = dest
+ * Clobbered: x0-x3
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global memmove
+memmove:
+    stp     x29, x30, [sp, #-16]!
+    mov     x3, x0              /* save dest */
+    cmp     x0, x1              /* if dest > src */
+    b.gt    3f                  /* copy backwards */
+    cbz     x2, 1f
+2:
+    ldrb    w4, [x1], #1
+    strb    w4, [x0], #1
+    sub     x2, x2, #1
+    cbnz    x2, 2b
+    b       1f
+3:
+    add     x1, x1, x2, lsl #0  /* src + len */
+    add     x0, x0, x2, lsl #0  /* dest + len */
+4:
+    sub     x1, x1, #1
+    sub     x0, x0, #1
+    ldrb    w4, [x1]
+    strb    w4, [x0]
+    sub     x2, x2, #1
+    cbnz    x2, 4b
+1:
+    mov     x0, x3
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: memcmp
+ * Description: Compare two memory regions
+ * Input: x0 = a, x1 = b, x2 = length
+ * Output: x0 = 0 if equal, negative or positive otherwise
+ * Clobbered: x0-x4
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global memcmp
+memcmp:
+    stp     x29, x30, [sp, #-16]!
+    cbz     x2, 1f
+2:
+    ldrb    w3, [x0], #1
+    ldrb    w4, [x1], #1
+    subs    w3, w3, w4
+    b.ne    3f
+    sub     x2, x2, #1
+    cbnz    x2, 2b
+1:
+    mov     x0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+3:
+    mov     x0, x3
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: abort
+ * Description: Terminate execution
+ * Clobbered: none
+ * ----------------------------------------------------------------------------- */
+.global abort
+abort:
+1:
+    wfi
+    b       1b
