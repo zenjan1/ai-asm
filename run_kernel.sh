@@ -10,7 +10,7 @@ if [ ! -f "$KERNEL" ]; then
     exit 1
 fi
 
-echo "Starting AI-ASM AArch64 in QEMU..."
+echo "Starting AI-ASM AArch64 v0.4 in QEMU..."
 echo "Press Ctrl+A then X to exit."
 
 $QEMU \

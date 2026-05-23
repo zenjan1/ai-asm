@@ -1,47 +1,78 @@
 /*
  * aiasm-aarch64/kernel/wasm_host.c
- * Wasm3 host integration: initializes wasm3 runtime, loads embedded module,
- * links host functions, and executes the Wasm shell.
+ * Wasm3 host integration v0.4: AArch64 native, complete host function registry,
+ * error logging, external module loading, aligned alloc/free.
+ *
+ * All host functions are batch-registered via a static table at load time.
+ * Errors are routed through kernel_log() for JSON-formatted UART output.
  */
 
 #include "wasm3.h"
+#include "m3_env.h"
 
-/* UART PL011 direct access */
-#define UART_BASE 0x09000000UL
-#define UART_DR   (*(volatile unsigned int *)(UART_BASE + 0x000))
-#define UART_FR   (*(volatile unsigned int *)(UART_BASE + 0x018))
+/* -------------------------------------------------------------------------- */
+/* UART helpers                                                               */
+/* -------------------------------------------------------------------------- */
+
+#define UART_BASE_ADDR 0x09000000UL
+#define UART_DR   (*(volatile unsigned int *)(UART_BASE_ADDR + 0x000))
+#define UART_FR   (*(volatile unsigned int *)(UART_BASE_ADDR + 0x018))
 #define UART_FR_TXFF (1 << 5)
 
-static void uart_putc_raw(char c)
+void uart_putc_raw(char c)
 {
     while (UART_FR & UART_FR_TXFF)
         ;
     UART_DR = (unsigned int)c;
 }
 
-static void uart_puts_raw(const char *s)
+void uart_puts_raw(const char *s)
 {
     while (*s)
         uart_putc_raw(*s++);
 }
 
-/* Extern symbols from assembly kernel */
-extern unsigned char __image_end[];
+/* -------------------------------------------------------------------------- */
+/* Extern symbols from wasm_embed.asm                                          */
+/* -------------------------------------------------------------------------- */
 
-/* Page allocator: allocate one 4KB page, return pointer */
-static unsigned int alloc_page_counter = 0;
-void *kernel_alloc_page(void)
+extern const uint8_t wasm_module_start[];
+extern const uint32_t wasm_module_size;
+
+/* -------------------------------------------------------------------------- */
+/* Kernel log: JSON error/info messages via UART                              */
+/* -------------------------------------------------------------------------- */
+
+static void kernel_log(const char *level, const char *event, const char *data)
 {
-    unsigned char *base = __image_end;
-    unsigned char *ptr = base + (alloc_page_counter * 4096);
-    alloc_page_counter++;
-    return (void *)ptr;
+    uart_puts_raw("{\"ts\":0,\"level\":\"");
+    uart_puts_raw(level);
+    uart_puts_raw("\",\"event\":\"");
+    uart_puts_raw(event);
+    if (data && *data) {
+        uart_puts_raw("\",\"data\":\"");
+        uart_puts_raw(data);
+    }
+    uart_puts_raw("\"}\n");
 }
 
+#define LOG_ERROR(event, data)  kernel_log("ERROR", (event), (data))
+#define LOG_INFO(event, data)   kernel_log("INFO",  (event), (data))
+
 /* -------------------------------------------------------------------------- */
-/* Host function: host_print(offset, len) — print WASM memory to UART         */
+/* External ASM symbols                                                       */
 /* -------------------------------------------------------------------------- */
 
+extern unsigned char __image_end[];
+extern void mem_free_page(void *);
+extern void serial_puts(const char *);
+extern void serial_putc(char);
+
+/* -------------------------------------------------------------------------- */
+/* Host function implementations                                              */
+/* -------------------------------------------------------------------------- */
+
+/* host_print(offset, len) — print WASM linear memory to UART */
 static const void *host_print(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
     uint32_t offset = (uint32_t)*_sp++;
@@ -50,8 +81,10 @@ static const void *host_print(IM3Runtime runtime, IM3ImportContext _ctx, uint64_
     uint8_t *mem = (uint8_t *)_mem;
     uint32_t mem_size = m3_GetMemorySize(runtime);
 
-    if (offset + len > mem_size)
+    if (offset + len > mem_size) {
+        LOG_ERROR("wasm_print", "out of bounds memory access");
         return m3Err_trapOutOfBoundsMemoryAccess;
+    }
 
     uint8_t *p = mem + offset;
     for (uint32_t i = 0; i < len; i++)
@@ -60,10 +93,7 @@ static const void *host_print(IM3Runtime runtime, IM3ImportContext _ctx, uint64_
     return m3Err_none;
 }
 
-/* -------------------------------------------------------------------------- */
-/* Host function: host_get_tick() — return ARM CNTVCT_EL0                     */
-/* -------------------------------------------------------------------------- */
-
+/* host_get_tick() — return ARM CNTVCT_EL0 (i64) */
 static const void *host_get_tick(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
     uint64_t *ret = (uint64_t *)_sp++;
@@ -71,35 +101,137 @@ static const void *host_get_tick(IM3Runtime runtime, IM3ImportContext _ctx, uint
     return m3Err_none;
 }
 
-/* -------------------------------------------------------------------------- */
-/* Host function: host_exit(code) — halt the system                          */
-/* -------------------------------------------------------------------------- */
-
+/* host_exit(code) — print exit code and halt */
 static const void *host_exit(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
     (void)runtime; (void)_ctx; (void)_mem;
     int32_t code = (int32_t)(int64_t)*_sp++;
-    uart_puts_raw("\n[WASM exit code: ");
-    if (code < 0) { uart_putc_raw('-'); code = -code; }
-    char buf[12]; int i = 0;
-    do { buf[i++] = (char)('0' + (code % 10)); code /= 10; } while (code > 0);
-    while (i > 0) uart_putc_raw(buf[--i]);
+
+    uart_puts_raw("\n[WASM exit ");
+    if (code == 0) {
+        uart_puts_raw("ok");
+    } else {
+        uart_puts_raw("code=");
+        if (code < 0) { uart_putc_raw('-'); code = -code; }
+        char buf[12]; int i = 0;
+        do { buf[i++] = (char)('0' + (code % 10)); code /= 10; } while (code > 0);
+        while (i > 0) uart_putc_raw(buf[--i]);
+    }
     uart_puts_raw("]\n");
 
     while (1)
         __asm__ volatile("wfi");
 }
 
-/* -------------------------------------------------------------------------- */
-/* Host function: host_alloc_page() — allocate a 4KB page from kernel         */
-/* -------------------------------------------------------------------------- */
-
-static const void *host_alloc_page(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+/* host_alloc(size, align) — allocate from kernel heap with alignment */
+static const void *host_alloc(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
-    uint64_t *ret = (uint64_t *)_sp++;
-    *ret = (uint64_t)(uintptr_t)kernel_alloc_page();
+    (void)runtime; (void)_ctx; (void)_mem;
+    uint32_t size  = (uint32_t)*_sp++;
+    uint32_t align = (uint32_t)*_sp++;
+
+    /* Forward to C wrapper of mem_alloc_aligned */
+    extern void *mem_alloc_aligned(unsigned int size, unsigned int align);
+    void *ptr = mem_alloc_aligned(size, align ? align : 16);
+
+    if (!ptr) {
+        LOG_ERROR("wasm_alloc", "kernel heap OOM");
+        uint32_t *ret = (uint32_t *)_sp++;
+        *ret = 0;
+        return m3Err_none;
+    }
+
+    uint32_t *ret = (uint32_t *)_sp++;
+    *ret = (uint32_t)(uintptr_t)ptr;
     return m3Err_none;
 }
+
+/* host_free(ptr) — free heap allocation */
+static const void *host_free(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    uint64_t addr = *_sp++;
+
+    extern void mem_free(void *);
+    mem_free((void *)(uintptr_t)addr);
+    return m3Err_none;
+}
+
+/* host_alloc_page() — allocate one 4KB page from kernel page allocator */
+static const void *host_alloc_page(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    extern void *kernel_alloc_page(void);
+    void *ptr = kernel_alloc_page();
+    uint32_t *ret = (uint32_t *)_sp++;
+    *ret = (uint32_t)(uintptr_t)ptr;
+    return m3Err_none;
+}
+
+/* host_free_page(addr) — free a 4KB page */
+static const void *host_free_page(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    uint64_t addr = *_sp++;
+    extern void mem_free_page(void *);
+    mem_free_page((void *)(uintptr_t)addr);
+    return m3Err_none;
+}
+
+/* host_log(level, msg) — log message to kernel JSON log */
+static const void *host_log(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    uint32_t level_off = (uint32_t)*_sp++;
+    uint32_t level_len = (uint32_t)*_sp++;
+    uint32_t msg_off   = (uint32_t)*_sp++;
+    uint32_t msg_len   = (uint32_t)*_sp++;
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (level_off + level_len > mem_size || msg_off + msg_len > mem_size)
+        return m3Err_trapOutOfBoundsMemoryAccess;
+
+    /* Save null terminators, write them, log, restore */
+    char level_saved = (char)mem[level_off + level_len];
+    char msg_saved   = (char)mem[msg_off   + msg_len];
+    mem[level_off + level_len] = '\0';
+    mem[msg_off   + msg_len]   = '\0';
+
+    kernel_log((const char *)(mem + level_off), "wasm_log",
+               (const char *)(mem + msg_off));
+
+    mem[level_off + level_len] = level_saved;
+    mem[msg_off   + msg_len]   = msg_saved;
+
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Host function registration table                                           */
+/* -------------------------------------------------------------------------- */
+
+typedef struct {
+    const char *module;     /* WASM import module name, e.g. "host" */
+    const char *field;      /* WASM import field name, e.g. "print"   */
+    const char *signature;  /* wasm3 signature string                 */
+    void       *function;   /* C function pointer                     */
+} host_reg_t;
+
+/* All host functions registered in a single batch at module load time */
+static const host_reg_t host_registry[] = {
+    { "host", "print",       "v(ii)",  &host_print       },
+    { "host", "get_tick",    "I()",    &host_get_tick    },
+    { "host", "exit",        "v(i)",   &host_exit        },
+    { "host", "alloc",       "i(ii)",  &host_alloc       },
+    { "host", "free",        "v(i)",   &host_free        },
+    { "host", "alloc_page",  "i()",    &host_alloc_page  },
+    { "host", "free_page",   "v(i)",   &host_free_page   },
+    { "host", "log",         "v(iiii)",&host_log         },
+};
+
+#define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))
 
 /* -------------------------------------------------------------------------- */
 /* Globals                                                                    */
@@ -109,53 +241,108 @@ static IM3Environment g_env = NULL;
 static IM3Runtime     g_runtime = NULL;
 static IM3Module      g_module = NULL;
 
+/* External WASM module loading: fixed buffer for external .wasm */
+#define EXT_WASM_BUF_SIZE 0x00100000    /* 1MB external module buffer */
+static uint8_t g_ext_wasm_buf[EXT_WASM_BUF_SIZE];
+static uint32_t g_ext_wasm_size = 0;
+
 /* -------------------------------------------------------------------------- */
-/* wasm_host_init: set up environment and runtime                              */
+/* wasm_host_init: set up wasm3 environment and runtime                        */
 /* -------------------------------------------------------------------------- */
 
 const char *wasm_host_init(void)
 {
     g_env = m3_NewEnvironment();
-    if (!g_env)
+    if (!g_env) {
+        LOG_ERROR("wasm_init", "m3_NewEnvironment failed");
         return "m3_NewEnvironment failed";
+    }
 
     g_runtime = m3_NewRuntime(g_env, 8192, NULL);
-    if (!g_runtime)
+    if (!g_runtime) {
+        LOG_ERROR("wasm_init", "m3_NewRuntime failed");
         return "m3_NewRuntime failed";
+    }
+
+    LOG_INFO("wasm_init", "runtime ready");
+    return NULL;  /* success */
+}
+
+/* -------------------------------------------------------------------------- */
+/* register_host_functions: batch register all host functions                  */
+/* -------------------------------------------------------------------------- */
+
+static const char *register_host_functions(IM3Module module)
+{
+    M3Result result;
+
+    for (unsigned int i = 0; i < HOST_REG_COUNT; i++) {
+        const host_reg_t *reg = &host_registry[i];
+        result = m3_LinkRawFunctionEx(module, reg->module, reg->field,
+                                    reg->signature, reg->function, NULL);
+        if (result && result != m3Err_functionLookupFailed) {
+            LOG_ERROR("wasm_link", reg->field);
+            return result;
+        }
+    }
 
     return NULL;  /* success */
 }
 
 /* -------------------------------------------------------------------------- */
-/* wasm_host_load: parse and load embedded WASM module                         */
+/* wasm_host_load: parse and load WASM module (embedded or external)           */
 /* -------------------------------------------------------------------------- */
 
 const char *wasm_host_load(const uint8_t *wasm_bytes, uint32_t wasm_size)
 {
     M3Result result;
 
+    /* Validate WASM magic */
+    if (wasm_size < 4 || wasm_bytes[0] != 0x00 || wasm_bytes[1] != 0x61 ||
+        wasm_bytes[2] != 0x73 || wasm_bytes[3] != 0x6d) {
+        LOG_ERROR("wasm_load", "invalid magic");
+        return "invalid WASM magic";
+    }
+
     result = m3_ParseModule(g_env, &g_module, wasm_bytes, wasm_size);
-    if (result)
+    if (result) {
+        LOG_ERROR("wasm_parse", result);
         return result;
+    }
 
     result = m3_LoadModule(g_runtime, g_module);
+    if (result) {
+        LOG_ERROR("wasm_load", result);
+        return result;
+    }
+
+    /* Batch register all host functions */
+    result = register_host_functions(g_module);
     if (result)
         return result;
 
-    /* Link host functions */
-    result = m3_LinkRawFunction(g_module, "host", "print",    "v(ii)", &host_print);
-    if (result && result != m3Err_functionLookupFailed) return result;
-
-    result = m3_LinkRawFunction(g_module, "host", "get_tick", "I()", &host_get_tick);
-    if (result && result != m3Err_functionLookupFailed) return result;
-
-    result = m3_LinkRawFunction(g_module, "host", "exit",     "v(i)", &host_exit);
-    if (result && result != m3Err_functionLookupFailed) return result;
-
-    result = m3_LinkRawFunction(g_module, "host", "alloc_page", "i()", &host_alloc_page);
-    if (result && result != m3Err_functionLookupFailed) return result;
-
+    LOG_INFO("wasm_load", "module loaded");
     return NULL;  /* success */
+}
+
+/* -------------------------------------------------------------------------- */
+/* wasm_host_load_external: load external WASM from memory buffer              */
+/* Caller must copy .wasm bytes into g_ext_wasm_buf first                      */
+/* -------------------------------------------------------------------------- */
+
+const char *wasm_host_load_external(const uint8_t *buf, uint32_t size)
+{
+    if (size > EXT_WASM_BUF_SIZE) {
+        LOG_ERROR("wasm_external", "module too large");
+        return "external module too large";
+    }
+
+    /* Copy to our buffer */
+    extern void *memcpy(void *, const void *, unsigned long);
+    memcpy(g_ext_wasm_buf, buf, size);
+    g_ext_wasm_size = size;
+
+    return wasm_host_load(g_ext_wasm_buf, g_ext_wasm_size);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -167,16 +354,39 @@ const char *wasm_host_run(void)
     IM3Function func;
     M3Result result;
 
+    /* Try entry points in priority order via export lookup */
     result = m3_FindFunction(&func, g_runtime, "_start");
     if (result) {
         result = m3_FindFunction(&func, g_runtime, "main");
-        if (result)
-            return "no _start or main found in WASM module";
+        if (result) {
+            result = m3_FindFunction(&func, g_runtime, "shell_entry");
+            if (result) {
+                LOG_ERROR("wasm_run", "entry point not found");
+                return "no entry point found in WASM module";
+            }
+        }
     }
 
     result = m3_Call(func, 0, NULL);
-    if (result)
+    if (result) {
+        LOG_ERROR("wasm_run", result);
         return result;
+    }
 
+    LOG_INFO("wasm_run", "completed");
     return NULL;
+}
+
+/* -------------------------------------------------------------------------- */
+/* wasm_host_get_ext_wasm_buf: return pointer to external WASM buffer          */
+/* -------------------------------------------------------------------------- */
+
+void *wasm_host_get_ext_wasm_buf(void)
+{
+    return (void *)g_ext_wasm_buf;
+}
+
+uint32_t wasm_host_get_ext_wasm_size(void)
+{
+    return g_ext_wasm_size;
 }

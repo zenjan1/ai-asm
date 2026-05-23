@@ -119,30 +119,3 @@ serial_puts:
 3:
     ldp     x29, x30, [sp], #16
     ret
-
-/* -----------------------------------------------------------------------------
- * Function: serial_getc
- * Description: Blocking read one character from UART
- * Input: none
- * Output: w0 = character
- * Clobbered: x0, x1
- * Stack: 16 bytes
- * ----------------------------------------------------------------------------- */
-.global serial_getc
-serial_getc:
-    stp     x29, x30, [sp, #-16]!
-
-    movz    x1, #0x0900, lsl #16
-    movk    x1, #:abs_g0_nc:0x09000000
-
-    /* Wait until RX FIFO has data */
-1:
-    ldr     w0, [x1, #UARTFR]
-    tbz     w0, #FR_RXFE, 2f    /* not empty -> read */
-    b       1b
-2:
-    ldr     w0, [x1, #UARTDR]
-    and     w0, w0, #0xff
-
-    ldp     x29, x30, [sp], #16
-    ret

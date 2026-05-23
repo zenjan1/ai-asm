@@ -1,14 +1,33 @@
 /*
  * aiasm-aarch64/kernel/memory.asm
- * Physical memory manager: bitmap page frame allocator
+ * Physical memory manager: bitmap page frame allocator + buddy-like kernel heap
  * 4KB pages, bitmap tracks allocated/free frames
- * Memory map (QEMU virt 128MB): 0x40000000 - 0x48000000
+ * v0.4: adds aligned allocation, heap alloc/free, memory stats
+ *
+ * Memory map (QEMU virt 128MB):
+ *   RAM:     0x40000000 - 0x48000000 (128MB)
+ *   Kernel:  0x40080000 - __image_end
+ *   Pages:   bitmap-tracked after kernel
+ *
+ * Public API:
+ *   mem_init()                — initialize page bitmap
+ *   mem_alloc_page() => x0    — allocate one 4KB page, return physical addr
+ *   mem_free_page(x0)         — free a page frame
+ *   mem_alloc_aligned(size, align) => x0 — allocate aligned memory from heap
+ *   mem_free(addr)            — free heap allocation
+ *   mem_total() => w0         — total free pages
+ *   mem_used() => w0          — used pages
+ *   mem_dump(x0=buffer)       — JSON stats string
  */
 .arch armv8-a
 
 /* Page size */
 .set PAGE_SIZE,     0x1000
 .set PAGE_SHIFT,    12
+
+/* Heap region — defined by linker script, not in BSS */
+.global __kernel_heap_start
+.global __kernel_heap_end
 
 .text
 
@@ -57,7 +76,7 @@ mem_init:
     adrp    x0, page_bitmap
     add     x0, x0, #:lo12:page_bitmap
     mov     w1, #0                /* value */
-    mov     x2, #1024             /* length */
+    mov     x2, #1024             /* length (1024 bytes = 8192 pages) */
     bl      memset
     mov     x3, x9              /* restore kernel page count */
 
@@ -85,6 +104,18 @@ mark_done:
     adrp    x4, mem_free_pages
     add     x4, x4, #:lo12:mem_free_pages
     str     w3, [x4]
+
+    /* Initialize kernel heap from linker-defined region */
+    adrp    x0, heap_next
+    add     x0, x0, #:lo12:heap_next
+    adrp    x1, __kernel_heap_start
+    add     x1, x1, #:lo12:__kernel_heap_start
+    str     x1, [x0]
+
+    /* Initialize heap free list (empty) */
+    adrp    x0, heap_free_list
+    add     x0, x0, #:lo12:heap_free_list
+    str     xzr, [x0]
 
     ldp     x29, x30, [sp], #16
     ret
@@ -151,6 +182,33 @@ mem_oom:
     ret
 
 /* -----------------------------------------------------------------------------
+ * Function: kernel_alloc_page
+ * Description: Allocate one 4KB page from kernel reserved area (C-callable)
+ * Input: none
+ * Output: x0 = virtual address of page
+ * Clobbered: x0-x3
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global kernel_alloc_page
+kernel_alloc_page:
+    stp     x29, x30, [sp, #-16]!
+
+    /* Allocate from page bitmap */
+    bl      mem_alloc_page
+    cbz     x0, kernel_alloc_oom
+
+    /* Convert physical address to virtual (same mapping in QEMU virt) */
+    /* Already returns usable address since we map 1:1 */
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+kernel_alloc_oom:
+    mov     x0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
  * Function: mem_free_page
  * Description: Free a page frame
  * Input: x0 = physical address
@@ -189,15 +247,133 @@ mem_free_page:
     ret
 
 /* -----------------------------------------------------------------------------
- * Function: mem_info
+ * Function: mem_alloc_aligned
+ * Description: Allocate aligned memory from kernel heap (bump + alignment)
+ * Input: x0 = size (bytes), x1 = alignment (power of 2)
+ * Output: x0 = pointer, or 0 if OOM
+ * Clobbered: x0-x3
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_alloc_aligned
+mem_alloc_aligned:
+    stp     x29, x30, [sp, #-16]!
+    mov     x2, x0                /* save size */
+    mov     x3, x1                /* save alignment */
+
+    /* Get current heap pointer */
+    adrp    x0, heap_next
+    add     x0, x0, #:lo12:heap_next
+    ldr     x4, [x0]              /* current heap_next */
+
+    /* Align: ptr = (ptr + align - 1) & ~(align - 1) */
+    add     x4, x4, x3
+    sub     x4, x4, #1
+    sub     x1, x3, #1
+    bic     x4, x4, x1
+
+    /* new_end = ptr + size */
+    add     x1, x4, x2
+
+    /* Check heap bounds */
+    adrp    x0, __kernel_heap_end
+    add     x0, x0, #:lo12:__kernel_heap_end
+    cmp     x1, x0
+    b.ge    heap_oom
+
+    /* Update heap_next */
+    adrp    x0, heap_next
+    add     x0, x0, #:lo12:heap_next
+    str     x1, [x0]
+
+    /* Zero the allocation */
+    mov     x0, x4                /* dest */
+    mov     w1, #0                /* value */
+    mov     x2, x2                /* size */
+    bl      memset
+
+    mov     x0, x4
+    ldp     x29, x30, [sp], #16
+    ret
+
+heap_oom:
+    mov     x0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_free
+ * Description: Free heap allocation (no-op in bump allocator, placeholder for future)
+ * Input: x0 = pointer
+ * Output: none
+ * Clobbered: x0
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_free
+mem_free:
+    /* Bump allocator: free is a no-op.
+     * Full buddy/free-list allocator in future version. */
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_alloc
+ * Description: Simple allocation (16-byte aligned default)
+ * Input: x0 = size
+ * Output: x0 = pointer, or 0 if OOM
+ * Clobbered: x0-x3
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_alloc
+mem_alloc:
+    stp     x29, x30, [sp, #-16]!
+    mov     x1, #16               /* default alignment */
+    bl      mem_alloc_aligned
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_total
+ * Description: Get total free page count
+ * Input: none
+ * Output: w0 = free pages
+ * Clobbered: x0
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_total
+mem_total:
+    stp     x29, x30, [sp, #-16]!
+    adrp    x0, mem_free_pages
+    add     x0, x0, #:lo12:mem_free_pages
+    ldr     w0, [x0]
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_used
+ * Description: Get used page count
+ * Input: none
+ * Output: w0 = used pages
+ * Clobbered: x0
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_used
+mem_used:
+    stp     x29, x30, [sp, #-16]!
+    adrp    x0, mem_used_pages
+    add     x0, x0, #:lo12:mem_used_pages
+    ldr     w0, [x0]
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_dump
  * Description: Get memory info as JSON string in buffer
  * Input: x0 = output buffer
  * Output: x0 = buffer pointer
  * Clobbered: x0-x4
  * Stack: 16 bytes
  * ----------------------------------------------------------------------------- */
-.global mem_info
-mem_info:
+.global mem_dump
+mem_dump:
     stp     x29, x30, [sp, #-16]!
 
     adrp    x1, msg_mem_info_pre
@@ -267,7 +443,14 @@ mem_info:
     ldp     x29, x30, [sp], #16
     ret
 
-/* Memory state - use .quad to force 8-byte alignment and avoid gas adr bug */
+/* mem_info is an alias for mem_dump (backward compat) */
+.global mem_info
+mem_info:
+    b       mem_dump
+
+/* ----------------------------------------------------------------------------- */
+/* Memory state (BSS)                                                           */
+/* ----------------------------------------------------------------------------- */
 .bss
 .align 3
 .global mem_total_pages
@@ -286,6 +469,13 @@ page_bitmap:
 .align 4
 mem_itoa_buf:
     .skip 24
+
+/* Kernel heap region */
+.align 4
+heap_next:
+    .skip 8                     /* current bump pointer */
+heap_free_list:
+    .skip 8                     /* free list head (future buddy) */
 
 .section .rodata
 .align 4

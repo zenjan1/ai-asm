@@ -1,6 +1,8 @@
 /*
  * aiasm-aarch64/kernel/libc_shim.c
- * Minimal freestanding C library shims for wasm3
+ * Minimal freestanding C library shims for wasm3.
+ * UART and stdio stubs moved to wasm_host.c; this file provides
+ * only pure string/stdlib functions needed by wasm3 freestanding build.
  */
 
 typedef unsigned long       size_t;
@@ -98,23 +100,7 @@ unsigned long clock(void)
 }
 
 /* -------------------------------------------------------------------------- */
-/* PL011 UART output for stdio stubs (UART at 0x09000000)                     */
-/* -------------------------------------------------------------------------- */
-
-#define UART_BASE 0x09000000UL
-#define UART_DR   (*(volatile unsigned int *)(UART_BASE + 0x000))
-#define UART_FR   (*(volatile unsigned int *)(UART_BASE + 0x018))
-#define UART_FR_TXFF (1 << 5)
-
-static void uart_putc(char c)
-{
-    while (UART_FR & UART_FR_TXFF)
-        ;
-    UART_DR = (unsigned int)c;
-}
-
-/* -------------------------------------------------------------------------- */
-/* stdio stubs — only pulled in by m3_api_libc.c which we don't invoke        */
+/* stdio stubs — pulled in by wasm3's m3_api_libc.c but not invoked           */
 /* -------------------------------------------------------------------------- */
 
 typedef struct { int _fd; } FILE;
@@ -128,34 +114,43 @@ FILE *stderr = &_stderr;
 
 int fputs(const char *s, FILE *f)
 {
+    (void)f;
+    extern void uart_putc_raw(char);
     while (*s)
-        uart_putc(*s++);
+        uart_putc_raw(*s++);
     return 0;
 }
 
 int fwrite(const void *ptr, size_t size, size_t nmemb, FILE *f)
 {
+    (void)f;
+    extern void uart_putc_raw(char);
     size_t total = size * nmemb;
     const char *p = ptr;
     for (size_t i = 0; i < total; i++)
-        uart_putc(p[i]);
+        uart_putc_raw(p[i]);
     return (int)nmemb;
 }
 
 int fputc(int c, FILE *f)
 {
-    uart_putc((char)c);
+    (void)f;
+    extern void uart_putc_raw(char);
+    uart_putc_raw((char)c);
     return c;
 }
 
 int putc(int c, FILE *f)
 {
-    uart_putc((char)c);
+    (void)f;
+    extern void uart_putc_raw(char);
+    uart_putc_raw((char)c);
     return c;
 }
 
 int fprintf(FILE *f, const char *fmt, ...)
 {
+    extern void uart_putc_raw(char);
     while (*fmt) {
         if (*fmt == '%') {
             fmt++;
@@ -165,17 +160,19 @@ int fprintf(FILE *f, const char *fmt, ...)
                 fmt++;
             }
         }
-        uart_putc(*fmt++);
+        uart_putc_raw(*fmt++);
     }
     return 0;
 }
 
 int fflush(FILE *f)
 {
+    (void)f;
     return 0;
 }
 
 FILE *fopen(const char *path, const char *mode)
 {
+    (void)path; (void)mode;
     return NULL;
 }
