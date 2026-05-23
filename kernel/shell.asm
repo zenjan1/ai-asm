@@ -1,6 +1,7 @@
 /*
  * aiasm-aarch64/kernel/shell.asm
  * Serial interactive command shell - JSON output
+ * v0.2: adds meminfo, ps, time, status commands
  */
 .arch armv8-a
 
@@ -148,6 +149,38 @@ shell_exec:
     bl      strcmp
     cbz     x0, shell_events
 
+    /* Match: meminfo */
+    adrp    x1, cmd_meminfo
+    add     x1, x1, #:lo12:cmd_meminfo
+    adrp    x2, shell_cmd_buf
+    add     x2, x2, #:lo12:shell_cmd_buf
+    bl      strcmp
+    cbz     x0, shell_meminfo
+
+    /* Match: ps */
+    adrp    x1, cmd_ps
+    add     x1, x1, #:lo12:cmd_ps
+    adrp    x2, shell_cmd_buf
+    add     x2, x2, #:lo12:shell_cmd_buf
+    bl      strcmp
+    cbz     x0, shell_ps
+
+    /* Match: time */
+    adrp    x1, cmd_time
+    add     x1, x1, #:lo12:cmd_time
+    adrp    x2, shell_cmd_buf
+    add     x2, x2, #:lo12:shell_cmd_buf
+    bl      strcmp
+    cbz     x0, shell_time
+
+    /* Match: status */
+    adrp    x1, cmd_status
+    add     x1, x1, #:lo12:cmd_status
+    adrp    x2, shell_cmd_buf
+    add     x2, x2, #:lo12:shell_cmd_buf
+    bl      strcmp
+    cbz     x0, shell_status
+
     /* Match: reboot */
     adrp    x1, cmd_reboot
     add     x1, x1, #:lo12:cmd_reboot
@@ -169,7 +202,7 @@ shell_exec:
     add     x1, x1, #:lo12:cmd_log
     adrp    x2, shell_cmd_buf
     add     x2, x2, #:lo12:shell_cmd_buf
-    bl      strncmp           /* partial match for "log " */
+    bl      strncmp
     cbz     x0, shell_log
 
     /* Unknown */
@@ -192,6 +225,33 @@ shell_version:
 
 shell_events:
     bl      event_dump
+    b       shell_done
+
+shell_meminfo:
+    adrp    x0, shell_cmd_buf
+    add     x0, x0, #:lo12:shell_cmd_buf
+    bl      mem_info
+    bl      serial_puts
+    b       shell_done
+
+shell_ps:
+    adrp    x0, shell_cmd_buf
+    add     x0, x0, #:lo12:shell_cmd_buf
+    bl      proc_list
+    bl      serial_puts
+    b       shell_done
+
+shell_time:
+    adrp    x0, shell_cmd_buf
+    add     x0, x0, #:lo12:shell_cmd_buf
+    bl      timer_info
+    bl      serial_puts
+    b       shell_done
+
+shell_status:
+    adrp    x0, rsp_status
+    add     x0, x0, #:lo12:rsp_status
+    bl      serial_puts
     b       shell_done
 
 shell_reboot:
@@ -251,9 +311,7 @@ shell_hang:
 
 /* -----------------------------------------------------------------------------
  * Function: strncmp
- * Description: Compare first N chars of two strings
- * Input: x0 = a, x1 = b, x2 = n (uses strlen of x1 as n)
- * Actually: we compare a against b, returning 0 if a starts with b
+ * Description: Compare if x1 is prefix of x0
  * Input: x0 = a, x1 = prefix b
  * Output: x0 = 0 if b is prefix of a
  * Clobbered: x0-x3
@@ -283,7 +341,7 @@ strncmp:
 .section .rodata
 .align 4
 msg_shell_welcome:
-    .asciz "\r\nAI-ASM AArch64 v0.1\r\n"
+    .asciz "\r\nAI-ASM AArch64 v0.2\r\n"
 msg_prompt:
     .asciz "> "
 cmd_help:
@@ -292,6 +350,14 @@ cmd_version:
     .asciz "version"
 cmd_events:
     .asciz "events"
+cmd_meminfo:
+    .asciz "meminfo"
+cmd_ps:
+    .asciz "ps"
+cmd_time:
+    .asciz "time"
+cmd_status:
+    .asciz "status"
 cmd_reboot:
     .asciz "reboot"
 cmd_shutdown:
@@ -301,9 +367,11 @@ cmd_log:
 msg_unknown:
     .asciz "{\"error\":\"unknown command\"}\n"
 rsp_help:
-    .asciz "{\"commands\":[\"help\",\"version\",\"log 0|1|2|3\",\"events\",\"reboot\",\"shutdown\"]}\n"
+    .asciz "{\"commands\":[\"help\",\"version\",\"log 0|1|2|3\",\"events\",\"meminfo\",\"ps\",\"time\",\"status\",\"reboot\",\"shutdown\"]}\n"
 rsp_version:
-    .asciz "{\"version\":\"0.1-aarch64\",\"arch\":\"aarch64\",\"build\":\"pure-asm\"}\n"
+    .asciz "{\"version\":\"0.2-aarch64\",\"arch\":\"aarch64\",\"build\":\"pure-asm\"}\n"
+rsp_status:
+    .asciz "{\"kernel\":\"aiasm-aarch64\",\"version\":\"0.2\",\"features\":[\"uart\",\"log\",\"event\",\"memory\",\"timer\",\"gic\",\"process\",\"syscall\"]}\n"
 rsp_reboot:
     .asciz "{\"action\":\"reboot\"}\n"
 rsp_shutdown:

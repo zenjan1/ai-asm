@@ -36,8 +36,8 @@ serial_init:
     stp     x29, x30, [sp, #-16]!
 
     /* Load UART base address */
-    movz    x0, #:abs_g1:(UART_BASE >> 16)
-    movk    x0, #:abs_g0_nc:(UART_BASE & 0xffff)
+    movz    x0, #0x0900, lsl #16
+    movk    x0, #:abs_g0_nc:0x09000000
 
     /* Disable UART */
     str     wzr, [x0, #UARTCR]
@@ -78,8 +78,8 @@ serial_init:
 serial_putc:
     stp     x29, x30, [sp, #-16]!
 
-    movz    x1, #:abs_g1:(UART_BASE >> 16)
-    movk    x1, #:abs_g0_nc:(UART_BASE & 0xffff)
+    movz    x1, #0x0900, lsl #16
+    movk    x1, #:abs_g0_nc:0x09000000
 
     /* Wait until TX FIFO has space */
 1:
@@ -132,8 +132,8 @@ serial_puts:
 serial_getc:
     stp     x29, x30, [sp, #-16]!
 
-    movz    x1, #:abs_g1:(UART_BASE >> 16)
-    movk    x1, #:abs_g0_nc:(UART_BASE & 0xffff)
+    movz    x1, #0x0900, lsl #16
+    movk    x1, #:abs_g0_nc:0x09000000
 
     /* Wait until RX FIFO has data */
 1:

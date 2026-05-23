@@ -17,7 +17,12 @@ SRCS = $(KERNEL_DIR)/kernel.asm \
        $(KERNEL_DIR)/log.asm \
        $(KERNEL_DIR)/event.asm \
        $(KERNEL_DIR)/utils.asm \
-       $(KERNEL_DIR)/shell.asm
+       $(KERNEL_DIR)/shell.asm \
+       $(KERNEL_DIR)/memory.asm \
+       $(KERNEL_DIR)/timer.asm \
+       $(KERNEL_DIR)/gic.asm \
+       $(KERNEL_DIR)/process.asm \
+       $(KERNEL_DIR)/syscall.asm
 
 OBJS = $(patsubst $(KERNEL_DIR)/%.asm,$(BUILD_DIR)/%.o,$(SRCS))
 
