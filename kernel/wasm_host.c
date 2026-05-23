@@ -9,6 +9,7 @@
 
 #include "wasm3.h"
 #include "m3_env.h"
+#include "m3_compile.h"
 
 /* -------------------------------------------------------------------------- */
 /* UART helpers                                                               */
@@ -208,6 +209,21 @@ static const void *host_log(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t 
     return m3Err_none;
 }
 
+/* host_getc() — blocking read one character from UART, return i32 char code */
+static const void *host_getc(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+
+    /* Poll UART RX until character available, no wfi (no interrupts configured) */
+    while (UART_FR & (1 << 4))  /* FR_RXFE: RX FIFO empty */
+        __asm__ volatile("wfi");
+
+    uint8_t ch = (uint8_t)(UART_DR & 0xff);
+    int32_t *ret = (int32_t *)_sp++;
+    *ret = (int32_t)ch;
+    return m3Err_none;
+}
+
 /* -------------------------------------------------------------------------- */
 /* Host function registration table                                           */
 /* -------------------------------------------------------------------------- */
@@ -229,6 +245,7 @@ static const host_reg_t host_registry[] = {
     { "host", "alloc_page",  "i()",    &host_alloc_page  },
     { "host", "free_page",   "v(i)",   &host_free_page   },
     { "host", "log",         "v(iiii)",&host_log         },
+    { "host", "getc",        "i()",    &host_getc        },
 };
 
 #define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))
@@ -351,25 +368,35 @@ const char *wasm_host_load_external(const uint8_t *buf, uint32_t size)
 
 const char *wasm_host_run(void)
 {
-    IM3Function func;
+    IM3Function func = NULL;
     M3Result result;
 
-    /* Try entry points in priority order via export lookup */
-    result = m3_FindFunction(&func, g_runtime, "_start");
+    IM3Module mod = g_runtime->modules;
+    if (!mod) {
+        return "no modules loaded";
+    }
+
+    /* Find first non-import function (entry point like _start) */
+    for (uint32_t i = 0; i < mod->numFunctions; i++) {
+        IM3Function f = &mod->functions[i];
+        if (f->import.moduleUtf8 || f->import.fieldUtf8)
+            continue;
+        func = f;
+        break;
+    }
+
+    if (!func) {
+        return "no entry point found";
+    }
+
+    /* Compile the function before calling */
+    result = CompileFunction(func);
     if (result) {
-        result = m3_FindFunction(&func, g_runtime, "main");
-        if (result) {
-            result = m3_FindFunction(&func, g_runtime, "shell_entry");
-            if (result) {
-                LOG_ERROR("wasm_run", "entry point not found");
-                return "no entry point found in WASM module";
-            }
-        }
+        return result;
     }
 
     result = m3_Call(func, 0, NULL);
     if (result) {
-        LOG_ERROR("wasm_run", result);
         return result;
     }
 

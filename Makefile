@@ -131,7 +131,7 @@ $(BUILD_DIR)/wasm_host.o: $(KERNEL_DIR)/wasm_host.c | $(BUILD_DIR)
 # ---------------------------------------------------------------------------
 $(BUILD_DIR)/wasm3/%.o: $(WASM3_DIR)/source/%.c | $(BUILD_DIR)/wasm3
 	@echo "  CC    $<"
-	$(CLANG) $(CFLAGS_FREESTANDING) -O0 -o $@ $<
+	$(CLANG) $(CFLAGS_FREESTANDING) -O2 -o $@ $<
 
 $(WASM3_LIB): $(WASM3_OBJS)
 	@echo "  AR    $@"
