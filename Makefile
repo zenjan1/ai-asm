@@ -63,7 +63,10 @@ ASM_SRCS = $(KERNEL_DIR)/kernel.asm \
            $(KERNEL_DIR)/ramdisk.asm \
            $(KERNEL_DIR)/ipc.asm \
            $(KERNEL_DIR)/msg.asm \
-           $(KERNEL_DIR)/signal.asm
+           $(KERNEL_DIR)/signal.asm \
+           $(KERNEL_DIR)/jit_cache.asm \
+           $(KERNEL_DIR)/buddy.asm \
+           $(KERNEL_DIR)/virtio_irq.asm
 ASM_OBJS = $(patsubst $(KERNEL_DIR)/%.asm,$(BUILD_DIR)/%.o,$(ASM_SRCS))
 
 # C sources (freestanding)
@@ -95,6 +98,10 @@ CALC_WASM   = $(MODULES_DIR)/calc/calc.wasm
 PAINT_WASM  = $(MODULES_DIR)/paint/paint.wasm
 LAUNCHER_WASM = $(MODULES_DIR)/launcher/launcher.wasm
 NET_TEST_WASM = $(MODULES_DIR)/net_test/net_test.wasm
+PROC_MONITOR_WASM = $(MODULES_DIR)/proc_monitor/proc_monitor.wasm
+SYSLOG_WASM = $(MODULES_DIR)/syslog/syslog.wasm
+FILEMGR_WASM = $(MODULES_DIR)/filemgr/filemgr.wasm
+SETTINGS_WASM = $(MODULES_DIR)/settings/settings.wasm
 BROWSER_WASM  = $(MODULES_DIR)/browser/browser.wasm
 RAMDISK_TAR = $(KERNEL_DIR)/ramdisk.tar
 
@@ -124,7 +131,7 @@ wasm3: $(WASM3_LIB)
 	@echo "=== wasm3 library complete ==="
 
 # Compile WASM modules and ramdisk
-modules: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(EDITOR_WASM) $(CALC_WASM) $(PAINT_WASM) $(LAUNCHER_WASM) $(NET_TEST_WASM) $(BROWSER_WASM) $(RAMDISK_TAR)
+modules: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(EDITOR_WASM) $(CALC_WASM) $(PAINT_WASM) $(LAUNCHER_WASM) $(NET_TEST_WASM) $(BROWSER_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM) $(FILEMGR_WASM) $(SETTINGS_WASM) $(RAMDISK_TAR)
 	@echo "=== WASM modules and ramdisk complete ==="
 
 # Link kernel only (assumes objects exist)
@@ -138,11 +145,11 @@ $(BUILD_DIR)/%.o: $(KERNEL_DIR)/%.asm | $(BUILD_DIR)
 	@echo "  AS    $<"
 	$(AS) $(ASFLAGS) -o $@ $<
 
-# wasm_embed.o depends on shell.wasm being present first
-$(BUILD_DIR)/wasm_embed.o: $(SHELL_WASM)
+# wasm_embed.o depends on shell.wasm and proc_monitor.wasm and syslog.wasm being present first
+$(BUILD_DIR)/wasm_embed.o: $(SHELL_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM)
 
-# ramdisk.o depends on init.wasm, shell.wasm, test.wasm and ramdisk.tar
-$(BUILD_DIR)/ramdisk.o: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(RAMDISK_TAR)
+# ramdisk.o depends on init.wasm, shell.wasm, test.wasm, proc_monitor.wasm, syslog.wasm, filemgr.wasm, settings.wasm and ramdisk.tar
+$(BUILD_DIR)/ramdisk.o: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM) $(FILEMGR_WASM) $(SETTINGS_WASM) $(RAMDISK_TAR)
 
 # ---------------------------------------------------------------------------
 # C freestanding compilation
@@ -253,6 +260,41 @@ $(BROWSER_WASM): $(MODULES_DIR)/browser/src/main.c
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
 	cp $@ $(KERNEL_DIR)/browser.wasm
 
+# WASM proc_monitor module
+# ---------------------------------------------------------------------------
+$(PROC_MONITOR_WASM): $(MODULES_DIR)/proc_monitor/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/proc_monitor.wasm
+
+# ---------------------------------------------------------------------------
+# WASM syslog module
+# ---------------------------------------------------------------------------
+$(SYSLOG_WASM): $(MODULES_DIR)/syslog/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/syslog.wasm
+
+# ---------------------------------------------------------------------------
+# WASM file manager module
+# ---------------------------------------------------------------------------
+$(FILEMGR_WASM): $(MODULES_DIR)/filemgr/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/filemgr.wasm
+
+# ---------------------------------------------------------------------------
+# WASM settings module
+# ---------------------------------------------------------------------------
+$(SETTINGS_WASM): $(MODULES_DIR)/settings/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/settings.wasm
+
 # ---------------------------------------------------------------------------
 # Full kernel link
 # ---------------------------------------------------------------------------
@@ -283,9 +325,9 @@ clean:
 	rm -rf $(BUILD_DIR)
 	rm -f $(KERNEL_DIR)/init.wasm $(KERNEL_DIR)/shell.wasm $(KERNEL_DIR)/test.wasm
 	rm -f $(KERNEL_DIR)/editor.wasm $(KERNEL_DIR)/calc.wasm $(KERNEL_DIR)/paint.wasm $(KERNEL_DIR)/launcher.wasm
-	rm -f $(KERNEL_DIR)/net_test.wasm $(KERNEL_DIR)/browser.wasm
+	rm -f $(KERNEL_DIR)/net_test.wasm $(KERNEL_DIR)/browser.wasm $(KERNEL_DIR)/proc_monitor.wasm $(KERNEL_DIR)/syslog.wasm $(KERNEL_DIR)/filemgr.wasm $(KERNEL_DIR)/settings.wasm
 	rm -f $(KERNEL_DIR)/ramdisk.tar
 	rm -f $(MODULES_DIR)/init/init.wasm $(MODULES_DIR)/shell/shell.wasm $(MODULES_DIR)/test/test.wasm
 	rm -f $(MODULES_DIR)/editor/editor.wasm $(MODULES_DIR)/calc/calc.wasm $(MODULES_DIR)/paint/paint.wasm $(MODULES_DIR)/launcher/launcher.wasm
-	rm -f $(MODULES_DIR)/net_test/net_test.wasm $(MODULES_DIR)/browser/browser.wasm
+	rm -f $(MODULES_DIR)/net_test/net_test.wasm $(MODULES_DIR)/browser/browser.wasm $(MODULES_DIR)/proc_monitor/proc_monitor.wasm $(MODULES_DIR)/syslog/syslog.wasm $(MODULES_DIR)/filemgr/filemgr.wasm $(MODULES_DIR)/settings/settings.wasm
 	@echo "=== Build artifacts removed ==="

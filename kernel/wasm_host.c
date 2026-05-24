@@ -131,6 +131,10 @@ extern const uint8_t proc_monitor_module_start[], proc_monitor_module_end[];
 extern const uint32_t proc_monitor_module_size;
 extern const uint8_t syslog_module_start[], syslog_module_end[];
 extern const uint32_t syslog_module_size;
+extern const uint8_t filemgr_module_start[], filemgr_module_end[];
+extern const uint32_t filemgr_module_size;
+extern const uint8_t settings_module_start[], settings_module_end[];
+extern const uint32_t settings_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -138,6 +142,8 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "test",           NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
+    { "filemgr",        NULL, 0 },
+    { "settings",       NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -2008,6 +2014,10 @@ const char *wasm_host_init_multi(void)
     wasm_registry[3].wasm_size = proc_monitor_module_size;
     wasm_registry[4].wasm_bytes = syslog_module_start;
     wasm_registry[4].wasm_size = syslog_module_size;
+    wasm_registry[5].wasm_bytes = filemgr_module_start;
+    wasm_registry[5].wasm_size = filemgr_module_size;
+    wasm_registry[6].wasm_bytes = settings_module_start;
+    wasm_registry[6].wasm_size = settings_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];

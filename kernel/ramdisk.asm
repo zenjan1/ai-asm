@@ -76,6 +76,34 @@ syslog_module_size:
     .int syslog_module_end - syslog_module_start
 
 /* ---------------------------------------------------------------------------
+ * File manager module
+ * --------------------------------------------------------------------------- */
+.section .rodata.filemgr_wasm
+.global filemgr_module_start
+filemgr_module_start:
+    .incbin "kernel/filemgr.wasm"
+.global filemgr_module_end
+filemgr_module_end:
+.align 4
+.global filemgr_module_size
+filemgr_module_size:
+    .int filemgr_module_end - filemgr_module_start
+
+/* ---------------------------------------------------------------------------
+ * Settings module
+ * --------------------------------------------------------------------------- */
+.section .rodata.settings_wasm
+.global settings_module_start
+settings_module_start:
+    .incbin "kernel/settings.wasm"
+.global settings_module_end
+settings_module_end:
+.align 4
+.global settings_module_size
+settings_module_size:
+    .int settings_module_end - settings_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

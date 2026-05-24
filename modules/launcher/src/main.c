@@ -85,11 +85,13 @@ typedef struct {
 } app_entry_t;
 
 static const app_entry_t apps[] = {
-    { "1", "Text Editor",  "editor", RGBA(0x00, 0x88, 0xff) },
-    { "2", "Calculator",   "calc",   RGBA(0xff, 0x95, 0x00) },
-    { "3", "Paint",        "paint",  RGBA(0x00, 0xcc, 0x88) },
-    { "4", "Shell",        "shell",  RGBA(0x88, 0x88, 0xff) },
-    { "5", "Run Tests",    "test",   RGBA(0xff, 0x00, 0x88) },
+    { "1", "Text Editor",  "editor",   RGBA(0x00, 0x88, 0xff) },
+    { "2", "Calculator",   "calc",     RGBA(0xff, 0x95, 0x00) },
+    { "3", "Paint",        "paint",    RGBA(0x00, 0xcc, 0x88) },
+    { "4", "Shell",        "shell",    RGBA(0x88, 0x88, 0xff) },
+    { "5", "Run Tests",    "test",     RGBA(0xff, 0x00, 0x88) },
+    { "6", "File Manager", "filemgr",  RGBA(0xaa, 0x88, 0x44) },
+    { "7", "Settings",     "settings", RGBA(0x66, 0x88, 0xaa) },
     { 0, 0, 0, 0 },
 };
 

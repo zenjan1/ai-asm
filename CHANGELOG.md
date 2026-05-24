@@ -1,5 +1,27 @@
 # AI-ASM Change Log
 
+## v5.0 (2026-05-24)
+
+Extended application ecosystem with complete module compilation and v5.0 release package.
+
+### Application Ecosystem Expansion
+- filemgr.wasm (new): RAM disk file browser, file view via fs_open/fs_read/fs_close
+- settings.wasm (new): System info display, process list, log level inspection
+- Launcher updated: 7-app grid (editor, calculator, paint, shell, test, filemgr, settings)
+
+### Build System
+- All 12 WASM modules now compile: init, shell, test, editor, calc, paint, launcher, browser, net_test, proc_monitor, syslog, filemgr, settings
+- Makefile dependency chain: ramdisk.o depends on all WASM modules
+- Clean target removes all WASM artifacts
+
+### Statistics
+- kernel.elf: 6708KB (6869744 bytes)
+- WASM modules: 12 total compiled
+- Total WASM size: ~60KB
+- 25 init subsystem calls
+
+---
+
 ## v4.0 (2026-05-24)
 
 Performance optimization and system services.
