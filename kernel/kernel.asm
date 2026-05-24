@@ -147,6 +147,9 @@ _start:
     /* Initialize process resource quotas */
     bl      quota_init
 
+    /* Initialize kernel audit log */
+    bl      audit_init
+
     /* ---- Transition to WASM3 runtime (v0.5 multi-module) ---- */
 
     /* wasm_host_init_multi() */

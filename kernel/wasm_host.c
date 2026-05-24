@@ -2111,6 +2111,79 @@ static const void *host_perm_set_level(IM3Runtime runtime, IM3ImportContext _ctx
 }
 
 /* -------------------------------------------------------------------------- */
+/* Kernel audit log host functions (v8.0)                                     */
+/* -------------------------------------------------------------------------- */
+
+/* Externs from audit.asm */
+extern void audit_init(void);
+extern void audit_log(uint16_t event_type, uint16_t event_level,
+                      uint32_t proc_id, uint32_t user_id,
+                      uint32_t d0, uint32_t d1, uint32_t d2, uint32_t d3);
+extern int audit_query(uint8_t *buf, int max_events);
+extern void audit_flush(void);
+extern int audit_get_count(void);
+
+/* Convenience wrappers for auto-audit */
+void audit_process_create(int proc_id, int parent_id)
+{
+    uint32_t uid = 0; /* default root */
+    audit_log(0x0004, 0, (uint32_t)proc_id, uid, (uint32_t)parent_id, 0, 0, 0);
+}
+
+void audit_quota_exceed(int proc_id, int quota_type)
+{
+    uint32_t uid = 0;
+    audit_log(0x0006, 1, (uint32_t)proc_id, uid, (uint32_t)quota_type, 0, 0, 0);
+}
+
+/* host_audit_query(buf_off, max_events) — read audit log into WASM memory */
+static const void *host_audit_query(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx;
+    uint32_t buf_off   = (uint32_t)*(uint64_t*)(_sp + 1);
+    uint32_t max_events = (uint32_t)*(uint64_t*)(_sp + 2);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (max_events == 0) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = 0;
+        return m3Err_none;
+    }
+    if (max_events > 128) max_events = 128; /* AUDIT_MAX */
+    if (buf_off + (max_events * 32) > mem_size) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    int count = audit_query(mem + buf_off, (int)max_events);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = count;
+    return m3Err_none;
+}
+
+/* host_audit_get_count() — return number of events in buffer */
+static const void *host_audit_get_count(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t count = audit_get_count();
+    int32_t *ret = (int32_t *)_sp;
+    *ret = count;
+    return m3Err_none;
+}
+
+/* host_audit_flush() — clear audit buffer */
+static const void *host_audit_flush(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    audit_flush();
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Host function registration table                                           */
 /* -------------------------------------------------------------------------- */
 
@@ -2199,6 +2272,10 @@ static const host_reg_t host_registry[] = {
     { "host", "quota_get",     "i(ii)", &host_quota_get },
     { "host", "quota_set",     "v(iiii)", &host_quota_set },
     { "host", "quota_check",   "i(ii)", &host_quota_check_fn },
+    /* Audit log */
+    { "host", "audit_query",     "i(ii)", &host_audit_query    },
+    { "host", "audit_get_count", "i()",   &host_audit_get_count },
+    { "host", "audit_flush",     "v()",   &host_audit_flush    },
 };
 
 #define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))

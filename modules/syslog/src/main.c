@@ -35,6 +35,15 @@ extern int wasm_host_log_read(unsigned int buf_off, unsigned int max_len);
 __attribute__((import_module("host"), import_name("log_size")))
 extern int wasm_host_log_size(void);
 
+__attribute__((import_module("host"), import_name("audit_query")))
+extern int wasm_host_audit_query(unsigned int buf_off, unsigned int max_events);
+
+__attribute__((import_module("host"), import_name("audit_get_count")))
+extern int wasm_host_audit_get_count(void);
+
+__attribute__((import_module("host"), import_name("audit_flush")))
+extern void wasm_host_audit_flush(void);
+
 static unsigned int my_strlen(const char *s)
 {
     const char *p = s;
@@ -73,6 +82,72 @@ static void sys_log(const char *level, const char *msg)
     for (unsigned int i = 0; i < ml; i++) buf[ll + 1 + i] = msg[i];
     buf[ll + 1 + ml] = '\0';
     wasm_host_log(65536, ll, 65536 + ll + 1, ml);
+}
+
+static const char *audit_type_name(unsigned short t)
+{
+    switch (t) {
+        case 0x0001: return "LOGIN";
+        case 0x0002: return "LOGOUT";
+        case 0x0003: return "PERM_CHANGE";
+        case 0x0004: return "PROC_CREATE";
+        case 0x0005: return "PROC_EXIT";
+        case 0x0006: return "QUOTA_EXCEED";
+        case 0x0007: return "MEM_FAIL";
+        case 0x0008: return "FILE_ACCESS";
+        case 0x0009: return "DEVICE_ATTACH";
+        case 0x000A: return "KERNEL_BOOT";
+        default: return "UNKNOWN";
+    }
+}
+
+static const char *audit_level_name(unsigned short l)
+{
+    if (l == 0) return "INFO";
+    if (l == 1) return "WARN";
+    return "ERROR";
+}
+
+static void show_audit_log(void)
+{
+    int count = wasm_host_audit_get_count();
+    if (count == 0) {
+        print_str("  (no audit events)\n");
+        return;
+    }
+
+    int to_read = count;
+    if (to_read > 64) to_read = 64;
+
+    int got = wasm_host_audit_query(66000, to_read);
+    if (got <= 0) return;
+
+    print_str("  Timestamp       Type           Level  PID  UID  Detail\n");
+
+    for (int i = 0; i < got; i++) {
+        unsigned int *evt = (unsigned int *)(66000 + i * 32);
+        unsigned int timestamp = evt[0];
+        unsigned short etype = (unsigned short)(evt[1] & 0xFFFF);
+        unsigned short elevel = (unsigned short)((evt[1] >> 16) & 0xFFFF);
+        unsigned int proc_id = evt[2];
+        unsigned int user_id = evt[3];
+        unsigned int detail0 = evt[4];
+
+        print_str("  ");
+        print_num(timestamp);
+        print_str("   ");
+        print_str(audit_type_name(etype));
+        { const char *n = audit_type_name(etype); unsigned int l = my_strlen(n);
+          for (unsigned int j = 0; j < 14 - l; j++) print_str(" "); }
+        print_str(audit_level_name(elevel));
+        print_str("  ");
+        print_num(proc_id);
+        print_str("  ");
+        print_num(user_id);
+        print_str("  ");
+        print_num(detail0);
+        print_str("\n");
+    }
 }
 
 void syslog_loop(int log_fd)
@@ -132,6 +207,11 @@ void _start(void)
     }
 
     sys_log("INFO", "syslog service started");
+
+    /* Display current audit log */
+    print_str("\n--- Audit Log ---\n");
+    show_audit_log();
+    print_str("-----------------\n");
 
     syslog_loop(log_fd);
 }

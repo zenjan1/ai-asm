@@ -72,7 +72,9 @@ ASM_SRCS = $(KERNEL_DIR)/kernel.asm \
            $(KERNEL_DIR)/proc_mem.asm \
            $(KERNEL_DIR)/perm.asm \
            $(KERNEL_DIR)/jit_codegen.asm \
-           $(KERNEL_DIR)/module_cache.asm
+           $(KERNEL_DIR)/module_cache.asm \
+           $(KERNEL_DIR)/quota.asm \
+           $(KERNEL_DIR)/audit.asm
 ASM_OBJS = $(patsubst $(KERNEL_DIR)/%.asm,$(BUILD_DIR)/%.o,$(ASM_SRCS))
 
 # C sources (freestanding)

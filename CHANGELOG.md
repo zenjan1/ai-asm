@@ -2,7 +2,7 @@
 
 ## v8.0 (2026-05-24)
 
-Process-level resource quota system with scheduler integration.
+Process-level resource quota system and kernel audit log.
 
 ### Resource Quota Management
 - kernel/quota.asm (~400 lines): Per-process CPU/memory/FD quota tracking
@@ -14,28 +14,37 @@ Process-level resource quota system with scheduler integration.
   - guest: 10K CPU ticks, 4MB memory, 4 FDs
 - API: quota_init, quota_set_default, quota_set, quota_check_cpu, quota_bump_cpu, quota_check_mem, quota_bump_mem, quota_check_fd, quota_bump_fd, quota_drop_fd, quota_get
 
+### Kernel Audit Log
+- kernel/audit.asm (~260 lines): Ring buffer for security/resource/system events
+- 128 events x 32 bytes = 4096 bytes ring buffer
+- Event types: LOGIN, LOGOUT, PERM_CHANGE, PROC_CREATE, PROC_EXIT, QUOTA_EXCEED, MEM_FAIL, FILE_ACCESS, DEVICE_ATTACH, KERNEL_BOOT
+- Event levels: INFO, WARN, ERROR
+- API: audit_init, audit_log, audit_query, audit_flush, audit_get_count
+
 ### Scheduler Integration
 - kernel/process.asm: quota_bump_cpu called each timer tick in proc_schedule
 - quota_check_cpu blocks processes exceeding CPU limit (marks PAUSED)
 - proc_schedule_skip_current: skips context save for quota-exceeded processes
-- proc_schedule_find_next: finds next ready process when current exceeds quota
 
 ### WASM Host Functions
 - kernel/wasm_host.c: host_quota_get, host_quota_set, host_quota_check_fn
-- Registered as quota_get, quota_set, quota_check in host_registry
-- WASM modules can query and set their own resource quotas
+- host_audit_query, host_audit_get_count, host_audit_flush
+- audit_process_create, audit_quota_exceed convenience wrappers
+- Registered as quota_get, quota_set, quota_check, audit_query, audit_get_count, audit_flush
 
 ### Settings Module
 - modules/settings/src/main.c: show_quotas() displays per-process quota usage
-- Menu option 'q' shows CPU limit/used, memory limit/used, FD usage per PID
-- Added quota_get and perm_get_level host function imports
+
+### Syslog Module
+- modules/syslog/src/main.c: show_audit_log() displays audit events at startup
+- Added audit_query, audit_get_count, audit_flush host function imports
 
 ### Build System
-- quota.asm added to ASM_SRCS in Makefile
-- quota_init called in kernel boot sequence
+- audit.asm added to ASM_SRCS in Makefile
+- audit_init called in kernel boot sequence
 
 ### Statistics
-- kernel.elf: 6722KB (6883712 bytes)
+- kernel.elf: 6732KB (6893616 bytes)
 - WASM modules: 15 total
 
 ---
