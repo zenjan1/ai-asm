@@ -104,6 +104,20 @@ settings_module_size:
     .int settings_module_end - settings_module_start
 
 /* ---------------------------------------------------------------------------
+ * User authentication module
+ * --------------------------------------------------------------------------- */
+.section .rodata.user_wasm
+.global user_module_start
+user_module_start:
+    .incbin "kernel/user.wasm"
+.global user_module_end
+user_module_end:
+.align 4
+.global user_module_size
+user_module_size:
+    .int user_module_end - user_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

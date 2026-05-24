@@ -135,6 +135,8 @@ extern const uint8_t filemgr_module_start[], filemgr_module_end[];
 extern const uint32_t filemgr_module_size;
 extern const uint8_t settings_module_start[], settings_module_end[];
 extern const uint32_t settings_module_size;
+extern const uint8_t user_module_start[], user_module_end[];
+extern const uint32_t user_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -144,6 +146,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
     { "settings",       NULL, 0 },
+    { "user",           NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -1714,6 +1717,81 @@ static const void *host_log_size(IM3Runtime runtime, IM3ImportContext _ctx, uint
 }
 
 /* -------------------------------------------------------------------------- */
+/* User authentication host functions                                         */
+/* -------------------------------------------------------------------------- */
+
+/* User table externs from user.asm */
+extern uint8_t user_table[100];       /* 4 users x 25 bytes */
+extern int32_t user_current;          /* current logged-in uid */
+extern int32_t user_count;            /* number of registered users */
+
+static uint32_t user_hash_pass(const char *pass, uint32_t len)
+{
+    uint32_t h = 0;
+    for (uint32_t i = 0; i < len; i++)
+        h = h * 31 + (uint8_t)pass[i];
+    return h;
+}
+
+/* user_login_impl: look up user by name+pass hash, return uid or -1 */
+static int user_login_impl(const uint8_t *mem, uint32_t mem_size,
+                            uint32_t name_off, uint32_t name_len,
+                            uint32_t pass_off, uint32_t pass_len)
+{
+    if (name_off + name_len > mem_size || pass_off + pass_len > mem_size)
+        return -1;
+
+    const char *name = (const char *)(mem + name_off);
+    const char *pass = (const char *)(mem + pass_off);
+    uint32_t h = user_hash_pass(pass, pass_len);
+
+    int32_t count = user_count;
+    for (int32_t i = 0; i < count; i++) {
+        uint8_t *u = &user_table[i * 25];
+        /* Compare name (first 16 bytes) */
+        int match = 1;
+        for (int j = 0; j < 16; j++) {
+            char tc = (j < (int)name_len) ? name[j] : '\0';
+            if (u[j] != (uint8_t)tc) { match = 0; break; }
+        }
+        if (!match) continue;
+        /* Compare password hash */
+        uint32_t stored;
+        __builtin_memcpy(&stored, u + 16, 4);
+        if (stored != h) continue;
+        /* Found — set current user */
+        user_current = i;
+        return i;
+    }
+    return -1;
+}
+
+/* host_user_login(name_off, name_len, pass_off, pass_len) — returns uid or -1 */
+static const void *host_user_login(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx;
+    uint32_t name_off = (uint32_t)*(uint64_t*)(_sp + 1);
+    uint32_t name_len = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint32_t pass_off = (uint32_t)*(uint64_t*)(_sp + 3);
+    uint32_t pass_len = (uint32_t)*(uint64_t*)(_sp + 4);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (name_off + name_len > mem_size || pass_off + pass_len > mem_size) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    int uid = user_login_impl(mem, mem_size, name_off, name_len, pass_off, pass_len);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)uid;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Host function registration table                                           */
 /* -------------------------------------------------------------------------- */
 
@@ -1788,6 +1866,8 @@ static const host_reg_t host_registry[] = {
     /* Kernel Log Ring Buffer */
     { "host", "log_read",    "i(ii)", &host_log_read    },
     { "host", "log_size",    "i()",   &host_log_size    },
+    /* User Authentication */
+    { "host", "user_login",  "i(iiii)", &host_user_login },
 };
 
 #define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))
@@ -2018,6 +2098,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[5].wasm_size = filemgr_module_size;
     wasm_registry[6].wasm_bytes = settings_module_start;
     wasm_registry[6].wasm_size = settings_module_size;
+    wasm_registry[7].wasm_bytes = user_module_start;
+    wasm_registry[7].wasm_size = user_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];

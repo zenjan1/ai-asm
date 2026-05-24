@@ -120,6 +120,9 @@ _start:
     /* Unmask CPU interrupts (clears DAIF I bit) */
     bl      gic_unmask_all
 
+    /* Initialize user management */
+    bl      user_init
+
     /* ---- Transition to WASM3 runtime (v0.5 multi-module) ---- */
 
     /* wasm_host_init_multi() */
