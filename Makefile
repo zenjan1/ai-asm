@@ -1,11 +1,11 @@
-# AI-ASM AArch64 v0.4 — Makefile for Termux
+# AI-ASM AArch64 v0.5 — Makefile for Termux
 # Toolchain: native binutils (as, ld), clang for C/WASM
 #
 # Targets:
 #   make all        — build full kernel.elf
 #   make asm        — compile assembly only
 #   make wasm3      — compile wasm3 library only
-#   make modules    — compile WASM shell module only
+#   make modules    — compile WASM modules only
 #   make kernel     — link kernel.elf only
 #   make run        — build and launch in QEMU
 #   make clean      — remove all build artifacts
@@ -45,8 +45,22 @@ ASM_SRCS = $(KERNEL_DIR)/kernel.asm \
            $(KERNEL_DIR)/memory.asm \
            $(KERNEL_DIR)/timer.asm \
            $(KERNEL_DIR)/gic.asm \
+           $(KERNEL_DIR)/exceptions.asm \
+           $(KERNEL_DIR)/process.asm \
+           $(KERNEL_DIR)/mmu.asm \
+           $(KERNEL_DIR)/virtio.asm \
+           $(KERNEL_DIR)/virtio_blk.asm \
+           $(KERNEL_DIR)/virtio_net.asm \
+           $(KERNEL_DIR)/fs.asm \
+           $(KERNEL_DIR)/net.asm \
+           $(KERNEL_DIR)/wasi.asm \
+           $(KERNEL_DIR)/module.asm \
+           $(KERNEL_DIR)/virtio_gpu.asm \
+           $(KERNEL_DIR)/fb.asm \
+           $(KERNEL_DIR)/gui.asm \
            $(KERNEL_DIR)/serial_rx.asm \
-           $(KERNEL_DIR)/wasm_embed.asm
+           $(KERNEL_DIR)/wasm_embed.asm \
+           $(KERNEL_DIR)/ramdisk.asm
 ASM_OBJS = $(patsubst $(KERNEL_DIR)/%.asm,$(BUILD_DIR)/%.o,$(ASM_SRCS))
 
 # C sources (freestanding)
@@ -69,8 +83,11 @@ WASM3_SRCS = $(WASM3_DIR)/source/m3_bind.c \
 WASM3_OBJS = $(patsubst $(WASM3_DIR)/source/%.c,$(BUILD_DIR)/wasm3/%.o,$(WASM3_SRCS))
 WASM3_LIB  = $(BUILD_DIR)/libwasm3.a
 
-# WASM shell module
+# WASM modules
+INIT_WASM  = $(MODULES_DIR)/init/init.wasm
 SHELL_WASM = $(MODULES_DIR)/shell/shell.wasm
+TEST_WASM  = $(MODULES_DIR)/test/test.wasm
+RAMDISK_TAR = $(KERNEL_DIR)/ramdisk.tar
 
 # All object dependencies
 ALL_OBJS = $(ASM_OBJS) $(C_OBJS) $(WASM3_OBJS)
@@ -78,7 +95,7 @@ ALL_OBJS = $(ASM_OBJS) $(C_OBJS) $(WASM3_OBJS)
 # ---------------------------------------------------------------------------
 # Phony targets
 # ---------------------------------------------------------------------------
-.PHONY: all asm wasm3 modules kernel run clean
+.PHONY: all asm wasm3 init-wasm shell-wasm ramdisk kernel run clean
 
 all: $(TARGET_ELF)
 
@@ -97,9 +114,9 @@ asm: $(ASM_OBJS)
 wasm3: $(WASM3_LIB)
 	@echo "=== wasm3 library complete ==="
 
-# Compile WASM shell module only
-modules: $(SHELL_WASM)
-	@echo "=== WASM shell module complete ==="
+# Compile WASM modules and ramdisk
+modules: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(RAMDISK_TAR)
+	@echo "=== WASM modules and ramdisk complete ==="
 
 # Link kernel only (assumes objects exist)
 kernel: $(TARGET_ELF)
@@ -114,6 +131,9 @@ $(BUILD_DIR)/%.o: $(KERNEL_DIR)/%.asm | $(BUILD_DIR)
 
 # wasm_embed.o depends on shell.wasm being present first
 $(BUILD_DIR)/wasm_embed.o: $(SHELL_WASM)
+
+# ramdisk.o depends on init.wasm, shell.wasm and test.wasm being present
+$(BUILD_DIR)/ramdisk.o: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM)
 
 # ---------------------------------------------------------------------------
 # C freestanding compilation
@@ -138,6 +158,22 @@ $(WASM3_LIB): $(WASM3_OBJS)
 	ar rcs $@ $^
 
 # ---------------------------------------------------------------------------
+# WASM init module
+# ---------------------------------------------------------------------------
+$(INIT_WASM): $(MODULES_DIR)/init/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/init.wasm
+
+# ---------------------------------------------------------------------------
+# RAM disk (USTAR TAR from modules/init/ramdisk/)
+# ---------------------------------------------------------------------------
+$(RAMDISK_TAR): ramdisk/motd.txt ramdisk/hello.txt ramdisk/readme.txt
+	@echo "  TAR   $@"
+	tar cf $@ -C ramdisk motd.txt hello.txt readme.txt
+
+# ---------------------------------------------------------------------------
 # WASM shell module
 # ---------------------------------------------------------------------------
 $(SHELL_WASM): $(MODULES_DIR)/shell/src/main.c
@@ -146,9 +182,18 @@ $(SHELL_WASM): $(MODULES_DIR)/shell/src/main.c
 	cp $@ $(KERNEL_DIR)/shell.wasm
 
 # ---------------------------------------------------------------------------
+# WASM test module (integration test)
+# ---------------------------------------------------------------------------
+$(TEST_WASM): $(MODULES_DIR)/test/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/test.wasm
+
+# ---------------------------------------------------------------------------
 # Full kernel link
 # ---------------------------------------------------------------------------
-$(TARGET_ELF): $(ALL_OBJS) $(WASM3_LIB) $(SHELL_WASM)
+$(TARGET_ELF): $(ALL_OBJS) $(WASM3_LIB) $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(RAMDISK_TAR)
 	@echo "  LD    $@"
 	$(LD) $(LDFLAGS) -o $@ $(ASM_OBJS) $(C_OBJS) $(WASM3_OBJS)
 	@SIZE=$$(wc -c < $@); echo "kernel.elf: $${SIZE} bytes ($$(( SIZE / 1024 ))KB)"
@@ -157,7 +202,7 @@ $(TARGET_ELF): $(ALL_OBJS) $(WASM3_LIB) $(SHELL_WASM)
 # Run in QEMU
 # ---------------------------------------------------------------------------
 run: $(TARGET_ELF)
-	@echo "Starting AI-ASM AArch64 v0.4 in QEMU..."
+	@echo "Starting AI-ASM AArch64 v0.5 in QEMU..."
 	@echo "Press Ctrl+A then X to exit."
 	$(QEMU) \
 	    -M virt \
@@ -173,6 +218,6 @@ run: $(TARGET_ELF)
 # ---------------------------------------------------------------------------
 clean:
 	rm -rf $(BUILD_DIR)
-	rm -f $(KERNEL_DIR)/shell.wasm
-	rm -f $(MODULES_DIR)/shell/shell.wasm
+	rm -f $(KERNEL_DIR)/init.wasm $(KERNEL_DIR)/shell.wasm $(KERNEL_DIR)/test.wasm $(KERNEL_DIR)/ramdisk.tar
+	rm -f $(MODULES_DIR)/init/init.wasm $(MODULES_DIR)/shell/shell.wasm $(MODULES_DIR)/test/test.wasm
 	@echo "=== Build artifacts removed ==="

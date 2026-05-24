@@ -7,3 +7,8 @@ build/
 # Editor
 *.swp
 *~
+
+# Release
+release/
+disk.img
+qemu_serial*.log
