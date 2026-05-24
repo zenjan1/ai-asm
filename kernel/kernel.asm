@@ -1,6 +1,6 @@
 /*
  * aiasm-aarch64/kernel/kernel.asm
- * Kernel entry point v0.4 — Wasm3 runtime host, enhanced I/O, memory manager
+ * Kernel entry point v0.5 — Multi-Module WASM Runtime + RAM disk
  * Pure AArch64 assembly, load at 0x40080000
  *
  * Boot sequence:
@@ -8,17 +8,15 @@
  *   2. Init PL011 UART + RX ring buffer
  *   3. Init physical memory manager (bitmap + kernel heap)
  *   4. Init ARM Generic Timer
- *   5. Init WASM3 runtime (C layer: wasm_host.c)
- *   6. Batch register host functions via registration table
- *   7. Load embedded or external WASM module
- *   8. Execute WASM _start
+ *   5. Init multi-module WASM runtime (wasm_host_init_multi)
+ *   6. Load and run init module
+ *   7. After init exits, run ready modules (spawned by init)
  *
- * New v0.4:
- *   - UART RX ring buffer (serial_rx.asm) replaces blocking serial_getc
- *   - Kernel heap with aligned allocation (mem_alloc_aligned)
- *   - Host functions: host_alloc, host_free, host_log, host_free_page
- *   - Error logging via JSON kernel_log()
- *   - External WASM module loading support (wasm_host_load_external)
+ * v0.5 changes:
+ *   - Multi-module WASM runtime with shared environment
+ *   - Init module spawns other modules (e.g., shell)
+ *   - RAM disk filesystem (embedded TAR)
+ *   - Module lifecycle: FREE -> LOADING -> READY -> RUNNING -> EXITED
  */
 .arch armv8-a
 
@@ -57,26 +55,75 @@ _start:
     /* Initialize physical memory manager */
     bl      mem_init
 
+    /* Initialize MMU (identity mapping, enables caches) */
+    bl      mmu_init
+
+    /* Log MMU status */
+    adrp    x0, mmu_status_buf
+    add     x0, x0, #:lo12:mmu_status_buf
+    bl      mmu_info
+    bl      serial_puts
+
+    /* Initialize VirtIO devices */
+    bl      virtio_init
+
+    /* Initialize VirtIO-Block driver */
+    bl      virtio_blk_init
+
+    /* Initialize VirtIO-Net driver */
+    bl      virtio_net_init
+
+    /* Initialize FAT32 filesystem */
+    bl      fs_init
+
+    /* Initialize TCP/IP network stack */
+    bl      net_init
+
+    /* Initialize WASI subsystem */
+    bl      wasi_init
+
+    /* Initialize module repository */
+    bl      module_repo_init
+
+    /* Initialize framebuffer and GUI */
+    bl      fb_init
+    bl      gui_init
+
     /* Initialize ARM Generic Timer */
     bl      timer_init
 
-    /* ---- Transition to WASM3 runtime ---- */
+    /* Initialize GICv2 interrupt controller */
+    bl      gic_init
+    bl      gic_enable_timer_irq
 
-    /* wasm_host_init() */
-    bl      wasm_host_init
+    /* Set exception vector table (2KB aligned) */
+    adrp    x0, exception_vectors
+    add     x0, x0, #:lo12:exception_vectors
+    msr     vbar_el1, x0
+
+    /* Set 10ms periodic timer interval */
+    mov     x0, #10
+    bl      timer_set_interval
+
+    /* Unmask CPU interrupts (clears DAIF I bit) */
+    bl      gic_unmask_all
+
+    /* ---- Transition to WASM3 runtime (v0.5 multi-module) ---- */
+
+    /* wasm_host_init_multi() */
+    bl      wasm_host_init_multi
     cbnz    x0, wasm_init_error
 
-    /* wasm_host_load + wasm_host_run */
-    bl      load_and_run_wasm
+    /* Load and run init module */
+    bl      load_and_run_init
     cbnz    x0, wasm_load_error
 
-    /* Done */
-    adrp    x0, boot_done
-    add     x0, x0, #:lo12:boot_done
-    bl      serial_puts
+    /* Run any ready modules (spawned by init) */
+    bl      run_ready_modules
 
-1:  wfi
-    b       1b
+    /* Enter preemptive scheduler loop (IRQ-driven at 10ms) */
+    bl      proc_init
+    b       proc_schedule_loop
 
 /* ----------------------------------------------------------------------------- */
 /* Error handlers with JSON logging                                             */
@@ -135,24 +182,24 @@ bss_clear:
     ret
 
 /* ----------------------------------------------------------------------------- */
-/* load_and_run_wasm: call wasm_host_load and wasm_host_run                       */
+/* load_and_run_init: load init module, run it, return error or 0                 */
 /* ----------------------------------------------------------------------------- */
-.global load_and_run_wasm
-load_and_run_wasm:
+.global load_and_run_init
+load_and_run_init:
     stp     x29, x30, [sp, #-16]!
 
-    /* Load wasm_module_start address and size */
-    adrp    x0, wasm_module_start
-    add     x0, x0, #:lo12:wasm_module_start
-    adrp    x1, wasm_module_size
-    add     x1, x1, #:lo12:wasm_module_size
+    /* Load init_module_start address and size */
+    adrp    x0, init_module_start
+    add     x0, x0, #:lo12:init_module_start
+    adrp    x1, init_module_size
+    add     x1, x1, #:lo12:init_module_size
     ldr     w1, [x1]
 
     /* Call wasm_host_load(x0=wasm_ptr, x1=wasm_size) */
     bl      wasm_host_load
     cbnz    x0, 1f                  /* if error, return */
 
-    /* Call wasm_host_run() */
+    /* Call wasm_host_run() — runs init module */
     bl      wasm_host_run
     cbnz    x0, 1f
 
@@ -164,11 +211,21 @@ load_and_run_wasm:
     ret
 
 /* ----------------------------------------------------------------------------- */
+/* run_ready_modules: run spawned modules (shell, etc.)                           */
+/* ----------------------------------------------------------------------------- */
+.global run_ready_modules
+run_ready_modules:
+    stp     x29, x30, [sp, #-16]!
+    bl      run_ready_modules_c
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* ----------------------------------------------------------------------------- */
 /* Strings (placed in same section as code via -N linker)                         */
 /* ----------------------------------------------------------------------------- */
 .align 4
 boot_banner:
-    .asciz "\nAI-ASM AArch64 v0.4 — Wasm3 Runtime Host\n"
+    .asciz "\nAI-ASM AArch64 v0.5 — Multi-Module WASM Runtime\n"
 boot_done:
     .asciz "WASM returned.\n"
 boot_halt:

@@ -1,0 +1,64 @@
+# AI-ASM 开发任务
+# 生成时间: 2026-05-24 21:00
+# 当前阶段: v2.0完成 + v3.0规划
+
+## 当前状态
+- v1.0内核完成：19init + 28asm + wasm_host(1680行)
+- v2.0应用生态完成：7WASM模块
+- v2.0发布包：aiasm-v2.0.tar.gz (96KB)
+- CHANGELOG.md已更新
+- 待完成：git标签 + v3.0规划
+
+## 任务目标
+创建git版本标签，规划v3.0发展方向
+
+## 实现步骤
+
+### 1. Git标签
+```bash
+git add -A
+git commit -m "release: v2.0 application ecosystem"
+git tag -a v2.0 -m "AI-ASM v2.0 - Application Ecosystem with launcher"
+```
+
+### 2. v3.0规划方向
+```
+v3.0目标：多进程并发 + 网络应用
+
+新增功能：
+- 浏览器模块：HTTP客户端，HTML解析
+- 终端多窗口：多个shell进程并发
+- 文件管理器：目录浏览，文件操作
+- 网络测试：TCP连接验证
+```
+
+### 3. 更新ROADMAP.md v3.0章节
+```markdown
+## v3.0规划 (2026-06)
+
+### 网络应用
+- browser.wasm: HTTP GET/POST，简单HTML渲染
+- ftp.wasm: 文件传输客户端
+
+### 多进程增强
+- 进程间通信：管道、消息队列
+- 信号机制：SIGKILL/SIGTERM
+- 资源配额：CPU时间限制、内存限制
+
+### 性能优化
+- WASM JIT预编译
+- framebuffer双缓冲
+- 中断驱动网络I/O
+```
+
+## 技术要求
+- git标签格式：vX.Y
+- ROADMAP保持简洁清晰
+- 每个版本聚焦一个核心主题
+
+## 文件清单
+修改:
+- ROADMAP.md (v3.0规划章节)
+
+执行:
+- git commit + tag

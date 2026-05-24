@@ -1,0 +1,30 @@
+# AI-ASM AArch64 v0.5 - Development Prompt
+
+## Project Overview
+Pure AArch64 assembly OS kernel with embedded Wasm3 runtime, running on QEMU virt (128MB RAM) on Termux.
+
+## Build Commands
+```bash
+make all      # Build full kernel.elf
+make clean    # Remove build artifacts
+make run      # Build and launch in QEMU
+make modules  # Build WASM modules only
+make wasm3    # Build wasm3 library only
+```
+
+## Architecture
+- Boot: kernel.asm -> wasm_host_init_multi() -> load init module -> run ready modules
+- Multi-module WASM runtime: shared IM3Environment, per-module IM3Runtime
+- RAM disk: embedded USTAR TAR with read-only filesystem
+- Module lifecycle: FREE -> LOADING -> READY -> RUNNING -> EXITED
+
+## Key Files
+- kernel/kernel.asm - Boot sequence and entry point
+- kernel/wasm_host.c - WASM runtime host functions and module management
+- kernel/module_runtime.h - Multi-module runtime data structures
+- kernel/ramdisk.asm - Embeds WASM modules and RAM disk TAR
+- modules/init/src/main.c - Init module (spawns other modules)
+- modules/shell/src/main.c - Interactive shell with filesystem commands
+
+## Shell Commands
+help, tick, echo, alloc, log, clear, ls, cat, exit

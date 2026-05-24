@@ -1,7 +1,7 @@
 /*
  * aiasm-aarch64/kernel/process.asm
  * Process control blocks, context switch, round-robin scheduler
- * PCB layout (64 bytes per process):
+ * PCB layout (328 bytes per process):
  *   +0:  state (0=free,1=ready,2=running,3=sleeping)
  *   +4:  pid
  *   +8:  x0-x30 (31*8=248 bytes)
@@ -10,7 +10,9 @@
  *   +272: stack_base (top of kernel stack)
  *   +280: quantum (time slice counter)
  *   +284: name (32 bytes)
- *   Total: ~320 bytes per PCB, aligned to 320
+ *   +316: ttbr0 (page table base for this process)
+ *   +324: padding to 320
+ *   Total: 328 bytes per PCB, rounded to 352 for alignment
  */
 .arch armv8-a
 
@@ -18,7 +20,8 @@
 .set PROC_RUNNING,  2
 .set PROC_READY,    1
 .set PROC_FREE,     0
-.set PCB_SIZE,      320
+.set PROC_PAUSED,   3
+.set PCB_SIZE,      352
 .set PCB_STATE,     0
 .set PCB_PID,       4
 .set PCB_X0,        8
@@ -26,6 +29,7 @@
 .set PCB_PC,        264
 .set PCB_QUANTUM,   280
 .set PCB_NAME,      284
+.set PCB_TTBR0,     316
 
 .text
 
@@ -164,6 +168,30 @@ proc_create_fail:
     ret
 
 /* -----------------------------------------------------------------------------
+ * Function: proc_create_page_table
+ * Description: Create page table for a new process
+ * Input: x0 = PID, x1 = user space VA base, x2 = user space PA base
+ * Output: x0 = TTBR0 value (physical address of L1 table)
+ * Clobbered: x0-x4
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global proc_create_page_table
+proc_create_page_table:
+    stp     x29, x30, [sp, #-16]!
+    mov     x3, x0              /* save PID */
+    mov     x4, x1              /* save user VA */
+    mov     x5, x2              /* save user PA */
+
+    /* mmu_clone_page_table(pid, user_va, user_pa) */
+    mov     x0, x3
+    mov     x1, x4
+    mov     x2, x5
+    bl      mmu_clone_page_table
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
  * Function: proc_schedule
  * Description: Round-robin scheduler tick - switch to next ready process
  * Input: none
@@ -251,6 +279,18 @@ proc_schedule:
     str     w6, [x5]
 
 proc_restore:
+    /* Switch page table if new process has its own TTBR0 */
+    add     x5, x4, #PCB_TTBR0  /* compute TTBR0 field address */
+    ldr     x3, [x5]
+    cbz     x3, proc_restore_no_mmu
+    /* Load new page table */
+    msr     ttbr0_el1, x3
+    isb
+    tlbi    vmalle1
+    dsb     nsh
+    isb
+
+proc_restore_no_mmu:
     /* Restore context from new PCB */
     ldr     x3, [x4, #PCB_SP]
     mov     sp, x3
@@ -351,6 +391,197 @@ proc_list:
     ldp     x29, x30, [sp], #16
     ret
 
+/* -----------------------------------------------------------------------------
+ * Function: proc_pause
+ * Pause a process (set state to PAUSED)
+ * x0 = pid
+ * Returns w0 = 0 on success, -1 if not found
+ * ----------------------------------------------------------------------------- */
+.global proc_pause
+proc_pause:
+    stp     x29, x30, [sp, #-16]!
+    mov     w8, w0
+
+    adrp    x0, pcb_table
+    add     x0, x0, #:lo12:pcb_table
+    mov     w1, #0
+
+_pm_loop:
+    cmp     w1, #MAX_PROCS
+    b.ge    _pm_not_found
+    ldr     w2, [x0, #PCB_PID]
+    cmp     w2, w8
+    b.eq    _pm_found
+    add     x0, x0, #PCB_SIZE
+    add     w1, w1, #1
+    b       _pm_loop
+
+_pm_found:
+    ldr     w2, [x0, #PCB_STATE]
+    cmp     w2, #PROC_RUNNING
+    b.eq    _pm_set_paused
+    cmp     w2, #PROC_READY
+    b.ne    _pm_not_found
+
+_pm_set_paused:
+    mov     w2, #PROC_PAUSED
+    str     w2, [x0, #PCB_STATE]
+    mov     w0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+_pm_not_found:
+    mov     w0, #-1
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: proc_resume
+ * Resume a paused process (set state to READY)
+ * x0 = pid
+ * Returns w0 = 0 on success, -1 if not found
+ * ----------------------------------------------------------------------------- */
+.global proc_resume
+proc_resume:
+    stp     x29, x30, [sp, #-16]!
+    mov     w8, w0
+
+    adrp    x0, pcb_table
+    add     x0, x0, #:lo12:pcb_table
+    mov     w1, #0
+
+_pr_loop:
+    cmp     w1, #MAX_PROCS
+    b.ge    _pr_not_found
+    ldr     w2, [x0, #PCB_PID]
+    cmp     w2, w8
+    b.eq    _pr_found
+    add     x0, x0, #PCB_SIZE
+    add     w1, w1, #1
+    b       _pr_loop
+
+_pr_found:
+    ldr     w2, [x0, #PCB_STATE]
+    cmp     w2, #PROC_PAUSED
+    b.ne    _pr_not_found
+    mov     w2, #PROC_READY
+    str     w2, [x0, #PCB_STATE]
+    mov     w0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+_pr_not_found:
+    mov     w0, #-1
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: proc_kill
+ * Kill a process and free its resources
+ * x0 = pid
+ * Returns w0 = 0 on success, -1 if not found
+ * ----------------------------------------------------------------------------- */
+.global proc_kill
+proc_kill:
+    stp     x29, x30, [sp, #-16]!
+    mov     w8, w0
+
+    /* Cannot kill PID 0 (idle) */
+    cbz     w8, _pk_err
+
+    adrp    x0, pcb_table
+    add     x0, x0, #:lo12:pcb_table
+    mov     w1, #0
+
+_pk_loop:
+    cmp     w1, #MAX_PROCS
+    b.ge    _pk_not_found
+    ldr     w2, [x0, #PCB_PID]
+    cmp     w2, w8
+    b.eq    _pk_found
+    add     x0, x0, #PCB_SIZE
+    add     w1, w1, #1
+    b       _pk_loop
+
+_pk_found:
+    ldr     w2, [x0, #PCB_STATE]
+    cbz     w2, _pk_not_found
+
+    /* Zero the PCB */
+    mov     x1, x0
+    mov     x2, #PCB_SIZE
+    bl      memset
+
+    /* Decrement proc_count */
+    adrp    x1, proc_count
+    add     x1, x1, #:lo12:proc_count
+    ldr     w2, [x1]
+    sub     w2, w2, #1
+    str     w2, [x1]
+
+    mov     w0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+_pk_err:
+_pk_not_found:
+    mov     w0, #-1
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: proc_wait
+ * Wait for a process to exit (block until state is EXITED or FREE)
+ * x0 = pid
+ * Returns w0 = 0 on success, -1 if not found
+ * ----------------------------------------------------------------------------- */
+.global proc_wait
+proc_wait:
+    stp     x29, x30, [sp, #-16]!
+    mov     w8, w0
+
+_pw_loop:
+    adrp    x0, pcb_table
+    add     x0, x0, #:lo12:pcb_table
+    mov     w1, #0
+
+_pw_search:
+    cmp     w1, #MAX_PROCS
+    b.ge    _pw_not_found
+    ldr     w2, [x0, #PCB_PID]
+    cmp     w2, w8
+    b.eq    _pw_check
+    add     x0, x0, #PCB_SIZE
+    add     w1, w1, #1
+    b       _pw_search
+
+_pw_check:
+    ldr     w2, [x0, #PCB_STATE]
+    cbz     w2, _pw_done           /* FREE means exited */
+
+    /* Check if preempt_pending — yield to scheduler */
+    adrp    x0, preempt_pending
+    add     x0, x0, #:lo12:preempt_pending
+    ldrb    w3, [x0]
+    cbnz    w3, _pw_yield
+
+    /* Wait for next IRQ */
+    wfi
+    b       _pw_loop
+
+_pw_yield:
+    b       _pw_loop
+
+_pw_done:
+    mov     w0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+_pw_not_found:
+    mov     w0, #-1
+    ldp     x29, x30, [sp], #16
+    ret
+
 /* Process state */
 .bss
 .align 4
@@ -362,6 +593,9 @@ current_pid:
     .skip 4
 proc_count:
     .skip 4
+.global preempt_pending
+preempt_pending:
+    .skip 1              /* Set by IRQ handler, cleared by scheduler loop */
 
 .bss
 .align 4

@@ -1,9 +1,10 @@
 /*
  * aiasm-aarch64/modules/shell/src/main.c
- * Wasm Shell module for AI-ASM AArch64 kernel v0.4
+ * Wasm Shell module for AI-ASM AArch64 kernel v0.5
  *
  * Interactive command loop: reads characters via host_getc,
  * echoes input, handles backspace, executes commands on newline.
+ * Supports: help, tick, echo, alloc, log, clear, exit, ls, cat
  */
 
 /* -------------------------------------------------------------------------- */
@@ -31,6 +32,18 @@ extern void wasm_host_log(unsigned int level_off, unsigned int level_len,
 
 __attribute__((import_module("host"), import_name("getc")))
 extern int wasm_host_getc(void);
+
+__attribute__((import_module("host"), import_name("fs_open")))
+extern int wasm_host_fs_open(unsigned int path_off, unsigned int path_len);
+
+__attribute__((import_module("host"), import_name("fs_read")))
+extern int wasm_host_fs_read(int fd, unsigned int buf_off, unsigned int len);
+
+__attribute__((import_module("host"), import_name("fs_close")))
+extern void wasm_host_fs_close(int fd);
+
+__attribute__((import_module("host"), import_name("fs_list")))
+extern int wasm_host_fs_list(unsigned int buf_off, unsigned int max_len);
 
 /* -------------------------------------------------------------------------- */
 /* WASM memory allocator (bump, uses host_alloc)                              */
@@ -102,6 +115,27 @@ static void print_char(char c)
     wasm_host_print(offset, 1);
 }
 
+static void print_int(int v)
+{
+    char buf[12];
+    int i = 0;
+    if (v == 0) {
+        buf[i++] = '0';
+    } else {
+        int n = v;
+        if (n < 0) { print_str("-"); n = -n; }
+        while (n > 0) {
+            buf[i++] = '0' + (char)(n % 10);
+            n /= 10;
+        }
+    }
+    unsigned int offset = alloc((unsigned int)i);
+    char *dst = (char *)(offset);
+    for (int j = 0; j < i; j++)
+        dst[j] = buf[i - 1 - j];
+    wasm_host_print(offset, (unsigned int)i);
+}
+
 /* -------------------------------------------------------------------------- */
 /* Logging                                                                    */
 /* -------------------------------------------------------------------------- */
@@ -155,6 +189,8 @@ static void cmd_help(void)
     print_str("  alloc   - test kernel allocator\n");
     print_str("  log     - test kernel logging\n");
     print_str("  clear   - clear screen\n");
+    print_str("  ls      - list files on RAM disk\n");
+    print_str("  cat F   - print file content\n");
     print_str("  exit    - exit shell\n");
 }
 
@@ -201,6 +237,59 @@ static void cmd_clear(void)
     print_str("\033[2J\033[H");
 }
 
+static void cmd_ls(void)
+{
+    /* Allocate a 2KB buffer for file listing */
+    unsigned int buf_off = alloc(2048);
+    int total = wasm_host_fs_list(buf_off, 2048);
+    if (total <= 0) {
+        print_str("(empty)\n");
+        return;
+    }
+    /* Print null-separated names as line-separated */
+    unsigned int i = 0;
+    char *names = (char *)buf_off;
+    while (i < (unsigned int)total) {
+        if (names[i] == '\0') {
+            print_str("\n");
+        } else {
+            print_char(names[i]);
+        }
+        i++;
+    }
+    print_str("\n");
+}
+
+static void cmd_cat(const char *filename)
+{
+    if (!*filename) {
+        print_str("cat: no filename\n");
+        return;
+    }
+    unsigned int flen = my_strlen(filename);
+    unsigned int path_off = alloc(flen);
+    char *pd = (char *)path_off;
+    for (unsigned int i = 0; i < flen; i++) pd[i] = filename[i];
+
+    int fd = wasm_host_fs_open(path_off, flen);
+    if (fd < 0) {
+        print_str("cat: no such file: ");
+        print_str(filename);
+        print_str("\n");
+        return;
+    }
+
+    /* Read in chunks */
+    unsigned int buf_off = alloc(512);
+    for (;;) {
+        int n = wasm_host_fs_read(fd, buf_off, 512);
+        if (n <= 0) break;
+        wasm_host_print(buf_off, (unsigned int)n);
+    }
+    wasm_host_fs_close(fd);
+    print_str("\n");
+}
+
 /* -------------------------------------------------------------------------- */
 /* Shell entry point                                                          */
 /* -------------------------------------------------------------------------- */
@@ -210,7 +299,7 @@ static void cmd_clear(void)
 __attribute__((export_name("_start")))
 void shell_entry(void)
 {
-    print_str("\n== AI-ASM AArch64 v0.4 Wasm Shell ==\n");
+    print_str("\n== AI-ASM AArch64 v0.5 Wasm Shell ==\n");
     print_str("Type 'help' for commands.\n\n");
 
     print_str("tick: ");
@@ -258,6 +347,11 @@ void shell_entry(void)
                         cmd_log();
                     } else if (my_strcmp(line, "clear") == 0) {
                         cmd_clear();
+                    } else if (my_strcmp(line, "ls") == 0) {
+                        cmd_ls();
+                    } else if (line[0] == 'c' && line[1] == 'a' &&
+                               line[2] == 't' && line[3] == ' ') {
+                        cmd_cat(line + 4);
                     } else if (my_strcmp(line, "exit") == 0) {
                         shell_log("OP", "shell exiting");
                         wasm_host_exit(0);

@@ -1,5 +1,44 @@
 # AI-ASM Change Log
 
+## v2.0 (2026-05-24)
+
+Application ecosystem with launcher and GUI applications.
+
+### Application Ecosystem
+- Text Editor (editor.wasm): file load/save, 5x7 font rendering, cursor tracking
+- Calculator (calc.wasm): 4x5 button grid, arithmetic operations, keyboard input
+- Paint (paint.wasm): 16-color palette, freehand drawing, Bresenham lines, adjustable brush
+- Application Launcher (launcher.wasm): 2x3 card layout, app spawning, status display
+- Shell (shell.wasm): interactive command interface
+- Integration Test (test.wasm): FS/NET/GUI/CORE test suite
+
+### GUI Applications
+- Window creation and management via `host.gui_create`
+- Framebuffer rendering with RGBA8888 pixel format
+- GUI event polling for mouse/keyboard input
+- Toolbar and palette UI components
+
+### File API
+- File create/write/read/delete via WASM host functions
+- FAT32 filesystem integration
+- Directory listing support
+
+### WASM Modules (7 total)
+- init.wasm (1332B) - system initialization, spawns launcher
+- shell.wasm (3553B) - interactive shell
+- editor.wasm (4949B) - text editor
+- calc.wasm (4008B) - calculator
+- paint.wasm (3316B) - drawing application
+- launcher.wasm (3995B) - application menu
+- test.wasm (4399B) - integration tests
+
+### Statistics
+- kernel.elf: 3.65MB
+- 7 WASM modules compiled
+- Total WASM size: ~25KB
+
+---
+
 ## v1.0 (2026-05-24)
 
 Complete WASM-native AArch64 operating system.

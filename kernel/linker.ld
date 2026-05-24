@@ -33,10 +33,16 @@ SECTIONS
     . = ALIGN(4096);
     __image_end = .;
 
-    /* Reserve space for page tables (64KB aligned) */
-    . = ALIGN(65536);
+    /* L1 page table for kernel (4KB aligned, 4KB used) */
+    . = ALIGN(4096);
     __page_table_base = .;
-    . = . + 0x4000;
+    . = . + 0x1000;
+
+    /* L2 page table pool: 128KB = 32 L2 tables for process isolation */
+    . = ALIGN(4096);
+    __l2_table_pool_start = .;
+    . = . + 0x00020000;
+    __l2_table_pool_end = .;
 
     /* Kernel stack (16KB for wasm3 runtime) */
     . = ALIGN(16);

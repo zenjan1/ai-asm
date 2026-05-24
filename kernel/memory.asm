@@ -260,6 +260,43 @@ mem_alloc_aligned:
     mov     x2, x0                /* save size */
     mov     x3, x1                /* save alignment */
 
+    /* --- First: try free list (first-fit) --- */
+    adrp    x4, heap_free_list
+    add     x4, x4, #:lo12:heap_free_list
+    ldr     x5, [x4]              /* x5 = free list head */
+    mov     x6, xzr               /* x6 = prev pointer */
+
+free_list_search:
+    cbz     x5, free_list_miss    /* no free block found */
+
+    ldr     w7, [x5]              /* block size (bit0=0 since free) */
+    cmp     w7, w2
+    b.lt    free_list_next        /* block too small */
+
+    /* Found a suitable block — remove from free list */
+    cbz     x6, free_list_remove_head
+    ldr     x8, [x5, #4]
+    str     x8, [x6, #4]          /* prev.next = current.next */
+    b       free_list_use_block
+
+free_list_remove_head:
+    ldr     x8, [x5, #4]
+    str     x8, [x4]              /* free list head = current.next */
+
+free_list_use_block:
+    /* User data starts at x5 + 8 (past header) */
+    add     x0, x5, #8
+    ldp     x29, x30, [sp], #16
+    ret
+
+free_list_next:
+    mov     x6, x5
+    ldr     x5, [x5, #4]
+    b       free_list_search
+
+free_list_miss:
+    /* --- Free list miss: fall through to bump allocator --- */
+
     /* Get current heap pointer */
     adrp    x0, heap_next
     add     x0, x0, #:lo12:heap_next
@@ -271,8 +308,9 @@ mem_alloc_aligned:
     sub     x1, x3, #1
     bic     x4, x4, x1
 
-    /* new_end = ptr + size */
+    /* new_end = ptr + size + 8 (header) */
     add     x1, x4, x2
+    add     x1, x1, #8
 
     /* Check heap bounds */
     adrp    x0, __kernel_heap_end
@@ -285,13 +323,26 @@ mem_alloc_aligned:
     add     x0, x0, #:lo12:heap_next
     str     x1, [x0]
 
+    /* Write block header: size (with allocated bit), next=0 */
+    sub     x1, x1, x2
+    sub     x1, x1, #8            /* x1 = header address */
+    orr     w2, w2, #1            /* set allocated flag */
+    str     w2, [x1]
+    str     wzr, [x1, #4]
+
+    /* User data pointer = header + 8 */
+    add     x0, x1, #8
+
     /* Zero the allocation */
-    mov     x0, x4                /* dest */
-    mov     w1, #0                /* value */
-    mov     x2, x2                /* size */
+    mov     x1, x0                /* dest */
+    mov     w2, #0                /* value */
+    mov     x3, x2                /* size — wait, x2 was modified */
+    /* Recalculate size from header */
+    ldr     w3, [x1, #-8]
+    and     w3, w3, #~1           /* clear allocated flag */
     bl      memset
 
-    mov     x0, x4
+    mov     x0, x1
     ldp     x29, x30, [sp], #16
     ret
 
@@ -302,16 +353,132 @@ heap_oom:
 
 /* -----------------------------------------------------------------------------
  * Function: mem_free
- * Description: Free heap allocation (no-op in bump allocator, placeholder for future)
- * Input: x0 = pointer
+ * Description: Free heap allocation — inserts block into free list, coalesces
+ * Input: x0 = pointer (must be a prior mem_alloc_aligned result)
  * Output: none
- * Clobbered: x0
+ * Clobbered: x0-x3
  * Stack: 16 bytes
+ * -----------------------------------------------------------------------------
+ * Block header layout (8 bytes, placed before user data):
+ *   +0: size (32-bit) — bit0=1 if allocated, 0 if free
+ *   +4: next free block offset (32-bit) — used only when free
+ * User pointer points past this header.
  * ----------------------------------------------------------------------------- */
 .global mem_free
 mem_free:
-    /* Bump allocator: free is a no-op.
-     * Full buddy/free-list allocator in future version. */
+    stp     x29, x30, [sp, #-16]!
+
+    cbz     x0, mem_free_done     /* null pointer — no-op */
+
+    /* Get block header (pointer - 8) */
+    sub     x1, x0, #8
+
+    /* Read size and mark as free (clear bit0) */
+    ldr     w2, [x1]
+    and     w2, w2, #~1           /* clear allocated flag */
+    str     w2, [x1]
+
+    /* Insert at head of free list */
+    adrp    x3, heap_free_list
+    add     x3, x3, #:lo12:heap_free_list
+    ldr     x4, [x3]              /* old head */
+    str     x4, [x1, #4]          /* new block → old head */
+    str     x1, [x3]              /* free list head → new block */
+
+    /* Coalesce: merge adjacent free blocks in the free list */
+    bl      heap_coalesce
+
+mem_free_done:
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * heap_coalesce: walk free list, merge adjacent blocks
+ * Adjacency check: if block A end == block B start, merge B into A
+ * Simple O(n^2) pass — sufficient for kernel heap
+ * ----------------------------------------------------------------------------- */
+heap_coalesce:
+    stp     x29, x30, [sp, #-16]!
+
+    adrp    x0, heap_free_list
+    add     x0, x0, #:lo12:heap_free_list
+    ldr     x4, [x0]              /* x4 = current free list head */
+
+    /* Sort free list by address (insertion sort) for easy coalescing */
+coalesce_sort:
+    mov     x5, x4                /* x5 = prev in sorted list */
+    mov     x6, xzr               /* x6 = sorted list head */
+    mov     x7, xzr               /* x7 = tail of sorted list */
+
+sort_loop:
+    cbz     x5, sort_done
+    ldr     x8, [x5]              /* x8 = next in unsorted */
+
+    /* Find insertion point in sorted list */
+    mov     x9, x6                /* search pointer */
+    mov     x10, xzr              /* prev in search */
+
+search_loop:
+    cbz     x9, insert_here       /* end of sorted list */
+    cmp     x9, x5
+    b.lt    search_next
+    /* x9 >= x5, insert before x9 */
+    b       insert_before
+
+search_next:
+    mov     x10, x9
+    ldr     x9, [x9]
+    b       search_loop
+
+insert_before:
+    /* Insert x5 before x9 */
+    str     x5, [x10]
+    str     x9, [x5, #4]
+    b       sort_next_node
+
+insert_here:
+    /* Append at end */
+    cbz     x10, 1f
+    str     x5, [x10]
+    b       sort_next_node
+1:
+    mov     x6, x5                /* first node */
+
+sort_next_node:
+    str     xzr, [x5, #4]         /* clear next pointer of inserted node */
+    mov     x5, x8
+    b       sort_loop
+
+sort_done:
+    mov     x4, x6                /* x4 = sorted free list */
+
+    /* Pass 2: coalesce adjacent blocks */
+coalesce_pass:
+    cbz     x4, coalesce_done
+    ldr     x5, [x4]              /* x5 = next block */
+    cbz     x5, coalesce_done
+
+    /* Check if x4 end == x5 start */
+    ldr     w2, [x4]              /* x4 size */
+    add     x2, x4, x2            /* x4 end address */
+    cmp     x2, x5
+    b.ne    coalesce_next
+
+    /* Merge: x4.size += x5.size, x4.next = x5.next */
+    ldr     w3, [x5]
+    add     w2, w2, w3            /* combined size */
+    str     w2, [x4]
+    ldr     x3, [x5, #4]
+    str     x3, [x4, #4]
+    /* x5 is now merged, continue with x4 */
+    b       coalesce_pass
+
+coalesce_next:
+    mov     x4, x5
+    b       coalesce_pass
+
+coalesce_done:
+    ldp     x29, x30, [sp], #16
     ret
 
 /* -----------------------------------------------------------------------------

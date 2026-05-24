@@ -57,6 +57,40 @@ timer_init:
     ret
 
 /* -----------------------------------------------------------------------------
+ * Function: timer_set_interval
+ * Description: Set virtual timer compare value for periodic intervals
+ * Input: x0 = interval in milliseconds
+ * Output: none
+ * Clobbered: x0-x2
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global timer_set_interval
+timer_set_interval:
+    stp     x29, x30, [sp, #-16]!
+
+    /* Read counter frequency (Hz) */
+    mrs     x1, cntfrq_el0
+
+    /* ticks = interval_ms * freq / 1000 */
+    mul     x0, x0, x1
+    mov     x2, #1000
+    udiv    x0, x0, x2
+
+    /* Read current counter value */
+    mrs     x1, cntvct_el0
+
+    /* CNTV_CVAL_EL0 = current + ticks (triggers IRQ when counter >= cval) */
+    add     x0, x0, x1
+    msr     cntv_cval_el0, x0
+
+    /* Enable virtual timer, unmask interrupt (CTL=1: ENABLE=1, IMASK=0) */
+    mov     x0, #1
+    msr     cntv_ctl_el0, x0
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
  * Function: timer_get_ticks
  * Description: Get current virtual counter value (hardware tick)
  * Input: none

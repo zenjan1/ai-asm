@@ -84,6 +84,30 @@ gic_init:
     ret
 
 /* -----------------------------------------------------------------------------
+ * Function: gic_enable_timer_irq
+ * Description: Enable virtual timer IRQ (IRQ 27) in GIC distributor
+ * Input: none
+ * Output: none
+ * Clobbered: x0-x2
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global gic_enable_timer_irq
+gic_enable_timer_irq:
+    stp     x29, x30, [sp, #-16]!
+
+    /* GICD base address = 0x08000000 */
+    movz    x0, #0x0800, lsl #16
+    movk    x0, #0x0000
+
+    /* Enable IRQ 27 in GICD_ISENABLER[0] (offset 0x0100) */
+    movz    x1, #0x0800, lsl #16
+    movk    x1, #0x0000
+    str     w1, [x0, #0x0100]
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
  * Function: gic_ack_irq
  * Description: Acknowledge and end an IRQ
  * Input: none (reads IAR from hardware)

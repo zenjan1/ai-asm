@@ -84,9 +84,13 @@ WASM3_OBJS = $(patsubst $(WASM3_DIR)/source/%.c,$(BUILD_DIR)/wasm3/%.o,$(WASM3_S
 WASM3_LIB  = $(BUILD_DIR)/libwasm3.a
 
 # WASM modules
-INIT_WASM  = $(MODULES_DIR)/init/init.wasm
-SHELL_WASM = $(MODULES_DIR)/shell/shell.wasm
-TEST_WASM  = $(MODULES_DIR)/test/test.wasm
+INIT_WASM   = $(MODULES_DIR)/init/init.wasm
+SHELL_WASM  = $(MODULES_DIR)/shell/shell.wasm
+TEST_WASM   = $(MODULES_DIR)/test/test.wasm
+EDITOR_WASM = $(MODULES_DIR)/editor/editor.wasm
+CALC_WASM   = $(MODULES_DIR)/calc/calc.wasm
+PAINT_WASM  = $(MODULES_DIR)/paint/paint.wasm
+LAUNCHER_WASM = $(MODULES_DIR)/launcher/launcher.wasm
 RAMDISK_TAR = $(KERNEL_DIR)/ramdisk.tar
 
 # All object dependencies
@@ -115,7 +119,7 @@ wasm3: $(WASM3_LIB)
 	@echo "=== wasm3 library complete ==="
 
 # Compile WASM modules and ramdisk
-modules: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(RAMDISK_TAR)
+modules: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(EDITOR_WASM) $(CALC_WASM) $(PAINT_WASM) $(LAUNCHER_WASM) $(RAMDISK_TAR)
 	@echo "=== WASM modules and ramdisk complete ==="
 
 # Link kernel only (assumes objects exist)
@@ -132,8 +136,8 @@ $(BUILD_DIR)/%.o: $(KERNEL_DIR)/%.asm | $(BUILD_DIR)
 # wasm_embed.o depends on shell.wasm being present first
 $(BUILD_DIR)/wasm_embed.o: $(SHELL_WASM)
 
-# ramdisk.o depends on init.wasm, shell.wasm and test.wasm being present
-$(BUILD_DIR)/ramdisk.o: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM)
+# ramdisk.o depends on init.wasm, shell.wasm, test.wasm and ramdisk.tar
+$(BUILD_DIR)/ramdisk.o: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(RAMDISK_TAR)
 
 # ---------------------------------------------------------------------------
 # C freestanding compilation
@@ -191,6 +195,42 @@ $(TEST_WASM): $(MODULES_DIR)/test/src/main.c
 	cp $@ $(KERNEL_DIR)/test.wasm
 
 # ---------------------------------------------------------------------------
+# WASM editor module
+# ---------------------------------------------------------------------------
+$(EDITOR_WASM): $(MODULES_DIR)/editor/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/editor.wasm
+
+# ---------------------------------------------------------------------------
+# WASM calculator module
+# ---------------------------------------------------------------------------
+$(CALC_WASM): $(MODULES_DIR)/calc/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/calc.wasm
+
+# ---------------------------------------------------------------------------
+# WASM paint module
+# ---------------------------------------------------------------------------
+$(PAINT_WASM): $(MODULES_DIR)/paint/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/paint.wasm
+
+# ---------------------------------------------------------------------------
+# WASM launcher module
+# ---------------------------------------------------------------------------
+$(LAUNCHER_WASM): $(MODULES_DIR)/launcher/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/launcher.wasm
+
+# ---------------------------------------------------------------------------
 # Full kernel link
 # ---------------------------------------------------------------------------
 $(TARGET_ELF): $(ALL_OBJS) $(WASM3_LIB) $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(RAMDISK_TAR)
@@ -218,6 +258,9 @@ run: $(TARGET_ELF)
 # ---------------------------------------------------------------------------
 clean:
 	rm -rf $(BUILD_DIR)
-	rm -f $(KERNEL_DIR)/init.wasm $(KERNEL_DIR)/shell.wasm $(KERNEL_DIR)/test.wasm $(KERNEL_DIR)/ramdisk.tar
+	rm -f $(KERNEL_DIR)/init.wasm $(KERNEL_DIR)/shell.wasm $(KERNEL_DIR)/test.wasm
+	rm -f $(KERNEL_DIR)/editor.wasm $(KERNEL_DIR)/calc.wasm $(KERNEL_DIR)/paint.wasm $(KERNEL_DIR)/launcher.wasm
+	rm -f $(KERNEL_DIR)/ramdisk.tar
 	rm -f $(MODULES_DIR)/init/init.wasm $(MODULES_DIR)/shell/shell.wasm $(MODULES_DIR)/test/test.wasm
+	rm -f $(MODULES_DIR)/editor/editor.wasm $(MODULES_DIR)/calc/calc.wasm $(MODULES_DIR)/paint/paint.wasm $(MODULES_DIR)/launcher/launcher.wasm
 	@echo "=== Build artifacts removed ==="
