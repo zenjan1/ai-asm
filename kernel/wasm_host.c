@@ -17,6 +17,26 @@
 #include "module_runtime.h"
 
 /* -------------------------------------------------------------------------- */
+/* JIT Cache integration                                                      */
+/* -------------------------------------------------------------------------- */
+
+extern void jit_cache_init(void);
+extern void *jit_cache_lookup(uint32_t name_hash, const char *name);
+extern int jit_cache_store(uint32_t name_hash, const char *name,
+                            const void *code, uint32_t size);
+
+static uint32_t crc32_hash(const uint8_t *data, uint32_t len)
+{
+    uint32_t crc = 0xFFFFFFFF;
+    for (uint32_t i = 0; i < len; i++) {
+        crc ^= data[i];
+        for (int j = 0; j < 8; j++)
+            crc = (crc >> 1) ^ (crc & 1 ? 0xEDB88320 : 0);
+    }
+    return crc ^ 0xFFFFFFFF;
+}
+
+/* -------------------------------------------------------------------------- */
 /* UART helpers                                                               */
 /* -------------------------------------------------------------------------- */
 
@@ -107,11 +127,17 @@ extern const uint8_t shell_module_start[], shell_module_end[];
 extern const uint32_t shell_module_size;
 extern const uint8_t test_module_start[], test_module_end[];
 extern const uint32_t test_module_size;
+extern const uint8_t proc_monitor_module_start[], proc_monitor_module_end[];
+extern const uint32_t proc_monitor_module_size;
+extern const uint8_t syslog_module_start[], syslog_module_end[];
+extern const uint32_t syslog_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
-    { "init",  NULL, 0 },
-    { "shell", NULL, 0 },
-    { "test",  NULL, 0 },
+    { "init",           NULL, 0 },
+    { "shell",          NULL, 0 },
+    { "test",           NULL, 0 },
+    { "proc_monitor",   NULL, 0 },
+    { "syslog",         NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -1166,6 +1192,17 @@ static const void *host_gui_flush(IM3Runtime rt, IM3ImportContext _ctx, uint64_t
     return m3Err_none;
 }
 
+/* host_gui_swap() — swap double buffers (eliminates tearing) */
+static const void *host_gui_swap(IM3Runtime rt, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)rt; (void)_ctx; (void)_mem; (void)*_sp;
+
+    extern void fb_swap_buffers(void);
+    fb_swap_buffers();
+
+    return m3Err_none;
+}
+
 /* host_gui_poll_event(win_id, event_buf_off) — poll window event queue */
 static const void *host_gui_poll_event(IM3Runtime rt, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
@@ -1518,6 +1555,159 @@ int host_getc_asm(void)
 }
 
 /* -------------------------------------------------------------------------- */
+/* Process management host functions (proc_monitor service)                   */
+/* -------------------------------------------------------------------------- */
+
+/* Static iterator for proc_list_next — preserves position across calls */
+static uint32_t proc_list_iter = 0;
+
+/* host_proc_list_next() — iterate through modules, return module ID or -1 */
+static const void *host_proc_list_next(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+
+    for (; proc_list_iter < MAX_MODULES; proc_list_iter++) {
+        if (module_table[proc_list_iter].state != MOD_FREE) {
+            uint32_t pid = module_table[proc_list_iter].id;
+            proc_list_iter++;
+            int32_t *ret = (int32_t *)_sp;
+            *ret = (int32_t)pid;
+            return m3Err_none;
+        }
+    }
+    /* End of list — reset iterator */
+    proc_list_iter = 0;
+    int32_t *ret = (int32_t *)_sp;
+    *ret = -1;
+    return m3Err_none;
+}
+
+/* host_proc_get_status(pid) — return module state code */
+static const void *host_proc_get_status(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t pid = (int32_t)(int64_t)*(_sp + 1);
+
+    for (uint32_t i = 0; i < MAX_MODULES; i++) {
+        if (module_table[i].id == (uint32_t)pid) {
+            int32_t *ret = (int32_t *)_sp;
+            *ret = (int32_t)module_table[i].state;
+            return m3Err_none;
+        }
+    }
+    int32_t *ret = (int32_t *)_sp;
+    *ret = -1;  /* not found */
+    return m3Err_none;
+}
+
+/* host_proc_restart(pid) — restart an exited module, return new PID or -1 */
+static const void *host_proc_restart(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx; (void)_mem;
+    int32_t pid = (int32_t)(int64_t)*(_sp + 1);
+
+    /* Find the module slot */
+    int slot_idx = -1;
+    for (uint32_t i = 0; i < MAX_MODULES; i++) {
+        if (module_table[i].id == (uint32_t)pid) {
+            slot_idx = (int)i;
+            break;
+        }
+    }
+    if (slot_idx < 0) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_none;
+    }
+
+    wasm_module_slot_t *slot = &module_table[slot_idx];
+
+    /* Find WASM registry entry for this module name */
+    wasm_registry_entry_t *entry = find_registry_entry(slot->name);
+    if (!entry) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -2;
+        return m3Err_none;
+    }
+
+    /* Reload module from registry */
+    const char *err = load_module_internal(slot_idx, entry->name, entry->wasm_bytes, entry->wasm_size);
+    if (err) {
+        uart_puts_raw("[proc_restart] reload error: ");
+        uart_puts_raw(err);
+        uart_puts_raw("\n");
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -3;
+        return m3Err_none;
+    }
+
+    uart_puts_raw("[proc_restart] ");
+    uart_puts_raw(slot->name);
+    uart_puts_raw(" -> pid=");
+    {
+        uint32_t new_pid = module_table[slot_idx].id;
+        char buf[12]; int i = 0;
+        if (new_pid == 0) { uart_puts_raw("0"); }
+        else { uint32_t v = new_pid; do { buf[i++] = (char)('0' + (v % 10)); v /= 10; } while (v > 0); while (i > 0) uart_putc_raw(buf[--i]); }
+    }
+    uart_puts_raw("\n");
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)module_table[slot_idx].id;
+    return m3Err_none;
+}
+
+/* host_proc_kill(pid) — terminate a module (mark as EXITED) */
+static const void *host_proc_kill(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t pid = (int32_t)(int64_t)*(_sp + 1);
+
+    terminate_module((uint32_t)pid);
+
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Kernel log ring buffer host functions                                      */
+/* -------------------------------------------------------------------------- */
+
+/* host_log_read(buf_off, max_len) — read one line from kernel log ring buffer */
+static const void *host_log_read(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx;
+    uint32_t buf_off = (uint32_t)*(uint64_t*)(_sp + 1);
+    uint32_t max_len = (uint32_t)*(uint64_t*)(_sp + 2);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (buf_off + max_len > mem_size) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    extern int log_read(char *buf, int max_len);
+    int len = log_read((char *)(mem + buf_off), (int)max_len);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)len;
+    return m3Err_none;
+}
+
+/* host_log_size() — return bytes available in kernel log ring buffer */
+static const void *host_log_size(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+
+    extern int log_ring_available(void);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)log_ring_available();
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Host function registration table                                           */
 /* -------------------------------------------------------------------------- */
 
@@ -1583,6 +1773,15 @@ static const host_reg_t host_registry[] = {
     { "host", "gui_draw",   "i(iiiiii)",&host_gui_draw    },
     { "host", "gui_flush",  "v(i)",     &host_gui_flush   },
     { "host", "gui_poll_event", "i(ii)", &host_gui_poll_event },
+    { "host", "gui_swap",   "v()",    &host_gui_swap    },
+    /* Process Management */
+    { "host", "proc_list_next",  "i()",  &host_proc_list_next  },
+    { "host", "proc_get_status", "i(i)", &host_proc_get_status },
+    { "host", "proc_restart",    "i(i)", &host_proc_restart    },
+    { "host", "proc_kill",       "v(i)", &host_proc_kill       },
+    /* Kernel Log Ring Buffer */
+    { "host", "log_read",    "i(ii)", &host_log_read    },
+    { "host", "log_size",    "i()",   &host_log_size    },
 };
 
 #define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))
@@ -1669,12 +1868,24 @@ const char *load_module_internal(int slot_idx, const char *name,
         return result;
     }
 
-    /* Compile all functions */
-    result = m3_CompileModule(slot->module);
-    if (result) {
-        slot->state = MOD_FREE;
-        LOG_ERROR("wasm_compile", result);
-        return result;
+    /* Check JIT cache before compiling */
+    uint32_t wasm_hash = crc32_hash(wasm_bytes, wasm_size);
+    void *cached_code = jit_cache_lookup(wasm_hash, name);
+    if (cached_code) {
+        /* Use cached compiled code — skip compilation */
+        LOG_INFO("wasm_cache", "hit");
+    } else {
+        /* Compile all functions */
+        result = m3_CompileModule(slot->module);
+        if (result) {
+            slot->state = MOD_FREE;
+            LOG_ERROR("wasm_compile", result);
+            return result;
+        }
+
+        /* Store in JIT cache for future reloads */
+        /* Cache the compiled code pointer from the module */
+        jit_cache_store(wasm_hash, name, slot->module, wasm_size);
     }
 
     /* Find entry point */
@@ -1793,6 +2004,10 @@ const char *wasm_host_init_multi(void)
     wasm_registry[1].wasm_size = shell_module_size;
     wasm_registry[2].wasm_bytes = test_module_start;
     wasm_registry[2].wasm_size = test_module_size;
+    wasm_registry[3].wasm_bytes = proc_monitor_module_start;
+    wasm_registry[3].wasm_size = proc_monitor_module_size;
+    wasm_registry[4].wasm_bytes = syslog_module_start;
+    wasm_registry[4].wasm_size = syslog_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];

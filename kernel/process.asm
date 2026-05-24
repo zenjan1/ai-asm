@@ -2,7 +2,7 @@
  * aiasm-aarch64/kernel/process.asm
  * Process control blocks, context switch, round-robin scheduler
  * PCB layout (328 bytes per process):
- *   +0:  state (0=free,1=ready,2=running,3=sleeping)
+ *   +0:  state (0=free,1=ready,2=running,3=sleeping,4=paused)
  *   +4:  pid
  *   +8:  x0-x30 (31*8=248 bytes)
  *   +256: sp (saved stack pointer)
@@ -20,7 +20,8 @@
 .set PROC_RUNNING,  2
 .set PROC_READY,    1
 .set PROC_FREE,     0
-.set PROC_PAUSED,   3
+.set PROC_SLEEPING, 3
+.set PROC_PAUSED,   4
 .set PCB_SIZE,      384
 .set PCB_STATE,     0
 .set PCB_PID,       4
@@ -257,7 +258,7 @@ proc_schedule:
     b.eq    5f                  /* found ready */
     cmp     w6, #PROC_RUNNING
     b.eq    5f                  /* also allow running (wraparound) */
-    b       3b
+    b       3b                  /* skip free, sleeping, paused */
 
 4:
     /* No other process ready, stay with current */
@@ -479,6 +480,102 @@ _pr_not_found:
     ret
 
 /* -----------------------------------------------------------------------------
+ * Function: proc_sleep
+ * Set current process to SLEEPING state, yield to scheduler
+ * x0 = wake reason tag (stored for IRQ handler to identify)
+ * Returns: none (scheduler will restore another process)
+ * ----------------------------------------------------------------------------- */
+.global proc_sleep
+proc_sleep:
+    stp     x29, x30, [sp, #-16]!
+    mov     w8, w0              /* save wake reason */
+
+    /* Get current PID */
+    adrp    x0, current_pid
+    add     x0, x0, #:lo12:current_pid
+    ldr     w1, [x0]
+
+    /* Find current PCB */
+    adrp    x2, pcb_table
+    add     x2, x2, #:lo12:pcb_table
+    mov     x3, #0
+1:  cmp     x3, x1
+    b.eq    2f
+    add     x2, x2, #PCB_SIZE
+    add     x3, x3, #1
+    b       1b
+
+2:  /* Save current context */
+    stp     x19, x20, [x2, #PCB_X0 + 152]
+    stp     x21, x22, [x2, #PCB_X0 + 168]
+    stp     x23, x24, [x2, #PCB_X0 + 184]
+    stp     x25, x26, [x2, #PCB_X0 + 200]
+    stp     x27, x28, [x2, #PCB_X0 + 216]
+    stp     x29, x30, [x2, #PCB_X0 + 232]
+    mov     x3, sp
+    str     x3, [x2, #PCB_SP]
+    mov     x3, x30
+    str     x3, [x2, #PCB_PC]
+
+    /* Mark as SLEEPING */
+    mov     w3, #PROC_SLEEPING
+    str     w3, [x2, #PCB_STATE]
+
+    /* Store wake reason in quantum field (temp tag) */
+    str     w8, [x2, #PCB_QUANTUM]
+
+    /* Set preempt to trigger scheduler */
+    adrp    x0, preempt_pending
+    add     x0, x0, #:lo12:preempt_pending
+    mov     w1, #1
+    strb    w1, [x0]
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: proc_wake
+ * Wake a sleeping process (set state to READY)
+ * x0 = PID of process to wake
+ * Returns w0 = 0 on success, -1 if not found or not sleeping
+ * ----------------------------------------------------------------------------- */
+.global proc_wake
+proc_wake:
+    stp     x29, x30, [sp, #-16]!
+    mov     w8, w0
+
+    adrp    x0, pcb_table
+    add     x0, x0, #:lo12:pcb_table
+    mov     w1, #0
+
+_pwake_loop:
+    cmp     w1, #MAX_PROCS
+    b.ge    _pwake_not_found
+    ldr     w2, [x0, #PCB_PID]
+    cmp     w2, w8
+    b.eq    _pwake_found
+    add     x0, x0, #PCB_SIZE
+    add     w1, w1, #1
+    b       _pwake_loop
+
+_pwake_found:
+    ldr     w2, [x0, #PCB_STATE]
+    cmp     w2, #PROC_SLEEPING
+    b.ne    _pwake_not_found
+    mov     w2, #PROC_READY
+    str     w2, [x0, #PCB_STATE]
+    mov     w1, #10
+    str     w1, [x0, #PCB_QUANTUM]
+    mov     w0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+_pwake_not_found:
+    mov     w0, #-1
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
  * Function: proc_kill
  * Kill a process and free its resources
  * x0 = pid
@@ -508,7 +605,10 @@ _pk_loop:
 
 _pk_found:
     ldr     w2, [x0, #PCB_STATE]
-    cbz     w2, _pk_not_found
+    cbz     w2, _pk_not_found   /* can't kill FREE */
+    /* Any non-FREE state can be killed */
+
+_pk_do_kill:
 
     /* Zero the PCB */
     mov     x1, x0

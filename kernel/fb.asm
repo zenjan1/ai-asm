@@ -1,8 +1,8 @@
 /*
  * aiasm-aarch64/kernel/fb.asm
- * Framebuffer abstraction layer
+ * Framebuffer abstraction layer — DOUBLE BUFFERED (v4.0)
  * 32-bit RGBA, 800x600 default
- * Provides basic drawing primitives
+ * All drawing goes to back buffer; swap copies back→front and flushes to GPU
  */
 .arch armv8-a
 
@@ -22,19 +22,27 @@
 
 /* -----------------------------------------------------------------------------
  * Function: fb_init
- * Initialize framebuffer (clear to black)
+ * Initialize both front and back buffers
  * ----------------------------------------------------------------------------- */
 .global fb_init
 fb_init:
     stp     x29, x30, [sp, #-16]!
 
-    adrp    x0, fb_buffer
-    add     x0, x0, #:lo12:fb_buffer
+    /* Clear front buffer to black */
+    adrp    x0, fb_front_buffer
+    add     x0, x0, #:lo12:fb_front_buffer
     mov     w1, #0
     ldr     x2, =FB_SIZE
     bl      _fb_memset
 
-    /* Print banner in center of screen */
+    /* Clear back buffer to black */
+    adrp    x0, fb_back_buffer
+    add     x0, x0, #:lo12:fb_back_buffer
+    mov     w1, #0
+    ldr     x2, =FB_SIZE
+    bl      _fb_memset
+
+    /* Print welcome text on back buffer */
     adrp    x0, fb_welcome_msg
     add     x0, x0, #:lo12:fb_welcome_msg
     mov     x1, #300            /* x */
@@ -42,19 +50,66 @@ fb_init:
     ldr     w3, =0xFFFFFFFF     /* white */
     bl      fb_draw_text
 
-    /* Flush to GPU */
+    /* Swap: copy back to front, flush to GPU */
+    bl      fb_swap_buffers
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: fb_swap_buffers
+ * Copy back buffer → front buffer, flush to GPU, clear back buffer
+ * ----------------------------------------------------------------------------- */
+.global fb_swap_buffers
+fb_swap_buffers:
+    stp     x29, x30, [sp, #-16]!
+
+    /* Copy back buffer to front buffer */
+    adrp    x0, fb_front_buffer
+    add     x0, x0, #:lo12:fb_front_buffer
+    adrp    x1, fb_back_buffer
+    add     x1, x1, #:lo12:fb_back_buffer
+    ldr     x2, =FB_SIZE
+    bl      _fb_memcpy
+
+    /* Flush front buffer to GPU */
     ldr     x0, =FB_WIDTH
     ldr     x1, =FB_HEIGHT
     bl      virtio_gpu_flush
+
+    /* Clear back buffer to black */
+    adrp    x0, fb_back_buffer
+    add     x0, x0, #:lo12:fb_back_buffer
+    mov     w1, #0
+    ldr     x2, =FB_SIZE
+    bl      _fb_memset
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: fb_clear_back
+ * Clear back buffer to a specific color
+ * w0 = color
+ * ----------------------------------------------------------------------------- */
+.global fb_clear_back
+fb_clear_back:
+    stp     x29, x30, [sp, #-16]!
+    mov     w8, w0
+
+    adrp    x0, fb_back_buffer
+    add     x0, x0, #:lo12:fb_back_buffer
+    mov     w1, w8
+    ldr     x2, =FB_SIZE
+    bl      _fb_memset_color
 
     ldp     x29, x30, [sp], #16
     ret
 
 /* -----------------------------------------------------------------------------
  * Function: fb_draw_pixel
- * Draw a single pixel
+ * Draw a single pixel to BACK buffer
  * x0 = x, x1 = y, w2 = color (RGBA)
- * Clipped to framebuffer bounds
  * ----------------------------------------------------------------------------- */
 .global fb_draw_pixel
 fb_draw_pixel:
@@ -70,8 +125,8 @@ fb_draw_pixel:
     add     x0, x0, x0, lsl #2  /* x * 4 */
     add     x3, x3, x0
 
-    adrp    x0, fb_buffer
-    add     x0, x0, #:lo12:fb_buffer
+    adrp    x0, fb_back_buffer
+    add     x0, x0, #:lo12:fb_back_buffer
     add     x0, x0, x3
 
     str     w2, [x0]
@@ -80,7 +135,7 @@ fb_draw_pixel:
 
 /* -----------------------------------------------------------------------------
  * Function: fb_draw_rect
- * Draw a filled rectangle
+ * Draw a filled rectangle to BACK buffer
  * x0 = x, x1 = y, x2 = width, x3 = height, x4 = color
  * ----------------------------------------------------------------------------- */
 .global fb_draw_rect
@@ -129,8 +184,8 @@ _fb_rect_row:
     add     x7, x8, x8, lsl #2
     add     x6, x6, x7
 
-    adrp    x0, fb_buffer
-    add     x0, x0, #:lo12:fb_buffer
+    adrp    x0, fb_back_buffer
+    add     x0, x0, #:lo12:fb_back_buffer
     add     x0, x0, x6
 
     /* Inner loop: pixels in row */
@@ -156,7 +211,7 @@ _fb_rect_done:
 
 /* -----------------------------------------------------------------------------
  * Function: fb_draw_hline
- * Draw a horizontal line
+ * Draw a horizontal line to BACK buffer
  * x0 = x, x1 = y, x2 = length, w3 = color
  * ----------------------------------------------------------------------------- */
 .global fb_draw_hline
@@ -173,8 +228,8 @@ fb_draw_hline:
     add     x0, x0, x0, lsl #2
     add     x4, x4, x0
 
-    adrp    x0, fb_buffer
-    add     x0, x0, #:lo12:fb_buffer
+    adrp    x0, fb_back_buffer
+    add     x0, x0, #:lo12:fb_back_buffer
     add     x0, x0, x4
 
     mov     x4, x2
@@ -190,7 +245,7 @@ _fb_hline_done:
 
 /* -----------------------------------------------------------------------------
  * Function: fb_draw_vline
- * Draw a vertical line
+ * Draw a vertical line to BACK buffer
  * x0 = x, x1 = y, x2 = length, w3 = color
  * ----------------------------------------------------------------------------- */
 .global fb_draw_vline
@@ -205,8 +260,8 @@ fb_draw_vline:
     add     x5, x0, x0, lsl #2
     add     x4, x4, x5
 
-    adrp    x0, fb_buffer
-    add     x0, x0, #:lo12:fb_buffer
+    adrp    x0, fb_back_buffer
+    add     x0, x0, #:lo12:fb_back_buffer
     add     x0, x0, x4
 
     mov     x4, x2
@@ -223,7 +278,7 @@ _fb_vline_done:
 
 /* -----------------------------------------------------------------------------
  * Function: fb_draw_text
- * Draw simple text (5x7 bitmap font)
+ * Draw simple text (5x7 bitmap font) to BACK buffer
  * x0 = str, x1 = x, x2 = y, w3 = color
  * ----------------------------------------------------------------------------- */
 .global fb_draw_text
@@ -245,11 +300,7 @@ _fb_text_loop:
     cmp     w0, #127
     b.ge    _fb_text_next
 
-    /* Draw character via fb_draw_char */
-    mov     x0, x12
-    mov     x1, x10
-    mov     x2, x9              /* wait, x9 is x, x10 is y */
-    /* Fix: x0=x, x1=y, w2=char, w3=color */
+    /* Draw character: x0=x, x1=y, w2=char, w3=color */
     mov     x0, x12
     mov     x1, x10
     mov     w2, w0
@@ -266,7 +317,7 @@ _fb_text_done:
 
 /* -----------------------------------------------------------------------------
  * Function: fb_draw_char
- * Draw a single character using 5x7 bitmap font
+ * Draw a single character using 5x7 bitmap font to BACK buffer
  * x0 = x, x1 = y, w2 = char, w3 = color
  * ----------------------------------------------------------------------------- */
 .global fb_draw_char
@@ -325,26 +376,8 @@ _fb_char_done:
     ret
 
 /* -----------------------------------------------------------------------------
- * Function: fb_clear
- * Clear framebuffer to color
- * w0 = color
- * ----------------------------------------------------------------------------- */
-.global fb_clear
-fb_clear:
-    stp     x29, x30, [sp, #-16]!
-    mov     w8, w0
-
-    adrp    x0, fb_buffer
-    add     x0, x0, #:lo12:fb_buffer
-    ldr     x1, =FB_SIZE
-    bl      _fb_memset_color
-
-    ldp     x29, x30, [sp], #16
-    ret
-
-/* -----------------------------------------------------------------------------
  * Function: fb_flush
- * Flush entire framebuffer to GPU
+ * Flush front buffer to GPU (for legacy compatibility — use fb_swap_buffers)
  * ----------------------------------------------------------------------------- */
 .global fb_flush
 fb_flush:
@@ -365,27 +398,44 @@ _fb_memset:
 
 /* -----------------------------------------------------------------------------
  * Helper: _fb_memset_color
- * x0 = ptr, w1 = color (32-bit), x2 = count in bytes
+ * x0 = ptr, w1 = color (32-bit), x2 = count in pixels
  * ----------------------------------------------------------------------------- */
 _fb_memset_color:
     cbz     x2, 2f
 1:  str     w1, [x0], #4
-    sub     x2, x2, #4
+    sub     x2, x2, #1
     cbnz    x2, 1b
 2:  ret
+
+/* -----------------------------------------------------------------------------
+ * Helper: _fb_memcpy — copy memory (x0=dest, x1=src, x2=count in bytes)
+ * ----------------------------------------------------------------------------- */
+_fb_memcpy:
+    stp     x29, x30, [sp, #-16]!
+    cbz     x2, 9f
+1:  ldrb    w3, [x1], #1
+    strb    w3, [x0], #1
+    subs    x2, x2, #1
+    b.ne    1b
+9:  ldp     x29, x30, [sp], #16
+    ret
 
 /* -----------------------------------------------------------------------------
  * Data
  * ----------------------------------------------------------------------------- */
 .bss
 .align 12
-fb_buffer:
+fb_front_buffer:
+    .skip FB_SIZE
+
+.align 12
+fb_back_buffer:
     .skip FB_SIZE
 
 .section .rodata
 .align 4
 fb_welcome_msg:
-    .asciz "AI-ASM v0.7 - GUI Ready!"
+    .asciz "AI-ASM v4.0 - Double Buffer!"
 
 /* 5x7 bitmap font (ASCII 32-126, 8 bytes each for alignment) */
 .align 4
@@ -397,7 +447,7 @@ font_5x7:
     /* $ (36) */     .byte 0x24, 0x2A, 0x7F, 0x2A, 0x12, 0x00, 0x00, 0x00
     /* % (37) */     .byte 0x23, 0x13, 0x08, 0x64, 0x62, 0x00, 0x00, 0x00
     /* & (38) */     .byte 0x36, 0x49, 0x55, 0x22, 0x50, 0x00, 0x00, 0x00
-    /* ' (39) */     .byte 0x00, 0x05, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00
+    /* ' (39) */     .byte 0x00, 0x05, 0x03, 0x00, 0x00, 0x00, 0x00
     /* ( (40) */     .byte 0x00, 0x1C, 0x22, 0x41, 0x00, 0x00, 0x00, 0x00
     /* ) (41) */     .byte 0x00, 0x41, 0x22, 0x1C, 0x00, 0x00, 0x00, 0x00
     /* * (42) */     .byte 0x08, 0x2A, 0x1C, 0x2A, 0x08, 0x00, 0x00, 0x00

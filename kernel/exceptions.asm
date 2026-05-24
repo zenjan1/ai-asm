@@ -17,6 +17,14 @@
 
 .text
 
+.extern gic_ack_irq
+.extern timer_tick
+.extern preempt_pending
+.extern proc_schedule
+.extern wasm_host_run
+.extern virtio_irq_handler
+.extern serial_puts
+
 /* -----------------------------------------------------------------------------
  * Exception Vector Table (2KB aligned)
  * Each entry is exactly 128 bytes. First instruction is a branch to handler.
@@ -141,7 +149,19 @@ irq_entry:
 
     /* Check if it's the virtual timer IRQ (IRQ 27) */
     cmp     w0, #27
-    b.ne    irq_done
+    b.eq    irq_timer
+
+    /* Check VirtIO IRQs (48-50) */
+    cmp     w0, #48
+    b.lt    irq_done
+    cmp     w0, #50
+    b.gt    irq_done
+
+    /* VirtIO IRQ — gic_ack_irq already wrote EOIR, dispatch handler */
+    bl      virtio_irq_handler
+    b       irq_done
+
+irq_timer:
 
     /* Increment timer tick counter */
     bl      timer_tick

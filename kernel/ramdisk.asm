@@ -48,6 +48,34 @@ test_module_size:
     .int test_module_end - test_module_start
 
 /* ---------------------------------------------------------------------------
+ * Proc monitor module
+ * --------------------------------------------------------------------------- */
+.section .rodata.proc_monitor_wasm
+.global proc_monitor_module_start
+proc_monitor_module_start:
+    .incbin "kernel/proc_monitor.wasm"
+.global proc_monitor_module_end
+proc_monitor_module_end:
+.align 4
+.global proc_monitor_module_size
+proc_monitor_module_size:
+    .int proc_monitor_module_end - proc_monitor_module_start
+
+/* ---------------------------------------------------------------------------
+ * Syslog module
+ * --------------------------------------------------------------------------- */
+.section .rodata.syslog_wasm
+.global syslog_module_start
+syslog_module_start:
+    .incbin "kernel/syslog.wasm"
+.global syslog_module_end
+syslog_module_end:
+.align 4
+.global syslog_module_size
+syslog_module_size:
+    .int syslog_module_end - syslog_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

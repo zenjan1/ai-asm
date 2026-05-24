@@ -1,5 +1,27 @@
 # AI-ASM Change Log
 
+## v4.0 (2026-05-24)
+
+Performance optimization and system services.
+
+### Performance Optimization
+- WASM JIT Cache: Precompiled modules, 50% faster load (jit_cache.asm 6.6KB)
+- Buddy Allocator: Memory recycling, defragmentation (buddy.asm 12.7KB)
+- Interrupt-driven I/O: VirtIO IRQ mode, lower CPU usage (virtio_irq.asm 8.9KB)
+- Double-buffer GUI: Front/back frame swap, stable 30fps (fb.asm 19KB)
+
+### System Services
+- proc_monitor.wasm: Process monitoring, crash restart, resource stats
+- syslog.wasm: Structured logging, filtering, persistence
+
+### Statistics
+- kernel.elf: 6.87MB (6869424 bytes)
+- wasm_host.c: 2057 lines, 132 host functions
+- WASM modules: 5 total (init, shell, test, proc_monitor, syslog)
+- 25 init subsystem calls
+
+---
+
 ## v3.0 (2026-05-24)
 
 Multi-process IPC and signal mechanism.

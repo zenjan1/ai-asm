@@ -64,6 +64,24 @@ void _start(void)
 
     init_log("INFO", "init module started");
 
+    /* Start process monitor (system service) */
+    print_str("Spawning proc_monitor... ");
+    int monitor_id = spawn_module("proc_monitor");
+    if (monitor_id >= 0) {
+        print_str("ok\n");
+    } else {
+        print_str("FAILED\n");
+    }
+
+    /* Start syslog service */
+    print_str("Spawning syslog... ");
+    int syslog_id = spawn_module("syslog");
+    if (syslog_id >= 0) {
+        print_str("ok\n");
+    } else {
+        print_str("FAILED\n");
+    }
+
     print_str("Spawning launcher... ");
     int launcher_id = spawn_module("launcher");
     if (launcher_id >= 0) {

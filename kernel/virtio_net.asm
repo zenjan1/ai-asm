@@ -144,6 +144,11 @@ virtio_net_tx_idx:
 .extern virtio_queue_setup
 .extern virtio_queue_notify
 .extern serial_puts
+.extern proc_sleep
+.extern proc_wake
+.extern current_pid
+.extern net_sleeping_send
+.extern net_sleeping_recv
 
 /* -----------------------------------------------------------------------------
  * Function: virtio_net_init
@@ -375,7 +380,19 @@ virtio_net_send:
     mov     w1, #1
     bl      virtio_queue_notify
 
-    /* Wait for completion */
+    /* Register current PID as sleeping on TX */
+    adrp    x0, current_pid
+    add     x0, x0, #:lo12:current_pid
+    ldr     w0, [x0]
+    adrp    x1, net_sleeping_send
+    add     x1, x1, #:lo12:net_sleeping_send
+    str     w0, [x1]
+
+    /* Set process to SLEEPING, yield to scheduler */
+    mov     w0, #2              /* wake reason: net tx */
+    bl      proc_sleep
+
+    /* When woken by IRQ, check completion */
     adrp    x0, virtio_net_tx_used
     add     x0, x0, #:lo12:virtio_net_tx_used
     adrp    x1, virtio_net_tx_used_idx
@@ -385,7 +402,26 @@ virtio_net_send:
 tx_wait:
     ldrh    w3, [x0, #4]
     cmp     w3, w2
-    b.eq    tx_wait
+    b.ne    tx_done_wait
+
+    /* Spurious wake — sleep again */
+    adrp    x0, current_pid
+    add     x0, x0, #:lo12:current_pid
+    ldr     w0, [x0]
+    adrp    x1, net_sleeping_send
+    add     x1, x1, #:lo12:net_sleeping_send
+    str     w0, [x1]
+    mov     w0, #2
+    bl      proc_sleep
+
+    adrp    x0, virtio_net_tx_used
+    add     x0, x0, #:lo12:virtio_net_tx_used
+    adrp    x1, virtio_net_tx_used_idx
+    add     x1, x1, #:lo12:virtio_net_tx_used_idx
+    ldr     w2, [x1]
+    b       tx_wait
+
+tx_done_wait:
 
     /* Read status */
     ldr     w0, [x0, #8]        /* used len */

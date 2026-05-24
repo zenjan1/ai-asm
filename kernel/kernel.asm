@@ -90,6 +90,12 @@ _start:
     bl      msgq_init
     bl      signal_init
 
+    /* Initialize JIT cache for WASM pre-compilation */
+    bl      jit_cache_init
+
+    /* Initialize buddy allocator for kernel heap */
+    bl      buddy_init
+
     /* Initialize framebuffer and GUI */
     bl      fb_init
     bl      gui_init
@@ -100,6 +106,7 @@ _start:
     /* Initialize GICv2 interrupt controller */
     bl      gic_init
     bl      gic_enable_timer_irq
+    bl      virtio_irq_init
 
     /* Set exception vector table (2KB aligned) */
     adrp    x0, exception_vectors

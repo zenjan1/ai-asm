@@ -352,13 +352,11 @@ _gc_done:
 
 /* -----------------------------------------------------------------------------
  * Function: gui_flush_screen
- * Flush entire screen to GPU
+ * Flush entire screen via double-buffer swap
  * ----------------------------------------------------------------------------- */
 .global gui_flush_screen
 gui_flush_screen:
-    ldr     x0, =800
-    ldr     x1, =600
-    b       fb_flush
+    b       fb_swap_buffers
 
 /* -----------------------------------------------------------------------------
  * Function: gui_handle_input

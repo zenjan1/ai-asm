@@ -60,7 +60,18 @@
 
 .text
 
-.text
+/* External functions */
+.extern virtio_read32
+.extern virtio_write32
+.extern virtio_reset_device
+.extern virtio_negotiate_features
+.extern virtio_queue_setup
+.extern virtio_queue_notify
+.extern serial_puts
+.extern proc_sleep
+.extern proc_wake
+.extern current_pid
+.extern blk_sleeping_io
 
 /* -----------------------------------------------------------------------------
  * BSS: VirtIO-Block global state
@@ -265,7 +276,19 @@ virtio_blk_read:
     mov     w1, #0              /* queue 0 */
     bl      virtio_queue_notify
 
-    /* Wait for completion (poll used ring) */
+    /* Register current PID as sleeping on blk I/O */
+    adrp    x0, current_pid
+    add     x0, x0, #:lo12:current_pid
+    ldr     w0, [x0]
+    adrp    x1, blk_sleeping_io
+    add     x1, x1, #:lo12:blk_sleeping_io
+    str     w0, [x1]
+
+    /* Set process to SLEEPING, yield to scheduler */
+    mov     w0, #1              /* wake reason: blk io */
+    bl      proc_sleep
+
+    /* When woken by IRQ, check if completion actually happened */
     adrp    x0, virtio_blk_used
     add     x0, x0, #:lo12:virtio_blk_used
     adrp    x1, virtio_blk_used_idx
@@ -275,7 +298,27 @@ virtio_blk_read:
 blk_wait:
     ldrh    w3, [x0, #4]        /* used ring idx */
     cmp     w3, w2
-    b.eq    blk_wait            /* not ready yet */
+    b.ne    blk_done_wait       /* completion arrived */
+
+    /* Spurious wake — sleep again */
+    adrp    x0, current_pid
+    add     x0, x0, #:lo12:current_pid
+    ldr     w0, [x0]
+    adrp    x1, blk_sleeping_io
+    add     x1, x1, #:lo12:blk_sleeping_io
+    str     w0, [x1]
+    mov     w0, #1
+    bl      proc_sleep
+
+    /* Re-check after wake */
+    adrp    x0, virtio_blk_used
+    add     x0, x0, #:lo12:virtio_blk_used
+    adrp    x1, virtio_blk_used_idx
+    add     x1, x1, #:lo12:virtio_blk_used_idx
+    ldr     w2, [x1]
+    b       blk_wait
+
+blk_done_wait:
 
     /* Read status */
     ldrh    w3, [x0, #6]        /* used id */
@@ -384,7 +427,19 @@ virtio_blk_write:
     mov     w1, #0
     bl      virtio_queue_notify
 
-    /* Wait for completion */
+    /* Register current PID as sleeping on blk I/O */
+    adrp    x0, current_pid
+    add     x0, x0, #:lo12:current_pid
+    ldr     w0, [x0]
+    adrp    x1, blk_sleeping_io
+    add     x1, x1, #:lo12:blk_sleeping_io
+    str     w0, [x1]
+
+    /* Set process to SLEEPING, yield to scheduler */
+    mov     w0, #1
+    bl      proc_sleep
+
+    /* When woken by IRQ, check completion */
     adrp    x0, virtio_blk_used
     add     x0, x0, #:lo12:virtio_blk_used
     adrp    x1, virtio_blk_used_idx
@@ -394,7 +449,26 @@ virtio_blk_write:
 blk_write_wait:
     ldrh    w3, [x0, #4]
     cmp     w3, w2
-    b.eq    blk_write_wait
+    b.ne    blk_write_done_wait
+
+    /* Spurious wake — sleep again */
+    adrp    x0, current_pid
+    add     x0, x0, #:lo12:current_pid
+    ldr     w0, [x0]
+    adrp    x1, blk_sleeping_io
+    add     x1, x1, #:lo12:blk_sleeping_io
+    str     w0, [x1]
+    mov     w0, #1
+    bl      proc_sleep
+
+    adrp    x0, virtio_blk_used
+    add     x0, x0, #:lo12:virtio_blk_used
+    adrp    x1, virtio_blk_used_idx
+    add     x1, x1, #:lo12:virtio_blk_used_idx
+    ldr     w2, [x1]
+    b       blk_write_wait
+
+blk_write_done_wait:
 
     /* Read status */
     adrp    x0, virtio_blk_status
