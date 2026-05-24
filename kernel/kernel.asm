@@ -126,6 +126,12 @@ _start:
     /* Initialize device management */
     bl      device_init
 
+    /* Initialize process memory isolation */
+    bl      proc_mem_init
+
+    /* Initialize permission system */
+    bl      perm_init
+
     /* ---- Transition to WASM3 runtime (v0.5 multi-module) ---- */
 
     /* wasm_host_init_multi() */

@@ -118,6 +118,51 @@ uint32_t ramdisk_file_count = 0;
 static open_file_t open_files[MAX_OPEN_FILES];
 
 /* -------------------------------------------------------------------------- */
+/* Process isolation: per-module permission levels                            */
+/* -------------------------------------------------------------------------- */
+
+/* Permission levels: 0=root, 1=admin, 2=user, 3=guest */
+static uint8_t module_perm_level[MAX_MODULES];
+
+/* Get current running module's permission level */
+static uint8_t get_current_perm(void)
+{
+    for (uint32_t i = 0; i < MAX_MODULES; i++) {
+        if (module_table[i].id == current_module_id &&
+            module_table[i].state == 3 /* MOD_RUNNING */) {
+            return module_perm_level[i];
+        }
+    }
+    return 3; /* default: guest if not found */
+}
+
+/* Permission check for file operations: 0=read, 1=write, 2=delete, 3=create */
+static int perm_check_file(int op)
+{
+    uint8_t level = get_current_perm();
+    switch (level) {
+        case 0: return 0; /* root: allow all */
+        case 1: return (op == 2) ? -1 : 0; /* admin: deny delete */
+        case 2: return (op >= 2) ? -1 : 0; /* user: deny delete/create */
+        default: return (op == 0) ? 0 : -1; /* guest: read only */
+    }
+}
+
+/* Permission check for network operations */
+static int perm_check_net(void)
+{
+    uint8_t level = get_current_perm();
+    return (level <= 2) ? 0 : -1; /* guest: no network */
+}
+
+/* Permission check for GUI operations (drawing) */
+static int perm_check_gui_draw(void)
+{
+    uint8_t level = get_current_perm();
+    return (level <= 2) ? 0 : -1; /* guest: no drawing */
+}
+
+/* -------------------------------------------------------------------------- */
 /* Embedded WASM registry symbols (from ramdisk.asm)                          */
 /* -------------------------------------------------------------------------- */
 
@@ -1954,6 +1999,45 @@ static const void *host_device_detach_fn(IM3Runtime runtime, IM3ImportContext _c
 }
 
 /* -------------------------------------------------------------------------- */
+/* Permission host functions                                                  */
+/* -------------------------------------------------------------------------- */
+
+/* host_perm_get_level() — return current module's permission level */
+static const void *host_perm_get_level(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    uint8_t level = get_current_perm();
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)level;
+    return m3Err_none;
+}
+
+/* host_perm_set_level(level) — set current module's permission level */
+static const void *host_perm_set_level(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t level = (int32_t)(int64_t)*(_sp + 1);
+    if (level < 0 || level > 3) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_none;
+    }
+
+    /* Find current module slot */
+    for (uint32_t i = 0; i < MAX_MODULES; i++) {
+        if (module_table[i].id == current_module_id) {
+            module_perm_level[i] = (uint8_t)level;
+            int32_t *ret = (int32_t *)_sp;
+            *ret = 0;
+            return m3Err_none;
+        }
+    }
+    int32_t *ret = (int32_t *)_sp;
+    *ret = -1;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Host function registration table                                           */
 /* -------------------------------------------------------------------------- */
 
@@ -2035,6 +2119,9 @@ static const host_reg_t host_registry[] = {
     { "host", "device_status",   "i(i)",   &host_device_status_fn  },
     { "host", "device_attach",   "i(ii)",  &host_device_attach_fn  },
     { "host", "device_detach",   "i(i)",   &host_device_detach_fn  },
+    /* Permission queries */
+    { "host", "perm_get_level", "i()",  &host_perm_get_level },
+    { "host", "perm_set_level", "v(i)", &host_perm_set_level },
 };
 
 #define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))

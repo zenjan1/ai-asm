@@ -68,7 +68,9 @@ ASM_SRCS = $(KERNEL_DIR)/kernel.asm \
            $(KERNEL_DIR)/buddy.asm \
            $(KERNEL_DIR)/virtio_irq.asm \
            $(KERNEL_DIR)/user.asm \
-           $(KERNEL_DIR)/device.asm
+           $(KERNEL_DIR)/device.asm \
+           $(KERNEL_DIR)/proc_mem.asm \
+           $(KERNEL_DIR)/perm.asm
 ASM_OBJS = $(patsubst $(KERNEL_DIR)/%.asm,$(BUILD_DIR)/%.o,$(ASM_SRCS))
 
 # C sources (freestanding)
