@@ -1,24 +1,23 @@
 # AI-ASM AArch64 开发规划 (v6.0)
 
-## 当前状态 (v5.0)
+## 当前状态 (v6.0 进行中)
 
-v5.0 已完成完整应用生态，包括 13 个 WASM 模块。
+v6.0 安全增强阶段，user.wasm 已完成。
 
-### v5.0 成果总结
+### v6.0 进度
 
-| 功能 | 描述 | 状态 |
+| 模块 | 描述 | 状态 |
 |------|------|------|
-| 应用生态 | 13 个 WASM 应用模块 | ✓ 完成 |
-| GUI 框架 | 双缓冲 +30fps | ✓ 完成 |
-| 性能优化 | JIT 缓存+Buddy 分配 | ✓ 完成 |
-| 系统服务 | proc_monitor+syslog | ✓ 完成 |
-| 文件管理 | filemgr.wasm RAM disk 浏览 | ✓ 完成 |
-| 系统设置 | settings.wasm 系统信息查询 | ✓ 完成 |
+| user.wasm | 多用户认证、GUI 登录界面 | ✓ 完成 |
+| devmgr.wasm | 设备热插拔管理、驱动注册 | 待实现 |
+| 进程隔离 | WASM 模块间内存保护、权限边界 | 待实现 |
+| 资源配额 | 单模块 CPU 时间、内存上限 | P1 |
+| 安全审计 | 内核事件日志审计、异常检测 | P1 |
 
-- kernel.elf: 6708KB (6869744 bytes)
-- wasm_host.c: 132+ 个 host 函数
-- 发布包: aiasm-v5.0.tar.gz (108KB)
-- Git 标签: v1.0 ~ v5.0
+- WASM 模块: 14 个 (含 user.wasm)
+- kernel.elf: 6709KB (6870504 bytes)
+- wasm_host.c: 133+ 个 host 函数 (新增 user_login)
+- Git 标签: v1.0 ~ v5.0, commit 86c4a61 (user.wasm)
 
 ---
 
@@ -30,7 +29,7 @@ v5.0 已完成完整应用生态，包括 13 个 WASM 模块。
 
 | 模块 | 描述 | 优先级 |
 |------|------|--------|
-| user.wasm | 多用户认证、权限管理、用户隔离 | P0 |
+| user.wasm | 多用户认证、GUI 登录界面 | ✓ 完成 |
 | 进程隔离 | WASM 模块间内存保护、权限边界 | P0 |
 | 资源配额 | 单模块 CPU 时间、内存上限 | P1 |
 | 安全审计 | 内核事件日志审计、异常检测 | P1 |
@@ -46,10 +45,33 @@ v5.0 已完成完整应用生态，包括 13 个 WASM 模块。
 
 ### v6.0 新增 WASM 模块
 
-| 模块 | 预计大小 | 功能 |
-|------|----------|------|
-| user.wasm | ~5KB | 多用户认证+权限 |
-| devmgr.wasm | ~4KB | 设备管理+热插拔 |
+| 模块 | 预计大小 | 功能 | 状态 |
+|------|----------|------|------|
+| user.wasm | ~5KB | 多用户认证+GUI 登录 | ✓ 完成 |
+| devmgr.wasm | ~4KB | 设备管理+热插拔 | 待实现 |
+
+### devmgr.wasm 设计
+
+设备管理模块功能:
+- 设备列表显示 (VirtIO 设备状态: blk, net, gpu)
+- 设备热插拔检测
+- 驱动注册/卸载
+- 设备属性查询
+
+Host 函数需求:
+```c
+host_device_list(buf_off, max_len) -> count
+host_device_status(device_id) -> status
+host_device_attach(device_type) -> device_id
+host_device_detach(device_id) -> 0/-1
+```
+
+目录结构:
+```
+modules/devmgr/
+├── src/main.c    (~200 行)
+└── devmgr.wasm   (~4KB)
+```
 
 ### v6.0 性能验证
 

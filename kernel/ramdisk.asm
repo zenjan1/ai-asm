@@ -118,6 +118,20 @@ user_module_size:
     .int user_module_end - user_module_start
 
 /* ---------------------------------------------------------------------------
+ * Device manager module
+ * --------------------------------------------------------------------------- */
+.section .rodata.devmgr_wasm
+.global devmgr_module_start
+devmgr_module_start:
+    .incbin "kernel/devmgr.wasm"
+.global devmgr_module_end
+devmgr_module_end:
+.align 4
+.global devmgr_module_size
+devmgr_module_size:
+    .int devmgr_module_end - devmgr_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

@@ -137,6 +137,8 @@ extern const uint8_t settings_module_start[], settings_module_end[];
 extern const uint32_t settings_module_size;
 extern const uint8_t user_module_start[], user_module_end[];
 extern const uint32_t user_module_size;
+extern const uint8_t devmgr_module_start[], devmgr_module_end[];
+extern const uint32_t devmgr_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -147,6 +149,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "filemgr",        NULL, 0 },
     { "settings",       NULL, 0 },
     { "user",           NULL, 0 },
+    { "devmgr",         NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -1792,6 +1795,165 @@ static const void *host_user_login(IM3Runtime runtime, IM3ImportContext _ctx, ui
 }
 
 /* -------------------------------------------------------------------------- */
+/* Device management host functions                                           */
+/* -------------------------------------------------------------------------- */
+
+/* Device table externs from device.asm */
+extern uint8_t device_table[512];     /* 16 devices x 32 bytes */
+extern int32_t device_count;          /* number of registered devices */
+
+#define DEVICE_ENTRY_SIZE 32
+#define MAX_DEVS 16
+
+/* host_device_list(buf_off, max_len) — serialize device list to buffer */
+static const void *host_device_list_fn(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx;
+    uint32_t buf_off = (uint32_t)*(uint64_t*)(_sp + 1);
+    uint32_t max_len = (uint32_t)*(uint64_t*)(_sp + 2);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (buf_off + 1 > mem_size) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    char *buf = (char *)(mem + buf_off);
+    int count = device_count;
+    int total = 0;
+
+    for (int i = 0; i < count && i < MAX_DEVS; i++) {
+        uint8_t *dev = &device_table[i * DEVICE_ENTRY_SIZE];
+        uint32_t id, type, status;
+        __builtin_memcpy(&id, dev, 4);
+        __builtin_memcpy(&type, dev + 4, 4);
+        __builtin_memcpy(&status, dev + 8, 4);
+
+        /* Manual int formatting: "id,type,status\n" */
+        char entry[32];
+        int n = 0;
+        /* id */
+        uint32_t v = id;
+        char tmp[12]; int ti = 0;
+        if (v == 0) tmp[ti++] = '0';
+        else { while (v > 0) { tmp[ti++] = (char)('0' + (v % 10)); v /= 10; } }
+        for (int j = ti - 1; j >= 0; j--) entry[n++] = tmp[j];
+        entry[n++] = ',';
+        /* type */
+        v = type; ti = 0;
+        if (v == 0) tmp[ti++] = '0';
+        else { while (v > 0) { tmp[ti++] = (char)('0' + (v % 10)); v /= 10; } }
+        for (int j = ti - 1; j >= 0; j--) entry[n++] = tmp[j];
+        entry[n++] = ',';
+        /* status */
+        v = status; ti = 0;
+        if (v == 0) tmp[ti++] = '0';
+        else { while (v > 0) { tmp[ti++] = (char)('0' + (v % 10)); v /= 10; } }
+        for (int j = ti - 1; j >= 0; j--) entry[n++] = tmp[j];
+        entry[n++] = '\n';
+
+        if (total + n > (int)max_len) break;
+        __builtin_memcpy(buf + total, entry, n);
+        total += n;
+    }
+
+    buf[total] = '\0';
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)total;
+    return m3Err_none;
+}
+
+/* host_device_status(device_id) — return device status */
+static const void *host_device_status_fn(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t device_id = (int32_t)(int64_t)*(_sp + 1);
+
+    if (device_id < 0 || device_id >= device_count) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_none;
+    }
+
+    uint8_t *dev = &device_table[device_id * DEVICE_ENTRY_SIZE];
+    uint32_t status;
+    __builtin_memcpy(&status, dev + 8, 4);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)status;
+    return m3Err_none;
+}
+
+/* host_device_attach(type_off, type_len) — attach a device, return device_id */
+static const void *host_device_attach_fn(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx;
+    uint32_t type_off = (uint32_t)*(uint64_t*)(_sp + 1);
+    uint32_t type_len = (uint32_t)*(uint64_t*)(_sp + 2);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (type_off + type_len > mem_size) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    const char *type_str = (const char *)(mem + type_off);
+    uint32_t type = 0; /* default: blk */
+
+    if (type_len >= 4) {
+        if (type_str[0] == 'n' || type_str[0] == 'N') type = 1;
+        else if (type_str[0] == 'g' || type_str[0] == 'G') type = 2;
+        else if (type_str[0] == 'i' || type_str[0] == 'I') type = 3;
+    }
+
+    int count = device_count;
+    if (count >= MAX_DEVS) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -2;
+        return m3Err_none;
+    }
+
+    uint8_t *dev = &device_table[count * DEVICE_ENTRY_SIZE];
+    int32_t id = count;
+    uint32_t st = 1;
+    __builtin_memcpy(dev, &id, 4);
+    __builtin_memcpy(dev + 4, &type, 4);
+    __builtin_memcpy(dev + 8, &st, 4);
+    device_count++;
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)id;
+    return m3Err_none;
+}
+
+/* host_device_detach(device_id) — detach a device */
+static const void *host_device_detach_fn(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t device_id = (int32_t)(int64_t)*(_sp + 1);
+
+    if (device_id < 0 || device_id >= device_count) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_none;
+    }
+
+    uint32_t st = 0;
+    uint8_t *dev = &device_table[device_id * DEVICE_ENTRY_SIZE];
+    __builtin_memcpy(dev + 8, &st, 4);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = 0;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Host function registration table                                           */
 /* -------------------------------------------------------------------------- */
 
@@ -1868,6 +2030,11 @@ static const host_reg_t host_registry[] = {
     { "host", "log_size",    "i()",   &host_log_size    },
     /* User Authentication */
     { "host", "user_login",  "i(iiii)", &host_user_login },
+    /* Device Management */
+    { "host", "device_list",     "i(ii)",  &host_device_list_fn    },
+    { "host", "device_status",   "i(i)",   &host_device_status_fn  },
+    { "host", "device_attach",   "i(ii)",  &host_device_attach_fn  },
+    { "host", "device_detach",   "i(i)",   &host_device_detach_fn  },
 };
 
 #define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))
@@ -2100,6 +2267,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[6].wasm_size = settings_module_size;
     wasm_registry[7].wasm_bytes = user_module_start;
     wasm_registry[7].wasm_size = user_module_size;
+    wasm_registry[8].wasm_bytes = devmgr_module_start;
+    wasm_registry[8].wasm_size = devmgr_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];

@@ -123,6 +123,9 @@ _start:
     /* Initialize user management */
     bl      user_init
 
+    /* Initialize device management */
+    bl      device_init
+
     /* ---- Transition to WASM3 runtime (v0.5 multi-module) ---- */
 
     /* wasm_host_init_multi() */
