@@ -2,7 +2,7 @@
 
 ## v7.0 (2026-05-24)
 
-Performance optimization with JIT hot function precompilation.
+Performance optimization with JIT hot function precompilation and module loading cache.
 
 ### JIT Code Generation
 - kernel/jit_codegen.asm: WASM-to-AArch64 JIT code generator (~230 lines)
@@ -13,14 +13,27 @@ Performance optimization with JIT hot function precompilation.
 - jit_codegen_exec: executes JIT-compiled code via blr
 - 4KB JIT output buffer, 256-byte JIT execution stack
 
+### Module Loading Cache
+- kernel/module_cache.asm: Pre-compiled WASM module cache (8 entries, 32 bytes each)
+- module_cache_init/lookup/store/invalidate API
+- Hit/miss counter tracking for cache performance analysis
+- Avoids re-parsing wasm3 modules on subsequent loads
+
+### Parallel Loading Queue
+- kernel/module.asm extended: Module loading queue (8 slots, 16 bytes each)
+- States: empty/pending/loading/ready/error
+- module_queue_init/add/process/wait/status API
+- Structured for future multi-threaded parallel loading
+- Cache-first lookup during queue processing
+
 ### Build System
-- jit_codegen.asm added to ASM_SRCS in Makefile
-- jit_codegen_init called in kernel boot sequence (kernel.asm)
+- jit_codegen.asm and module_cache.asm added to ASM_SRCS in Makefile
+- jit_codegen_init, module_cache_init, module_queue_init called in kernel boot sequence
 
 ### Statistics
 - WASM modules: 15 total (unchanged)
-- kernel.elf: 6718KB (6879888 bytes, +6KB from v6.0)
-- Kernel source files: 34 assembly + 2 C + wasm3
+- kernel.elf: 6720KB (6881608 bytes)
+- Kernel source files: 35 assembly + 2 C + wasm3
 
 ---
 

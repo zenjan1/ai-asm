@@ -132,6 +132,12 @@ _start:
     /* Initialize JIT code generator */
     bl      jit_codegen_init
 
+    /* Initialize module pre-compilation cache */
+    bl      module_cache_init
+
+    /* Initialize parallel module loading queue */
+    bl      module_queue_init
+
     /* Initialize permission system */
     bl      perm_init
 
