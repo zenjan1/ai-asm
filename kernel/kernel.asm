@@ -129,6 +129,9 @@ _start:
     /* Initialize process memory isolation */
     bl      proc_mem_init
 
+    /* Initialize JIT code generator */
+    bl      jit_codegen_init
+
     /* Initialize permission system */
     bl      perm_init
 

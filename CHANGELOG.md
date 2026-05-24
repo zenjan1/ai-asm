@@ -1,5 +1,29 @@
 # AI-ASM Change Log
 
+## v7.0 (2026-05-24)
+
+Performance optimization with JIT hot function precompilation.
+
+### JIT Code Generation
+- kernel/jit_codegen.asm: WASM-to-AArch64 JIT code generator (~230 lines)
+- Supports 14 WASM opcodes: i32.const, i32.add, i32.sub, i32.mul, i32.and, i32.or, i32.xor, i32.eqz, i32.eq, local.get, local.set, i32.load, i32.store, return
+- Pre-encoded AArch64 instruction words via adr+ldr pattern (avoids assembler immediate limitations)
+- jit_codegen_init: initializes JIT stack and state
+- jit_codegen_emit: compiles WASM bytecode to native AArch64 machine code
+- jit_codegen_exec: executes JIT-compiled code via blr
+- 4KB JIT output buffer, 256-byte JIT execution stack
+
+### Build System
+- jit_codegen.asm added to ASM_SRCS in Makefile
+- jit_codegen_init called in kernel boot sequence (kernel.asm)
+
+### Statistics
+- WASM modules: 15 total (unchanged)
+- kernel.elf: 6718KB (6879888 bytes, +6KB from v6.0)
+- Kernel source files: 34 assembly + 2 C + wasm3
+
+---
+
 ## v6.0 (2026-05-24)
 
 Security enhancement and device management.
