@@ -1,76 +1,75 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-24 22:00
-# 当前阶段: v3.0发布准备
+# 生成时间: 2026-05-24 22:15
+# 当前阶段: v3.0完成 + v4.0规划
 
 ## 当前状态
-- v3.0核心完成：IPC(msg/pipe)+信号(signal.asm)
-- kernel.elf: 3.7MB，29asm文件
-- wasm_host.c: 1842行，132host函数
-- 22init调用
-- WASM模块：init/shell/test（3个）
-- 缺失：browser/net_test网络应用需重编译
+- v1.0-v3.0全部发布：
+  - v1.0.tar.gz (252KB)
+  - v2.0.tar.gz (96KB)
+  - v3.0.tar.gz (100KB)
+- kernel.elf: 3.7MB
+- WASM模块：9个完整编译
+  - init/shell/test/editor/calc/paint/launcher/browser/net_test
+- wasm_host.c: 1842行，22init调用
+- 29asm文件
 
 ## 任务目标
-补全WASM模块，创建v3.0发布包
+规划v4.0方向：性能优化+高级服务
 
 ## 实现步骤
 
-### 1. 确认WASM模块编译
-```bash
-make modules
-# 应生成：
-# - init.wasm (1332B)
-# - shell.wasm (3553B)
-# - test.wasm (4399B)
-# - browser.wasm (待生成)
-# - net_test.wasm (待生成)
+### 1. v4.0核心目标
+```
+v4.0主题：性能优化 + 高级系统服务
+
+优化方向：
+- WASM JIT预编译缓存
+- Framebuffer双缓冲
+- 中断驱动I/O（替代轮询）
+- 内存池管理（替代bump allocator）
+
+高级服务：
+- 进程监控服务（proc_monitor.wasm）
+- 系统日志服务（syslog.wasm）
+- 设备管理服务（devmgr.wasm）
+- 多用户支持（user.wasm）
 ```
 
-### 2. 更新CHANGELOG.md
+### 2. 更新ROADMAP.md
 ```markdown
-## v3.0 (2026-05-24)
-### 多进程并发
-- IPC管道：环形缓冲4KB，支持阻塞读写
-- 消息队列：16条64字节消息
-- 信号机制：SIGKILL/SIGTERM处理
-- 进程通信：host_pipe_create/read/write
+## v4.0规划 (2026-07)
 
-### 网络应用基础
-- browser.wasm: HTTP客户端框架
-- net_test.wasm: TCP连接测试
-- 信号host函数：signal_register/send
+### 性能优化
+| 任务 | 描述 | 优先级 |
+|------|------|--------|
+| WASM JIT缓存 | 预编译常用模块 | P0 |
+| 双缓冲GUI | 消除撕裂 | P0 |
+| 中断I/O | virtio中断模式 | P0 |
+| 内存池 | buddy allocator | P1 |
+
+### 系统服务
+| 任务 | 描述 | 优先级 |
+|------|------|--------|
+| proc_monitor | 进程监控+重启 | P1 |
+| syslog | 结构化日志 | P1 |
+| devmgr | 设备热插拔 | P2 |
 ```
 
-### 3. 创建v3.0发布
+### 3. 性能基准测试
 ```bash
-mkdir -p release/v3.0/modules
-cp build/kernel.elf release/v3.0/
-cp modules/*/*.wasm release/v3.0/modules/
-cp README.md CHANGELOG.md ROADMAP.md release/v3.0/
-tar -czf release/aiasm-v3.0.tar.gz v3.0/
-```
-
-### 4. Git标签
-```bash
-git add -A
-git commit -m "release: v3.0 multi-process IPC + signals"
-git tag -a v3.0 -m "AI-ASM v3.0 - IPC and Signal Mechanism"
+# 测试指标
+- 启动时间: <1秒
+- WASM加载: <100ms
+- GUI刷新: 30fps
+- 内存使用: <50MB
 ```
 
 ## 技术要求
-- 发布包：<500KB
-- WASM模块：至少5个
-- 测试：IPC pipe通信验证
-- 文档：CHANGELOG完整
+- 保持三层架构清晰
+- 性能优化不破坏功能
+- 新服务通过WASM实现
+- 文档持续更新
 
 ## 文件清单
-新建:
-- release/v3.0/
-- release/aiasm-v3.0.tar.gz
-
 修改:
-- CHANGELOG.md (v3.0记录)
-
-执行:
-- make modules
-- git commit + tag
+- ROADMAP.md (v4.0章节)

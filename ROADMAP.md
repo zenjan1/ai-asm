@@ -1,76 +1,74 @@
-# AI-ASM AArch64 开发规划 (v3.0)
+# AI-ASM AArch64 开发规划 (v4.0)
 
-## 当前状态 (v2.0)
+## 当前状态 (v3.0)
 
-v2.0 已完成应用生态系统，包括 7 个 WASM 模块和应用启动器。
+v3.0 已完成多进程并发支持，包括 IPC 管道、消息队列和信号机制。
 
-### v2.0 成果总结
+### v3.0 成果总结
 
-| 模块 | 大小 | 功能 | 状态 |
-|------|------|------|------|
-| init.wasm | 1332B | 系统初始化，启动launcher | ✓ 完成 |
-| shell.wasm | 3553B | 交互式命令行 | ✓ 完成 |
-| editor.wasm | 4949B | 文本编辑器 | ✓ 完成 |
-| calc.wasm | 4008B | 计算器 | ✓ 完成 |
-| paint.wasm | 3316B | 画图工具 | ✓ 完成 |
-| launcher.wasm | 3995B | 应用启动器 | ✓ 完成 |
-| test.wasm | 4399B | 集成测试 | ✓ 完成 |
+| 功能 | 描述 | 状态 |
+|------|------|------|
+| 管道 IPC | 8个管道，4KB环形缓冲 | ✓ 完成 |
+| 消息队列 | 8个队列，16x64字节消息 | ✓ 完成 |
+| 信号机制 | SIGKILL/SIGTERM/SIGSTOP/SIGCONT/SIGCHLD | ✓ 完成 |
+| 网络应用 | browser.wasm + net_test.wasm | ✓ 完成 |
+| WASM模块 | 9个完整编译 | ✓ 完成 |
 
-- kernel.elf: 3.65MB
-- 发布包: aiasm-v2.0.tar.gz (96KB)
-- GUI: 800x600 窗口管理器，16窗口合成
-- WASM运行时: wasm3, MAX_MODULES=16, 27个host函数
+- kernel.elf: 3.7MB (29 asm + 2 C + wasm3)
+- wasm_host.c: 1842行，132个host函数
+- 发布包: aiasm-v1.0.tar.gz (252KB), v2.0.tar.gz (99KB), v3.0.tar.gz (99KB)
+- 9 WASM模块: init, shell, test, editor, calc, paint, launcher, browser, net_test
 
 ---
 
-## v3.0规划 (2026-06)
+## v4.0规划 (2026-07)
 
-### 核心主题: 多进程并发 + 网络应用
-
-### 网络应用
-
-| 任务 | 描述 | 优先级 |
-|------|------|--------|
-| browser.wasm | HTTP GET/POST客户端，简单HTML文本渲染 | P0 |
-| ftp.wasm | FTP文件传输客户端 | P1 |
-| net_test.wasm | TCP连接验证，ARP/DNS测试 | P0 |
-| http_server.wasm | 简单HTTP服务器，提供系统信息 | P2 |
-
-### 多进程增强
-
-| 任务 | 描述 | 优先级 |
-|------|------|--------|
-| 进程间通信 | 管道、消息队列 | P0 |
-| 信号机制 | SIGKILL/SIGTERM处理 | P0 |
-| 资源配额 | CPU时间限制、内存限制 | P1 |
-| 终端多窗口 | 多个shell进程并发运行 | P1 |
-
-### 文件管理器
-
-| 任务 | 描述 | 优先级 |
-|------|------|--------|
-| file_manager.wasm | 目录浏览、文件创建/删除/重命名 | P0 |
-| 文件查看器 | 文本文件浏览、hex查看 | P1 |
+### 核心主题: 性能优化 + 高级系统服务
 
 ### 性能优化
 
 | 任务 | 描述 | 优先级 |
 |------|------|--------|
-| WASM JIT预编译 | 热点函数预编译加速 | P2 |
-| framebuffer双缓冲 | 消除画面撕裂 | P1 |
-| 中断驱动网络I/O | 替代轮询模式 | P0 |
+| WASM JIT缓存 | 预编译热点模块，减少解释开销 | P0 |
+| 双缓冲GUI | 前后帧缓冲切换，消除画面撕裂 | P0 |
+| 中断驱动I/O | virtio-net/virtio-blk中断替代轮询 | P0 |
+| 内存池管理 | buddy allocator替代bump分配器 | P1 |
+| 进程创建优化 | PCB预分配，快速上下文切换 | P1 |
 
-### v3.0 新增 WASM 模块
+### 高级系统服务
+
+| 模块 | 描述 | 优先级 |
+|------|------|--------|
+| proc_monitor.wasm | 进程监控、崩溃自动重启、资源统计 | P1 |
+| syslog.wasm | 结构化系统日志、过滤、持久化 | P1 |
+| devmgr.wasm | 设备热插拔管理、驱动注册 | P2 |
+| user.wasm | 多用户认证、权限管理 | P2 |
+
+### v4.0 新增 WASM 模块
 
 | 模块 | 预计大小 | 功能 |
 |------|----------|------|
-| browser.wasm | ~5KB | HTTP客户端 |
-| file_manager.wasm | ~4KB | 目录浏览 |
-| net_test.wasm | ~3KB | 网络测试 |
+| proc_monitor.wasm | ~4KB | 进程监控+重启 |
+| syslog.wasm | ~3KB | 系统日志服务 |
+| devmgr.wasm | ~3KB | 设备管理 |
+
+### 性能目标
+
+| 指标 | 当前 | v4.0目标 |
+|------|------|----------|
+| 启动时间 | ~3秒 | <1秒 |
+| WASM加载 | ~200ms | <100ms |
+| GUI刷新 | ~10fps | 30fps |
+| 内存使用 | ~64MB | <50MB |
 
 ---
 
 ## 历史版本
+
+### v3.0 (2026-05-24) - IPC and Signal Mechanism
+- 管道IPC + 消息队列
+- POSIX信号机制
+- 网络应用框架
 
 ### v2.0 (2026-05-24) - Application Ecosystem
 - 7个WASM应用模块
@@ -83,13 +81,11 @@ v2.0 已完成应用生态系统，包括 7 个 WASM 模块和应用启动器。
 - FAT32文件系统
 - TCP/IP网络栈
 - WASI系统调用
-- GUI窗口管理器
 
 ### v0.1 ~ v0.9 - 内核开发阶段
 - 中断系统、抢占式调度
 - MMU虚拟内存
 - VirtIO设备驱动
-- 文件系统、网络栈
 
 ---
 
@@ -101,6 +97,7 @@ v2.0 已完成应用生态系统，包括 7 个 WASM 模块和应用启动器。
 4. **QEMU验证**: 所有功能先在QEMU virt平台验证
 5. **真实硬件兼容**: 设计考虑未来移植到真实ARM设备
 6. **WASM为中心**: 应用层和大部分服务用WASM实现
+7. **性能不妥协**: 优化不影响功能完整性
 
 ---
 
