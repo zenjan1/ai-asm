@@ -21,7 +21,7 @@
 .set PROC_READY,    1
 .set PROC_FREE,     0
 .set PROC_PAUSED,   3
-.set PCB_SIZE,      352
+.set PCB_SIZE,      384
 .set PCB_STATE,     0
 .set PCB_PID,       4
 .set PCB_X0,        8
@@ -30,6 +30,9 @@
 .set PCB_QUANTUM,   280
 .set PCB_NAME,      284
 .set PCB_TTBR0,     316
+.set PCB_PENDING_SIG, 324
+.set PCB_SIG_HANDLERS, 328
+.set PCB_SIG_MASK,  360
 
 .text
 
@@ -582,15 +585,66 @@ _pw_not_found:
     ldp     x29, x30, [sp], #16
     ret
 
+/* -----------------------------------------------------------------------------
+ * Function: proc_find_by_pid
+ * Input: w0 = pid
+ * Output: x0 = PCB pointer, 0 if not found
+ * ----------------------------------------------------------------------------- */
+.global proc_find_by_pid
+proc_find_by_pid:
+    stp     x29, x30, [sp, #-16]!
+    mov     w8, w0
+
+    adrp    x0, pcb_table
+    add     x0, x0, #:lo12:pcb_table
+    mov     w1, #0
+
+1:  cmp     w1, #MAX_PROCS
+    bge     9f
+    ldr     w2, [x0, #PCB_PID]
+    cmp     w2, w8
+    b.eq    2f
+    add     x0, x0, #PCB_SIZE
+    add     w1, w1, #1
+    b       1b
+
+2:  ldp     x29, x30, [sp], #16
+    ret
+9:  mov     x0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: proc_get_current
+ * Output: x0 = current process PCB pointer, 0 if none
+ * ----------------------------------------------------------------------------- */
+.global proc_get_current
+proc_get_current:
+    stp     x29, x30, [sp, #-16]!
+
+    adrp    x0, current_pid
+    add     x0, x0, #:lo12:current_pid
+    ldr     w0, [x0]
+
+    /* Use proc_find_by_pid */
+    bl      proc_find_by_pid
+
+    ldp     x29, x30, [sp], #16
+    ret
+
 /* Process state */
 .bss
 .align 4
+.global pcb_table
 pcb_table:
     .skip MAX_PROCS * PCB_SIZE
+.global next_pid
 next_pid:
     .skip 4
+.global current_pid
 current_pid:
     .skip 4
+.global proc_count
 proc_count:
     .skip 4
 .global preempt_pending

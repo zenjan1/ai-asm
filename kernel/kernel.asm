@@ -85,6 +85,11 @@ _start:
     /* Initialize module repository */
     bl      module_repo_init
 
+    /* Initialize IPC subsystems */
+    bl      ipc_init
+    bl      msgq_init
+    bl      signal_init
+
     /* Initialize framebuffer and GUI */
     bl      fb_init
     bl      gui_init

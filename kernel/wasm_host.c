@@ -1273,6 +1273,155 @@ static const void *host_net_close(IM3Runtime runtime, IM3ImportContext _ctx, uin
 }
 
 /* -------------------------------------------------------------------------- */
+/* IPC: Pipe and Message Queue host functions                                 */
+/* -------------------------------------------------------------------------- */
+
+/* pipe_create(read_fd_off, write_fd_off) — create pipe, store fds */
+static const void *host_pipe_create(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    uint32_t read_fd_off  = (uint32_t)*(uint64_t*)(_sp + 1);
+    uint32_t write_fd_off = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint8_t *mem = (uint8_t *)_mem;
+
+    extern int pipe_create(int *read_fd, int *write_fd);
+    int rfd = 0, wfd = 0;
+    int rc = pipe_create(&rfd, &wfd);
+
+    if (rc == 0) {
+        *(int32_t *)(mem + read_fd_off)  = (int32_t)rfd;
+        *(int32_t *)(mem + write_fd_off) = (int32_t)wfd;
+    }
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* pipe_read(fd, buf_off, len) — read from pipe */
+static const void *host_pipe_read(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    int fd = (int)*(int64_t*)(_sp + 1);
+    uint32_t buf_off = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint32_t len = (uint32_t)*(uint64_t*)(_sp + 3);
+    uint8_t *mem = (uint8_t *)_mem;
+
+    extern int pipe_read(int fd, uint8_t *buf, uint32_t len);
+    int rc = pipe_read(fd, mem + buf_off, len);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* pipe_write(fd, buf_off, len) — write to pipe */
+static const void *host_pipe_write(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    int fd = (int)*(int64_t*)(_sp + 1);
+    uint32_t buf_off = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint32_t len = (uint32_t)*(uint64_t*)(_sp + 3);
+    uint8_t *mem = (uint8_t *)_mem;
+
+    extern int pipe_write(int fd, const uint8_t *buf, uint32_t len);
+    int rc = pipe_write(fd, mem + buf_off, len);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* pipe_close(fd) — close pipe */
+static const void *host_pipe_close(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    int fd = (int)*(int64_t*)(_sp + 1);
+    (void)_ctx; (void)_mem;
+
+    extern int pipe_close(int fd);
+    int rc = pipe_close(fd);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* msgq_create() — create message queue, return qid */
+static const void *host_msgq_create(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_sp; (void)_mem;
+
+    extern int msgq_create(void);
+    int qid = msgq_create();
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)qid;
+    return m3Err_none;
+}
+
+/* msgq_send(qid, msg_off) — send message to queue */
+static const void *host_msgq_send(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    int qid = (int)*(int64_t*)(_sp + 1);
+    uint32_t msg_off = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint8_t *mem = (uint8_t *)_mem;
+
+    extern int msgq_send(int qid, const uint8_t *msg);
+    int rc = msgq_send(qid, mem + msg_off);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* msgq_recv(qid, buf_off) — receive message from queue */
+static const void *host_msgq_recv(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    int qid = (int)*(int64_t*)(_sp + 1);
+    uint32_t buf_off = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint8_t *mem = (uint8_t *)_mem;
+
+    extern int msgq_recv(int qid, uint8_t *buf);
+    int rc = msgq_recv(qid, mem + buf_off);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* msgq_destroy(qid) — destroy message queue */
+static const void *host_msgq_destroy(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    int qid = (int)*(int64_t*)(_sp + 1);
+    (void)_ctx; (void)_mem;
+
+    extern int msgq_destroy(int qid);
+    int rc = msgq_destroy(qid);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* signal_register(sig, handler_off) — register signal handler for current module */
+static const void *host_signal_register(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    uint32_t sig = (uint32_t)*(uint64_t*)(_sp + 1);
+    uint32_t handler_off = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint8_t *mem = (uint8_t *)_mem;
+
+    extern int signal_register(int pid, int sig, void *handler);
+    int pid = (int)current_module_id;
+    int rc = signal_register(pid, (int)sig, (void *)(mem + handler_off));
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* signal_send(pid, sig) — send signal to a process */
+static const void *host_signal_send(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    int pid = (int)*(int64_t*)(_sp + 1);
+    uint32_t sig = (uint32_t)*(uint64_t*)(_sp + 2);
+    (void)_ctx; (void)_mem;
+
+    extern int signal_send(int pid, int sig);
+    int rc = signal_send(pid, (int)sig);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* WASI helper functions (called from wasi.asm)                               */
 /* -------------------------------------------------------------------------- */
 
@@ -1403,6 +1552,19 @@ static const host_reg_t host_registry[] = {
     { "host", "net_send",    "i(iii)", &host_net_send    },
     { "host", "net_recv",    "i(iii)", &host_net_recv    },
     { "host", "net_close",   "v(i)",   &host_net_close   },
+    /* IPC: Pipes */
+    { "host", "pipe_create", "i(ii)",  &host_pipe_create  },
+    { "host", "pipe_read",   "i(iii)", &host_pipe_read    },
+    { "host", "pipe_write",  "i(iii)", &host_pipe_write   },
+    { "host", "pipe_close",  "v(i)",   &host_pipe_close   },
+    /* IPC: Message Queues */
+    { "host", "msgq_create", "i()",    &host_msgq_create  },
+    { "host", "msgq_send",   "i(ii)",  &host_msgq_send    },
+    { "host", "msgq_recv",   "i(ii)",  &host_msgq_recv    },
+    { "host", "msgq_destroy","v(i)",   &host_msgq_destroy },
+    /* Signals */
+    { "host", "signal_register", "i(ii)", &host_signal_register },
+    { "host", "signal_send",     "i(ii)", &host_signal_send     },
     /* WASI snapshot_preview1 */
     { "wasi_snapshot_preview1", "fd_write",        "i(iiii)", &wasi_fd_write      },
     { "wasi_snapshot_preview1", "fd_read",         "i(iiii)", &wasi_fd_read       },

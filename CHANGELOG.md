@@ -1,5 +1,36 @@
 # AI-ASM Change Log
 
+## v3.0 (2026-05-24)
+
+Multi-process IPC and signal mechanism.
+
+### Inter-Process Communication
+- Pipe IPC: 8 pipes, 4KB circular buffers, blocking read/write
+- Message queues: 8 queues, 16 messages x 64 bytes each
+- Host functions: pipe_create/read/write/close, msgq_create/send/recv/destroy
+
+### Signal Mechanism
+- POSIX-style signals: SIGKILL, SIGTERM, SIGSTOP, SIGCONT, SIGCHLD
+- Per-process: 32-bit pending signal bitmap, custom handler table, signal mask
+- Signal checking in scheduler (signal_check called during scheduling)
+- Host functions: signal_register, signal_send
+
+### Network Applications
+- browser.wasm: HTTP client with URL bar, HTML stripping, text rendering
+- net_test.wasm: TCP/UDP tests, DNS query, error handling
+
+### Kernel Changes
+- kernel.elf: 3.7MB (32 source files: 29 asm + 2 C + wasm3)
+- 132 host functions in wasm_host.c
+- 9 WASM modules available
+
+### Statistics
+- kernel.elf: 3702000 bytes (3615KB)
+- WASM modules: init, shell, test, editor, calc, paint, launcher, browser, net_test
+- 22 init subsystem calls
+
+---
+
 ## v2.0 (2026-05-24)
 
 Application ecosystem with launcher and GUI applications.

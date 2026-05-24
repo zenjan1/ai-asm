@@ -5,7 +5,7 @@
       "cron": "*/5 * * * *",
       "prompt": "=== AI-ASM 自动化开发循环 ===\n\n任务：检查并推进项目开发\n\n执行步骤：\n\n1. 读取 /data/data/com.termux/files/home/aiasm-aarch64/update-state 文件\n   - 如果 UPDATE 不等于 1，直接返回\"等待下一次检查\"\n   - 如果 UPDATE 等于 1，继续执行\n\n2. 阅读项目关键文件理解当前进度：\n   - ROADMAP.md（开发路线图）\n   - README.md（项目说明）\n   - kernel/kernel.asm（内核入口）\n   - kernel/wasm_host.c（WASM运行时）\n   - 最近5个git commits\n\n3. 分析项目状态，确定当前处于哪个阶段：\n   - Phase 1: 中断系统+抢占式调度\n   - Phase 2: MMU虚拟内存\n   - Phase 3: VirtIO设备驱动\n   - Phase 4: 文件系统\n   - Phase 5: 网络栈\n   - Phase 6: 系统服务+WASI\n\n4. 根据三层架构原则生成任务prompt：\n   - 底层（汇编）：内核核心、中断、内存、调度\n   - 中间层（WASM运行时）：host函数扩展、进程隔离\n   - 外层（应用接口）：文件系统API、网络API、GUI API\n   \n   目标：任何应用都能通过中间层翻译执行\n\n5. 将生成的prompt写入 /data/data/com.termux/files/home/aiasm-aarch64/promt 文件\n   格式要求：\n   ```\n   # AI-ASM 开发任务\n   # 生成时间: YYYY-MM-DD HH:MM\n   # 当前阶段: Phase X\n   \n   ## 当前状态\n   [简述已完成和待完成的工作]\n   \n   ## 任务目标\n   [本次要实现的具体目标]\n   \n   ## 实现步骤\n   1. [具体步骤1]\n   2. [具体步骤2]\n   ...\n   \n   ## 技术要求\n   - [汇编/C规范]\n   - [测试验证方法]\n   - [文件清单]\n   ```\n\n6. 修改 update-state 文件，将 UPDATE 设置为 0\n\n7. 返回执行结果摘要\n\n注意：\n- 代码追求简洁高效，无需人参与的可读性\n- 每次任务应聚焦一个具体可完成的目标\n- 优先修复已发现的bug，再推进新功能\n- 保持与现有代码风格一致",
       "createdAt": 1779599745719,
-      "lastFiredAt": 1779617740650,
+      "lastFiredAt": 1779620026038,
       "recurring": true
     }
   ]

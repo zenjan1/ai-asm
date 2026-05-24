@@ -1,64 +1,76 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-24 21:00
-# 当前阶段: v2.0完成 + v3.0规划
+# 生成时间: 2026-05-24 22:00
+# 当前阶段: v3.0发布准备
 
 ## 当前状态
-- v1.0内核完成：19init + 28asm + wasm_host(1680行)
-- v2.0应用生态完成：7WASM模块
-- v2.0发布包：aiasm-v2.0.tar.gz (96KB)
-- CHANGELOG.md已更新
-- 待完成：git标签 + v3.0规划
+- v3.0核心完成：IPC(msg/pipe)+信号(signal.asm)
+- kernel.elf: 3.7MB，29asm文件
+- wasm_host.c: 1842行，132host函数
+- 22init调用
+- WASM模块：init/shell/test（3个）
+- 缺失：browser/net_test网络应用需重编译
 
 ## 任务目标
-创建git版本标签，规划v3.0发展方向
+补全WASM模块，创建v3.0发布包
 
 ## 实现步骤
 
-### 1. Git标签
+### 1. 确认WASM模块编译
+```bash
+make modules
+# 应生成：
+# - init.wasm (1332B)
+# - shell.wasm (3553B)
+# - test.wasm (4399B)
+# - browser.wasm (待生成)
+# - net_test.wasm (待生成)
+```
+
+### 2. 更新CHANGELOG.md
+```markdown
+## v3.0 (2026-05-24)
+### 多进程并发
+- IPC管道：环形缓冲4KB，支持阻塞读写
+- 消息队列：16条64字节消息
+- 信号机制：SIGKILL/SIGTERM处理
+- 进程通信：host_pipe_create/read/write
+
+### 网络应用基础
+- browser.wasm: HTTP客户端框架
+- net_test.wasm: TCP连接测试
+- 信号host函数：signal_register/send
+```
+
+### 3. 创建v3.0发布
+```bash
+mkdir -p release/v3.0/modules
+cp build/kernel.elf release/v3.0/
+cp modules/*/*.wasm release/v3.0/modules/
+cp README.md CHANGELOG.md ROADMAP.md release/v3.0/
+tar -czf release/aiasm-v3.0.tar.gz v3.0/
+```
+
+### 4. Git标签
 ```bash
 git add -A
-git commit -m "release: v2.0 application ecosystem"
-git tag -a v2.0 -m "AI-ASM v2.0 - Application Ecosystem with launcher"
-```
-
-### 2. v3.0规划方向
-```
-v3.0目标：多进程并发 + 网络应用
-
-新增功能：
-- 浏览器模块：HTTP客户端，HTML解析
-- 终端多窗口：多个shell进程并发
-- 文件管理器：目录浏览，文件操作
-- 网络测试：TCP连接验证
-```
-
-### 3. 更新ROADMAP.md v3.0章节
-```markdown
-## v3.0规划 (2026-06)
-
-### 网络应用
-- browser.wasm: HTTP GET/POST，简单HTML渲染
-- ftp.wasm: 文件传输客户端
-
-### 多进程增强
-- 进程间通信：管道、消息队列
-- 信号机制：SIGKILL/SIGTERM
-- 资源配额：CPU时间限制、内存限制
-
-### 性能优化
-- WASM JIT预编译
-- framebuffer双缓冲
-- 中断驱动网络I/O
+git commit -m "release: v3.0 multi-process IPC + signals"
+git tag -a v3.0 -m "AI-ASM v3.0 - IPC and Signal Mechanism"
 ```
 
 ## 技术要求
-- git标签格式：vX.Y
-- ROADMAP保持简洁清晰
-- 每个版本聚焦一个核心主题
+- 发布包：<500KB
+- WASM模块：至少5个
+- 测试：IPC pipe通信验证
+- 文档：CHANGELOG完整
 
 ## 文件清单
+新建:
+- release/v3.0/
+- release/aiasm-v3.0.tar.gz
+
 修改:
-- ROADMAP.md (v3.0规划章节)
+- CHANGELOG.md (v3.0记录)
 
 执行:
+- make modules
 - git commit + tag
