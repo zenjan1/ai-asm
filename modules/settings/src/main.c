@@ -26,6 +26,12 @@ extern int proc_list_next(void);
 __attribute__((import_module("host"), import_name("proc_get_status")))
 extern int proc_get_status(int pid);
 
+__attribute__((import_module("host"), import_name("quota_get")))
+extern int quota_get(int pid, unsigned int buf_off);
+
+__attribute__((import_module("host"), import_name("perm_get_level")))
+extern int perm_get_level(void);
+
 static unsigned int my_strlen(const char *s)
 {
     const char *p = s;
@@ -96,13 +102,67 @@ static void show_processes(void)
     print_str("---------------------------\n");
 }
 
+static void print_u32(unsigned int v)
+{
+    char tmp[12]; int ti = 0;
+    if (v == 0) tmp[ti++] = '0';
+    else { while (v > 0) { tmp[ti++] = (char)('0' + (v % 10)); v /= 10; } }
+    for (int j = ti - 1; j >= 0; j--) { char c = tmp[j]; wasm_host_print(65536, 1); ((char*)65536)[0] = c; }
+}
+
+static void show_quotas(void)
+{
+    unsigned int buf[6];
+    print_str("\n--- Resource Quotas ---\n");
+    print_str("  PID  CPU Limit    CPU Used   Mem Limit    Mem Used   FD\n");
+
+    int pid = proc_list_next();
+    while (pid >= 0) {
+        print_str("  ");
+        { int v = pid; char tmp[8]; int ti = 0;
+          if (v == 0) tmp[ti++] = '0';
+          else { while (v > 0) { tmp[ti++] = (char)('0' + (v % 10)); v /= 10; } }
+          char *d = (char *)65536;
+          for (int j = ti - 1; j >= 0; j--) { d[0] = tmp[j]; wasm_host_print(65536, 1); } }
+
+        quota_get(pid, (unsigned int)buf);
+
+        /* CPU limit */
+        print_str("  ");
+        if (buf[0] == 0) { print_str("unlimited"); }
+        else { print_u32(buf[1]); }
+
+        /* CPU used */
+        print_str("  ");
+        print_u32(buf[2]);
+
+        /* Mem limit */
+        print_str("  ");
+        if (buf[3] == 0) { print_str("unlimited"); }
+        else { print_u32(buf[4]); }
+
+        /* Mem used */
+        print_str("  ");
+        print_u32(buf[5]);
+
+        /* FD used/limit */
+        print_str("  ");
+        /* skip for now, buf has fd at offset 16 */
+
+        print_str("\n");
+        pid = proc_list_next();
+    }
+    print_str("-------------------------\n");
+}
+
 static void show_menu(void)
 {
     print_str("\n=== System Settings ===\n");
     print_str("  i - System Info\n");
     print_str("  p - Process List\n");
+    print_str("  q - Resource Quotas\n");
     print_str("  l - Change log level\n");
-    print_str("  q - Quit\n");
+    print_str("  x - Quit\n");
     print_str("Enter choice: ");
 }
 
@@ -132,10 +192,13 @@ void _start(void)
                 case 'p': case 'P':
                     show_processes();
                     break;
+                case 'q': case 'Q':
+                    show_quotas();
+                    break;
                 case 'l': case 'L':
                     change_log_level();
                     break;
-                case 'q': case 'Q':
+                case 'x': case 'X':
                     print_str("Exiting settings.\n");
                     settings_log("settings module exited");
                     return;

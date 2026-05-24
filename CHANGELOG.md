@@ -1,5 +1,45 @@
 # AI-ASM Change Log
 
+## v8.0 (2026-05-24)
+
+Process-level resource quota system with scheduler integration.
+
+### Resource Quota Management
+- kernel/quota.asm (~400 lines): Per-process CPU/memory/FD quota tracking
+- Quota entry (20 bytes): cpu_limit, cpu_used, mem_limit, mem_used, fd_limit, fd_used
+- Default quotas by permission level:
+  - root: unlimited (0 = no limit)
+  - admin: 1M CPU ticks, 16MB memory, 16 FDs
+  - user: 100K CPU ticks, 8MB memory, 8 FDs
+  - guest: 10K CPU ticks, 4MB memory, 4 FDs
+- API: quota_init, quota_set_default, quota_set, quota_check_cpu, quota_bump_cpu, quota_check_mem, quota_bump_mem, quota_check_fd, quota_bump_fd, quota_drop_fd, quota_get
+
+### Scheduler Integration
+- kernel/process.asm: quota_bump_cpu called each timer tick in proc_schedule
+- quota_check_cpu blocks processes exceeding CPU limit (marks PAUSED)
+- proc_schedule_skip_current: skips context save for quota-exceeded processes
+- proc_schedule_find_next: finds next ready process when current exceeds quota
+
+### WASM Host Functions
+- kernel/wasm_host.c: host_quota_get, host_quota_set, host_quota_check_fn
+- Registered as quota_get, quota_set, quota_check in host_registry
+- WASM modules can query and set their own resource quotas
+
+### Settings Module
+- modules/settings/src/main.c: show_quotas() displays per-process quota usage
+- Menu option 'q' shows CPU limit/used, memory limit/used, FD usage per PID
+- Added quota_get and perm_get_level host function imports
+
+### Build System
+- quota.asm added to ASM_SRCS in Makefile
+- quota_init called in kernel boot sequence
+
+### Statistics
+- kernel.elf: 6722KB (6883712 bytes)
+- WASM modules: 15 total
+
+---
+
 ## v7.0 (2026-05-24)
 
 Performance optimization with JIT hot function precompilation and module loading cache.

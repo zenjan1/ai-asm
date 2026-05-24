@@ -126,6 +126,9 @@ _start:
     /* Initialize device management */
     bl      device_init
 
+    /* Initialize process resource quotas */
+    bl      quota_init
+
     /* Initialize process memory isolation */
     bl      proc_mem_init
 
@@ -140,6 +143,9 @@ _start:
 
     /* Initialize permission system */
     bl      perm_init
+
+    /* Initialize process resource quotas */
+    bl      quota_init
 
     /* ---- Transition to WASM3 runtime (v0.5 multi-module) ---- */
 

@@ -1999,6 +1999,79 @@ static const void *host_device_detach_fn(IM3Runtime runtime, IM3ImportContext _c
 }
 
 /* -------------------------------------------------------------------------- */
+/* Resource quota host functions (v7.0/v8.0)                                  */
+/* -------------------------------------------------------------------------- */
+
+/* Externs from quota.asm */
+extern void quota_init(void);
+extern void quota_set_default(int pid, int perm_level);
+extern void quota_set(int pid, uint32_t cpu_lim, uint32_t mem_lim, uint8_t fd_lim);
+extern int quota_check_cpu(int pid);
+extern void quota_bump_cpu(int pid);
+extern int quota_check_mem(int pid, uint32_t size);
+extern void quota_bump_mem(int pid, uint32_t size);
+extern int quota_check_fd(int pid);
+extern void quota_bump_fd(int pid);
+extern void quota_drop_fd(int pid);
+extern void quota_get(int pid, uint8_t *buf);
+
+/* host_quota_get(pid, buf_off) — get quota info for process */
+static const void *host_quota_get(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx;
+    int32_t pid      = (int32_t)(int64_t)*(_sp + 1);
+    uint32_t buf_off = (uint32_t)*(uint64_t*)(_sp + 2);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (buf_off + 20 > mem_size) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    quota_get(pid, mem + buf_off);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = 0;
+    return m3Err_none;
+}
+
+/* host_quota_set(pid, cpu_lim, mem_lim, fd_lim) — set quota limits */
+static const void *host_quota_set(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t pid      = (int32_t)(int64_t)*(_sp + 1);
+    uint32_t cpu_lim = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint32_t mem_lim = (uint32_t)*(uint64_t*)(_sp + 3);
+    uint32_t fd_lim  = (uint32_t)*(uint64_t*)(_sp + 4);
+
+    quota_set(pid, cpu_lim, mem_lim, (uint8_t)fd_lim);
+
+    return m3Err_none;
+}
+
+/* host_quota_check(pid, type) — check quota, type: 0=cpu, 1=mem, 2=fd */
+static const void *host_quota_check_fn(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t pid  = (int32_t)(int64_t)*(_sp + 1);
+    int32_t type = (int32_t)(int64_t)*(_sp + 2);
+    int result;
+
+    switch (type) {
+        case 0: result = quota_check_cpu(pid); break;
+        case 2: result = quota_check_fd(pid); break;
+        default: result = 0; break;
+    }
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)result;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Permission host functions                                                  */
 /* -------------------------------------------------------------------------- */
 
@@ -2122,6 +2195,10 @@ static const host_reg_t host_registry[] = {
     /* Permission queries */
     { "host", "perm_get_level", "i()",  &host_perm_get_level },
     { "host", "perm_set_level", "v(i)", &host_perm_set_level },
+    /* Resource quotas */
+    { "host", "quota_get",     "i(ii)", &host_quota_get },
+    { "host", "quota_set",     "v(iiii)", &host_quota_set },
+    { "host", "quota_check",   "i(ii)", &host_quota_check_fn },
 };
 
 #define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))

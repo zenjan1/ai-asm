@@ -213,6 +213,13 @@ proc_schedule:
     add     x0, x0, #:lo12:current_pid
     ldr     w1, [x0]
 
+    /* Bump CPU quota for current process */
+    bl      quota_bump_cpu
+
+    /* Check CPU quota — block if exceeded */
+    bl      quota_check_cpu
+    cbnz    x0, proc_schedule_skip_current
+
     /* Find current PCB */
     adrp    x2, pcb_table
     add     x2, x2, #:lo12:pcb_table
@@ -225,6 +232,13 @@ proc_schedule:
     b       1b
 
 2:
+    /* Skip if quota exceeded — don't save context, just find next */
+    adrp    x5, current_pid
+    add     x5, x5, #:lo12:current_pid
+    ldr     w6, [x5]
+    bl      quota_check_cpu
+    cbnz    x0, proc_schedule_find_next
+
     /* Save current context: x19-x30 (callee-saved) + sp + pc */
     stp     x19, x20, [x2, #PCB_X0 + 152]
     stp     x21, x22, [x2, #PCB_X0 + 168]
@@ -253,6 +267,32 @@ proc_schedule:
     add     w5, w5, #1
     cmp     w5, #MAX_PROCS
     b.eq    4f                  /* back to self */
+
+proc_schedule_find_next:
+    /* Entry point: skip context save, just find next ready process */
+    adrp    x4, pcb_table
+    add     x4, x4, #:lo12:pcb_table
+    mov     w5, #0
+    b       3b
+
+proc_schedule_skip_current:
+    /* CPU quota exceeded for current process — pause it */
+    adrp    x2, pcb_table
+    add     x2, x2, #:lo12:pcb_table
+    mov     x3, #0
+_skip_loop:
+    cmp     x3, x1
+    b.eq    _skip_found
+    add     x2, x2, #PCB_SIZE
+    add     x3, x3, #1
+    b       _skip_loop
+_skip_found:
+    mov     w3, #PROC_PAUSED
+    str     w3, [x2, #PCB_STATE]
+    /* Now find next ready process */
+    b       proc_schedule_find_next
+
+    /* Find next ready process */
     ldr     w6, [x4, #PCB_STATE]
     cmp     w6, #PROC_READY
     b.eq    5f                  /* found ready */
