@@ -1,5 +1,36 @@
 # AI-ASM Change Log
 
+## v6.0 (2026-05-24)
+
+Security enhancement and device management.
+
+### Security
+- user.wasm: Multi-user authentication with GUI login interface (400x300 window)
+- Process isolation: Per-process 16MB memory regions (proc_mem.asm)
+- Permission system: root/admin/user/guest levels (perm.asm)
+- Memory access boundary checks in host functions
+- Permission queries: perm_get_level, perm_set_level host functions
+
+### Device Management
+- devmgr.wasm: VirtIO device lifecycle management (terminal-based)
+- Device attach/detach via host functions (device_list, device_status, device_attach, device_detach)
+- Device table: 16 slots, 3 default VirtIO devices (blk, net, gpu)
+- Device initialization in kernel boot sequence (device.asm)
+
+### Kernel Changes
+- kernel/user.asm: User table (4 slots), default root user
+- kernel/device.asm: VirtIO device table storage
+- kernel/proc_mem.asm: Process memory isolation (alloc/free/check/get_base)
+- kernel/perm.asm: Permission boundary checks (file/net/gui per-level access)
+- kernel/wasm_host.c: 140+ host functions, module permission tracking
+
+### Statistics
+- WASM modules: 15 total (13 from v5.0 + user + devmgr)
+- kernel.elf: 6712KB (6873280 bytes)
+- Kernel source files: 33 assembly + 2 C + wasm3
+
+---
+
 ## v5.0 (2026-05-24)
 
 Extended application ecosystem with complete module compilation and v5.0 release package.

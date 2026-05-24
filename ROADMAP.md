@@ -1,96 +1,76 @@
-# AI-ASM AArch64 开发规划 (v6.0)
+# AI-ASM AArch64 开发规划 (v7.0)
 
-## 当前状态 (v6.0 进行中)
+## 当前状态 (v6.0)
 
-v6.0 安全增强阶段，user.wasm 已完成。
+v6.0 安全增强 + 设备管理已完成。
 
-### v6.0 进度
+### v6.0 成果总结
 
-| 模块 | 描述 | 状态 |
+| 功能 | 描述 | 状态 |
 |------|------|------|
 | user.wasm | 多用户认证、GUI 登录界面 | ✓ 完成 |
-| devmgr.wasm | 设备热插拔管理、驱动注册 | 待实现 |
-| 进程隔离 | WASM 模块间内存保护、权限边界 | 待实现 |
-| 资源配额 | 单模块 CPU 时间、内存上限 | P1 |
-| 安全审计 | 内核事件日志审计、异常检测 | P1 |
+| devmgr.wasm | 设备热插拔管理、驱动注册 | ✓ 完成 |
+| 进程隔离 | WASM 模块间内存保护 | ✓ 完成 |
+| 权限系统 | root/admin/user/guest 四级 | ✓ 完成 |
 
-- WASM 模块: 14 个 (含 user.wasm)
-- kernel.elf: 6709KB (6870504 bytes)
-- wasm_host.c: 133+ 个 host 函数 (新增 user_login)
-- Git 标签: v1.0 ~ v5.0, commit 86c4a61 (user.wasm)
+- WASM 模块: 15 个
+- kernel.elf: 6712KB (6873280 bytes)
+- 新增内核: perm.asm, proc_mem.asm, device.asm, user.asm
+- wasm_host.c: 140+ 个 host 函数
 
 ---
 
-## v6.0 规划 (2026-08)
+## v7.0 规划 (2026-09)
 
-### 核心主题: 安全增强 + 设备管理
+### 核心主题: 性能优化 + 真实硬件移植准备
+
+### 性能目标
+
+| 模块 | 描述 | 优先级 |
+|------|------|--------|
+| JIT 预编译 | 热点函数预编译为 AArch64 原生码 | P0 |
+| WASM 加载优化 | 并行加载 + 缓存 | P0 |
+| 内存优化 | 进程级内存池 | P1 |
+| GUI 加速 | 硬件加速合成 | P1 |
+
+### 真实硬件移植
+
+| 任务 | 描述 | 优先级 |
+|------|------|--------|
+| 板级适配 | Raspberry Pi 4 / Rockchip RK3588 | P0 |
+| 真实驱动 | MMC/SD 存储, RTL8211F 以太网 | P0 |
+| 启动加载器 | U-Boot 集成 | P1 |
 
 ### 安全增强
 
-| 模块 | 描述 | 优先级 |
+| 任务 | 描述 | 优先级 |
 |------|------|--------|
-| user.wasm | 多用户认证、GUI 登录界面 | ✓ 完成 |
-| 进程隔离 | WASM 模块间内存保护、权限边界 | P0 |
-| 资源配额 | 单模块 CPU 时间、内存上限 | P1 |
-| 安全审计 | 内核事件日志审计、异常检测 | P1 |
+| 资源配额 | CPU 时间/内存上限 | P1 |
+| 安全审计 | 内核事件日志审计 | P1 |
 
-### 设备管理
+### v7.0 性能验证
 
-| 模块 | 描述 | 优先级 |
-|------|------|--------|
-| devmgr.wasm | 设备热插拔管理、驱动注册 | P0 |
-| USB 支持 | VirtIO-USB / EHCI 模拟 | P1 |
-| 输入设备 | 键盘/鼠标/触摸板统一抽象 | P1 |
-| 存储扩展 | 多 virtio-blk 设备支持 | P2 |
-
-### v6.0 新增 WASM 模块
-
-| 模块 | 预计大小 | 功能 | 状态 |
-|------|----------|------|------|
-| user.wasm | ~5KB | 多用户认证+GUI 登录 | ✓ 完成 |
-| devmgr.wasm | ~4KB | 设备管理+热插拔 | 待实现 |
-
-### devmgr.wasm 设计
-
-设备管理模块功能:
-- 设备列表显示 (VirtIO 设备状态: blk, net, gpu)
-- 设备热插拔检测
-- 驱动注册/卸载
-- 设备属性查询
-
-Host 函数需求:
-```c
-host_device_list(buf_off, max_len) -> count
-host_device_status(device_id) -> status
-host_device_attach(device_type) -> device_id
-host_device_detach(device_id) -> 0/-1
-```
-
-目录结构:
-```
-modules/devmgr/
-├── src/main.c    (~200 行)
-└── devmgr.wasm   (~4KB)
-```
-
-### v6.0 性能验证
-
-| 指标 | v4.0 目标 | v6.0 实测 |
-|------|----------|----------|
-| 启动时间 | <1 秒 | [待测] |
-| WASM 加载 | <100ms | [待测] |
-| GUI 刷新 | 30fps | [待测] |
-| 内存使用 | <50MB | [待测] |
+| 指标 | v4.0 目标 | v6.0 实测 | v7.0 目标 |
+|------|----------|----------|----------|
+| 启动时间 | <1 秒 | [待测] | <0.5 秒 |
+| WASM 加载 | <100ms | [待测] | <50ms |
+| GUI 刷新 | 30fps | [待测] | 60fps |
+| 内存使用 | <50MB | [待测] | <40MB |
 
 ---
 
 ## 历史版本
 
+### v6.0 (2026-05-24) - Security & Device Management
+- user.wasm 多用户认证
+- devmgr.wasm 设备热插拔
+- 进程内存隔离 (每进程 16MB)
+- root/admin/user/guest 四级权限
+
 ### v5.0 (2026-05-24) - Application Ecosystem
 - 13 个 WASM 应用模块
-- filemgr.wasm + settings.wasm 新增
+- filemgr.wasm + settings.wasm
 - launcher 7-app grid
-- v5.0 发布包 (108KB)
 
 ### v4.0 (2026-05-24) - Performance & Services
 - JIT 缓存 + Buddy 分配 + 中断 I/O + 双缓冲
@@ -99,19 +79,15 @@ modules/devmgr/
 ### v3.0 (2026-05-24) - IPC and Signal Mechanism
 - 管道 IPC + 消息队列
 - POSIX 信号机制
-- 网络应用框架
 
 ### v2.0 (2026-05-24) - Application Ecosystem
 - 7 个 WASM 应用模块
-- 应用启动器
 - GUI 窗口管理器
 
 ### v1.0 (2026-05-24) - WASM-native OS
 - 完整三层架构
 - wasm3 运行时
-- FAT32 文件系统
-- TCP/IP 网络栈
-- WASI 系统调用
+- FAT32 文件系统 + TCP/IP 网络栈
 
 ### v0.1 ~ v0.9 - 内核开发阶段
 - 中断系统、抢占式调度
