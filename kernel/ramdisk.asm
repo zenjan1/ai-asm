@@ -272,6 +272,20 @@ tail_module_size:
     .int tail_module_end - tail_module_start
 
 /* ---------------------------------------------------------------------------
+ * Sort module
+ * --------------------------------------------------------------------------- */
+.section .rodata.sort_wasm
+.global sort_module_start
+sort_module_start:
+    .incbin "kernel/sort.wasm"
+.global sort_module_end
+sort_module_end:
+.align 4
+.global sort_module_size
+sort_module_size:
+    .int sort_module_end - sort_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

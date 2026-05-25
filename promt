@@ -1,16 +1,73 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-25 20:30
-# 当前阶段: Phase 26 (v26.0 head和tail WASM模块) - COMPLETED
+# 生成时间: 2026-05-25 21:00
+# 当前阶段: Phase 27 (v27.0 sort WASM模块)
 
 ## 当前状态
 - v26.0 已推送: head/tail WASM模块
 - kernel.elf: 7004896 bytes (6840KB)
-- 21个WASM模块已注册 (init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, shmem_test, grep, cat, echo, tee, wc, head, tail)
+- 19个WASM模块已注册 (init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, shmem_test, grep, cat, echo, tee, wc, head, tail)
 - 管道系统完整: spawn_redirect, argv传递, yield, EOF检测, pipe_read
 - 重定向: > >> < 支持, 管道+重定向组合
-- tee支持管道分支: cmd1 | tee file | cmd2
-- wc支持文本统计: lines/words/bytes
-- head支持文本截取: 输出前N行
-- tail支持文本截取: 输出最后N行
+- 文本处理工具: cat, grep, wc, head, tail, tee, echo
 
-## 等待下一个任务...
+## 问题: 缺少sort模块用于文本排序
+
+sort是Unix核心文本工具,与head/tail/wc/grep形成完整的管道处理链:
+- cat file | sort | uniq (去重)
+- cat file | sort | head -n 10 (排序后取前10)
+- cat file | sort -r (逆序)
+- echo -e "c\na\nb" | sort → a, b, c
+
+## 任务: 创建sort WASM模块
+
+### 1. 创建 modules/sort/src/main.c
+
+```c
+/* sort: read lines from stdin, sort, output to stdout */
+/* Usage: sort [-r] [-n] */
+/* -r: reverse order */
+/* -n: numeric sort */
+```
+
+功能:
+- 从stdin逐字节读取 (host_getc), 收集所有行
+- 使用简单的插入排序或冒泡排序 (4KB缓冲区)
+- 输出排序后的行 (host_print)
+- 支持 -r 逆序
+- 支持 -n 数值排序 (比较行首数字)
+
+实现细节:
+- 缓冲区: 4KB, 存储所有行数据
+- 行偏移数组: line_offsets[MAX_LINES], MAX_LINES=128
+- 行长度数组: line_lens[MAX_LINES]
+- 解析argv获取 -r, -n 标志
+- 排序算法: 插入排序 (简单, 适合WASM环境)
+- 比较函数: 字符串比较 (默认) 或 数值比较 (-n)
+
+### 2. Makefile添加编译规则
+- SORT_WASM变量
+- 编译规则 (同head/tail模式)
+- modules目标添加$(SORT_WASM)
+- ramdisk.o依赖添加$(SORT_WASM)
+- clean目标添加sort清理
+
+### 3. kernel/ramdisk.asm嵌入
+```asm
+.section .rodata.sort_wasm
+.global sort_module_start
+sort_module_start:
+    .incbin "kernel/sort.wasm"
+... (同其他模块模式)
+```
+
+### 4. kernel/wasm_host.c注册
+- extern声明 sort module symbols
+- wasm_registry添加 { "sort", NULL, 0 }
+- wasm_host_init_multi中解析
+
+### 5. 验收标准
+- `echo -e "c\na\nb" | sort` 输出 "a\nb\nc\n"
+- `echo -e "3\n1\n2" | sort -n` 输出 "1\n2\n3\n"
+- `echo -e "a\nb\nc" | sort -r` 输出 "c\nb\na\n"
+- `cat /hello.txt | sort | head -n 3` 管道组合
+- `cat /hello.txt | sort | wc -l` 统计行数

@@ -244,6 +244,8 @@ extern const uint8_t head_module_start[], head_module_end[];
 extern const uint32_t head_module_size;
 extern const uint8_t tail_module_start[], tail_module_end[];
 extern const uint32_t tail_module_size;
+extern const uint8_t sort_module_start[], sort_module_end[];
+extern const uint32_t sort_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -265,6 +267,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "wc",             NULL, 0 },
     { "head",           NULL, 0 },
     { "tail",           NULL, 0 },
+    { "sort",           NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -3695,6 +3698,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[17].wasm_size = head_module_size;
     wasm_registry[18].wasm_bytes = tail_module_start;
     wasm_registry[18].wasm_size = tail_module_size;
+    wasm_registry[19].wasm_bytes = sort_module_start;
+    wasm_registry[19].wasm_size = sort_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];
