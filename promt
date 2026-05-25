@@ -1,75 +1,36 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-24 22:15
-# 当前阶段: v3.0完成 + v4.0规划
+# 生成时间: 2026-05-25 00:40
+# 当前阶段: Phase 9 (v9.0网络服务)
 
 ## 当前状态
-- v1.0-v3.0全部发布：
-  - v1.0.tar.gz (252KB)
-  - v2.0.tar.gz (96KB)
-  - v3.0.tar.gz (100KB)
-- kernel.elf: 3.7MB
-- WASM模块：9个完整编译
-  - init/shell/test/editor/calc/paint/launcher/browser/net_test
-- wasm_host.c: 1842行，22init调用
-- 29asm文件
+- DNS resolver + HTTP server + UDP debug 已发布
+- Shared memory IPC 已实现 (v9.0-shmem)
+- WASM模块: 18个
+- kernel.elf: 6905320 bytes (6743KB)
+- v9.0 P1剩余: GUI硬件加速
 
 ## 任务目标
-规划v4.0方向：性能优化+高级服务
+实现GUI硬件加速 - 当前GUI使用逐像素fb_draw_pixel绘制，利用virtio_gpu直接blit和双缓冲消除tearing
 
 ## 实现步骤
 
-### 1. v4.0核心目标
-```
-v4.0主题：性能优化 + 高级系统服务
+### 步骤1: 修改 kernel/fb.asm 添加硬件加速
+- fb_blit(x, y, w, h, src_ptr) - 批量像素传输
+- fb_fill_rect(x, y, w, h, color) - 硬件填充矩形
+- fb_copy_area(src_x, src_y, dst_x, dst_y, w, h) - 区域复制
 
-优化方向：
-- WASM JIT预编译缓存
-- Framebuffer双缓冲
-- 中断驱动I/O（替代轮询）
-- 内存池管理（替代bump allocator）
+### 步骤2: 修改 kernel/gui.asm
+- gui_flush 使用 fb_blit 代替逐像素
+- 双缓冲: front_buffer / back_buffer 切换
 
-高级服务：
-- 进程监控服务（proc_monitor.wasm）
-- 系统日志服务（syslog.wasm）
-- 设备管理服务（devmgr.wasm）
-- 多用户支持（user.wasm）
-```
+### 步骤3: 修改 kernel/wasm_host.c
+- host_gui_flush 使用批量传输
+- 添加 host_gui_blit host函数
 
-### 2. 更新ROADMAP.md
-```markdown
-## v4.0规划 (2026-07)
-
-### 性能优化
-| 任务 | 描述 | 优先级 |
-|------|------|--------|
-| WASM JIT缓存 | 预编译常用模块 | P0 |
-| 双缓冲GUI | 消除撕裂 | P0 |
-| 中断I/O | virtio中断模式 | P0 |
-| 内存池 | buddy allocator | P1 |
-
-### 系统服务
-| 任务 | 描述 | 优先级 |
-|------|------|--------|
-| proc_monitor | 进程监控+重启 | P1 |
-| syslog | 结构化日志 | P1 |
-| devmgr | 设备热插拔 | P2 |
-```
-
-### 3. 性能基准测试
-```bash
-# 测试指标
-- 启动时间: <1秒
-- WASM加载: <100ms
-- GUI刷新: 30fps
-- 内存使用: <50MB
-```
-
-## 技术要求
-- 保持三层架构清晰
-- 性能优化不破坏功能
-- 新服务通过WASM实现
-- 文档持续更新
+### 步骤4: 测试GUI性能提升
 
 ## 文件清单
 修改:
-- ROADMAP.md (v4.0章节)
+- kernel/fb.asm (添加blit/fill_rect/copy_area)
+- kernel/gui.asm (使用硬件加速)
+- kernel/wasm_host.c (添加host_gui_blit)
