@@ -67,6 +67,9 @@ extern int wasm_host_proc_get_status(int pid);
 __attribute__((import_module("host"), import_name("yield")))
 extern void wasm_host_yield(void);
 
+__attribute__((import_module("host"), import_name("set_argv")))
+extern void wasm_host_set_argv(unsigned int buf_off, unsigned int buf_len);
+
 /* -------------------------------------------------------------------------- */
 /* WASM memory allocator (bump, uses host_alloc)                              */
 /* -------------------------------------------------------------------------- */
@@ -214,6 +217,7 @@ static void cmd_help(void)
     print_str("  ls      - list files on RAM disk\n");
     print_str("  cat F   - print file content\n");
     print_str("  exit    - exit shell\n");
+    print_str("  grep P  - search stdin for pattern P\n");
     print_str("  Pipes:  - cmd1 | cmd2 | cmd3\n");
 }
 
@@ -394,17 +398,33 @@ static void shell_execute_pipe(const char *pipeline)
             stdout_fd = pipes[i][1];  /* write to next pipe */
         }
 
-        /* Copy stage command to WASM memory */
-        unsigned int name_off = alloc(stage_lens[i] + 1);
-        char *dst = (char *)(name_off);
-        unsigned int j;
-        for (j = 0; j < stage_lens[i]; j++) dst[j] = stages[i][j];
-        dst[j] = '\0';
+        /* Extract module name (first word) from stage command */
+        unsigned int mod_name_len = 0;
+        while (mod_name_len < stage_lens[i] && stages[i][mod_name_len] != ' ') {
+            mod_name_len++;
+        }
 
+        /* Copy module name to WASM memory */
+        unsigned int mod_off = alloc(mod_name_len + 1);
+        char *mod_dst = (char *)(mod_off);
+        unsigned int k;
+        for (k = 0; k < mod_name_len; k++) mod_dst[k] = stages[i][k];
+        mod_dst[mod_name_len] = '\0';
+
+        /* Copy full command to WASM memory for set_argv */
+        unsigned int cmd_off = alloc(stage_lens[i] + 1);
+        char *cmd_dst = (char *)(cmd_off);
+        for (k = 0; k < stage_lens[i]; k++) cmd_dst[k] = stages[i][k];
+        cmd_dst[stage_lens[i]] = '\0';
+
+        /* Set argv for the spawned module to receive full command */
+        wasm_host_set_argv(cmd_off, stage_lens[i]);
+
+        /* Spawn using module name (for registry lookup) */
         if (stdin_fd != -1 || stdout_fd != -1) {
-            pids[i] = wasm_host_spawn_redirect(name_off, stage_lens[i], stdin_fd, stdout_fd);
+            pids[i] = wasm_host_spawn_redirect(mod_off, mod_name_len, stdin_fd, stdout_fd);
         } else {
-            pids[i] = wasm_host_spawn(name_off, stage_lens[i]);
+            pids[i] = wasm_host_spawn(mod_off, mod_name_len);
         }
 
         if (pids[i] < 0) {

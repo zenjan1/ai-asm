@@ -158,6 +158,8 @@ static open_file_t open_files[MAX_OPEN_FILES];
 /* Per-module argv storage (v16.0) */
 static char module_argv[MAX_MODULES][128];
 static uint32_t module_argc[MAX_MODULES];  /* stored argv length */
+static char pending_argv[128];
+static uint32_t pending_argc = 0;
 
 /* Permission levels: 0=root, 1=admin, 2=user, 3=guest */
 static uint8_t module_perm_level[MAX_MODULES];
@@ -727,13 +729,25 @@ static const void *host_spawn(IM3Runtime runtime, IM3ImportContext _ctx, uint64_
         return m3Err_none;
     }
 
-    /* Save argv for the spawned module (v16.0) */
-    uint32_t argv_len = name_len;
-    if (argv_len >= 127) argv_len = 127;
-    for (uint32_t i = 0; i < argv_len; i++)
-        module_argv[slot][i] = (char)mem[name_off + i];
-    module_argv[slot][argv_len] = '\0';
-    module_argc[slot] = argv_len;
+    /* Save argv for the spawned module (v16.0 / v17.0) */
+    if (pending_argc > 0) {
+        /* Use pending argv set by host_set_argv (shell pipe mode) */
+        uint32_t argv_len = pending_argc;
+        if (argv_len >= 127) argv_len = 127;
+        for (uint32_t i = 0; i < argv_len; i++)
+            module_argv[slot][i] = pending_argv[i];
+        module_argv[slot][argv_len] = '\0';
+        module_argc[slot] = argv_len;
+        pending_argc = 0;  /* clear pending */
+    } else {
+        /* Use module name as argv (direct spawn mode) */
+        uint32_t argv_len = name_len;
+        if (argv_len >= 127) argv_len = 127;
+        for (uint32_t i = 0; i < argv_len; i++)
+            module_argv[slot][i] = (char)mem[name_off + i];
+        module_argv[slot][argv_len] = '\0';
+        module_argc[slot] = argv_len;
+    }
 
     uart_puts_raw("ok\n");
     *ret_val = (int32_t)module_table[slot].id;
@@ -791,13 +805,23 @@ static const void *host_spawn_redirect(IM3Runtime runtime, IM3ImportContext _ctx
         return m3Err_none;
     }
 
-    /* Save argv for the spawned module (v16.0) */
-    uint32_t argv_len = name_len;
-    if (argv_len >= 127) argv_len = 127;
-    for (uint32_t i = 0; i < argv_len; i++)
-        module_argv[slot][i] = (char)mem[name_off + i];
-    module_argv[slot][argv_len] = '\0';
-    module_argc[slot] = argv_len;
+    /* Save argv for the spawned module (v16.0 / v17.0) */
+    if (pending_argc > 0) {
+        uint32_t argv_len = pending_argc;
+        if (argv_len >= 127) argv_len = 127;
+        for (uint32_t i = 0; i < argv_len; i++)
+            module_argv[slot][i] = pending_argv[i];
+        module_argv[slot][argv_len] = '\0';
+        module_argc[slot] = argv_len;
+        pending_argc = 0;
+    } else {
+        uint32_t argv_len = name_len;
+        if (argv_len >= 127) argv_len = 127;
+        for (uint32_t i = 0; i < argv_len; i++)
+            module_argv[slot][i] = (char)mem[name_off + i];
+        module_argv[slot][argv_len] = '\0';
+        module_argc[slot] = argv_len;
+    }
 
     /* Set stdin/stdout pipe fds for redirection */
     module_table[slot].stdin_pipe_fd = (int)stdin_fd;
@@ -848,6 +872,29 @@ static const void *host_get_argv(IM3Runtime runtime, IM3ImportContext _ctx, uint
     mem[buf_off + len] = '\0';
 
     *ret = (int32_t)len;
+    return m3Err_none;
+}
+
+/* host_set_argv(buf_off, buf_len) — set argv for the next spawned module (v17.0)
+ * Stores the full command string so the spawned module can parse its args.
+ */
+static const void *host_set_argv(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx;
+    uint32_t buf_off = (uint32_t)*(uint64_t*)(_sp + 1);
+    uint32_t buf_len = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (buf_off + buf_len > mem_size) {
+        return m3Err_none;
+    }
+    if (buf_len < 128) {
+        for (uint32_t i = 0; i < buf_len; i++)
+            pending_argv[i] = (char)mem[buf_off + i];
+        pending_argv[buf_len] = '\0';
+        pending_argc = buf_len;
+    }
     return m3Err_none;
 }
 
@@ -3163,6 +3210,7 @@ static const host_reg_t host_registry[] = {
     { "host", "spawn",       "i(ii)",  &host_spawn       },
     { "host", "spawn_redirect","i(iiii)",&host_spawn_redirect },
     { "host", "get_argv",      "i(ii)",  &host_get_argv      },
+    { "host", "set_argv",      "v(ii)",  &host_set_argv      },
     { "host", "vfs_open",    "i(iii)", &host_vfs_open    },
     { "host", "fs_open",     "i(ii)",  &host_fs_open     },
     { "host", "fs_read",     "i(iii)", &host_fs_read     },
