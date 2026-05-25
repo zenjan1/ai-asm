@@ -1,34 +1,9 @@
 /*
  * aiasm-aarch64/kernel/vfs_ops.asm
- * Virtual Filesystem Operations v10.0
- * Unified read/write/close/poll routing based on fd type
+ * Virtual Filesystem Operations v11.0
+ * Per-process fd routing: all functions take (pid, fd)
  */
 .arch armv8-a
-
-/* -----------------------------------------------------------------------------
- * Imports from other subsystems
- * ----------------------------------------------------------------------------- */
-/* fs.asm */
-/* fs_read(fd_or_path_info, buf_off, len) → bytes_read or -1 */
-/* fs_write(fd_or_path_info, buf_off, len) → bytes_written or -1 */
-/* fs_close(fd) → 0 or -1 */
-
-/* ipc.asm */
-/* pipe_read(fd, buf, len) → bytes_read or -1 */
-/* pipe_write(fd, buf, len) → bytes_written or -1 */
-/* pipe_close(fd) → 0 or -1 */
-
-/* net.asm */
-/* net_send(fd, buf, len) → bytes_sent or -1 */
-/* net_recv(fd, buf, len) → bytes_recv or -1 */
-/* net_close(fd) → 0 or -1 */
-
-/* shmem.asm */
-/* shmem_read(fd, buf_off, len) → bytes_read or -1 */
-/* shmem_write(fd, buf_off, len) → bytes_written or -1 */
-
-/* vfs.asm */
-/* vfs_get_type(fd) → type or -1 */
 
 /* -----------------------------------------------------------------------------
  * Constants
@@ -44,20 +19,22 @@
 .text
 
 /* -----------------------------------------------------------------------------
- * vfs_read(fd, buf_off, len) → bytes_read or -1
- * Routes based on fd type to appropriate read handler
- * x0 = fd, x1 = buf_off, w2 = len
+ * vfs_read(pid, fd, buf_off, len) → bytes_read or -1
+ * w0 = pid, w1 = fd, x2 = buf_off, w3 = len
  * ----------------------------------------------------------------------------- */
 .global vfs_read
 vfs_read:
     stp     x29, x30, [sp, #-16]!
     stp     x20, x21, [sp, #-16]!
-    mov     w20, w0               /* save fd */
-    mov     x21, x1               /* save buf_off */
-    mov     w22, w2               /* save len */
+    stp     x22, x23, [sp, #-16]!
+    mov     w20, w0               /* pid */
+    mov     w21, w1               /* fd */
+    mov     x22, x2               /* buf_off */
+    mov     w23, w3               /* len */
 
     /* Get fd type */
     mov     w0, w20
+    mov     w1, w21
     bl      vfs_get_type
     cbz     x0, _vfs_read_file
     cmp     w0, #VFS_TYPE_PIPE
@@ -67,58 +44,58 @@ vfs_read:
     cmp     w0, #VFS_TYPE_SHMEM
     b.eq    _vfs_read_shmem
 
-    /* Unknown type */
     mov     w0, #-1
     b       _vfs_read_done
 
 _vfs_read_file:
-    /* Route to fs_read */
     mov     w0, w20
-    mov     x1, x21
-    mov     w2, w22
-    bl      fs_read
+    mov     w1, w21
+    mov     x2, x22
+    mov     w3, w23
+    bl      _vfs_file_read
     b       _vfs_read_done
 
 _vfs_read_pipe:
-    /* Route to pipe_read */
     mov     w0, w20
-    mov     x1, x21
-    mov     w2, w22
-    bl      pipe_read
+    mov     w1, w21
+    mov     x2, x22
+    mov     w3, w23
+    bl      _vfs_pipe_read
     b       _vfs_read_done
 
 _vfs_read_socket:
-    /* Route to net_recv */
     mov     w0, w20
-    mov     x1, x21
-    mov     w2, w22
-    bl      net_recv
+    mov     w1, w21
+    mov     x2, x22
+    mov     w3, w23
+    bl      _vfs_socket_recv
     b       _vfs_read_done
 
 _vfs_read_shmem:
-    /* Shared memory: return region size as 'readable' — WASM uses shmem_get_ptr directly */
-    mov     w0, #-1               /* shmem not readable via vfs_read */
+    mov     w0, #-1
 
 _vfs_read_done:
+    ldp     x22, x23, [sp], #16
     ldp     x20, x21, [sp], #16
     ldp     x29, x30, [sp], #16
     ret
 
 /* -----------------------------------------------------------------------------
- * vfs_write(fd, buf_off, len) → bytes_written or -1
- * Routes based on fd type to appropriate write handler
- * x0 = fd, x1 = buf_off, w2 = len
+ * vfs_write(pid, fd, buf_off, len) → bytes_written or -1
+ * w0 = pid, w1 = fd, x2 = buf_off, w3 = len
  * ----------------------------------------------------------------------------- */
 .global vfs_write
 vfs_write:
     stp     x29, x30, [sp, #-16]!
     stp     x20, x21, [sp, #-16]!
-    mov     w20, w0               /* save fd */
-    mov     x21, x1               /* save buf_off */
-    mov     w22, w2               /* save len */
+    stp     x22, x23, [sp, #-16]!
+    mov     w20, w0               /* pid */
+    mov     w21, w1               /* fd */
+    mov     x22, x2               /* buf_off */
+    mov     w23, w3               /* len */
 
-    /* Get fd type */
     mov     w0, w20
+    mov     w1, w21
     bl      vfs_get_type
     cbz     x0, _vfs_write_file
     cmp     w0, #VFS_TYPE_PIPE
@@ -128,94 +105,92 @@ vfs_write:
     cmp     w0, #VFS_TYPE_SHMEM
     b.eq    _vfs_write_shmem
 
-    /* Unknown type */
     mov     w0, #-1
     b       _vfs_write_done
 
 _vfs_write_file:
-    /* Route to fs_file_write (C function in wasm_host.c) */
     mov     w0, w20
-    mov     x1, x21
-    mov     w2, w22
-    bl      fs_file_write
+    mov     w1, w21
+    mov     x2, x22
+    mov     w3, w23
+    bl      _vfs_file_write
     b       _vfs_write_done
 
 _vfs_write_pipe:
-    /* Route to pipe_write */
     mov     w0, w20
-    mov     x1, x21
-    mov     w2, w22
-    bl      pipe_write
+    mov     w1, w21
+    mov     x2, x22
+    mov     w3, w23
+    bl      _vfs_pipe_write
     b       _vfs_write_done
 
 _vfs_write_socket:
-    /* Route to net_send */
     mov     w0, w20
-    mov     x1, x21
-    mov     w2, w22
-    bl      net_send
+    mov     w1, w21
+    mov     x2, x22
+    mov     w3, w23
+    bl      _vfs_socket_send
     b       _vfs_write_done
 
 _vfs_write_shmem:
-    /* Shared memory: WASM uses shmem_get_ptr for direct access */
-    mov     w0, #-1               /* shmem not writable via vfs_write */
+    mov     w0, #-1
 
 _vfs_write_done:
+    ldp     x22, x23, [sp], #16
     ldp     x20, x21, [sp], #16
     ldp     x29, x30, [sp], #16
     ret
 
 /* -----------------------------------------------------------------------------
- * vfs_close(fd) → 0=ok, -1=invalid
- * Routes based on fd type to appropriate close handler, then frees VFS fd
- * x0 = fd
+ * vfs_close(pid, fd) → 0=ok, -1=invalid
+ * w0 = pid, w1 = fd
  * ----------------------------------------------------------------------------- */
 .global vfs_close
 vfs_close:
     stp     x29, x30, [sp, #-16]!
     stp     x20, x21, [sp, #-16]!
-    mov     w20, w0               /* save fd */
+    mov     w20, w0               /* pid */
+    mov     w21, w1               /* fd */
 
-    /* Get fd type before freeing */
     mov     w0, w20
+    mov     w1, w21
     bl      vfs_get_type
-    mov     w21, w0               /* save type */
+    mov     w22, w0               /* type */
 
-    /* Type-specific close */
-    cbz     w21, _vfs_close_file
-    cmp     w21, #VFS_TYPE_PIPE
+    cbz     w22, _vfs_close_file
+    cmp     w22, #VFS_TYPE_PIPE
     b.eq    _vfs_close_pipe
-    cmp     w21, #VFS_TYPE_SOCKET
+    cmp     w22, #VFS_TYPE_SOCKET
     b.eq    _vfs_close_socket
-    cmp     w21, #VFS_TYPE_SHMEM
+    cmp     w22, #VFS_TYPE_SHMEM
     b.eq    _vfs_close_shmem
 
-    /* Unknown type — just free the VFS slot */
     b       _vfs_close_free
 
 _vfs_close_file:
     mov     w0, w20
-    bl      fs_close
+    mov     w1, w21
+    bl      _vfs_file_close
     b       _vfs_close_free
 
 _vfs_close_pipe:
     mov     w0, w20
-    bl      pipe_close
+    mov     w1, w21
+    bl      _vfs_pipe_close
     b       _vfs_close_free
 
 _vfs_close_socket:
     mov     w0, w20
-    bl      net_close
+    mov     w1, w21
+    bl      _vfs_socket_close
     b       _vfs_close_free
 
 _vfs_close_shmem:
-    /* Shared memory: detach region (uses shmem_detach via host function) */
-    /* For now, just return success — WASM explicitly detaches via shmem_detach */
     mov     w0, #0
 
 _vfs_close_free:
-    /* Free VFS fd slot regardless of type close result */
     mov     w0, w20
+    mov     w1, w21
     bl      vfs_free_fd
 
     ldp     x20, x21, [sp], #16
@@ -223,15 +198,13 @@ _vfs_close_free:
     ret
 
 /* -----------------------------------------------------------------------------
- * vfs_poll(fd) → poll_flags (READ=1, WRITE=2, or 0)
- * Checks if fd is readable/writable based on type
- * x0 = fd
+ * vfs_poll(pid, fd) → poll_flags
+ * w0 = pid, w1 = fd
  * ----------------------------------------------------------------------------- */
 .global vfs_poll
 vfs_poll:
     stp     x29, x30, [sp, #-16]!
 
-    /* Get fd type */
     bl      vfs_get_type
     cbz     x0, _vfs_poll_file
     cmp     w0, #VFS_TYPE_PIPE
@@ -241,30 +214,207 @@ vfs_poll:
     cmp     w0, #VFS_TYPE_SHMEM
     b.eq    _vfs_poll_shmem
 
-    /* Unknown type */
     mov     w0, #0
     b       _vfs_poll_done
 
 _vfs_poll_file:
-    /* Files are always readable/writable in RAM disk model */
     mov     w0, #(VFS_POLL_READ | VFS_POLL_WRITE)
     b       _vfs_poll_done
 
 _vfs_poll_pipe:
-    /* Check if pipe has data (readable) or space (writable) */
-    /* For now, return both — the actual pipe_read/write handle full/empty */
     mov     w0, #(VFS_POLL_READ | VFS_POLL_WRITE)
     b       _vfs_poll_done
 
 _vfs_poll_socket:
-    /* Socket readiness depends on TCP state — simplified: always ready */
     mov     w0, #(VFS_POLL_READ | VFS_POLL_WRITE)
     b       _vfs_poll_done
 
 _vfs_poll_shmem:
-    /* Shared memory always ready for read/write */
     mov     w0, #(VFS_POLL_READ | VFS_POLL_WRITE)
 
 _vfs_poll_done:
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* ===================================================================== */
+/* Internal helpers — delegate to subsystem functions via ops_ptr       */
+/* ===================================================================== */
+
+/* -----------------------------------------------------------------------------
+ * _vfs_file_read(pid, fd, buf_off, len)
+ * Gets ramdisk fd from ops_ptr, calls ramdisk_read
+ * ----------------------------------------------------------------------------- */
+_vfs_file_read:
+    stp     x29, x30, [sp, #-16]!
+    mov     w20, w0               /* pid */
+    mov     w21, w1               /* fd */
+    mov     x22, x2               /* buf_off */
+    mov     w23, w3               /* len */
+
+    /* Get ops_ptr (ramdisk fd) */
+    mov     w0, w20
+    mov     w1, w21
+    bl      vfs_get_ops
+    cbz     x0, _vfs_file_read_fail
+
+    /* Call ramdisk_read(fd, buf, len) */
+    mov     w0, w21               /* use fd directly (ramdisk fd) */
+    /* Actually, ops_ptr holds the ramdisk fd number */
+    mov     w0, w0                /* ops_ptr is in x0 */
+    /* ops_ptr = ramdisk fd, call ramdisk_read */
+    and     x24, x0, #0xffffffff  /* truncate to 32-bit fd */
+    mov     x0, x24
+    mov     x1, x22
+    mov     w2, w23
+    bl      ramdisk_read
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+_vfs_file_read_fail:
+    mov     w0, #-1
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * _vfs_file_write(pid, fd, buf_off, len)
+ * ----------------------------------------------------------------------------- */
+_vfs_file_write:
+    stp     x29, x30, [sp, #-16]!
+    mov     w20, w0
+    mov     w21, w1
+    mov     x22, x2
+    mov     w23, w3
+
+    mov     w0, w20
+    mov     w1, w21
+    bl      vfs_get_ops
+    cbz     x0, _vfs_file_write_fail
+
+    mov     x24, x0
+    mov     w0, w21
+    mov     x1, x22
+    mov     w2, w23
+    bl      fs_file_write
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+_vfs_file_write_fail:
+    mov     w0, #-1
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * _vfs_file_close(pid, fd)
+ * ----------------------------------------------------------------------------- */
+_vfs_file_close:
+    stp     x29, x30, [sp, #-16]!
+    mov     w20, w0
+    mov     w21, w1
+
+    mov     w0, w20
+    mov     w1, w21
+    bl      vfs_get_ops
+    cbz     x0, _vfs_file_close_ok
+
+    mov     w0, w21
+    bl      ramdisk_close
+
+_vfs_file_close_ok:
+    mov     w0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * _vfs_pipe_read(pid, fd, buf_off, len)
+ * ----------------------------------------------------------------------------- */
+_vfs_pipe_read:
+    stp     x29, x30, [sp, #-16]!
+    mov     w20, w0
+    mov     w21, w1
+    mov     x22, x2
+    mov     w23, w3
+
+    mov     w0, w21               /* pipe fd */
+    mov     x1, x22               /* buf */
+    mov     w2, w23               /* len */
+    bl      pipe_read
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * _vfs_pipe_write(pid, fd, buf_off, len)
+ * ----------------------------------------------------------------------------- */
+_vfs_pipe_write:
+    stp     x29, x30, [sp, #-16]!
+    mov     w20, w0
+    mov     w21, w1
+    mov     x22, x2
+    mov     w23, w3
+
+    mov     w0, w21
+    mov     x1, x22
+    mov     w2, w23
+    bl      pipe_write
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * _vfs_pipe_close(pid, fd)
+ * ----------------------------------------------------------------------------- */
+_vfs_pipe_close:
+    stp     x29, x30, [sp, #-16]!
+    mov     w0, w1               /* fd */
+    bl      pipe_close
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * _vfs_socket_send(pid, fd, buf_off, len)
+ * ----------------------------------------------------------------------------- */
+_vfs_socket_send:
+    stp     x29, x30, [sp, #-16]!
+    mov     w20, w0
+    mov     w21, w1
+    mov     x22, x2
+    mov     w23, w3
+
+    mov     w0, w21
+    mov     x1, x22
+    mov     w2, w23
+    bl      net_send
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * _vfs_socket_recv(pid, fd, buf_off, len)
+ * ----------------------------------------------------------------------------- */
+_vfs_socket_recv:
+    stp     x29, x30, [sp, #-16]!
+    mov     w20, w0
+    mov     w21, w1
+    mov     x22, x2
+    mov     w23, w3
+
+    mov     w0, w21
+    mov     x1, x22
+    mov     w2, w23
+    bl      net_recv
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * _vfs_socket_close(pid, fd)
+ * ----------------------------------------------------------------------------- */
+_vfs_socket_close:
+    stp     x29, x30, [sp, #-16]!
+    mov     w0, w1
+    bl      net_close
+    mov     w0, #0
     ldp     x29, x30, [sp], #16
     ret

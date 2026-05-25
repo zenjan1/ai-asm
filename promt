@@ -1,16 +1,16 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-25 04:00
-# 当前阶段: Phase 10 (v10.0 虚拟文件系统) - COMPLETED
+# 生成时间: 2026-05-25 04:20
+# 当前阶段: Phase 11 (v11.0 进程级VFS fd隔离) - COMPLETED
 
 ## 当前状态
-- v10.0 VFS 已完成 (vfs.asm, vfs_ops.asm, wasm_host.c集成)
+- v11.0 进程级VFS fd隔离已完成
 - WASM模块: 19个
-- kernel.elf: 6914264 bytes (6752KB)
-- 文件系统: VFS统一命名空间 (64 fd槽位, 4种类型: file/pipe/socket/shmem)
+- kernel.elf: 6927544 bytes (6765KB)
+- VFS: 16进程 × 32fd 隔离fd表 (总49376字节)
 
 ## 下一步任务 (待确定)
 可能的方向:
-1. VFS路径解析 - 支持 /dev/pipe, /net/socket 等路径访问
-2. 进程隔离 - VFS fd表按进程隔离, 而非全局
-3. WASM模块开发 - 基于VFS的统一I/O应用
-4. 持久化存储 - virtio_blk 块设备文件系统写支持
+1. 进程退出自动清理fd — vfs_free_all集成到进程退出流程
+2. VFS路径解析 — 支持 /dev/pipe, /net/socket 等路径访问
+3. 持久化存储 — virtio_blk 块设备文件系统写支持
+4. WASM应用模块 — 基于VFS统一I/O的新应用

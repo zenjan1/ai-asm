@@ -37,18 +37,30 @@ static uint32_t crc32_hash(const uint8_t *data, uint32_t len)
 }
 
 /* -------------------------------------------------------------------------- */
-/* VFS integration externs (v10.0)                                            */
+/* VFS integration externs (v11.0 — per-process fd tables)                    */
 /* -------------------------------------------------------------------------- */
 extern void vfs_init(void);
 extern int  vfs_alloc_fd(int pid, int type, int flags);
-extern int  vfs_free_fd(int fd);
-extern int  vfs_set_ops(int fd, void *ops);
-extern void *vfs_get_ops(int fd);
-extern int  vfs_get_type(int fd);
-extern int  vfs_read(int fd, void *buf, int len);
-extern int  vfs_write(int fd, const void *buf, int len);
-extern int  vfs_close(int fd);
-extern int  vfs_poll(int fd);
+extern int  vfs_free_fd(int pid, int fd);
+extern int  vfs_set_ops(int pid, int fd, void *ops);
+extern void *vfs_get_ops(int pid, int fd);
+extern int  vfs_get_type(int pid, int fd);
+extern int  vfs_read(int pid, int fd, void *buf, int len);
+extern int  vfs_write(int pid, int fd, const void *buf, int len);
+extern int  vfs_close(int pid, int fd);
+extern int  vfs_poll(int pid, int fd);
+extern void vfs_free_all(int pid);
+
+/* Helper: get current module PID from IM3Runtime */
+static int get_current_pid(IM3Runtime runtime)
+{
+    /* Scan module_table for matching runtime */
+    for (int i = 0; i < 16; i++) {
+        if (module_table[i].runtime == runtime && module_table[i].state != MOD_FREE)
+            return (int)module_table[i].id;
+    }
+    return 0;  /* fallback to proc 0 */
+}
 
 /* -------------------------------------------------------------------------- */
 /* UART helpers                                                               */
@@ -652,7 +664,7 @@ static const void *host_spawn(IM3Runtime runtime, IM3ImportContext _ctx, uint64_
     return m3Err_none;
 }
 
-/* host_fs_open(path_ptr, path_len) — open file on RAM disk */
+/* host_fs_open(path_ptr, path_len) — open file via VFS (per-process) */
 static const void *host_fs_open(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
     (void)runtime; (void)_ctx; (void)_mem;
@@ -670,9 +682,9 @@ static const void *host_fs_open(IM3Runtime runtime, IM3ImportContext _ctx, uint6
 
     const char *path = (const char *)(mem + path_off);
 
-    /* VFS: allocate fd slot first */
-    int pid = 1;  /* TODO: get current module PID */
-    int vfs_fd = vfs_alloc_fd(pid, 0 /* VFS_TYPE_FILE */, 1 /* READ|WRITE */);
+    /* VFS: allocate fd slot for current process */
+    int pid = get_current_pid(runtime);
+    int vfs_fd = vfs_alloc_fd(pid, 0 /* VFS_TYPE_FILE */, 1 /* READ */);
     if (vfs_fd < 0) {
         int32_t *ret = (int32_t *)(_sp);
         *ret = -1;
@@ -681,21 +693,21 @@ static const void *host_fs_open(IM3Runtime runtime, IM3ImportContext _ctx, uint6
 
     int fd = ramdisk_open(path, path_len);
     if (fd < 0) {
-        vfs_free_fd(vfs_fd);
+        vfs_free_fd(pid, vfs_fd);
         int32_t *ret = (int32_t *)(_sp);
         *ret = (int32_t)fd;
         return m3Err_none;
     }
 
     /* Store ramdisk fd in ops_ptr for later use */
-    vfs_set_ops(vfs_fd, (void *)(intptr_t)fd);
+    vfs_set_ops(pid, vfs_fd, (void *)(intptr_t)fd);
 
     int32_t *ret = (int32_t *)(_sp);
     *ret = (int32_t)vfs_fd;
     return m3Err_none;
 }
 
-/* host_fs_read(fd, buf_ptr, len) — read from file via VFS */
+/* host_fs_read(fd, buf_ptr, len) — read from file via VFS (per-process) */
 static const void *host_fs_read(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
     (void)runtime; (void)_ctx; (void)_mem;
@@ -712,8 +724,10 @@ static const void *host_fs_read(IM3Runtime runtime, IM3ImportContext _ctx, uint6
         return m3Err_none;
     }
 
+    int pid = get_current_pid(runtime);
+
     /* VFS: get ops_ptr (ramdisk fd) and call ramdisk_read directly */
-    void *ops = vfs_get_ops(fd);
+    void *ops = vfs_get_ops(pid, fd);
     int ramdisk_fd = (int)(intptr_t)ops;
     if (ramdisk_fd < 0) {
         int32_t *ret = (int32_t *)(_sp);
@@ -728,19 +742,21 @@ static const void *host_fs_read(IM3Runtime runtime, IM3ImportContext _ctx, uint6
     return m3Err_none;
 }
 
-/* host_fs_close(fd) — close file via VFS */
+/* host_fs_close(fd) — close file via VFS (per-process) */
 static const void *host_fs_close(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
     (void)runtime; (void)_ctx; (void)_mem;
     int32_t fd = (int32_t)(int64_t)*(_sp + 1);
 
+    int pid = get_current_pid(runtime);
+
     /* VFS: get ramdisk fd from ops, close it, then free VFS slot */
-    void *ops = vfs_get_ops(fd);
+    void *ops = vfs_get_ops(pid, fd);
     if (ops) {
         int ramdisk_fd = (int)(intptr_t)ops;
         ramdisk_close(ramdisk_fd);
     }
-    vfs_free_fd(fd);
+    vfs_free_fd(pid, fd);
     return m3Err_none;
 }
 
@@ -820,7 +836,7 @@ static const void *host_blk_write(IM3Runtime runtime, IM3ImportContext _ctx, uin
     return m3Err_none;
 }
 
-/* host_fs_write(fd, buf_off, len) — write to open file via VFS */
+/* host_fs_write(fd, buf_off, len) — write to open file via VFS (per-process) */
 static const void *host_fs_write(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
     (void)runtime; (void)_ctx; (void)_mem;
@@ -837,8 +853,10 @@ static const void *host_fs_write(IM3Runtime runtime, IM3ImportContext _ctx, uint
         return m3Err_trapOutOfBoundsMemoryAccess;
     }
 
+    int pid = get_current_pid(runtime);
+
     /* VFS: get ramdisk fd from ops */
-    void *ops = vfs_get_ops(fd);
+    void *ops = vfs_get_ops(pid, fd);
     int ramdisk_fd = (int)(intptr_t)ops;
     if (ramdisk_fd < 0) {
         int32_t *ret = (int32_t *)(_sp);
@@ -1450,15 +1468,17 @@ static const void *host_net_recv(IM3Runtime runtime, IM3ImportContext _ctx, uint
     return m3Err_none;
 }
 
-/* host_net_close(sock) — close socket via VFS */
+/* host_net_close(sock) — close socket via VFS (per-process) */
 static const void *host_net_close(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
     (void)runtime; (void)_ctx; (void)_mem;
     int32_t sock = (int32_t)(int64_t)*(_sp + 1);
 
+    int pid = get_current_pid(runtime);
+
     extern int net_close(int sock);
     net_close(sock);
-    vfs_free_fd(sock);
+    vfs_free_fd(pid, sock);
 
     return m3Err_none;
 }
@@ -1545,15 +1565,17 @@ static const void *host_pipe_write(IM3Runtime runtime, IM3ImportContext _ctx, ui
     return m3Err_none;
 }
 
-/* pipe_close(fd) — close pipe via VFS */
+/* pipe_close(fd) — close pipe via VFS (per-process) */
 static const void *host_pipe_close(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
     int fd = (int)*(int64_t*)(_sp + 1);
     (void)_ctx; (void)_mem;
 
+    int pid = get_current_pid(runtime);
+
     extern int pipe_close(int fd);
     int rc = pipe_close(fd);
-    vfs_free_fd(fd);
+    vfs_free_fd(pid, fd);
     int32_t *ret = (int32_t *)_sp;
     *ret = (int32_t)rc;
     return m3Err_none;
