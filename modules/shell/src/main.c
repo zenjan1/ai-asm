@@ -60,6 +60,9 @@ extern int wasm_host_pipe_create(unsigned int rfd_off, unsigned int wfd_off);
 __attribute__((import_module("host"), import_name("pipe_close")))
 extern void wasm_host_pipe_close(int fd);
 
+__attribute__((import_module("host"), import_name("pipe_read")))
+extern int wasm_host_pipe_read(int fd, unsigned int buf_off, unsigned int len);
+
 __attribute__((import_module("host"), import_name("proc_list_next")))
 extern int wasm_host_proc_list_next(void);
 
@@ -487,6 +490,11 @@ static void cmd_cat(const char *filename)
 #define MAX_PIPE_STAGES 8
 #define PIPE_BUF_SIZE 8
 
+/* Output buffer for redirect mode */
+#define MAX_REDIRECT_BUF 2048
+static char redirect_buf[MAX_REDIRECT_BUF];
+static unsigned int redirect_buf_len = 0;
+
 /* Forward declarations */
 static void shell_execute_single(const char *cmd);
 static void wait_for_pid(int pid);
@@ -526,17 +534,22 @@ static void shell_execute_pipe(const char *pipeline)
         return;
     }
 
-    /* Create pipes: need num_stages - 1 pipes */
-    int pipes[MAX_PIPE_STAGES - 1][2];  /* [pipe_index][0]=read, [1]=write */
+    /* Check if last stage has output redirect (> or >>) */
+    char last_stage_buf[MAX_LINE];
+    redirect_t last_redir;
+    parse_redirect(stages[num_stages - 1], last_stage_buf, &last_redir);
+    int has_output_redirect = (last_redir.mode == REDIR_OUT ||
+                               last_redir.mode == REDIR_OUT_APP);
+
+    /* Create pipes: need num_stages - 1 pipes between stages */
+    int pipes[MAX_PIPE_STAGES - 1][2];
     unsigned int i;
 
     for (i = 0; i < (unsigned int)(num_stages - 1); i++) {
-        /* Allocate 8 bytes in WASM memory for rfd and wfd return values */
         unsigned int buf = alloc(PIPE_BUF_SIZE);
         int result = wasm_host_pipe_create(buf, buf + 4);
         if (result != 0) {
             print_str("pipe: create failed\n");
-            /* Close any pipes already created */
             while (i > 0) {
                 i--;
                 wasm_host_pipe_close(pipes[i][0]);
@@ -548,6 +561,18 @@ static void shell_execute_pipe(const char *pipeline)
         pipes[i][1] = *(int *)(buf + 4);
     }
 
+    /* If output redirect, create an extra pipe for last stage's stdout */
+    int redirect_pipe_rfd = -1;
+    int redirect_pipe_wfd = -1;
+    if (has_output_redirect) {
+        unsigned int buf = alloc(PIPE_BUF_SIZE);
+        int result = wasm_host_pipe_create(buf, buf + 4);
+        if (result == 0) {
+            redirect_pipe_rfd = *(int *)(buf);
+            redirect_pipe_wfd = *(int *)(buf + 4);
+        }
+    }
+
     /* Spawn each stage with appropriate fd redirection */
     int pids[MAX_PIPE_STAGES];
     for (i = 0; i < (unsigned int)num_stages; i++) {
@@ -555,35 +580,38 @@ static void shell_execute_pipe(const char *pipeline)
         int stdout_fd = -1;
 
         if (i > 0) {
-            stdin_fd = pipes[i - 1][0];  /* read from previous pipe */
+            stdin_fd = pipes[i - 1][0];
         }
+        /* Last stage: if output redirect, stdout goes to redirect pipe */
         if (i < (unsigned int)(num_stages - 1)) {
-            stdout_fd = pipes[i][1];  /* write to next pipe */
+            stdout_fd = pipes[i][1];
+        } else if (has_output_redirect) {
+            stdout_fd = redirect_pipe_wfd;
         }
 
         /* Extract module name (first word) from stage command */
-        unsigned int mod_name_len = 0;
-        while (mod_name_len < stage_lens[i] && stages[i][mod_name_len] != ' ') {
-            mod_name_len++;
-        }
+        const char *stage = (i == (unsigned int)(num_stages - 1)) ? last_stage_buf : stages[i];
+        unsigned int slen = (i == (unsigned int)(num_stages - 1)) ?
+                            my_strlen(last_stage_buf) : stage_lens[i];
 
-        /* Copy module name to WASM memory */
+        unsigned int mod_name_len = 0;
+        while (mod_name_len < slen && stage[mod_name_len] != ' ') mod_name_len++;
+
+        /* Copy module name */
         unsigned int mod_off = alloc(mod_name_len + 1);
         char *mod_dst = (char *)(mod_off);
         unsigned int k;
-        for (k = 0; k < mod_name_len; k++) mod_dst[k] = stages[i][k];
+        for (k = 0; k < mod_name_len; k++) mod_dst[k] = stage[k];
         mod_dst[mod_name_len] = '\0';
 
-        /* Copy full command to WASM memory for set_argv */
-        unsigned int cmd_off = alloc(stage_lens[i] + 1);
+        /* Copy full command for set_argv */
+        unsigned int cmd_off = alloc(slen + 1);
         char *cmd_dst = (char *)(cmd_off);
-        for (k = 0; k < stage_lens[i]; k++) cmd_dst[k] = stages[i][k];
-        cmd_dst[stage_lens[i]] = '\0';
+        for (k = 0; k < slen; k++) cmd_dst[k] = stage[k];
+        cmd_dst[slen] = '\0';
 
-        /* Set argv for the spawned module to receive full command */
-        wasm_host_set_argv(cmd_off, stage_lens[i]);
+        wasm_host_set_argv(cmd_off, slen);
 
-        /* Spawn using module name (for registry lookup) */
         if (stdin_fd != -1 || stdout_fd != -1) {
             pids[i] = wasm_host_spawn_redirect(mod_off, mod_name_len, stdin_fd, stdout_fd);
         } else {
@@ -597,24 +625,50 @@ static void shell_execute_pipe(const char *pipeline)
         }
     }
 
-    /* Close all pipe fds in parent (shell) */
+    /* Close all pipe fds in parent */
     for (i = 0; i < (unsigned int)(num_stages - 1); i++) {
         wasm_host_pipe_close(pipes[i][0]);
         wasm_host_pipe_close(pipes[i][1]);
     }
 
-    /* Wait for all spawned processes to exit */
+    /* Close write end of redirect pipe in parent */
+    if (redirect_pipe_wfd >= 0) {
+        wasm_host_pipe_close(redirect_pipe_wfd);
+    }
+
+    /* Wait for all spawned processes */
     for (i = 0; i < (unsigned int)num_stages; i++) {
         if (pids[i] >= 0) {
             wait_for_pid(pids[i]);
         }
     }
-}
 
-/* Output buffer for redirect mode */
-#define MAX_REDIRECT_BUF 2048
-static char redirect_buf[MAX_REDIRECT_BUF];
-static unsigned int redirect_buf_len = 0;
+    /* If output redirect, read from redirect pipe and write to file */
+    if (has_output_redirect && redirect_pipe_rfd >= 0) {
+        redirect_buf_len = 0;
+
+        /* Read data from redirect pipe */
+        unsigned int rbuf_off = alloc(512);
+        for (;;) {
+            int n = wasm_host_pipe_read(redirect_pipe_rfd, rbuf_off, 512);
+            if (n <= 0) break;
+            if (redirect_buf_len + (unsigned int)n < MAX_REDIRECT_BUF) {
+                char *src = (char *)rbuf_off;
+                for (int j = 0; j < n; j++)
+                    redirect_buf[redirect_buf_len + (unsigned int)j] = src[j];
+                redirect_buf_len += (unsigned int)n;
+            }
+            wasm_host_yield();
+        }
+
+        wasm_host_pipe_close(redirect_pipe_rfd);
+
+        /* Write collected output to file */
+        write_to_file(last_redir.filename,
+                      last_redir.mode == REDIR_OUT_APP,
+                      redirect_buf, redirect_buf_len);
+    }
+}
 
 static void redirect_print(const char *s)
 {
