@@ -42,22 +42,23 @@ vfs_initialized:
 .text
 
 /* -----------------------------------------------------------------------------
- * _vfs_proc_base(pid) → x0 = base address of proc's fd table
+ * vfs_proc_base(pid) → x0 = base address of proc's fd table
  * w0 = pid (0..15)
  * ----------------------------------------------------------------------------- */
-_vfs_proc_base:
+.global vfs_proc_base
+vfs_proc_base:
     stp     x29, x30, [sp, #-16]!
     adrp    x1, vfs_proc_table
     add     x1, x1, #:lo12:vfs_proc_table
     cmp     w0, #VFS_MAX_PROCS
-    b.ge    _vfs_proc_bad
+    b.ge    vfs_proc_bad
     uxtw    x2, w0
     mov     x3, #VFS_PROC_ENTRY_SIZE
     madd    x0, x2, x3, x1
     ldp     x29, x30, [sp], #16
     ret
 
-_vfs_proc_bad:
+vfs_proc_bad:
     mov     x0, #0
     ldp     x29, x30, [sp], #16
     ret
@@ -72,7 +73,7 @@ _vfs_find_slot:
     mov     w21, w1               /* fd */
 
     mov     w0, w20
-    bl      _vfs_proc_base
+    bl      vfs_proc_base
     cbz     x0, _vfs_find_fail
 
     cmp     w21, #VFS_MAX_FD
@@ -128,7 +129,7 @@ vfs_alloc_fd:
 
     /* Get proc base */
     mov     w0, w20
-    bl      _vfs_proc_base
+    bl      vfs_proc_base
     cbz     x0, _vfs_alloc_fail
 
     /* Find free slot */
@@ -203,7 +204,7 @@ vfs_free_all:
     mov     w20, w0
 
     mov     w0, w20
-    bl      _vfs_proc_base
+    bl      vfs_proc_base
     cbz     x0, _vfs_free_all_done
 
     mov     x1, x0               /* base */
@@ -322,7 +323,7 @@ vfs_list:
     mov     x21, x1               /* buf_off */
 
     mov     w0, w20
-    bl      _vfs_proc_base
+    bl      vfs_proc_base
     cbz     x0, _vfs_list_done
 
     mov     x1, x0               /* base */

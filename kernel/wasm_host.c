@@ -667,6 +667,159 @@ static const void *host_spawn(IM3Runtime runtime, IM3ImportContext _ctx, uint64_
     return m3Err_none;
 }
 
+/* -------------------------------------------------------------------------- */
+/* VFS path resolution (v13.0)                                                */
+/* -------------------------------------------------------------------------- */
+
+#define VFS_FLAG_READ   1
+#define VFS_FLAG_WRITE  2
+
+extern int pipe_create(int *, int *);
+extern int pipe_close(int);
+extern int net_close(int);
+extern int net_connect(unsigned int, unsigned int, unsigned int);
+extern int net_listen_impl(unsigned int);
+extern void ramdisk_close(int);
+extern int ramdisk_open(const char *, unsigned int);
+
+/* Simple string prefix check */
+static int my_strncmp(const char *a, const char *b, unsigned int n)
+{
+    for (unsigned int i = 0; i < n; i++) {
+        if (a[i] != b[i]) return 1;
+        if (a[i] == '\0') return 1;
+    }
+    return 0;
+}
+
+/* Parse a decimal number from string, return value and advance pointer */
+static unsigned int my_parse_uint(const char *s, unsigned int *out_pos, unsigned int max_len)
+{
+    unsigned int pos = *out_pos;
+    unsigned int val = 0;
+    while (pos < max_len && s[pos] >= '0' && s[pos] <= '9') {
+        val = val * 10 + (s[pos] - '0');
+        pos++;
+    }
+    *out_pos = pos;
+    return val;
+}
+
+/* _vfs_path_open: C helper called from vfs_open in assembly
+ * Matches path prefix and creates appropriate fd type
+ * Called from assembly: _vfs_path_open(pid, path_ptr, path_len, flags)
+ */
+int _vfs_path_open(int pid, const char *path, unsigned int path_len, int flags)
+{
+    if (!path || path_len == 0) return -1;
+
+    /* Check "/dev/pipe" (9 chars) */
+    if (path_len >= 9 && my_strncmp(path, "/dev/pipe", 9) == 0) {
+        int rfd = 0, wfd = 0;
+        extern int pipe_create(int *, int *);
+        if (pipe_create(&rfd, &wfd) != 0) return -1;
+
+        /* Register read_fd in VFS */
+        int vfs_rfd = vfs_alloc_fd(pid, 1 /* VFS_TYPE_PIPE */, flags | VFS_FLAG_READ);
+        if (vfs_rfd < 0) { pipe_close(rfd); return -1; }
+
+        /* Register write_fd in VFS (if flags include write) */
+        if (flags & VFS_FLAG_WRITE) {
+            int vfs_wfd = vfs_alloc_fd(pid, 1 /* VFS_TYPE_PIPE */, flags | VFS_FLAG_WRITE);
+            if (vfs_wfd >= 0) {
+                vfs_set_ops(pid, vfs_wfd, (void *)(intptr_t)wfd);
+            }
+        }
+
+        vfs_set_ops(pid, vfs_rfd, (void *)(intptr_t)rfd);
+        return vfs_rfd;
+    }
+
+    /* Check "/net/connect/" (13 chars) */
+    if (path_len >= 13 && my_strncmp(path, "/net/connect/", 13) == 0) {
+        /* Format: /net/connect/ip.port.proto  (dots as separators) */
+        const char *p = path + 13;
+        unsigned int rem = path_len - 13;
+        unsigned int pos = 0;
+
+        /* Parse IP (4 octets separated by dots) */
+        unsigned int ip = 0;
+        for (int i = 0; i < 4; i++) {
+            unsigned int octet = my_parse_uint(p, &pos, rem);
+            ip = (ip << 8) | octet;
+            if (pos < rem && p[pos] == '.') pos++;  /* skip dot */
+        }
+
+        /* Parse port */
+        unsigned int port = my_parse_uint(p, &pos, rem);
+        if (pos < rem && p[pos] == '.') pos++;
+
+        /* Parse proto */
+        unsigned int proto = my_parse_uint(p, &pos, rem);
+
+        extern int net_connect(unsigned int, unsigned int, unsigned int);
+        int sock = net_connect(ip, port, proto);
+        if (sock < 0) return -1;
+
+        int vfs_fd = vfs_alloc_fd(pid, 2 /* VFS_TYPE_SOCKET */, flags);
+        if (vfs_fd < 0) { net_close(sock); return -1; }
+        vfs_set_ops(pid, vfs_fd, (void *)(intptr_t)sock);
+        return vfs_fd;
+    }
+
+    /* Check "/net/listen/" (12 chars) */
+    if (path_len >= 12 && my_strncmp(path, "/net/listen/", 12) == 0) {
+        const char *p = path + 12;
+        unsigned int rem = path_len - 12;
+        unsigned int pos = 0;
+        unsigned int port = my_parse_uint(p, &pos, rem);
+
+        extern int net_listen_impl(unsigned int);
+        int sock = net_listen_impl(port);
+        if (sock < 0) return -1;
+
+        int vfs_fd = vfs_alloc_fd(pid, 2 /* VFS_TYPE_SOCKET */, flags);
+        if (vfs_fd < 0) { net_close(sock); return -1; }
+        vfs_set_ops(pid, vfs_fd, (void *)(intptr_t)sock);
+        return vfs_fd;
+    }
+
+    /* Default: regular file via ramdisk */
+    int fd = ramdisk_open(path, path_len);
+    if (fd < 0) return -1;
+
+    int vfs_fd = vfs_alloc_fd(pid, 0 /* VFS_TYPE_FILE */, flags);
+    if (vfs_fd < 0) { ramdisk_close(fd); return -1; }
+    vfs_set_ops(pid, vfs_fd, (void *)(intptr_t)fd);
+    return vfs_fd;
+}
+
+/* host_vfs_open(path_ptr, path_len, flags) → fd or -1 (unified path-based open) */
+static const void *host_vfs_open(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx; (void)_mem;
+    uint32_t path_off = (uint32_t)*(_sp + 1);
+    uint32_t path_len = (uint32_t)*(_sp + 2);
+    int32_t flags     = (int32_t)(int64_t)*(_sp + 3);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (path_off + path_len > mem_size) {
+        int32_t *ret = (int32_t *)(_sp);
+        *ret = -1;
+        return m3Err_none;
+    }
+
+    int pid = get_current_pid(runtime);
+    const char *path = (const char *)(mem + path_off);
+    int fd = _vfs_path_open(pid, path, path_len, (int)flags);
+
+    int32_t *ret = (int32_t *)(_sp);
+    *ret = (int32_t)fd;
+    return m3Err_none;
+}
+
 /* host_fs_open(path_ptr, path_len) — open file via VFS (per-process) */
 static const void *host_fs_open(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
@@ -2796,6 +2949,7 @@ static const host_reg_t host_registry[] = {
     { "host", "log",         "v(iiii)",&host_log         },
     { "host", "getc",        "i()",    &host_getc        },
     { "host", "spawn",       "i(ii)",  &host_spawn       },
+    { "host", "vfs_open",    "i(iii)", &host_vfs_open    },
     { "host", "fs_open",     "i(ii)",  &host_fs_open     },
     { "host", "fs_read",     "i(iii)", &host_fs_read     },
     { "host", "fs_close",    "v(i)",   &host_fs_close    },

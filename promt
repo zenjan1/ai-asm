@@ -1,16 +1,16 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-25 04:40
-# 当前阶段: Phase 12 (v12.0 进程退出VFS资源清理) - COMPLETED
+# 生成时间: 2026-05-25 05:00
+# 当前阶段: Phase 13 (v13.0 VFS统一路径解析) - COMPLETED
 
 ## 当前状态
-- v12.0 进程退出VFS资源清理已完成
+- v13.0 VFS统一路径解析已完成
 - WASM模块: 19个
-- kernel.elf: 6927544 bytes (6765KB)
-- VFS: 16进程 × 32fd, 进程退出自动释放所有fd (host_exit, wasi_proc_exit, host_proc_exit_c)
+- kernel.elf: 6994184 bytes (6830KB)
+- VFS: host_vfs_open() 支持 /dev/pipe, /net/connect/*, /net/listen/*, 普通文件
 
 ## 下一步任务 (待确定)
 可能的方向:
-1. 持久化存储 — virtio_blk 块设备文件系统写支持
-2. VFS路径解析 — 支持 /dev/pipe, /net/socket 等路径访问
-3. WASM应用模块 — 基于VFS统一I/O的新应用
-4. 进程间fd传递 — 支持通过socket传递fd (类似Unix SCM_RIGHTS)
+1. WASM shell 增强 — 支持管道命令 (ls | grep hello)
+2. 持久化存储 — virtio_blk 文件系统写回 (FAT write support)
+3. 进程间fd传递 — 类似Unix SCM_RIGHTS
+4. VFS mount 系统 — 支持多文件系统挂载
