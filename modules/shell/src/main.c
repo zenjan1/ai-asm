@@ -7,6 +7,8 @@
  * Supports: help, tick, echo, alloc, log, clear, exit, ls, cat
  */
 
+#define MAX_LINE 128
+
 /* -------------------------------------------------------------------------- */
 /* WASM imports                                                               */
 /* -------------------------------------------------------------------------- */
@@ -69,6 +71,12 @@ extern void wasm_host_yield(void);
 
 __attribute__((import_module("host"), import_name("set_argv")))
 extern void wasm_host_set_argv(unsigned int buf_off, unsigned int buf_len);
+
+__attribute__((import_module("host"), import_name("fs_create")))
+extern int wasm_host_fs_create(unsigned int path_off, unsigned int path_len);
+
+__attribute__((import_module("host"), import_name("fs_write")))
+extern int wasm_host_fs_write(int fd, unsigned int buf_off, unsigned int len);
 
 /* -------------------------------------------------------------------------- */
 /* WASM memory allocator (bump, uses host_alloc)                              */
@@ -193,6 +201,157 @@ static void shell_free(void *p)
 }
 
 /* -------------------------------------------------------------------------- */
+/* File redirection parsing (v22.0)                                           */
+/* -------------------------------------------------------------------------- */
+
+#define REDIR_NONE      0
+#define REDIR_OUT       1   /* > */
+#define REDIR_OUT_APP   2   /* >> */
+#define REDIR_IN        3   /* < */
+
+typedef struct {
+    int mode;               /* REDIR_NONE / REDIR_OUT / REDIR_OUT_APP / REDIR_IN */
+    char filename[64];
+} redirect_t;
+
+/* Parse redirection from command line.
+ * Copies clean command (without redirect part) to cmd_buf.
+ * Sets redirect mode and filename in redir. */
+static void parse_redirect(const char *line, char *cmd_buf, redirect_t *redir)
+{
+    redir->mode = REDIR_NONE;
+    redir->filename[0] = '\0';
+
+    unsigned int len = my_strlen(line);
+
+    /* Scan for redirect operators */
+    unsigned int i = 0;
+    while (i < len) {
+        if (line[i] == '>') {
+            /* Check for >> (append) */
+            unsigned int op_start = i;
+            if (i + 1 < len && line[i + 1] == '>') {
+                redir->mode = REDIR_OUT_APP;
+                i += 2;
+            } else {
+                redir->mode = REDIR_OUT;
+                i += 1;
+            }
+            /* Skip spaces */
+            while (i < len && line[i] == ' ') i++;
+            /* Copy filename */
+            unsigned int fi = 0;
+            while (i < len && fi < 63) {
+                redir->filename[fi++] = line[i++];
+            }
+            redir->filename[fi] = '\0';
+            /* Copy command part (before redirect) */
+            unsigned int ci = 0;
+            while (ci < op_start && line[ci] != ' ') ci++;
+            /* Trim trailing spaces */
+            while (ci > 0 && line[ci - 1] == ' ') ci--;
+            for (unsigned int j = 0; j < ci; j++) cmd_buf[j] = line[j];
+            cmd_buf[ci] = '\0';
+            return;
+        } else if (line[i] == '<') {
+            redir->mode = REDIR_IN;
+            i += 1;
+            unsigned int op_start = i;
+            while (i < len && line[i] == ' ') i++;
+            unsigned int fi = 0;
+            while (i < len && fi < 63) {
+                redir->filename[fi++] = line[i++];
+            }
+            redir->filename[fi] = '\0';
+            unsigned int ci = 0;
+            while (ci < op_start && line[ci] != ' ') ci++;
+            while (ci > 0 && line[ci - 1] == ' ') ci--;
+            for (unsigned int j = 0; j < ci; j++) cmd_buf[j] = line[j];
+            cmd_buf[ci] = '\0';
+            return;
+        }
+        i++;
+    }
+
+    /* No redirect found — copy as-is */
+    unsigned int j;
+    for (j = 0; j < len; j++) cmd_buf[j] = line[j];
+    cmd_buf[j] = '\0';
+}
+
+/* Write a buffer to a file (used for > and >> redirect) */
+static int write_to_file(const char *filename, int append,
+                         const char *buf, unsigned int len)
+{
+    unsigned int flen = my_strlen(filename);
+    unsigned int path_off = alloc(flen);
+    char *pd = (char *)path_off;
+    for (unsigned int i = 0; i < flen; i++) pd[i] = filename[i];
+
+    int fd;
+    if (append) {
+        fd = wasm_host_fs_open(path_off, flen);
+    } else {
+        fd = wasm_host_fs_create(path_off, flen);
+    }
+    if (fd < 0) {
+        print_str("shell: cannot open '");
+        print_str(filename);
+        print_str("'\n");
+        return -1;
+    }
+
+    /* Write data to file */
+    unsigned int data_off = alloc(len);
+    char *dd = (char *)data_off;
+    for (unsigned int i = 0; i < len; i++) dd[i] = buf[i];
+
+    int rc = wasm_host_fs_write(fd, data_off, len);
+    wasm_host_fs_close(fd);
+
+    if (rc < 0) {
+        print_str("shell: write to '");
+        print_str(filename);
+        print_str("' failed\n");
+        return -1;
+    }
+    return 0;
+}
+
+/* Read entire file into WASM memory, returns pointer and sets len_out.
+ * Returns 0 on failure. */
+static char *read_file(const char *filename, unsigned int *len_out)
+{
+    unsigned int flen = my_strlen(filename);
+    unsigned int path_off = alloc(flen);
+    char *pd = (char *)path_off;
+    for (unsigned int i = 0; i < flen; i++) pd[i] = filename[i];
+
+    int fd = wasm_host_fs_open(path_off, flen);
+    if (fd < 0) {
+        print_str("shell: cannot open '");
+        print_str(filename);
+        print_str("'\n");
+        return 0;
+    }
+
+    /* Allocate a 4KB buffer */
+    unsigned int buf_off = alloc(4096);
+    int total = 0;
+    for (;;) {
+        int n = wasm_host_fs_read(fd, buf_off + (unsigned int)total,
+                                   4096 - (unsigned int)total);
+        if (n <= 0) break;
+        total += n;
+        if ((unsigned int)total >= 4096) break;
+    }
+    wasm_host_fs_close(fd);
+
+    *len_out = (unsigned int)total;
+    return (char *)buf_off;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Input: blocking read one character from UART                               */
 /* -------------------------------------------------------------------------- */
 
@@ -219,6 +378,10 @@ static void cmd_help(void)
     print_str("  exit    - exit shell\n");
     print_str("  grep P  - search stdin for pattern P\n");
     print_str("  Pipes:  - cmd1 | cmd2 | cmd3\n");
+    print_str("  Redirect:\n");
+    print_str("  echo hi > file.txt   (write)\n");
+    print_str("  echo hi >> file.txt  (append)\n");
+    print_str("  cat < file.txt       (read stdin)\n");
 }
 
 static void cmd_tick(void)
@@ -448,33 +611,246 @@ static void shell_execute_pipe(const char *pipeline)
     }
 }
 
+/* Output buffer for redirect mode */
+#define MAX_REDIRECT_BUF 2048
+static char redirect_buf[MAX_REDIRECT_BUF];
+static unsigned int redirect_buf_len = 0;
+
+static void redirect_print(const char *s)
+{
+    unsigned int len = my_strlen(s);
+    if (redirect_buf_len + len < MAX_REDIRECT_BUF) {
+        for (unsigned int i = 0; i < len; i++)
+            redirect_buf[redirect_buf_len + i] = s[i];
+        redirect_buf_len += len;
+    }
+}
+
+static void redirect_print_buf(const char *buf, unsigned int len)
+{
+    if (redirect_buf_len + len < MAX_REDIRECT_BUF) {
+        for (unsigned int i = 0; i < len; i++)
+            redirect_buf[redirect_buf_len + i] = buf[i];
+        redirect_buf_len += len;
+    }
+}
+
+static int redirect_write(const redirect_t *redir, int append)
+{
+    return write_to_file(redir->filename, append, redirect_buf, redirect_buf_len);
+}
+
 static void shell_execute_single(const char *cmd)
 {
-    if (my_strcmp(cmd, "help") == 0) {
+    redirect_t redir;
+    char cmd_buf[MAX_LINE];
+    parse_redirect(cmd, cmd_buf, &redir);
+
+    /* For output redirect, accumulate into redirect_buf instead of printing */
+    if (redir.mode == REDIR_OUT || redir.mode == REDIR_OUT_APP) {
+        redirect_buf_len = 0;
+
+        if (my_strcmp(cmd_buf, "help") == 0) {
+            cmd_help();
+            redirect_write(&redir, redir.mode == REDIR_OUT_APP);
+        } else if (my_strcmp(cmd_buf, "tick") == 0) {
+            redirect_print("tick: ");
+            /* We need tick value as string — compute inline */
+            char tick_buf[20];
+            unsigned long long tick = wasm_host_get_tick();
+            int ti = 0;
+            if (tick == 0) tick_buf[ti++] = '0';
+            else { unsigned long long v = tick; while (v > 0) { tick_buf[ti++] = (char)('0' + (v % 10)); v /= 10; } }
+            for (int j = ti - 1; j >= 0; j--) redirect_print_buf(tick_buf, 1);
+            redirect_print("\n");
+            redirect_write(&redir, redir.mode == REDIR_OUT_APP);
+        } else if (my_strcmp(cmd_buf, "alloc") == 0) {
+            char *buf = (char *)shell_malloc(64);
+            if (buf) {
+                for (int i = 0; i < 32; i++)
+                    buf[i] = 'A' + (char)(i % 26);
+                buf[32] = '\0';
+                redirect_print("alloc 64 bytes: ");
+                unsigned int bl = my_strlen(buf);
+                redirect_print_buf(buf, bl);
+                redirect_print("\nfree ok\n");
+                shell_free(buf);
+            } else {
+                redirect_print("alloc failed!\n");
+            }
+            redirect_write(&redir, redir.mode == REDIR_OUT_APP);
+        } else if (my_strcmp(cmd_buf, "log") == 0) {
+            shell_log("INFO", "user requested log test");
+            redirect_print("log sent\n");
+            redirect_write(&redir, redir.mode == REDIR_OUT_APP);
+        } else if (my_strcmp(cmd_buf, "clear") == 0) {
+            cmd_clear();
+        } else if (my_strcmp(cmd_buf, "ls") == 0) {
+            unsigned int buf_off = alloc(2048);
+            int total = wasm_host_fs_list(buf_off, 2048);
+            if (total <= 0) {
+                redirect_print("(empty)\n");
+            } else {
+                unsigned int i = 0;
+                char *names = (char *)buf_off;
+                while (i < (unsigned int)total) {
+                    if (names[i] == '\0') redirect_print("\n");
+                    else redirect_print_buf(names + i, 1);
+                    i++;
+                }
+                redirect_print("\n");
+            }
+            redirect_write(&redir, redir.mode == REDIR_OUT_APP);
+        } else if (cmd_buf[0] == 'c' && cmd_buf[1] == 'a' &&
+                   cmd_buf[2] == 't' && cmd_buf[3] == ' ') {
+            /* cat with output redirect: cat file > dest */
+            const char *filename = cmd_buf + 4;
+            unsigned int flen = my_strlen(filename);
+            unsigned int path_off = alloc(flen);
+            char *pd = (char *)path_off;
+            for (unsigned int i = 0; i < flen; i++) pd[i] = filename[i];
+
+            int fd = wasm_host_fs_open(path_off, flen);
+            if (fd < 0) {
+                redirect_print("cat: no such file: ");
+                redirect_print(filename);
+                redirect_print("\n");
+                redirect_write(&redir, redir.mode == REDIR_OUT_APP);
+                return;
+            }
+            unsigned int rbuf_off = alloc(512);
+            for (;;) {
+                int n = wasm_host_fs_read(fd, rbuf_off, 512);
+                if (n <= 0) break;
+                redirect_print_buf((const char *)rbuf_off, (unsigned int)n);
+            }
+            wasm_host_fs_close(fd);
+            redirect_write(&redir, redir.mode == REDIR_OUT_APP);
+        } else if (cmd_buf[0] == 'e' && cmd_buf[1] == 'c' &&
+                   cmd_buf[2] == 'h' && cmd_buf[3] == 'o' &&
+                   cmd_buf[4] == ' ') {
+            redirect_print(cmd_buf + 5);
+            redirect_print("\n");
+            redirect_write(&redir, redir.mode == REDIR_OUT_APP);
+        } else if (cmd_buf[0] == 'g' && cmd_buf[1] == 'r' &&
+                   cmd_buf[2] == 'e' && cmd_buf[3] == 'p' &&
+                   cmd_buf[4] == ' ') {
+            /* grep with output redirect */
+            /* Spawn grep module and redirect its output */
+            unsigned int mod_len = my_strlen(cmd_buf);
+            unsigned int cmd_off = alloc(mod_len + 1);
+            char *cd = (char *)cmd_off;
+            for (unsigned int i = 0; i <= mod_len; i++) cd[i] = cmd_buf[i];
+            wasm_host_set_argv(cmd_off, mod_len);
+
+            unsigned int name_off = alloc(4);
+            char *nd = (char *)name_off;
+            nd[0] = 'g'; nd[1] = 'r'; nd[2] = 'e'; nd[3] = 'p';
+            int pid = wasm_host_spawn(name_off, 4);
+            if (pid >= 0) {
+                /* We can't redirect grep output easily here since it uses host_print directly */
+                /* Just wait for it */
+                wait_for_pid(pid);
+            }
+        } else {
+            /* External module with output redirect — spawn and wait */
+            unsigned int mod_name_len = 0;
+            while (cmd_buf[mod_name_len] && cmd_buf[mod_name_len] != ' ') mod_name_len++;
+            unsigned int cmd_off = alloc(mod_name_len + 1);
+            char *cd = (char *)cmd_off;
+            for (unsigned int i = 0; i <= mod_name_len; i++) cd[i] = cmd_buf[i];
+            wasm_host_set_argv(cmd_off, mod_name_len);
+            int pid = wasm_host_spawn(cmd_off, mod_name_len);
+            if (pid >= 0) {
+                wait_for_pid(pid);
+            } else {
+                redirect_print("unknown: ");
+                redirect_print(cmd_buf);
+                redirect_print("\n");
+                redirect_write(&redir, redir.mode == REDIR_OUT_APP);
+            }
+        }
+        return;
+    }
+
+    /* For input redirect (<), provide file content as stdin */
+    if (redir.mode == REDIR_IN) {
+        unsigned int file_len = 0;
+        char *file_content = read_file(redir.filename, &file_len);
+        if (!file_content) return;
+
+        /* For cat < file, output the file content */
+        if (cmd_buf[0] == 'c' && cmd_buf[1] == 'a' &&
+            cmd_buf[2] == 't' && cmd_buf[3] == ' ') {
+            redirect_print_buf(file_content, file_len);
+            redirect_print("\n");
+            /* Print to stdout (no output redirect) */
+            unsigned int off = alloc(redirect_buf_len);
+            char *od = (char *)off;
+            for (unsigned int i = 0; i < redirect_buf_len; i++) od[i] = redirect_buf[i];
+            wasm_host_print(off, redirect_buf_len);
+            redirect_buf_len = 0;
+            return;
+        }
+
+        /* For grep < file, spawn grep with file content via pipe */
+        if (cmd_buf[0] == 'g' && cmd_buf[1] == 'r' &&
+            cmd_buf[2] == 'e' && cmd_buf[3] == 'p' &&
+            cmd_buf[4] == ' ') {
+            /* Create pipe, spawn grep, write file content via host_print to pipe */
+            /* For now, just spawn grep (it reads stdin from UART) */
+            unsigned int mod_len = my_strlen(cmd_buf);
+            unsigned int cmd_off = alloc(mod_len + 1);
+            char *cd = (char *)cmd_off;
+            for (unsigned int i = 0; i <= mod_len; i++) cd[i] = cmd_buf[i];
+            wasm_host_set_argv(cmd_off, mod_len);
+
+            unsigned int name_off = alloc(4);
+            char *nd = (char *)name_off;
+            nd[0] = 'g'; nd[1] = 'r'; nd[2] = 'e'; nd[3] = 'p';
+            int pid = wasm_host_spawn(name_off, 4);
+            if (pid >= 0) wait_for_pid(pid);
+            return;
+        }
+
+        /* External module with input redirect */
+        unsigned int mod_name_len = 0;
+        while (cmd_buf[mod_name_len] && cmd_buf[mod_name_len] != ' ') mod_name_len++;
+        unsigned int cmd_off = alloc(mod_name_len + 1);
+        char *cd = (char *)cmd_off;
+        for (unsigned int i = 0; i <= mod_name_len; i++) cd[i] = cmd_buf[i];
+        wasm_host_set_argv(cmd_off, mod_name_len);
+        int pid = wasm_host_spawn(cmd_off, mod_name_len);
+        if (pid >= 0) wait_for_pid(pid);
+        return;
+    }
+
+    /* No redirect — normal execution */
+    if (my_strcmp(cmd_buf, "help") == 0) {
         cmd_help();
-    } else if (my_strcmp(cmd, "tick") == 0) {
+    } else if (my_strcmp(cmd_buf, "tick") == 0) {
         cmd_tick();
-    } else if (my_strcmp(cmd, "alloc") == 0) {
+    } else if (my_strcmp(cmd_buf, "alloc") == 0) {
         cmd_alloc();
-    } else if (my_strcmp(cmd, "log") == 0) {
+    } else if (my_strcmp(cmd_buf, "log") == 0) {
         cmd_log();
-    } else if (my_strcmp(cmd, "clear") == 0) {
+    } else if (my_strcmp(cmd_buf, "clear") == 0) {
         cmd_clear();
-    } else if (my_strcmp(cmd, "ls") == 0) {
+    } else if (my_strcmp(cmd_buf, "ls") == 0) {
         cmd_ls();
-    } else if (cmd[0] == 'c' && cmd[1] == 'a' &&
-               cmd[2] == 't' && cmd[3] == ' ') {
-        cmd_cat(cmd + 4);
-    } else if (my_strcmp(cmd, "exit") == 0) {
+    } else if (cmd_buf[0] == 'c' && cmd_buf[1] == 'a' &&
+               cmd_buf[2] == 't' && cmd_buf[3] == ' ') {
+        cmd_cat(cmd_buf + 4);
+    } else if (my_strcmp(cmd_buf, "exit") == 0) {
         shell_log("OP", "shell exiting");
         wasm_host_exit(0);
-    } else if (cmd[0] == 'e' && cmd[1] == 'c' &&
-               cmd[2] == 'h' && cmd[3] == 'o' &&
-               cmd[4] == ' ') {
-        cmd_echo(cmd + 5);
+    } else if (cmd_buf[0] == 'e' && cmd_buf[1] == 'c' &&
+               cmd_buf[2] == 'h' && cmd_buf[3] == 'o' &&
+               cmd_buf[4] == ' ') {
+        cmd_echo(cmd_buf + 5);
     } else {
         print_str("unknown: ");
-        print_str(cmd);
+        print_str(cmd_buf);
         print_str("\n");
     }
 }
@@ -504,8 +880,6 @@ static void wait_for_pid(int pid)
 /* -------------------------------------------------------------------------- */
 /* Shell entry point                                                          */
 /* -------------------------------------------------------------------------- */
-
-#define MAX_LINE 128
 
 __attribute__((export_name("_start")))
 void shell_entry(void)
