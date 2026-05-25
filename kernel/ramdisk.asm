@@ -314,6 +314,20 @@ tr_module_size:
     .int tr_module_end - tr_module_start
 
 /* ---------------------------------------------------------------------------
+ * Cut module
+ * --------------------------------------------------------------------------- */
+.section .rodata.cut_wasm
+.global cut_module_start
+cut_module_start:
+    .incbin "kernel/cut.wasm"
+.global cut_module_end
+cut_module_end:
+.align 4
+.global cut_module_size
+cut_module_size:
+    .int cut_module_end - cut_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

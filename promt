@@ -1,6 +1,6 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-25 20:30
-# 当前阶段: Phase 29 (v29.0 tr WASM模块) - COMPLETED
+# 生成时间: 2026-05-25 22:30
+# 当前阶段: Phase 30 (v30.0 cut WASM模块)
 
 ## 当前状态
 - v29.0 已推送: tr WASM模块
@@ -8,12 +8,63 @@
 - 24个WASM模块已注册 (init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, shmem_test, grep, cat, echo, tee, wc, head, tail, sort, uniq, tr)
 - 管道系统完整: spawn_redirect, argv传递, yield, EOF检测, pipe_read
 - 重定向: > >> < 支持, 管道+重定向组合
-- tee支持管道分支: cmd1 | tee file | cmd2
-- wc支持文本统计: lines/words/bytes
-- head/tail支持文本截取: 前N行/最后N行
-- sort支持文本排序: 字母序(默认), 数值序(-n), 逆序(-r)
-- uniq支持相邻去重: 默认去重, -c计数, -d仅重复, -u仅唯一
-- tr支持字符转换: 翻译(a-z→A-Z), 删除(-d), 范围(a-z, A-Z, 0-9), 转义(\n, \t)
 - 完整文本处理管道: cat | sort | uniq | head | tail | wc | grep | tee | tr
 
-## 等待下一个任务...
+## 问题: 缺少cut模块用于列提取
+
+cut用于从每行中提取特定列,与行处理工具形成互补:
+- echo "a:b:c" | cut -d: -f1 → "a" (按分隔符提取第1列)
+- echo "a:b:c" | cut -d: -f1,3 → "a:c" (提取第1和3列)
+- echo "hello" | cut -c1-3 → "hel" (按字符位置提取)
+
+## 任务: 创建cut WASM模块
+
+### 1. 创建 modules/cut/src/main.c
+
+```c
+/* cut: extract columns from stdin lines */
+/* Usage: cut [-d DELIM] -f FIELDS [-c CHARS] */
+/* -d DELIM: field delimiter (default: tab) */
+/* -f FIELDS: comma-separated field numbers (1-based) */
+/* -c CHARS: character range (e.g., 1-5, 3,7,10-15) */
+```
+
+功能:
+- 从stdin逐字节读取 (host_getc), 逐行处理
+- 按分隔符分割字段 (默认\t)
+- 提取指定字段 (-f) 或字符范围 (-c)
+- 输出提取的内容, 用分隔符连接
+- 支持 -d 指定分隔符
+- 支持 -f 字段选择 (逗号分隔, 如 1,3,5-8)
+- 支持 -c 字符位置选择
+
+实现细节:
+- 每行最大256字节
+- 最大64个字段
+- 字段范围解析: 1-3, 5, 8-10
+- 字符模式: 直接按位置提取, 不需要分割
+- MAX_LINE=256, MAX_FIELDS=64
+
+### 2. Makefile添加编译规则
+- CUT_WASM变量
+- 编译规则
+- modules目标, ramdisk.o依赖, clean目标
+
+### 3. kernel/ramdisk.asm嵌入
+```asm
+.section .rodata.cut_wasm
+.global cut_module_start
+cut_module_start:
+    .incbin "kernel/cut.wasm"
+```
+
+### 4. kernel/wasm_host.c注册
+- extern声明 cut module symbols
+- wasm_registry添加 { "cut", NULL, 0 }
+- wasm_host_init_multi中解析
+
+### 5. 验收标准
+- `echo "a:b:c" | cut -d: -f1` 输出 "a\n"
+- `echo "a:b:c" | cut -d: -f1,3` 输出 "a:c\n"
+- `echo "hello" | cut -c1-3` 输出 "hel\n"
+- `cat /hello.txt | cut -d' ' -f1 | sort | uniq` 管道组合
