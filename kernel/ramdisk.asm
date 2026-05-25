@@ -230,6 +230,20 @@ tee_module_size:
     .int tee_module_end - tee_module_start
 
 /* ---------------------------------------------------------------------------
+ * Wc module
+ * --------------------------------------------------------------------------- */
+.section .rodata.wc_wasm
+.global wc_module_start
+wc_module_start:
+    .incbin "kernel/wc.wasm"
+.global wc_module_end
+wc_module_end:
+.align 4
+.global wc_module_size
+wc_module_size:
+    .int wc_module_end - wc_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
