@@ -300,6 +300,20 @@ uniq_module_size:
     .int uniq_module_end - uniq_module_start
 
 /* ---------------------------------------------------------------------------
+ * Tr module
+ * --------------------------------------------------------------------------- */
+.section .rodata.tr_wasm
+.global tr_module_start
+tr_module_start:
+    .incbin "kernel/tr.wasm"
+.global tr_module_end
+tr_module_end:
+.align 4
+.global tr_module_size
+tr_module_size:
+    .int tr_module_end - tr_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
