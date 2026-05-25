@@ -160,6 +160,20 @@ dns_resolver_module_size:
     .int dns_resolver_module_end - dns_resolver_module_start
 
 /* ---------------------------------------------------------------------------
+ * Shared memory test module
+ * --------------------------------------------------------------------------- */
+.section .rodata.shmem_test_wasm
+.global shmem_test_module_start
+shmem_test_module_start:
+    .incbin "kernel/shmem_test.wasm"
+.global shmem_test_module_end
+shmem_test_module_end:
+.align 4
+.global shmem_test_module_size
+shmem_test_module_size:
+    .int shmem_test_module_end - shmem_test_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

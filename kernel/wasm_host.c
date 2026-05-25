@@ -188,6 +188,8 @@ extern const uint8_t httpd_module_start[], httpd_module_end[];
 extern const uint32_t httpd_module_size;
 extern const uint8_t dns_resolver_module_start[], dns_resolver_module_end[];
 extern const uint32_t dns_resolver_module_size;
+extern const uint8_t shmem_test_module_start[], shmem_test_module_end[];
+extern const uint32_t shmem_test_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -201,6 +203,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "devmgr",         NULL, 0 },
     { "httpd",          NULL, 0 },
     { "dns_resolver",   NULL, 0 },
+    { "shmem_test",     NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -1550,6 +1553,202 @@ static const void *host_signal_send(IM3Runtime runtime, IM3ImportContext _ctx, u
 }
 
 /* -------------------------------------------------------------------------- */
+/* IPC: Shared Memory host functions                                          */
+/* -------------------------------------------------------------------------- */
+
+/* host_shmem_alloc(pid, size) — allocate shared memory region, return region_id */
+static const void *host_shmem_alloc(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t pid  = (int32_t)(int64_t)*(_sp + 1);
+    uint32_t size = (uint32_t)*(uint64_t*)(_sp + 2);
+
+    extern int shmem_alloc(int pid, int size);
+    int rid = shmem_alloc(pid, (int)size);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rid;
+    return m3Err_none;
+}
+
+/* host_shmem_free(region_id) — free shared memory region */
+static const void *host_shmem_free(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t rid = (int32_t)(int64_t)*(_sp + 1);
+
+    extern int shmem_free(int region_id);
+    int rc = shmem_free(rid);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_shmem_attach(region_id, pid) — attach to shared memory */
+static const void *host_shmem_attach(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t rid = (int32_t)(int64_t)*(_sp + 1);
+    int32_t pid = (int32_t)(int64_t)*(_sp + 2);
+
+    extern int shmem_attach(int region_id, int pid);
+    int rc = shmem_attach(rid, pid);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_shmem_detach(region_id) — detach from shared memory */
+static const void *host_shmem_detach(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t rid = (int32_t)(int64_t)*(_sp + 1);
+
+    extern int shmem_detach(int region_id);
+    int rc = shmem_detach(rid);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_shmem_get_ptr(region_id) — return kernel physical address of data area */
+static const void *host_shmem_get_ptr(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t rid = (int32_t)(int64_t)*(_sp + 1);
+
+    extern void *shmem_get_ptr(int region_id);
+    void *ptr = shmem_get_ptr(rid);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)(uintptr_t)ptr;
+    return m3Err_none;
+}
+
+/* host_shmem_set_flag(region_id, flag) — set sync flag */
+static const void *host_shmem_set_flag(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t rid  = (int32_t)(int64_t)*(_sp + 1);
+    uint32_t flag = (uint32_t)*(uint64_t*)(_sp + 2);
+
+    extern int shmem_set_flag(int region_id, int flag);
+    int rc = shmem_set_flag(rid, (int)flag);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_shmem_get_flag(region_id) — get sync flags */
+static const void *host_shmem_get_flag(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t rid = (int32_t)(int64_t)*(_sp + 1);
+
+    extern int shmem_get_flag(int region_id);
+    int flags = shmem_get_flag(rid);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)flags;
+    return m3Err_none;
+}
+
+/* host_shmem_clear_flag(region_id, flag) — clear sync flag */
+static const void *host_shmem_clear_flag(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t rid  = (int32_t)(int64_t)*(_sp + 1);
+    uint32_t flag = (uint32_t)*(uint64_t*)(_sp + 2);
+
+    extern int shmem_clear_flag(int region_id, int flag);
+    int rc = shmem_clear_flag(rid, (int)flag);
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_shmem_write(region_id, buf_off, len) — write data to shared memory */
+static const void *host_shmem_write(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx;
+    int32_t rid    = (int32_t)(int64_t)*(_sp + 1);
+    uint32_t buf_off = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint32_t len   = (uint32_t)*(uint64_t*)(_sp + 3);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (buf_off + len > mem_size) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    extern void *shmem_get_ptr(int region_id);
+    void *shmem_ptr = shmem_get_ptr(rid);
+    if (!shmem_ptr) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -2;
+        return m3Err_none;
+    }
+
+    extern int shmem_get_flag(int region_id);
+    int flags = shmem_get_flag(rid);
+    if (flags <= 0) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -3;
+        return m3Err_none;
+    }
+
+    uint8_t *dst = (uint8_t *)shmem_ptr;
+    for (uint32_t i = 0; i < len; i++)
+        dst[i] = mem[buf_off + i];
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)len;
+    return m3Err_none;
+}
+
+/* host_shmem_read(region_id, buf_off, len) — read data from shared memory */
+static const void *host_shmem_read(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx;
+    int32_t rid    = (int32_t)(int64_t)*(_sp + 1);
+    uint32_t buf_off = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint32_t len   = (uint32_t)*(uint64_t*)(_sp + 3);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (buf_off + len > mem_size) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    extern void *shmem_get_ptr(int region_id);
+    void *shmem_ptr = shmem_get_ptr(rid);
+    if (!shmem_ptr) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -2;
+        return m3Err_none;
+    }
+
+    extern int shmem_get_flag(int region_id);
+    int flags = shmem_get_flag(rid);
+    if (flags <= 0) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -3;
+        return m3Err_none;
+    }
+
+    uint8_t *src = (uint8_t *)shmem_ptr;
+    for (uint32_t i = 0; i < len; i++)
+        mem[buf_off + i] = src[i];
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)len;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* WASI helper functions (called from wasi.asm)                               */
 /* -------------------------------------------------------------------------- */
 
@@ -2267,6 +2466,17 @@ static const host_reg_t host_registry[] = {
     /* Signals */
     { "host", "signal_register", "i(ii)", &host_signal_register },
     { "host", "signal_send",     "i(ii)", &host_signal_send     },
+    /* IPC: Shared Memory */
+    { "host", "shmem_alloc",      "i(ii)", &host_shmem_alloc     },
+    { "host", "shmem_free",       "v(i)",  &host_shmem_free      },
+    { "host", "shmem_attach",     "i(ii)", &host_shmem_attach    },
+    { "host", "shmem_detach",     "v(i)",  &host_shmem_detach    },
+    { "host", "shmem_get_ptr",    "i(i)",  &host_shmem_get_ptr   },
+    { "host", "shmem_set_flag",   "v(ii)", &host_shmem_set_flag  },
+    { "host", "shmem_get_flag",   "i(i)",  &host_shmem_get_flag  },
+    { "host", "shmem_clear_flag", "v(ii)", &host_shmem_clear_flag },
+    { "host", "shmem_write",      "i(iii)", &host_shmem_write    },
+    { "host", "shmem_read",       "i(iii)", &host_shmem_read     },
     /* WASI snapshot_preview1 */
     { "wasi_snapshot_preview1", "fd_write",        "i(iiii)", &wasi_fd_write      },
     { "wasi_snapshot_preview1", "fd_read",         "i(iiii)", &wasi_fd_read       },
@@ -2550,6 +2760,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[9].wasm_size = httpd_module_size;
     wasm_registry[10].wasm_bytes = dns_resolver_module_start;
     wasm_registry[10].wasm_size = dns_resolver_module_size;
+    wasm_registry[11].wasm_bytes = shmem_test_module_start;
+    wasm_registry[11].wasm_size = shmem_test_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];

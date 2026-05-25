@@ -90,6 +90,9 @@ _start:
     bl      msgq_init
     bl      signal_init
 
+    /* Initialize shared memory IPC */
+    bl      shmem_init
+
     /* Initialize JIT cache for WASM pre-compilation */
     bl      jit_cache_init
 
