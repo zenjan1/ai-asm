@@ -375,6 +375,25 @@ pipe_close:
     ret
 
 /* -----------------------------------------------------------------------------
+ * Function: pipe_is_ready
+ * Description: Check if pipe fd is still active (writer hasn't closed)
+ * Input: w0 = fd
+ * Output: w0 = 1 if ready, 0 if not ready / not found
+ * ----------------------------------------------------------------------------- */
+.global pipe_is_ready
+pipe_is_ready:
+    stp     x29, x30, [sp, #-16]!
+    bl      pipe_find_by_fd
+    cbz     x0, 9f
+    ldr     w0, [x0, #PIPE_READY]
+    ldp     x29, x30, [sp], #16
+    ret
+
+9:  mov     w0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
  * Helper: memset_bss - zero fill
  * Input: x0 = address, x1 = length
  * ----------------------------------------------------------------------------- */

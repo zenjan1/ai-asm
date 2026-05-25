@@ -637,18 +637,22 @@ static const void *host_getc(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t
         if (slot->stdin_pipe_fd >= 0 && slot->runtime == runtime) {
             /* Read from pipe stdin */
             uint8_t ch;
-            /* Allocate a temporary buffer in WASM memory for pipe_read */
             uint32_t mem_size = m3_GetMemorySize(runtime);
             if (mem_size < 16) {
                 *ret = -1;
                 return m3Err_none;
             }
-            uint32_t tmp_off = mem_size - 16;  /* use top of memory as temp buffer */
             int n = pipe_read(slot->stdin_pipe_fd, &ch, 1);
             if (n > 0) {
                 *ret = (int32_t)ch;
             } else {
-                *ret = -1;  /* EOF or error */
+                /* Pipe empty — check if writer is still active (v19.0) */
+                extern int pipe_is_ready(int);
+                if (pipe_is_ready(slot->stdin_pipe_fd)) {
+                    *ret = 0;  /* no data yet, caller should retry */
+                } else {
+                    *ret = -1;  /* EOF — writer closed */
+                }
             }
             return m3Err_none;
         }

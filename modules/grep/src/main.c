@@ -153,6 +153,12 @@ void _start(void)
             break;
         }
 
+        if (c == 0) {
+            /* No data yet — yield and retry */
+            wasm_host_yield();
+            continue;
+        }
+
         if (c == '\n' || c == '\r') {
             /* End of line - check match */
             if (pos > 0 && my_strstr(line, pos, pattern, plen)) {
