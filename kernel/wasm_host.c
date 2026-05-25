@@ -1258,6 +1258,35 @@ static const void *host_gui_flush(IM3Runtime rt, IM3ImportContext _ctx, uint64_t
     return m3Err_none;
 }
 
+/* host_gui_blit(dst_x, dst_y, src_x, src_y, w, h, buf_off) — batched blit from WASM memory */
+static const void *host_gui_blit(IM3Runtime rt, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx;
+    uint32_t dst_x   = (uint32_t)*(uint64_t*)(_sp + 1);
+    uint32_t dst_y   = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint32_t src_x   = (uint32_t)*(uint64_t*)(_sp + 3);
+    uint32_t src_y   = (uint32_t)*(uint64_t*)(_sp + 4);
+    uint32_t w       = (uint32_t)*(uint64_t*)(_sp + 5);
+    uint32_t h       = (uint32_t)*(uint64_t*)(_sp + 6);
+    uint32_t buf_off = (uint32_t)*(uint64_t*)(_sp + 7);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(rt);
+
+    if (buf_off + (w * h * 4) > mem_size) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    extern void fb_blit(int dst_x, int dst_y, int src_x, int src_y, int w, int h, uint32_t *src);
+    fb_blit((int)dst_x, (int)dst_y, (int)src_x, (int)src_y, (int)w, (int)h, (uint32_t *)(mem + buf_off));
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = 0;
+    return m3Err_none;
+}
+
 /* host_gui_swap() — swap double buffers (eliminates tearing) */
 static const void *host_gui_swap(IM3Runtime rt, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
@@ -2491,6 +2520,7 @@ static const host_reg_t host_registry[] = {
     { "wasi_snapshot_preview1", "args_sizes_get",  "i(ii)",   &wasi_args_sizes_get },
     { "wasi_snapshot_preview1", "environ_sizes_get","i(ii)",  &wasi_environ_sizes_get },
     /* GUI */
+    { "host", "gui_blit",   "v(iiiiii)", &host_gui_blit    },
     { "host", "gui_create", "i(iiiii)", &host_gui_create  },
     { "host", "gui_draw",   "i(iiiiii)",&host_gui_draw    },
     { "host", "gui_flush",  "v(i)",     &host_gui_flush   },
