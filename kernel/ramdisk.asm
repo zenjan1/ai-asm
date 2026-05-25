@@ -188,6 +188,34 @@ grep_module_size:
     .int grep_module_end - grep_module_start
 
 /* ---------------------------------------------------------------------------
+ * Cat module
+ * --------------------------------------------------------------------------- */
+.section .rodata.cat_wasm
+.global cat_module_start
+cat_module_start:
+    .incbin "kernel/cat.wasm"
+.global cat_module_end
+cat_module_end:
+.align 4
+.global cat_module_size
+cat_module_size:
+    .int cat_module_end - cat_module_start
+
+/* ---------------------------------------------------------------------------
+ * Echo module
+ * --------------------------------------------------------------------------- */
+.section .rodata.echo_wasm
+.global echo_module_start
+echo_module_start:
+    .incbin "kernel/echo.wasm"
+.global echo_module_end
+echo_module_end:
+.align 4
+.global echo_module_size
+echo_module_size:
+    .int echo_module_end - echo_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

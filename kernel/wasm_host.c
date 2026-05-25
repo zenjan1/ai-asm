@@ -232,6 +232,10 @@ extern const uint8_t shmem_test_module_start[], shmem_test_module_end[];
 extern const uint32_t shmem_test_module_size;
 extern const uint8_t grep_module_start[], grep_module_end[];
 extern const uint32_t grep_module_size;
+extern const uint8_t cat_module_start[], cat_module_end[];
+extern const uint32_t cat_module_size;
+extern const uint8_t echo_module_start[], echo_module_end[];
+extern const uint32_t echo_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -247,6 +251,8 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "dns_resolver",   NULL, 0 },
     { "shmem_test",     NULL, 0 },
     { "grep",           NULL, 0 },
+    { "cat",            NULL, 0 },
+    { "echo",           NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -3665,6 +3671,10 @@ const char *wasm_host_init_multi(void)
     wasm_registry[11].wasm_size = shmem_test_module_size;
     wasm_registry[12].wasm_bytes = grep_module_start;
     wasm_registry[12].wasm_size = grep_module_size;
+    wasm_registry[13].wasm_bytes = cat_module_start;
+    wasm_registry[13].wasm_size = cat_module_size;
+    wasm_registry[14].wasm_bytes = echo_module_start;
+    wasm_registry[14].wasm_size = echo_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];
