@@ -216,6 +216,20 @@ echo_module_size:
     .int echo_module_end - echo_module_start
 
 /* ---------------------------------------------------------------------------
+ * Tee module
+ * --------------------------------------------------------------------------- */
+.section .rodata.tee_wasm
+.global tee_module_start
+tee_module_start:
+    .incbin "kernel/tee.wasm"
+.global tee_module_end
+tee_module_end:
+.align 4
+.global tee_module_size
+tee_module_size:
+    .int tee_module_end - tee_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
