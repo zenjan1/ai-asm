@@ -102,6 +102,9 @@ _start:
     /* Initialize virtual filesystem layer (v10.0) */
     bl      vfs_init
 
+    /* Initialize filesystem persistence (v14.0) */
+    bl      persist_init
+
     /* Initialize JIT cache for WASM pre-compilation */
     bl      jit_cache_init
 

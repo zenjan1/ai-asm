@@ -2259,6 +2259,36 @@ static const void *host_event_poll(IM3Runtime runtime, IM3ImportContext _ctx, ui
 }
 
 /* -------------------------------------------------------------------------- */
+/* Persistence: flush filesystem to disk (v14.0)                              */
+/* -------------------------------------------------------------------------- */
+
+/* host_persist_sync() — flush all dirty filesystem data to disk */
+static const void *host_persist_sync(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_sp; (void)_mem;
+
+    extern int persist_sync(void);
+    int rc = persist_sync();
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_persist_get_sync_count() — return number of syncs performed */
+static const void *host_persist_get_sync_count(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_sp; (void)_mem;
+
+    extern int persist_get_sync_count(void);
+    int count = persist_get_sync_count();
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)count;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* WASI helper functions (called from wasi.asm)                               */
 /* -------------------------------------------------------------------------- */
 
@@ -3051,6 +3081,9 @@ static const host_reg_t host_registry[] = {
     { "host", "event_unsubscribe",   "i(ii)", &host_event_unsubscribe   },
     { "host", "event_notify",        "v(iii)",&host_event_notify        },
     { "host", "event_poll",          "i(ii)", &host_event_poll          },
+    /* Persistence */
+    { "host", "persist_sync",         "i()",  &host_persist_sync         },
+    { "host", "persist_get_sync_count","i()",  &host_persist_get_sync_count },
 };
 
 #define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))

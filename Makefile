@@ -80,7 +80,8 @@ ASM_SRCS = $(KERNEL_DIR)/kernel.asm \
            $(KERNEL_DIR)/event_notify.asm \
            $(KERNEL_DIR)/vfs.asm \
            $(KERNEL_DIR)/vfs_ops.asm \
-           $(KERNEL_DIR)/vfs_path.asm
+           $(KERNEL_DIR)/vfs_path.asm \
+           $(KERNEL_DIR)/persist.asm
 ASM_OBJS = $(patsubst $(KERNEL_DIR)/%.asm,$(BUILD_DIR)/%.o,$(ASM_SRCS))
 
 # C sources (freestanding)
