@@ -1,68 +1,20 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-25 23:00
-# 当前阶段: Phase 31 (v31.0 sed WASM模块)
+# 生成时间: 2026-05-25 20:30
+# 当前阶段: Phase 31 (v31.0 sed WASM模块) - COMPLETED
 
 ## 当前状态
-- v30.0 已推送: cut WASM模块
-- kernel.elf: 7005488 bytes (6841KB)
-- 25个WASM模块已注册 (init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, shmem_test, grep, cat, echo, tee, wc, head, tail, sort, uniq, tr, cut)
+- v31.0 已推送: sed WASM模块
+- kernel.elf: 7005640 bytes (6841KB)
+- 26个WASM模块已注册 (init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, shmem_test, grep, cat, echo, tee, wc, head, tail, sort, uniq, tr, cut, sed)
 - 管道系统完整: spawn_redirect, argv传递, yield, EOF检测, pipe_read
 - 重定向: > >> < 支持, 管道+重定向组合
-- 完整Unix文本处理工具集: cat, grep, wc, head, tail, sort, uniq, tr, cut, tee, echo
+- 完整Unix文本处理工具集:
+  - 读取: cat
+  - 过滤: grep, head, tail
+  - 转换: tr, sort, uniq, cut, sed
+  - 统计: wc
+  - 分支: tee
+  - 输出: echo
+- 管道组合示例: cat file | sort | uniq -c | head -n 10 | sed 's/^ */N:/' | cut -d: -f2
 
-## 问题: 缺少sed模块用于流式文本替换
-
-sed是Unix流编辑器,是管道处理中的核心工具:
-- echo "hello world" | sed 's/world/AI-ASM' → "hello AI-ASM"
-- cat file.txt | sed 's/old/new/g' → 全局替换
-- cat file.txt | sed '/pattern/d' → 删除匹配行
-
-## 任务: 创建sed WASM模块 (基础s命令版本)
-
-### 1. 创建 modules/sed/src/main.c
-
-```c
-/* sed: stream editor for filtering and transforming text */
-/* Usage: sed [-n] 's/PATTERN/REPLACEMENT/[g]' */
-/* -n: suppress automatic printing */
-/* s command supports: g flag (global replace) */
-```
-
-功能:
-- 从stdin逐字节读取 (host_getc), 逐行处理
-- 解析s命令: s/PATTERN/REPLACEMENT/[g]
-- 在每行中查找PATTERN, 替换为REPLACEMENT
-- 支持 g 标志(全局替换, 替换所有匹配)
-- 默认输出替换后的行
-- 支持 -n 抑制自动输出
-
-实现细节:
-- 简单的字符串匹配 (不使用正则, 仅字面匹配)
-- 每行最大512字节
-- PATTERN和REPLACEMENT从argv参数解析
-- 最大替换次数64次/行
-- 解析格式: s/xxx/yyy/g 或 s/xxx/yyy
-
-### 2. Makefile添加编译规则
-- SED_WASM变量
-- 编译规则 (同cut模式)
-- modules目标, ramdisk.o依赖, clean目标
-
-### 3. kernel/ramdisk.asm嵌入
-```asm
-.section .rodata.sed_wasm
-.global sed_module_start
-sed_module_start:
-    .incbin "kernel/sed.wasm"
-```
-
-### 4. kernel/wasm_host.c注册
-- extern声明 sed module symbols
-- wasm_registry添加 { "sed", NULL, 0 }
-- wasm_host_init_multi中解析
-
-### 5. 验收标准
-- `echo "hello world" | sed 's/world/AI-ASM'` 输出 "hello AI-ASM"
-- `echo "aaa" | sed 's/a/b/g'` 输出 "bbb"
-- `echo -e "hello\nworld" | sed 's/o/O/'` 输出 "hellO\nwOrld" (默认只替换第一个)
-- `cat /hello.txt | sed 's/AI-ASM/OS/g' | head -n 2` 管道组合
+## 等待下一个任务...
