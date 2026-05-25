@@ -252,6 +252,8 @@ extern const uint8_t tr_module_start[], tr_module_end[];
 extern const uint32_t tr_module_size;
 extern const uint8_t cut_module_start[], cut_module_end[];
 extern const uint32_t cut_module_size;
+extern const uint8_t sed_module_start[], sed_module_end[];
+extern const uint32_t sed_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -277,6 +279,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "uniq",           NULL, 0 },
     { "tr",             NULL, 0 },
     { "cut",            NULL, 0 },
+    { "sed",            NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -3715,6 +3718,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[21].wasm_size = tr_module_size;
     wasm_registry[22].wasm_bytes = cut_module_start;
     wasm_registry[22].wasm_size = cut_module_size;
+    wasm_registry[23].wasm_bytes = sed_module_start;
+    wasm_registry[23].wasm_size = sed_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];

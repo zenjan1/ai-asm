@@ -328,6 +328,20 @@ cut_module_size:
     .int cut_module_end - cut_module_start
 
 /* ---------------------------------------------------------------------------
+ * Sed module
+ * --------------------------------------------------------------------------- */
+.section .rodata.sed_wasm
+.global sed_module_start
+sed_module_start:
+    .incbin "kernel/sed.wasm"
+.global sed_module_end
+sed_module_end:
+.align 4
+.global sed_module_size
+sed_module_size:
+    .int sed_module_end - sed_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
