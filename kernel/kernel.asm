@@ -93,6 +93,9 @@ _start:
     /* Initialize shared memory IPC */
     bl      shmem_init
 
+    /* Initialize semaphores */
+    bl      semaphore_init
+
     /* Initialize JIT cache for WASM pre-compilation */
     bl      jit_cache_init
 

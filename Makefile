@@ -75,7 +75,8 @@ ASM_SRCS = $(KERNEL_DIR)/kernel.asm \
            $(KERNEL_DIR)/module_cache.asm \
            $(KERNEL_DIR)/quota.asm \
            $(KERNEL_DIR)/audit.asm \
-           $(KERNEL_DIR)/shmem.asm
+           $(KERNEL_DIR)/shmem.asm \
+           $(KERNEL_DIR)/semaphore.asm
 ASM_OBJS = $(patsubst $(KERNEL_DIR)/%.asm,$(BUILD_DIR)/%.o,$(ASM_SRCS))
 
 # C sources (freestanding)
@@ -117,6 +118,7 @@ BROWSER_WASM  = $(MODULES_DIR)/browser/browser.wasm
 HTTPD_WASM    = $(MODULES_DIR)/httpd/httpd.wasm
 DNS_RESOLVER_WASM = $(MODULES_DIR)/dns_resolver/dns_resolver.wasm
 SHMEM_TEST_WASM = $(MODULES_DIR)/shmem_test/shmem_test.wasm
+SEM_TEST_WASM   = $(MODULES_DIR)/sem_test/sem_test.wasm
 RAMDISK_TAR = $(KERNEL_DIR)/ramdisk.tar
 
 # All object dependencies
@@ -145,7 +147,7 @@ wasm3: $(WASM3_LIB)
 	@echo "=== wasm3 library complete ==="
 
 # Compile WASM modules and ramdisk
-modules: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(EDITOR_WASM) $(CALC_WASM) $(PAINT_WASM) $(LAUNCHER_WASM) $(NET_TEST_WASM) $(BROWSER_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM) $(FILEMGR_WASM) $(SETTINGS_WASM) $(USER_WASM) $(DEVMGR_WASM) $(HTTPD_WASM) $(DNS_RESOLVER_WASM) $(SHMEM_TEST_WASM) $(RAMDISK_TAR)
+modules: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(EDITOR_WASM) $(CALC_WASM) $(PAINT_WASM) $(LAUNCHER_WASM) $(NET_TEST_WASM) $(BROWSER_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM) $(FILEMGR_WASM) $(SETTINGS_WASM) $(USER_WASM) $(DEVMGR_WASM) $(HTTPD_WASM) $(DNS_RESOLVER_WASM) $(SHMEM_TEST_WASM) $(SEM_TEST_WASM) $(RAMDISK_TAR)
 	@echo "=== WASM modules and ramdisk complete ==="
 
 # Link kernel only (assumes objects exist)
@@ -355,6 +357,15 @@ $(SHMEM_TEST_WASM): $(MODULES_DIR)/shmem_test/src/main.c
 	cp $@ $(KERNEL_DIR)/shmem_test.wasm
 
 # ---------------------------------------------------------------------------
+# WASM sem_test module (semaphore IPC test)
+# ---------------------------------------------------------------------------
+$(SEM_TEST_WASM): $(MODULES_DIR)/sem_test/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/sem_test.wasm
+
+# ---------------------------------------------------------------------------
 # Full kernel link
 # ---------------------------------------------------------------------------
 $(TARGET_ELF): $(ALL_OBJS) $(WASM3_LIB) $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(RAMDISK_TAR)
@@ -384,9 +395,9 @@ clean:
 	rm -rf $(BUILD_DIR)
 	rm -f $(KERNEL_DIR)/init.wasm $(KERNEL_DIR)/shell.wasm $(KERNEL_DIR)/test.wasm
 	rm -f $(KERNEL_DIR)/editor.wasm $(KERNEL_DIR)/calc.wasm $(KERNEL_DIR)/paint.wasm $(KERNEL_DIR)/launcher.wasm
-	rm -f $(KERNEL_DIR)/net_test.wasm $(KERNEL_DIR)/browser.wasm $(KERNEL_DIR)/proc_monitor.wasm $(KERNEL_DIR)/syslog.wasm $(KERNEL_DIR)/filemgr.wasm $(KERNEL_DIR)/settings.wasm $(KERNEL_DIR)/user.wasm $(KERNEL_DIR)/devmgr.wasm $(KERNEL_DIR)/httpd.wasm $(KERNEL_DIR)/dns_resolver.wasm $(KERNEL_DIR)/shmem_test.wasm
+	rm -f $(KERNEL_DIR)/net_test.wasm $(KERNEL_DIR)/browser.wasm $(KERNEL_DIR)/proc_monitor.wasm $(KERNEL_DIR)/syslog.wasm $(KERNEL_DIR)/filemgr.wasm $(KERNEL_DIR)/settings.wasm $(KERNEL_DIR)/user.wasm $(KERNEL_DIR)/devmgr.wasm $(KERNEL_DIR)/httpd.wasm $(KERNEL_DIR)/dns_resolver.wasm $(KERNEL_DIR)/shmem_test.wasm $(KERNEL_DIR)/sem_test.wasm
 	rm -f $(KERNEL_DIR)/ramdisk.tar
 	rm -f $(MODULES_DIR)/init/init.wasm $(MODULES_DIR)/shell/shell.wasm $(MODULES_DIR)/test/test.wasm
 	rm -f $(MODULES_DIR)/editor/editor.wasm $(MODULES_DIR)/calc/calc.wasm $(MODULES_DIR)/paint/paint.wasm $(MODULES_DIR)/launcher/launcher.wasm
-	rm -f $(MODULES_DIR)/net_test/net_test.wasm $(MODULES_DIR)/browser/browser.wasm $(MODULES_DIR)/proc_monitor/proc_monitor.wasm $(MODULES_DIR)/syslog/syslog.wasm $(MODULES_DIR)/filemgr/filemgr.wasm $(MODULES_DIR)/settings/settings.wasm $(MODULES_DIR)/user/user.wasm $(MODULES_DIR)/devmgr/devmgr.wasm $(MODULES_DIR)/httpd/httpd.wasm $(MODULES_DIR)/dns_resolver/dns_resolver.wasm $(MODULES_DIR)/shmem_test/shmem_test.wasm
+	rm -f $(MODULES_DIR)/net_test/net_test.wasm $(MODULES_DIR)/browser/browser.wasm $(MODULES_DIR)/proc_monitor/proc_monitor.wasm $(MODULES_DIR)/syslog/syslog.wasm $(MODULES_DIR)/filemgr/filemgr.wasm $(MODULES_DIR)/settings/settings.wasm $(MODULES_DIR)/user/user.wasm $(MODULES_DIR)/devmgr/devmgr.wasm $(MODULES_DIR)/httpd/httpd.wasm $(MODULES_DIR)/dns_resolver/dns_resolver.wasm $(MODULES_DIR)/shmem_test/shmem_test.wasm $(MODULES_DIR)/sem_test/sem_test.wasm
 	@echo "=== Build artifacts removed ==="

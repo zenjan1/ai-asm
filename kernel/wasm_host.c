@@ -1778,6 +1778,94 @@ static const void *host_shmem_read(IM3Runtime runtime, IM3ImportContext _ctx, ui
 }
 
 /* -------------------------------------------------------------------------- */
+/* IPC: Semaphore host functions                                              */
+/* -------------------------------------------------------------------------- */
+
+/* host_sem_create(initial_value) — create semaphore, return sem_id or -1 */
+static const void *host_sem_create(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t initial_value = (int32_t)(int64_t)*(_sp + 1);
+
+    extern int semaphore_create(int initial_value);
+    int sid = semaphore_create(initial_value);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)sid;
+    return m3Err_none;
+}
+
+/* host_sem_wait(sem_id) — P operation: decrement or block */
+static const void *host_sem_wait(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t sid = (int32_t)(int64_t)*(_sp + 1);
+
+    extern int semaphore_wait(int sem_id);
+    int rc = semaphore_wait(sid);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_sem_try_wait(sem_id) — non-blocking wait, return 0=ok, -2=would block */
+static const void *host_sem_try_wait(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t sid = (int32_t)(int64_t)*(_sp + 1);
+
+    extern int semaphore_try_wait(int sem_id);
+    int rc = semaphore_try_wait(sid);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_sem_post(sem_id) — V operation: increment */
+static const void *host_sem_post(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t sid = (int32_t)(int64_t)*(_sp + 1);
+
+    extern int semaphore_post(int sem_id);
+    int rc = semaphore_post(sid);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_sem_destroy(sem_id) — destroy semaphore */
+static const void *host_sem_destroy(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t sid = (int32_t)(int64_t)*(_sp + 1);
+
+    extern int semaphore_destroy(int sem_id);
+    int rc = semaphore_destroy(sid);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_sem_get_value(sem_id) — get semaphore value */
+static const void *host_sem_get_value(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t sid = (int32_t)(int64_t)*(_sp + 1);
+
+    extern int semaphore_get_value(int sem_id);
+    int val = semaphore_get_value(sid);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)val;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* WASI helper functions (called from wasi.asm)                               */
 /* -------------------------------------------------------------------------- */
 
@@ -2506,6 +2594,13 @@ static const host_reg_t host_registry[] = {
     { "host", "shmem_clear_flag", "v(ii)", &host_shmem_clear_flag },
     { "host", "shmem_write",      "i(iii)", &host_shmem_write    },
     { "host", "shmem_read",       "i(iii)", &host_shmem_read     },
+    /* IPC: Semaphores */
+    { "host", "sem_create",     "i(i)",  &host_sem_create     },
+    { "host", "sem_wait",       "i(i)",  &host_sem_wait       },
+    { "host", "sem_try_wait",   "i(i)",  &host_sem_try_wait   },
+    { "host", "sem_post",       "i(i)",  &host_sem_post       },
+    { "host", "sem_destroy",    "v(i)",  &host_sem_destroy    },
+    { "host", "sem_get_value",  "i(i)",  &host_sem_get_value  },
     /* WASI snapshot_preview1 */
     { "wasi_snapshot_preview1", "fd_write",        "i(iiii)", &wasi_fd_write      },
     { "wasi_snapshot_preview1", "fd_read",         "i(iiii)", &wasi_fd_read       },
