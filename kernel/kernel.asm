@@ -96,6 +96,9 @@ _start:
     /* Initialize semaphores */
     bl      semaphore_init
 
+    /* Initialize event notification */
+    bl      event_notify_init
+
     /* Initialize JIT cache for WASM pre-compilation */
     bl      jit_cache_init
 

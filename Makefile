@@ -76,7 +76,8 @@ ASM_SRCS = $(KERNEL_DIR)/kernel.asm \
            $(KERNEL_DIR)/quota.asm \
            $(KERNEL_DIR)/audit.asm \
            $(KERNEL_DIR)/shmem.asm \
-           $(KERNEL_DIR)/semaphore.asm
+           $(KERNEL_DIR)/semaphore.asm \
+           $(KERNEL_DIR)/event_notify.asm
 ASM_OBJS = $(patsubst $(KERNEL_DIR)/%.asm,$(BUILD_DIR)/%.o,$(ASM_SRCS))
 
 # C sources (freestanding)

@@ -1953,6 +1953,71 @@ static const void *host_module_reload(IM3Runtime runtime, IM3ImportContext _ctx,
 }
 
 /* -------------------------------------------------------------------------- */
+/* Kernel event notification host functions                                   */
+/* -------------------------------------------------------------------------- */
+
+/* host_event_subscribe(pid, event_mask) — subscribe to events */
+static const void *host_event_subscribe(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t pid       = (int32_t)(int64_t)*(_sp + 1);
+    uint32_t mask     = (uint32_t)*(uint64_t*)(_sp + 2);
+
+    extern int event_subscribe(int pid, int event_mask);
+    int rc = event_subscribe(pid, (int)mask);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_event_unsubscribe(pid, event_mask) — unsubscribe from events */
+static const void *host_event_unsubscribe(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t pid       = (int32_t)(int64_t)*(_sp + 1);
+    uint32_t mask     = (uint32_t)*(uint64_t*)(_sp + 2);
+
+    extern int event_unsubscribe(int pid, int event_mask);
+    int rc = event_unsubscribe(pid, (int)mask);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_event_notify(type, data0, data1) — trigger kernel event */
+static const void *host_event_notify(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    uint32_t type   = (uint32_t)*(uint64_t*)(_sp + 1);
+    uint32_t data0  = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint32_t data1  = (uint32_t)*(uint64_t*)(_sp + 3);
+
+    extern int event_notify(int event_type, int data0, int data1);
+    int rc = event_notify((int)type, (int)data0, (int)data1);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_event_poll(pid, buf_off) — poll for events, returns count */
+static const void *host_event_poll(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t pid     = (int32_t)(int64_t)*(_sp + 1);
+    uint32_t buf_off = (uint32_t)*(uint64_t*)(_sp + 2);
+
+    extern int event_poll(int pid, int buf_off);
+    int count = event_poll(pid, (int)buf_off);
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)count;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* WASI helper functions (called from wasi.asm)                               */
 /* -------------------------------------------------------------------------- */
 
@@ -2736,6 +2801,11 @@ static const host_reg_t host_registry[] = {
     { "host", "audit_flush",     "v()",   &host_audit_flush    },
     /* Module hot-reload */
     { "host", "module_reload",   "i(i)",  &host_module_reload  },
+    /* Kernel event notification */
+    { "host", "event_subscribe",     "i(ii)", &host_event_subscribe     },
+    { "host", "event_unsubscribe",   "i(ii)", &host_event_unsubscribe   },
+    { "host", "event_notify",        "v(iii)",&host_event_notify        },
+    { "host", "event_poll",          "i(ii)", &host_event_poll          },
 };
 
 #define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))
