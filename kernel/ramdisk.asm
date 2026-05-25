@@ -342,6 +342,20 @@ sed_module_size:
     .int sed_module_end - sed_module_start
 
 /* ---------------------------------------------------------------------------
+ * Xargs module
+ * --------------------------------------------------------------------------- */
+.section .rodata.xargs_wasm
+.global xargs_module_start
+xargs_module_start:
+    .incbin "kernel/xargs.wasm"
+.global xargs_module_end
+xargs_module_end:
+.align 4
+.global xargs_module_size
+xargs_module_size:
+    .int xargs_module_end - xargs_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

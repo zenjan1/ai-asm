@@ -1,6 +1,6 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-25 20:30
-# 当前阶段: Phase 31 (v31.0 sed WASM模块) - COMPLETED
+# 生成时间: 2026-05-25 23:30
+# 当前阶段: Phase 32 (v32.0 xargs WASM模块)
 
 ## 当前状态
 - v31.0 已推送: sed WASM模块
@@ -8,13 +8,61 @@
 - 26个WASM模块已注册 (init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, shmem_test, grep, cat, echo, tee, wc, head, tail, sort, uniq, tr, cut, sed)
 - 管道系统完整: spawn_redirect, argv传递, yield, EOF检测, pipe_read
 - 重定向: > >> < 支持, 管道+重定向组合
-- 完整Unix文本处理工具集:
-  - 读取: cat
-  - 过滤: grep, head, tail
-  - 转换: tr, sort, uniq, cut, sed
-  - 统计: wc
-  - 分支: tee
-  - 输出: echo
-- 管道组合示例: cat file | sort | uniq -c | head -n 10 | sed 's/^ */N:/' | cut -d: -f2
+- 完整Unix文本处理工具集: cat, grep, wc, head, tail, sort, uniq, tr, cut, sed, tee, echo
 
-## 等待下一个任务...
+## 问题: 缺少xargs模块用于从stdin构建命令行参数
+
+xargs从stdin读取数据, 将其转换为命令行参数:
+- echo "file1 file2" | xargs cat → cat file1 file2
+- ls | xargs wc -l → 统计每个文件行数
+- echo -e "a\nb\nc" | xargs echo → echo a b c
+
+## 任务: 创建xargs WASM模块
+
+### 1. 创建 modules/xargs/src/main.c
+
+```c
+/* xargs: build and execute command lines from stdin */
+/* Usage: xargs [COMMAND [ARGS...]] */
+/* Reads stdin, appends each line as argument to COMMAND */
+```
+
+功能:
+- 从stdin逐字节读取 (host_getc), 收集参数
+- 解析出命令行参数 (用空格/换行分隔)
+- 使用host_spawn_redirect执行命令, 将收集的参数传递给子进程
+- 支持多个输入行作为多个参数
+- 如果没有输入, 仍然执行命令(不带额外参数)
+- 默认命令: echo
+
+实现细节:
+- 最大参数数量: 32
+- 每个参数最大长度: 64
+- 使用host_spawn_redirect执行子进程
+- 使用host_print输出子进程输出
+- 逐字节读取stdin, 用空格/换行分隔参数
+- 解析argv获取初始命令和参数
+
+### 2. Makefile添加编译规则
+- XARGS_WASM变量
+- 编译规则 (同sed模式)
+- modules目标, ramdisk.o依赖, clean目标
+
+### 3. kernel/ramdisk.asm嵌入
+```asm
+.section .rodata.xargs_wasm
+.global xargs_module_start
+xargs_module_start:
+    .incbin "kernel/xargs.wasm"
+```
+
+### 4. kernel/wasm_host.c注册
+- extern声明 xargs module symbols
+- wasm_registry添加 { "xargs", NULL, 0 }
+- wasm_host_init_multi中解析
+
+### 5. 验收标准
+- `echo "hello world" | xargs echo` 输出 "hello world\n"
+- `echo -e "a\nb\nc" | xargs echo` 输出 "a b c\n"
+- `cat /hello.txt | xargs wc -l` 统计文件行数 (如果支持fs_ops)
+- `echo "test" | xargs` 输出 "test\n" (默认echo)
