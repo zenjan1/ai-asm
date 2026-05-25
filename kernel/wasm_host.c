@@ -1866,6 +1866,93 @@ static const void *host_sem_get_value(IM3Runtime runtime, IM3ImportContext _ctx,
 }
 
 /* -------------------------------------------------------------------------- */
+/* Module hot-reload host functions                                           */
+/* -------------------------------------------------------------------------- */
+
+/* Forward declaration */
+static const char *load_module_internal(int slot_idx, const char *name,
+                                         const uint8_t *wasm_bytes, uint32_t wasm_size);
+
+/* host_module_reload(module_id) — reload an exited module, preserving PID */
+static const void *host_module_reload(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t module_id = (int32_t)(int64_t)*(_sp + 1);
+
+    if (module_id <= 0 || module_id > MAX_MODULES) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_none;
+    }
+
+    uint32_t slot_idx = (uint32_t)module_id - 1;
+    if (slot_idx >= MAX_MODULES) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_none;
+    }
+
+    wasm_module_slot_t *slot = &module_table[slot_idx];
+    if (slot->state == MOD_FREE) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -2;
+        return m3Err_none;
+    }
+
+    /* Find registry entry for this module */
+    wasm_registry_entry_t *entry = find_registry_entry(slot->name);
+    if (!entry || !entry->wasm_bytes || entry->wasm_size == 0) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -3;
+        return m3Err_none;
+    }
+
+    /* Preserve the original PID */
+    uint32_t preserved_pid = slot->id;
+
+    /* Destroy old runtime before creating new one */
+    if (slot->runtime) {
+        m3_FreeRuntime(slot->runtime);
+        slot->runtime = NULL;
+    }
+    slot->module = NULL;
+    slot->entry = NULL;
+
+    /* Reset state to allow reloading */
+    slot->state = MOD_FREE;
+
+    /* Reload module */
+    const char *err = load_module_internal((int)slot_idx, slot->name,
+                                           entry->wasm_bytes, entry->wasm_size);
+    if (err) {
+        uart_puts_raw("[reload] error: ");
+        uart_puts_raw(err);
+        uart_puts_raw("\n");
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -4;
+        return m3Err_none;
+    }
+
+    /* Restore original PID */
+    module_table[slot_idx].id = preserved_pid;
+
+    uart_puts_raw("[reload] ");
+    uart_puts_raw(slot->name);
+    uart_puts_raw(" pid=");
+    {
+        uint32_t pid = module_table[slot_idx].id;
+        char buf[12]; int i = 0;
+        if (pid == 0) { uart_puts_raw("0"); }
+        else { uint32_t v = pid; do { buf[i++] = (char)('0' + (v % 10)); v /= 10; } while (v > 0); while (i > 0) uart_putc_raw(buf[--i]); }
+    }
+    uart_puts_raw(" ok\n");
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (int32_t)module_table[slot_idx].id;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* WASI helper functions (called from wasi.asm)                               */
 /* -------------------------------------------------------------------------- */
 
@@ -2647,6 +2734,8 @@ static const host_reg_t host_registry[] = {
     { "host", "audit_query",     "i(ii)", &host_audit_query    },
     { "host", "audit_get_count", "i()",   &host_audit_get_count },
     { "host", "audit_flush",     "v()",   &host_audit_flush    },
+    /* Module hot-reload */
+    { "host", "module_reload",   "i(i)",  &host_module_reload  },
 };
 
 #define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))

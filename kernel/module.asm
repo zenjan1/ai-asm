@@ -320,6 +320,70 @@ mod_repo_count:
     .skip 4
 
 /* -----------------------------------------------------------------------------
+ * module_reload: Mark a module for reload (set loaded=0 so it can be re-registered)
+ * x0 = name_ptr
+ * Returns w0 = 0 on success, -1 if not found
+ * ----------------------------------------------------------------------------- */
+.global module_reload
+module_reload:
+    stp     x29, x30, [sp, #-16]!
+    mov     x8, x0              /* name to reload */
+
+    adrp    x0, mod_repo_table
+    add     x0, x0, #:lo12:mod_repo_table
+    mov     w1, #0
+
+_mreload_loop:
+    cmp     w1, #MOD_REPO_MAX
+    b.ge    _mreload_not_found
+
+    /* Check loaded */
+    ldrb    w2, [x0, #MOD_REPO_LOADED]
+    cbz     w2, _mreload_next
+
+    /* Compare names */
+    add     x2, x0, #MOD_REPO_NAME
+    mov     x3, x8
+    mov     x4, #0
+
+_mreload_cmp:
+    cmp     x4, #(MOD_REPO_NAME_LEN)
+    b.ge    _mreload_found
+    ldrb    w5, [x2, x4]
+    ldrb    w6, [x3, x4]
+    cbz     w5, _mreload_check_end
+    cbz     w6, _mreload_next
+    cmp     w5, w6
+    b.ne    _mreload_next
+    add     x4, x4, #1
+    b       _mreload_cmp
+
+_mreload_check_end:
+    ldrb    w6, [x3, x4]
+    cbnz    w6, _mreload_next
+
+_mreload_found:
+    /* Zero wasm bytes pointer (keep name, allow re-registration) */
+    str     xzr, [x0, #MOD_REPO_BYTES]
+    str     wzr, [x0, #MOD_REPO_WASM_SZ]
+    mov     w2, #0
+    strb    w2, [x0, #MOD_REPO_LOADED]
+
+    mov     w0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+_mreload_next:
+    add     x0, x0, #MOD_REPO_SIZE
+    add     w1, w1, #1
+    b       _mreload_loop
+
+_mreload_not_found:
+    mov     w0, #-1
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
  * Parallel Module Loading Queue (v7.0)
  *
  * Queue of modules awaiting loading. In a single-threaded kernel this

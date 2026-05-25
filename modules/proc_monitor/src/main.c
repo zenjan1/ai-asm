@@ -32,6 +32,9 @@ extern int proc_restart(int pid);
 __attribute__((import_module("host"), import_name("proc_kill")))
 extern void proc_kill(int pid);
 
+__attribute__((import_module("host"), import_name("module_reload")))
+extern int module_reload(int pid);
+
 static unsigned int my_strlen(const char *s)
 {
     const char *p = s;
@@ -94,15 +97,25 @@ void monitor_loop(void)
         while (pid >= 0) {
             int status = proc_get_status(pid);
             if (status == MOD_EXITED) {
-                print_str("[proc_monitor] restarting module pid=");
+                print_str("[proc_monitor] reloading module pid=");
                 print_num(pid);
                 print_str("\n");
 
-                int rc = proc_restart(pid);
-                if (rc >= 0) {
-                    mon_log("INFO", "process restarted");
+                /* Try hot-reload first (preserves PID) */
+                int rc = module_reload(pid);
+                if (rc > 0) {
+                    mon_log("INFO", "module hot-reloaded");
                 } else {
-                    mon_log("ERROR", "restart failed");
+                    /* Fallback to full restart */
+                    print_str("[proc_monitor] reload failed, restarting pid=");
+                    print_num(pid);
+                    print_str("\n");
+                    rc = proc_restart(pid);
+                    if (rc >= 0) {
+                        mon_log("INFO", "process restarted");
+                    } else {
+                        mon_log("ERROR", "restart failed");
+                    }
                 }
             }
 
