@@ -153,6 +153,12 @@ static open_file_t open_files[MAX_OPEN_FILES];
 /* Process isolation: per-module permission levels                            */
 /* -------------------------------------------------------------------------- */
 
+#define MAX_NAME_LEN        32
+
+/* Per-module argv storage (v16.0) */
+static char module_argv[MAX_MODULES][128];
+static uint32_t module_argc[MAX_MODULES];  /* stored argv length */
+
 /* Permission levels: 0=root, 1=admin, 2=user, 3=guest */
 static uint8_t module_perm_level[MAX_MODULES];
 
@@ -222,6 +228,8 @@ extern const uint8_t dns_resolver_module_start[], dns_resolver_module_end[];
 extern const uint32_t dns_resolver_module_size;
 extern const uint8_t shmem_test_module_start[], shmem_test_module_end[];
 extern const uint32_t shmem_test_module_size;
+extern const uint8_t grep_module_start[], grep_module_end[];
+extern const uint32_t grep_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -236,6 +244,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "httpd",          NULL, 0 },
     { "dns_resolver",   NULL, 0 },
     { "shmem_test",     NULL, 0 },
+    { "grep",           NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -718,6 +727,14 @@ static const void *host_spawn(IM3Runtime runtime, IM3ImportContext _ctx, uint64_
         return m3Err_none;
     }
 
+    /* Save argv for the spawned module (v16.0) */
+    uint32_t argv_len = name_len;
+    if (argv_len >= 127) argv_len = 127;
+    for (uint32_t i = 0; i < argv_len; i++)
+        module_argv[slot][i] = (char)mem[name_off + i];
+    module_argv[slot][argv_len] = '\0';
+    module_argc[slot] = argv_len;
+
     uart_puts_raw("ok\n");
     *ret_val = (int32_t)module_table[slot].id;
     return m3Err_none;
@@ -774,11 +791,63 @@ static const void *host_spawn_redirect(IM3Runtime runtime, IM3ImportContext _ctx
         return m3Err_none;
     }
 
+    /* Save argv for the spawned module (v16.0) */
+    uint32_t argv_len = name_len;
+    if (argv_len >= 127) argv_len = 127;
+    for (uint32_t i = 0; i < argv_len; i++)
+        module_argv[slot][i] = (char)mem[name_off + i];
+    module_argv[slot][argv_len] = '\0';
+    module_argc[slot] = argv_len;
+
     /* Set stdin/stdout pipe fds for redirection */
     module_table[slot].stdin_pipe_fd = (int)stdin_fd;
     module_table[slot].stdout_pipe_fd = (int)stdout_fd;
 
     *ret_val = (int32_t)module_table[slot].id;
+    return m3Err_none;
+}
+
+/* host_get_argv(buf_off, max_len) — copy current module's argv to WASM memory
+ * Returns: actual length copied, or -1 if no argv
+ */
+static const void *host_get_argv(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx;
+    uint32_t buf_off  = (uint32_t)*(uint64_t*)(_sp + 1);
+    uint32_t max_len  = (uint32_t)*(uint64_t*)(_sp + 2);
+    int32_t *ret      = (int32_t *)_sp;
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (buf_off + 1 > mem_size) {
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    /* Find current module slot */
+    int slot_idx = -1;
+    for (int i = 0; i < MAX_MODULES; i++) {
+        if (module_table[i].id == current_module_id && module_table[i].state != MOD_FREE) {
+            slot_idx = i;
+            break;
+        }
+    }
+
+    if (slot_idx < 0 || module_argc[slot_idx] == 0) {
+        *ret = -1;
+        return m3Err_none;
+    }
+
+    uint32_t len = module_argc[slot_idx];
+    if (len > max_len) len = max_len;
+    if (len >= 128) len = 127;
+
+    for (uint32_t i = 0; i < len; i++)
+        mem[buf_off + i] = (uint8_t)module_argv[slot_idx][i];
+    mem[buf_off + len] = '\0';
+
+    *ret = (int32_t)len;
     return m3Err_none;
 }
 
@@ -3093,6 +3162,7 @@ static const host_reg_t host_registry[] = {
     { "host", "getc",        "i()",    &host_getc        },
     { "host", "spawn",       "i(ii)",  &host_spawn       },
     { "host", "spawn_redirect","i(iiii)",&host_spawn_redirect },
+    { "host", "get_argv",      "i(ii)",  &host_get_argv      },
     { "host", "vfs_open",    "i(iii)", &host_vfs_open    },
     { "host", "fs_open",     "i(ii)",  &host_fs_open     },
     { "host", "fs_read",     "i(iii)", &host_fs_read     },
@@ -3440,6 +3510,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[10].wasm_size = dns_resolver_module_size;
     wasm_registry[11].wasm_bytes = shmem_test_module_start;
     wasm_registry[11].wasm_size = shmem_test_module_size;
+    wasm_registry[12].wasm_bytes = grep_module_start;
+    wasm_registry[12].wasm_size = grep_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];

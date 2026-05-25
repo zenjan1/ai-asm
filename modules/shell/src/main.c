@@ -64,6 +64,9 @@ extern int wasm_host_proc_list_next(void);
 __attribute__((import_module("host"), import_name("proc_get_status")))
 extern int wasm_host_proc_get_status(int pid);
 
+__attribute__((import_module("host"), import_name("yield")))
+extern void wasm_host_yield(void);
+
 /* -------------------------------------------------------------------------- */
 /* WASM memory allocator (bump, uses host_alloc)                              */
 /* -------------------------------------------------------------------------- */
@@ -458,24 +461,24 @@ static void shell_execute_single(const char *cmd)
 
 static void wait_for_pid(int pid)
 {
-    /* Poll proc_list_next and proc_get_status until pid exits */
-    int found = 0;
+    /* Poll proc_list_next and proc_get_status until pid exits.
+     * Yield CPU between polls so spawned processes can run. */
     int iter;
-    for (iter = 0; iter < 100000; iter++) {
+    for (iter = 0; iter < 10000; iter++) {
         int listed_pid = wasm_host_proc_list_next();
         if (listed_pid == pid) {
             int status = wasm_host_proc_get_status(pid);
-            if (status != 3) {  /* not MOD_RUNNING (0=FREE,1=LOADING,2=READY,3=RUNNING,4=EXITED) */
-                found = 1;
-                break;
+            if (status != 3) {  /* not MOD_RUNNING (4=EXITED) */
+                return;
             }
         }
         if (listed_pid < 0) {
-            /* End of list — process not found or still running, reset scan */
-            /* If we've scanned the full list and didn't find our pid exiting, keep polling */
+            /* End of list — reset iterator for next scan */
+            wasm_host_proc_list_next();
         }
+        /* Yield CPU so other WASM modules can execute */
+        wasm_host_yield();
     }
-    (void)found;
 }
 
 /* -------------------------------------------------------------------------- */

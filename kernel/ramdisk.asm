@@ -174,6 +174,20 @@ shmem_test_module_size:
     .int shmem_test_module_end - shmem_test_module_start
 
 /* ---------------------------------------------------------------------------
+ * Grep module (simple string search utility)
+ * --------------------------------------------------------------------------- */
+.section .rodata.grep_wasm
+.global grep_module_start
+grep_module_start:
+    .incbin "kernel/grep.wasm"
+.global grep_module_end
+grep_module_end:
+.align 4
+.global grep_module_size
+grep_module_size:
+    .int grep_module_end - grep_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
