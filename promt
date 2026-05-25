@@ -1,16 +1,16 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-25 04:20
-# 当前阶段: Phase 11 (v11.0 进程级VFS fd隔离) - COMPLETED
+# 生成时间: 2026-05-25 04:40
+# 当前阶段: Phase 12 (v12.0 进程退出VFS资源清理) - COMPLETED
 
 ## 当前状态
-- v11.0 进程级VFS fd隔离已完成
+- v12.0 进程退出VFS资源清理已完成
 - WASM模块: 19个
 - kernel.elf: 6927544 bytes (6765KB)
-- VFS: 16进程 × 32fd 隔离fd表 (总49376字节)
+- VFS: 16进程 × 32fd, 进程退出自动释放所有fd (host_exit, wasi_proc_exit, host_proc_exit_c)
 
 ## 下一步任务 (待确定)
 可能的方向:
-1. 进程退出自动清理fd — vfs_free_all集成到进程退出流程
+1. 持久化存储 — virtio_blk 块设备文件系统写支持
 2. VFS路径解析 — 支持 /dev/pipe, /net/socket 等路径访问
-3. 持久化存储 — virtio_blk 块设备文件系统写支持
-4. WASM应用模块 — 基于VFS统一I/O的新应用
+3. WASM应用模块 — 基于VFS统一I/O的新应用
+4. 进程间fd传递 — 支持通过socket传递fd (类似Unix SCM_RIGHTS)

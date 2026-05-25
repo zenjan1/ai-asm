@@ -446,6 +446,9 @@ static const void *host_exit(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t
     if (current_module_id > 0 && current_module_id < (uint32_t)(MAX_MODULES + 1)) {
         uint32_t idx = current_module_id - 1;
         if (idx < MAX_MODULES && module_table[idx].state != MOD_FREE) {
+            /* VFS: release all fds for this process (v12.0) */
+            vfs_free_all((int)module_table[idx].id);
+
             module_table[idx].exit_code = (int)code;
             module_table[idx].state = MOD_EXITED;
 
@@ -1085,6 +1088,9 @@ static const void *wasi_proc_exit(IM3Runtime rt, IM3ImportContext _ctx, uint64_t
     if (current_module_id > 0 && current_module_id <= MAX_MODULES) {
         uint32_t idx = current_module_id - 1;
         if (idx < MAX_MODULES && module_table[idx].state != MOD_FREE) {
+            /* VFS: release all fds for this process (v12.0) */
+            vfs_free_all((int)module_table[idx].id);
+
             module_table[idx].exit_code = (int)code;
             module_table[idx].state = MOD_EXITED;
 
@@ -2142,6 +2148,9 @@ void host_proc_exit_c(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp,
     if (current_module_id > 0 && current_module_id <= MAX_MODULES) {
         uint32_t idx = current_module_id - 1;
         if (idx < MAX_MODULES && module_table[idx].state != MOD_FREE) {
+            /* VFS: release all fds for this process (v12.0) */
+            vfs_free_all((int)module_table[idx].id);
+
             module_table[idx].exit_code = (int)code;
             module_table[idx].state = MOD_EXITED;
         }
