@@ -1328,6 +1328,168 @@ _udp_no_socket:
     ret
 
 /* -----------------------------------------------------------------------------
+ * Function: ip_send_udp
+ * Build and send a UDP packet via the socket
+ * x0 = socket ptr, x1 = data ptr, w2 = data length
+ * x0 = bytes sent, or -1
+ * ----------------------------------------------------------------------------- */
+.global ip_send_udp
+ip_send_udp:
+    stp     x29, x30, [sp, #-16]!
+    mov     x8, x0              /* socket ptr */
+    mov     x9, x1              /* data ptr */
+    mov     w10, w2             /* data length */
+
+    adrp    x0, net_tx_buf
+    add     x0, x0, #:lo12:net_tx_buf
+    mov     x20, x0             /* TX buffer base */
+
+    /* Read socket fields */
+    /* local_port (offset 4, 16-bit) */
+    add     x0, x8, #4
+    bl      _net_read_u16_be
+    mov     w12, w0             /* local_port */
+
+    /* remote_port (offset 6, 16-bit) */
+    add     x0, x8, #6
+    bl      _net_read_u16_be
+    mov     w13, w0             /* remote_port */
+
+    /* local_ip (offset 12, 32-bit) */
+    ldr     w14, [x8, #12]      /* local_ip */
+
+    /* remote_ip (offset 8, 32-bit) */
+    ldr     w15, [x8, #8]       /* remote_ip */
+
+    /* --- Ethernet header (14 bytes at offset 0) --- */
+    /* Lookup MAC for remote IP via ARP cache */
+    mov     w0, w15
+    bl      arp_table_lookup
+    cbz     x0, _isu_arp_miss   /* not in cache, try ARP request */
+
+    mov     x21, x0             /* MAC pointer */
+
+    /* Dest MAC */
+    mov     x1, x21
+    mov     x2, #6
+    add     x0, x20, #0
+    bl      _net_memcpy
+
+    /* Src MAC (our MAC) */
+    adrp    x1, net_mac_addr
+    add     x1, x1, #:lo12:net_mac_addr
+    mov     x2, #6
+    add     x0, x20, #6
+    bl      _net_memcpy
+
+    /* Ethernet type = 0x0800 (IPv4) */
+    mov     w0, #ETH_PROTO_IP
+    add     x1, x20, #12
+    bl      _net_write_u16_be
+
+    /* --- IP header (20 bytes at offset 14) --- */
+    add     x22, x20, #14       /* IP header start */
+    mov     x0, x22
+
+    /* Version + IHL: 0x45 */
+    mov     w0, #0x45
+    strb    w0, [x22]
+
+    /* DSCP + ECN: 0 */
+    strb    wzr, [x22, #1]
+
+    /* Total length = 20 (IP) + 8 (UDP) + data_len */
+    add     w11, w10, #28
+    mov     w0, w11
+    bl      _net_write_u16_be
+    add     x0, x22, #2
+
+    /* Identification: 0 */
+    strh    wzr, [x22, #4]
+
+    /* Flags + Fragment offset: 0 (don't fragment) */
+    strh    wzr, [x22, #6]
+
+    /* TTL: 64 */
+    mov     w0, #64
+    strb    w0, [x22, #8]
+
+    /* Protocol: UDP = 17 */
+    mov     w0, #IP_PROTO_UDP
+    strb    w0, [x22, #9]
+
+    /* Checksum: 0 (compute later) */
+    strh    wzr, [x22, #10]
+
+    /* Source IP */
+    mov     w0, w14
+    bl      _net_write_u32_be
+    add     x0, x22, #12
+
+    /* Dest IP */
+    mov     w0, w15
+    bl      _net_write_u32_be
+    add     x0, x22, #16
+
+    /* --- UDP header (8 bytes at offset 34) --- */
+    add     x23, x22, #20       /* UDP header start */
+    mov     x0, x23
+
+    /* Source port */
+    mov     w0, w12
+    bl      _net_write_u16_be
+    add     x0, x23, #2
+
+    /* Dest port */
+    mov     w0, w13
+    bl      _net_write_u16_be
+    add     x0, x23, #4
+
+    /* Length: 8 + data_len */
+    add     w0, w10, #8
+    bl      _net_write_u16_be
+    add     x0, x23, #6
+
+    /* Checksum: 0 for now */
+    strh    wzr, [x23, #6]
+
+    /* --- Copy data payload (at offset 42) --- */
+    mov     x0, x9              /* source data */
+    add     x1, x23, #8         /* dest in TX buffer */
+    mov     x2, x10
+    bl      _net_memcpy
+
+    /* --- Compute IP header checksum --- */
+    add     x0, x22, #0
+    mov     w1, #20
+    bl      _net_ip_checksum
+    strh    w0, [x22, #10]
+
+    /* --- Send via virtio_net --- */
+    mov     w0, #14             /* eth */
+    add     w0, w0, #20         /* + ip = 34 */
+    add     w0, w0, #8          /* + udp = 42 */
+    add     w0, w0, w10         /* + data */
+
+    adrp    x1, net_tx_buf
+    add     x1, x1, #:lo12:net_tx_buf
+    bl      virtio_net_send
+
+    mov     x0, x10
+    ldp     x29, x30, [sp], #16
+    ret
+
+_isu_arp_miss:
+    /* Send ARP request for remote IP */
+    mov     w0, w15
+    bl      arp_request
+
+    /* Return -1 (will need to retry) */
+    mov     x0, #-1
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
  * High-Level Network API
  * ----------------------------------------------------------------------------- */
 
@@ -1444,8 +1606,13 @@ net_send:
     mul     x1, x1, x2
     add     x9, x0, x1
 
-    /* Check state */
-    ldrb    w0, [x9]
+    /* Check protocol: TCP=6, UDP=17 */
+    ldrb    w0, [x9, #1]
+    cmp     w0, #IP_PROTO_UDP
+    b.eq    _ns_udp
+
+    /* TCP path */
+    ldrb    w0, [x9]            /* state */
     cmp     w0, #TCP_ESTABLISHED
     b.ne    _ns_error
 
@@ -1459,6 +1626,16 @@ net_send:
     str     w8, [x9, #32]       /* tx_len offset */
 
     mov     x0, x8
+    ldp     x29, x30, [sp], #16
+    ret
+
+_ns_udp:
+    /* UDP path: build and send IP+UDP packet directly */
+    mov     x0, x9              /* socket ptr */
+    mov     x1, x7              /* data ptr */
+    mov     w2, w8              /* data length */
+    bl      ip_send_udp
+
     ldp     x29, x30, [sp], #16
     ret
 
