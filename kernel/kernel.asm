@@ -99,6 +99,9 @@ _start:
     /* Initialize event notification */
     bl      event_notify_init
 
+    /* Initialize virtual filesystem layer (v10.0) */
+    bl      vfs_init
+
     /* Initialize JIT cache for WASM pre-compilation */
     bl      jit_cache_init
 
