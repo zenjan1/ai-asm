@@ -1,68 +1,76 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-25 12:00
-# 当前阶段: Phase 16 (v16.0 WASM模块嵌入kernel)
+# 生成时间: 2026-05-25 20:30
+# 当前阶段: Phase 26 (v26.0 head和tail WASM模块)
 
 ## 当前状态
-- v15.0 shell管道命令已完成并推送
-- WASM模块: 19个
-- kernel.elf: 6999368 bytes (6835KB)
-- 12个模块已注册到wasm_registry (init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, shmem_test)
-- 所有registry条目使用NULL/0占位符 (从ramdisk TAR加载)
-- shell支持 cmd1 | cmd2 | cmd3 管道语法
-- VFS: 每进程fd表, 路径解析, 持久化同步
-- 管道IPC: host_spawn_redirect支持stdin/stdout重定向
+- v25.0 已推送: wc WASM模块
+- kernel.elf: 7004600 bytes (6840KB)
+- 17个WASM模块已注册 (init, shell, test, editor, calc, paint, launcher, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, grep, cat, echo, tee, wc)
+- 管道系统完整: spawn_redirect, argv传递, yield, EOF检测, pipe_read
+- 重定向: > >> < 支持, 管道+重定向组合
+- tee支持管道分支: cmd1 | tee file | cmd2
+- wc支持文本统计: lines/words/bytes
 
-## 任务目标
-将WASM模块嵌入kernel二进制文件, 消除对ramdisk TAR的依赖
-当前wasm_registry中的模块使用NULL指针, 实际从ramdisk加载
-改为将.wasm文件的字节直接嵌入wasm_registry, 实现自包含kernel
+## 问题: 缺少head/tail模块用于文本截取
 
-## 实现细节
+head和tail是经典的Unix工具:
+- head: 输出前N行 (默认10行)
+- tail: 输出最后N行 (默认10行)
 
-### 步骤1: 创建嵌入脚本
-修改Makefile或创建脚本, 将必要的.wasm文件转换为C数组:
-```bash
-xxd -i modules/shell/shell.wasm > build/shell_wasm.h
-# 或使用ld的binary格式:
-ld -r -b binary -o build/shell_embed.o modules/shell/shell.wasm
-```
+这对于测试管道系统的流式处理能力很有价值。
 
-### 步骤2: 更新wasm_registry
-修改kernel/wasm_host.c中的wasm_registry:
+## 任务: 创建head和tail WASM模块
+
+### 1. 创建 modules/head/src/main.c
+
 ```c
-extern const uint8_t _binary_modules_shell_shell_wasm_start[];
-extern const uint8_t _binary_modules_shell_shell_wasm_end[];
-
-static wasm_registry_entry_t wasm_registry[] = {
-    { "init",           init_wasm_bytes, init_wasm_size },
-    { "shell",          _binary_modules_shell_shell_wasm_start,
-                        (_binary_modules_shell_shell_wasm_end - _binary_modules_shell_shell_wasm_start) },
-    // ... 其他模块
-};
+/* head: output first N lines from stdin */
+/* Usage: head [-n N] */
+/* -n N: number of lines (default 10) */
 ```
 
-### 步骤3: 修改Makefile
-添加.wasm到.o的嵌入规则:
-```makefile
-# 将每个.wasm转换为binary o文件
-build/shell_embed.o: modules/shell/shell.wasm
-    ld -r -b binary -o $@ $<
+功能:
+- 从stdin逐字节读取 (host_getc)
+- 输出前N行 (遇到'\n'计数+1)
+- 达到N行后退出
+- 支持 -n N 指定行数
+
+### 2. 创建 modules/tail/src/main.c
+
+```c
+/* tail: output last N lines from stdin */
+/* Usage: tail [-n N] */
+/* -n N: number of lines (default 10) */
 ```
-将embed o文件加入LD_SRCS
 
-### 步骤4: 清理
-- 移除不再需要的ramdisk .wasm副本
-- 保留ramdisk用于普通文件(配置文件等)
+功能:
+- 从stdin逐字节读取, 保存到缓冲区
+- 输出最后N行
+- 支持 -n N 指定行数
+- 环形缓冲区实现 (最大4KB)
 
-## 文件清单
-修改:
-- kernel/wasm_host.c (wasm_registry填充实际字节指针)
-- Makefile (添加wasm嵌入规则)
-新增:
-- kernel/wasm_embed.ld (可选, 自定义嵌入section)
+### 3. Makefile添加编译规则
+- HEAD_WASM, TAIL_WASM变量
+- 编译规则类似wc
+- modules目标, ramdisk.o依赖, clean目标
 
-## 验收标准
-- 构建成功, kernel.elf < 7.5MB
-- kernel.elf自包含所有WASM模块, 不需要外部.wasm文件
-- 所有12个已注册模块可正常spawn
-- shell管道命令仍然正常工作
+### 4. kernel/ramdisk.asm嵌入
+```asm
+.section .rodata.head_wasm
+.global head_module_start
+head_module_start:
+    .incbin "kernel/head.wasm"
+... (类似tail)
+```
+
+### 5. kernel/wasm_host.c注册
+- extern声明 head/tail module symbols
+- wasm_registry添加 { "head", NULL, 0 }, { "tail", NULL, 0 }
+- wasm_host_init_multi中解析
+
+### 6. 验收标准
+- `cat /hello.txt | head -n 2` 输出前2行
+- `cat /hello.txt | tail -n 2` 输出最后2行
+- `echo -e "a\nb\nc\nd\ne" | head -n 3` 输出 a,b,c
+- `echo -e "a\nb\nc\nd\ne" | tail -n 3` 输出 c,d,e
+- `cat /hello.txt | head -n 5 | wc -l` 管道组合

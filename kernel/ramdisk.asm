@@ -244,6 +244,34 @@ wc_module_size:
     .int wc_module_end - wc_module_start
 
 /* ---------------------------------------------------------------------------
+ * Head module
+ * --------------------------------------------------------------------------- */
+.section .rodata.head_wasm
+.global head_module_start
+head_module_start:
+    .incbin "kernel/head.wasm"
+.global head_module_end
+head_module_end:
+.align 4
+.global head_module_size
+head_module_size:
+    .int head_module_end - head_module_start
+
+/* ---------------------------------------------------------------------------
+ * Tail module
+ * --------------------------------------------------------------------------- */
+.section .rodata.tail_wasm
+.global tail_module_start
+tail_module_start:
+    .incbin "kernel/tail.wasm"
+.global tail_module_end
+tail_module_end:
+.align 4
+.global tail_module_size
+tail_module_size:
+    .int tail_module_end - tail_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
