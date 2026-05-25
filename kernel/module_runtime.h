@@ -32,6 +32,8 @@ typedef struct {
     IM3Module module;
     IM3Function entry;
     int exit_code;
+    int stdin_pipe_fd;   /* pipe fd for stdin redirection (-1 = UART) */
+    int stdout_pipe_fd;  /* pipe fd for stdout redirection (-1 = UART) */
 } wasm_module_slot_t;
 
 /* RAM disk file entry (parsed from USTAR TAR) */

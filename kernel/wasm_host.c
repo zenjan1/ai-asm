@@ -51,6 +51,12 @@ extern int  vfs_close(int pid, int fd);
 extern int  vfs_poll(int pid, int fd);
 extern void vfs_free_all(int pid);
 
+/* Pipe externs (v15.0 — used in host_getc/host_exit) */
+extern int pipe_create(int *, int *);
+extern int pipe_read(int, uint8_t *, uint32_t);
+extern int pipe_write(int, const uint8_t *, uint32_t);
+extern int pipe_close(int);
+
 /* Helper: get current module PID from IM3Runtime */
 static int get_current_pid(IM3Runtime runtime)
 {
@@ -408,7 +414,7 @@ static const char *load_module_internal(int slot_idx, const char *name,
 /* Host function implementations                                              */
 /* -------------------------------------------------------------------------- */
 
-/* host_print(offset, len) — print WASM linear memory to UART */
+/* host_print(offset, len) — print WASM linear memory to UART or pipe stdout */
 static const void *host_print(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
     uint32_t offset = (uint32_t)*_sp;
@@ -422,6 +428,20 @@ static const void *host_print(IM3Runtime runtime, IM3ImportContext _ctx, uint64_
         return m3Err_trapOutOfBoundsMemoryAccess;
     }
 
+    /* Check if current module has stdout redirected to a pipe */
+    if (current_module_id > 0 && current_module_id <= MAX_MODULES) {
+        uint32_t idx = current_module_id - 1;
+        wasm_module_slot_t *slot = &module_table[idx];
+        if (slot->stdout_pipe_fd >= 0 && slot->runtime == runtime) {
+            /* Write to pipe stdout */
+            uint8_t *p = mem + offset;
+            extern int pipe_write(int, const uint8_t *, uint32_t);
+            pipe_write(slot->stdout_pipe_fd, p, len);
+            return m3Err_none;
+        }
+    }
+
+    /* Default: print to UART */
     uint8_t *p = mem + offset;
     for (uint32_t i = 0; i < len; i++)
         uart_putc_raw((char)p[i]);
@@ -448,6 +468,17 @@ static const void *host_exit(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t
         if (idx < MAX_MODULES && module_table[idx].state != MOD_FREE) {
             /* VFS: release all fds for this process (v12.0) */
             vfs_free_all((int)module_table[idx].id);
+
+            /* Close pipe fds for stdin/stdout redirection (v15.0) */
+            if (module_table[idx].stdin_pipe_fd >= 0) {
+                extern int pipe_close(int);
+                pipe_close(module_table[idx].stdin_pipe_fd);
+                module_table[idx].stdin_pipe_fd = -1;
+            }
+            if (module_table[idx].stdout_pipe_fd >= 0) {
+                pipe_close(module_table[idx].stdout_pipe_fd);
+                module_table[idx].stdout_pipe_fd = -1;
+            }
 
             module_table[idx].exit_code = (int)code;
             module_table[idx].state = MOD_EXITED;
@@ -585,8 +616,34 @@ static const void *host_log(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t 
 /* host_getc() — non-blocking read one character from UART (yields on preempt) */
 static const void *host_getc(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
 {
-    (void)runtime; (void)_ctx; (void)_mem;
+    (void)_ctx; (void)_mem;
+    int32_t *ret = (int32_t *)(_sp);
 
+    /* Check if current module has stdin redirected to a pipe */
+    if (current_module_id > 0 && current_module_id <= MAX_MODULES) {
+        uint32_t idx = current_module_id - 1;
+        wasm_module_slot_t *slot = &module_table[idx];
+        if (slot->stdin_pipe_fd >= 0 && slot->runtime == runtime) {
+            /* Read from pipe stdin */
+            uint8_t ch;
+            /* Allocate a temporary buffer in WASM memory for pipe_read */
+            uint32_t mem_size = m3_GetMemorySize(runtime);
+            if (mem_size < 16) {
+                *ret = -1;
+                return m3Err_none;
+            }
+            uint32_t tmp_off = mem_size - 16;  /* use top of memory as temp buffer */
+            int n = pipe_read(slot->stdin_pipe_fd, &ch, 1);
+            if (n > 0) {
+                *ret = (int32_t)ch;
+            } else {
+                *ret = -1;  /* EOF or error */
+            }
+            return m3Err_none;
+        }
+    }
+
+    /* Default: read from UART */
     /* Check preemption flag — timer IRQ may have fired */
     if (preempt_pending) {
         /* Wait for next IRQ (scheduler loop will clear preempt_pending) */
@@ -604,7 +661,6 @@ static const void *host_getc(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t
     }
 
     uint8_t ch = (uint8_t)(UART_DR & 0xff);
-    int32_t *ret = (int32_t *)(_sp);
     *ret = (int32_t)ch;
     return m3Err_none;
 }
@@ -667,6 +723,65 @@ static const void *host_spawn(IM3Runtime runtime, IM3ImportContext _ctx, uint64_
     return m3Err_none;
 }
 
+/* host_spawn_redirect(name_ptr, name_len, stdin_fd, stdout_fd)
+ * Spawn a module and set its stdin/stdout pipe fds for pipeline support (v15.0)
+ * stdin_fd: pipe fd to read from (-1 = UART)
+ * stdout_fd: pipe fd to write to (-1 = UART)
+ * Returns: module_id or negative error
+ */
+static const void *host_spawn_redirect(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    uint32_t name_off   = (uint32_t)*(_sp + 1);
+    uint32_t name_len   = (uint32_t)*(_sp + 2);
+    int32_t stdin_fd    = (int32_t)(int64_t)*(_sp + 3);
+    int32_t stdout_fd   = (int32_t)(int64_t)*(_sp + 4);
+    int32_t *ret_val    = (int32_t *)(_sp);
+    _sp += 5;
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (name_off + name_len > mem_size) {
+        *ret_val = -1;
+        return m3Err_none;
+    }
+
+    /* Copy name to temp buffer */
+    char name_buf[64];
+    if (name_len >= 64) name_len = 63;
+    for (uint32_t i = 0; i < name_len; i++) name_buf[i] = (char)mem[name_off + i];
+    name_buf[name_len] = '\0';
+
+    /* Look up in registry */
+    wasm_registry_entry_t *entry = find_registry_entry(name_buf);
+    if (!entry) {
+        *ret_val = -1;
+        return m3Err_none;
+    }
+
+    /* Find free slot */
+    int slot = find_module_slot();
+    if (slot < 0) {
+        *ret_val = -2;
+        return m3Err_none;
+    }
+
+    /* Load module into slot */
+    const char *err = load_module_internal(slot, entry->name, entry->wasm_bytes, entry->wasm_size);
+    if (err) {
+        *ret_val = -3;
+        return m3Err_none;
+    }
+
+    /* Set stdin/stdout pipe fds for redirection */
+    module_table[slot].stdin_pipe_fd = (int)stdin_fd;
+    module_table[slot].stdout_pipe_fd = (int)stdout_fd;
+
+    *ret_val = (int32_t)module_table[slot].id;
+    return m3Err_none;
+}
+
 /* -------------------------------------------------------------------------- */
 /* VFS path resolution (v13.0)                                                */
 /* -------------------------------------------------------------------------- */
@@ -674,8 +789,6 @@ static const void *host_spawn(IM3Runtime runtime, IM3ImportContext _ctx, uint64_
 #define VFS_FLAG_READ   1
 #define VFS_FLAG_WRITE  2
 
-extern int pipe_create(int *, int *);
-extern int pipe_close(int);
 extern int net_close(int);
 extern int net_connect(unsigned int, unsigned int, unsigned int);
 extern int net_listen_impl(unsigned int);
@@ -2979,6 +3092,7 @@ static const host_reg_t host_registry[] = {
     { "host", "log",         "v(iiii)",&host_log         },
     { "host", "getc",        "i()",    &host_getc        },
     { "host", "spawn",       "i(ii)",  &host_spawn       },
+    { "host", "spawn_redirect","i(iiii)",&host_spawn_redirect },
     { "host", "vfs_open",    "i(iii)", &host_vfs_open    },
     { "host", "fs_open",     "i(ii)",  &host_fs_open     },
     { "host", "fs_read",     "i(iii)", &host_fs_read     },
@@ -3132,6 +3246,8 @@ const char *load_module_internal(int slot_idx, const char *name,
     slot->id = id;
     slot->state = MOD_LOADING;
     slot->exit_code = 0;
+    slot->stdin_pipe_fd = -1;
+    slot->stdout_pipe_fd = -1;
 
     /* Copy name */
     unsigned int nlen = my_strlen(name);
