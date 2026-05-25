@@ -186,6 +186,8 @@ extern const uint8_t devmgr_module_start[], devmgr_module_end[];
 extern const uint32_t devmgr_module_size;
 extern const uint8_t httpd_module_start[], httpd_module_end[];
 extern const uint32_t httpd_module_size;
+extern const uint8_t dns_resolver_module_start[], dns_resolver_module_end[];
+extern const uint32_t dns_resolver_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -198,6 +200,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "user",           NULL, 0 },
     { "devmgr",         NULL, 0 },
     { "httpd",          NULL, 0 },
+    { "dns_resolver",   NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -2545,6 +2548,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[8].wasm_size = devmgr_module_size;
     wasm_registry[9].wasm_bytes = httpd_module_start;
     wasm_registry[9].wasm_size = httpd_module_size;
+    wasm_registry[10].wasm_bytes = dns_resolver_module_start;
+    wasm_registry[10].wasm_size = dns_resolver_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];

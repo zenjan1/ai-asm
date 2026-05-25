@@ -146,6 +146,20 @@ httpd_module_size:
     .int httpd_module_end - httpd_module_start
 
 /* ---------------------------------------------------------------------------
+ * DNS resolver module
+ * --------------------------------------------------------------------------- */
+.section .rodata.dns_resolver_wasm
+.global dns_resolver_module_start
+dns_resolver_module_start:
+    .incbin "kernel/dns_resolver.wasm"
+.global dns_resolver_module_end
+dns_resolver_module_end:
+.align 4
+.global dns_resolver_module_size
+dns_resolver_module_size:
+    .int dns_resolver_module_end - dns_resolver_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

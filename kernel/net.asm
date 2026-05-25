@@ -1181,14 +1181,149 @@ tcp_send_fin_ack:
     ldp     x29, x30, [sp], #16
     ret
 
+/*
+ * Function: net_listen
+ * Create a TCP listening socket on a given port
+ * w0 = local port
+ * x0 = socket fd, or -1 on error
+ */
+.global net_listen_impl
+net_listen_impl:
+    stp     x29, x30, [sp, #-16]!
+    mov     w8, w0              /* local port */
+
+    /* Allocate socket */
+    bl      socket_alloc
+    cbz     x0, _nl_error
+
+    mov     x9, x0
+
+    /* Set state = TCP_LISTEN */
+    mov     w0, #TCP_LISTEN
+    strb    w0, [x9, #0]
+
+    /* Set local port */
+    strh    w8, [x9, #2]
+
+    /* Set local IP */
+    adrp    x0, net_ip_addr
+    add     x0, x0, #:lo12:net_ip_addr
+    ldr     w0, [x0]
+    str     w0, [x9, #8]
+
+    /* Set protocol = TCP */
+    mov     w0, #IP_PROTO_TCP
+    strb    w0, [x9, #1]
+
+    /* Calculate socket index for return */
+    adrp    x1, net_sockets
+    add     x1, x1, #:lo12:net_sockets
+    sub     x0, x9, x1
+    mov     x1, #2080
+    udiv    x0, x0, x1
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+_nl_error:
+    mov     x0, #-1
+    ldp     x29, x30, [sp], #16
+    ret
+
+/*
+ * Function: net_accept_impl
+ * Accept a connection on a listening socket
+ * w0 = listening socket fd
+ * x0 = client socket fd, or -1 if no connection pending
+ *
+ * For simplicity: checks if listening socket has data in RX buffer
+ * (meaning a SYN was received and processed). Returns the same socket
+ * fd for now — a full accept would allocate a new socket.
+ */
+.global net_accept_impl
+net_accept_impl:
+    stp     x29, x30, [sp, #-16]!
+    mov     w8, w0              /* listening socket fd */
+
+    /* Get socket ptr */
+    adrp    x1, net_sockets
+    add     x1, x1, #:lo12:net_sockets
+    mov     x2, x8
+    mov     x3, #2080
+    mul     x2, x2, x3
+    add     x9, x1, x2
+
+    /* Check state = LISTEN or SYN_RECEIVED */
+    ldrb    w0, [x9, #0]
+    cmp     w0, #TCP_LISTEN
+    b.eq    _na_check
+    cmp     w0, #TCP_SYN_RECEIVED
+    b.eq    _na_establish
+    cmp     w0, #TCP_ESTABLISHED
+    b.eq    _na_establish
+    b       _na_none
+
+_na_check:
+    /* In LISTEN state — return same fd, connection will be established on first data */
+    mov     x0, x8
+    ldp     x29, x30, [sp], #16
+    ret
+
+_na_establish:
+    /* Connection established — return same fd */
+    mov     x0, x8
+    ldp     x29, x30, [sp], #16
+    ret
+
+_na_none:
+    mov     x0, #-1
+    ldp     x29, x30, [sp], #16
+    ret
+
 /* -----------------------------------------------------------------------------
- * UDP Processing (simplified)
+ * UDP Processing
+ * Parse UDP header, find socket by dest port, copy payload to RX buffer
  * ----------------------------------------------------------------------------- */
 
 .global udp_process
 udp_process:
     stp     x29, x30, [sp, #-16]!
-    /* Simplified: parse ports, find socket, copy data */
+    mov     x8, x0              /* UDP header ptr */
+
+    /* Read dest port (bytes 2-3, big-endian) */
+    add     x0, x8, #2
+    bl      _net_read_u16_be
+    mov     w10, w0             /* dest port */
+
+    /* Read source port */
+    add     x0, x8, #0
+    bl      _net_read_u16_be
+    mov     w11, w0             /* src port */
+
+    /* Read UDP length */
+    add     x0, x8, #4
+    bl      _net_read_u16_be
+    sub     w12, w0, #UDP_HDR_SIZE  /* payload length */
+    cbz     w12, _udp_done
+
+    /* Find socket by dest port */
+    mov     w0, w10
+    bl      socket_find_by_port
+    cbz     x0, _udp_no_socket
+
+    mov     x9, x0              /* socket ptr */
+
+    /* Copy payload to socket RX buffer */
+    add     x0, x8, #UDP_HDR_SIZE   /* payload start */
+    add     x1, x9, #SOCKET_HDR_SIZE  /* RX buffer */
+    mov     x2, x12
+    bl      _net_memcpy
+
+    /* Store RX data length */
+    str     w12, [x9, #28]
+
+_udp_done:
+_udp_no_socket:
     ldp     x29, x30, [sp], #16
     ret
 
