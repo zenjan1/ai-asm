@@ -227,6 +227,32 @@ static unsigned int parse_dns_response(unsigned int buf, int resp_len)
     return 0;
 }
 
+/* Print hex bytes of a buffer region */
+static void print_hex_dump(unsigned int buf, int len)
+{
+    char *buf_c = (char *)buf;
+    char *out = (char *)BUF_SCRATCH;
+    int pos = 0;
+    for (int i = 0; i < len; i++) {
+        unsigned char b = (unsigned char)buf_c[i];
+        unsigned char hi = (b >> 4) & 0xF;
+        unsigned char lo = b & 0xF;
+        out[pos++] = (char)(hi < 10 ? '0' + hi : 'a' + hi - 10);
+        out[pos++] = (char)(lo < 10 ? '0' + lo : 'a' + lo - 10);
+        if (pos >= 60) {
+            out[pos++] = '\n';
+            wasm_host_print(BUF_SCRATCH, pos);
+            pos = 0;
+        } else {
+            out[pos++] = ' ';
+        }
+    }
+    if (pos > 0) {
+        out[pos++] = '\n';
+        wasm_host_print(BUF_SCRATCH, pos);
+    }
+}
+
 /* Resolve hostname to IP address
  * Returns IP in host byte order, or 0 on failure
  */
@@ -235,15 +261,37 @@ static unsigned int dns_resolve(const char *hostname)
     static unsigned int txid = 0x1234;
     txid++;
 
+    print_str("  Query: ");
+    print_str(hostname);
+    print_str("\n");
+
     /* Connect to DNS server via UDP */
     int sock = wasm_host_net_connect(0x0A000203, 53, 17);
     if (sock < 0) {
         print_str("  DNS: connect failed\n");
         return 0;
     }
+    print_str("  Socket: ");
+    /* print sock fd */
+    char fd_buf[8]; int fi = 0; int fv = sock;
+    if (fv < 0) { fd_buf[fi++] = '-'; fv = -fv; }
+    if (fv == 0) fd_buf[fi++] = '0';
+    else { while (fv > 0) { fd_buf[fi++] = (char)('0' + (fv % 10)); fv /= 10; } }
+    fd_buf[fi] = '\n';
+    wasm_host_print((unsigned int)fd_buf, fi + 1);
 
     /* Build query */
     unsigned int qlen = build_dns_query(BUF_QUERY, hostname, txid);
+    print_str("  Query length: ");
+    /* print qlen */
+    fi = 0; fv = qlen;
+    if (fv == 0) fd_buf[fi++] = '0';
+    else { while (fv > 0) { fd_buf[fi++] = (char)('0' + (fv % 10)); fv /= 10; } }
+    fd_buf[fi] = '\n';
+    wasm_host_print((unsigned int)fd_buf, fi + 1);
+
+    print_str("  Query hex:\n");
+    print_hex_dump(BUF_QUERY, qlen);
 
     /* Send query */
     int sent = wasm_host_net_send(sock, BUF_QUERY, qlen);
@@ -252,6 +300,12 @@ static unsigned int dns_resolve(const char *hostname)
         wasm_host_net_close(sock);
         return 0;
     }
+    print_str("  Sent bytes: ");
+    fi = 0; fv = sent;
+    if (fv == 0) fd_buf[fi++] = '0';
+    else { while (fv > 0) { fd_buf[fi++] = (char)('0' + (fv % 10)); fv /= 10; } }
+    fd_buf[fi] = '\n';
+    wasm_host_print((unsigned int)fd_buf, fi + 1);
 
     /* Wait for response */
     wasm_host_sleep(3000);
@@ -265,8 +319,36 @@ static unsigned int dns_resolve(const char *hostname)
         return 0;
     }
 
+    print_str("  Response length: ");
+    fi = 0; fv = rlen;
+    if (fv == 0) fd_buf[fi++] = '0';
+    else { while (fv > 0) { fd_buf[fi++] = (char)('0' + (fv % 10)); fv /= 10; } }
+    fd_buf[fi] = '\n';
+    wasm_host_print((unsigned int)fd_buf, fi + 1);
+
+    print_str("  Response hex:\n");
+    print_hex_dump(BUF_RESP, rlen);
+
     /* Parse response */
     unsigned int ip = parse_dns_response(BUF_RESP, rlen);
+
+    /* Print DNS response header info */
+    unsigned int flags = read_u16_be(BUF_RESP + 2);
+    unsigned int ancount = read_u16_be(BUF_RESP + 6);
+    print_str("  Flags: ");
+    fi = 0; fv = flags;
+    if (fv == 0) fd_buf[fi++] = '0';
+    else { while (fv > 0) { fd_buf[fi++] = (char)('0' + (fv % 10)); fv /= 10; } }
+    fd_buf[fi] = '\n';
+    wasm_host_print((unsigned int)fd_buf, fi + 1);
+
+    print_str("  Answers: ");
+    fi = 0; fv = ancount;
+    if (fv == 0) fd_buf[fi++] = '0';
+    else { while (fv > 0) { fd_buf[fi++] = (char)('0' + (fv % 10)); fv /= 10; } }
+    fd_buf[fi] = '\n';
+    wasm_host_print((unsigned int)fd_buf, fi + 1);
+
     return ip;
 }
 
@@ -275,15 +357,26 @@ void _start(void)
 {
     print_str("\n== AI-ASM DNS Resolver ==\n");
 
-    /* Test: resolve a hostname */
-    unsigned int ip = dns_resolve("example.com");
+    /* Test: resolve multiple hostnames */
+    unsigned int ip;
 
+    ip = dns_resolve("example.com");
     if (ip) {
-        print_str("  example.com -> ");
+        print_str("  => ");
         print_ip(ip);
     } else {
-        print_str("  DNS resolution failed for example.com\n");
+        print_str("  => FAILED\n");
     }
+    print_str("\n");
+
+    ip = dns_resolve("google.com");
+    if (ip) {
+        print_str("  => ");
+        print_ip(ip);
+    } else {
+        print_str("  => FAILED\n");
+    }
+    print_str("\n");
 
     /* Log result */
     wasm_host_log(BUF_SCRATCH, 4, BUF_SCRATCH + 5, 10);
