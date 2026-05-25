@@ -1,74 +1,19 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-25 22:00
-# 当前阶段: Phase 29 (v29.0 tr WASM模块)
+# 生成时间: 2026-05-25 20:30
+# 当前阶段: Phase 29 (v29.0 tr WASM模块) - COMPLETED
 
 ## 当前状态
-- v28.0 已推送: uniq WASM模块
-- kernel.elf: 7005200 bytes (6841KB)
-- 23个WASM模块已注册 (init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, shmem_test, grep, cat, echo, tee, wc, head, tail, sort, uniq)
+- v29.0 已推送: tr WASM模块
+- kernel.elf: 7005344 bytes (6841KB)
+- 24个WASM模块已注册 (init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, shmem_test, grep, cat, echo, tee, wc, head, tail, sort, uniq, tr)
 - 管道系统完整: spawn_redirect, argv传递, yield, EOF检测, pipe_read
 - 重定向: > >> < 支持, 管道+重定向组合
-- 文本处理工具: cat, grep, wc, head, tail, sort, uniq, tee, echo
-- 完整文本处理管道: cat | sort | uniq | head | tail | wc | grep | tee
+- tee支持管道分支: cmd1 | tee file | cmd2
+- wc支持文本统计: lines/words/bytes
+- head/tail支持文本截取: 前N行/最后N行
+- sort支持文本排序: 字母序(默认), 数值序(-n), 逆序(-r)
+- uniq支持相邻去重: 默认去重, -c计数, -d仅重复, -u仅唯一
+- tr支持字符转换: 翻译(a-z→A-Z), 删除(-d), 范围(a-z, A-Z, 0-9), 转义(\n, \t)
+- 完整文本处理管道: cat | sort | uniq | head | tail | wc | grep | tee | tr
 
-## 问题: 缺少tr模块用于字符转换
-
-tr用于字符翻译和删除,是管道处理中的重要工具:
-- echo "hello" | tr 'a-z' 'A-Z' → "HELLO" (小写转大写)
-- echo "hello" | tr -d 'l' → "heo" (删除字符)
-- echo "a\tb\tc" | tr '\t' ' ' → "a b c" (制表符转空格)
-
-## 任务: 创建tr WASM模块
-
-### 1. 创建 modules/tr/src/main.c
-
-```c
-/* tr: translate or delete characters from stdin */
-/* Usage: tr [OPTION] SET1 [SET2] */
-/* -d: delete characters in SET1 */
-/* -c: complement SET1 */
-/* Sets support: a-z, A-Z, 0-9, \n, \t */
-```
-
-功能:
-- 从stdin逐字节读取 (host_getc)
-- 查找字符在SET1中的位置, 替换为SET2中对应字符
-- 支持 -d 删除SET1中的字符
-- 支持 -c 补集(匹配SET1之外的字符)
-- 支持范围: a-z, A-Z, 0-9
-- 支持转义: \n, \t
-- 输出转换后的字节 (host_print)
-
-实现细节:
-- 使用256字节查找表进行字符映射
-- 解析SET1和SET2为查找表
-- 范围展开: a-z → 97-122
-- MAX_ARGV=128用于argv解析
-- 逐字节处理, 无需缓冲区
-
-### 2. Makefile添加编译规则
-- TR_WASM变量
-- 编译规则 (同uniq模式)
-- modules目标添加$(TR_WASM)
-- ramdisk.o依赖添加$(TR_WASM)
-- clean目标添加tr清理
-
-### 3. kernel/ramdisk.asm嵌入
-```asm
-.section .rodata.tr_wasm
-.global tr_module_start
-tr_module_start:
-    .incbin "kernel/tr.wasm"
-... (同其他模块模式)
-```
-
-### 4. kernel/wasm_host.c注册
-- extern声明 tr module symbols
-- wasm_registry添加 { "tr", NULL, 0 }
-- wasm_host_init_multi中解析
-
-### 5. 验收标准
-- `echo "hello" | tr 'a-z' 'A-Z'` 输出 "HELLO"
-- `echo "hello" | tr -d 'l'` 输出 "heo"
-- `echo "abc" | tr 'abc' '123'` 输出 "123"
-- `cat /hello.txt | tr 'a-z' 'A-Z' | head -n 2` 管道组合
+## 等待下一个任务...
