@@ -59,6 +59,7 @@
 .extern virtio_net_recv
 .extern virtio_net_get_mac
 .extern serial_puts
+.extern uart_putc_raw
 .extern timer_get_ms
 
 /* -----------------------------------------------------------------------------
@@ -149,6 +150,51 @@ _net_memcpy:
     sub     x2, x2, #1
     cbnz    x2, 1b
 2:  ret
+
+/* -----------------------------------------------------------------------------
+ * Helper: serial_put_hex16
+ * Print a 16-bit value in decimal via UART
+ * w0 = value
+ * ----------------------------------------------------------------------------- */
+.global serial_put_hex16
+serial_put_hex16:
+    stp     x29, x30, [sp, #-16]!
+    mov     w1, w0
+    cbz     w1, _sph_zero
+
+    /* Convert to decimal string on stack */
+    mov     x2, sp
+    mov     w3, #0              /* digit count */
+_sph_loop:
+    cbz     w1, _sph_done
+    mov     w4, #10
+    udiv    w5, w1, w4
+    msub    w6, w5, w4, w1      /* remainder */
+    add     w6, w6, #'0'
+    sub     sp, sp, #1
+    strb    w6, [sp]
+    add     w3, w3, #1
+    mov     w1, w5
+    b       _sph_loop
+_sph_done:
+    /* Print digits */
+    mov     w4, w3
+_sph_print:
+    cbz     w4, _sph_end
+    ldrb    w0, [sp]
+    bl      uart_putc_raw
+    add     sp, sp, #1
+    sub     w4, w4, #1
+    b       _sph_print
+_sph_end:
+    ldp     x29, x30, [sp], #16
+    ret
+
+_sph_zero:
+    mov     x0, #'0'
+    bl      uart_putc_raw
+    ldp     x29, x30, [sp], #16
+    ret
 
 /* -----------------------------------------------------------------------------
  * Helper: _net_write_u16_be
@@ -1306,6 +1352,26 @@ udp_process:
     sub     w12, w0, #UDP_HDR_SIZE  /* payload length */
     cbz     w12, _udp_done
 
+    /* Debug: print "[UDP] rx port=X sport=Y len=Z\n" */
+    adrp    x0, msg_udp_rx
+    add     x0, x0, #:lo12:msg_udp_rx
+    bl      serial_puts
+    mov     w0, w11
+    bl      serial_put_hex16
+    adrp    x0, msg_udp_sp
+    add     x0, x0, #:lo12:msg_udp_sp
+    bl      serial_puts
+    mov     w0, w10
+    bl      serial_put_hex16
+    adrp    x0, msg_udp_ln
+    add     x0, x0, #:lo12:msg_udp_ln
+    bl      serial_puts
+    mov     w0, w12
+    bl      serial_put_hex16
+    adrp    x0, msg_nl
+    add     x0, x0, #:lo12:msg_nl
+    bl      serial_puts
+
     /* Find socket by dest port */
     mov     w0, w10
     bl      socket_find_by_port
@@ -1360,6 +1426,26 @@ ip_send_udp:
 
     /* remote_ip (offset 8, 32-bit) */
     ldr     w15, [x8, #8]       /* remote_ip */
+
+    /* Debug: print "[UDP] tx port=X dport=Y len=Z\n" */
+    adrp    x0, msg_udp_tx
+    add     x0, x0, #:lo12:msg_udp_tx
+    bl      serial_puts
+    mov     w0, w12
+    bl      serial_put_hex16
+    adrp    x0, msg_udp_dp
+    add     x0, x0, #:lo12:msg_udp_dp
+    bl      serial_puts
+    mov     w0, w13
+    bl      serial_put_hex16
+    adrp    x0, msg_udp_ln
+    add     x0, x0, #:lo12:msg_udp_ln
+    bl      serial_puts
+    mov     w0, w10
+    bl      serial_put_hex16
+    adrp    x0, msg_nl
+    add     x0, x0, #:lo12:msg_nl
+    bl      serial_puts
 
     /* --- Ethernet header (14 bytes at offset 0) --- */
     /* Lookup MAC for remote IP via ARP cache */
@@ -1718,3 +1804,15 @@ net_close:
 .align 4
 msg_net_init_ok:
     .asciz "[net] TCP/IP stack ready\n"
+msg_udp_rx:
+    .asciz "[UDP] rx sport="
+msg_udp_sp:
+    .asciz " dport="
+msg_udp_tx:
+    .asciz "[UDP] tx sport="
+msg_udp_dp:
+    .asciz " dport="
+msg_udp_ln:
+    .asciz " len="
+msg_nl:
+    .asciz "\n"
