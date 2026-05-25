@@ -1607,8 +1607,106 @@ static const void *wasi_args_sizes_get(IM3Runtime rt, IM3ImportContext _ctx, uin
     uint8_t *mem = (uint8_t *)_mem;
     uint32_t mem_size = m3_GetMemorySize(rt);
 
-    if (argc_out + 4 <= mem_size) *(uint32_t *)(mem + argc_out) = 0;
-    if (argv_buf_out + 4 <= mem_size) *(uint32_t *)(mem + argv_buf_out) = 0;
+    /* Find current module's argv */
+    uint32_t argc = 0;
+    uint32_t buf_size = 0;
+    for (int i = 0; i < MAX_MODULES; i++) {
+        if (module_table[i].id == current_module_id && module_table[i].state != MOD_FREE) {
+            if (module_argc[i] > 0) {
+                argc = 1;
+                buf_size = module_argc[i] + 1;  /* string + null */
+            }
+            break;
+        }
+    }
+
+    if (argc_out + 4 <= mem_size) *(uint32_t *)(mem + argc_out) = argc;
+    if (argv_buf_out + 4 <= mem_size) *(uint32_t *)(mem + argv_buf_out) = buf_size;
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = WASI_ESUCCESS;
+    return m3Err_none;
+}
+
+/* wasi_args_get(argv, argv_buf) — copy argc/argv to WASM memory (v18.0) */
+static const void *wasi_args_get(IM3Runtime rt, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx;
+    uint32_t argv_off     = (uint32_t)*(uint64_t*)(_sp + 1);
+    uint32_t argv_buf_off = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(rt);
+
+    if (argv_off + 8 > mem_size || argv_buf_off > mem_size) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = 28; /* EFAULT */
+        return m3Err_none;
+    }
+
+    /* Find current module's argv */
+    int slot_idx = -1;
+    for (int i = 0; i < MAX_MODULES; i++) {
+        if (module_table[i].id == current_module_id && module_table[i].state != MOD_FREE) {
+            slot_idx = i;
+            break;
+        }
+    }
+
+    if (slot_idx < 0 || module_argc[slot_idx] == 0) {
+        *(uint32_t *)(mem + argv_off) = 0;  /* argc = 0 */
+        int32_t *ret = (int32_t *)_sp;
+        *ret = WASI_ESUCCESS;
+        return m3Err_none;
+    }
+
+    /* Copy argument string to buffer */
+    uint32_t arg_len = module_argc[slot_idx];
+    char *arg = module_argv[slot_idx];
+    uint32_t buf_pos = argv_buf_off;
+    for (uint32_t i = 0; i <= arg_len; i++)
+        mem[buf_pos++] = (uint8_t)arg[i];
+
+    /* Write argv pointer array: [ptr_to_string, NULL] */
+    *(uint32_t *)(mem + argv_off) = argv_buf_off;
+    *(uint32_t *)(mem + argv_off + 4) = 0;
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = WASI_ESUCCESS;
+    return m3Err_none;
+}
+
+/* wasi_environ_get(environ, environ_buf) — return empty environment (v18.0) */
+static const void *wasi_environ_get(IM3Runtime rt, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)rt; (void)_ctx; (void)_mem; (void)_sp;
+    int32_t *ret = (int32_t *)_sp;
+    *ret = WASI_ESUCCESS;
+    return m3Err_none;
+}
+
+/* wasi_fd_fdstat_get(fd, stat_off) — return fd stat (v18.0) */
+static const void *wasi_fd_fdstat_get(IM3Runtime rt, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx;
+    int32_t fd = (int32_t)*(int64_t*)(_sp + 1);
+    uint32_t stat_off = (uint32_t)*(uint64_t*)(_sp + 2);
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(rt);
+
+    if (stat_off + 24 > mem_size) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = 8; /* EBADF */
+        return m3Err_none;
+    }
+
+    /* fdstat: filetype(1) + fdflags(1) + pad(6) + rights_base(8) + rights_inherit(8) = 24 */
+    if (fd >= 0 && fd <= 2) {
+        mem[stat_off] = 2;  /* __WASI_FILETYPE_CHARACTER_DEVICE */
+    } else {
+        mem[stat_off] = 0;  /* unknown */
+    }
+    /* Zero rest */
+    for (int i = 1; i < 24; i++) mem[stat_off + i] = 0;
 
     int32_t *ret = (int32_t *)_sp;
     *ret = WASI_ESUCCESS;
@@ -3272,7 +3370,10 @@ static const host_reg_t host_registry[] = {
     { "wasi_snapshot_preview1", "clock_time_get",  "i(iiI)",  &wasi_clock_time_get },
     { "wasi_snapshot_preview1", "random_get",      "i(ii)",   &wasi_random_get    },
     { "wasi_snapshot_preview1", "args_sizes_get",  "i(ii)",   &wasi_args_sizes_get },
+    { "wasi_snapshot_preview1", "args_get",        "i(ii)",   &wasi_args_get       },
     { "wasi_snapshot_preview1", "environ_sizes_get","i(ii)",  &wasi_environ_sizes_get },
+    { "wasi_snapshot_preview1", "environ_get",     "i(ii)",   &wasi_environ_get    },
+    { "wasi_snapshot_preview1", "fd_fdstat_get",   "i(ii)",   &wasi_fd_fdstat_get  },
     /* GUI */
     { "host", "gui_blit",   "v(iiiiii)", &host_gui_blit    },
     { "host", "gui_create", "i(iiiii)", &host_gui_create  },
