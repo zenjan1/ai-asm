@@ -1,6 +1,6 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-25 20:30
-# 当前阶段: Phase 27 (v27.0 sort WASM模块) - COMPLETED
+# 生成时间: 2026-05-25 21:30
+# 当前阶段: Phase 28 (v28.0 uniq WASM模块)
 
 ## 当前状态
 - v27.0 已推送: sort WASM模块
@@ -8,10 +8,71 @@
 - 22个WASM模块已注册 (init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, shmem_test, grep, cat, echo, tee, wc, head, tail, sort)
 - 管道系统完整: spawn_redirect, argv传递, yield, EOF检测, pipe_read
 - 重定向: > >> < 支持, 管道+重定向组合
-- tee支持管道分支: cmd1 | tee file | cmd2
-- wc支持文本统计: lines/words/bytes
-- head/tail支持文本截取: 前N行/最后N行
-- sort支持文本排序: 字母序(默认), 数值序(-n), 逆序(-r)
-- 完整文本处理管道: cat | sort | head | tail | wc | grep | tee
+- 文本处理工具: cat, grep, wc, head, tail, sort, tee, echo
+- sort支持排序: 字母序(默认), 数值序(-n), 逆序(-r)
 
-## 等待下一个任务...
+## 问题: 缺少uniq模块用于去重
+
+uniq用于删除相邻的重复行,通常与sort配合使用:
+- sort file.txt | uniq (去重排序)
+- sort file.txt | uniq -c (统计每行出现次数)
+- sort file.txt | uniq -d (只显示重复行)
+- sort file.txt | uniq -u (只显示唯一行)
+
+## 任务: 创建uniq WASM模块
+
+### 1. 创建 modules/uniq/src/main.c
+
+```c
+/* uniq: remove or report adjacent duplicate lines from stdin */
+/* Usage: uniq [-c] [-d] [-u] */
+/* -c: prefix each line with count of occurrences */
+/* -d: output only duplicate lines (one per group) */
+/* -u: output only unique lines */
+```
+
+功能:
+- 从stdin逐字节读取 (host_getc), 逐行处理
+- 将当前行与前一行比较
+- 如果是重复行, 计数+1
+- 如果是新行, 根据标志决定是否输出前一行
+- 支持 -c 计数前缀
+- 支持 -d 只输出重复行
+- 支持 -u 只输出唯一行
+- 默认: 输出所有行(去重后)
+
+实现细节:
+- 两行缓冲区: prev_line[MAX_LINE], curr_line[MAX_LINE]
+- 逐字符比较, 不需要完整排序
+- 计数变量跟踪相邻重复次数
+- 解析argv获取标志
+- MAX_LINE=256
+
+### 2. Makefile添加编译规则
+- UNIQ_WASM变量
+- 编译规则 (同sort模式)
+- modules目标添加$(UNIQ_WASM)
+- ramdisk.o依赖添加$(UNIQ_WASM)
+- clean目标添加uniq清理
+
+### 3. kernel/ramdisk.asm嵌入
+```asm
+.section .rodata.uniq_wasm
+.global uniq_module_start
+uniq_module_start:
+    .incbin "kernel/uniq.wasm"
+... (同其他模块模式)
+```
+
+### 4. kernel/wasm_host.c注册
+- extern声明 uniq module symbols
+- wasm_registry添加 { "uniq", NULL, 0 }
+- wasm_host_init_multi中解析
+
+### 5. 验收标准
+- `echo -e "a\na\nb\nb\nc" | uniq` 输出 "a\nb\nc\n"
+- `echo -e "a\na\nb\nc" | uniq -c` 输出 "2a\n1b\n1c\n" (格式: "  N line")
+- `echo -e "a\na\nb\nb\nc" | uniq -d` 输出 "a\nb\n" (只显示重复行)
+- `echo -e "a\nb\nc\n" | uniq -u` 输出 "a\nb\nc\n" (所有都唯一)
+- `echo -e "a\na\nb\nb\nc" | sort | uniq` 管道组合
+- `cat /hello.txt | sort | uniq | wc -l` 统计唯一行数

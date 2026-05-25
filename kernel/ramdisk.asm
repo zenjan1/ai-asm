@@ -286,6 +286,20 @@ sort_module_size:
     .int sort_module_end - sort_module_start
 
 /* ---------------------------------------------------------------------------
+ * Uniq module
+ * --------------------------------------------------------------------------- */
+.section .rodata.uniq_wasm
+.global uniq_module_start
+uniq_module_start:
+    .incbin "kernel/uniq.wasm"
+.global uniq_module_end
+uniq_module_end:
+.align 4
+.global uniq_module_size
+uniq_module_size:
+    .int uniq_module_end - uniq_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
