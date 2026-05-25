@@ -132,6 +132,20 @@ devmgr_module_size:
     .int devmgr_module_end - devmgr_module_start
 
 /* ---------------------------------------------------------------------------
+ * HTTP server module
+ * --------------------------------------------------------------------------- */
+.section .rodata.httpd_wasm
+.global httpd_module_start
+httpd_module_start:
+    .incbin "kernel/httpd.wasm"
+.global httpd_module_end
+httpd_module_end:
+.align 4
+.global httpd_module_size
+httpd_module_size:
+    .int httpd_module_end - httpd_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

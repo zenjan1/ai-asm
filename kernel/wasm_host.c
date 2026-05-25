@@ -184,6 +184,8 @@ extern const uint8_t user_module_start[], user_module_end[];
 extern const uint32_t user_module_size;
 extern const uint8_t devmgr_module_start[], devmgr_module_end[];
 extern const uint32_t devmgr_module_size;
+extern const uint8_t httpd_module_start[], httpd_module_end[];
+extern const uint32_t httpd_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -195,6 +197,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "settings",       NULL, 0 },
     { "user",           NULL, 0 },
     { "devmgr",         NULL, 0 },
+    { "httpd",          NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -1366,6 +1369,34 @@ static const void *host_net_close(IM3Runtime runtime, IM3ImportContext _ctx, uin
     return m3Err_none;
 }
 
+/* host_net_listen(port) — create TCP listening socket */
+static const void *host_net_listen(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    uint32_t port = (uint32_t)*(_sp + 1);
+
+    extern int net_listen_impl(uint32_t port);
+    int sock = net_listen_impl(port);
+
+    int32_t *ret = (int32_t *)(_sp);
+    *ret = (int32_t)sock;
+    return m3Err_none;
+}
+
+/* host_net_accept(sock) — accept connection on listening socket */
+static const void *host_net_accept(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t sock = (int32_t)(int64_t)*(_sp + 1);
+
+    extern int net_accept_impl(int sock);
+    int client = net_accept_impl(sock);
+
+    int32_t *ret = (int32_t *)(_sp);
+    *ret = (int32_t)client;
+    return m3Err_none;
+}
+
 /* -------------------------------------------------------------------------- */
 /* IPC: Pipe and Message Queue host functions                                 */
 /* -------------------------------------------------------------------------- */
@@ -2218,6 +2249,8 @@ static const host_reg_t host_registry[] = {
     { "host", "net_send",    "i(iii)", &host_net_send    },
     { "host", "net_recv",    "i(iii)", &host_net_recv    },
     { "host", "net_close",   "v(i)",   &host_net_close   },
+    { "host", "net_listen",  "i(i)",   &host_net_listen  },
+    { "host", "net_accept",  "i(i)",   &host_net_accept  },
     /* IPC: Pipes */
     { "host", "pipe_create", "i(ii)",  &host_pipe_create  },
     { "host", "pipe_read",   "i(iii)", &host_pipe_read    },
@@ -2510,6 +2543,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[7].wasm_size = user_module_size;
     wasm_registry[8].wasm_bytes = devmgr_module_start;
     wasm_registry[8].wasm_size = devmgr_module_size;
+    wasm_registry[9].wasm_bytes = httpd_module_start;
+    wasm_registry[9].wasm_size = httpd_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];
