@@ -776,6 +776,20 @@ df_module_size:
     .int df_module_end - df_module_start
 
 /* ---------------------------------------------------------------------------
+ * Free module (memory usage display)
+ * --------------------------------------------------------------------------- */
+.section .rodata.free_wasm
+.global free_module_start
+free_module_start:
+    .incbin "kernel/free.wasm"
+.global free_module_end
+free_module_end:
+.align 4
+.global free_module_size
+free_module_size:
+    .int free_module_end - free_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
