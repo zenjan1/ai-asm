@@ -440,6 +440,20 @@ printf_module_size:
     .int printf_module_end - printf_module_start
 
 /* ---------------------------------------------------------------------------
+ * Sleep module
+ * --------------------------------------------------------------------------- */
+.section .rodata.sleep_wasm
+.global sleep_module_start
+sleep_module_start:
+    .incbin "kernel/sleep.wasm"
+.global sleep_module_end
+sleep_module_end:
+.align 4
+.global sleep_module_size
+sleep_module_size:
+    .int sleep_module_end - sleep_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
