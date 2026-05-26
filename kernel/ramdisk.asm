@@ -2046,6 +2046,16 @@ ss_module_end:
 ss_module_size:
     .int ss_module_end - ss_module_start
 
+.section .rodata.ip_wasm
+.global ip_module_start
+ip_module_start:
+    .incbin "kernel/ip.wasm"
+.global ip_module_end
+ip_module_end:
+.global ip_module_size
+ip_module_size:
+    .int ip_module_end - ip_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

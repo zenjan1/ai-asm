@@ -532,6 +532,8 @@ extern const uint8_t tracepath_module_start[], tracepath_module_end[];
 extern const uint32_t tracepath_module_size;
 extern const uint8_t ss_module_start[], ss_module_end[];
 extern const uint32_t ss_module_size;
+extern const uint8_t ip_module_start[], ip_module_end[];
+extern const uint32_t ip_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -557,6 +559,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "ltrace",         NULL, 0 },
     { "tracepath",      NULL, 0 },
     { "ss",             NULL, 0 },
+    { "ip",             NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4622,6 +4625,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[161].wasm_size = tracepath_module_size;
     wasm_registry[162].wasm_bytes = ss_module_start;
     wasm_registry[162].wasm_size = ss_module_size;
+    wasm_registry[163].wasm_bytes = ip_module_start;
+    wasm_registry[163].wasm_size = ip_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
