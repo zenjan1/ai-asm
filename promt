@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-29 09:00
-# 当前阶段: Phase 185 (v185.0 brctl WASM模块)
+# 生成时间: 2026-05-29 10:00
+# 当前阶段: Phase 186 (v186.0 route WASM模块)
 
 ## 当前状态
-- v184.0 已推送: arping WASM模块 (commit a666122)
-- 177个WASM模块已注册
-- kernel.elf: 7243640 bytes (7073KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping
+- v185.0 已推送: brctl WASM模块 (commit 041df6c)
+- 178个WASM模块已注册
+- kernel.elf: 7243760 bytes (7073KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl
 
-## 任务: 创建brctl WASM模块
+## 任务: 创建route WASM模块
 
 网络工具:
-- brctl: 显示/配置网桥参数
-- 模拟输出网桥配置和端口列表
+- route: 显示/操作IP路由表
+- 模拟输出路由表信息
 
-### 文件: modules/brctl/src/main.c
+### 文件: modules/route/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-输出模拟的网桥配置信息
+输出模拟的路由表信息
 
-### Makefile: 添加BRCTL_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在arping和ramdisk之间添加brctl的.incbin段
-### kernel/wasm_host.c: 添加brctl externs, registry entry "brctl", registry[178]初始化
+### Makefile: 添加ROUTE_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在brctl和ramdisk之间添加route的.incbin段
+### kernel/wasm_host.c: 添加route externs, registry entry "route", registry[179]初始化
 
 ### 提交:
-git commit -m "feat: add brctl WASM module for bridge configuration simulation (v185.0)"
+git commit -m "feat: add route WASM module for routing table simulation (v186.0)"
