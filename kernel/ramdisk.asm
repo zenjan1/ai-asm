@@ -1354,6 +1354,17 @@ md5sum_module_end:
 md5sum_module_size:
     .int md5sum_module_end - md5sum_module_start
 
+.section .rodata.base64_wasm
+.global base64_module_start
+base64_module_start:
+    .incbin "kernel/base64.wasm"
+.global base64_module_end
+base64_module_end:
+
+.global base64_module_size
+base64_module_size:
+    .int base64_module_end - base64_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

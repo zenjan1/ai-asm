@@ -400,6 +400,8 @@ extern const uint8_t sha256sum_module_start[], sha256sum_module_end[];
 extern const uint32_t sha256sum_module_size;
 extern const uint8_t md5sum_module_start[], md5sum_module_end[];
 extern const uint32_t md5sum_module_size;
+extern const uint8_t base64_module_start[], base64_module_end[];
+extern const uint32_t base64_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -499,6 +501,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "unxz",           NULL, 0 },
     { "sha256sum",      NULL, 0 },
     { "md5sum",         NULL, 0 },
+    { "base64",         NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4285,6 +4288,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[95].wasm_size = sha256sum_module_size;
     wasm_registry[96].wasm_bytes = md5sum_module_start;
     wasm_registry[96].wasm_size = md5sum_module_size;
+    wasm_registry[97].wasm_bytes = base64_module_start;
+    wasm_registry[97].wasm_size = base64_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
