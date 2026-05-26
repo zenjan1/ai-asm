@@ -494,12 +494,15 @@ extern const uint8_t test_cmd_module_start[], test_cmd_module_end[];
 extern const uint32_t test_cmd_module_size;
 extern const uint8_t dd_module_start[], dd_module_end[];
 extern const uint32_t dd_module_size;
+extern const uint8_t hashsum_module_start[], hashsum_module_end[];
+extern const uint32_t hashsum_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
     { "shell",          NULL, 0 },
     { "test",           NULL, 0 },
     { "dd",             NULL, 0 },
+    { "hashsum",        NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -641,6 +644,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "expr",           NULL, 0 },
     { "test",           NULL, 0 },
     { "dd",             NULL, 0 },
+    { "hashsum",        NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4521,6 +4525,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[142].wasm_size = test_cmd_module_size;
     wasm_registry[143].wasm_bytes = dd_module_start;
     wasm_registry[143].wasm_size = dd_module_size;
+    wasm_registry[144].wasm_bytes = hashsum_module_start;
+    wasm_registry[144].wasm_size = hashsum_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

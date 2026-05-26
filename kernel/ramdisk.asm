@@ -1856,6 +1856,16 @@ dd_module_end:
 dd_module_size:
     .int dd_module_end - dd_module_start
 
+.section .rodata.hashsum_wasm
+.global hashsum_module_start
+hashsum_module_start:
+    .incbin "kernel/hashsum.wasm"
+.global hashsum_module_end
+hashsum_module_end:
+.global hashsum_module_size
+hashsum_module_size:
+    .int hashsum_module_end - hashsum_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
