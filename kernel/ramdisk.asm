@@ -1826,6 +1826,16 @@ dircolors_module_end:
 dircolors_module_size:
     .int dircolors_module_end - dircolors_module_start
 
+.section .rodata.expr_wasm
+.global expr_module_start
+expr_module_start:
+    .incbin "kernel/expr.wasm"
+.global expr_module_end
+expr_module_end:
+.global expr_module_size
+expr_module_size:
+    .int expr_module_end - expr_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
