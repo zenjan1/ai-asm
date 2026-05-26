@@ -1321,6 +1321,17 @@ xz_module_end:
 xz_module_size:
     .int xz_module_end - xz_module_start
 
+.section .rodata.unxz_wasm
+.global unxz_module_start
+unxz_module_start:
+    .incbin "kernel/unxz.wasm"
+.global unxz_module_end
+unxz_module_end:
+
+.global unxz_module_size
+unxz_module_size:
+    .int unxz_module_end - unxz_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
