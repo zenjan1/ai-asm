@@ -1876,6 +1876,16 @@ watch_module_end:
 watch_module_size:
     .int watch_module_end - watch_module_start
 
+.section .rodata.wasm_dis_wasm
+.global wasm_dis_module_start
+wasm_dis_module_start:
+    .incbin "kernel/wasm_dis.wasm"
+.global wasm_dis_module_end
+wasm_dis_module_end:
+.global wasm_dis_module_size
+wasm_dis_module_size:
+    .int wasm_dis_module_end - wasm_dis_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
