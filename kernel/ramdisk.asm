@@ -1574,6 +1574,17 @@ unexpand_module_end:
 unexpand_module_size:
     .int unexpand_module_end - unexpand_module_start
 
+.section .rodata.numfmt_wasm
+.global numfmt_module_start
+numfmt_module_start:
+    .incbin "kernel/numfmt.wasm"
+.global numfmt_module_end
+numfmt_module_end:
+
+.global numfmt_module_size
+numfmt_module_size:
+    .int numfmt_module_end - numfmt_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
