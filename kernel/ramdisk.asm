@@ -356,6 +356,20 @@ xargs_module_size:
     .int xargs_module_end - xargs_module_start
 
 /* ---------------------------------------------------------------------------
+ * Date module
+ * --------------------------------------------------------------------------- */
+.section .rodata.date_wasm
+.global date_module_start
+date_module_start:
+    .incbin "kernel/date.wasm"
+.global date_module_end
+date_module_end:
+.align 4
+.global date_module_size
+date_module_size:
+    .int date_module_end - date_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

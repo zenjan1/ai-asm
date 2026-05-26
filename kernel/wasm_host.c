@@ -256,6 +256,8 @@ extern const uint8_t sed_module_start[], sed_module_end[];
 extern const uint32_t sed_module_size;
 extern const uint8_t xargs_module_start[], xargs_module_end[];
 extern const uint32_t xargs_module_size;
+extern const uint8_t date_module_start[], date_module_end[];
+extern const uint32_t date_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -267,6 +269,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "settings",       NULL, 0 },
     { "user",           NULL, 0 },
     { "devmgr",         NULL, 0 },
+    { "date",           NULL, 0 },
     { "httpd",          NULL, 0 },
     { "dns_resolver",   NULL, 0 },
     { "shmem_test",     NULL, 0 },
@@ -3693,38 +3696,40 @@ const char *wasm_host_init_multi(void)
     wasm_registry[7].wasm_size = user_module_size;
     wasm_registry[8].wasm_bytes = devmgr_module_start;
     wasm_registry[8].wasm_size = devmgr_module_size;
-    wasm_registry[9].wasm_bytes = httpd_module_start;
-    wasm_registry[9].wasm_size = httpd_module_size;
-    wasm_registry[10].wasm_bytes = dns_resolver_module_start;
-    wasm_registry[10].wasm_size = dns_resolver_module_size;
-    wasm_registry[11].wasm_bytes = shmem_test_module_start;
-    wasm_registry[11].wasm_size = shmem_test_module_size;
-    wasm_registry[12].wasm_bytes = grep_module_start;
-    wasm_registry[12].wasm_size = grep_module_size;
-    wasm_registry[13].wasm_bytes = cat_module_start;
-    wasm_registry[13].wasm_size = cat_module_size;
-    wasm_registry[14].wasm_bytes = echo_module_start;
-    wasm_registry[14].wasm_size = echo_module_size;
-    wasm_registry[15].wasm_bytes = tee_module_start;
-    wasm_registry[15].wasm_size = tee_module_size;
-    wasm_registry[16].wasm_bytes = wc_module_start;
-    wasm_registry[16].wasm_size = wc_module_size;
-    wasm_registry[17].wasm_bytes = head_module_start;
-    wasm_registry[17].wasm_size = head_module_size;
-    wasm_registry[18].wasm_bytes = tail_module_start;
-    wasm_registry[18].wasm_size = tail_module_size;
-    wasm_registry[19].wasm_bytes = sort_module_start;
-    wasm_registry[19].wasm_size = sort_module_size;
-    wasm_registry[20].wasm_bytes = uniq_module_start;
-    wasm_registry[20].wasm_size = uniq_module_size;
-    wasm_registry[21].wasm_bytes = tr_module_start;
-    wasm_registry[21].wasm_size = tr_module_size;
-    wasm_registry[22].wasm_bytes = cut_module_start;
-    wasm_registry[22].wasm_size = cut_module_size;
-    wasm_registry[23].wasm_bytes = sed_module_start;
-    wasm_registry[23].wasm_size = sed_module_size;
-    wasm_registry[24].wasm_bytes = xargs_module_start;
-    wasm_registry[24].wasm_size = xargs_module_size;
+    wasm_registry[9].wasm_bytes = date_module_start;
+    wasm_registry[9].wasm_size = date_module_size;
+    wasm_registry[10].wasm_bytes = httpd_module_start;
+    wasm_registry[10].wasm_size = httpd_module_size;
+    wasm_registry[11].wasm_bytes = dns_resolver_module_start;
+    wasm_registry[11].wasm_size = dns_resolver_module_size;
+    wasm_registry[12].wasm_bytes = shmem_test_module_start;
+    wasm_registry[12].wasm_size = shmem_test_module_size;
+    wasm_registry[13].wasm_bytes = grep_module_start;
+    wasm_registry[13].wasm_size = grep_module_size;
+    wasm_registry[14].wasm_bytes = cat_module_start;
+    wasm_registry[14].wasm_size = cat_module_size;
+    wasm_registry[15].wasm_bytes = echo_module_start;
+    wasm_registry[15].wasm_size = echo_module_size;
+    wasm_registry[16].wasm_bytes = tee_module_start;
+    wasm_registry[16].wasm_size = tee_module_size;
+    wasm_registry[17].wasm_bytes = wc_module_start;
+    wasm_registry[17].wasm_size = wc_module_size;
+    wasm_registry[18].wasm_bytes = head_module_start;
+    wasm_registry[18].wasm_size = head_module_size;
+    wasm_registry[19].wasm_bytes = tail_module_start;
+    wasm_registry[19].wasm_size = tail_module_size;
+    wasm_registry[20].wasm_bytes = sort_module_start;
+    wasm_registry[20].wasm_size = sort_module_size;
+    wasm_registry[21].wasm_bytes = uniq_module_start;
+    wasm_registry[21].wasm_size = uniq_module_size;
+    wasm_registry[22].wasm_bytes = tr_module_start;
+    wasm_registry[22].wasm_size = tr_module_size;
+    wasm_registry[23].wasm_bytes = cut_module_start;
+    wasm_registry[23].wasm_size = cut_module_size;
+    wasm_registry[24].wasm_bytes = sed_module_start;
+    wasm_registry[24].wasm_size = sed_module_size;
+    wasm_registry[25].wasm_bytes = xargs_module_start;
+    wasm_registry[25].wasm_size = xargs_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];
