@@ -2016,6 +2016,16 @@ strace_module_end:
 strace_module_size:
     .int strace_module_end - strace_module_start
 
+.section .rodata.ltrace_wasm
+.global ltrace_module_start
+ltrace_module_start:
+    .incbin "kernel/ltrace.wasm"
+.global ltrace_module_end
+ltrace_module_end:
+.global ltrace_module_size
+ltrace_module_size:
+    .int ltrace_module_end - ltrace_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
