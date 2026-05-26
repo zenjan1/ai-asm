@@ -608,6 +608,20 @@ fold_module_size:
     .int fold_module_end - fold_module_start
 
 /* ---------------------------------------------------------------------------
+ * Tac module (reverse file output)
+ * --------------------------------------------------------------------------- */
+.section .rodata.tac_wasm
+.global tac_module_start
+tac_module_start:
+    .incbin "kernel/tac.wasm"
+.global tac_module_end
+tac_module_end:
+.align 4
+.global tac_module_size
+tac_module_size:
+    .int tac_module_end - tac_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
