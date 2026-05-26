@@ -554,6 +554,8 @@ extern const uint8_t iptables_module_start[], iptables_module_end[];
 extern const uint32_t iptables_module_size;
 extern const uint8_t socat_module_start[], socat_module_end[];
 extern const uint32_t socat_module_size;
+extern const uint8_t tcpdump_module_start[], tcpdump_module_end[];
+extern const uint32_t tcpdump_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -590,6 +592,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "nc",             NULL, 0 },
     { "iptables",       NULL, 0 },
     { "socat",          NULL, 0 },
+    { "tcpdump",        NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4677,6 +4680,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[172].wasm_size = iptables_module_size;
     wasm_registry[173].wasm_bytes = socat_module_start;
     wasm_registry[173].wasm_size = socat_module_size;
+    wasm_registry[174].wasm_bytes = tcpdump_module_start;
+    wasm_registry[174].wasm_size = tcpdump_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

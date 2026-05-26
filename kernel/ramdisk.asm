@@ -2156,6 +2156,16 @@ socat_module_end:
 socat_module_size:
     .int socat_module_end - socat_module_start
 
+.section .rodata.tcpdump_wasm
+.global tcpdump_module_start
+tcpdump_module_start:
+    .incbin "kernel/tcpdump.wasm"
+.global tcpdump_module_end
+tcpdump_module_end:
+.global tcpdump_module_size
+tcpdump_module_size:
+    .int tcpdump_module_end - tcpdump_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
