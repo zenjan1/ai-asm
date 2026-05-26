@@ -2136,6 +2136,16 @@ nc_module_end:
 nc_module_size:
     .int nc_module_end - nc_module_start
 
+.section .rodata.iptables_wasm
+.global iptables_module_start
+iptables_module_start:
+    .incbin "kernel/iptables.wasm"
+.global iptables_module_end
+iptables_module_end:
+.global iptables_module_size
+iptables_module_size:
+    .int iptables_module_end - iptables_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
