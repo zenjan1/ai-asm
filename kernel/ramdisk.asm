@@ -1486,6 +1486,17 @@ patch_module_end:
 patch_module_size:
     .int patch_module_end - patch_module_start
 
+.section .rodata.diff3_wasm
+.global diff3_module_start
+diff3_module_start:
+    .incbin "kernel/diff3.wasm"
+.global diff3_module_end
+diff3_module_end:
+
+.global diff3_module_size
+diff3_module_size:
+    .int diff3_module_end - diff3_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
