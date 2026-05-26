@@ -1154,6 +1154,20 @@ wget_module_size:
     .int wget_module_end - wget_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: curl
+ * --------------------------------------------------------------------------- */
+.section .rodata.curl_wasm
+.global curl_module_start
+curl_module_start:
+    .incbin "kernel/curl.wasm"
+.global curl_module_end
+curl_module_end:
+
+.global curl_module_size
+curl_module_size:
+    .int curl_module_end - curl_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
