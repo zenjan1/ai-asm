@@ -540,6 +540,8 @@ extern const uint8_t nmap_module_start[], nmap_module_end[];
 extern const uint32_t nmap_module_size;
 extern const uint8_t dig_module_start[], dig_module_end[];
 extern const uint32_t dig_module_size;
+extern const uint8_t host_cmd_module_start[], host_cmd_module_end[];
+extern const uint32_t host_cmd_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -569,6 +571,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "killall",        NULL, 0 },
     { "nmap",           NULL, 0 },
     { "dig",            NULL, 0 },
+    { "host_cmd",       NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4642,6 +4645,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[165].wasm_size = nmap_module_size;
     wasm_registry[166].wasm_bytes = dig_module_start;
     wasm_registry[166].wasm_size = dig_module_size;
+    wasm_registry[167].wasm_bytes = host_cmd_module_start;
+    wasm_registry[167].wasm_size = host_cmd_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

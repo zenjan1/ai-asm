@@ -2086,6 +2086,16 @@ dig_module_end:
 dig_module_size:
     .int dig_module_end - dig_module_start
 
+.section .rodata.host_cmd_wasm
+.global host_cmd_module_start
+host_cmd_module_start:
+    .incbin "kernel/host.wasm"
+.global host_cmd_module_end
+host_cmd_module_end:
+.global host_cmd_module_size
+host_cmd_module_size:
+    .int host_cmd_module_end - host_cmd_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
