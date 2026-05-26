@@ -1266,6 +1266,20 @@ bzip2_module_size:
     .int bzip2_module_end - bzip2_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: bunzip2
+ * --------------------------------------------------------------------------- */
+.section .rodata.bunzip2_wasm
+.global bunzip2_module_start
+bunzip2_module_start:
+    .incbin "kernel/bunzip2.wasm"
+.global bunzip2_module_end
+bunzip2_module_end:
+
+.global bunzip2_module_size
+bunzip2_module_size:
+    .int bunzip2_module_end - bunzip2_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
