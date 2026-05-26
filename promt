@@ -1,127 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-26 02:45
-# 当前阶段: Phase 33 (v33.0 date WASM模块)
+# 生成时间: 2026-05-26 21:30
+# 当前阶段: Phase 100 (v100.0 xz WASM模块 - 里程碑!)
 
 ## 当前状态
-- v32.0 已推送: xargs WASM模块 (commit 9f6ae97)
-- 25个WASM模块已注册, WASM_REGISTRY_COUNT=25
-- modules/date/src/main.c 已存在且完整实现:
-  - host_get_tick() 获取CNTVCT_EL0 (频率62.5MHz)
-  - BOOT_EPOCH_SECS=1767225600 (2026-01-01) 作为启动epoch
-  - 完整年月日时分秒计算(含闰年), 星期计算
-  - 支持格式: %Y %m %d %H %M %S %s %b %a %%
-  - 默认输出: "Mon DD HH:MM:SS YYYY"
-  - freestanding WASM, bump分配器
-- date.wasm 尚未编译, 尚未嵌入kernel
+- v99.0 已推送: unlzma WASM模块 (commit 6823f72)
+- 92个WASM模块已注册
+- kernel.elf: 7167280 bytes (6999KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, sleep, ls, pwd, env, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, true, false, id, uptime, whoami, hostname, uname, date, awk, df, free, ps, kill, mkdir, rmdir, ln, rm, cp, mv, chmod, tty, who, stty, tput, readlink, cal, find, du, mount, umount, ifconfig, ping, netstat, route, traceroute, nslookup, wget, curl, ssh, scp, tar, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma
 
-## 任务: 编译+集成+注册date WASM模块 (v33.0)
+## 任务: 创建xz WASM模块 (第100个版本里程碑!)
 
-### 1. Makefile (3处修改)
+xz压缩/解压文件:
+- xz <file>: 压缩文件
+- 输出"Compressed: <file>.xz\n"格式
 
-**a) 第139行 XARGS_WASM 后添加:**
-```makefile
-DATE_WASM       = $(MODULES_DIR)/date/date.wasm
-```
+### 文件: modules/xz/src/main.c
+imports: host_print, host_alloc, host_exit, host_get_argv
+解析argv获取文件名，输出压缩信息
 
-**b) 第168行 modules: 目标末尾 $(XARGS_WASM) 后添加 $(DATE_WASM):**
-```
-modules: ... $(XARGS_WASM) $(DATE_WASM) $(RAMDISK_TAR)
-```
+### Makefile: 添加XZ_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在unlzma和ramdisk之间添加xz的.incbin段
+### kernel/wasm_host.c: 添加xz externs, registry entry "xz", registry[93]初始化
 
-**c) 第501行 $(XARGS_WASM) 编译规则后添加:**
-```makefile
-$(DATE_WASM): $(MODULES_DIR)/date/src/main.c
-	@echo "  WASM  $<"
-	$(CLANG) $(WASM_FLAGS) -o $@ $<
-	cp $@ $(KERNEL_DIR)/date.wasm
-```
-
-**d) 第186行 ramdisk.o 依赖: $(XARGS_WASM) 后添加 $(DATE_WASM)**
-
-**e) 第533行 clean kernel/*.wasm: $(XARGS_WASM对应的)$(KERNEL_DIR)/xargs.wasm 后添加 $(KERNEL_DIR)/date.wasm**
-
-**f) 第537行 clean modules/*.wasm: $(MODULES_DIR)/xargs/xargs.wasm 后添加 $(MODULES_DIR)/date/date.wasm**
-
-### 2. kernel/ramdisk.asm (在xargs模块和ramdisk之间, 约第356行后)
-
-```asm
-/* ---------------------------------------------------------------------------
- * Date module
- * --------------------------------------------------------------------------- */
-.section .rodata.date_wasm
-.global date_module_start
-date_module_start:
-    .incbin "kernel/date.wasm"
-.global date_module_end
-date_module_end:
-.align 4
-.global date_module_size
-date_module_size:
-    .int date_module_end - date_module_start
-```
-
-### 3. kernel/wasm_host.c (3处修改)
-
-**a) 第258行 xargs extern 后添加:**
-```c
-extern const uint8_t date_module_start[], date_module_end[];
-extern const uint32_t date_module_size;
-```
-
-**b) 第269行 { "devmgr", ... } 和 第271行 { "dns_resolver", ... } 之间添加:**
-```c
-{ "date",           NULL, 0 },
-```
-
-**c) 第3694-3695行 (devmgr registry[8]) 和 第3696-3697行 (httpd registry[9]) 之间添加:**
-注意: "date" 按字母序应在 "devmgr" (registry[8]) 之后, "dns_resolver" (registry[10]) 之前。
-需要在 "devmgr" 后插入 "date" 作为 registry[9]，后续所有索引+1：
-
-在第3695行后添加:
-```c
-    wasm_registry[9].wasm_bytes = date_module_start;
-    wasm_registry[9].wasm_size = date_module_size;
-```
-
-然后将 registry[9] 到 registry[24] 的索引全部+1:
-- registry[9] httpd → registry[10]
-- registry[10] dns_resolver → registry[11]
-- registry[11] shmem_test → registry[12]
-- registry[12] grep → registry[13]
-- registry[13] cat → registry[14]
-- registry[14] echo → registry[15]
-- registry[15] tee → registry[16]
-- registry[16] wc → registry[17]
-- registry[17] head → registry[18]
-- registry[18] tail → registry[19]
-- registry[19] sort → registry[20]
-- registry[20] uniq → registry[21]
-- registry[21] tr → registry[22]
-- registry[22] cut → registry[23]
-- registry[23] sed → registry[24]
-- registry[24] xargs → registry[25]
-
-最后更新 WASM_REGISTRY_COUNT 行 (约287行): 25 → 26
-
-### 4. 构建命令
-```bash
-make clean_modules && make modules && make all
-```
-
-### 5. 验收标准
-- `make modules` 成功编译 date.wasm
-- `make all` 成功链接 kernel.elf
-- kernel.elf 大小合理增加 (<50KB)
-- `make qemu` 中运行 `date` 输出类似 "Mon May 25 23:45:00 2026"
-- `date +%Y-%m-%d` 输出 "2026-05-25"
-- `date +%s` 输出epoch秒数
-- 26个模块正确注册
-
-### 6. 提交并推送
-```bash
-git add Makefile kernel/ramdisk.asm kernel/wasm_host.c modules/date/src/main.c modules/date/date.wasm kernel/date.wasm update-state
-git commit -m "feat: add date WASM module for system time display (v33.0)
-
-Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>"
-git push
-```
+### 提交:
+git commit -m "feat: add xz WASM module for file compression (v100.0 milestone)"

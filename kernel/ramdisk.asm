@@ -1308,6 +1308,20 @@ unlzma_module_size:
     .int unlzma_module_end - unlzma_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: xz (v100.0 milestone)
+ * --------------------------------------------------------------------------- */
+.section .rodata.xz_wasm
+.global xz_module_start
+xz_module_start:
+    .incbin "kernel/xz.wasm"
+.global xz_module_end
+xz_module_end:
+
+.global xz_module_size
+xz_module_size:
+    .int xz_module_end - xz_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
