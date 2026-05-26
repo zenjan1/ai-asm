@@ -426,6 +426,20 @@ env_module_size:
     .int env_module_end - env_module_start
 
 /* ---------------------------------------------------------------------------
+ * Printf module
+ * --------------------------------------------------------------------------- */
+.section .rodata.printf_wasm
+.global printf_module_start
+printf_module_start:
+    .incbin "kernel/printf.wasm"
+.global printf_module_end
+printf_module_end:
+.align 4
+.global printf_module_size
+printf_module_size:
+    .int printf_module_end - printf_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
