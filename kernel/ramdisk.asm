@@ -1112,6 +1112,20 @@ route_module_size:
     .int route_module_end - route_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: traceroute
+ * --------------------------------------------------------------------------- */
+.section .rodata.traceroute_wasm
+.global traceroute_module_start
+traceroute_module_start:
+    .incbin "kernel/traceroute.wasm"
+.global traceroute_module_end
+traceroute_module_end:
+
+.global traceroute_module_size
+traceroute_module_size:
+    .int traceroute_module_end - traceroute_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

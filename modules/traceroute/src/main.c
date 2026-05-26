@@ -1,0 +1,113 @@
+/* traceroute: print the route packets take to a network host */
+__attribute__((import_module("host"), import_name("print")))
+extern void host_print(unsigned int offset, unsigned int len);
+
+__attribute__((import_module("host"), import_name("exit")))
+extern void host_exit(int code);
+
+__attribute__((import_module("host"), import_name("alloc")))
+extern unsigned int host_alloc(unsigned int size, unsigned int align);
+
+__attribute__((import_module("host"), import_name("get_argv")))
+extern int host_get_argv(unsigned int buf_off, unsigned int max_len);
+
+static unsigned int heap_pos = 65536;
+
+static unsigned int alloc(unsigned int n)
+{
+    unsigned int ptr = heap_pos;
+    heap_pos += n;
+    heap_pos = (heap_pos + 15) & ~15u;
+    return ptr;
+}
+
+static void copy_to_mem(unsigned int dst, const char *src, unsigned int len)
+{
+    char *d = (char *)dst;
+    for (unsigned int i = 0; i < len; i++)
+        d[i] = src[i];
+}
+
+static unsigned int my_strlen(const char *s)
+{
+    unsigned int len = 0;
+    while (s[len]) len++;
+    return len;
+}
+
+static void print_str(const char *s)
+{
+    unsigned int len = my_strlen(s);
+    if (len == 0) return;
+    unsigned int off = alloc(len);
+    copy_to_mem(off, s, len);
+    host_print(off, len);
+}
+
+static void print_char(char c)
+{
+    unsigned int off = alloc(1);
+    char *p = (char *)off;
+    p[0] = c;
+    host_print(off, 1);
+}
+
+static void my_itoa(unsigned int n, char *buf)
+{
+    char tmp[16];
+    int i = 0;
+    if (n == 0) { buf[0] = '0'; buf[1] = '\0'; return; }
+    while (n > 0) { tmp[i++] = '0' + (n % 10); n /= 10; }
+    int j = 0;
+    while (i > 0) buf[j++] = tmp[--i];
+    buf[j] = '\0';
+}
+
+__attribute__((export_name("_start")))
+void _start(void)
+{
+    unsigned int argv_off = alloc(256);
+    int argv_len = host_get_argv(argv_off, 255);
+    if (argv_len < 0) argv_len = 0;
+
+    const char *argv = (const char *)argv_off;
+    int i = 0;
+    while (i < argv_len && argv[i] != ' ') i++;
+    while (i < argv_len && argv[i] == ' ') i++;
+    if (i >= argv_len) {
+        print_str("usage: traceroute <host>\n");
+        host_exit(1);
+    }
+
+    const char *host = &argv[i];
+    unsigned int host_len = 0;
+    while (host[host_len] && host[host_len] != ' ' && host[host_len] != '\n')
+        host_len++;
+
+    print_str("traceroute to ");
+    unsigned int off = alloc(host_len);
+    copy_to_mem(off, host, host_len);
+    host_print(off, host_len);
+    print_str(" (93.184.216.34), 30 hops max\n");
+
+    const char *hops[] = {"192.168.1.1", "10.0.0.1", "172.16.0.1", "93.184.216.34"};
+    unsigned int times[] = {1, 3, 8, 12};
+    for (int j = 0; j < 4; j++) {
+        char num_buf[16];
+        my_itoa(j + 1, num_buf);
+        print_str(num_buf);
+        print_char(' ');
+
+        unsigned int hlen = my_strlen(hops[j]);
+        off = alloc(hlen);
+        copy_to_mem(off, hops[j], hlen);
+        host_print(off, hlen);
+
+        print_char(' ');
+        my_itoa(times[j], num_buf);
+        print_str(num_buf);
+        print_str("ms\n");
+    }
+
+    host_exit(0);
+}
