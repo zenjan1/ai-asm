@@ -1966,6 +1966,16 @@ pidof_module_end:
 pidof_module_size:
     .int pidof_module_end - pidof_module_start
 
+.section .rodata.pgrep_wasm
+.global pgrep_module_start
+pgrep_module_start:
+    .incbin "kernel/pgrep.wasm"
+.global pgrep_module_end
+pgrep_module_end:
+.global pgrep_module_size
+pgrep_module_size:
+    .int pgrep_module_end - pgrep_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
