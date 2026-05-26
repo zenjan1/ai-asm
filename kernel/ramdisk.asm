@@ -2166,6 +2166,16 @@ tcpdump_module_end:
 tcpdump_module_size:
     .int tcpdump_module_end - tcpdump_module_start
 
+.section .rodata.ping6_wasm
+.global ping6_module_start
+ping6_module_start:
+    .incbin "kernel/ping6.wasm"
+.global ping6_module_end
+ping6_module_end:
+.global ping6_module_size
+ping6_module_size:
+    .int ping6_module_end - ping6_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
