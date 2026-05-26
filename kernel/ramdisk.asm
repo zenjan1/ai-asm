@@ -1776,6 +1776,16 @@ pathchk_module_end:
 pathchk_module_size:
     .int pathchk_module_end - pathchk_module_start
 
+.section .rodata.mktemp_wasm
+.global mktemp_module_start
+mktemp_module_start:
+    .incbin "kernel/mktemp.wasm"
+.global mktemp_module_end
+mktemp_module_end:
+.global mktemp_module_size
+mktemp_module_size:
+    .int mktemp_module_end - mktemp_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
