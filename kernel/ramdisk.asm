@@ -1343,6 +1343,17 @@ sha256sum_module_end:
 sha256sum_module_size:
     .int sha256sum_module_end - sha256sum_module_start
 
+.section .rodata.md5sum_wasm
+.global md5sum_module_start
+md5sum_module_start:
+    .incbin "kernel/md5sum.wasm"
+.global md5sum_module_end
+md5sum_module_end:
+
+.global md5sum_module_size
+md5sum_module_size:
+    .int md5sum_module_end - md5sum_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
