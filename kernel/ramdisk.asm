@@ -1056,6 +1056,20 @@ umount_module_size:
     .int umount_module_end - umount_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: ifconfig
+ * --------------------------------------------------------------------------- */
+.section .rodata.ifconfig_wasm
+.global ifconfig_module_start
+ifconfig_module_start:
+    .incbin "kernel/ifconfig.wasm"
+.global ifconfig_module_end
+ifconfig_module_end:
+
+.global ifconfig_module_size
+ifconfig_module_size:
+    .int ifconfig_module_end - ifconfig_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
