@@ -636,6 +636,20 @@ cksum_module_size:
     .int cksum_module_end - cksum_module_start
 
 /* ---------------------------------------------------------------------------
+ * Sum module (simple checksum)
+ * --------------------------------------------------------------------------- */
+.section .rodata.sum_wasm
+.global sum_module_start
+sum_module_start:
+    .incbin "kernel/sum.wasm"
+.global sum_module_end
+sum_module_end:
+.align 4
+.global sum_module_size
+sum_module_size:
+    .int sum_module_end - sum_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
