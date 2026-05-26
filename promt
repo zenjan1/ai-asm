@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-27 06:00
-# 当前阶段: Phase 118 (v118.0 csplit WASM模块)
+# 生成时间: 2026-05-27 06:30
+# 当前阶段: Phase 119 (v119.0 fmt WASM模块)
 
 ## 当前状态
-- v117.0 已推送: tsort WASM模块 (commit a3b8427)
-- 110个WASM模块已注册
-- kernel.elf: 7169544 bytes (7001KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort
+- v118.0 已推送: csplit WASM模块 (commit d4e8594)
+- 111个WASM模块已注册
+- kernel.elf: 7169680 bytes (7001KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit
 
-## 任务: 创建csplit WASM模块
+## 任务: 创建fmt WASM模块
 
-按上下文分割文件:
-- csplit <file>: 按模式分割文件
-- 输出"Split into N pieces\n"
+文本格式化:
+- fmt <file>: 重新格式化文本，使每行长度一致
+- 输出格式化后的文本
 
-### 文件: modules/csplit/src/main.c
+### 文件: modules/fmt/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-解析argv获取文件名，模拟输出分割结果
+解析argv获取文件名，模拟输出格式化结果
 
-### Makefile: 添加CSPLIT_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在tsort和ramdisk之间添加csplit的.incbin段
-### kernel/wasm_host.c: 添加csplit externs, registry entry "csplit", registry[111]初始化
+### Makefile: 添加FMT_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在csplit和ramdisk之间添加fmt的.incbin段
+### kernel/wasm_host.c: 添加fmt externs, registry entry "fmt", registry[112]初始化
 
 ### 提交:
-git commit -m "feat: add csplit WASM module for context-based file splitting (v118.0)"
+git commit -m "feat: add fmt WASM module for text formatting (v119.0)"
