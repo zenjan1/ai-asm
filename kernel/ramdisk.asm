@@ -846,6 +846,20 @@ rmdir_module_size:
     .int rmdir_module_end - rmdir_module_start
 
 /* ---------------------------------------------------------------------------
+ * Ln module (file link creation)
+ * --------------------------------------------------------------------------- */
+.section .rodata.ln_wasm
+.global ln_module_start
+ln_module_start:
+    .incbin "kernel/ln.wasm"
+.global ln_module_end
+ln_module_end:
+.align 4
+.global ln_module_size
+ln_module_size:
+    .int ln_module_end - ln_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
