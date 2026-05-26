@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-29 10:00
-# 当前阶段: Phase 186 (v186.0 route WASM模块)
+# 生成时间: 2026-05-29 11:00
+# 当前阶段: Phase 187 (v187.0 mii-tool WASM模块)
 
 ## 当前状态
-- v185.0 已推送: brctl WASM模块 (commit 041df6c)
-- 178个WASM模块已注册
-- kernel.elf: 7243760 bytes (7073KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl
+- v186.0 已推送: ifstat WASM模块 (commit 5b64692)
+- 179个WASM模块已注册
+- kernel.elf: 7243888 bytes (7074KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat
 
-## 任务: 创建route WASM模块
+## 任务: 创建mii-tool WASM模块
 
 网络工具:
-- route: 显示/操作IP路由表
-- 模拟输出路由表信息
+- mii-tool: 查看/操作MII寄存器状态
+- 模拟输出网络接口MII状态信息
 
-### 文件: modules/route/src/main.c
+### 文件: modules/mii_tool/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-输出模拟的路由表信息
+输出模拟的MII寄存器状态信息
 
-### Makefile: 添加ROUTE_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在brctl和ramdisk之间添加route的.incbin段
-### kernel/wasm_host.c: 添加route externs, registry entry "route", registry[179]初始化
+### Makefile: 添加MII_TOOL_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在ifstat和ramdisk之间添加mii_tool的.incbin段
+### kernel/wasm_host.c: 添加mii_tool externs, registry entry "mii-tool", registry[180]初始化
 
 ### 提交:
-git commit -m "feat: add route WASM module for routing table simulation (v186.0)"
+git commit -m "feat: add mii-tool WASM module for MII register simulation (v187.0)"
