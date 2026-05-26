@@ -1946,6 +1946,16 @@ vmstat_module_end:
 vmstat_module_size:
     .int vmstat_module_end - vmstat_module_start
 
+.section .rodata.mpstat_wasm
+.global mpstat_module_start
+mpstat_module_start:
+    .incbin "kernel/mpstat.wasm"
+.global mpstat_module_end
+mpstat_module_end:
+.global mpstat_module_size
+mpstat_module_size:
+    .int mpstat_module_end - mpstat_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
