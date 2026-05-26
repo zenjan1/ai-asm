@@ -1746,6 +1746,16 @@ realpath_module_end:
 realpath_module_size:
     .int realpath_module_end - realpath_module_start
 
+.section .rodata.groups_wasm
+.global groups_module_start
+groups_module_start:
+    .incbin "kernel/groups.wasm"
+.global groups_module_end
+groups_module_end:
+.global groups_module_size
+groups_module_size:
+    .int groups_module_end - groups_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
