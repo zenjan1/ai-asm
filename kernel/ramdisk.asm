@@ -524,6 +524,20 @@ basename_module_size:
     .int basename_module_end - basename_module_start
 
 /* ---------------------------------------------------------------------------
+ * Dirname module (directory path extraction)
+ * --------------------------------------------------------------------------- */
+.section .rodata.dirname_wasm
+.global dirname_module_start
+dirname_module_start:
+    .incbin "kernel/dirname.wasm"
+.global dirname_module_end
+dirname_module_end:
+.align 4
+.global dirname_module_size
+dirname_module_size:
+    .int dirname_module_end - dirname_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
