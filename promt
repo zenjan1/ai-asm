@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-27 01:30
-# 当前阶段: Phase 109 (v109.0 file WASM模块)
+# 生成时间: 2026-05-27 02:00
+# 当前阶段: Phase 110 (v110.0 du WASM模块增强版)
 
 ## 当前状态
-- v108.0 已推送: strings WASM模块 (commit 6eeb660)
-- 101个WASM模块已注册
-- kernel.elf: 7168432 bytes (7000KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings
+- v109.0 已推送: file WASM模块 (commit 2edbcbe)
+- 102个WASM模块已注册
+- kernel.elf: 7168552 bytes (7000KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file
 
-## 任务: 创建file WASM模块
+## 任务: 创建xxd WASM模块
 
-文件类型检测:
-- file <filename>: 检测并输出文件类型
-- 输出"<filename>: <type>\n"格式
+十六进制查看器:
+- xxd <file>: 以十六进制格式显示文件内容
+- 输出偏移量、十六进制字节和ASCII表示
 
-### 文件: modules/file/src/main.c
+### 文件: modules/xxd/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-解析argv获取文件名，模拟输出文件类型
+解析argv获取文件名，模拟输出xxd格式
 
-### Makefile: 添加FILE_TYPE_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在strings和ramdisk之间添加file的.incbin段
-### kernel/wasm_host.c: 添加file externs, registry entry "file", registry[102]初始化
+### Makefile: 添加XXD_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在file和ramdisk之间添加xxd的.incbin段
+### kernel/wasm_host.c: 添加xxd externs, registry entry "xxd", registry[103]初始化
 
 ### 提交:
-git commit -m "feat: add file WASM module for file type detection (v109.0)"
+git commit -m "feat: add xxd WASM module for hex viewer (v110.0)"
