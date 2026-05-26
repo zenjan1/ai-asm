@@ -1726,6 +1726,16 @@ factor_module_end:
 factor_module_size:
     .int factor_module_end - factor_module_start
 
+.section .rodata.seq_wasm
+.global seq_module_start
+seq_module_start:
+    .incbin "kernel/seq.wasm"
+.global seq_module_end
+seq_module_end:
+.global seq_module_size
+seq_module_size:
+    .int seq_module_end - seq_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
