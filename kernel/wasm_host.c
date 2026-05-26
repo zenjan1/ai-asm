@@ -348,6 +348,8 @@ extern const uint8_t readlink_module_start[], readlink_module_end[];
 extern const uint32_t readlink_module_size;
 extern const uint8_t cal_module_start[], cal_module_end[];
 extern const uint32_t cal_module_size;
+extern const uint8_t find_module_start[], find_module_end[];
+extern const uint32_t find_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -421,6 +423,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "tput",           NULL, 0 },
     { "readlink",       NULL, 0 },
     { "cal",            NULL, 0 },
+    { "find",           NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4155,6 +4158,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[69].wasm_size = readlink_module_size;
     wasm_registry[70].wasm_bytes = cal_module_start;
     wasm_registry[70].wasm_size = cal_module_size;
+    wasm_registry[71].wasm_bytes = find_module_start;
+    wasm_registry[71].wasm_size = find_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

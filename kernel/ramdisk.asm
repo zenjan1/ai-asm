@@ -1000,6 +1000,20 @@ cal_module_size:
     .int cal_module_end - cal_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: find
+ * --------------------------------------------------------------------------- */
+.section .rodata.find_wasm
+.global find_module_start
+find_module_start:
+    .incbin "kernel/find.wasm"
+.global find_module_end
+find_module_end:
+
+.global find_module_size
+find_module_size:
+    .int find_module_end - find_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
