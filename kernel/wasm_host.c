@@ -260,6 +260,8 @@ extern const uint8_t date_module_start[], date_module_end[];
 extern const uint32_t date_module_size;
 extern const uint8_t awk_module_start[], awk_module_end[];
 extern const uint32_t awk_module_size;
+extern const uint8_t ls_module_start[], ls_module_end[];
+extern const uint32_t ls_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -289,6 +291,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "cut",            NULL, 0 },
     { "sed",            NULL, 0 },
     { "xargs",          NULL, 0 },
+    { "ls",             NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -3735,6 +3738,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[25].wasm_size = sed_module_size;
     wasm_registry[26].wasm_bytes = xargs_module_start;
     wasm_registry[26].wasm_size = xargs_module_size;
+    wasm_registry[27].wasm_bytes = ls_module_start;
+    wasm_registry[27].wasm_size = ls_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];

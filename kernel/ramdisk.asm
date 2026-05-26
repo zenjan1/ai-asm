@@ -384,6 +384,20 @@ awk_module_size:
     .int awk_module_end - awk_module_start
 
 /* ---------------------------------------------------------------------------
+ * Ls module
+ * --------------------------------------------------------------------------- */
+.section .rodata.ls_wasm
+.global ls_module_start
+ls_module_start:
+    .incbin "kernel/ls.wasm"
+.global ls_module_end
+ls_module_end:
+.align 4
+.global ls_module_size
+ls_module_size:
+    .int ls_module_end - ls_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
