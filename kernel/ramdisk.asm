@@ -1640,6 +1640,17 @@ unlink_module_end:
 unlink_module_size:
     .int unlink_module_end - unlink_module_start
 
+.section .rodata.logname_wasm
+.global logname_module_start
+logname_module_start:
+    .incbin "kernel/logname.wasm"
+.global logname_module_end
+logname_module_end:
+
+.global logname_module_size
+logname_module_size:
+    .int logname_module_end - logname_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
