@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-27 05:00
-# 当前阶段: Phase 116 (v116.0 diff3 WASM模块)
+# 生成时间: 2026-05-27 05:30
+# 当前阶段: Phase 117 (v117.0 tsort WASM模块)
 
 ## 当前状态
-- v115.0 已推送: patch WASM模块 (commit 383d4e4)
-- 108个WASM模块已注册
-- kernel.elf: 7169296 bytes (7001KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch
+- v116.0 已推送: diff3 WASM模块 (commit 0f313c7)
+- 109个WASM模块已注册
+- kernel.elf: 7169424 bytes (7001KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3
 
-## 任务: 创建diff3 WASM模块
+## 任务: 创建tsort WASM模块
 
-三路文件比较:
-- diff3 <mine> <older> <yours>: 三路文件比较
-- 输出比较结果
+拓扑排序:
+- tsort <file>: 对文件中的依赖关系进行拓扑排序
+- 输出排序后的结果
 
-### 文件: modules/diff3/src/main.c
+### 文件: modules/tsort/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-解析argv获取文件名，模拟输出diff3结果
+解析argv获取文件名，模拟输出拓扑排序结果
 
-### Makefile: 添加DIFF3_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在patch和ramdisk之间添加diff3的.incbin段
-### kernel/wasm_host.c: 添加diff3 externs, registry entry "diff3", registry[109]初始化
+### Makefile: 添加TSORT_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在diff3和ramdisk之间添加tsort的.incbin段
+### kernel/wasm_host.c: 添加tsort externs, registry entry "tsort", registry[110]初始化
 
 ### 提交:
-git commit -m "feat: add diff3 WASM module for three-way file comparison (v116.0)"
+git commit -m "feat: add tsort WASM module for topological sorting (v117.0)"
