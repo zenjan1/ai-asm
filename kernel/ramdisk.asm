@@ -1168,6 +1168,20 @@ curl_module_size:
     .int curl_module_end - curl_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: ssh
+ * --------------------------------------------------------------------------- */
+.section .rodata.ssh_wasm
+.global ssh_module_start
+ssh_module_start:
+    .incbin "kernel/ssh.wasm"
+.global ssh_module_end
+ssh_module_end:
+
+.global ssh_module_size
+ssh_module_size:
+    .int ssh_module_end - ssh_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
