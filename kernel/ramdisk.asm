@@ -1409,6 +1409,17 @@ strings_module_end:
 strings_module_size:
     .int strings_module_end - strings_module_start
 
+.section .rodata.file_wasm
+.global file_module_start
+file_module_start:
+    .incbin "kernel/file.wasm"
+.global file_module_end
+file_module_end:
+
+.global file_module_size
+file_module_size:
+    .int file_module_end - file_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
