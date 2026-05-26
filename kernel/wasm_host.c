@@ -482,6 +482,8 @@ extern const uint8_t mktemp_module_start[], mktemp_module_end[];
 extern const uint32_t mktemp_module_size;
 extern const uint8_t truncate_module_start[], truncate_module_end[];
 extern const uint32_t truncate_module_size;
+extern const uint8_t nohup_module_start[], nohup_module_end[];
+extern const uint32_t nohup_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -622,6 +624,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "pathchk",        NULL, 0 },
     { "mktemp",         NULL, 0 },
     { "truncate",       NULL, 0 },
+    { "nohup",          NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4490,6 +4493,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[136].wasm_size = mktemp_module_size;
     wasm_registry[137].wasm_bytes = truncate_module_start;
     wasm_registry[137].wasm_size = truncate_module_size;
+    wasm_registry[138].wasm_bytes = nohup_module_start;
+    wasm_registry[138].wasm_size = nohup_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

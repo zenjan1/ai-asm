@@ -1796,6 +1796,16 @@ truncate_module_end:
 truncate_module_size:
     .int truncate_module_end - truncate_module_start
 
+.section .rodata.nohup_wasm
+.global nohup_module_start
+nohup_module_start:
+    .incbin "kernel/nohup.wasm"
+.global nohup_module_end
+nohup_module_end:
+.global nohup_module_size
+nohup_module_size:
+    .int nohup_module_end - nohup_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
