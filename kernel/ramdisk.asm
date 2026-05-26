@@ -2126,6 +2126,16 @@ ifup_module_end:
 ifup_module_size:
     .int ifup_module_end - ifup_module_start
 
+.section .rodata.nc_wasm
+.global nc_module_start
+nc_module_start:
+    .incbin "kernel/nc.wasm"
+.global nc_module_end
+nc_module_end:
+.global nc_module_size
+nc_module_size:
+    .int nc_module_end - nc_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
