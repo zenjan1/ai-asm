@@ -790,6 +790,20 @@ free_module_size:
     .int free_module_end - free_module_start
 
 /* ---------------------------------------------------------------------------
+ * Ps module (process status)
+ * --------------------------------------------------------------------------- */
+.section .rodata.ps_wasm
+.global ps_module_start
+ps_module_start:
+    .incbin "kernel/ps.wasm"
+.global ps_module_end
+ps_module_end:
+.align 4
+.global ps_module_size
+ps_module_size:
+    .int ps_module_end - ps_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

@@ -318,6 +318,8 @@ extern const uint8_t df_module_start[], df_module_end[];
 extern const uint32_t df_module_size;
 extern const uint8_t free_module_start[], free_module_end[];
 extern const uint32_t free_module_size;
+extern const uint8_t ps_module_start[], ps_module_end[];
+extern const uint32_t ps_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -376,6 +378,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "uname",          NULL, 0 },
     { "df",             NULL, 0 },
     { "free",           NULL, 0 },
+    { "ps",             NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4080,6 +4083,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[54].wasm_size = df_module_size;
     wasm_registry[55].wasm_bytes = free_module_start;
     wasm_registry[55].wasm_size = free_module_size;
+    wasm_registry[56].wasm_bytes = ps_module_start;
+    wasm_registry[56].wasm_size = ps_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
