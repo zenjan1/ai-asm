@@ -1986,6 +1986,16 @@ pkill_module_end:
 pkill_module_size:
     .int pkill_module_end - pkill_module_start
 
+.section .rodata.top_wasm
+.global top_module_start
+top_module_start:
+    .incbin "kernel/top.wasm"
+.global top_module_end
+top_module_end:
+.global top_module_size
+top_module_size:
+    .int top_module_end - top_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
