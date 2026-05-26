@@ -1552,6 +1552,17 @@ column_module_end:
 column_module_size:
     .int column_module_end - column_module_start
 
+.section .rodata.expand_wasm
+.global expand_module_start
+expand_module_start:
+    .incbin "kernel/expand.wasm"
+.global expand_module_end
+expand_module_end:
+
+.global expand_module_size
+expand_module_size:
+    .int expand_module_end - expand_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
