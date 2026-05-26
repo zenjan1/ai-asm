@@ -1816,6 +1816,16 @@ envsubst_module_end:
 envsubst_module_size:
     .int envsubst_module_end - envsubst_module_start
 
+.section .rodata.dircolors_wasm
+.global dircolors_module_start
+dircolors_module_start:
+    .incbin "kernel/dircolors.wasm"
+.global dircolors_module_end
+dircolors_module_end:
+.global dircolors_module_size
+dircolors_module_size:
+    .int dircolors_module_end - dircolors_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
