@@ -720,6 +720,20 @@ uptime_module_size:
     .int uptime_module_end - uptime_module_start
 
 /* ---------------------------------------------------------------------------
+ * Whoami module (current user display)
+ * --------------------------------------------------------------------------- */
+.section .rodata.whoami_wasm
+.global whoami_module_start
+whoami_module_start:
+    .incbin "kernel/whoami.wasm"
+.global whoami_module_end
+whoami_module_end:
+.align 4
+.global whoami_module_size
+whoami_module_size:
+    .int whoami_module_end - whoami_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
