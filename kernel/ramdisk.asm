@@ -1766,6 +1766,16 @@ install_module_end:
 install_module_size:
     .int install_module_end - install_module_start
 
+.section .rodata.pathchk_wasm
+.global pathchk_module_start
+pathchk_module_start:
+    .incbin "kernel/pathchk.wasm"
+.global pathchk_module_end
+pathchk_module_end:
+.global pathchk_module_size
+pathchk_module_size:
+    .int pathchk_module_end - pathchk_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

@@ -476,6 +476,8 @@ extern const uint8_t groups_module_start[], groups_module_end[];
 extern const uint32_t groups_module_size;
 extern const uint8_t install_module_start[], install_module_end[];
 extern const uint32_t install_module_size;
+extern const uint8_t pathchk_module_start[], pathchk_module_end[];
+extern const uint32_t pathchk_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -613,6 +615,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "realpath",       NULL, 0 },
     { "groups",         NULL, 0 },
     { "install",        NULL, 0 },
+    { "pathchk",        NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4475,6 +4478,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[133].wasm_size = groups_module_size;
     wasm_registry[134].wasm_bytes = install_module_start;
     wasm_registry[134].wasm_size = install_module_size;
+    wasm_registry[135].wasm_bytes = pathchk_module_start;
+    wasm_registry[135].wasm_size = pathchk_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
