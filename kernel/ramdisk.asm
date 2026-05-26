@@ -958,6 +958,20 @@ stty_module_size:
     .int stty_module_end - stty_module_start
 
 /* ---------------------------------------------------------------------------
+ * Tput module (terminal capability control)
+ * --------------------------------------------------------------------------- */
+.section .rodata.tput_wasm
+.global tput_module_start
+tput_module_start:
+    .incbin "kernel/tput.wasm"
+.global tput_module_end
+tput_module_end:
+.align 4
+.global tput_module_size
+tput_module_size:
+    .int tput_module_end - tput_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

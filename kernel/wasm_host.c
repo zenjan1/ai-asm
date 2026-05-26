@@ -342,6 +342,8 @@ extern const uint8_t who_module_start[], who_module_end[];
 extern const uint32_t who_module_size;
 extern const uint8_t stty_module_start[], stty_module_end[];
 extern const uint32_t stty_module_size;
+extern const uint8_t tput_module_start[], tput_module_end[];
+extern const uint32_t tput_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -412,6 +414,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "tty",            NULL, 0 },
     { "who",            NULL, 0 },
     { "stty",           NULL, 0 },
+    { "tput",           NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4140,6 +4143,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[66].wasm_size = who_module_size;
     wasm_registry[67].wasm_bytes = stty_module_start;
     wasm_registry[67].wasm_size = stty_module_size;
+    wasm_registry[68].wasm_bytes = tput_module_start;
+    wasm_registry[68].wasm_size = tput_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
