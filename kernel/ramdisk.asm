@@ -1252,6 +1252,20 @@ zcat_module_size:
     .int zcat_module_end - zcat_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: bzip2
+ * --------------------------------------------------------------------------- */
+.section .rodata.bzip2_wasm
+.global bzip2_module_start
+bzip2_module_start:
+    .incbin "kernel/bzip2.wasm"
+.global bzip2_module_end
+bzip2_module_end:
+
+.global bzip2_module_size
+bzip2_module_size:
+    .int bzip2_module_end - bzip2_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
