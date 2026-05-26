@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-26 21:30
-# 当前阶段: Phase 100 (v100.0 xz WASM模块 - 里程碑!)
+# 生成时间: 2026-05-26 22:00
+# 当前阶段: Phase 102 (v102.0 sha256sum WASM模块)
 
 ## 当前状态
-- v99.0 已推送: unlzma WASM模块 (commit 6823f72)
-- 92个WASM模块已注册
-- kernel.elf: 7167280 bytes (6999KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, sleep, ls, pwd, env, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, true, false, id, uptime, whoami, hostname, uname, date, awk, df, free, ps, kill, mkdir, rmdir, ln, rm, cp, mv, chmod, tty, who, stty, tput, readlink, cal, find, du, mount, umount, ifconfig, ping, netstat, route, traceroute, nslookup, wget, curl, ssh, scp, tar, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma
+- v101.0 已推送: unxz WASM模块 (commit d6dac1e)
+- 94个WASM模块已注册
+- kernel.elf: 7167520 bytes (6999KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz
 
-## 任务: 创建xz WASM模块 (第100个版本里程碑!)
+## 任务: 创建sha256sum WASM模块
 
-xz压缩/解压文件:
-- xz <file>: 压缩文件
-- 输出"Compressed: <file>.xz\n"格式
+计算文件SHA256校验和:
+- sha256sum <file>: 计算并输出SHA256哈希值
+- 输出"<hash>  <file>\n"格式
 
-### 文件: modules/xz/src/main.c
+### 文件: modules/sha256sum/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-解析argv获取文件名，输出压缩信息
+解析argv获取文件名，模拟输出SHA256格式
 
-### Makefile: 添加XZ_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在unlzma和ramdisk之间添加xz的.incbin段
-### kernel/wasm_host.c: 添加xz externs, registry entry "xz", registry[93]初始化
+### Makefile: 添加SHA256SUM_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在unxz和ramdisk之间添加sha256sum的.incbin段
+### kernel/wasm_host.c: 添加sha256sum externs, registry entry "sha256sum", registry[95]初始化
 
 ### 提交:
-git commit -m "feat: add xz WASM module for file compression (v100.0 milestone)"
+git commit -m "feat: add sha256sum WASM module for checksum verification (v102.0)"
