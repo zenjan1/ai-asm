@@ -2236,6 +2236,16 @@ nameif_module_end:
 nameif_module_size:
     .int nameif_module_end - nameif_module_start
 
+.section .rodata.plipconfig_wasm
+.global plipconfig_module_start
+plipconfig_module_start:
+    .incbin "kernel/plipconfig.wasm"
+.global plipconfig_module_end
+plipconfig_module_end:
+.global plipconfig_module_size
+plipconfig_module_size:
+    .int plipconfig_module_end - plipconfig_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
