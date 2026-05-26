@@ -2056,6 +2056,16 @@ ip_module_end:
 ip_module_size:
     .int ip_module_end - ip_module_start
 
+.section .rodata.killall_wasm
+.global killall_module_start
+killall_module_start:
+    .incbin "kernel/killall.wasm"
+.global killall_module_end
+killall_module_end:
+.global killall_module_size
+killall_module_size:
+    .int killall_module_end - killall_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
