@@ -1806,6 +1806,16 @@ nohup_module_end:
 nohup_module_size:
     .int nohup_module_end - nohup_module_start
 
+.section .rodata.envsubst_wasm
+.global envsubst_module_start
+envsubst_module_start:
+    .incbin "kernel/envsubst.wasm"
+.global envsubst_module_end
+envsubst_module_end:
+.global envsubst_module_size
+envsubst_module_size:
+    .int envsubst_module_end - envsubst_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
