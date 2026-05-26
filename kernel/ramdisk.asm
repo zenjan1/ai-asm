@@ -552,6 +552,20 @@ nl_module_size:
     .int nl_module_end - nl_module_start
 
 /* ---------------------------------------------------------------------------
+ * Shuf module (random line shuffling)
+ * --------------------------------------------------------------------------- */
+.section .rodata.shuf_wasm
+.global shuf_module_start
+shuf_module_start:
+    .incbin "kernel/shuf.wasm"
+.global shuf_module_end
+shuf_module_end:
+.align 4
+.global shuf_module_size
+shuf_module_size:
+    .int shuf_module_end - shuf_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
