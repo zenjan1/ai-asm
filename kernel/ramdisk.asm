@@ -566,6 +566,20 @@ shuf_module_size:
     .int shuf_module_end - shuf_module_start
 
 /* ---------------------------------------------------------------------------
+ * Comm module (compare sorted files)
+ * --------------------------------------------------------------------------- */
+.section .rodata.comm_wasm
+.global comm_module_start
+comm_module_start:
+    .incbin "kernel/comm.wasm"
+.global comm_module_end
+comm_module_end:
+.align 4
+.global comm_module_size
+comm_module_size:
+    .int comm_module_end - comm_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

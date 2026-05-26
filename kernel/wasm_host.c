@@ -286,6 +286,8 @@ extern const uint8_t nl_module_start[], nl_module_end[];
 extern const uint32_t nl_module_size;
 extern const uint8_t shuf_module_start[], shuf_module_end[];
 extern const uint32_t shuf_module_size;
+extern const uint8_t comm_module_start[], comm_module_end[];
+extern const uint32_t comm_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -328,6 +330,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "dirname",        NULL, 0 },
     { "nl",             NULL, 0 },
     { "shuf",           NULL, 0 },
+    { "comm",           NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4000,6 +4003,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[38].wasm_size = nl_module_size;
     wasm_registry[39].wasm_bytes = shuf_module_start;
     wasm_registry[39].wasm_size = shuf_module_size;
+    wasm_registry[40].wasm_bytes = comm_module_start;
+    wasm_registry[40].wasm_size = comm_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
