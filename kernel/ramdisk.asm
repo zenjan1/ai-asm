@@ -706,6 +706,20 @@ id_module_size:
     .int id_module_end - id_module_start
 
 /* ---------------------------------------------------------------------------
+ * Uptime module (system uptime)
+ * --------------------------------------------------------------------------- */
+.section .rodata.uptime_wasm
+.global uptime_module_start
+uptime_module_start:
+    .incbin "kernel/uptime.wasm"
+.global uptime_module_end
+uptime_module_end:
+.align 4
+.global uptime_module_size
+uptime_module_size:
+    .int uptime_module_end - uptime_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
