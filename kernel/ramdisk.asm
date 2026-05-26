@@ -1846,6 +1846,16 @@ test_cmd_module_end:
 test_cmd_module_size:
     .int test_cmd_module_end - test_cmd_module_start
 
+.section .rodata.dd_wasm
+.global dd_module_start
+dd_module_start:
+    .incbin "kernel/dd.wasm"
+.global dd_module_end
+dd_module_end:
+.global dd_module_size
+dd_module_size:
+    .int dd_module_end - dd_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
