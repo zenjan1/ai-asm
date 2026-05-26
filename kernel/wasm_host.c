@@ -300,6 +300,10 @@ extern const uint8_t sum_module_start[], sum_module_end[];
 extern const uint32_t sum_module_size;
 extern const uint8_t touch_module_start[], touch_module_end[];
 extern const uint32_t touch_module_size;
+extern const uint8_t true_module_start[], true_module_end[];
+extern const uint32_t true_module_size;
+extern const uint8_t false_module_start[], false_module_end[];
+extern const uint32_t false_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -349,6 +353,8 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "cksum",          NULL, 0 },
     { "sum",            NULL, 0 },
     { "touch",          NULL, 0 },
+    { "true",           NULL, 0 },
+    { "false",          NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4035,6 +4041,10 @@ const char *wasm_host_init_multi(void)
     wasm_registry[45].wasm_size = sum_module_size;
     wasm_registry[46].wasm_bytes = touch_module_start;
     wasm_registry[46].wasm_size = touch_module_size;
+    wasm_registry[47].wasm_bytes = true_module_start;
+    wasm_registry[47].wasm_size = true_module_size;
+    wasm_registry[48].wasm_bytes = false_module_start;
+    wasm_registry[48].wasm_size = false_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

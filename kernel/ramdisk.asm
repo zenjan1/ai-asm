@@ -664,6 +664,34 @@ touch_module_size:
     .int touch_module_end - touch_module_start
 
 /* ---------------------------------------------------------------------------
+ * True module (always succeeds)
+ * --------------------------------------------------------------------------- */
+.section .rodata.true_wasm
+.global true_module_start
+true_module_start:
+    .incbin "kernel/true.wasm"
+.global true_module_end
+true_module_end:
+.align 4
+.global true_module_size
+true_module_size:
+    .int true_module_end - true_module_start
+
+/* ---------------------------------------------------------------------------
+ * False module (always fails)
+ * --------------------------------------------------------------------------- */
+.section .rodata.false_wasm
+.global false_module_start
+false_module_start:
+    .incbin "kernel/false.wasm"
+.global false_module_end
+false_module_end:
+.align 4
+.global false_module_size
+false_module_size:
+    .int false_module_end - false_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
