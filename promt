@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-27 06:30
-# 当前阶段: Phase 119 (v119.0 fmt WASM模块)
+# 生成时间: 2026-05-27 07:00
+# 当前阶段: Phase 120 (v120.0 pr WASM模块)
 
 ## 当前状态
-- v118.0 已推送: csplit WASM模块 (commit d4e8594)
-- 111个WASM模块已注册
-- kernel.elf: 7169680 bytes (7001KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit
+- v119.0 已推送: fmt WASM模块 (commit 2391193)
+- 112个WASM模块已注册
+- kernel.elf: 7169800 bytes (7001KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt
 
-## 任务: 创建fmt WASM模块
+## 任务: 创建pr WASM模块
 
-文本格式化:
-- fmt <file>: 重新格式化文本，使每行长度一致
-- 输出格式化后的文本
+打印格式化:
+- pr <file>: 格式化文件用于打印
+- 输出带页眉页脚的内容
 
-### 文件: modules/fmt/src/main.c
+### 文件: modules/pr/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-解析argv获取文件名，模拟输出格式化结果
+解析argv获取文件名，模拟输出打印格式化结果
 
-### Makefile: 添加FMT_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在csplit和ramdisk之间添加fmt的.incbin段
-### kernel/wasm_host.c: 添加fmt externs, registry entry "fmt", registry[112]初始化
+### Makefile: 添加PR_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在fmt和ramdisk之间添加pr的.incbin段
+### kernel/wasm_host.c: 添加pr externs, registry entry "pr", registry[113]初始化
 
 ### 提交:
-git commit -m "feat: add fmt WASM module for text formatting (v119.0)"
+git commit -m "feat: add pr WASM module for print formatting (v120.0)"
