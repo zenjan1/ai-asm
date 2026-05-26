@@ -1210,6 +1210,20 @@ tar_module_size:
     .int tar_module_end - tar_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: gzip
+ * --------------------------------------------------------------------------- */
+.section .rodata.gzip_wasm
+.global gzip_module_start
+gzip_module_start:
+    .incbin "kernel/gzip.wasm"
+.global gzip_module_end
+gzip_module_end:
+
+.global gzip_module_size
+gzip_module_size:
+    .int gzip_module_end - gzip_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
