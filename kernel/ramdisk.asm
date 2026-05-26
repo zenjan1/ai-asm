@@ -2216,6 +2216,16 @@ ifstat_module_end:
 ifstat_module_size:
     .int ifstat_module_end - ifstat_module_start
 
+.section .rodata.mii_tool_wasm
+.global mii_tool_module_start
+mii_tool_module_start:
+    .incbin "kernel/mii_tool.wasm"
+.global mii_tool_module_end
+mii_tool_module_end:
+.global mii_tool_module_size
+mii_tool_module_size:
+    .int mii_tool_module_end - mii_tool_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
