@@ -2066,6 +2066,16 @@ killall_module_end:
 killall_module_size:
     .int killall_module_end - killall_module_start
 
+.section .rodata.nmap_wasm
+.global nmap_module_start
+nmap_module_start:
+    .incbin "kernel/nmap.wasm"
+.global nmap_module_end
+nmap_module_end:
+.global nmap_module_size
+nmap_module_size:
+    .int nmap_module_end - nmap_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

@@ -536,6 +536,8 @@ extern const uint8_t ip_module_start[], ip_module_end[];
 extern const uint32_t ip_module_size;
 extern const uint8_t killall_module_start[], killall_module_end[];
 extern const uint32_t killall_module_size;
+extern const uint8_t nmap_module_start[], nmap_module_end[];
+extern const uint32_t nmap_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -563,6 +565,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "ss",             NULL, 0 },
     { "ip",             NULL, 0 },
     { "killall",        NULL, 0 },
+    { "nmap",           NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4632,6 +4635,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[163].wasm_size = ip_module_size;
     wasm_registry[164].wasm_bytes = killall_module_start;
     wasm_registry[164].wasm_size = killall_module_size;
+    wasm_registry[165].wasm_bytes = nmap_module_start;
+    wasm_registry[165].wasm_size = nmap_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
