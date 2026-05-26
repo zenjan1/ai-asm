@@ -2036,6 +2036,16 @@ tracepath_module_end:
 tracepath_module_size:
     .int tracepath_module_end - tracepath_module_start
 
+.section .rodata.ss_wasm
+.global ss_module_start
+ss_module_start:
+    .incbin "kernel/ss.wasm"
+.global ss_module_end
+ss_module_end:
+.global ss_module_size
+ss_module_size:
+    .int ss_module_end - ss_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
