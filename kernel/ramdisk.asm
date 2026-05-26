@@ -1896,6 +1896,16 @@ shred_module_end:
 shred_module_size:
     .int shred_module_end - shred_module_start
 
+.section .rodata.stat_wasm
+.global stat_module_start
+stat_module_start:
+    .incbin "kernel/stat.wasm"
+.global stat_module_end
+stat_module_end:
+.global stat_module_size
+stat_module_size:
+    .int stat_module_end - stat_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
