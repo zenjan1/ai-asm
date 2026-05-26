@@ -594,6 +594,20 @@ paste_module_size:
     .int paste_module_end - paste_module_start
 
 /* ---------------------------------------------------------------------------
+ * Fold module (line wrapping)
+ * --------------------------------------------------------------------------- */
+.section .rodata.fold_wasm
+.global fold_module_start
+fold_module_start:
+    .incbin "kernel/fold.wasm"
+.global fold_module_end
+fold_module_end:
+.align 4
+.global fold_module_size
+fold_module_size:
+    .int fold_module_end - fold_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
