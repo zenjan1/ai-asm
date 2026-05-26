@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-27 02:00
-# 当前阶段: Phase 110 (v110.0 du WASM模块增强版)
+# 生成时间: 2026-05-27 02:30
+# 当前阶段: Phase 111 (v111.0 less WASM模块)
 
 ## 当前状态
-- v109.0 已推送: file WASM模块 (commit 2edbcbe)
-- 102个WASM模块已注册
-- kernel.elf: 7168552 bytes (7000KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file
+- v110.0 已推送: xxd WASM模块 (commit f166559)
+- 103个WASM模块已注册
+- kernel.elf: 7168672 bytes (7000KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd
 
-## 任务: 创建xxd WASM模块
+## 任务: 创建less WASM模块
 
-十六进制查看器:
-- xxd <file>: 以十六进制格式显示文件内容
-- 输出偏移量、十六进制字节和ASCII表示
+分页查看文件:
+- less <file>: 分页显示文件内容
+- 输出"--- more ---\n"提示
 
-### 文件: modules/xxd/src/main.c
+### 文件: modules/less/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-解析argv获取文件名，模拟输出xxd格式
+解析argv获取文件名，模拟分页输出
 
-### Makefile: 添加XXD_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在file和ramdisk之间添加xxd的.incbin段
-### kernel/wasm_host.c: 添加xxd externs, registry entry "xxd", registry[103]初始化
+### Makefile: 添加LESS_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在xxd和ramdisk之间添加less的.incbin段
+### kernel/wasm_host.c: 添加less externs, registry entry "less", registry[104]初始化
 
 ### 提交:
-git commit -m "feat: add xxd WASM module for hex viewer (v110.0)"
+git commit -m "feat: add less WASM module for paginated file viewing (v111.0)"
