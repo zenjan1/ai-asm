@@ -2006,6 +2006,16 @@ htop_module_end:
 htop_module_size:
     .int htop_module_end - htop_module_start
 
+.section .rodata.strace_wasm
+.global strace_module_start
+strace_module_start:
+    .incbin "kernel/strace.wasm"
+.global strace_module_end
+strace_module_end:
+.global strace_module_size
+strace_module_size:
+    .int strace_module_end - strace_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
