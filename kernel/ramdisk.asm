@@ -1464,6 +1464,17 @@ join_module_end:
 join_module_size:
     .int join_module_end - join_module_start
 
+.section .rodata.split_wasm
+.global split_module_start
+split_module_start:
+    .incbin "kernel/split.wasm"
+.global split_module_end
+split_module_end:
+
+.global split_module_size
+split_module_size:
+    .int split_module_end - split_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
