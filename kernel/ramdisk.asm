@@ -888,6 +888,20 @@ cp_module_size:
     .int cp_module_end - cp_module_start
 
 /* ---------------------------------------------------------------------------
+ * Mv module (file moving)
+ * --------------------------------------------------------------------------- */
+.section .rodata.mv_wasm
+.global mv_module_start
+mv_module_start:
+    .incbin "kernel/mv.wasm"
+.global mv_module_end
+mv_module_end:
+.align 4
+.global mv_module_size
+mv_module_size:
+    .int mv_module_end - mv_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
