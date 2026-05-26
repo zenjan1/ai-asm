@@ -1014,6 +1014,20 @@ find_module_size:
     .int find_module_end - find_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: du
+ * --------------------------------------------------------------------------- */
+.section .rodata.du_wasm
+.global du_module_start
+du_module_start:
+    .incbin "kernel/du.wasm"
+.global du_module_end
+du_module_end:
+
+.global du_module_size
+du_module_size:
+    .int du_module_end - du_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
