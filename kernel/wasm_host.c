@@ -396,6 +396,8 @@ extern const uint8_t xz_module_start[], xz_module_end[];
 extern const uint32_t xz_module_size;
 extern const uint8_t unxz_module_start[], unxz_module_end[];
 extern const uint32_t unxz_module_size;
+extern const uint8_t sha256sum_module_start[], sha256sum_module_end[];
+extern const uint32_t sha256sum_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -493,6 +495,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "unlzma",         NULL, 0 },
     { "xz",             NULL, 0 },
     { "unxz",           NULL, 0 },
+    { "sha256sum",      NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4275,6 +4278,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[93].wasm_size = xz_module_size;
     wasm_registry[94].wasm_bytes = unxz_module_start;
     wasm_registry[94].wasm_size = unxz_module_size;
+    wasm_registry[95].wasm_bytes = sha256sum_module_start;
+    wasm_registry[95].wasm_size = sha256sum_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

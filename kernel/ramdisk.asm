@@ -1332,6 +1332,17 @@ unxz_module_end:
 unxz_module_size:
     .int unxz_module_end - unxz_module_start
 
+.section .rodata.sha256sum_wasm
+.global sha256sum_module_start
+sha256sum_module_start:
+    .incbin "kernel/sha256sum.wasm"
+.global sha256sum_module_end
+sha256sum_module_end:
+
+.global sha256sum_module_size
+sha256sum_module_size:
+    .int sha256sum_module_end - sha256sum_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
