@@ -1926,6 +1926,16 @@ lsof_module_end:
 lsof_module_size:
     .int lsof_module_end - lsof_module_start
 
+.section .rodata.iostat_wasm
+.global iostat_module_start
+iostat_module_start:
+    .incbin "kernel/iostat.wasm"
+.global iostat_module_end
+iostat_module_end:
+.global iostat_module_size
+iostat_module_size:
+    .int iostat_module_end - iostat_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
