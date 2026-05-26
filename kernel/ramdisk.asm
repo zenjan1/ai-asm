@@ -986,6 +986,20 @@ readlink_module_size:
     .int readlink_module_end - readlink_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: cal
+ * --------------------------------------------------------------------------- */
+.section .rodata.cal_wasm
+.global cal_module_start
+cal_module_start:
+    .incbin "kernel/cal.wasm"
+.global cal_module_end
+cal_module_end:
+
+.global cal_module_size
+cal_module_size:
+    .int cal_module_end - cal_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
