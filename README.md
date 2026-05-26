@@ -2,6 +2,8 @@
 
 Pure AArch64 assembly WASM-native operating system for QEMU virt.
 
+**85 WASM modules** · 7100624 bytes kernel · v90.0
+
 ## Features
 
 - Preemptive scheduling + GIC interrupt system
@@ -13,13 +15,14 @@ Pure AArch64 assembly WASM-native operating system for QEMU virt.
 - GUI window manager with Z-order compositing (up to 16 windows)
 - WebAssembly runtime via Wasm3 with multi-module support
 - Integration test suite (FS / NET / GUI / CORE)
+- 85 WASM application modules
 
 ## Three-Layer Architecture
 
 ```
 Bottom (Assembly):  Kernel core — scheduler, MMU, drivers, filesystem, net, GUI
 Middle (C + WASI):  Wasm3 runtime, host functions, WASI syscalls
-Top (WASM):         Application modules (init, shell, test)
+Top (WASM):         85 Application modules
 ```
 
 ## Quick Start
@@ -42,6 +45,15 @@ make && make run
 ```bash
 ./run_test.sh
 ```
+
+## Available WASM Modules
+
+### System: init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver
+### File: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod
+### Info: ls, pwd, env, id, uptime, whoami, hostname, uname, date, awk, df, free, ps, kill, tty, who, stty, tput, readlink, mount, umount
+### Calendar/Time: date, cal
+### Network: ifconfig, ping, netstat, route, traceroute, nslookup, wget, curl, ssh, scp
+### Apps: editor, calc, paint, launcher, browser
 
 ## Directory Structure
 
@@ -79,7 +91,8 @@ aiasm-aarch64/
 ├── modules/
 │   ├── init/src/main.c     # Init module (bootstrapper)
 │   ├── shell/src/main.c    # Interactive shell module
-│   └── test/src/main.c     # Integration test suite
+│   ├── test/src/main.c     # Integration test suite
+│   └── ...                 # 82 additional WASM modules
 ├── ramdisk/                # RAM disk file contents
 ├── Makefile
 ├── README.md
@@ -106,9 +119,9 @@ aiasm-aarch64/
 | Max processes | 16 PCB entries |
 | Max sockets | 8 (2080 bytes each) |
 | Filesystem | FAT32 with cluster allocation |
-| Kernel binary | ~3.65MB |
+| Kernel binary | ~6.9MB |
 | Assembly files | 26 |
-| WASM modules | 3 (init, shell, test) |
+| WASM modules | 85 |
 
 ## WASM Host API
 
@@ -131,6 +144,8 @@ aiasm-aarch64/
 | `host.fs_delete` | `i(ii)` | Delete file |
 | `host.fs_close` | `v(i)` | Close file |
 | `host.fs_list` | `i(ii)` | List files |
+| `host.get_argv` | `i(ii)` | Get command line arguments |
+| `host.get_env` | `i(ii)` | Get environment variable |
 | `host.blk_read` | `i(iiii)` | Read block device |
 | `host.blk_write` | `i(iiii)` | Write block device |
 | `host.net_connect` | `i(iii)` | Create TCP/UDP socket |
