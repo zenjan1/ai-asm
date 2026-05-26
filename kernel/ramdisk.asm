@@ -1585,6 +1585,17 @@ numfmt_module_end:
 numfmt_module_size:
     .int numfmt_module_end - numfmt_module_start
 
+.section .rodata.nproc_wasm
+.global nproc_module_start
+nproc_module_start:
+    .incbin "kernel/nproc.wasm"
+.global nproc_module_end
+nproc_module_end:
+
+.global nproc_module_size
+nproc_module_size:
+    .int nproc_module_end - nproc_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
