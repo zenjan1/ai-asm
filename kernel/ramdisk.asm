@@ -832,6 +832,20 @@ mkdir_module_size:
     .int mkdir_module_end - mkdir_module_start
 
 /* ---------------------------------------------------------------------------
+ * Rmdir module (directory removal)
+ * --------------------------------------------------------------------------- */
+.section .rodata.rmdir_wasm
+.global rmdir_module_start
+rmdir_module_start:
+    .incbin "kernel/rmdir.wasm"
+.global rmdir_module_end
+rmdir_module_end:
+.align 4
+.global rmdir_module_size
+rmdir_module_size:
+    .int rmdir_module_end - rmdir_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

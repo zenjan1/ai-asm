@@ -324,6 +324,8 @@ extern const uint8_t kill_module_start[], kill_module_end[];
 extern const uint32_t kill_module_size;
 extern const uint8_t mkdir_module_start[], mkdir_module_end[];
 extern const uint32_t mkdir_module_size;
+extern const uint8_t rmdir_module_start[], rmdir_module_end[];
+extern const uint32_t rmdir_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -385,6 +387,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "ps",             NULL, 0 },
     { "kill",           NULL, 0 },
     { "mkdir",          NULL, 0 },
+    { "rmdir",          NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4095,6 +4098,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[57].wasm_size = kill_module_size;
     wasm_registry[58].wasm_bytes = mkdir_module_start;
     wasm_registry[58].wasm_size = mkdir_module_size;
+    wasm_registry[59].wasm_bytes = rmdir_module_start;
+    wasm_registry[59].wasm_size = rmdir_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
