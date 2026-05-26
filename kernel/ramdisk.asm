@@ -818,6 +818,20 @@ kill_module_size:
     .int kill_module_end - kill_module_start
 
 /* ---------------------------------------------------------------------------
+ * Mkdir module (directory creation)
+ * --------------------------------------------------------------------------- */
+.section .rodata.mkdir_wasm
+.global mkdir_module_start
+mkdir_module_start:
+    .incbin "kernel/mkdir.wasm"
+.global mkdir_module_end
+mkdir_module_end:
+.align 4
+.global mkdir_module_size
+mkdir_module_size:
+    .int mkdir_module_end - mkdir_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
