@@ -804,6 +804,20 @@ ps_module_size:
     .int ps_module_end - ps_module_start
 
 /* ---------------------------------------------------------------------------
+ * Kill module (send signal to process)
+ * --------------------------------------------------------------------------- */
+.section .rodata.kill_wasm
+.global kill_module_start
+kill_module_start:
+    .incbin "kernel/kill.wasm"
+.global kill_module_end
+kill_module_end:
+.align 4
+.global kill_module_size
+kill_module_size:
+    .int kill_module_end - kill_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
