@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-27 00:00
-# 当前阶段: Phase 106 (v106.0 od WASM模块)
+# 生成时间: 2026-05-27 00:30
+# 当前阶段: Phase 107 (v107.0 hexdump WASM模块)
 
 ## 当前状态
-- v105.0 已推送: base64d WASM模块 (commit 96b743a)
-- 98个WASM模块已注册
-- kernel.elf: 7168048 bytes (7000KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d
+- v106.0 已推送: od WASM模块 (commit e9fe266)
+- 99个WASM模块已注册
+- kernel.elf: 7168168 bytes (7000KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od
 
-## 任务: 创建od WASM模块
+## 任务: 创建hexdump WASM模块
 
-八进制/十六进制dump文件:
-- od <file>: 以八进制格式输出文件内容
+十六进制dump文件:
+- hexdump <file>: 以十六进制格式输出文件内容
 - 输出偏移量和字节值
 
-### 文件: modules/od/src/main.c
+### 文件: modules/hexdump/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-解析argv获取文件名，模拟输出od格式
+解析argv获取文件名，模拟输出hexdump格式
 
-### Makefile: 添加OD_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在base64d和ramdisk之间添加od的.incbin段
-### kernel/wasm_host.c: 添加od externs, registry entry "od", registry[99]初始化
+### Makefile: 添加HEXDUMP_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在od和ramdisk之间添加hexdump的.incbin段
+### kernel/wasm_host.c: 添加hexdump externs, registry entry "hexdump", registry[100]初始化
 
 ### 提交:
-git commit -m "feat: add od WASM module for octal dump (v106.0)"
+git commit -m "feat: add hexdump WASM module for hex dump (v107.0)"
