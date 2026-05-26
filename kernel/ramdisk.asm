@@ -482,6 +482,20 @@ rev_module_size:
     .int rev_module_end - rev_module_start
 
 /* ---------------------------------------------------------------------------
+ * Cmp module (file comparison)
+ * --------------------------------------------------------------------------- */
+.section .rodata.cmp_wasm
+.global cmp_module_start
+cmp_module_start:
+    .incbin "kernel/cmp.wasm"
+.global cmp_module_end
+cmp_module_end:
+.align 4
+.global cmp_module_size
+cmp_module_size:
+    .int cmp_module_end - cmp_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
