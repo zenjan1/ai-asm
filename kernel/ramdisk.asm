@@ -1519,6 +1519,17 @@ csplit_module_end:
 csplit_module_size:
     .int csplit_module_end - csplit_module_start
 
+.section .rodata.fmt_wasm
+.global fmt_module_start
+fmt_module_start:
+    .incbin "kernel/fmt.wasm"
+.global fmt_module_end
+fmt_module_end:
+
+.global fmt_module_size
+fmt_module_size:
+    .int fmt_module_end - fmt_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
