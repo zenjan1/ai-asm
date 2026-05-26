@@ -140,6 +140,7 @@ XARGS_WASM      = $(MODULES_DIR)/xargs/xargs.wasm
 DATE_WASM       = $(MODULES_DIR)/date/date.wasm
 AWK_WASM        = $(MODULES_DIR)/awk/awk.wasm
 LS_WASM         = $(MODULES_DIR)/ls/ls.wasm
+PWD_WASM        = $(MODULES_DIR)/pwd/pwd.wasm
 RAMDISK_TAR = $(KERNEL_DIR)/ramdisk.tar
 
 # All object dependencies
@@ -168,7 +169,7 @@ wasm3: $(WASM3_LIB)
 	@echo "=== wasm3 library complete ==="
 
 # Compile WASM modules and ramdisk
-modules: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(EDITOR_WASM) $(CALC_WASM) $(PAINT_WASM) $(LAUNCHER_WASM) $(NET_TEST_WASM) $(BROWSER_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM) $(FILEMGR_WASM) $(SETTINGS_WASM) $(USER_WASM) $(DEVMGR_WASM) $(HTTPD_WASM) $(DNS_RESOLVER_WASM) $(SHMEM_TEST_WASM) $(SEM_TEST_WASM) $(GREP_WASM) $(CAT_WASM) $(ECHO_WASM) $(TEE_WASM) $(WC_WASM) $(HEAD_WASM) $(TAIL_WASM) $(SORT_WASM) $(UNIQ_WASM) $(TR_WASM) $(CUT_WASM) $(SED_WASM) $(XARGS_WASM) $(DATE_WASM) $(AWK_WASM) $(LS_WASM) $(RAMDISK_TAR)
+modules: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(EDITOR_WASM) $(CALC_WASM) $(PAINT_WASM) $(LAUNCHER_WASM) $(NET_TEST_WASM) $(BROWSER_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM) $(FILEMGR_WASM) $(SETTINGS_WASM) $(USER_WASM) $(DEVMGR_WASM) $(HTTPD_WASM) $(DNS_RESOLVER_WASM) $(SHMEM_TEST_WASM) $(SEM_TEST_WASM) $(GREP_WASM) $(CAT_WASM) $(ECHO_WASM) $(TEE_WASM) $(WC_WASM) $(HEAD_WASM) $(TAIL_WASM) $(SORT_WASM) $(UNIQ_WASM) $(TR_WASM) $(CUT_WASM) $(SED_WASM) $(XARGS_WASM) $(DATE_WASM) $(AWK_WASM) $(LS_WASM) $(PWD_WASM) $(RAMDISK_TAR)
 	@echo "=== WASM modules and ramdisk complete ==="
 
 # Link kernel only (assumes objects exist)
@@ -186,7 +187,7 @@ $(BUILD_DIR)/%.o: $(KERNEL_DIR)/%.asm | $(BUILD_DIR)
 $(BUILD_DIR)/wasm_embed.o: $(SHELL_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM)
 
 # ramdisk.o depends on init.wasm, shell.wasm, test.wasm, proc_monitor.wasm, syslog.wasm, filemgr.wasm, settings.wasm, user.wasm, devmgr.wasm, httpd.wasm, grep.wasm, cat.wasm, echo.wasm and ramdisk.tar
-$(BUILD_DIR)/ramdisk.o: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM) $(FILEMGR_WASM) $(SETTINGS_WASM) $(USER_WASM) $(DEVMGR_WASM) $(HTTPD_WASM) $(DNS_RESOLVER_WASM) $(SHMEM_TEST_WASM) $(GREP_WASM) $(CAT_WASM) $(ECHO_WASM) $(TEE_WASM) $(WC_WASM) $(HEAD_WASM) $(TAIL_WASM) $(SORT_WASM) $(UNIQ_WASM) $(TR_WASM) $(CUT_WASM) $(SED_WASM) $(XARGS_WASM) $(DATE_WASM) $(AWK_WASM) $(LS_WASM) $(RAMDISK_TAR)
+$(BUILD_DIR)/ramdisk.o: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM) $(FILEMGR_WASM) $(SETTINGS_WASM) $(USER_WASM) $(DEVMGR_WASM) $(HTTPD_WASM) $(DNS_RESOLVER_WASM) $(SHMEM_TEST_WASM) $(GREP_WASM) $(CAT_WASM) $(ECHO_WASM) $(TEE_WASM) $(WC_WASM) $(HEAD_WASM) $(TAIL_WASM) $(SORT_WASM) $(UNIQ_WASM) $(TR_WASM) $(CUT_WASM) $(SED_WASM) $(XARGS_WASM) $(DATE_WASM) $(AWK_WASM) $(LS_WASM) $(PWD_WASM) $(RAMDISK_TAR)
 
 # ---------------------------------------------------------------------------
 # C freestanding compilation
@@ -531,6 +532,15 @@ $(LS_WASM): $(MODULES_DIR)/ls/src/main.c
 	cp $@ $(KERNEL_DIR)/ls.wasm
 
 # ---------------------------------------------------------------------------
+# WASM pwd module (print working directory)
+# ---------------------------------------------------------------------------
+$(PWD_WASM): $(MODULES_DIR)/pwd/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/pwd.wasm
+
+# ---------------------------------------------------------------------------
 # Full kernel link
 # ---------------------------------------------------------------------------
 $(TARGET_ELF): $(ALL_OBJS) $(WASM3_LIB) $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(RAMDISK_TAR)
@@ -560,9 +570,9 @@ clean:
 	rm -rf $(BUILD_DIR)
 	rm -f $(KERNEL_DIR)/init.wasm $(KERNEL_DIR)/shell.wasm $(KERNEL_DIR)/test.wasm
 	rm -f $(KERNEL_DIR)/editor.wasm $(KERNEL_DIR)/calc.wasm $(KERNEL_DIR)/paint.wasm $(KERNEL_DIR)/launcher.wasm
-	rm -f $(KERNEL_DIR)/net_test.wasm $(KERNEL_DIR)/browser.wasm $(KERNEL_DIR)/proc_monitor.wasm $(KERNEL_DIR)/syslog.wasm $(KERNEL_DIR)/filemgr.wasm $(KERNEL_DIR)/settings.wasm $(KERNEL_DIR)/user.wasm $(KERNEL_DIR)/devmgr.wasm $(KERNEL_DIR)/httpd.wasm $(KERNEL_DIR)/dns_resolver.wasm $(KERNEL_DIR)/shmem_test.wasm $(KERNEL_DIR)/sem_test.wasm $(KERNEL_DIR)/grep.wasm $(KERNEL_DIR)/cat.wasm $(KERNEL_DIR)/echo.wasm $(KERNEL_DIR)/tee.wasm $(KERNEL_DIR)/wc.wasm $(KERNEL_DIR)/head.wasm $(KERNEL_DIR)/tail.wasm $(KERNEL_DIR)/sort.wasm $(KERNEL_DIR)/uniq.wasm $(KERNEL_DIR)/tr.wasm $(KERNEL_DIR)/cut.wasm $(KERNEL_DIR)/sed.wasm $(KERNEL_DIR)/xargs.wasm $(KERNEL_DIR)/date.wasm $(KERNEL_DIR)/awk.wasm $(KERNEL_DIR)/ls.wasm
+	rm -f $(KERNEL_DIR)/net_test.wasm $(KERNEL_DIR)/browser.wasm $(KERNEL_DIR)/proc_monitor.wasm $(KERNEL_DIR)/syslog.wasm $(KERNEL_DIR)/filemgr.wasm $(KERNEL_DIR)/settings.wasm $(KERNEL_DIR)/user.wasm $(KERNEL_DIR)/devmgr.wasm $(KERNEL_DIR)/httpd.wasm $(KERNEL_DIR)/dns_resolver.wasm $(KERNEL_DIR)/shmem_test.wasm $(KERNEL_DIR)/sem_test.wasm $(KERNEL_DIR)/grep.wasm $(KERNEL_DIR)/cat.wasm $(KERNEL_DIR)/echo.wasm $(KERNEL_DIR)/tee.wasm $(KERNEL_DIR)/wc.wasm $(KERNEL_DIR)/head.wasm $(KERNEL_DIR)/tail.wasm $(KERNEL_DIR)/sort.wasm $(KERNEL_DIR)/uniq.wasm $(KERNEL_DIR)/tr.wasm $(KERNEL_DIR)/cut.wasm $(KERNEL_DIR)/sed.wasm $(KERNEL_DIR)/xargs.wasm $(KERNEL_DIR)/date.wasm $(KERNEL_DIR)/awk.wasm $(KERNEL_DIR)/ls.wasm $(KERNEL_DIR)/pwd.wasm
 	rm -f $(KERNEL_DIR)/ramdisk.tar
 	rm -f $(MODULES_DIR)/init/init.wasm $(MODULES_DIR)/shell/shell.wasm $(MODULES_DIR)/test/test.wasm
 	rm -f $(MODULES_DIR)/editor/editor.wasm $(MODULES_DIR)/calc/calc.wasm $(MODULES_DIR)/paint/paint.wasm $(MODULES_DIR)/launcher/launcher.wasm
-	rm -f $(MODULES_DIR)/net_test/net_test.wasm $(MODULES_DIR)/browser/browser.wasm $(MODULES_DIR)/proc_monitor/proc_monitor.wasm $(MODULES_DIR)/syslog/syslog.wasm $(MODULES_DIR)/filemgr/filemgr.wasm $(MODULES_DIR)/settings/settings.wasm $(MODULES_DIR)/user/user.wasm $(MODULES_DIR)/devmgr/devmgr.wasm $(MODULES_DIR)/httpd/httpd.wasm $(MODULES_DIR)/dns_resolver/dns_resolver.wasm $(MODULES_DIR)/shmem_test/shmem_test.wasm $(MODULES_DIR)/sem_test/sem_test.wasm $(MODULES_DIR)/grep/grep.wasm $(MODULES_DIR)/cat/cat.wasm $(MODULES_DIR)/echo/echo.wasm $(MODULES_DIR)/tee/tee.wasm $(MODULES_DIR)/wc/wc.wasm $(MODULES_DIR)/head/head.wasm $(MODULES_DIR)/tail/tail.wasm $(MODULES_DIR)/sort/sort.wasm $(MODULES_DIR)/uniq/uniq.wasm $(MODULES_DIR)/tr/tr.wasm $(MODULES_DIR)/cut/cut.wasm $(MODULES_DIR)/sed/sed.wasm $(MODULES_DIR)/xargs/xargs.wasm $(MODULES_DIR)/date/date.wasm $(MODULES_DIR)/awk/awk.wasm $(MODULES_DIR)/ls/ls.wasm
+	rm -f $(MODULES_DIR)/net_test/net_test.wasm $(MODULES_DIR)/browser/browser.wasm $(MODULES_DIR)/proc_monitor/proc_monitor.wasm $(MODULES_DIR)/syslog/syslog.wasm $(MODULES_DIR)/filemgr/filemgr.wasm $(MODULES_DIR)/settings/settings.wasm $(MODULES_DIR)/user/user.wasm $(MODULES_DIR)/devmgr/devmgr.wasm $(MODULES_DIR)/httpd/httpd.wasm $(MODULES_DIR)/dns_resolver/dns_resolver.wasm $(MODULES_DIR)/shmem_test/shmem_test.wasm $(MODULES_DIR)/sem_test/sem_test.wasm $(MODULES_DIR)/grep/grep.wasm $(MODULES_DIR)/cat/cat.wasm $(MODULES_DIR)/echo/echo.wasm $(MODULES_DIR)/tee/tee.wasm $(MODULES_DIR)/wc/wc.wasm $(MODULES_DIR)/head/head.wasm $(MODULES_DIR)/tail/tail.wasm $(MODULES_DIR)/sort/sort.wasm $(MODULES_DIR)/uniq/uniq.wasm $(MODULES_DIR)/tr/tr.wasm $(MODULES_DIR)/cut/cut.wasm $(MODULES_DIR)/sed/sed.wasm $(MODULES_DIR)/xargs/xargs.wasm $(MODULES_DIR)/date/date.wasm $(MODULES_DIR)/awk/awk.wasm $(MODULES_DIR)/ls/ls.wasm $(MODULES_DIR)/pwd/pwd.wasm
 	@echo "=== Build artifacts removed ==="

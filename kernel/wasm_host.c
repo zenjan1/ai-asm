@@ -262,6 +262,8 @@ extern const uint8_t awk_module_start[], awk_module_end[];
 extern const uint32_t awk_module_size;
 extern const uint8_t ls_module_start[], ls_module_end[];
 extern const uint32_t ls_module_size;
+extern const uint8_t pwd_module_start[], pwd_module_end[];
+extern const uint32_t pwd_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -292,6 +294,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "sed",            NULL, 0 },
     { "xargs",          NULL, 0 },
     { "ls",             NULL, 0 },
+    { "pwd",            NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -1362,6 +1365,34 @@ static const void *host_fs_delete(IM3Runtime runtime, IM3ImportContext _ctx, uin
 
     int32_t *ret = (int32_t *)(_sp);
     *ret = (int32_t)rc;
+    return m3Err_none;
+}
+
+/* host_get_cwd(buf_off, max_len) — get current working directory */
+static const void *host_get_cwd(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx; (void)_mem;
+    uint32_t buf_off = (uint32_t)*(_sp + 1);
+    uint32_t max_len = (uint32_t)*(_sp + 2);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (buf_off + max_len > mem_size) {
+        int32_t *ret = (int32_t *)(_sp);
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    const char *cwd = "/";
+    unsigned int len = 0;
+    while (cwd[len]) len++;
+    if (len >= max_len) len = max_len - 1;
+    for (unsigned int i = 0; i < len; i++) mem[buf_off + i] = (uint8_t)cwd[i];
+    mem[buf_off + len] = '\0';
+
+    int32_t *ret = (int32_t *)(_sp);
+    *ret = (int32_t)len;
     return m3Err_none;
 }
 
@@ -3363,6 +3394,7 @@ static const host_reg_t host_registry[] = {
     { "host", "fs_read",     "i(iii)", &host_fs_read     },
     { "host", "fs_close",    "v(i)",   &host_fs_close    },
     { "host", "fs_list",     "i(ii)",  &host_fs_list     },
+    { "host", "get_cwd",     "i(ii)",  &host_get_cwd     },
     { "host", "sleep",       "v(i)",   &host_sleep       },
     { "host", "yield",       "v()",    &host_yield       },
     { "host", "blk_read",    "i(iiii)",&host_blk_read    },
@@ -3740,6 +3772,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[26].wasm_size = xargs_module_size;
     wasm_registry[27].wasm_bytes = ls_module_start;
     wasm_registry[27].wasm_size = ls_module_size;
+    wasm_registry[28].wasm_bytes = pwd_module_start;
+    wasm_registry[28].wasm_size = pwd_module_size;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];

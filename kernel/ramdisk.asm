@@ -398,6 +398,20 @@ ls_module_size:
     .int ls_module_end - ls_module_start
 
 /* ---------------------------------------------------------------------------
+ * Pwd module
+ * --------------------------------------------------------------------------- */
+.section .rodata.pwd_wasm
+.global pwd_module_start
+pwd_module_start:
+    .incbin "kernel/pwd.wasm"
+.global pwd_module_end
+pwd_module_end:
+.align 4
+.global pwd_module_size
+pwd_module_size:
+    .int pwd_module_end - pwd_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
