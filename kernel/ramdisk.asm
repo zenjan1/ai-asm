@@ -1673,6 +1673,17 @@ setarch_module_end:
 setarch_module_size:
     .int setarch_module_end - setarch_module_start
 
+.section .rodata.nice_wasm
+.global nice_module_start
+nice_module_start:
+    .incbin "kernel/nice.wasm"
+.global nice_module_end
+nice_module_end:
+
+.global nice_module_size
+nice_module_size:
+    .int nice_module_end - nice_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
