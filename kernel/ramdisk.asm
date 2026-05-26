@@ -496,6 +496,20 @@ cmp_module_size:
     .int cmp_module_end - cmp_module_start
 
 /* ---------------------------------------------------------------------------
+ * Diff module (line-by-line file comparison)
+ * --------------------------------------------------------------------------- */
+.section .rodata.diff_wasm
+.global diff_module_start
+diff_module_start:
+    .incbin "kernel/diff.wasm"
+.global diff_module_end
+diff_module_end:
+.align 4
+.global diff_module_size
+diff_module_size:
+    .int diff_module_end - diff_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
