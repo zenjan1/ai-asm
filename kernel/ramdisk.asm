@@ -1098,6 +1098,20 @@ netstat_module_size:
     .int netstat_module_end - netstat_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: route
+ * --------------------------------------------------------------------------- */
+.section .rodata.route_wasm
+.global route_module_start
+route_module_start:
+    .incbin "kernel/route.wasm"
+.global route_module_end
+route_module_end:
+
+.global route_module_size
+route_module_size:
+    .int route_module_end - route_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
