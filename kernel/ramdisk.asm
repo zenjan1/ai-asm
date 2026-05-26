@@ -1376,6 +1376,17 @@ base64d_module_end:
 base64d_module_size:
     .int base64d_module_end - base64d_module_start
 
+.section .rodata.od_wasm
+.global od_module_start
+od_module_start:
+    .incbin "kernel/od.wasm"
+.global od_module_end
+od_module_end:
+
+.global od_module_size
+od_module_size:
+    .int od_module_end - od_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

@@ -404,6 +404,8 @@ extern const uint8_t base64_module_start[], base64_module_end[];
 extern const uint32_t base64_module_size;
 extern const uint8_t base64d_module_start[], base64d_module_end[];
 extern const uint32_t base64d_module_size;
+extern const uint8_t od_module_start[], od_module_end[];
+extern const uint32_t od_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -505,6 +507,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "md5sum",         NULL, 0 },
     { "base64",         NULL, 0 },
     { "base64d",        NULL, 0 },
+    { "od",             NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4295,6 +4298,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[97].wasm_size = base64_module_size;
     wasm_registry[98].wasm_bytes = base64d_module_start;
     wasm_registry[98].wasm_size = base64d_module_size;
+    wasm_registry[99].wasm_bytes = od_module_start;
+    wasm_registry[99].wasm_size = od_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
