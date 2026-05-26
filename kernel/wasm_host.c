@@ -368,6 +368,8 @@ extern const uint8_t traceroute_module_start[], traceroute_module_end[];
 extern const uint32_t traceroute_module_size;
 extern const uint8_t nslookup_module_start[], nslookup_module_end[];
 extern const uint32_t nslookup_module_size;
+extern const uint8_t wget_module_start[], wget_module_end[];
+extern const uint32_t wget_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -451,6 +453,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "route",          NULL, 0 },
     { "traceroute",     NULL, 0 },
     { "nslookup",       NULL, 0 },
+    { "wget",           NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4205,6 +4208,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[79].wasm_size = traceroute_module_size;
     wasm_registry[80].wasm_bytes = nslookup_module_start;
     wasm_registry[80].wasm_size = nslookup_module_size;
+    wasm_registry[81].wasm_bytes = wget_module_start;
+    wasm_registry[81].wasm_size = wget_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

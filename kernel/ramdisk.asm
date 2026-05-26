@@ -1140,6 +1140,20 @@ nslookup_module_size:
     .int nslookup_module_end - nslookup_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: wget
+ * --------------------------------------------------------------------------- */
+.section .rodata.wget_wasm
+.global wget_module_start
+wget_module_start:
+    .incbin "kernel/wget.wasm"
+.global wget_module_end
+wget_module_end:
+
+.global wget_module_size
+wget_module_size:
+    .int wget_module_end - wget_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
