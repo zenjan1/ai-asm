@@ -344,6 +344,8 @@ extern const uint8_t stty_module_start[], stty_module_end[];
 extern const uint32_t stty_module_size;
 extern const uint8_t tput_module_start[], tput_module_end[];
 extern const uint32_t tput_module_size;
+extern const uint8_t readlink_module_start[], readlink_module_end[];
+extern const uint32_t readlink_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -415,6 +417,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "who",            NULL, 0 },
     { "stty",           NULL, 0 },
     { "tput",           NULL, 0 },
+    { "readlink",       NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 

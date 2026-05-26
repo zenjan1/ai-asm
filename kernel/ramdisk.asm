@@ -972,6 +972,20 @@ tput_module_size:
     .int tput_module_end - tput_module_start
 
 /* ---------------------------------------------------------------------------
+ * Readlink module (symlink target display)
+ * --------------------------------------------------------------------------- */
+.section .rodata.readlink_wasm
+.global readlink_module_start
+readlink_module_start:
+    .incbin "kernel/readlink.wasm"
+.global readlink_module_end
+readlink_module_end:
+.align 4
+.global readlink_module_size
+readlink_module_size:
+    .int readlink_module_end - readlink_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
