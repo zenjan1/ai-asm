@@ -580,6 +580,20 @@ comm_module_size:
     .int comm_module_end - comm_module_start
 
 /* ---------------------------------------------------------------------------
+ * Paste module (merge lines)
+ * --------------------------------------------------------------------------- */
+.section .rodata.paste_wasm
+.global paste_module_start
+paste_module_start:
+    .incbin "kernel/paste.wasm"
+.global paste_module_end
+paste_module_end:
+.align 4
+.global paste_module_size
+paste_module_size:
+    .int paste_module_end - paste_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
