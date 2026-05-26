@@ -1756,6 +1756,16 @@ groups_module_end:
 groups_module_size:
     .int groups_module_end - groups_module_start
 
+.section .rodata.install_wasm
+.global install_module_start
+install_module_start:
+    .incbin "kernel/install.wasm"
+.global install_module_end
+install_module_end:
+.global install_module_size
+install_module_size:
+    .int install_module_end - install_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
