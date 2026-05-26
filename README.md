@@ -2,7 +2,7 @@
 
 Pure AArch64 assembly WASM-native operating system for QEMU virt.
 
-**151 WASM modules** · 7240344 bytes kernel · v158.0
+**152 WASM modules** · 7240472 bytes kernel · v159.0
 
 ## Features
 
@@ -15,7 +15,7 @@ Pure AArch64 assembly WASM-native operating system for QEMU virt.
 - GUI window manager with Z-order compositing (up to 16 windows)
 - WebAssembly runtime via Wasm3 with multi-module support
 - Integration test suite (FS / NET / GUI / CORE)
-- **151 WASM modules** · 7240344 bytes kernel · v158.0
+- **152 WASM modules** · 7240472 bytes kernel · v159.0
 
 ## Three-Layer Architecture
 
@@ -48,7 +48,7 @@ make && make run
 
 ## Available WASM Modules
 
-### System: init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat
+### System: init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat
 ### File: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt
 ### Info: ls, pwd, env, id, uptime, whoami, hostname, uname, date, awk, df, free, ps, kill, tty, who, stty, tput, readlink, mount, umount
 ### Calendar/Time: date, cal
@@ -121,7 +121,7 @@ aiasm-aarch64/
 | Filesystem | FAT32 with cluster allocation |
 | Kernel binary | ~6.9MB (7171968 bytes) |
 | Assembly files | 26 |
-| WASM modules | 151 |
+| WASM modules | 152 |
 
 ## WASM Host API
 
