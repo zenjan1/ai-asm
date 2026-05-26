@@ -310,6 +310,10 @@ extern const uint8_t uptime_module_start[], uptime_module_end[];
 extern const uint32_t uptime_module_size;
 extern const uint8_t whoami_module_start[], whoami_module_end[];
 extern const uint32_t whoami_module_size;
+extern const uint8_t hostname_module_start[], hostname_module_end[];
+extern const uint32_t hostname_module_size;
+extern const uint8_t uname_module_start[], uname_module_end[];
+extern const uint32_t uname_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -364,6 +368,8 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "id",             NULL, 0 },
     { "uptime",         NULL, 0 },
     { "whoami",         NULL, 0 },
+    { "hostname",       NULL, 0 },
+    { "uname",          NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4060,6 +4066,10 @@ const char *wasm_host_init_multi(void)
     wasm_registry[50].wasm_size = uptime_module_size;
     wasm_registry[51].wasm_bytes = whoami_module_start;
     wasm_registry[51].wasm_size = whoami_module_size;
+    wasm_registry[52].wasm_bytes = hostname_module_start;
+    wasm_registry[52].wasm_size = hostname_module_size;
+    wasm_registry[53].wasm_bytes = uname_module_start;
+    wasm_registry[53].wasm_size = uname_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

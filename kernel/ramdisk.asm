@@ -734,6 +734,34 @@ whoami_module_size:
     .int whoami_module_end - whoami_module_start
 
 /* ---------------------------------------------------------------------------
+ * Hostname module (host identification)
+ * --------------------------------------------------------------------------- */
+.section .rodata.hostname_wasm
+.global hostname_module_start
+hostname_module_start:
+    .incbin "kernel/hostname.wasm"
+.global hostname_module_end
+hostname_module_end:
+.align 4
+.global hostname_module_size
+hostname_module_size:
+    .int hostname_module_end - hostname_module_start
+
+/* ---------------------------------------------------------------------------
+ * Uname module (system identification)
+ * --------------------------------------------------------------------------- */
+.section .rodata.uname_wasm
+.global uname_module_start
+uname_module_start:
+    .incbin "kernel/uname.wasm"
+.global uname_module_end
+uname_module_end:
+.align 4
+.global uname_module_size
+uname_module_size:
+    .int uname_module_end - uname_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
