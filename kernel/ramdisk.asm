@@ -874,6 +874,20 @@ rm_module_size:
     .int rm_module_end - rm_module_start
 
 /* ---------------------------------------------------------------------------
+ * Cp module (file copying)
+ * --------------------------------------------------------------------------- */
+.section .rodata.cp_wasm
+.global cp_module_start
+cp_module_start:
+    .incbin "kernel/cp.wasm"
+.global cp_module_end
+cp_module_end:
+.align 4
+.global cp_module_size
+cp_module_size:
+    .int cp_module_end - cp_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
