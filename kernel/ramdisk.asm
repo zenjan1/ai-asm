@@ -370,6 +370,20 @@ date_module_size:
     .int date_module_end - date_module_start
 
 /* ---------------------------------------------------------------------------
+ * Awk module
+ * --------------------------------------------------------------------------- */
+.section .rodata.awk_wasm
+.global awk_module_start
+awk_module_start:
+    .incbin "kernel/awk.wasm"
+.global awk_module_end
+awk_module_end:
+.align 4
+.global awk_module_size
+awk_module_size:
+    .int awk_module_end - awk_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
