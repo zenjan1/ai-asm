@@ -1786,6 +1786,16 @@ mktemp_module_end:
 mktemp_module_size:
     .int mktemp_module_end - mktemp_module_start
 
+.section .rodata.truncate_wasm
+.global truncate_module_start
+truncate_module_start:
+    .incbin "kernel/truncate.wasm"
+.global truncate_module_end
+truncate_module_end:
+.global truncate_module_size
+truncate_module_size:
+    .int truncate_module_end - truncate_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
