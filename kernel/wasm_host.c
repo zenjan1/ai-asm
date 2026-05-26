@@ -510,6 +510,8 @@ extern const uint8_t lsof_module_start[], lsof_module_end[];
 extern const uint32_t lsof_module_size;
 extern const uint8_t iostat_module_start[], iostat_module_end[];
 extern const uint32_t iostat_module_size;
+extern const uint8_t vmstat_module_start[], vmstat_module_end[];
+extern const uint32_t vmstat_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -524,6 +526,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "mcookie",        NULL, 0 },
     { "lsof",           NULL, 0 },
     { "iostat",         NULL, 0 },
+    { "vmstat",         NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4567,6 +4570,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[150].wasm_size = lsof_module_size;
     wasm_registry[151].wasm_bytes = iostat_module_start;
     wasm_registry[151].wasm_size = iostat_module_size;
+    wasm_registry[152].wasm_bytes = vmstat_module_start;
+    wasm_registry[152].wasm_size = vmstat_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

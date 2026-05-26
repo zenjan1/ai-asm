@@ -1936,6 +1936,16 @@ iostat_module_end:
 iostat_module_size:
     .int iostat_module_end - iostat_module_start
 
+.section .rodata.vmstat_wasm
+.global vmstat_module_start
+vmstat_module_start:
+    .incbin "kernel/vmstat.wasm"
+.global vmstat_module_end
+vmstat_module_end:
+.global vmstat_module_size
+vmstat_module_size:
+    .int vmstat_module_end - vmstat_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
