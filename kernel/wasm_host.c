@@ -360,6 +360,8 @@ extern const uint8_t ifconfig_module_start[], ifconfig_module_end[];
 extern const uint32_t ifconfig_module_size;
 extern const uint8_t ping_module_start[], ping_module_end[];
 extern const uint32_t ping_module_size;
+extern const uint8_t netstat_module_start[], netstat_module_end[];
+extern const uint32_t netstat_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -439,6 +441,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "umount",         NULL, 0 },
     { "ifconfig",       NULL, 0 },
     { "ping",           NULL, 0 },
+    { "netstat",        NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4185,6 +4188,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[75].wasm_size = ifconfig_module_size;
     wasm_registry[76].wasm_bytes = ping_module_start;
     wasm_registry[76].wasm_size = ping_module_size;
+    wasm_registry[77].wasm_bytes = netstat_module_start;
+    wasm_registry[77].wasm_size = netstat_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

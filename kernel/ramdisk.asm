@@ -1084,6 +1084,20 @@ ping_module_size:
     .int ping_module_end - ping_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: netstat
+ * --------------------------------------------------------------------------- */
+.section .rodata.netstat_wasm
+.global netstat_module_start
+netstat_module_start:
+    .incbin "kernel/netstat.wasm"
+.global netstat_module_end
+netstat_module_end:
+
+.global netstat_module_size
+netstat_module_size:
+    .int netstat_module_end - netstat_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
