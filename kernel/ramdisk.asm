@@ -1607,6 +1607,17 @@ hostid_module_end:
 hostid_module_size:
     .int hostid_module_end - hostid_module_start
 
+.section .rodata.sync_wasm
+.global sync_module_start
+sync_module_start:
+    .incbin "kernel/sync.wasm"
+.global sync_module_end
+sync_module_end:
+
+.global sync_module_size
+sync_module_size:
+    .int sync_module_end - sync_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

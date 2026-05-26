@@ -446,6 +446,8 @@ extern const uint8_t nproc_module_start[], nproc_module_end[];
 extern const uint32_t nproc_module_size;
 extern const uint8_t hostid_module_start[], hostid_module_end[];
 extern const uint32_t hostid_module_size;
+extern const uint8_t sync_module_start[], sync_module_end[];
+extern const uint32_t sync_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -568,6 +570,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "numfmt",         NULL, 0 },
     { "nproc",          NULL, 0 },
     { "hostid",         NULL, 0 },
+    { "sync",           NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4400,6 +4403,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[118].wasm_size = nproc_module_size;
     wasm_registry[119].wasm_bytes = hostid_module_start;
     wasm_registry[119].wasm_size = hostid_module_size;
+    wasm_registry[120].wasm_bytes = sync_module_start;
+    wasm_registry[120].wasm_size = sync_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
