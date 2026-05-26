@@ -1866,6 +1866,16 @@ hashsum_module_end:
 hashsum_module_size:
     .int hashsum_module_end - hashsum_module_start
 
+.section .rodata.watch_wasm
+.global watch_module_start
+watch_module_start:
+    .incbin "kernel/watch.wasm"
+.global watch_module_end
+watch_module_end:
+.global watch_module_size
+watch_module_size:
+    .int watch_module_end - watch_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
