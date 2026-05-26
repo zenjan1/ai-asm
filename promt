@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-27 01:00
-# 当前阶段: Phase 108 (v108.0 strings WASM模块)
+# 生成时间: 2026-05-27 01:30
+# 当前阶段: Phase 109 (v109.0 file WASM模块)
 
 ## 当前状态
-- v107.0 已推送: hexdump WASM模块 (commit 8aec1f6)
-- 100个WASM模块已注册
-- kernel.elf: 7168296 bytes (7000KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump
+- v108.0 已推送: strings WASM模块 (commit 6eeb660)
+- 101个WASM模块已注册
+- kernel.elf: 7168432 bytes (7000KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings
 
-## 任务: 创建strings WASM模块
+## 任务: 创建file WASM模块
 
-提取文件中的可打印字符串:
-- strings <file>: 提取文件中的可打印字符串
-- 输出每行一个字符串
+文件类型检测:
+- file <filename>: 检测并输出文件类型
+- 输出"<filename>: <type>\n"格式
 
-### 文件: modules/strings/src/main.c
+### 文件: modules/file/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-解析argv获取文件名，模拟输出字符串
+解析argv获取文件名，模拟输出文件类型
 
-### Makefile: 添加STRINGS_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在hexdump和ramdisk之间添加strings的.incbin段
-### kernel/wasm_host.c: 添加strings externs, registry entry "strings", registry[101]初始化
+### Makefile: 添加FILE_TYPE_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在strings和ramdisk之间添加file的.incbin段
+### kernel/wasm_host.c: 添加file externs, registry entry "file", registry[102]初始化
 
 ### 提交:
-git commit -m "feat: add strings WASM module for extracting printable strings (v108.0)"
+git commit -m "feat: add file WASM module for file type detection (v109.0)"
