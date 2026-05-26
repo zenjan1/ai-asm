@@ -412,6 +412,8 @@ extern const uint8_t strings_module_start[], strings_module_end[];
 extern const uint32_t strings_module_size;
 extern const uint8_t file_module_start[], file_module_end[];
 extern const uint32_t file_module_size;
+extern const uint8_t xxd_module_start[], xxd_module_end[];
+extern const uint32_t xxd_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -517,6 +519,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "hexdump",        NULL, 0 },
     { "strings",        NULL, 0 },
     { "file",           NULL, 0 },
+    { "xxd",            NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4315,6 +4318,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[101].wasm_size = strings_module_size;
     wasm_registry[102].wasm_bytes = file_module_start;
     wasm_registry[102].wasm_size = file_module_size;
+    wasm_registry[103].wasm_bytes = xxd_module_start;
+    wasm_registry[103].wasm_size = xxd_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

@@ -1420,6 +1420,17 @@ file_module_end:
 file_module_size:
     .int file_module_end - file_module_start
 
+.section .rodata.xxd_wasm
+.global xxd_module_start
+xxd_module_start:
+    .incbin "kernel/xxd.wasm"
+.global xxd_module_end
+xxd_module_end:
+
+.global xxd_module_size
+xxd_module_size:
+    .int xxd_module_end - xxd_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
