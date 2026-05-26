@@ -354,6 +354,8 @@ extern const uint8_t du_module_start[], du_module_end[];
 extern const uint32_t du_module_size;
 extern const uint8_t mount_module_start[], mount_module_end[];
 extern const uint32_t mount_module_size;
+extern const uint8_t umount_module_start[], umount_module_end[];
+extern const uint32_t umount_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -430,6 +432,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "find",           NULL, 0 },
     { "du",             NULL, 0 },
     { "mount",          NULL, 0 },
+    { "umount",         NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4170,6 +4173,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[72].wasm_size = du_module_size;
     wasm_registry[73].wasm_bytes = mount_module_start;
     wasm_registry[73].wasm_size = mount_module_size;
+    wasm_registry[74].wasm_bytes = umount_module_start;
+    wasm_registry[74].wasm_size = umount_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
