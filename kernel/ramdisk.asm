@@ -2106,6 +2106,16 @@ arp_module_end:
 arp_module_size:
     .int arp_module_end - arp_module_start
 
+.section .rodata.iwconfig_wasm
+.global iwconfig_module_start
+iwconfig_module_start:
+    .incbin "kernel/iwconfig.wasm"
+.global iwconfig_module_end
+iwconfig_module_end:
+.global iwconfig_module_size
+iwconfig_module_size:
+    .int iwconfig_module_end - iwconfig_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
