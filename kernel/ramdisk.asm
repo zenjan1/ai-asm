@@ -2146,6 +2146,16 @@ iptables_module_end:
 iptables_module_size:
     .int iptables_module_end - iptables_module_start
 
+.section .rodata.socat_wasm
+.global socat_module_start
+socat_module_start:
+    .incbin "kernel/socat.wasm"
+.global socat_module_end
+socat_module_end:
+.global socat_module_size
+socat_module_size:
+    .int socat_module_end - socat_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
