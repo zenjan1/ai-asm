@@ -1196,6 +1196,20 @@ scp_module_size:
     .int scp_module_end - scp_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: tar
+ * --------------------------------------------------------------------------- */
+.section .rodata.tar_wasm
+.global tar_module_start
+tar_module_start:
+    .incbin "kernel/tar.wasm"
+.global tar_module_end
+tar_module_end:
+
+.global tar_module_size
+tar_module_size:
+    .int tar_module_end - tar_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

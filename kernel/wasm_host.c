@@ -376,6 +376,8 @@ extern const uint8_t ssh_module_start[], ssh_module_end[];
 extern const uint32_t ssh_module_size;
 extern const uint8_t scp_module_start[], scp_module_end[];
 extern const uint32_t scp_module_size;
+extern const uint8_t tar_module_start[], tar_module_end[];
+extern const uint32_t tar_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -463,6 +465,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "curl",           NULL, 0 },
     { "ssh",            NULL, 0 },
     { "scp",            NULL, 0 },
+    { "tar",            NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4225,6 +4228,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[83].wasm_size = ssh_module_size;
     wasm_registry[84].wasm_bytes = scp_module_start;
     wasm_registry[84].wasm_size = scp_module_size;
+    wasm_registry[85].wasm_bytes = tar_module_start;
+    wasm_registry[85].wasm_size = tar_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
