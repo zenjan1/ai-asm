@@ -1651,6 +1651,17 @@ logname_module_end:
 logname_module_size:
     .int logname_module_end - logname_module_start
 
+.section .rodata.arch_wasm
+.global arch_module_start
+arch_module_start:
+    .incbin "kernel/arch.wasm"
+.global arch_module_end
+arch_module_end:
+
+.global arch_module_size
+arch_module_size:
+    .int arch_module_end - arch_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
