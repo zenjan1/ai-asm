@@ -2176,6 +2176,16 @@ ping6_module_end:
 ping6_module_size:
     .int ping6_module_end - ping6_module_start
 
+.section .rodata.ethtool_wasm
+.global ethtool_module_start
+ethtool_module_start:
+    .incbin "kernel/ethtool.wasm"
+.global ethtool_module_end
+ethtool_module_end:
+.global ethtool_module_size
+ethtool_module_size:
+    .int ethtool_module_end - ethtool_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
