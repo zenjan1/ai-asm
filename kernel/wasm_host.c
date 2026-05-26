@@ -390,6 +390,8 @@ extern const uint8_t bunzip2_module_start[], bunzip2_module_end[];
 extern const uint32_t bunzip2_module_size;
 extern const uint8_t lzma_module_start[], lzma_module_end[];
 extern const uint32_t lzma_module_size;
+extern const uint8_t unlzma_module_start[], unlzma_module_end[];
+extern const uint32_t unlzma_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -484,6 +486,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "bzip2",          NULL, 0 },
     { "bunzip2",        NULL, 0 },
     { "lzma",           NULL, 0 },
+    { "unlzma",         NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4260,6 +4263,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[90].wasm_size = bunzip2_module_size;
     wasm_registry[91].wasm_bytes = lzma_module_start;
     wasm_registry[91].wasm_size = lzma_module_size;
+    wasm_registry[92].wasm_bytes = unlzma_module_start;
+    wasm_registry[92].wasm_size = unlzma_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

@@ -1294,6 +1294,20 @@ lzma_module_size:
     .int lzma_module_end - lzma_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: unlzma
+ * --------------------------------------------------------------------------- */
+.section .rodata.unlzma_wasm
+.global unlzma_module_start
+unlzma_module_start:
+    .incbin "kernel/unlzma.wasm"
+.global unlzma_module_end
+unlzma_module_end:
+
+.global unlzma_module_size
+unlzma_module_size:
+    .int unlzma_module_end - unlzma_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
