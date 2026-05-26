@@ -1596,6 +1596,17 @@ nproc_module_end:
 nproc_module_size:
     .int nproc_module_end - nproc_module_start
 
+.section .rodata.hostid_wasm
+.global hostid_module_start
+hostid_module_start:
+    .incbin "kernel/hostid.wasm"
+.global hostid_module_end
+hostid_module_end:
+
+.global hostid_module_size
+hostid_module_size:
+    .int hostid_module_end - hostid_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
