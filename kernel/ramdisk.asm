@@ -510,6 +510,20 @@ diff_module_size:
     .int diff_module_end - diff_module_start
 
 /* ---------------------------------------------------------------------------
+ * Basename module (path processing)
+ * --------------------------------------------------------------------------- */
+.section .rodata.basename_wasm
+.global basename_module_start
+basename_module_start:
+    .incbin "kernel/basename.wasm"
+.global basename_module_end
+basename_module_end:
+.align 4
+.global basename_module_size
+basename_module_size:
+    .int basename_module_end - basename_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
