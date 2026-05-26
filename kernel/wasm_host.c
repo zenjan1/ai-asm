@@ -450,6 +450,8 @@ extern const uint8_t sync_module_start[], sync_module_end[];
 extern const uint32_t sync_module_size;
 extern const uint8_t link_module_start[], link_module_end[];
 extern const uint32_t link_module_size;
+extern const uint8_t unlink_module_start[], unlink_module_end[];
+extern const uint32_t unlink_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -574,6 +576,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "hostid",         NULL, 0 },
     { "sync",           NULL, 0 },
     { "link",           NULL, 0 },
+    { "unlink",         NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4410,6 +4413,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[120].wasm_size = sync_module_size;
     wasm_registry[121].wasm_bytes = link_module_start;
     wasm_registry[121].wasm_size = link_module_size;
+    wasm_registry[122].wasm_bytes = unlink_module_start;
+    wasm_registry[122].wasm_size = unlink_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

@@ -198,14 +198,14 @@ CURL_WASM       = $(MODULES_DIR)/curl/curl.wasm
 SSH_WASM        = $(MODULES_DIR)/ssh/ssh.wasm
 SCP_WASM        = $(MODULES_DIR)/scp/scp.wasm
 TAR_WASM        = $(MODULES_DIR)/tar/tar.wasm
-GZIP_WASM       = $(MODULES_DIR)/gzip/gzip.wasm $(MODULES_DIR)/gunzip/gunzip.wasm $(MODULES_DIR)/zcat/zcat.wasm $(MODULES_DIR)/bzip2/bzip2.wasm $(MODULES_DIR)/bunzip2/bunzip2.wasm $(MODULES_DIR)/lzma/lzma.wasm $(MODULES_DIR)/unlzma/unlzma.wasm $(MODULES_DIR)/xz/xz.wasm $(MODULES_DIR)/column/column.wasm $(MODULES_DIR)/expand/expand.wasm $(MODULES_DIR)/unexpand/unexpand.wasm $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm
+GZIP_WASM       = $(MODULES_DIR)/gzip/gzip.wasm $(MODULES_DIR)/gunzip/gunzip.wasm $(MODULES_DIR)/zcat/zcat.wasm $(MODULES_DIR)/bzip2/bzip2.wasm $(MODULES_DIR)/bunzip2/bunzip2.wasm $(MODULES_DIR)/lzma/lzma.wasm $(MODULES_DIR)/unlzma/unlzma.wasm $(MODULES_DIR)/xz/xz.wasm $(MODULES_DIR)/column/column.wasm $(MODULES_DIR)/expand/expand.wasm $(MODULES_DIR)/unexpand/unexpand.wasm $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm $(MODULES_DIR)/unlink/unlink.wasm
 GUNZIP_WASM     = $(MODULES_DIR)/gunzip/gunzip.wasm
 ZCAT_WASM       = $(MODULES_DIR)/zcat/zcat.wasm
 BZIP2_WASM      = $(MODULES_DIR)/bzip2/bzip2.wasm
 BUNZIP2_WASM    = $(MODULES_DIR)/bunzip2/bunzip2.wasm
 LZMA_WASM       = $(MODULES_DIR)/lzma/lzma.wasm
 UNLZMA_WASM     = $(MODULES_DIR)/unlzma/unlzma.wasm
-XZ_WASM         = $(MODULES_DIR)/xz/xz.wasm $(MODULES_DIR)/column/column.wasm $(MODULES_DIR)/expand/expand.wasm $(MODULES_DIR)/unexpand/unexpand.wasm $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm
+XZ_WASM         = $(MODULES_DIR)/xz/xz.wasm $(MODULES_DIR)/column/column.wasm $(MODULES_DIR)/expand/expand.wasm $(MODULES_DIR)/unexpand/unexpand.wasm $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm $(MODULES_DIR)/unlink/unlink.wasm
 UNXZ_WASM       = $(MODULES_DIR)/unxz/unxz.wasm
 SHA256SUM_WASM  = $(MODULES_DIR)/sha256sum/sha256sum.wasm
 MD5SUM_WASM     = $(MODULES_DIR)/md5sum/md5sum.wasm
@@ -226,14 +226,15 @@ TSORT_WASM      = $(MODULES_DIR)/tsort/tsort.wasm
 CSPLIT_WASM     = $(MODULES_DIR)/csplit/csplit.wasm
 FMT_WASM        = $(MODULES_DIR)/fmt/fmt.wasm
 PR_WASM         = $(MODULES_DIR)/pr/pr.wasm
-COLUMN_WASM     = $(MODULES_DIR)/column/column.wasm $(MODULES_DIR)/expand/expand.wasm $(MODULES_DIR)/unexpand/unexpand.wasm $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm
-EXPAND_WASM      = $(MODULES_DIR)/expand/expand.wasm $(MODULES_DIR)/unexpand/unexpand.wasm $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm
-UNEXPAND_WASM    = $(MODULES_DIR)/unexpand/unexpand.wasm $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm
-NUMFMT_WASM      = $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm
-NPROC_WASM       = $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm
-HOSTID_WASM      = $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm
-SYNC_WASM        = $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm
-LINK_WASM        = $(MODULES_DIR)/link/link.wasm
+COLUMN_WASM     = $(MODULES_DIR)/column/column.wasm $(MODULES_DIR)/expand/expand.wasm $(MODULES_DIR)/unexpand/unexpand.wasm $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm $(MODULES_DIR)/unlink/unlink.wasm
+EXPAND_WASM      = $(MODULES_DIR)/expand/expand.wasm $(MODULES_DIR)/unexpand/unexpand.wasm $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm $(MODULES_DIR)/unlink/unlink.wasm
+UNEXPAND_WASM    = $(MODULES_DIR)/unexpand/unexpand.wasm $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm $(MODULES_DIR)/unlink/unlink.wasm
+NUMFMT_WASM      = $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm $(MODULES_DIR)/unlink/unlink.wasm
+NPROC_WASM       = $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm $(MODULES_DIR)/unlink/unlink.wasm
+HOSTID_WASM      = $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm $(MODULES_DIR)/unlink/unlink.wasm
+SYNC_WASM        = $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm $(MODULES_DIR)/unlink/unlink.wasm
+LINK_WASM        = $(MODULES_DIR)/link/link.wasm $(MODULES_DIR)/unlink/unlink.wasm
+UNLINK_WASM      = $(MODULES_DIR)/unlink/unlink.wasm
 RAMDISK_TAR = $(KERNEL_DIR)/ramdisk.tar
 
 # All object dependencies
@@ -262,7 +263,7 @@ wasm3: $(WASM3_LIB)
 	@echo "=== wasm3 library complete ==="
 
 # Compile WASM modules and ramdisk
-modules: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(EDITOR_WASM) $(CALC_WASM) $(PAINT_WASM) $(LAUNCHER_WASM) $(NET_TEST_WASM) $(BROWSER_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM) $(FILEMGR_WASM) $(SETTINGS_WASM) $(USER_WASM) $(DEVMGR_WASM) $(HTTPD_WASM) $(DNS_RESOLVER_WASM) $(SHMEM_TEST_WASM) $(SEM_TEST_WASM) $(GREP_WASM) $(CAT_WASM) $(ECHO_WASM) $(TEE_WASM) $(WC_WASM) $(HEAD_WASM) $(TAIL_WASM) $(SORT_WASM) $(UNIQ_WASM) $(TR_WASM) $(CUT_WASM) $(SED_WASM) $(XARGS_WASM) $(DATE_WASM) $(AWK_WASM) $(LS_WASM) $(PWD_WASM) $(ENV_WASM) $(PRINTF_WASM) $(SLEEP_WASM) $(YES_WASM) $(REV_WASM) $(CMP_WASM) $(DIFF_WASM) $(BASENAME_WASM) $(DIRNAME_WASM) $(NL_WASM) $(SHUF_WASM) $(COMM_WASM) $(PASTE_WASM) $(FOLD_WASM) $(TAC_WASM) $(CKSUM_WASM) $(SUM_WASM) $(TOUCH_WASM) $(TRUE_WASM) $(FALSE_WASM) $(ID_WASM) $(UPTIME_WASM) $(WHOAMI_WASM) $(HOSTNAME_WASM) $(UNAME_WASM) $(DF_WASM) $(FREE_WASM) $(PS_WASM) $(KILL_WASM) $(MKDIR_WASM) $(RMDIR_WASM) $(LN_WASM) $(RM_WASM) $(CP_WASM) $(MV_WASM) $(CHMOD_WASM) $(TTY_WASM) $(WHO_WASM) $(STTY_WASM) $(TPUT_WASM) $(READLINK_WASM) $(CAL_WASM) $(FIND_WASM) $(DU_WASM) $(MOUNT_WASM) $(UMOUNT_WASM) $(IFCONFIG_WASM) $(PING_WASM) $(NETSTAT_WASM) $(ROUTE_WASM) $(TRACEROUTE_WASM) $(NSLOOKUP_WASM) $(WGET_WASM) $(CURL_WASM) $(SSH_WASM) $(SCP_WASM) $(TAR_WASM) $(GZIP_WASM) $(GUNZIP_WASM) $(ZCAT_WASM) $(BZIP2_WASM) $(BUNZIP2_WASM) $(LZMA_WASM) $(UNLZMA_WASM) $(XZ_WASM) $(UNXZ_WASM) $(SHA256SUM_WASM) $(MD5SUM_WASM) $(BASE64_WASM) $(BASE64D_WASM) $(OD_WASM) $(HEXDUMP_WASM) $(STRINGS_WASM) $(FILETYPE_WASM) $(XXD_WASM) $(LESS_WASM) $(MORE_WASM) $(JOIN_WASM) $(SPLIT_WASM) $(PATCH_WASM) $(DIFF3_WASM) $(TSORT_WASM) $(CSPLIT_WASM) $(FMT_WASM) $(PR_WASM) $(COLUMN_WASM) $(EXPAND_WASM) $(UNEXPAND_WASM) $(NUMFMT_WASM) $(NPROC_WASM) $(HOSTID_WASM) $(SYNC_WASM) $(LINK_WASM) $(RAMDISK_TAR)
+modules: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(EDITOR_WASM) $(CALC_WASM) $(PAINT_WASM) $(LAUNCHER_WASM) $(NET_TEST_WASM) $(BROWSER_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM) $(FILEMGR_WASM) $(SETTINGS_WASM) $(USER_WASM) $(DEVMGR_WASM) $(HTTPD_WASM) $(DNS_RESOLVER_WASM) $(SHMEM_TEST_WASM) $(SEM_TEST_WASM) $(GREP_WASM) $(CAT_WASM) $(ECHO_WASM) $(TEE_WASM) $(WC_WASM) $(HEAD_WASM) $(TAIL_WASM) $(SORT_WASM) $(UNIQ_WASM) $(TR_WASM) $(CUT_WASM) $(SED_WASM) $(XARGS_WASM) $(DATE_WASM) $(AWK_WASM) $(LS_WASM) $(PWD_WASM) $(ENV_WASM) $(PRINTF_WASM) $(SLEEP_WASM) $(YES_WASM) $(REV_WASM) $(CMP_WASM) $(DIFF_WASM) $(BASENAME_WASM) $(DIRNAME_WASM) $(NL_WASM) $(SHUF_WASM) $(COMM_WASM) $(PASTE_WASM) $(FOLD_WASM) $(TAC_WASM) $(CKSUM_WASM) $(SUM_WASM) $(TOUCH_WASM) $(TRUE_WASM) $(FALSE_WASM) $(ID_WASM) $(UPTIME_WASM) $(WHOAMI_WASM) $(HOSTNAME_WASM) $(UNAME_WASM) $(DF_WASM) $(FREE_WASM) $(PS_WASM) $(KILL_WASM) $(MKDIR_WASM) $(RMDIR_WASM) $(LN_WASM) $(RM_WASM) $(CP_WASM) $(MV_WASM) $(CHMOD_WASM) $(TTY_WASM) $(WHO_WASM) $(STTY_WASM) $(TPUT_WASM) $(READLINK_WASM) $(CAL_WASM) $(FIND_WASM) $(DU_WASM) $(MOUNT_WASM) $(UMOUNT_WASM) $(IFCONFIG_WASM) $(PING_WASM) $(NETSTAT_WASM) $(ROUTE_WASM) $(TRACEROUTE_WASM) $(NSLOOKUP_WASM) $(WGET_WASM) $(CURL_WASM) $(SSH_WASM) $(SCP_WASM) $(TAR_WASM) $(GZIP_WASM) $(GUNZIP_WASM) $(ZCAT_WASM) $(BZIP2_WASM) $(BUNZIP2_WASM) $(LZMA_WASM) $(UNLZMA_WASM) $(XZ_WASM) $(UNXZ_WASM) $(SHA256SUM_WASM) $(MD5SUM_WASM) $(BASE64_WASM) $(BASE64D_WASM) $(OD_WASM) $(HEXDUMP_WASM) $(STRINGS_WASM) $(FILETYPE_WASM) $(XXD_WASM) $(LESS_WASM) $(MORE_WASM) $(JOIN_WASM) $(SPLIT_WASM) $(PATCH_WASM) $(DIFF3_WASM) $(TSORT_WASM) $(CSPLIT_WASM) $(FMT_WASM) $(PR_WASM) $(COLUMN_WASM) $(EXPAND_WASM) $(UNEXPAND_WASM) $(NUMFMT_WASM) $(NPROC_WASM) $(HOSTID_WASM) $(SYNC_WASM) $(LINK_WASM) $(UNLINK_WASM) $(RAMDISK_TAR)
 	@echo "=== WASM modules and ramdisk complete ==="
 
 # Link kernel only (assumes objects exist)
@@ -280,7 +281,7 @@ $(BUILD_DIR)/%.o: $(KERNEL_DIR)/%.asm | $(BUILD_DIR)
 $(BUILD_DIR)/wasm_embed.o: $(SHELL_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM)
 
 # ramdisk.o depends on init.wasm, shell.wasm, test.wasm, proc_monitor.wasm, syslog.wasm, filemgr.wasm, settings.wasm, user.wasm, devmgr.wasm, httpd.wasm, grep.wasm, cat.wasm, echo.wasm and ramdisk.tar
-$(BUILD_DIR)/ramdisk.o: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM) $(FILEMGR_WASM) $(SETTINGS_WASM) $(USER_WASM) $(DEVMGR_WASM) $(HTTPD_WASM) $(DNS_RESOLVER_WASM) $(SHMEM_TEST_WASM) $(GREP_WASM) $(CAT_WASM) $(ECHO_WASM) $(TEE_WASM) $(WC_WASM) $(HEAD_WASM) $(TAIL_WASM) $(SORT_WASM) $(UNIQ_WASM) $(TR_WASM) $(CUT_WASM) $(SED_WASM) $(XARGS_WASM) $(DATE_WASM) $(AWK_WASM) $(LS_WASM) $(PWD_WASM) $(ENV_WASM) $(PRINTF_WASM) $(SLEEP_WASM) $(YES_WASM) $(REV_WASM) $(CMP_WASM) $(DIFF_WASM) $(BASENAME_WASM) $(DIRNAME_WASM) $(NL_WASM) $(SHUF_WASM) $(COMM_WASM) $(PASTE_WASM) $(FOLD_WASM) $(TAC_WASM) $(CKSUM_WASM) $(SUM_WASM) $(TOUCH_WASM) $(TRUE_WASM) $(FALSE_WASM) $(ID_WASM) $(UPTIME_WASM) $(WHOAMI_WASM) $(HOSTNAME_WASM) $(UNAME_WASM) $(DF_WASM) $(FREE_WASM) $(PS_WASM) $(KILL_WASM) $(MKDIR_WASM) $(RMDIR_WASM) $(LN_WASM) $(RM_WASM) $(CP_WASM) $(MV_WASM) $(CHMOD_WASM) $(TTY_WASM) $(WHO_WASM) $(STTY_WASM) $(TPUT_WASM) $(READLINK_WASM) $(CAL_WASM) $(FIND_WASM) $(DU_WASM) $(MOUNT_WASM) $(UMOUNT_WASM) $(IFCONFIG_WASM) $(PING_WASM) $(NETSTAT_WASM) $(ROUTE_WASM) $(TRACEROUTE_WASM) $(NSLOOKUP_WASM) $(WGET_WASM) $(CURL_WASM) $(SSH_WASM) $(SCP_WASM) $(TAR_WASM) $(GZIP_WASM) $(GUNZIP_WASM) $(ZCAT_WASM) $(BZIP2_WASM) $(BUNZIP2_WASM) $(LZMA_WASM) $(UNLZMA_WASM) $(XZ_WASM) $(UNXZ_WASM) $(SHA256SUM_WASM) $(MD5SUM_WASM) $(BASE64_WASM) $(BASE64D_WASM) $(OD_WASM) $(HEXDUMP_WASM) $(STRINGS_WASM) $(FILETYPE_WASM) $(XXD_WASM) $(LESS_WASM) $(MORE_WASM) $(JOIN_WASM) $(SPLIT_WASM) $(PATCH_WASM) $(DIFF3_WASM) $(TSORT_WASM) $(CSPLIT_WASM) $(FMT_WASM) $(PR_WASM) $(COLUMN_WASM) $(EXPAND_WASM) $(UNEXPAND_WASM) $(NUMFMT_WASM) $(NPROC_WASM) $(HOSTID_WASM) $(SYNC_WASM) $(LINK_WASM) $(RAMDISK_TAR)
+$(BUILD_DIR)/ramdisk.o: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(PROC_MONITOR_WASM) $(SYSLOG_WASM) $(FILEMGR_WASM) $(SETTINGS_WASM) $(USER_WASM) $(DEVMGR_WASM) $(HTTPD_WASM) $(DNS_RESOLVER_WASM) $(SHMEM_TEST_WASM) $(GREP_WASM) $(CAT_WASM) $(ECHO_WASM) $(TEE_WASM) $(WC_WASM) $(HEAD_WASM) $(TAIL_WASM) $(SORT_WASM) $(UNIQ_WASM) $(TR_WASM) $(CUT_WASM) $(SED_WASM) $(XARGS_WASM) $(DATE_WASM) $(AWK_WASM) $(LS_WASM) $(PWD_WASM) $(ENV_WASM) $(PRINTF_WASM) $(SLEEP_WASM) $(YES_WASM) $(REV_WASM) $(CMP_WASM) $(DIFF_WASM) $(BASENAME_WASM) $(DIRNAME_WASM) $(NL_WASM) $(SHUF_WASM) $(COMM_WASM) $(PASTE_WASM) $(FOLD_WASM) $(TAC_WASM) $(CKSUM_WASM) $(SUM_WASM) $(TOUCH_WASM) $(TRUE_WASM) $(FALSE_WASM) $(ID_WASM) $(UPTIME_WASM) $(WHOAMI_WASM) $(HOSTNAME_WASM) $(UNAME_WASM) $(DF_WASM) $(FREE_WASM) $(PS_WASM) $(KILL_WASM) $(MKDIR_WASM) $(RMDIR_WASM) $(LN_WASM) $(RM_WASM) $(CP_WASM) $(MV_WASM) $(CHMOD_WASM) $(TTY_WASM) $(WHO_WASM) $(STTY_WASM) $(TPUT_WASM) $(READLINK_WASM) $(CAL_WASM) $(FIND_WASM) $(DU_WASM) $(MOUNT_WASM) $(UMOUNT_WASM) $(IFCONFIG_WASM) $(PING_WASM) $(NETSTAT_WASM) $(ROUTE_WASM) $(TRACEROUTE_WASM) $(NSLOOKUP_WASM) $(WGET_WASM) $(CURL_WASM) $(SSH_WASM) $(SCP_WASM) $(TAR_WASM) $(GZIP_WASM) $(GUNZIP_WASM) $(ZCAT_WASM) $(BZIP2_WASM) $(BUNZIP2_WASM) $(LZMA_WASM) $(UNLZMA_WASM) $(XZ_WASM) $(UNXZ_WASM) $(SHA256SUM_WASM) $(MD5SUM_WASM) $(BASE64_WASM) $(BASE64D_WASM) $(OD_WASM) $(HEXDUMP_WASM) $(STRINGS_WASM) $(FILETYPE_WASM) $(XXD_WASM) $(LESS_WASM) $(MORE_WASM) $(JOIN_WASM) $(SPLIT_WASM) $(PATCH_WASM) $(DIFF3_WASM) $(TSORT_WASM) $(CSPLIT_WASM) $(FMT_WASM) $(PR_WASM) $(COLUMN_WASM) $(EXPAND_WASM) $(UNEXPAND_WASM) $(NUMFMT_WASM) $(NPROC_WASM) $(HOSTID_WASM) $(SYNC_WASM) $(LINK_WASM) $(UNLINK_WASM) $(RAMDISK_TAR)
 
 # ---------------------------------------------------------------------------
 # C freestanding compilation
@@ -1396,7 +1397,7 @@ $(PR_WASM): $(MODULES_DIR)/pr/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/pr.wasm $(KERNEL_DIR)/column.wasm $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm
+	cp $@ $(KERNEL_DIR)/pr.wasm $(KERNEL_DIR)/column.wasm $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm
 
 
 # ---------------------------------------------------------------------------
@@ -1406,7 +1407,7 @@ $(COLUMN_WASM): $(MODULES_DIR)/column/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/column.wasm $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm
+	cp $@ $(KERNEL_DIR)/column.wasm $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm
 
 # ---------------------------------------------------------------------------
 # WASM expand module (tab expansion)
@@ -1415,7 +1416,7 @@ $(EXPAND_WASM): $(MODULES_DIR)/expand/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm
+	cp $@ $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm
 
 # ---------------------------------------------------------------------------
 # WASM unexpand module (space-to-tab conversion)
@@ -1424,7 +1425,7 @@ $(UNEXPAND_WASM): $(MODULES_DIR)/unexpand/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm
+	cp $@ $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm
 
 # ---------------------------------------------------------------------------
 # WASM numfmt module (number formatting)
@@ -1433,7 +1434,7 @@ $(NUMFMT_WASM): $(MODULES_DIR)/numfmt/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm
+	cp $@ $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm
 
 # ---------------------------------------------------------------------------
 # WASM nproc module (processor count)
@@ -1442,7 +1443,7 @@ $(NPROC_WASM): $(MODULES_DIR)/nproc/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm
+	cp $@ $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm
 
 # ---------------------------------------------------------------------------
 # WASM hostid module (host identification)
@@ -1451,7 +1452,7 @@ $(HOSTID_WASM): $(MODULES_DIR)/hostid/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm
+	cp $@ $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm
 
 # ---------------------------------------------------------------------------
 # WASM sync module (filesystem sync)
@@ -1460,7 +1461,7 @@ $(SYNC_WASM): $(MODULES_DIR)/sync/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm
+	cp $@ $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm
 
 # ---------------------------------------------------------------------------
 # WASM link module (hard link creator)
@@ -1469,7 +1470,16 @@ $(LINK_WASM): $(MODULES_DIR)/link/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/link.wasm
+	cp $@ $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm
+
+# ---------------------------------------------------------------------------
+# WASM unlink module (link removal)
+# ---------------------------------------------------------------------------
+$(UNLINK_WASM): $(MODULES_DIR)/unlink/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/unlink.wasm
 # ---------------------------------------------------------------------------
 # Full kernel link
 # ---------------------------------------------------------------------------
@@ -1501,9 +1511,9 @@ clean:
 	rm -f $(KERNEL_DIR)/init.wasm $(KERNEL_DIR)/shell.wasm $(KERNEL_DIR)/test.wasm
 	rm -f $(KERNEL_DIR)/editor.wasm $(KERNEL_DIR)/calc.wasm $(KERNEL_DIR)/paint.wasm $(KERNEL_DIR)/launcher.wasm
 	rm -f $(KERNEL_DIR)/net_test.wasm $(KERNEL_DIR)/browser.wasm $(KERNEL_DIR)/proc_monitor.wasm $(KERNEL_DIR)/syslog.wasm $(KERNEL_DIR)/filemgr.wasm $(KERNEL_DIR)/settings.wasm $(KERNEL_DIR)/user.wasm $(KERNEL_DIR)/devmgr.wasm $(KERNEL_DIR)/httpd.wasm $(KERNEL_DIR)/dns_resolver.wasm $(KERNEL_DIR)/shmem_test.wasm $(KERNEL_DIR)/sem_test.wasm $(KERNEL_DIR)/grep.wasm $(KERNEL_DIR)/cat.wasm $(KERNEL_DIR)/echo.wasm $(KERNEL_DIR)/tee.wasm $(KERNEL_DIR)/wc.wasm $(KERNEL_DIR)/head.wasm $(KERNEL_DIR)/tail.wasm $(KERNEL_DIR)/sort.wasm $(KERNEL_DIR)/uniq.wasm $(KERNEL_DIR)/tr.wasm $(KERNEL_DIR)/cut.wasm $(KERNEL_DIR)/sed.wasm $(KERNEL_DIR)/xargs.wasm $(KERNEL_DIR)/date.wasm $(KERNEL_DIR)/awk.wasm $(KERNEL_DIR)/ls.wasm $(KERNEL_DIR)/pwd.wasm $(KERNEL_DIR)/env.wasm $(KERNEL_DIR)/printf.wasm $(KERNEL_DIR)/sleep.wasm $(KERNEL_DIR)/yes.wasm $(KERNEL_DIR)/rev.wasm $(KERNEL_DIR)/cmp.wasm $(KERNEL_DIR)/diff.wasm $(KERNEL_DIR)/basename.wasm $(KERNEL_DIR)/dirname.wasm $(KERNEL_DIR)/nl.wasm $(KERNEL_DIR)/shuf.wasm $(KERNEL_DIR)/comm.wasm $(KERNEL_DIR)/paste.wasm $(KERNEL_DIR)/fold.wasm $(KERNEL_DIR)/tac.wasm $(KERNEL_DIR)/cksum.wasm $(KERNEL_DIR)/sum.wasm $(KERNEL_DIR)/touch.wasm $(KERNEL_DIR)/true.wasm $(KERNEL_DIR)/false.wasm $(KERNEL_DIR)/id.wasm $(KERNEL_DIR)/uptime.wasm $(KERNEL_DIR)/whoami.wasm $(KERNEL_DIR)/hostname.wasm $(KERNEL_DIR)/uname.wasm $(KERNEL_DIR)/df.wasm $(KERNEL_DIR)/free.wasm $(KERNEL_DIR)/ps.wasm $(KERNEL_DIR)/kill.wasm $(KERNEL_DIR)/mkdir.wasm $(KERNEL_DIR)/rmdir.wasm $(KERNEL_DIR)/ln.wasm $(KERNEL_DIR)/rm.wasm $(KERNEL_DIR)/cp.wasm $(KERNEL_DIR)/mv.wasm $(KERNEL_DIR)/chmod.wasm $(KERNEL_DIR)/tty.wasm $(KERNEL_DIR)/who.wasm $(KERNEL_DIR)/stty.wasm $(KERNEL_DIR)/tput.wasm $(KERNEL_DIR)/readlink.wasm $(KERNEL_DIR)/cal.wasm $(KERNEL_DIR)/find.wasm $(KERNEL_DIR)/du.wasm $(KERNEL_DIR)/mount.wasm $(KERNEL_DIR)/umount.wasm $(KERNEL_DIR)/ifconfig.wasm $(KERNEL_DIR)/ping.wasm $(KERNEL_DIR)/netstat.wasm $(KERNEL_DIR)/route.wasm $(KERNEL_DIR)/traceroute.wasm $(KERNEL_DIR)/nslookup.wasm $(KERNEL_DIR)/wget.wasm $(KERNEL_DIR)/curl.wasm $(KERNEL_DIR)/ssh.wasm $(KERNEL_DIR)/scp.wasm $(KERNEL_DIR)/tar.wasm
-	rm -f $(KERNEL_DIR)/gzip.wasm $(KERNEL_DIR)/gunzip.wasm $(KERNEL_DIR)/zcat.wasm $(KERNEL_DIR)/bzip2.wasm $(KERNEL_DIR)/bunzip2.wasm $(KERNEL_DIR)/lzma.wasm $(KERNEL_DIR)/unlzma.wasm $(KERNEL_DIR)/xz.wasm $(KERNEL_DIR)/unxz.wasm $(KERNEL_DIR)/sha256sum.wasm $(KERNEL_DIR)/md5sum.wasm $(KERNEL_DIR)/base64.wasm $(KERNEL_DIR)/base64d.wasm $(KERNEL_DIR)/od.wasm $(KERNEL_DIR)/hexdump.wasm $(KERNEL_DIR)/strings.wasm $(KERNEL_DIR)/file.wasm $(KERNEL_DIR)/xxd.wasm $(KERNEL_DIR)/less.wasm $(KERNEL_DIR)/more.wasm $(KERNEL_DIR)/join.wasm $(KERNEL_DIR)/split.wasm $(KERNEL_DIR)/patch.wasm $(KERNEL_DIR)/diff3.wasm $(KERNEL_DIR)/tsort.wasm $(KERNEL_DIR)/csplit.wasm $(KERNEL_DIR)/fmt.wasm $(KERNEL_DIR)/pr.wasm $(KERNEL_DIR)/column.wasm $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm
+	rm -f $(KERNEL_DIR)/gzip.wasm $(KERNEL_DIR)/gunzip.wasm $(KERNEL_DIR)/zcat.wasm $(KERNEL_DIR)/bzip2.wasm $(KERNEL_DIR)/bunzip2.wasm $(KERNEL_DIR)/lzma.wasm $(KERNEL_DIR)/unlzma.wasm $(KERNEL_DIR)/xz.wasm $(KERNEL_DIR)/unxz.wasm $(KERNEL_DIR)/sha256sum.wasm $(KERNEL_DIR)/md5sum.wasm $(KERNEL_DIR)/base64.wasm $(KERNEL_DIR)/base64d.wasm $(KERNEL_DIR)/od.wasm $(KERNEL_DIR)/hexdump.wasm $(KERNEL_DIR)/strings.wasm $(KERNEL_DIR)/file.wasm $(KERNEL_DIR)/xxd.wasm $(KERNEL_DIR)/less.wasm $(KERNEL_DIR)/more.wasm $(KERNEL_DIR)/join.wasm $(KERNEL_DIR)/split.wasm $(KERNEL_DIR)/patch.wasm $(KERNEL_DIR)/diff3.wasm $(KERNEL_DIR)/tsort.wasm $(KERNEL_DIR)/csplit.wasm $(KERNEL_DIR)/fmt.wasm $(KERNEL_DIR)/pr.wasm $(KERNEL_DIR)/column.wasm $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm
 	rm -f $(KERNEL_DIR)/ramdisk.tar
 	rm -f $(MODULES_DIR)/init/init.wasm $(MODULES_DIR)/shell/shell.wasm $(MODULES_DIR)/test/test.wasm
 	rm -f $(MODULES_DIR)/editor/editor.wasm $(MODULES_DIR)/calc/calc.wasm $(MODULES_DIR)/paint/paint.wasm $(MODULES_DIR)/launcher/launcher.wasm
-	rm -f $(MODULES_DIR)/net_test/net_test.wasm $(MODULES_DIR)/browser/browser.wasm $(MODULES_DIR)/proc_monitor/proc_monitor.wasm $(MODULES_DIR)/syslog/syslog.wasm $(MODULES_DIR)/filemgr/filemgr.wasm $(MODULES_DIR)/settings/settings.wasm $(MODULES_DIR)/user/user.wasm $(MODULES_DIR)/devmgr/devmgr.wasm $(MODULES_DIR)/httpd/httpd.wasm $(MODULES_DIR)/dns_resolver/dns_resolver.wasm $(MODULES_DIR)/shmem_test/shmem_test.wasm $(MODULES_DIR)/sem_test/sem_test.wasm $(MODULES_DIR)/grep/grep.wasm $(MODULES_DIR)/cat/cat.wasm $(MODULES_DIR)/echo/echo.wasm $(MODULES_DIR)/tee/tee.wasm $(MODULES_DIR)/wc/wc.wasm $(MODULES_DIR)/head/head.wasm $(MODULES_DIR)/tail/tail.wasm $(MODULES_DIR)/sort/sort.wasm $(MODULES_DIR)/uniq/uniq.wasm $(MODULES_DIR)/tr/tr.wasm $(MODULES_DIR)/cut/cut.wasm $(MODULES_DIR)/sed/sed.wasm $(MODULES_DIR)/xargs/xargs.wasm $(MODULES_DIR)/date/date.wasm $(MODULES_DIR)/awk/awk.wasm $(MODULES_DIR)/ls/ls.wasm $(MODULES_DIR)/pwd/pwd.wasm $(MODULES_DIR)/env/env.wasm $(MODULES_DIR)/printf/printf.wasm $(MODULES_DIR)/sleep/sleep.wasm $(MODULES_DIR)/yes/yes.wasm $(MODULES_DIR)/rev/rev.wasm $(MODULES_DIR)/cmp/cmp.wasm $(MODULES_DIR)/diff/diff.wasm $(MODULES_DIR)/basename/basename.wasm $(MODULES_DIR)/dirname/dirname.wasm $(MODULES_DIR)/nl/nl.wasm $(MODULES_DIR)/shuf/shuf.wasm $(MODULES_DIR)/comm/comm.wasm $(MODULES_DIR)/paste/paste.wasm $(MODULES_DIR)/fold/fold.wasm $(MODULES_DIR)/tac/tac.wasm $(MODULES_DIR)/cksum/cksum.wasm $(MODULES_DIR)/sum/sum.wasm $(MODULES_DIR)/touch/touch.wasm $(MODULES_DIR)/true/true.wasm $(MODULES_DIR)/false/false.wasm $(MODULES_DIR)/id/id.wasm $(MODULES_DIR)/uptime/uptime.wasm $(MODULES_DIR)/whoami/whoami.wasm $(MODULES_DIR)/df/df.wasm $(MODULES_DIR)/free/free.wasm $(MODULES_DIR)/ps/ps.wasm $(MODULES_DIR)/kill/kill.wasm $(MODULES_DIR)/mkdir/mkdir.wasm $(MODULES_DIR)/rmdir/rmdir.wasm $(MODULES_DIR)/ln/ln.wasm $(MODULES_DIR)/rm/rm.wasm $(MODULES_DIR)/cp/cp.wasm $(MODULES_DIR)/mv/mv.wasm $(MODULES_DIR)/chmod/chmod.wasm $(MODULES_DIR)/tty/tty.wasm $(MODULES_DIR)/who/who.wasm $(MODULES_DIR)/stty/stty.wasm $(MODULES_DIR)/tput/tput.wasm $(MODULES_DIR)/readlink/readlink.wasm $(MODULES_DIR)/cal/cal.wasm $(MODULES_DIR)/gzip/gzip.wasm $(MODULES_DIR)/gunzip/gunzip.wasm $(MODULES_DIR)/zcat/zcat.wasm $(MODULES_DIR)/bzip2/bzip2.wasm $(MODULES_DIR)/bunzip2/bunzip2.wasm $(MODULES_DIR)/lzma/lzma.wasm $(MODULES_DIR)/unlzma/unlzma.wasm $(MODULES_DIR)/xz/xz.wasm $(MODULES_DIR)/column/column.wasm $(MODULES_DIR)/expand/expand.wasm $(MODULES_DIR)/unexpand/unexpand.wasm $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm
+	rm -f $(MODULES_DIR)/net_test/net_test.wasm $(MODULES_DIR)/browser/browser.wasm $(MODULES_DIR)/proc_monitor/proc_monitor.wasm $(MODULES_DIR)/syslog/syslog.wasm $(MODULES_DIR)/filemgr/filemgr.wasm $(MODULES_DIR)/settings/settings.wasm $(MODULES_DIR)/user/user.wasm $(MODULES_DIR)/devmgr/devmgr.wasm $(MODULES_DIR)/httpd/httpd.wasm $(MODULES_DIR)/dns_resolver/dns_resolver.wasm $(MODULES_DIR)/shmem_test/shmem_test.wasm $(MODULES_DIR)/sem_test/sem_test.wasm $(MODULES_DIR)/grep/grep.wasm $(MODULES_DIR)/cat/cat.wasm $(MODULES_DIR)/echo/echo.wasm $(MODULES_DIR)/tee/tee.wasm $(MODULES_DIR)/wc/wc.wasm $(MODULES_DIR)/head/head.wasm $(MODULES_DIR)/tail/tail.wasm $(MODULES_DIR)/sort/sort.wasm $(MODULES_DIR)/uniq/uniq.wasm $(MODULES_DIR)/tr/tr.wasm $(MODULES_DIR)/cut/cut.wasm $(MODULES_DIR)/sed/sed.wasm $(MODULES_DIR)/xargs/xargs.wasm $(MODULES_DIR)/date/date.wasm $(MODULES_DIR)/awk/awk.wasm $(MODULES_DIR)/ls/ls.wasm $(MODULES_DIR)/pwd/pwd.wasm $(MODULES_DIR)/env/env.wasm $(MODULES_DIR)/printf/printf.wasm $(MODULES_DIR)/sleep/sleep.wasm $(MODULES_DIR)/yes/yes.wasm $(MODULES_DIR)/rev/rev.wasm $(MODULES_DIR)/cmp/cmp.wasm $(MODULES_DIR)/diff/diff.wasm $(MODULES_DIR)/basename/basename.wasm $(MODULES_DIR)/dirname/dirname.wasm $(MODULES_DIR)/nl/nl.wasm $(MODULES_DIR)/shuf/shuf.wasm $(MODULES_DIR)/comm/comm.wasm $(MODULES_DIR)/paste/paste.wasm $(MODULES_DIR)/fold/fold.wasm $(MODULES_DIR)/tac/tac.wasm $(MODULES_DIR)/cksum/cksum.wasm $(MODULES_DIR)/sum/sum.wasm $(MODULES_DIR)/touch/touch.wasm $(MODULES_DIR)/true/true.wasm $(MODULES_DIR)/false/false.wasm $(MODULES_DIR)/id/id.wasm $(MODULES_DIR)/uptime/uptime.wasm $(MODULES_DIR)/whoami/whoami.wasm $(MODULES_DIR)/df/df.wasm $(MODULES_DIR)/free/free.wasm $(MODULES_DIR)/ps/ps.wasm $(MODULES_DIR)/kill/kill.wasm $(MODULES_DIR)/mkdir/mkdir.wasm $(MODULES_DIR)/rmdir/rmdir.wasm $(MODULES_DIR)/ln/ln.wasm $(MODULES_DIR)/rm/rm.wasm $(MODULES_DIR)/cp/cp.wasm $(MODULES_DIR)/mv/mv.wasm $(MODULES_DIR)/chmod/chmod.wasm $(MODULES_DIR)/tty/tty.wasm $(MODULES_DIR)/who/who.wasm $(MODULES_DIR)/stty/stty.wasm $(MODULES_DIR)/tput/tput.wasm $(MODULES_DIR)/readlink/readlink.wasm $(MODULES_DIR)/cal/cal.wasm $(MODULES_DIR)/gzip/gzip.wasm $(MODULES_DIR)/gunzip/gunzip.wasm $(MODULES_DIR)/zcat/zcat.wasm $(MODULES_DIR)/bzip2/bzip2.wasm $(MODULES_DIR)/bunzip2/bunzip2.wasm $(MODULES_DIR)/lzma/lzma.wasm $(MODULES_DIR)/unlzma/unlzma.wasm $(MODULES_DIR)/xz/xz.wasm $(MODULES_DIR)/column/column.wasm $(MODULES_DIR)/expand/expand.wasm $(MODULES_DIR)/unexpand/unexpand.wasm $(MODULES_DIR)/numfmt/numfmt.wasm $(MODULES_DIR)/nproc/nproc.wasm $(MODULES_DIR)/hostid/hostid.wasm $(MODULES_DIR)/sync/sync.wasm $(MODULES_DIR)/link/link.wasm $(MODULES_DIR)/unlink/unlink.wasm
 	@echo "=== Build artifacts removed ==="
