@@ -1956,6 +1956,16 @@ mpstat_module_end:
 mpstat_module_size:
     .int mpstat_module_end - mpstat_module_start
 
+.section .rodata.pidof_wasm
+.global pidof_module_start
+pidof_module_start:
+    .incbin "kernel/pidof.wasm"
+.global pidof_module_end
+pidof_module_end:
+.global pidof_module_size
+pidof_module_size:
+    .int pidof_module_end - pidof_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

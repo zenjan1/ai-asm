@@ -514,6 +514,8 @@ extern const uint8_t vmstat_module_start[], vmstat_module_end[];
 extern const uint32_t vmstat_module_size;
 extern const uint8_t mpstat_module_start[], mpstat_module_end[];
 extern const uint32_t mpstat_module_size;
+extern const uint8_t pidof_module_start[], pidof_module_end[];
+extern const uint32_t pidof_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -530,6 +532,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "iostat",         NULL, 0 },
     { "vmstat",         NULL, 0 },
     { "mpstat",         NULL, 0 },
+    { "pidof",          NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4577,6 +4580,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[152].wasm_size = vmstat_module_size;
     wasm_registry[153].wasm_bytes = mpstat_module_start;
     wasm_registry[153].wasm_size = mpstat_module_size;
+    wasm_registry[154].wasm_bytes = pidof_module_start;
+    wasm_registry[154].wasm_size = pidof_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
