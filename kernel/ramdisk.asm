@@ -650,6 +650,20 @@ sum_module_size:
     .int sum_module_end - sum_module_start
 
 /* ---------------------------------------------------------------------------
+ * Touch module (create empty files)
+ * --------------------------------------------------------------------------- */
+.section .rodata.touch_wasm
+.global touch_module_start
+touch_module_start:
+    .incbin "kernel/touch.wasm"
+.global touch_module_end
+touch_module_end:
+.align 4
+.global touch_module_size
+touch_module_size:
+    .int touch_module_end - touch_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
