@@ -382,6 +382,8 @@ extern const uint8_t gzip_module_start[], gzip_module_end[];
 extern const uint32_t gzip_module_size;
 extern const uint8_t gunzip_module_start[], gunzip_module_end[];
 extern const uint32_t gunzip_module_size;
+extern const uint8_t zcat_module_start[], zcat_module_end[];
+extern const uint32_t zcat_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -472,6 +474,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "tar",            NULL, 0 },
     { "gzip",           NULL, 0 },
     { "gunzip",         NULL, 0 },
+    { "zcat",           NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4240,6 +4243,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[86].wasm_size = gzip_module_size;
     wasm_registry[87].wasm_bytes = gunzip_module_start;
     wasm_registry[87].wasm_size = gunzip_module_size;
+    wasm_registry[88].wasm_bytes = zcat_module_start;
+    wasm_registry[88].wasm_size = zcat_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

@@ -1238,6 +1238,20 @@ gunzip_module_size:
     .int gunzip_module_end - gunzip_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: zcat
+ * --------------------------------------------------------------------------- */
+.section .rodata.zcat_wasm
+.global zcat_module_start
+zcat_module_start:
+    .incbin "kernel/zcat.wasm"
+.global zcat_module_end
+zcat_module_end:
+
+.global zcat_module_size
+zcat_module_size:
+    .int zcat_module_end - zcat_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
