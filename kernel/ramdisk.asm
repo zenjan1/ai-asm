@@ -762,6 +762,20 @@ uname_module_size:
     .int uname_module_end - uname_module_start
 
 /* ---------------------------------------------------------------------------
+ * Df module (disk usage display)
+ * --------------------------------------------------------------------------- */
+.section .rodata.df_wasm
+.global df_module_start
+df_module_start:
+    .incbin "kernel/df.wasm"
+.global df_module_end
+df_module_end:
+.align 4
+.global df_module_size
+df_module_size:
+    .int df_module_end - df_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
