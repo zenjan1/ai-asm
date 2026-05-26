@@ -1684,6 +1684,17 @@ nice_module_end:
 nice_module_size:
     .int nice_module_end - nice_module_start
 
+.section .rodata.renice_wasm
+.global renice_module_start
+renice_module_start:
+    .incbin "kernel/renice.wasm"
+.global renice_module_end
+renice_module_end:
+
+.global renice_module_size
+renice_module_size:
+    .int renice_module_end - renice_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
