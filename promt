@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-26 22:30
-# 当前阶段: Phase 103 (v103.0 md5sum WASM模块)
+# 生成时间: 2026-05-26 23:00
+# 当前阶段: Phase 104 (v104.0 base64 WASM模块)
 
 ## 当前状态
-- v102.0 已推送: sha256sum WASM模块 (commit 79eb474)
-- 95个WASM模块已注册
-- kernel.elf: 7167664 bytes (6999KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum
+- v103.0 已推送: md5sum WASM模块 (commit 19f782a)
+- 96个WASM模块已注册
+- kernel.elf: 7167792 bytes (6999KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum
 
-## 任务: 创建md5sum WASM模块
+## 任务: 创建base64 WASM模块
 
-计算文件MD5校验和:
-- md5sum <file>: 计算并输出MD5哈希值
-- 输出"<hash>  <file>\n"格式
+Base64编码/解码:
+- base64 <file>: 编码文件内容
+- 输出编码后的Base64字符串
 
-### 文件: modules/md5sum/src/main.c
+### 文件: modules/base64/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-解析argv获取文件名，模拟输出MD5格式
+解析argv获取文件名，模拟输出Base64编码结果
 
-### Makefile: 添加MD5SUM_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在sha256sum和ramdisk之间添加md5sum的.incbin段
-### kernel/wasm_host.c: 添加md5sum externs, registry entry "md5sum", registry[96]初始化
+### Makefile: 添加BASE64_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在md5sum和ramdisk之间添加base64的.incbin段
+### kernel/wasm_host.c: 添加base64 externs, registry entry "base64", registry[97]初始化
 
 ### 提交:
-git commit -m "feat: add md5sum WASM module for MD5 checksum verification (v103.0)"
+git commit -m "feat: add base64 WASM module for Base64 encoding (v104.0)"
