@@ -264,6 +264,8 @@ extern const uint8_t ls_module_start[], ls_module_end[];
 extern const uint32_t ls_module_size;
 extern const uint8_t pwd_module_start[], pwd_module_end[];
 extern const uint32_t pwd_module_size;
+extern const uint8_t env_module_start[], env_module_end[];
+extern const uint32_t env_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -295,6 +297,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "xargs",          NULL, 0 },
     { "ls",             NULL, 0 },
     { "pwd",            NULL, 0 },
+    { "env",            NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -1393,6 +1396,174 @@ static const void *host_get_cwd(IM3Runtime runtime, IM3ImportContext _ctx, uint6
 
     int32_t *ret = (int32_t *)(_sp);
     *ret = (int32_t)len;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Environment variables                                                      */
+/* -------------------------------------------------------------------------- */
+
+#define MAX_ENV_VARS 64
+#define MAX_ENV_KEY  64
+#define MAX_ENV_VAL  256
+
+static struct {
+    char key[MAX_ENV_KEY];
+    char val[MAX_ENV_VAL];
+    int  active;
+} env_table[MAX_ENV_VARS];
+
+/* Simple string copy (freestanding) */
+static void env_strcpy(char *dst, const char *src, unsigned int max)
+{
+    unsigned int i = 0;
+    while (src[i] && i < max - 1) { dst[i] = src[i]; i++; }
+    dst[i] = '\0';
+}
+
+static int env_strcmp(const char *a, const char *b)
+{
+    while (*a && *a == *b) { a++; b++; }
+    return (unsigned char)*a - (unsigned char)*b;
+}
+
+static int env_find(const char *key)
+{
+    for (int i = 0; i < MAX_ENV_VARS; i++) {
+        if (env_table[i].active && env_strcmp(env_table[i].key, key) == 0)
+            return i;
+    }
+    return -1;
+}
+
+/* host_env_set(key_off, key_len, val_off, val_len) — set environment variable */
+static const void *host_env_set(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx; (void)_mem;
+    uint32_t key_off = (uint32_t)*(_sp + 1);
+    uint32_t key_len = (uint32_t)*(_sp + 2);
+    uint32_t val_off = (uint32_t)*(_sp + 3);
+    uint32_t val_len = (uint32_t)*(_sp + 4);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (key_off + key_len > mem_size || val_off + val_len > mem_size) {
+        int32_t *ret = (int32_t *)(_sp);
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    char key[MAX_ENV_KEY];
+    char val[MAX_ENV_VAL];
+    if (key_len >= MAX_ENV_KEY) key_len = MAX_ENV_KEY - 1;
+    if (val_len >= MAX_ENV_VAL) val_len = MAX_ENV_VAL - 1;
+    for (uint32_t i = 0; i < key_len; i++) key[i] = (char)mem[key_off + i];
+    key[key_len] = '\0';
+    for (uint32_t i = 0; i < val_len; i++) val[i] = (char)mem[val_off + i];
+    val[val_len] = '\0';
+
+    /* Find existing or new slot */
+    int slot = env_find(key);
+    if (slot >= 0) {
+        env_strcpy(env_table[slot].val, val, MAX_ENV_VAL);
+    } else {
+        for (int i = 0; i < MAX_ENV_VARS; i++) {
+            if (!env_table[i].active) {
+                env_strcpy(env_table[i].key, key, MAX_ENV_KEY);
+                env_strcpy(env_table[i].val, val, MAX_ENV_VAL);
+                env_table[i].active = 1;
+                slot = i;
+                break;
+            }
+        }
+    }
+
+    int32_t *ret = (int32_t *)(_sp);
+    *ret = (slot >= 0) ? 0 : -1;
+    return m3Err_none;
+}
+
+/* host_env_get(key_off, key_len, buf_off, max_len) — get environment variable */
+static const void *host_env_get(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx; (void)_mem;
+    uint32_t key_off = (uint32_t)*(_sp + 1);
+    uint32_t key_len = (uint32_t)*(_sp + 2);
+    uint32_t buf_off = (uint32_t)*(_sp + 3);
+    uint32_t max_len = (uint32_t)*(_sp + 4);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (key_off + key_len > mem_size || buf_off + max_len > mem_size) {
+        int32_t *ret = (int32_t *)(_sp);
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    char key[MAX_ENV_KEY];
+    if (key_len >= MAX_ENV_KEY) key_len = MAX_ENV_KEY - 1;
+    for (uint32_t i = 0; i < key_len; i++) key[i] = (char)mem[key_off + i];
+    key[key_len] = '\0';
+
+    int slot = env_find(key);
+    if (slot < 0) {
+        int32_t *ret = (int32_t *)(_sp);
+        *ret = -1;
+        return m3Err_none;
+    }
+
+    const char *val = env_table[slot].val;
+    unsigned int vlen = 0;
+    while (val[vlen]) vlen++;
+    if (vlen >= max_len) vlen = max_len - 1;
+    for (unsigned int i = 0; i < vlen; i++) mem[buf_off + i] = (uint8_t)val[i];
+    mem[buf_off + vlen] = '\0';
+
+    int32_t *ret = (int32_t *)(_sp);
+    *ret = (int32_t)vlen;
+    return m3Err_none;
+}
+
+/* host_env_list(buf_off, max_len) — list all environment variables */
+static const void *host_env_list(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)_ctx; (void)_mem;
+    uint32_t buf_off = (uint32_t)*(_sp + 1);
+    uint32_t max_len = (uint32_t)*(_sp + 2);
+
+    uint8_t *mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (buf_off + max_len > mem_size) {
+        int32_t *ret = (int32_t *)(_sp);
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    uint32_t written = 0;
+    for (int i = 0; i < MAX_ENV_VARS; i++) {
+        if (!env_table[i].active) continue;
+
+        const char *key = env_table[i].key;
+        const char *val = env_table[i].val;
+
+        /* Write KEY=VALUE\0 */
+        while (*key && written < max_len - 1) {
+            mem[buf_off + written++] = (uint8_t)*key++;
+        }
+        if (written < max_len - 1)
+            mem[buf_off + written++] = '=';
+        while (*val && written < max_len - 1) {
+            mem[buf_off + written++] = (uint8_t)*val++;
+        }
+        if (written < max_len)
+            mem[buf_off + written++] = '\0';
+    }
+
+    int32_t *ret = (int32_t *)(_sp);
+    *ret = (int32_t)written;
     return m3Err_none;
 }
 
@@ -3395,6 +3566,9 @@ static const host_reg_t host_registry[] = {
     { "host", "fs_close",    "v(i)",   &host_fs_close    },
     { "host", "fs_list",     "i(ii)",  &host_fs_list     },
     { "host", "get_cwd",     "i(ii)",  &host_get_cwd     },
+    { "host", "env_get",     "i(iiii)", &host_env_get    },
+    { "host", "env_set",     "i(iiii)", &host_env_set    },
+    { "host", "env_list",    "i(ii)",   &host_env_list   },
     { "host", "sleep",       "v(i)",   &host_sleep       },
     { "host", "yield",       "v()",    &host_yield       },
     { "host", "blk_read",    "i(iiii)",&host_blk_read    },
@@ -3774,6 +3948,19 @@ const char *wasm_host_init_multi(void)
     wasm_registry[27].wasm_size = ls_module_size;
     wasm_registry[28].wasm_bytes = pwd_module_start;
     wasm_registry[28].wasm_size = pwd_module_size;
+    wasm_registry[29].wasm_bytes = env_module_start;
+    wasm_registry[29].wasm_size = env_module_size;
+
+    /* Initialize default environment variables */
+    env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
+    env_strcpy(env_table[0].val, "/bin", MAX_ENV_VAL);
+    env_table[0].active = 1;
+    env_strcpy(env_table[1].key, "HOME", MAX_ENV_KEY);
+    env_strcpy(env_table[1].val, "/", MAX_ENV_VAL);
+    env_table[1].active = 1;
+    env_strcpy(env_table[2].key, "SHELL", MAX_ENV_KEY);
+    env_strcpy(env_table[2].val, "shell", MAX_ENV_VAL);
+    env_table[2].active = 1;
 
     /* Initialize RAM disk */
     extern const uint8_t ramdisk_start[];

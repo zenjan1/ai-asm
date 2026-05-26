@@ -412,6 +412,20 @@ pwd_module_size:
     .int pwd_module_end - pwd_module_start
 
 /* ---------------------------------------------------------------------------
+ * Env module
+ * --------------------------------------------------------------------------- */
+.section .rodata.env_wasm
+.global env_module_start
+env_module_start:
+    .incbin "kernel/env.wasm"
+.global env_module_end
+env_module_end:
+.align 4
+.global env_module_size
+env_module_size:
+    .int env_module_end - env_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
