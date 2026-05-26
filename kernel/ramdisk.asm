@@ -1508,6 +1508,17 @@ tsort_module_end:
 tsort_module_size:
     .int tsort_module_end - tsort_module_start
 
+.section .rodata.csplit_wasm
+.global csplit_module_start
+csplit_module_start:
+    .incbin "kernel/csplit.wasm"
+.global csplit_module_end
+csplit_module_end:
+
+.global csplit_module_size
+csplit_module_size:
+    .int csplit_module_end - csplit_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
