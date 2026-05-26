@@ -902,6 +902,20 @@ mv_module_size:
     .int mv_module_end - mv_module_start
 
 /* ---------------------------------------------------------------------------
+ * Chmod module (file permission changes)
+ * --------------------------------------------------------------------------- */
+.section .rodata.chmod_wasm
+.global chmod_module_start
+chmod_module_start:
+    .incbin "kernel/chmod.wasm"
+.global chmod_module_end
+chmod_module_end:
+.align 4
+.global chmod_module_size
+chmod_module_size:
+    .int chmod_module_end - chmod_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
