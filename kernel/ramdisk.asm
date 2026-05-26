@@ -454,6 +454,20 @@ sleep_module_size:
     .int sleep_module_end - sleep_module_start
 
 /* ---------------------------------------------------------------------------
+ * Yes module
+ * --------------------------------------------------------------------------- */
+.section .rodata.yes_wasm
+.global yes_module_start
+yes_module_start:
+    .incbin "kernel/yes.wasm"
+.global yes_module_end
+yes_module_end:
+.align 4
+.global yes_module_size
+yes_module_size:
+    .int yes_module_end - yes_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
