@@ -916,6 +916,20 @@ chmod_module_size:
     .int chmod_module_end - chmod_module_start
 
 /* ---------------------------------------------------------------------------
+ * Tty module (terminal identification)
+ * --------------------------------------------------------------------------- */
+.section .rodata.tty_wasm
+.global tty_module_start
+tty_module_start:
+    .incbin "kernel/tty.wasm"
+.global tty_module_end
+tty_module_end:
+.align 4
+.global tty_module_size
+tty_module_size:
+    .int tty_module_end - tty_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
