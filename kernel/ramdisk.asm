@@ -1716,6 +1716,16 @@ stdbuf_module_end:
 stdbuf_module_size:
     .int stdbuf_module_end - stdbuf_module_start
 
+.section .rodata.factor_wasm
+.global factor_module_start
+factor_module_start:
+    .incbin "kernel/factor.wasm"
+.global factor_module_end
+factor_module_end:
+.global factor_module_size
+factor_module_size:
+    .int factor_module_end - factor_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
