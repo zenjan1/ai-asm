@@ -944,6 +944,20 @@ who_module_size:
     .int who_module_end - who_module_start
 
 /* ---------------------------------------------------------------------------
+ * Stty module (terminal line settings)
+ * --------------------------------------------------------------------------- */
+.section .rodata.stty_wasm
+.global stty_module_start
+stty_module_start:
+    .incbin "kernel/stty.wasm"
+.global stty_module_end
+stty_module_end:
+.align 4
+.global stty_module_size
+stty_module_size:
+    .int stty_module_end - stty_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
