@@ -468,6 +468,20 @@ yes_module_size:
     .int yes_module_end - yes_module_start
 
 /* ---------------------------------------------------------------------------
+ * Rev module (line reversal)
+ * --------------------------------------------------------------------------- */
+.section .rodata.rev_wasm
+.global rev_module_start
+rev_module_start:
+    .incbin "kernel/rev.wasm"
+.global rev_module_end
+rev_module_end:
+.align 4
+.global rev_module_size
+rev_module_size:
+    .int rev_module_end - rev_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

@@ -272,6 +272,8 @@ extern const uint8_t sleep_module_start[], sleep_module_end[];
 extern const uint32_t sleep_module_size;
 extern const uint8_t yes_module_start[], yes_module_end[];
 extern const uint32_t yes_module_size;
+extern const uint8_t rev_module_start[], rev_module_end[];
+extern const uint32_t rev_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -307,6 +309,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "printf",         NULL, 0 },
     { "sleep",          NULL, 0 },
     { "yes",            NULL, 0 },
+    { "rev",            NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -3965,6 +3968,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[31].wasm_size = sleep_module_size;
     wasm_registry[32].wasm_bytes = yes_module_start;
     wasm_registry[32].wasm_size = yes_module_size;
+    wasm_registry[33].wasm_bytes = rev_module_start;
+    wasm_registry[33].wasm_size = rev_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
