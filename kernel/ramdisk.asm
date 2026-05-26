@@ -1028,6 +1028,20 @@ du_module_size:
     .int du_module_end - du_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: mount
+ * --------------------------------------------------------------------------- */
+.section .rodata.mount_wasm
+.global mount_module_start
+mount_module_start:
+    .incbin "kernel/mount.wasm"
+.global mount_module_end
+mount_module_end:
+
+.global mount_module_size
+mount_module_size:
+    .int mount_module_end - mount_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
