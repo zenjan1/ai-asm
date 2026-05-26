@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-27 03:30
-# 当前阶段: Phase 113 (v113.0 tac WASM模块增强版)
+# 生成时间: 2026-05-27 04:00
+# 当前阶段: Phase 114 (v114.0 split WASM模块)
 
 ## 当前状态
-- v112.0 已推送: more WASM模块 (commit 76176eb)
-- 105个WASM模块已注册
-- kernel.elf: 7168920 bytes (7000KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more
+- v113.0 已推送: join WASM模块 (commit b4a6b88)
+- 106个WASM模块已注册
+- kernel.elf: 7169040 bytes (7001KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join
 
-## 任务: 创建join WASM模块
+## 任务: 创建split WASM模块
 
-连接两个文件:
-- join <file1> <file2>: 连接两个已排序文件的共同行
-- 输出匹配的行
+分割文件:
+- split <file>: 将文件分割成小块
+- 输出"Split: <file> into pieces\n"
 
-### 文件: modules/join/src/main.c
+### 文件: modules/split/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-解析argv获取文件名，模拟输出join结果
+解析argv获取文件名，模拟输出分割结果
 
-### Makefile: 添加JOIN_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在more和ramdisk之间添加join的.incbin段
-### kernel/wasm_host.c: 添加join externs, registry entry "join", registry[106]初始化
+### Makefile: 添加SPLIT_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在join和ramdisk之间添加split的.incbin段
+### kernel/wasm_host.c: 添加split externs, registry entry "split", registry[107]初始化
 
 ### 提交:
-git commit -m "feat: add join WASM module for joining sorted files (v113.0)"
+git commit -m "feat: add split WASM module for file splitting (v114.0)"
