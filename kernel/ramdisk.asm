@@ -1695,6 +1695,17 @@ renice_module_end:
 renice_module_size:
     .int renice_module_end - renice_module_start
 
+.section .rodata.timeout_wasm
+.global timeout_module_start
+timeout_module_start:
+    .incbin "kernel/timeout.wasm"
+.global timeout_module_end
+timeout_module_end:
+
+.global timeout_module_size
+timeout_module_size:
+    .int timeout_module_end - timeout_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

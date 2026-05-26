@@ -462,6 +462,8 @@ extern const uint8_t nice_module_start[], nice_module_end[];
 extern const uint32_t nice_module_size;
 extern const uint8_t renice_module_start[], renice_module_end[];
 extern const uint32_t renice_module_size;
+extern const uint8_t timeout_module_start[], timeout_module_end[];
+extern const uint32_t timeout_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -592,6 +594,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "setarch",        NULL, 0 },
     { "nice",           NULL, 0 },
     { "renice",         NULL, 0 },
+    { "timeout",        NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4440,6 +4443,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[126].wasm_size = nice_module_size;
     wasm_registry[127].wasm_bytes = renice_module_start;
     wasm_registry[127].wasm_size = renice_module_size;
+    wasm_registry[128].wasm_bytes = timeout_module_start;
+    wasm_registry[128].wasm_size = timeout_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
