@@ -2076,6 +2076,16 @@ nmap_module_end:
 nmap_module_size:
     .int nmap_module_end - nmap_module_start
 
+.section .rodata.dig_wasm
+.global dig_module_start
+dig_module_start:
+    .incbin "kernel/dig.wasm"
+.global dig_module_end
+dig_module_end:
+.global dig_module_size
+dig_module_size:
+    .int dig_module_end - dig_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
