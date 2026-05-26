@@ -2206,6 +2206,16 @@ brctl_module_end:
 brctl_module_size:
     .int brctl_module_end - brctl_module_start
 
+.section .rodata.ifstat_wasm
+.global ifstat_module_start
+ifstat_module_start:
+    .incbin "kernel/ifstat.wasm"
+.global ifstat_module_end
+ifstat_module_end:
+.global ifstat_module_size
+ifstat_module_size:
+    .int ifstat_module_end - ifstat_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
