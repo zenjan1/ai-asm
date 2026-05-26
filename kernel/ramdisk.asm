@@ -692,6 +692,20 @@ false_module_size:
     .int false_module_end - false_module_start
 
 /* ---------------------------------------------------------------------------
+ * Id module (user identification)
+ * --------------------------------------------------------------------------- */
+.section .rodata.id_wasm
+.global id_module_start
+id_module_start:
+    .incbin "kernel/id.wasm"
+.global id_module_end
+id_module_end:
+.align 4
+.global id_module_size
+id_module_size:
+    .int id_module_end - id_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
