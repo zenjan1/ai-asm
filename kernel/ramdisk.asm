@@ -1070,6 +1070,20 @@ ifconfig_module_size:
     .int ifconfig_module_end - ifconfig_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: ping
+ * --------------------------------------------------------------------------- */
+.section .rodata.ping_wasm
+.global ping_module_start
+ping_module_start:
+    .incbin "kernel/ping.wasm"
+.global ping_module_end
+ping_module_end:
+
+.global ping_module_size
+ping_module_size:
+    .int ping_module_end - ping_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
