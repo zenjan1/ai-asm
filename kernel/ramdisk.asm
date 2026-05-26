@@ -1530,6 +1530,17 @@ fmt_module_end:
 fmt_module_size:
     .int fmt_module_end - fmt_module_start
 
+.section .rodata.pr_wasm
+.global pr_module_start
+pr_module_start:
+    .incbin "kernel/pr.wasm"
+.global pr_module_end
+pr_module_end:
+
+.global pr_module_size
+pr_module_size:
+    .int pr_module_end - pr_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
