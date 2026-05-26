@@ -2196,6 +2196,16 @@ arping_module_end:
 arping_module_size:
     .int arping_module_end - arping_module_start
 
+.section .rodata.brctl_wasm
+.global brctl_module_start
+brctl_module_start:
+    .incbin "kernel/brctl.wasm"
+.global brctl_module_end
+brctl_module_end:
+.global brctl_module_size
+brctl_module_size:
+    .int brctl_module_end - brctl_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
