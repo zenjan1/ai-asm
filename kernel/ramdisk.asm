@@ -2096,6 +2096,16 @@ host_cmd_module_end:
 host_cmd_module_size:
     .int host_cmd_module_end - host_cmd_module_start
 
+.section .rodata.arp_wasm
+.global arp_module_start
+arp_module_start:
+    .incbin "kernel/arp.wasm"
+.global arp_module_end
+arp_module_end:
+.global arp_module_size
+arp_module_size:
+    .int arp_module_end - arp_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
