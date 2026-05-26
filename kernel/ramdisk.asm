@@ -930,6 +930,20 @@ tty_module_size:
     .int tty_module_end - tty_module_start
 
 /* ---------------------------------------------------------------------------
+ * Who module (logged-in user display)
+ * --------------------------------------------------------------------------- */
+.section .rodata.who_wasm
+.global who_module_start
+who_module_start:
+    .incbin "kernel/who.wasm"
+.global who_module_end
+who_module_end:
+.align 4
+.global who_module_size
+who_module_size:
+    .int who_module_end - who_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
