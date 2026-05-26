@@ -1387,6 +1387,17 @@ od_module_end:
 od_module_size:
     .int od_module_end - od_module_start
 
+.section .rodata.hexdump_wasm
+.global hexdump_module_start
+hexdump_module_start:
+    .incbin "kernel/hexdump.wasm"
+.global hexdump_module_end
+hexdump_module_end:
+
+.global hexdump_module_size
+hexdump_module_size:
+    .int hexdump_module_end - hexdump_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
