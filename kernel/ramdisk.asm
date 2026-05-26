@@ -860,6 +860,20 @@ ln_module_size:
     .int ln_module_end - ln_module_start
 
 /* ---------------------------------------------------------------------------
+ * Rm module (file deletion)
+ * --------------------------------------------------------------------------- */
+.section .rodata.rm_wasm
+.global rm_module_start
+rm_module_start:
+    .incbin "kernel/rm.wasm"
+.global rm_module_end
+rm_module_end:
+.align 4
+.global rm_module_size
+rm_module_size:
+    .int rm_module_end - rm_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
