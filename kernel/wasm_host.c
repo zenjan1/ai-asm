@@ -426,6 +426,8 @@ extern const uint8_t patch_module_start[], patch_module_end[];
 extern const uint32_t patch_module_size;
 extern const uint8_t diff3_module_start[], diff3_module_end[];
 extern const uint32_t diff3_module_size;
+extern const uint8_t tsort_module_start[], tsort_module_end[];
+extern const uint32_t tsort_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -538,6 +540,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "split",          NULL, 0 },
     { "patch",          NULL, 0 },
     { "diff3",          NULL, 0 },
+    { "tsort",          NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4350,6 +4353,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[108].wasm_size = patch_module_size;
     wasm_registry[109].wasm_bytes = diff3_module_start;
     wasm_registry[109].wasm_size = diff3_module_size;
+    wasm_registry[110].wasm_bytes = tsort_module_start;
+    wasm_registry[110].wasm_size = tsort_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

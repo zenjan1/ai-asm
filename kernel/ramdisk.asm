@@ -1497,6 +1497,17 @@ diff3_module_end:
 diff3_module_size:
     .int diff3_module_end - diff3_module_start
 
+.section .rodata.tsort_wasm
+.global tsort_module_start
+tsort_module_start:
+    .incbin "kernel/tsort.wasm"
+.global tsort_module_end
+tsort_module_end:
+
+.global tsort_module_size
+tsort_module_size:
+    .int tsort_module_end - tsort_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
