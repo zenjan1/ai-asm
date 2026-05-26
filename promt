@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-26 23:30
-# 当前阶段: Phase 105 (v105.0 base64 -d 解码模块)
+# 生成时间: 2026-05-27 00:00
+# 当前阶段: Phase 106 (v106.0 od WASM模块)
 
 ## 当前状态
-- v104.0 已推送: base64 WASM模块 (commit e046c5c)
-- 97个WASM模块已注册
-- kernel.elf: 7167920 bytes (6999KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64
+- v105.0 已推送: base64d WASM模块 (commit 96b743a)
+- 98个WASM模块已注册
+- kernel.elf: 7168048 bytes (7000KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d
 
-## 任务: 创建base64d WASM模块
+## 任务: 创建od WASM模块
 
-Base64解码:
-- base64d <file>: 解码Base64编码的文件
-- 输出解码后的内容
+八进制/十六进制dump文件:
+- od <file>: 以八进制格式输出文件内容
+- 输出偏移量和字节值
 
-### 文件: modules/base64d/src/main.c
+### 文件: modules/od/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-解析argv获取文件名，模拟输出Base64解码结果
+解析argv获取文件名，模拟输出od格式
 
-### Makefile: 添加BASE64D_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在base64和ramdisk之间添加base64d的.incbin段
-### kernel/wasm_host.c: 添加base64d externs, registry entry "base64d", registry[98]初始化
+### Makefile: 添加OD_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在base64d和ramdisk之间添加od的.incbin段
+### kernel/wasm_host.c: 添加od externs, registry entry "od", registry[99]初始化
 
 ### 提交:
-git commit -m "feat: add base64d WASM module for Base64 decoding (v105.0)"
+git commit -m "feat: add od WASM module for octal dump (v106.0)"
