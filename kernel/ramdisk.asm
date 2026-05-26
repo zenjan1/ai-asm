@@ -1836,6 +1836,16 @@ expr_module_end:
 expr_module_size:
     .int expr_module_end - expr_module_start
 
+.section .rodata.test_cmd_wasm
+.global test_cmd_module_start
+test_cmd_module_start:
+    .incbin "kernel/test_cmd.wasm"
+.global test_cmd_module_end
+test_cmd_module_end:
+.global test_cmd_module_size
+test_cmd_module_size:
+    .int test_cmd_module_end - test_cmd_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
