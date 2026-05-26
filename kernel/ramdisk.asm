@@ -1398,6 +1398,17 @@ hexdump_module_end:
 hexdump_module_size:
     .int hexdump_module_end - hexdump_module_start
 
+.section .rodata.strings_wasm
+.global strings_module_start
+strings_module_start:
+    .incbin "kernel/strings.wasm"
+.global strings_module_end
+strings_module_end:
+
+.global strings_module_size
+strings_module_size:
+    .int strings_module_end - strings_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
