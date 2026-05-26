@@ -1736,6 +1736,16 @@ seq_module_end:
 seq_module_size:
     .int seq_module_end - seq_module_start
 
+.section .rodata.realpath_wasm
+.global realpath_module_start
+realpath_module_start:
+    .incbin "kernel/realpath.wasm"
+.global realpath_module_end
+realpath_module_end:
+.global realpath_module_size
+realpath_module_size:
+    .int realpath_module_end - realpath_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

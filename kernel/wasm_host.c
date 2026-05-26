@@ -470,6 +470,8 @@ extern const uint8_t factor_module_start[], factor_module_end[];
 extern const uint32_t factor_module_size;
 extern const uint8_t seq_module_start[], seq_module_end[];
 extern const uint32_t seq_module_size;
+extern const uint8_t realpath_module_start[], realpath_module_end[];
+extern const uint32_t realpath_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -604,6 +606,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "stdbuf",         NULL, 0 },
     { "factor",         NULL, 0 },
     { "seq",            NULL, 0 },
+    { "realpath",       NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4460,6 +4463,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[130].wasm_size = factor_module_size;
     wasm_registry[131].wasm_bytes = seq_module_start;
     wasm_registry[131].wasm_size = seq_module_size;
+    wasm_registry[132].wasm_bytes = realpath_module_start;
+    wasm_registry[132].wasm_size = realpath_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
