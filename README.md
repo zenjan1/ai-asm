@@ -2,7 +2,7 @@
 
 Pure AArch64 assembly WASM-native operating system for QEMU virt.
 
-**138 WASM modules** · 7173136 bytes kernel · v145.0
+**139 WASM modules** · 7173264 bytes kernel · v146.0
 
 ## Features
 
@@ -15,7 +15,7 @@ Pure AArch64 assembly WASM-native operating system for QEMU virt.
 - GUI window manager with Z-order compositing (up to 16 windows)
 - WebAssembly runtime via Wasm3 with multi-module support
 - Integration test suite (FS / NET / GUI / CORE)
-- **138 WASM modules** · 7173136 bytes kernel · v145.0
+- **139 WASM modules** · 7173264 bytes kernel · v146.0
 
 ## Three-Layer Architecture
 
@@ -48,7 +48,7 @@ make && make run
 
 ## Available WASM Modules
 
-### System: init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup
+### System: init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst
 ### File: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt
 ### Info: ls, pwd, env, id, uptime, whoami, hostname, uname, date, awk, df, free, ps, kill, tty, who, stty, tput, readlink, mount, umount
 ### Calendar/Time: date, cal
