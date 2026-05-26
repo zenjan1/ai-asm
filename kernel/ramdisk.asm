@@ -2226,6 +2226,16 @@ mii_tool_module_end:
 mii_tool_module_size:
     .int mii_tool_module_end - mii_tool_module_start
 
+.section .rodata.nameif_wasm
+.global nameif_module_start
+nameif_module_start:
+    .incbin "kernel/nameif.wasm"
+.global nameif_module_end
+nameif_module_end:
+.global nameif_module_size
+nameif_module_size:
+    .int nameif_module_end - nameif_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

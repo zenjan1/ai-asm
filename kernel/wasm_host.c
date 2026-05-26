@@ -568,6 +568,8 @@ extern const uint8_t ifstat_module_start[], ifstat_module_end[];
 extern const uint32_t ifstat_module_size;
 extern const uint8_t mii_tool_module_start[], mii_tool_module_end[];
 extern const uint32_t mii_tool_module_size;
+extern const uint8_t nameif_module_start[], nameif_module_end[];
+extern const uint32_t nameif_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -611,6 +613,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "brctl",          NULL, 0 },
     { "ifstat",         NULL, 0 },
     { "mii-tool",       NULL, 0 },
+    { "nameif",         NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4712,6 +4715,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[179].wasm_size = ifstat_module_size;
     wasm_registry[180].wasm_bytes = mii_tool_module_start;
     wasm_registry[180].wasm_size = mii_tool_module_size;
+    wasm_registry[181].wasm_bytes = nameif_module_start;
+    wasm_registry[181].wasm_size = nameif_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
