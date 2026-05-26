@@ -418,6 +418,8 @@ extern const uint8_t less_module_start[], less_module_end[];
 extern const uint32_t less_module_size;
 extern const uint8_t more_module_start[], more_module_end[];
 extern const uint32_t more_module_size;
+extern const uint8_t join_module_start[], join_module_end[];
+extern const uint32_t join_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -526,6 +528,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "xxd",            NULL, 0 },
     { "less",           NULL, 0 },
     { "more",           NULL, 0 },
+    { "join",           NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4330,6 +4333,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[104].wasm_size = less_module_size;
     wasm_registry[105].wasm_bytes = more_module_start;
     wasm_registry[105].wasm_size = more_module_size;
+    wasm_registry[106].wasm_bytes = join_module_start;
+    wasm_registry[106].wasm_size = join_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

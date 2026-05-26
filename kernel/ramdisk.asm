@@ -1453,6 +1453,17 @@ more_module_end:
 more_module_size:
     .int more_module_end - more_module_start
 
+.section .rodata.join_wasm
+.global join_module_start
+join_module_start:
+    .incbin "kernel/join.wasm"
+.global join_module_end
+join_module_end:
+
+.global join_module_size
+join_module_size:
+    .int join_module_end - join_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
