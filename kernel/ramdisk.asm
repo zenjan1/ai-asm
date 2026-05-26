@@ -1541,6 +1541,17 @@ pr_module_end:
 pr_module_size:
     .int pr_module_end - pr_module_start
 
+.section .rodata.column_wasm
+.global column_module_start
+column_module_start:
+    .incbin "kernel/column.wasm"
+.global column_module_end
+column_module_end:
+
+.global column_module_size
+column_module_size:
+    .int column_module_end - column_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

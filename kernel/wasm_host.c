@@ -434,6 +434,8 @@ extern const uint8_t fmt_module_start[], fmt_module_end[];
 extern const uint32_t fmt_module_size;
 extern const uint8_t pr_module_start[], pr_module_end[];
 extern const uint32_t pr_module_size;
+extern const uint8_t column_module_start[], column_module_end[];
+extern const uint32_t column_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -550,6 +552,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "csplit",         NULL, 0 },
     { "fmt",            NULL, 0 },
     { "pr",             NULL, 0 },
+    { "column",         NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4370,6 +4373,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[112].wasm_size = fmt_module_size;
     wasm_registry[113].wasm_bytes = pr_module_start;
     wasm_registry[113].wasm_size = pr_module_size;
+    wasm_registry[114].wasm_bytes = column_module_start;
+    wasm_registry[114].wasm_size = column_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
