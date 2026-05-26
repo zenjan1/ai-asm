@@ -1662,6 +1662,17 @@ arch_module_end:
 arch_module_size:
     .int arch_module_end - arch_module_start
 
+.section .rodata.setarch_wasm
+.global setarch_module_start
+setarch_module_start:
+    .incbin "kernel/setarch.wasm"
+.global setarch_module_end
+setarch_module_end:
+
+.global setarch_module_size
+setarch_module_size:
+    .int setarch_module_end - setarch_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
