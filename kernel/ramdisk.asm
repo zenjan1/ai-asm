@@ -622,6 +622,20 @@ tac_module_size:
     .int tac_module_end - tac_module_start
 
 /* ---------------------------------------------------------------------------
+ * Cksum module (file checksum)
+ * --------------------------------------------------------------------------- */
+.section .rodata.cksum_wasm
+.global cksum_module_start
+cksum_module_start:
+    .incbin "kernel/cksum.wasm"
+.global cksum_module_end
+cksum_module_end:
+.align 4
+.global cksum_module_size
+cksum_module_size:
+    .int cksum_module_end - cksum_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

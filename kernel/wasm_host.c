@@ -294,6 +294,8 @@ extern const uint8_t fold_module_start[], fold_module_end[];
 extern const uint32_t fold_module_size;
 extern const uint8_t tac_module_start[], tac_module_end[];
 extern const uint32_t tac_module_size;
+extern const uint8_t cksum_module_start[], cksum_module_end[];
+extern const uint32_t cksum_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -340,6 +342,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "paste",          NULL, 0 },
     { "fold",           NULL, 0 },
     { "tac",            NULL, 0 },
+    { "cksum",          NULL, 0 },
 };
 #define WASM_REGISTRY_COUNT (sizeof(wasm_registry) / sizeof(wasm_registry[0]))
 
@@ -4020,6 +4023,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[42].wasm_size = fold_module_size;
     wasm_registry[43].wasm_bytes = tac_module_start;
     wasm_registry[43].wasm_size = tac_module_size;
+    wasm_registry[44].wasm_bytes = cksum_module_start;
+    wasm_registry[44].wasm_size = cksum_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
