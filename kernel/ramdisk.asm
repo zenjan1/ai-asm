@@ -1224,6 +1224,20 @@ gzip_module_size:
     .int gzip_module_end - gzip_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: gunzip
+ * --------------------------------------------------------------------------- */
+.section .rodata.gunzip_wasm
+.global gunzip_module_start
+gunzip_module_start:
+    .incbin "kernel/gunzip.wasm"
+.global gunzip_module_end
+gunzip_module_end:
+
+.global gunzip_module_size
+gunzip_module_size:
+    .int gunzip_module_end - gunzip_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
