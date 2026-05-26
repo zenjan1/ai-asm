@@ -1906,6 +1906,16 @@ stat_module_end:
 stat_module_size:
     .int stat_module_end - stat_module_start
 
+.section .rodata.mcookie_wasm
+.global mcookie_module_start
+mcookie_module_start:
+    .incbin "kernel/mcookie.wasm"
+.global mcookie_module_end
+mcookie_module_end:
+.global mcookie_module_size
+mcookie_module_size:
+    .int mcookie_module_end - mcookie_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
