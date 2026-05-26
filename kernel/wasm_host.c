@@ -522,6 +522,8 @@ extern const uint8_t pkill_module_start[], pkill_module_end[];
 extern const uint32_t pkill_module_size;
 extern const uint8_t top_module_start[], top_module_end[];
 extern const uint32_t top_module_size;
+extern const uint8_t htop_module_start[], htop_module_end[];
+extern const uint32_t htop_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -542,6 +544,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "pgrep",          NULL, 0 },
     { "pkill",          NULL, 0 },
     { "top",            NULL, 0 },
+    { "htop",           NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4597,6 +4600,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[156].wasm_size = pkill_module_size;
     wasm_registry[157].wasm_bytes = top_module_start;
     wasm_registry[157].wasm_size = top_module_size;
+    wasm_registry[158].wasm_bytes = htop_module_start;
+    wasm_registry[158].wasm_size = htop_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

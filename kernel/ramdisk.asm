@@ -1996,6 +1996,16 @@ top_module_end:
 top_module_size:
     .int top_module_end - top_module_start
 
+.section .rodata.htop_wasm
+.global htop_module_start
+htop_module_start:
+    .incbin "kernel/htop.wasm"
+.global htop_module_end
+htop_module_end:
+.global htop_module_size
+htop_module_size:
+    .int htop_module_end - htop_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
