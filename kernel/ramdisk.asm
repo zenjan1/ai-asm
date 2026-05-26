@@ -1182,6 +1182,20 @@ ssh_module_size:
     .int ssh_module_end - ssh_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: scp
+ * --------------------------------------------------------------------------- */
+.section .rodata.scp_wasm
+.global scp_module_start
+scp_module_start:
+    .incbin "kernel/scp.wasm"
+.global scp_module_end
+scp_module_end:
+
+.global scp_module_size
+scp_module_size:
+    .int scp_module_end - scp_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
