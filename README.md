@@ -2,7 +2,7 @@
 
 Pure AArch64 assembly WASM-native operating system for QEMU virt.
 
-**91 WASM modules** · 7167152 bytes kernel · v98.0
+**92 WASM modules** · 7167280 bytes kernel · v99.0
 
 ## Features
 
@@ -15,14 +15,14 @@ Pure AArch64 assembly WASM-native operating system for QEMU virt.
 - GUI window manager with Z-order compositing (up to 16 windows)
 - WebAssembly runtime via Wasm3 with multi-module support
 - Integration test suite (FS / NET / GUI / CORE)
-- 91 WASM application modules
+- 92 WASM application modules
 
 ## Three-Layer Architecture
 
 ```
 Bottom (Assembly):  Kernel core — scheduler, MMU, drivers, filesystem, net, GUI
 Middle (C + WASI):  Wasm3 runtime, host functions, WASI syscalls
-Top (WASM):         91 Application modules
+Top (WASM):         92 Application modules
 ```
 
 ## Quick Start
