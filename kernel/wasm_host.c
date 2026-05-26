@@ -560,6 +560,8 @@ extern const uint8_t ping6_module_start[], ping6_module_end[];
 extern const uint32_t ping6_module_size;
 extern const uint8_t ethtool_module_start[], ethtool_module_end[];
 extern const uint32_t ethtool_module_size;
+extern const uint8_t arping_module_start[], arping_module_end[];
+extern const uint32_t arping_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -599,6 +601,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "tcpdump",        NULL, 0 },
     { "ping6",          NULL, 0 },
     { "ethtool",        NULL, 0 },
+    { "arping",         NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4692,6 +4695,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[175].wasm_size = ping6_module_size;
     wasm_registry[176].wasm_bytes = ethtool_module_start;
     wasm_registry[176].wasm_size = ethtool_module_size;
+    wasm_registry[177].wasm_bytes = arping_module_start;
+    wasm_registry[177].wasm_size = arping_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

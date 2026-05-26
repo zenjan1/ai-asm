@@ -2186,6 +2186,16 @@ ethtool_module_end:
 ethtool_module_size:
     .int ethtool_module_end - ethtool_module_start
 
+.section .rodata.arping_wasm
+.global arping_module_start
+arping_module_start:
+    .incbin "kernel/arping.wasm"
+.global arping_module_end
+arping_module_end:
+.global arping_module_size
+arping_module_size:
+    .int arping_module_end - arping_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
