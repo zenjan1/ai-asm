@@ -1706,6 +1706,16 @@ timeout_module_end:
 timeout_module_size:
     .int timeout_module_end - timeout_module_start
 
+.section .rodata.stdbuf_wasm
+.global stdbuf_module_start
+stdbuf_module_start:
+    .incbin "kernel/stdbuf.wasm"
+.global stdbuf_module_end
+stdbuf_module_end:
+.global stdbuf_module_size
+stdbuf_module_size:
+    .int stdbuf_module_end - stdbuf_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
