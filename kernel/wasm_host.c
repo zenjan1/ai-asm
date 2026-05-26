@@ -506,6 +506,8 @@ extern const uint8_t stat_module_start[], stat_module_end[];
 extern const uint32_t stat_module_size;
 extern const uint8_t mcookie_module_start[], mcookie_module_end[];
 extern const uint32_t mcookie_module_size;
+extern const uint8_t lsof_module_start[], lsof_module_end[];
+extern const uint32_t lsof_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -518,6 +520,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "shred",          NULL, 0 },
     { "stat",           NULL, 0 },
     { "mcookie",        NULL, 0 },
+    { "lsof",           NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4557,6 +4560,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[148].wasm_size = stat_module_size;
     wasm_registry[149].wasm_bytes = mcookie_module_start;
     wasm_registry[149].wasm_size = mcookie_module_size;
+    wasm_registry[150].wasm_bytes = lsof_module_start;
+    wasm_registry[150].wasm_size = lsof_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

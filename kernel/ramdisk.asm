@@ -1916,6 +1916,16 @@ mcookie_module_end:
 mcookie_module_size:
     .int mcookie_module_end - mcookie_module_start
 
+.section .rodata.lsof_wasm
+.global lsof_module_start
+lsof_module_start:
+    .incbin "kernel/lsof.wasm"
+.global lsof_module_end
+lsof_module_end:
+.global lsof_module_size
+lsof_module_size:
+    .int lsof_module_end - lsof_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
