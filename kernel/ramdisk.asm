@@ -2116,6 +2116,16 @@ iwconfig_module_end:
 iwconfig_module_size:
     .int iwconfig_module_end - iwconfig_module_start
 
+.section .rodata.ifup_wasm
+.global ifup_module_start
+ifup_module_start:
+    .incbin "kernel/ifup.wasm"
+.global ifup_module_end
+ifup_module_end:
+.global ifup_module_size
+ifup_module_size:
+    .int ifup_module_end - ifup_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
