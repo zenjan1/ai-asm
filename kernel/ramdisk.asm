@@ -1886,6 +1886,16 @@ wasm_dis_module_end:
 wasm_dis_module_size:
     .int wasm_dis_module_end - wasm_dis_module_start
 
+.section .rodata.shred_wasm
+.global shred_module_start
+shred_module_start:
+    .incbin "kernel/shred.wasm"
+.global shred_module_end
+shred_module_end:
+.global shred_module_size
+shred_module_size:
+    .int shred_module_end - shred_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
