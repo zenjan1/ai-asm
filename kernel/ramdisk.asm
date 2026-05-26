@@ -1618,6 +1618,17 @@ sync_module_end:
 sync_module_size:
     .int sync_module_end - sync_module_start
 
+.section .rodata.link_wasm
+.global link_module_start
+link_module_start:
+    .incbin "kernel/link.wasm"
+.global link_module_end
+link_module_end:
+
+.global link_module_size
+link_module_size:
+    .int link_module_end - link_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
