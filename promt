@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-27 03:00
-# 当前阶段: Phase 112 (v112.0 more WASM模块)
+# 生成时间: 2026-05-27 03:30
+# 当前阶段: Phase 113 (v113.0 tac WASM模块增强版)
 
 ## 当前状态
-- v111.0 已推送: less WASM模块 (commit 848ed37)
-- 104个WASM模块已注册
-- kernel.elf: 7168800 bytes (7000KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less
+- v112.0 已推送: more WASM模块 (commit 76176eb)
+- 105个WASM模块已注册
+- kernel.elf: 7168920 bytes (7000KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more
 
-## 任务: 创建more WASM模块
+## 任务: 创建join WASM模块
 
-分页查看文件(简化版):
-- more <file>: 分页显示文件内容
-- 输出"--More--\n"提示
+连接两个文件:
+- join <file1> <file2>: 连接两个已排序文件的共同行
+- 输出匹配的行
 
-### 文件: modules/more/src/main.c
+### 文件: modules/join/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-解析argv获取文件名，模拟分页输出
+解析argv获取文件名，模拟输出join结果
 
-### Makefile: 添加MORE_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在less和ramdisk之间添加more的.incbin段
-### kernel/wasm_host.c: 添加more externs, registry entry "more", registry[105]初始化
+### Makefile: 添加JOIN_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在more和ramdisk之间添加join的.incbin段
+### kernel/wasm_host.c: 添加join externs, registry entry "join", registry[106]初始化
 
 ### 提交:
-git commit -m "feat: add more WASM module for basic paginated viewing (v112.0)"
+git commit -m "feat: add join WASM module for joining sorted files (v113.0)"
