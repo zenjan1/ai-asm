@@ -1475,6 +1475,17 @@ split_module_end:
 split_module_size:
     .int split_module_end - split_module_start
 
+.section .rodata.patch_wasm
+.global patch_module_start
+patch_module_start:
+    .incbin "kernel/patch.wasm"
+.global patch_module_end
+patch_module_end:
+
+.global patch_module_size
+patch_module_size:
+    .int patch_module_end - patch_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
