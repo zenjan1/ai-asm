@@ -1563,6 +1563,17 @@ expand_module_end:
 expand_module_size:
     .int expand_module_end - expand_module_start
 
+.section .rodata.unexpand_wasm
+.global unexpand_module_start
+unexpand_module_start:
+    .incbin "kernel/unexpand.wasm"
+.global unexpand_module_end
+unexpand_module_end:
+
+.global unexpand_module_size
+unexpand_module_size:
+    .int unexpand_module_end - unexpand_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
