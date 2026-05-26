@@ -1442,6 +1442,17 @@ less_module_end:
 less_module_size:
     .int less_module_end - less_module_start
 
+.section .rodata.more_wasm
+.global more_module_start
+more_module_start:
+    .incbin "kernel/more.wasm"
+.global more_module_end
+more_module_end:
+
+.global more_module_size
+more_module_size:
+    .int more_module_end - more_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
