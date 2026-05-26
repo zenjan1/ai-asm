@@ -538,6 +538,20 @@ dirname_module_size:
     .int dirname_module_end - dirname_module_start
 
 /* ---------------------------------------------------------------------------
+ * Nl module (line numbering)
+ * --------------------------------------------------------------------------- */
+.section .rodata.nl_wasm
+.global nl_module_start
+nl_module_start:
+    .incbin "kernel/nl.wasm"
+.global nl_module_end
+nl_module_end:
+.align 4
+.global nl_module_size
+nl_module_size:
+    .int nl_module_end - nl_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
