@@ -1126,6 +1126,20 @@ traceroute_module_size:
     .int traceroute_module_end - traceroute_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: nslookup
+ * --------------------------------------------------------------------------- */
+.section .rodata.nslookup_wasm
+.global nslookup_module_start
+nslookup_module_start:
+    .incbin "kernel/nslookup.wasm"
+.global nslookup_module_end
+nslookup_module_end:
+
+.global nslookup_module_size
+nslookup_module_size:
+    .int nslookup_module_end - nslookup_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
