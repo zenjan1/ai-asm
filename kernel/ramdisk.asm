@@ -2026,6 +2026,16 @@ ltrace_module_end:
 ltrace_module_size:
     .int ltrace_module_end - ltrace_module_start
 
+.section .rodata.tracepath_wasm
+.global tracepath_module_start
+tracepath_module_start:
+    .incbin "kernel/tracepath.wasm"
+.global tracepath_module_end
+tracepath_module_end:
+.global tracepath_module_size
+tracepath_module_size:
+    .int tracepath_module_end - tracepath_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
