@@ -1976,6 +1976,16 @@ pgrep_module_end:
 pgrep_module_size:
     .int pgrep_module_end - pgrep_module_start
 
+.section .rodata.pkill_wasm
+.global pkill_module_start
+pkill_module_start:
+    .incbin "kernel/pkill.wasm"
+.global pkill_module_end
+pkill_module_end:
+.global pkill_module_size
+pkill_module_size:
+    .int pkill_module_end - pkill_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
