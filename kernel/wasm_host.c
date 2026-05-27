@@ -582,6 +582,8 @@ extern const uint8_t setkeycodes_module_start[], setkeycodes_module_end[];
 extern const uint32_t setkeycodes_module_size;
 extern const uint8_t loadkeys_module_start[], loadkeys_module_end[];
 extern const uint32_t loadkeys_module_size;
+extern const uint8_t dumpkeys_module_start[], dumpkeys_module_end[];
+extern const uint32_t dumpkeys_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -632,6 +634,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "slipattach",     NULL, 0 },
     { "setkeycodes",    NULL, 0 },
     { "loadkeys",       NULL, 0 },
+    { "dumpkeys",       NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4747,6 +4750,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[186].wasm_size = setkeycodes_module_size;
     wasm_registry[187].wasm_bytes = loadkeys_module_start;
     wasm_registry[187].wasm_size = loadkeys_module_size;
+    wasm_registry[188].wasm_bytes = dumpkeys_module_start;
+    wasm_registry[188].wasm_size = dumpkeys_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

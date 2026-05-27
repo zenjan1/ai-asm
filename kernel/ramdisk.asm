@@ -2309,6 +2309,19 @@ loadkeys_module_size:
     .int loadkeys_module_end - loadkeys_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: dumpkeys (v195.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.dumpkeys_wasm
+.global dumpkeys_module_start
+dumpkeys_module_start:
+    .incbin "kernel/dumpkeys.wasm"
+.global dumpkeys_module_end
+dumpkeys_module_end:
+.global dumpkeys_module_size
+dumpkeys_module_size:
+    .int dumpkeys_module_end - dumpkeys_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
