@@ -2348,6 +2348,19 @@ chvt_module_size:
     .int chvt_module_end - chvt_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: openvt (v198.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.openvt_wasm
+.global openvt_module_start
+openvt_module_start:
+    .incbin "kernel/openvt.wasm"
+.global openvt_module_end
+openvt_module_end:
+.global openvt_module_size
+openvt_module_size:
+    .int openvt_module_end - openvt_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
