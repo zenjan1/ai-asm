@@ -596,6 +596,8 @@ extern const uint8_t fgconsole_module_start[], fgconsole_module_end[];
 extern const uint32_t fgconsole_module_size;
 extern const uint8_t setfont_module_start[], setfont_module_end[];
 extern const uint32_t setfont_module_size;
+extern const uint8_t kbd_mode_module_start[], kbd_mode_module_end[];
+extern const uint32_t kbd_mode_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -653,6 +655,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "deallocvt",      NULL, 0 },
     { "fgconsole",      NULL, 0 },
     { "setfont",        NULL, 0 },
+    { "kbd_mode",       NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4782,6 +4785,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[193].wasm_size = fgconsole_module_size;
     wasm_registry[194].wasm_bytes = setfont_module_start;
     wasm_registry[194].wasm_size = setfont_module_size;
+    wasm_registry[195].wasm_bytes = kbd_mode_module_start;
+    wasm_registry[195].wasm_size = kbd_mode_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

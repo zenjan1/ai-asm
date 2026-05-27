@@ -2400,6 +2400,19 @@ setfont_module_size:
     .int setfont_module_end - setfont_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: kbd_mode (v202.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.kbd_mode_wasm
+.global kbd_mode_module_start
+kbd_mode_module_start:
+    .incbin "kernel/kbd_mode.wasm"
+.global kbd_mode_module_end
+kbd_mode_module_end:
+.global kbd_mode_module_size
+kbd_mode_module_size:
+    .int kbd_mode_module_end - kbd_mode_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
