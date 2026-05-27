@@ -2270,6 +2270,19 @@ slattach_module_size:
     .int slattach_module_end - slattach_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: slipattach (v192.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.slipattach_wasm
+.global slipattach_module_start
+slipattach_module_start:
+    .incbin "kernel/slipattach.wasm"
+.global slipattach_module_end
+slipattach_module_end:
+.global slipattach_module_size
+slipattach_module_size:
+    .int slipattach_module_end - slipattach_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

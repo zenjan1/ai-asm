@@ -576,6 +576,8 @@ extern const uint8_t pppd_module_start[], pppd_module_end[];
 extern const uint32_t pppd_module_size;
 extern const uint8_t slattach_module_start[], slattach_module_end[];
 extern const uint32_t slattach_module_size;
+extern const uint8_t slipattach_module_start[], slipattach_module_end[];
+extern const uint32_t slipattach_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -623,6 +625,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "plipconfig",     NULL, 0 },
     { "pppd",           NULL, 0 },
     { "slattach",       NULL, 0 },
+    { "slipattach",     NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4732,6 +4735,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[183].wasm_size = pppd_module_size;
     wasm_registry[184].wasm_bytes = slattach_module_start;
     wasm_registry[184].wasm_size = slattach_module_size;
+    wasm_registry[185].wasm_bytes = slipattach_module_start;
+    wasm_registry[185].wasm_size = slipattach_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
