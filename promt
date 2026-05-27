@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-29 21:45
-# 当前阶段: Phase 206 (v206.0 deallocvt_v2 WASM模块)
+# 生成时间: 2026-05-29 22:00
+# 当前阶段: Phase 207 (v207.0 fgconsole_v2 WASM模块)
 
 ## 当前状态
-- v205.0 已推送: openvt_v2 WASM模块
-- 198个WASM模块已注册
-- kernel.elf: 7311984 bytes (7140KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2
+- v206.0 已推送: deallocvt_v2 WASM模块
+- 199个WASM模块已注册
+- kernel.elf: 7312128 bytes (7140KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2
 
-## 任务: 创建deallocvt_v2 WASM模块
+## 任务: 创建fgconsole_v2 WASM模块
 
 系统工具:
-- deallocvt_v2: 虚拟终端释放（增强版）
-- 模拟释放未使用的虚拟终端
+- fgconsole_v2: 前台控制台查询（增强版）
+- 模拟查询当前前台虚拟终端
 
-### 文件: modules/deallocvt_v2/src/main.c
+### 文件: modules/fgconsole_v2/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-输出模拟的虚拟终端释放状态
+输出模拟的前台控制台查询状态
 
-### Makefile: 添加DEALLOCVT_V2_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在openvt_v2和ramdisk之间添加deallocvt_v2的.incbin段
-### kernel/wasm_host.c: 添加deallocvt_v2 externs, registry entry "deallocvt_v2", registry[199]初始化
+### Makefile: 添加FGCONSOLE_V2_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在deallocvt_v2和ramdisk之间添加fgconsole_v2的.incbin段
+### kernel/wasm_host.c: 添加fgconsole_v2 externs, registry entry "fgconsole_v2", registry[200]初始化
 
 ### 提交:
-git commit -m "feat: add deallocvt_v2 WASM module for virtual terminal deallocation (v206.0)"
+git commit -m "feat: add fgconsole_v2 WASM module for foreground console query (v207.0)"
