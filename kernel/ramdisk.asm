@@ -2257,6 +2257,19 @@ pppd_module_size:
     .int pppd_module_end - pppd_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: slattach (v191.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.slattach_wasm
+.global slattach_module_start
+slattach_module_start:
+    .incbin "kernel/slattach.wasm"
+.global slattach_module_end
+slattach_module_end:
+.global slattach_module_size
+slattach_module_size:
+    .int slattach_module_end - slattach_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
