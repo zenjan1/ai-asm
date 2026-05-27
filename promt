@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-29 17:00
-# 当前阶段: Phase 194 (v194.0 loadkeys WASM模块)
+# 生成时间: 2026-05-29 17:30
+# 当前阶段: Phase 195 (v195.0 dumpkeys WASM模块)
 
 ## 当前状态
-- v193.0 已推送: setkeycodes WASM模块
-- 186个WASM模块已注册
-- kernel.elf: 7310376 bytes (7139KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, slipattach, setkeycodes
+- v194.0 已推送: loadkeys WASM模块
+- 187个WASM模块已注册
+- kernel.elf: 7310512 bytes (7139KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, slipattach, setkeycodes, loadkeys
 
-## 任务: 创建loadkeys WASM模块
+## 任务: 创建dumpkeys WASM模块
 
 系统工具:
-- loadkeys: 键盘映射表加载程序
-- 模拟加载键盘布局配置
+- dumpkeys: 键盘映射表转储程序
+- 模拟输出当前键盘映射配置
 
-### 文件: modules/loadkeys/src/main.c
+### 文件: modules/dumpkeys/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-输出模拟的键盘映射表加载状态
+输出模拟的键盘映射表内容
 
-### Makefile: 添加LOADKEYS_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在setkeycodes和ramdisk之间添加loadkeys的.incbin段
-### kernel/wasm_host.c: 添加loadkeys externs, registry entry "loadkeys", registry[187]初始化
+### Makefile: 添加DUMPKEYS_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在loadkeys和ramdisk之间添加dumpkeys的.incbin段
+### kernel/wasm_host.c: 添加dumpkeys externs, registry entry "dumpkeys", registry[188]初始化
 
 ### 提交:
-git commit -m "feat: add loadkeys WASM module for keyboard layout loading (v194.0)"
+git commit -m "feat: add dumpkeys WASM module for keyboard map dumping (v195.0)"
