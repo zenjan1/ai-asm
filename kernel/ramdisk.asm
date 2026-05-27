@@ -2478,6 +2478,19 @@ fgconsole_v2_module_size:
     .int fgconsole_v2_module_end - fgconsole_v2_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: setfont_v2 (v208.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.setfont_v2_wasm
+.global setfont_v2_module_start
+setfont_v2_module_start:
+    .incbin "kernel/setfont_v2.wasm"
+.global setfont_v2_module_end
+setfont_v2_module_end:
+.global setfont_v2_module_size
+setfont_v2_module_size:
+    .int setfont_v2_module_end - setfont_v2_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
