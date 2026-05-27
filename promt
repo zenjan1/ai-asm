@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-29 21:00
-# 当前阶段: Phase 203 (v203.0 dumpkeys WASM模块)
+# 生成时间: 2026-05-29 21:15
+# 当前阶段: Phase 204 (v204.0 chvt_v2 WASM模块)
 
 ## 当前状态
-- v202.0 已推送: kbd_mode WASM模块
-- 195个WASM模块已注册
-- kernel.elf: 7311576 bytes (7140KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode
+- v203.0 已推送: showkey_v2 WASM模块
+- 196个WASM模块已注册
+- kernel.elf: 7311712 bytes (7140KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2
 
-## 任务: 创建showkey WASM模块
+## 任务: 创建chvt_v2 WASM模块
 
 系统工具:
-- showkey: 键盘按键显示程序
-- 模拟显示键盘按键的扫描码和键码
+- chvt_v2: 虚拟终端切换程序（增强版）
+- 模拟切换到指定虚拟终端
 
-### 文件: modules/showkey/src/main.c
+### 文件: modules/chvt_v2/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-输出模拟的键盘按键扫描信息
+输出模拟的虚拟终端切换状态
 
-### Makefile: 添加SHOWKEY_V2_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在kbd_mode和ramdisk之间添加showkey_v2的.incbin段
-### kernel/wasm_host.c: 添加showkey_v2 externs, registry entry "showkey_v2", registry[196]初始化
+### Makefile: 添加CHVT_V2_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在showkey_v2和ramdisk之间添加chvt_v2的.incbin段
+### kernel/wasm_host.c: 添加chvt_v2 externs, registry entry "chvt_v2", registry[197]初始化
 
 ### 提交:
-git commit -m "feat: add showkey WASM module for keyboard key display (v203.0)"
+git commit -m "feat: add chvt_v2 WASM module for virtual terminal switching (v204.0)"
