@@ -2,7 +2,7 @@
 
 Pure AArch64 assembly WASM-native operating system for QEMU virt.
 
-**188 WASM modules** · 7310648 bytes kernel · v195.0
+**189 WASM modules** · 7310776 bytes kernel · v196.0
 
 ## Features
 
