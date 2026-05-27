@@ -314,7 +314,8 @@ CHVT_V2_WASM     = $(MODULES_DIR)/chvt_v2/chvt_v2.wasm $(MODULES_DIR)/openvt_v2/
 OPENVT_V2_WASM   = $(MODULES_DIR)/openvt_v2/openvt_v2.wasm $(MODULES_DIR)/deallocvt_v2/deallocvt_v2.wasm
 DEALLOCVT_V2_WASM = $(MODULES_DIR)/deallocvt_v2/deallocvt_v2.wasm $(MODULES_DIR)/fgconsole_v2/fgconsole_v2.wasm
 FGCONSOLE_V2_WASM = $(MODULES_DIR)/fgconsole_v2/fgconsole_v2.wasm $(MODULES_DIR)/setfont_v2/setfont_v2.wasm
-SETFONT_V2_WASM   = $(MODULES_DIR)/setfont_v2/setfont_v2.wasm
+SETFONT_V2_WASM   = $(MODULES_DIR)/setfont_v2/setfont_v2.wasm $(MODULES_DIR)/kbd_mode_v2/kbd_mode_v2.wasm
+KBD_MODE_V2_WASM  = $(MODULES_DIR)/kbd_mode_v2/kbd_mode_v2.wasm
 RAMDISK_TAR = $(KERNEL_DIR)/ramdisk.tar
 
 # All object dependencies
@@ -397,7 +398,7 @@ $(INIT_WASM): $(MODULES_DIR)/init/src/main.c
 # ---------------------------------------------------------------------------
 # RAM disk (USTAR TAR from modules/init/ramdisk/)
 # ---------------------------------------------------------------------------
-$(PING6_WASM) $(ETHTOOL_WASM) $(ARPING_WASM) $(BRCTL_WASM) $(IFSTAT_WASM) $(MII_TOOL_WASM) $(NAMEIF_WASM) $(PLIPCONFIG_WASM) $(PPPD_WASM) $(SLATTACH_WASM) $(SLIPATTACH_WASM) $(SETKEYCODES_WASM) $(LOADKEYS_WASM) $(DUMPKEYS_WASM) $(RAMDISK_TAR): ramdisk/motd.txt ramdisk/hello.txt ramdisk/readme.txt
+$(RAMDISK_TAR): ramdisk/motd.txt ramdisk/hello.txt ramdisk/readme.txt
 	@echo "  TAR   $@"
 	tar cf $@ -C ramdisk motd.txt hello.txt readme.txt
 
@@ -507,7 +508,7 @@ $(LOADKEYS_WASM): $(MODULES_DIR)/loadkeys/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/loadkeys.wasm $(KERNEL_DIR)/dumpkeys.wasm $(KERNEL_DIR)/showkey.wasm $(KERNEL_DIR)/chvt.wasm $(KERNEL_DIR)/openvt.wasm $(KERNEL_DIR)/deallocvt.wasm $(KERNEL_DIR)/fgconsole.wasm $(KERNEL_DIR)/setfont.wasm
+	for f in $(KERNEL_DIR)/loadkeys.wasm $(KERNEL_DIR)/dumpkeys.wasm $(KERNEL_DIR)/showkey.wasm $(KERNEL_DIR)/chvt.wasm $(KERNEL_DIR)/openvt.wasm $(KERNEL_DIR)/deallocvt.wasm $(KERNEL_DIR)/fgconsole.wasm $(KERNEL_DIR)/setfont.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM dumpkeys module
@@ -516,7 +517,7 @@ $(DUMPKEYS_WASM): $(MODULES_DIR)/dumpkeys/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/dumpkeys.wasm $(KERNEL_DIR)/showkey.wasm $(KERNEL_DIR)/chvt.wasm $(KERNEL_DIR)/openvt.wasm $(KERNEL_DIR)/deallocvt.wasm $(KERNEL_DIR)/fgconsole.wasm $(KERNEL_DIR)/setfont.wasm
+	for f in $(KERNEL_DIR)/dumpkeys.wasm $(KERNEL_DIR)/showkey.wasm $(KERNEL_DIR)/chvt.wasm $(KERNEL_DIR)/openvt.wasm $(KERNEL_DIR)/deallocvt.wasm $(KERNEL_DIR)/fgconsole.wasm $(KERNEL_DIR)/setfont.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM showkey module
@@ -543,7 +544,7 @@ $(OPENVT_WASM): $(MODULES_DIR)/openvt/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/openvt.wasm $(KERNEL_DIR)/deallocvt.wasm $(KERNEL_DIR)/fgconsole.wasm $(KERNEL_DIR)/setfont.wasm
+	for f in $(KERNEL_DIR)/openvt.wasm $(KERNEL_DIR)/deallocvt.wasm $(KERNEL_DIR)/fgconsole.wasm $(KERNEL_DIR)/setfont.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM deallocvt module
@@ -552,7 +553,7 @@ $(DEALLOCVT_WASM): $(MODULES_DIR)/deallocvt/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/deallocvt.wasm $(KERNEL_DIR)/fgconsole.wasm $(KERNEL_DIR)/setfont.wasm
+	for f in $(KERNEL_DIR)/deallocvt.wasm $(KERNEL_DIR)/fgconsole.wasm $(KERNEL_DIR)/setfont.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM fgconsole module
@@ -634,6 +635,15 @@ $(SETFONT_V2_WASM): $(MODULES_DIR)/setfont_v2/src/main.c
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
 	cp $@ $(KERNEL_DIR)/setfont_v2.wasm
+
+# ---------------------------------------------------------------------------
+# WASM kbd_mode_v2 module
+# ---------------------------------------------------------------------------
+$(KBD_MODE_V2_WASM): $(MODULES_DIR)/kbd_mode_v2/src/main.c
+	@echo "  WASM  $<"
+	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
+	cp $@ $(KERNEL_DIR)/kbd_mode_v2.wasm
 
 # ---------------------------------------------------------------------------
 # WASM shell module
@@ -1711,7 +1721,7 @@ $(PR_WASM): $(MODULES_DIR)/pr/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/pr.wasm $(KERNEL_DIR)/column.wasm $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/pr.wasm $(KERNEL_DIR)/column.wasm $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 
 # ---------------------------------------------------------------------------
@@ -1721,7 +1731,7 @@ $(COLUMN_WASM): $(MODULES_DIR)/column/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/column.wasm $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/column.wasm $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM expand module (tab expansion)
@@ -1730,7 +1740,7 @@ $(EXPAND_WASM): $(MODULES_DIR)/expand/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/expand.wasm $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM unexpand module (space-to-tab conversion)
@@ -1739,7 +1749,7 @@ $(UNEXPAND_WASM): $(MODULES_DIR)/unexpand/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/unexpand.wasm $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM numfmt module (number formatting)
@@ -1748,7 +1758,7 @@ $(NUMFMT_WASM): $(MODULES_DIR)/numfmt/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/numfmt.wasm $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM nproc module (processor count)
@@ -1757,7 +1767,7 @@ $(NPROC_WASM): $(MODULES_DIR)/nproc/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/nproc.wasm $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM hostid module (host identification)
@@ -1766,7 +1776,7 @@ $(HOSTID_WASM): $(MODULES_DIR)/hostid/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/hostid.wasm $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM sync module (filesystem sync)
@@ -1775,7 +1785,7 @@ $(SYNC_WASM): $(MODULES_DIR)/sync/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/sync.wasm $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM link module (hard link creator)
@@ -1784,7 +1794,7 @@ $(LINK_WASM): $(MODULES_DIR)/link/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/link.wasm $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM unlink module (link removal)
@@ -1793,7 +1803,7 @@ $(UNLINK_WASM): $(MODULES_DIR)/unlink/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/unlink.wasm $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM logname module (login name display)
@@ -1802,7 +1812,7 @@ $(LOGNAME_WASM): $(MODULES_DIR)/logname/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/logname.wasm $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM arch module (machine architecture)
@@ -1811,7 +1821,7 @@ $(ARCH_WASM): $(MODULES_DIR)/arch/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/arch.wasm $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM setarch module (architecture setter)
@@ -1820,7 +1830,7 @@ $(SETARCH_WASM): $(MODULES_DIR)/setarch/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/setarch.wasm $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM nice module (process priority)
@@ -1829,7 +1839,7 @@ $(NICE_WASM): $(MODULES_DIR)/nice/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/nice.wasm $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM renice module (process priority change)
@@ -1838,7 +1848,7 @@ $(RENICE_WASM): $(MODULES_DIR)/renice/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/renice.wasm $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM timeout module (timed command execution)
@@ -1847,7 +1857,7 @@ $(TIMEOUT_WASM): $(MODULES_DIR)/timeout/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/timeout.wasm $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM stdbuf module (I/O buffer control)
@@ -1856,7 +1866,7 @@ $(STDBUF_WASM): $(MODULES_DIR)/stdbuf/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/stdbuf.wasm $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM factor module (prime factorization)
@@ -1865,7 +1875,7 @@ $(FACTOR_WASM): $(MODULES_DIR)/factor/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/factor.wasm $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM seq module (number sequence generation)
@@ -1874,7 +1884,7 @@ $(SEQ_WASM): $(MODULES_DIR)/seq/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/seq.wasm $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM realpath module (path resolution)
@@ -1883,7 +1893,7 @@ $(REALPATH_WASM): $(MODULES_DIR)/realpath/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/realpath.wasm $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM groups module (user group display)
@@ -1892,7 +1902,7 @@ $(GROUPS_WASM): $(MODULES_DIR)/groups/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/groups.wasm $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM install module (file installation)
@@ -1901,7 +1911,7 @@ $(INSTALL_WASM): $(MODULES_DIR)/install/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/install.wasm $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM pathchk module (path validation)
@@ -1910,7 +1920,7 @@ $(PATHCHK_WASM): $(MODULES_DIR)/pathchk/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/pathchk.wasm $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM mktemp module (temp file creation)
@@ -1919,7 +1929,7 @@ $(MKTEMP_WASM): $(MODULES_DIR)/mktemp/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/mktemp.wasm $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM truncate module (file truncation)
@@ -1928,7 +1938,7 @@ $(TRUNCATE_WASM): $(MODULES_DIR)/truncate/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/truncate.wasm $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM nohup module (hangup-free execution)
@@ -1937,7 +1947,7 @@ $(NOHUP_WASM): $(MODULES_DIR)/nohup/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/nohup.wasm $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM envsubst module (environment variable substitution)
@@ -1946,7 +1956,7 @@ $(ENVSUBST_WASM): $(MODULES_DIR)/envsubst/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/envsubst.wasm $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM dircolors module (color configuration)
@@ -1955,7 +1965,7 @@ $(DIRCOLORS_WASM): $(MODULES_DIR)/dircolors/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/dircolors.wasm $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM expr module (expression evaluation)
@@ -1964,7 +1974,7 @@ $(EXPR_WASM): $(MODULES_DIR)/expr/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/expr.wasm $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM test_cmd module (condition evaluation)
@@ -1973,7 +1983,7 @@ $(TEST_CMD_WASM): $(MODULES_DIR)/test_cmd/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/test_cmd.wasm $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM dd module (data conversion and copy)
@@ -1982,7 +1992,7 @@ $(DD_WASM): $(MODULES_DIR)/dd/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/dd.wasm $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM hashsum module (hash computation)
@@ -1991,7 +2001,7 @@ $(HASHSUM_WASM): $(MODULES_DIR)/hashsum/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/hashsum.wasm $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM watch module (periodic execution)
@@ -2000,7 +2010,7 @@ $(WATCH_WASM): $(MODULES_DIR)/watch/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/watch.wasm $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM wasm_dis module (WASM disassembler)
@@ -2009,7 +2019,7 @@ $(WASM_DIS_WASM): $(MODULES_DIR)/wasm_dis/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/wasm_dis.wasm $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM shred module (secure file deletion)
@@ -2018,7 +2028,7 @@ $(SHRED_WASM): $(MODULES_DIR)/shred/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/shred.wasm $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM stat module (file status display)
@@ -2027,7 +2037,7 @@ $(STAT_WASM): $(MODULES_DIR)/stat/src/main.c
 	@echo "  WASM  $<"
 	$(CLANG) --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
 	    -Wl,--no-entry -Wl,--export=_start -o $@ $<
-	cp $@ $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm
+	for f in $(KERNEL_DIR)/stat.wasm $(KERNEL_DIR)/mcookie.wasm $(KERNEL_DIR)/lsof.wasm $(KERNEL_DIR)/iostat.wasm $(KERNEL_DIR)/vmstat.wasm $(KERNEL_DIR)/mpstat.wasm $(KERNEL_DIR)/pidof.wasm $(KERNEL_DIR)/pgrep.wasm $(KERNEL_DIR)/pkill.wasm $(KERNEL_DIR)/top.wasm $(KERNEL_DIR)/htop.wasm $(KERNEL_DIR)/strace.wasm $(KERNEL_DIR)/ltrace.wasm $(KERNEL_DIR)/tracepath.wasm $(KERNEL_DIR)/ss.wasm; do cp $@ $$f; done
 
 # ---------------------------------------------------------------------------
 # WASM mcookie module (random cookie generation)
@@ -2188,7 +2198,7 @@ $(MODULES_DIR)/ping6/ping6.wasm: $(MODULES_DIR)/ping6/src/main.c
 # ---------------------------------------------------------------------------
 # Full kernel link
 # ---------------------------------------------------------------------------
-$(TARGET_ELF): $(ALL_OBJS) $(WASM3_LIB) $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(PING6_WASM) $(PPPD_WASM) $(SLATTACH_WASM) $(SLIPATTACH_WASM) $(SETKEYCODES_WASM) $(LOADKEYS_WASM) $(DUMPKEYS_WASM) $(SHOWKEY_V2_WASM) $(CHVT_V2_WASM) $(OPENVT_V2_WASM) $(DEALLOCVT_V2_WASM) $(FGCONSOLE_V2_WASM) $(SETFONT_V2_WASM) $(RAMDISK_TAR)
+$(TARGET_ELF): $(ALL_OBJS) $(WASM3_LIB) $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(PING6_WASM) $(PPPD_WASM) $(SLATTACH_WASM) $(SLIPATTACH_WASM) $(SETKEYCODES_WASM) $(LOADKEYS_WASM) $(DUMPKEYS_WASM) $(SHOWKEY_V2_WASM) $(CHVT_V2_WASM) $(OPENVT_V2_WASM) $(DEALLOCVT_V2_WASM) $(FGCONSOLE_V2_WASM) $(SETFONT_V2_WASM) $(KBD_MODE_V2_WASM) $(RAMDISK_TAR)
 	@echo "  LD    $@"
 	$(LD) $(LDFLAGS) -o $@ $(ASM_OBJS) $(C_OBJS) $(WASM3_OBJS)
 	@SIZE=$$(wc -c < $@); echo "kernel.elf: $${SIZE} bytes ($$(( SIZE / 1024 ))KB)"
