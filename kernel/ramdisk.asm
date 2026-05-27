@@ -2283,6 +2283,19 @@ slipattach_module_size:
     .int slipattach_module_end - slipattach_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: setkeycodes (v193.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.setkeycodes_wasm
+.global setkeycodes_module_start
+setkeycodes_module_start:
+    .incbin "kernel/setkeycodes.wasm"
+.global setkeycodes_module_end
+setkeycodes_module_end:
+.global setkeycodes_module_size
+setkeycodes_module_size:
+    .int setkeycodes_module_end - setkeycodes_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
