@@ -2296,6 +2296,19 @@ setkeycodes_module_size:
     .int setkeycodes_module_end - setkeycodes_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: loadkeys (v194.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.loadkeys_wasm
+.global loadkeys_module_start
+loadkeys_module_start:
+    .incbin "kernel/loadkeys.wasm"
+.global loadkeys_module_end
+loadkeys_module_end:
+.global loadkeys_module_size
+loadkeys_module_size:
+    .int loadkeys_module_end - loadkeys_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
