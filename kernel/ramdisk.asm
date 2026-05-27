@@ -2246,6 +2246,16 @@ plipconfig_module_end:
 plipconfig_module_size:
     .int plipconfig_module_end - plipconfig_module_start
 
+.section .rodata.pppd_wasm
+.global pppd_module_start
+pppd_module_start:
+    .incbin "kernel/pppd.wasm"
+.global pppd_module_end
+pppd_module_end:
+.global pppd_module_size
+pppd_module_size:
+    .int pppd_module_end - pppd_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
