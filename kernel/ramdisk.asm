@@ -2452,6 +2452,19 @@ openvt_v2_module_size:
     .int openvt_v2_module_end - openvt_v2_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: deallocvt_v2 (v206.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.deallocvt_v2_wasm
+.global deallocvt_v2_module_start
+deallocvt_v2_module_start:
+    .incbin "kernel/deallocvt_v2.wasm"
+.global deallocvt_v2_module_end
+deallocvt_v2_module_end:
+.global deallocvt_v2_module_size
+deallocvt_v2_module_size:
+    .int deallocvt_v2_module_end - deallocvt_v2_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
