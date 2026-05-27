@@ -598,6 +598,8 @@ extern const uint8_t setfont_module_start[], setfont_module_end[];
 extern const uint32_t setfont_module_size;
 extern const uint8_t kbd_mode_module_start[], kbd_mode_module_end[];
 extern const uint32_t kbd_mode_module_size;
+extern const uint8_t showkey_v2_module_start[], showkey_v2_module_end[];
+extern const uint32_t showkey_v2_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -656,6 +658,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "fgconsole",      NULL, 0 },
     { "setfont",        NULL, 0 },
     { "kbd_mode",       NULL, 0 },
+    { "showkey_v2",     NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4787,6 +4790,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[194].wasm_size = setfont_module_size;
     wasm_registry[195].wasm_bytes = kbd_mode_module_start;
     wasm_registry[195].wasm_size = kbd_mode_module_size;
+    wasm_registry[196].wasm_bytes = showkey_v2_module_start;
+    wasm_registry[196].wasm_size = showkey_v2_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
