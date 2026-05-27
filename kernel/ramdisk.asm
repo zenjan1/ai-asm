@@ -2504,6 +2504,19 @@ kbd_mode_v2_module_size:
     .int kbd_mode_v2_module_end - kbd_mode_v2_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: showkey_v3 (v210.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.showkey_v3_wasm
+.global showkey_v3_module_start
+showkey_v3_module_start:
+    .incbin "kernel/showkey_v3.wasm"
+.global showkey_v3_module_end
+showkey_v3_module_end:
+.global showkey_v3_module_size
+showkey_v3_module_size:
+    .int showkey_v3_module_end - showkey_v3_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
