@@ -2634,6 +2634,19 @@ dumpkeys_v3_module_size:
     .int dumpkeys_v3_module_end - dumpkeys_v3_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: showkey_v4 (v220.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.showkey_v4_wasm
+.global showkey_v4_module_start
+showkey_v4_module_start:
+    .incbin "kernel/showkey_v4.wasm"
+.global showkey_v4_module_end
+showkey_v4_module_end:
+.global showkey_v4_module_size
+showkey_v4_module_size:
+    .int showkey_v4_module_end - showkey_v4_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
