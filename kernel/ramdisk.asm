@@ -2959,6 +2959,19 @@ showkey_v6_module_size:
     .int showkey_v6_module_end - showkey_v6_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: chvt_v6 (v245.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.chvt_v6_wasm
+.global chvt_v6_module_start
+chvt_v6_module_start:
+    .incbin "kernel/chvt_v6.wasm"
+.global chvt_v6_module_end
+chvt_v6_module_end:
+.global chvt_v6_module_size
+chvt_v6_module_size:
+    .int chvt_v6_module_end - chvt_v6_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
