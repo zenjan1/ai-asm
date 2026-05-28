@@ -3115,6 +3115,19 @@ loadunimap_module_size:
     .int loadunimap_module_end - loadunimap_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: setmetamode (v257.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.setmetamode_wasm
+.global setmetamode_module_start
+setmetamode_module_start:
+    .incbin "kernel/setmetamode.wasm"
+.global setmetamode_module_end
+setmetamode_module_end:
+.global setmetamode_module_size
+setmetamode_module_size:
+    .int setmetamode_module_end - setmetamode_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
