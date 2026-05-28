@@ -3089,6 +3089,19 @@ unicode_stop_module_size:
     .int unicode_stop_module_end - unicode_stop_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: mapscrn (v255.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.mapscrn_wasm
+.global mapscrn_module_start
+mapscrn_module_start:
+    .incbin "kernel/mapscrn.wasm"
+.global mapscrn_module_end
+mapscrn_module_end:
+.global mapscrn_module_size
+mapscrn_module_size:
+    .int mapscrn_module_end - mapscrn_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
