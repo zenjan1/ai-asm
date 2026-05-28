@@ -3011,6 +3011,19 @@ fgconsole_v6_module_size:
     .int fgconsole_v6_module_end - fgconsole_v6_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: setfont_v6 (v249.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.setfont_v6_wasm
+.global setfont_v6_module_start
+setfont_v6_module_start:
+    .incbin "kernel/setfont_v6.wasm"
+.global setfont_v6_module_end
+setfont_v6_module_end:
+.global setfont_v6_module_size
+setfont_v6_module_size:
+    .int setfont_v6_module_end - setfont_v6_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
