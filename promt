@@ -1,26 +1,26 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-28 05:00
-# 当前阶段: Phase 216 (v216.0 kbd_mode_v3 WASM模块)
+# 生成时间: 2026-05-28 06:00
+# 当前阶段: Phase 217 (v217.0 loadkeys_v2 WASM模块)
 
 ## 当前状态
-- v215.0 已推送: setfont_v3 WASM模块
-- 208个WASM模块已注册
-- kernel.elf: 7313408 bytes (7142KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3
+- v216.0 已推送: kbd_mode_v3 WASM模块
+- 209个WASM模块已注册
+- kernel.elf: 7313552 bytes (7142KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3
 
-## 任务: 创建kbd_mode_v3 WASM模块
+## 任务: 创建loadkeys_v2 WASM模块
 
 系统工具:
-- kbd_mode_v3: 键盘模式设置（增强版v3）
-- 模拟查询/设置键盘模式
+- loadkeys_v2: 加载键盘映射表（增强版v2）
+- 模拟加载键盘布局映射
 
-### 文件: modules/kbd_mode_v3/src/main.c
+### 文件: modules/loadkeys_v2/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-输出模拟的键盘模式查询状态
+输出模拟的键盘映射加载状态
 
-### Makefile: 添加KBD_MODE_V3_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在setfont_v3和ramdisk之间添加kbd_mode_v3的.incbin段
-### kernel/wasm_host.c: 添加kbd_mode_v3 externs, registry entry "kbd_mode_v3", registry[209]初始化
+### Makefile: 添加LOADKEYS_V2_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在kbd_mode_v3和ramdisk之间添加loadkeys_v2的.incbin段
+### kernel/wasm_host.c: 添加loadkeys_v2 externs, registry entry "loadkeys_v2", registry[210]初始化
 
 ### 提交:
-git commit -m "feat: add kbd_mode_v3 WASM module for keyboard mode query (v216.0)"
+git commit -m "feat: add loadkeys_v2 WASM module for keyboard mapping load (v217.0)"
