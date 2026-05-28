@@ -1,27 +1,27 @@
 # AI-ASM 开发任务
 # 生成时间: 2026-05-29 02:30
-# 当前阶段: Phase 248 (v248.0 fgconsole_v6 WASM模块)
+# 当前阶段: Phase 249 (v249.0 setfont_v6 WASM模块)
 
 ## 当前状态
-- v247.0 已推送: deallocvt_v6 WASM模块
-- 240个WASM模块已注册
-- kernel.elf: 7449072 bytes (7274KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3, dumpkeys_v4, setkeycodes_v2, showkey_v5, chvt_v5, openvt_v5, deallocvt_v5, fgconsole_v5, setfont_v5, kbd_mode_v5, loadkeys_v4, dumpkeys_v5, setkeycodes_v3, setkeycodes_v4, loadkeys_v5, setkeycodes_v5, dumpkeys_v6, showkey_v6, chvt_v6, openvt_v6, deallocvt_v6
+- v248.0 已推送: fgconsole_v6 WASM模块
+- 241个WASM模块已注册
+- kernel.elf: 7449216 bytes (7274KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3, dumpkeys_v4, setkeycodes_v2, showkey_v5, chvt_v5, openvt_v5, deallocvt_v5, fgconsole_v5, setfont_v5, kbd_mode_v5, loadkeys_v4, dumpkeys_v5, setkeycodes_v3, setkeycodes_v4, loadkeys_v5, setkeycodes_v5, dumpkeys_v6, showkey_v6, chvt_v6, openvt_v6, deallocvt_v6, fgconsole_v6
 
-## 任务: 创建fgconsole_v6 WASM模块
+## 任务: 创建setfont_v6 WASM模块
 
 系统工具:
-- fgconsole_v6: 显示前台虚拟终端（终极版v6）
-- 显示当前活动的虚拟终端编号
-- 支持 -v (verbose), -i (info), -s (status), -n (next), -p (previous), -a (active), -d (details) 标志
+- setfont_v6: 设置控制台字体（终极版v6）
+- 设置虚拟终端的显示字体
+- 支持 -f (font), -h (height), -w (width), -v (verbose), -i (info), -l (list), -d (default), -r (reset) 标志
 
-### 文件: modules/fgconsole_v6/src/main.c
+### 文件: modules/setfont_v6/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-输出模拟的前台控制台状态
+输出模拟的控制台字体设置状态
 
-### Makefile: 添加FGCONSOLE_V6_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在deallocvt_v6和ramdisk之间添加fgconsole_v6的.incbin段
-### kernel/wasm_host.c: 添加fgconsole_v6 externs, registry entry "fgconsole_v6", registry[241]初始化
+### Makefile: 添加SETFONT_V6_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在fgconsole_v6和ramdisk之间添加setfont_v6的.incbin段
+### kernel/wasm_host.c: 添加setfont_v6 externs, registry entry "setfont_v6", registry[242]初始化
 
 ### 提交:
-git commit -m "feat: add fgconsole_v6 WASM module for showing foreground console (v248.0)"
+git commit -m "feat: add setfont_v6 WASM module for setting console font (v249.0)"
