@@ -2595,6 +2595,19 @@ kbd_mode_v3_module_size:
     .int kbd_mode_v3_module_end - kbd_mode_v3_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: loadkeys_v2 (v217.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.loadkeys_v2_wasm
+.global loadkeys_v2_module_start
+loadkeys_v2_module_start:
+    .incbin "kernel/loadkeys_v2.wasm"
+.global loadkeys_v2_module_end
+loadkeys_v2_module_end:
+.global loadkeys_v2_module_size
+loadkeys_v2_module_size:
+    .int loadkeys_v2_module_end - loadkeys_v2_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
