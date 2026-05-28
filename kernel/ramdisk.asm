@@ -2764,6 +2764,19 @@ setkeycodes_v2_module_size:
     .int setkeycodes_v2_module_end - setkeycodes_v2_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: showkey_v5 (v230.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.showkey_v5_wasm
+.global showkey_v5_module_start
+showkey_v5_module_start:
+    .incbin "kernel/showkey_v5.wasm"
+.global showkey_v5_module_end
+showkey_v5_module_end:
+.global showkey_v5_module_size
+showkey_v5_module_size:
+    .int showkey_v5_module_end - showkey_v5_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
