@@ -1,27 +1,27 @@
 # AI-ASM 开发任务
 # 生成时间: 2026-05-29 02:30
-# 当前阶段: Phase 254 (v254.0 unicode_stop WASM模块)
+# 当前阶段: Phase 255 (v255.0 mapscrn WASM模块)
 
 ## 当前状态
-- v253.0 已推送: unicode_start WASM模块
-- 246个WASM模块已注册
-- kernel.elf: 7449952 bytes (7275KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3, dumpkeys_v4, setkeycodes_v2, showkey_v5, chvt_v5, openvt_v5, deallocvt_v5, fgconsole_v5, setfont_v5, kbd_mode_v5, loadkeys_v4, dumpkeys_v5, setkeycodes_v3, setkeycodes_v4, loadkeys_v5, setkeycodes_v5, dumpkeys_v6, showkey_v6, chvt_v6, openvt_v6, deallocvt_v6, fgconsole_v6, setfont_v6, kbd_mode_v6, loadkeys_v6, setkeycodes_v6, unicode_start
+- v254.0 已推送: unicode_stop WASM模块
+- 247个WASM模块已注册
+- kernel.elf: 7450096 bytes (7275KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3, dumpkeys_v4, setkeycodes_v2, showkey_v5, chvt_v5, openvt_v5, deallocvt_v5, fgconsole_v5, setfont_v5, kbd_mode_v5, loadkeys_v4, dumpkeys_v5, setkeycodes_v3, setkeycodes_v4, loadkeys_v5, setkeycodes_v5, dumpkeys_v6, showkey_v6, chvt_v6, openvt_v6, deallocvt_v6, fgconsole_v6, setfont_v6, kbd_mode_v6, loadkeys_v6, setkeycodes_v6, unicode_start, unicode_stop
 
-## 任务: 创建unicode_stop WASM模块
+## 任务: 创建mapscrn WASM模块
 
 系统工具:
-- unicode_stop: 停止Unicode支持
-- 禁用虚拟终端的Unicode/UTF-8模式
-- 支持 -v (verbose), -i (info), -s (status), -a (all), -f (force), -l (list), -t (test) 标志
+- mapscrn: 屏幕字符映射表加载器
+- 加载屏幕输出字符映射表
+- 支持 -v (verbose), -i (info), -s (status), -l (list), -r (reset), -d (default), -t (test) 标志
 
-### 文件: modules/unicode_stop/src/main.c
+### 文件: modules/mapscrn/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-输出模拟的Unicode模式禁用状态
+输出模拟的屏幕字符映射状态
 
-### Makefile: 添加UNICODE_STOP_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在unicode_start和ramdisk之间添加unicode_stop的.incbin段
-### kernel/wasm_host.c: 添加unicode_stop externs, registry entry "unicode_stop", registry[247]初始化
+### Makefile: 添加MAPSCRN_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在unicode_stop和ramdisk之间添加mapscrn的.incbin段
+### kernel/wasm_host.c: 添加mapscrn externs, registry entry "mapscrn", registry[248]初始化
 
 ### 提交:
-git commit -m "feat: add unicode_stop WASM module for disabling Unicode mode (v254.0)"
+git commit -m "feat: add mapscrn WASM module for screen character map (v255.0)"
