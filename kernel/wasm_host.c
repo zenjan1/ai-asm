@@ -662,6 +662,8 @@ extern const uint8_t deallocvt_v5_module_start[], deallocvt_v5_module_end[];
 extern const uint32_t deallocvt_v5_module_size;
 extern const uint8_t fgconsole_v5_module_start[], fgconsole_v5_module_end[];
 extern const uint32_t fgconsole_v5_module_size;
+extern const uint8_t setfont_v5_module_start[], setfont_v5_module_end[];
+extern const uint32_t setfont_v5_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -752,6 +754,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "openvt_v5",      NULL, 0 },
     { "deallocvt_v5",   NULL, 0 },
     { "fgconsole_v5",   NULL, 0 },
+    { "setfont_v5",     NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4947,6 +4950,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[226].wasm_size = deallocvt_v5_module_size;
     wasm_registry[227].wasm_bytes = fgconsole_v5_module_start;
     wasm_registry[227].wasm_size = fgconsole_v5_module_size;
+    wasm_registry[228].wasm_bytes = setfont_v5_module_start;
+    wasm_registry[228].wasm_size = setfont_v5_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
