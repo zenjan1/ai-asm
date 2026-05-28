@@ -712,6 +712,8 @@ extern const uint8_t deallocvt_v7_module_start[], deallocvt_v7_module_end[];
 extern const uint32_t deallocvt_v7_module_size;
 extern const uint8_t fgconsole_v7_module_start[], fgconsole_v7_module_end[];
 extern const uint32_t fgconsole_v7_module_size;
+extern const uint8_t kbd_mode_v7_module_start[], kbd_mode_v7_module_end[];
+extern const uint32_t kbd_mode_v7_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -827,6 +829,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "setmetamode", NULL, 0 },
     { "deallocvt_v7", NULL, 0 },
     { "fgconsole_v7", NULL, 0 },
+    { "kbd_mode_v7", NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -5072,6 +5075,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[251].wasm_size = deallocvt_v7_module_size;
     wasm_registry[252].wasm_bytes = fgconsole_v7_module_start;
     wasm_registry[252].wasm_size = fgconsole_v7_module_size;
+    wasm_registry[253].wasm_bytes = kbd_mode_v7_module_start;
+    wasm_registry[253].wasm_size = kbd_mode_v7_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
