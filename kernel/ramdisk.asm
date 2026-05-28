@@ -3063,6 +3063,19 @@ setkeycodes_v6_module_size:
     .int setkeycodes_v6_module_end - setkeycodes_v6_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: unicode_start (v253.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.unicode_start_wasm
+.global unicode_start_module_start
+unicode_start_module_start:
+    .incbin "kernel/unicode_start.wasm"
+.global unicode_start_module_end
+unicode_start_module_end:
+.global unicode_start_module_size
+unicode_start_module_size:
+    .int unicode_start_module_end - unicode_start_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
