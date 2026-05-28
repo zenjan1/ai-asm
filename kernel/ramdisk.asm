@@ -2894,6 +2894,19 @@ setkeycodes_v3_module_size:
     .int setkeycodes_v3_module_end - setkeycodes_v3_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: setkeycodes_v4 (v240.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.setkeycodes_v4_wasm
+.global setkeycodes_v4_module_start
+setkeycodes_v4_module_start:
+    .incbin "kernel/setkeycodes_v4.wasm"
+.global setkeycodes_v4_module_end
+setkeycodes_v4_module_end:
+.global setkeycodes_v4_module_size
+setkeycodes_v4_module_size:
+    .int setkeycodes_v4_module_end - setkeycodes_v4_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
