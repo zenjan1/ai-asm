@@ -3193,6 +3193,19 @@ openvt_v7_module_size:
     .int openvt_v7_module_end - openvt_v7_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: setfont_v7 (v263.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.setfont_v7_wasm
+.global setfont_v7_module_start
+setfont_v7_module_start:
+    .incbin "kernel/setfont_v7.wasm"
+.global setfont_v7_module_end
+setfont_v7_module_end:
+.global setfont_v7_module_size
+setfont_v7_module_size:
+    .int setfont_v7_module_end - setfont_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

@@ -718,6 +718,8 @@ extern const uint8_t loadkeys_v7_module_start[], loadkeys_v7_module_end[];
 extern const uint32_t loadkeys_v7_module_size;
 extern const uint8_t openvt_v7_module_start[], openvt_v7_module_end[];
 extern const uint32_t openvt_v7_module_size;
+extern const uint8_t setfont_v7_module_start[], setfont_v7_module_end[];
+extern const uint32_t setfont_v7_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -836,6 +838,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "kbd_mode_v7", NULL, 0 },
     { "loadkeys_v7", NULL, 0 },
     { "openvt_v7", NULL, 0 },
+    { "setfont_v7", NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -5087,6 +5090,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[254].wasm_size = loadkeys_v7_module_size;
     wasm_registry[255].wasm_bytes = openvt_v7_module_start;
     wasm_registry[255].wasm_size = openvt_v7_module_size;
+    wasm_registry[256].wasm_bytes = setfont_v7_module_start;
+    wasm_registry[256].wasm_size = setfont_v7_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
