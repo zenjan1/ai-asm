@@ -658,6 +658,8 @@ extern const uint8_t chvt_v5_module_start[], chvt_v5_module_end[];
 extern const uint32_t chvt_v5_module_size;
 extern const uint8_t openvt_v5_module_start[], openvt_v5_module_end[];
 extern const uint32_t openvt_v5_module_size;
+extern const uint8_t deallocvt_v5_module_start[], deallocvt_v5_module_end[];
+extern const uint32_t deallocvt_v5_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -746,6 +748,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "showkey_v5",     NULL, 0 },
     { "chvt_v5",        NULL, 0 },
     { "openvt_v5",      NULL, 0 },
+    { "deallocvt_v5",   NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4937,6 +4940,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[224].wasm_size = chvt_v5_module_size;
     wasm_registry[225].wasm_bytes = openvt_v5_module_start;
     wasm_registry[225].wasm_size = openvt_v5_module_size;
+    wasm_registry[226].wasm_bytes = deallocvt_v5_module_start;
+    wasm_registry[226].wasm_size = deallocvt_v5_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
