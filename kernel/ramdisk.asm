@@ -2582,6 +2582,19 @@ setfont_v3_module_size:
     .int setfont_v3_module_end - setfont_v3_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: kbd_mode_v3 (v216.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.kbd_mode_v3_wasm
+.global kbd_mode_v3_module_start
+kbd_mode_v3_module_start:
+    .incbin "kernel/kbd_mode_v3.wasm"
+.global kbd_mode_v3_module_end
+kbd_mode_v3_module_end:
+.global kbd_mode_v3_module_size
+kbd_mode_v3_module_size:
+    .int kbd_mode_v3_module_end - kbd_mode_v3_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
