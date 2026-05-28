@@ -2777,6 +2777,19 @@ showkey_v5_module_size:
     .int showkey_v5_module_end - showkey_v5_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: chvt_v5 (v231.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.chvt_v5_wasm
+.global chvt_v5_module_start
+chvt_v5_module_start:
+    .incbin "kernel/chvt_v5.wasm"
+.global chvt_v5_module_end
+chvt_v5_module_end:
+.global chvt_v5_module_size
+chvt_v5_module_size:
+    .int chvt_v5_module_end - chvt_v5_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
