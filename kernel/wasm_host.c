@@ -634,6 +634,8 @@ extern const uint8_t dumpkeys_v3_module_start[], dumpkeys_v3_module_end[];
 extern const uint32_t dumpkeys_v3_module_size;
 extern const uint8_t showkey_v4_module_start[], showkey_v4_module_end[];
 extern const uint32_t showkey_v4_module_size;
+extern const uint8_t chvt_v4_module_start[], chvt_v4_module_end[];
+extern const uint32_t chvt_v4_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -710,6 +712,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "dumpkeys_v2",    NULL, 0 },
     { "dumpkeys_v3",    NULL, 0 },
     { "showkey_v4",     NULL, 0 },
+    { "chvt_v4",        NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -4877,6 +4880,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[212].wasm_size = dumpkeys_v3_module_size;
     wasm_registry[213].wasm_bytes = showkey_v4_module_start;
     wasm_registry[213].wasm_size = showkey_v4_module_size;
+    wasm_registry[214].wasm_bytes = chvt_v4_module_start;
+    wasm_registry[214].wasm_size = chvt_v4_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
