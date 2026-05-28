@@ -3102,6 +3102,19 @@ mapscrn_module_size:
     .int mapscrn_module_end - mapscrn_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: loadunimap (v256.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.loadunimap_wasm
+.global loadunimap_module_start
+loadunimap_module_start:
+    .incbin "kernel/loadunimap.wasm"
+.global loadunimap_module_end
+loadunimap_module_end:
+.global loadunimap_module_size
+loadunimap_module_size:
+    .int loadunimap_module_end - loadunimap_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk

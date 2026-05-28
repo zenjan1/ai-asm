@@ -704,6 +704,8 @@ extern const uint8_t unicode_stop_module_start[], unicode_stop_module_end[];
 extern const uint32_t unicode_stop_module_size;
 extern const uint8_t mapscrn_module_start[], mapscrn_module_end[];
 extern const uint32_t mapscrn_module_size;
+extern const uint8_t loadunimap_module_start[], loadunimap_module_end[];
+extern const uint32_t loadunimap_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -815,6 +817,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "unicode_start", NULL, 0 },
     { "unicode_stop", NULL, 0 },
     { "mapscrn", NULL, 0 },
+    { "loadunimap", NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -5052,6 +5055,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[247].wasm_size = unicode_stop_module_size;
     wasm_registry[248].wasm_bytes = mapscrn_module_start;
     wasm_registry[248].wasm_size = mapscrn_module_size;
+    wasm_registry[249].wasm_bytes = loadunimap_module_start;
+    wasm_registry[249].wasm_size = loadunimap_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
