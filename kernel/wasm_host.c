@@ -700,6 +700,8 @@ extern const uint8_t setkeycodes_v6_module_start[], setkeycodes_v6_module_end[];
 extern const uint32_t setkeycodes_v6_module_size;
 extern const uint8_t unicode_start_module_start[], unicode_start_module_end[];
 extern const uint32_t unicode_start_module_size;
+extern const uint8_t unicode_stop_module_start[], unicode_stop_module_end[];
+extern const uint32_t unicode_stop_module_size;
 
 static wasm_registry_entry_t wasm_registry[] = {
     { "init",           NULL, 0 },
@@ -809,6 +811,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "loadkeys_v6", NULL, 0 },
     { "setkeycodes_v6", NULL, 0 },
     { "unicode_start", NULL, 0 },
+    { "unicode_stop", NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -5042,6 +5045,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[245].wasm_size = setkeycodes_v6_module_size;
     wasm_registry[246].wasm_bytes = unicode_start_module_start;
     wasm_registry[246].wasm_size = unicode_start_module_size;
+    wasm_registry[247].wasm_bytes = unicode_stop_module_start;
+    wasm_registry[247].wasm_size = unicode_stop_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

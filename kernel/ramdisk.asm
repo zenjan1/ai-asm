@@ -3076,6 +3076,19 @@ unicode_start_module_size:
     .int unicode_start_module_end - unicode_start_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: unicode_stop (v254.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.unicode_stop_wasm
+.global unicode_stop_module_start
+unicode_stop_module_start:
+    .incbin "kernel/unicode_stop.wasm"
+.global unicode_stop_module_end
+unicode_stop_module_end:
+.global unicode_stop_module_size
+unicode_stop_module_size:
+    .int unicode_stop_module_end - unicode_stop_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
