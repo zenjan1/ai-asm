@@ -1,27 +1,27 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-28 14:00
-# 当前阶段: Phase 228 (v228.0 dumpkeys_v4 WASM模块)
+# 生成时间: 2026-05-28 15:00
+# 当前阶段: Phase 229 (v229.0 setkeycodes_v2 WASM模块)
 
 ## 当前状态
-- v227.0 已推送: loadkeys_v3 WASM模块
-- 220个WASM模块已注册
-- kernel.elf: 7315120 bytes (7143KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3
+- v228.0 已推送: dumpkeys_v4 WASM模块
+- 221个WASM模块已注册
+- kernel.elf: 7315264 bytes (7143KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3, dumpkeys_v4
 
-## 任务: 创建dumpkeys_v4 WASM模块
+## 任务: 创建setkeycodes_v2 WASM模块
 
 系统工具:
-- dumpkeys_v4: 键盘映射导出器（增强版v4）
-- 模拟导出当前键盘映射表
-- 支持 -f (format), -l (level), -n (numeric) 标志
+- setkeycodes_v2: 键盘扫描码映射设置（增强版v2）
+- 模拟设置键盘扫描码到键码的映射
+- 支持 -l (list), -c (clear), -v (verbose) 标志
 
-### 文件: modules/dumpkeys_v4/src/main.c
+### 文件: modules/setkeycodes_v2/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-输出模拟的键盘映射导出内容
+输出模拟的扫描码映射设置状态
 
-### Makefile: 添加DUMPKEYS_V4_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在loadkeys_v3和ramdisk之间添加dumpkeys_v4的.incbin段
-### kernel/wasm_host.c: 添加dumpkeys_v4 externs, registry entry "dumpkeys_v4", registry[221]初始化
+### Makefile: 添加SETKEYCODES_V2_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在dumpkeys_v4和ramdisk之间添加setkeycodes_v2的.incbin段
+### kernel/wasm_host.c: 添加setkeycodes_v2 externs, registry entry "setkeycodes_v2", registry[222]初始化
 
 ### 提交:
-git commit -m "feat: add dumpkeys_v4 WASM module for keymap dumping (v228.0)"
+git commit -m "feat: add setkeycodes_v2 WASM module for scancode mapping (v229.0)"
