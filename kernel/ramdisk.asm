@@ -2998,6 +2998,19 @@ deallocvt_v6_module_size:
     .int deallocvt_v6_module_end - deallocvt_v6_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: fgconsole_v6 (v248.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.fgconsole_v6_wasm
+.global fgconsole_v6_module_start
+fgconsole_v6_module_start:
+    .incbin "kernel/fgconsole_v6.wasm"
+.global fgconsole_v6_module_end
+fgconsole_v6_module_end:
+.global fgconsole_v6_module_size
+fgconsole_v6_module_size:
+    .int fgconsole_v6_module_end - fgconsole_v6_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
