@@ -3128,6 +3128,19 @@ setmetamode_module_size:
     .int setmetamode_module_end - setmetamode_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: deallocvt_v7 (v258.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.deallocvt_v7_wasm
+.global deallocvt_v7_module_start
+deallocvt_v7_module_start:
+    .incbin "kernel/deallocvt_v7.wasm"
+.global deallocvt_v7_module_end
+deallocvt_v7_module_end:
+.global deallocvt_v7_module_size
+deallocvt_v7_module_size:
+    .int deallocvt_v7_module_end - deallocvt_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
