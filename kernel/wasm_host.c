@@ -776,6 +776,8 @@ extern const uint8_t setfont_v11_module_start[], setfont_v11_module_end[];
 extern const uint32_t setfont_v11_module_size;
 extern const uint8_t kbd_mode_v11_module_start[], kbd_mode_v11_module_end[];
 extern const uint32_t kbd_mode_v11_module_size;
+extern const uint8_t loadkeys_v12_module_start[], loadkeys_v12_module_end[];
+extern const uint32_t loadkeys_v12_module_size;
 extern const uint8_t loadkeys_v7_module_start[], loadkeys_v7_module_end[];
 extern const uint32_t loadkeys_v7_module_size;
 extern const uint8_t openvt_v7_module_start[], openvt_v7_module_end[];
@@ -940,6 +942,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "fgconsole_v11", NULL, 0 },
     { "setfont_v11", NULL, 0 },
     { "kbd_mode_v11", NULL, 0 },
+    { "loadkeys_v12", NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -5259,6 +5262,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[288].wasm_size = setfont_v11_module_size;
     wasm_registry[289].wasm_bytes = kbd_mode_v11_module_start;
     wasm_registry[289].wasm_size = kbd_mode_v11_module_size;
+    wasm_registry[290].wasm_bytes = loadkeys_v12_module_start;
+    wasm_registry[290].wasm_size = loadkeys_v12_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
