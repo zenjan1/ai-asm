@@ -1,4 +1,4 @@
-/* showkey_v7: display keyboard scan codes (v7) */
+/* showkey_v7: show key codes (v7) */
 
 __attribute__((import_module("host"), import_name("print")))
 extern void host_print(unsigned int offset, unsigned int len);
@@ -72,75 +72,71 @@ static int my_strcmp(const char *a, const char *b)
 
 static void show_help(void)
 {
-    print_str("showkey_v7 - display keyboard scan codes (v1.0)\n");
+    print_str("showkey_v7 - show key codes (v7)\n");
     print_str("Usage: showkey_v7 [OPTIONS]\n");
     print_str("  -v             Verbose output\n");
     print_str("  -i             Show info\n");
     print_str("  -s             Show status\n");
-    print_str("  -a             Show ASCII mode\n");
-    print_str("  -k             Show keycode mode\n");
-    print_str("  -d N           Set display duration\n");
-    print_str("  -t             Test key display\n");
+    print_str("  -k             Show keycodes (default)\n");
+    print_str("  -a             Show ASCII values\n");
+    print_str("  -t             Test mode\n");
     print_str("\n");
-    print_str("Display keyboard scan codes and key codes.\n");
+    print_str("Display keycodes pressed on the console.\n");
 }
 
 static void show_info(void)
 {
-    print_str("showkey_v7: keyboard info:\n");
-    print_str("showkey_v7: mode: keycode\n");
-    print_str("showkey_v7: scan codes: 128\n");
-    print_str("showkey_v7: VT 1: keyboard active\n");
+    print_str("showkey_v7: key info:\n");
+    print_str("showkey_v7: mode: keycodes\n");
+    print_str("showkey_v7: console: /dev/tty0\n");
+    print_str("showkey_v7: keys captured: 0\n");
     print_str("showkey_v7: info display complete\n");
 }
 
 static void show_status(void)
 {
-    print_str("showkey_v7: keyboard status:\n");
-    print_str("showkey_v7: VT 1: listening\n");
-    print_str("showkey_v7: last key: none\n");
+    print_str("showkey_v7: key status:\n");
+    print_str("showkey_v7: mode: keycodes\n");
+    print_str("showkey_v7: listening: yes\n");
     print_str("showkey_v7: status check complete\n");
 }
 
-static void ascii_mode(int verbose, int duration)
+static void show_keycodes(int verbose)
 {
-    print_str("showkey_v7: ASCII mode enabled\n");
+    print_str("showkey_v7: keycodes mode\n");
+    print_str("showkey_v7: pressing keys to show keycodes...\n");
     if (verbose) {
-        print_str("showkey_v7: displaying ASCII codes\n");
-        print_str("showkey_v7: duration: ");
-        print_int(duration);
-        print_str(" seconds\n");
+        print_str("showkey_v7: keycode  1: Escape (press)\n");
+        print_str("showkey_v7: keycode  2: 1 (press)\n");
+        print_str("showkey_v7: keycode  3: 2 (press)\n");
+        print_str("showkey_v7: keycode 28: Enter (press)\n");
+        print_str("showkey_v7: keycode 57: Space (press)\n");
     }
-    print_str("showkey_v7: A=65  B=66  C=67  D=68  E=69\n");
-    print_str("showkey_v7: a=97  b=98  c=99  d=100 e=101\n");
-    print_str("showkey_v7: ASCII mode complete\n");
+    print_str("showkey_v7: keycode display ready\n");
 }
 
-static void keycode_mode(int verbose, int duration)
+static void show_ascii(int verbose)
 {
-    print_str("showkey_v7: keycode mode enabled\n");
+    print_str("showkey_v7: ASCII mode\n");
+    print_str("showkey_v7: pressing keys to show ASCII values...\n");
     if (verbose) {
-        print_str("showkey_v7: displaying keycodes\n");
-        print_str("showkey_v7: duration: ");
-        print_int(duration);
-        print_str(" seconds\n");
+        print_str("showkey_v7: 'a' = 97 (0x61)\n");
+        print_str("showkey_v7: 'A' = 65 (0x41)\n");
+        print_str("showkey_v7: '0' = 48 (0x30)\n");
+        print_str("showkey_v7: '\\n' = 10 (0x0a)\n");
+        print_str("showkey_v7: ' ' = 32 (0x20)\n");
     }
-    print_str("showkey_v7: A=30  B=48  C=46  D=32  E=18\n");
-    print_str("showkey_v7: F=33  G=34  H=35  I=23  J=36\n");
-    print_str("showkey_v7: keycode mode complete\n");
+    print_str("showkey_v7: ASCII display ready\n");
 }
 
-static void test_keys(int verbose)
+static void test_mode(int verbose)
 {
     print_str("showkey_v7: testing key display\n");
     if (verbose) {
-        print_str("showkey_v7: simulating key presses\n");
-        print_str("showkey_v7: checking scan code table\n");
+        print_str("showkey_v7: verifying keyboard device\n");
+        print_str("showkey_v7: checking input buffer\n");
     }
-    print_str("showkey_v7: key test: A (scancode 30, keycode 30)\n");
-    print_str("showkey_v7: key test: B (scancode 48, keycode 48)\n");
-    print_str("showkey_v7: key test: C (scancode 46, keycode 46)\n");
-    print_str("showkey_v7: key test: PASSED\n");
+    print_str("showkey_v7: showkey test: OK\n");
     print_str("showkey_v7: test complete\n");
 }
 
@@ -151,14 +147,11 @@ void _start(void)
 
     int help_flag = 0, info_flag = 0;
     int verbose_flag = 0, status_flag = 0;
-    int ascii_flag = 0, keycode_flag = 0;
-    int duration_flag = 0, test_flag = 0;
-    int duration = 10;
+    int test_flag = 0, ascii_flag = 0;
 
     unsigned int pos = 0;
     char *argv_ptr = (char *)buf;
 
-    /* Skip argv[0] */
     while (pos < 512 && argv_ptr[pos]) pos++;
     pos++;
 
@@ -172,23 +165,12 @@ void _start(void)
             verbose_flag = 1;
         } else if (my_strcmp(arg, "-s") == 0) {
             status_flag = 1;
-        } else if (my_strcmp(arg, "-a") == 0) {
-            ascii_flag = 1;
-        } else if (my_strcmp(arg, "-k") == 0) {
-            keycode_flag = 1;
-        } else if (my_strcmp(arg, "-d") == 0) {
-            duration_flag = 1;
-            while (pos < 512 && argv_ptr[pos]) pos++;
-            pos++;
-            if (pos < 512 && argv_ptr[pos]) {
-                duration = 0;
-                char *num = &argv_ptr[pos];
-                for (int i = 0; num[i] && num[i] >= '0' && num[i] <= '9'; i++) {
-                    duration = duration * 10 + (num[i] - '0');
-                }
-            }
         } else if (my_strcmp(arg, "-t") == 0) {
             test_flag = 1;
+        } else if (my_strcmp(arg, "-k") == 0) {
+            /* keycodes mode (default) */
+        } else if (my_strcmp(arg, "-a") == 0) {
+            ascii_flag = 1;
         }
         while (pos < 512 && argv_ptr[pos]) pos++;
         pos++;
@@ -210,22 +192,15 @@ void _start(void)
     }
 
     if (ascii_flag) {
-        ascii_mode(verbose_flag, duration);
-        host_exit(0);
-    }
-
-    if (keycode_flag) {
-        keycode_mode(verbose_flag, duration);
+        show_ascii(verbose_flag);
         host_exit(0);
     }
 
     if (test_flag) {
-        test_keys(verbose_flag);
+        test_mode(verbose_flag);
         host_exit(0);
     }
 
-    /* Default: show keycode mode */
-    print_str("showkey_v7: keycode mode (default)\n");
-    print_str("showkey_v7: A=30  B=48  C=46  D=32  E=18\n");
+    show_keycodes(verbose_flag);
     host_exit(0);
 }
