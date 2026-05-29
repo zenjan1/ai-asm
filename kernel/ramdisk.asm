@@ -3232,6 +3232,19 @@ chvt_v7_module_size:
     .int chvt_v7_module_end - chvt_v7_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: deallocvt_v8 (v266.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.deallocvt_v8_wasm
+.global deallocvt_v8_module_start
+deallocvt_v8_module_start:
+    .incbin "kernel/deallocvt_v8.wasm"
+.global deallocvt_v8_module_end
+deallocvt_v8_module_end:
+.global deallocvt_v8_module_size
+deallocvt_v8_module_size:
+    .int deallocvt_v8_module_end - deallocvt_v8_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
