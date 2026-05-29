@@ -3453,6 +3453,19 @@ unicode_start_v8_module_size:
     .int unicode_start_v8_module_end - unicode_start_v8_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: unicode_stop_v7 (v364.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.unicode_stop_v7_wasm
+.global unicode_stop_v7_module_start
+unicode_stop_v7_module_start:
+    .incbin "kernel/unicode_stop_v7.wasm"
+.global unicode_stop_v7_module_end
+unicode_stop_v7_module_end:
+.global unicode_stop_v7_module_size
+unicode_stop_v7_module_size:
+    .int unicode_stop_v7_module_end - unicode_stop_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * WASM module: unicode_stop_v8 (v281.0)
  * --------------------------------------------------------------------------- */
 .section .rodata.unicode_stop_v8_wasm
