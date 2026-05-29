@@ -736,6 +736,8 @@ extern const uint8_t mapscrn_v8_module_start[], mapscrn_v8_module_end[];
 extern const uint32_t mapscrn_v8_module_size;
 extern const uint8_t loadunimap_v8_module_start[], loadunimap_v8_module_end[];
 extern const uint32_t loadunimap_v8_module_size;
+extern const uint8_t setmetamode_v8_module_start[], setmetamode_v8_module_end[];
+extern const uint32_t setmetamode_v8_module_size;
 extern const uint8_t loadkeys_v7_module_start[], loadkeys_v7_module_end[];
 extern const uint32_t loadkeys_v7_module_size;
 extern const uint8_t openvt_v7_module_start[], openvt_v7_module_end[];
@@ -880,6 +882,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "dumpkeys_v8", NULL, 0 },
     { "mapscrn_v8", NULL, 0 },
     { "loadunimap_v8", NULL, 0 },
+    { "setmetamode_v8", NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -5159,6 +5162,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[268].wasm_size = mapscrn_v8_module_size;
     wasm_registry[269].wasm_bytes = loadunimap_v8_module_start;
     wasm_registry[269].wasm_size = loadunimap_v8_module_size;
+    wasm_registry[270].wasm_bytes = setmetamode_v8_module_start;
+    wasm_registry[270].wasm_size = setmetamode_v8_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
