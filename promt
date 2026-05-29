@@ -1,3 +1,3 @@
-创建kbd_mode_v10 WASM模块，显示/设置键盘模式。包含选项：-v (verbose), -i (info), -s (status), -m (mode: default, unicode, raw), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/kbd_mode_v10/kbd_mode_v10.wasm modules/kbd_mode_v10/src/main.c
+创建loadkeys_v11 WASM模块，加载键盘映射表。包含选项：-v (verbose), -i (info), -s (status), -c (charset: unicode, utf-8, iso-8859-1), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/loadkeys_v11/loadkeys_v11.wasm modules/loadkeys_v11/src/main.c
 
-commit message: "feat: add kbd_mode_v10 WASM module for keyboard mode configuration (v292.0)"
+commit message: "feat: add loadkeys_v11 WASM module for keyboard map loading (v293.0)"
