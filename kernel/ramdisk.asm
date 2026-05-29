@@ -3219,6 +3219,19 @@ showkey_v7_module_size:
     .int showkey_v7_module_end - showkey_v7_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: chvt_v7 (v265.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.chvt_v7_wasm
+.global chvt_v7_module_start
+chvt_v7_module_start:
+    .incbin "kernel/chvt_v7.wasm"
+.global chvt_v7_module_end
+chvt_v7_module_end:
+.global chvt_v7_module_size
+chvt_v7_module_size:
+    .int chvt_v7_module_end - chvt_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
