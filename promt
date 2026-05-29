@@ -1,3 +1,3 @@
-创建unicode_stop_v12 WASM模块，停止Unicode模式。包含选项：-v (verbose), -i (info), -s (status), -r (restore), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/unicode_stop_v12/unicode_stop_v12.wasm modules/unicode_stop_v12/src/main.c
+创建loadunimap_v12 WASM模块，加载Unicode映射表。包含选项：-v (verbose), -i (info), -s (status), -f file (map file), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/loadunimap_v12/loadunimap_v12.wasm modules/loadunimap_v12/src/main.c
 
-commit message: "feat: add unicode_stop_v12 WASM module for Unicode mode deactivation (v308.0)"
+commit message: "feat: add loadunimap_v12 WASM module for Unicode map loading (v310.0)"
