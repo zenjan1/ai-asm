@@ -3705,6 +3705,16 @@ setkeycodes_v12_module_end:
 setkeycodes_v12_module_size:
     .int setkeycodes_v12_module_end - setkeycodes_v12_module_start
 
+.section .rodata.dumpkeys_v15_wasm
+.global dumpkeys_v15_module_start
+dumpkeys_v15_module_start:
+    .incbin "kernel/dumpkeys_v15.wasm"
+.global dumpkeys_v15_module_end
+dumpkeys_v15_module_end:
+.global dumpkeys_v15_module_size
+dumpkeys_v15_module_size:
+    .int dumpkeys_v15_module_end - dumpkeys_v15_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
