@@ -257,6 +257,19 @@ wc_module_size:
     .int wc_module_end - wc_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: wc_v7 (v370.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.wc_v7_wasm
+.global wc_v7_module_start
+wc_v7_module_start:
+    .incbin "kernel/wc_v7.wasm"
+.global wc_v7_module_end
+wc_v7_module_end:
+.global wc_v7_module_size
+wc_v7_module_size:
+    .int wc_v7_module_end - wc_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * Head module
  * --------------------------------------------------------------------------- */
 .section .rodata.head_wasm

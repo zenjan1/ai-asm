@@ -242,6 +242,8 @@ extern const uint8_t tee_module_start[], tee_module_end[];
 extern const uint32_t tee_module_size;
 extern const uint8_t wc_module_start[], wc_module_end[];
 extern const uint32_t wc_module_size;
+extern const uint8_t wc_v7_module_start[], wc_v7_module_end[];
+extern const uint32_t wc_v7_module_size;
 extern const uint8_t head_module_start[], head_module_end[];
 extern const uint32_t head_module_size;
 extern const uint8_t tail_module_start[], tail_module_end[];
@@ -1058,6 +1060,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "echo",           NULL, 0 },
     { "tee",            NULL, 0 },
     { "wc",             NULL, 0 },
+    { "wc_v7",          NULL, 0 },
     { "head",           NULL, 0 },
     { "tail",           NULL, 0 },
     { "sort",           NULL, 0 },
@@ -5429,6 +5432,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[322].wasm_size = cat_v7_module_size;
     wasm_registry[323].wasm_bytes = date_v7_module_start;
     wasm_registry[323].wasm_size = date_v7_module_size;
+    wasm_registry[324].wasm_bytes = wc_v7_module_start;
+    wasm_registry[324].wasm_size = wc_v7_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
