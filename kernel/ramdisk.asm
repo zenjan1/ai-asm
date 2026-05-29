@@ -3635,6 +3635,16 @@ fgconsole_v12_module_end:
 fgconsole_v12_module_size:
     .int fgconsole_v12_module_end - fgconsole_v12_module_start
 
+.section .rodata.kbd_mode_v12_wasm
+.global kbd_mode_v12_module_start
+kbd_mode_v12_module_start:
+    .incbin "kernel/kbd_mode_v12.wasm"
+.global kbd_mode_v12_module_end
+kbd_mode_v12_module_end:
+.global kbd_mode_v12_module_size
+kbd_mode_v12_module_size:
+    .int kbd_mode_v12_module_end - kbd_mode_v12_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
