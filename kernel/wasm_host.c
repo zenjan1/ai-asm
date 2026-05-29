@@ -254,6 +254,8 @@ extern const uint8_t sort_module_start[], sort_module_end[];
 extern const uint32_t sort_module_size;
 extern const uint8_t uniq_module_start[], uniq_module_end[];
 extern const uint32_t uniq_module_size;
+extern const uint8_t uniq_v7_module_start[], uniq_v7_module_end[];
+extern const uint32_t uniq_v7_module_size;
 extern const uint8_t tr_module_start[], tr_module_end[];
 extern const uint32_t tr_module_size;
 extern const uint8_t cut_module_start[], cut_module_end[];
@@ -1068,6 +1070,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "tail_v7",        NULL, 0 },
     { "sort",           NULL, 0 },
     { "uniq",           NULL, 0 },
+    { "uniq_v7",        NULL, 0 },
     { "tr",             NULL, 0 },
     { "cut",            NULL, 0 },
     { "sed",            NULL, 0 },
@@ -5439,6 +5442,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[324].wasm_size = wc_v7_module_size;
     wasm_registry[325].wasm_bytes = tail_v7_module_start;
     wasm_registry[325].wasm_size = tail_v7_module_size;
+    wasm_registry[326].wasm_bytes = uniq_v7_module_start;
+    wasm_registry[326].wasm_size = uniq_v7_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

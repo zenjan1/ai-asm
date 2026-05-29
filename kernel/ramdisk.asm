@@ -339,6 +339,19 @@ uniq_module_size:
     .int uniq_module_end - uniq_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: uniq_v7 (v374.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.uniq_v7_wasm
+.global uniq_v7_module_start
+uniq_v7_module_start:
+    .incbin "kernel/uniq_v7.wasm"
+.global uniq_v7_module_end
+uniq_v7_module_end:
+.global uniq_v7_module_size
+uniq_v7_module_size:
+    .int uniq_v7_module_end - uniq_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * Tr module
  * --------------------------------------------------------------------------- */
 .section .rodata.tr_wasm
