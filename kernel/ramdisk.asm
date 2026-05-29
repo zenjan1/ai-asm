@@ -3323,6 +3323,19 @@ showkey_v8_module_size:
     .int showkey_v8_module_end - showkey_v8_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: setkeycodes_v8 (v273.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.setkeycodes_v8_wasm
+.global setkeycodes_v8_module_start
+setkeycodes_v8_module_start:
+    .incbin "kernel/setkeycodes_v8.wasm"
+.global setkeycodes_v8_module_end
+setkeycodes_v8_module_end:
+.global setkeycodes_v8_module_size
+setkeycodes_v8_module_size:
+    .int setkeycodes_v8_module_end - setkeycodes_v8_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
