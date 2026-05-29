@@ -3805,6 +3805,16 @@ kbd_mode_v15_module_end:
 kbd_mode_v15_module_size:
     .int kbd_mode_v15_module_end - kbd_mode_v15_module_start
 
+.section .rodata.fgconsole_v15_wasm
+.global fgconsole_v15_module_start
+fgconsole_v15_module_start:
+    .incbin "kernel/fgconsole_v15.wasm"
+.global fgconsole_v15_module_end
+fgconsole_v15_module_end:
+.global fgconsole_v15_module_size
+fgconsole_v15_module_size:
+    .int fgconsole_v15_module_end - fgconsole_v15_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
