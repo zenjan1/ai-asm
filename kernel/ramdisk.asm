@@ -3765,6 +3765,16 @@ setfont_v13_module_end:
 setfont_v13_module_size:
     .int setfont_v13_module_end - setfont_v13_module_start
 
+.section .rodata.kbd_mode_v14_wasm
+.global kbd_mode_v14_module_start
+kbd_mode_v14_module_start:
+    .incbin "kernel/kbd_mode_v14.wasm"
+.global kbd_mode_v14_module_end
+kbd_mode_v14_module_end:
+.global kbd_mode_v14_module_size
+kbd_mode_v14_module_size:
+    .int kbd_mode_v14_module_end - kbd_mode_v14_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
