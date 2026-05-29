@@ -3414,6 +3414,19 @@ unicode_stop_v8_module_size:
     .int unicode_stop_v8_module_end - unicode_stop_v8_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: loadkeys_v9 (v282.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.loadkeys_v9_wasm
+.global loadkeys_v9_module_start
+loadkeys_v9_module_start:
+    .incbin "kernel/loadkeys_v9.wasm"
+.global loadkeys_v9_module_end
+loadkeys_v9_module_end:
+.global loadkeys_v9_module_size
+loadkeys_v9_module_size:
+    .int loadkeys_v9_module_end - loadkeys_v9_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
