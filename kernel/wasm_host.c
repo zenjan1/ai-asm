@@ -786,6 +786,8 @@ extern const uint8_t fgconsole_v12_module_start[], fgconsole_v12_module_end[];
 extern const uint32_t fgconsole_v12_module_size;
 extern const uint8_t kbd_mode_v12_module_start[], kbd_mode_v12_module_end[];
 extern const uint32_t kbd_mode_v12_module_size;
+extern const uint8_t dumpkeys_v13_module_start[], dumpkeys_v13_module_end[];
+extern const uint32_t dumpkeys_v13_module_size;
 extern const uint8_t loadkeys_v7_module_start[], loadkeys_v7_module_end[];
 extern const uint32_t loadkeys_v7_module_size;
 extern const uint8_t openvt_v7_module_start[], openvt_v7_module_end[];
@@ -955,6 +957,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "deallocvt_v12", NULL, 0 },
     { "fgconsole_v12", NULL, 0 },
     { "kbd_mode_v12", NULL, 0 },
+    { "dumpkeys_v13", NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -5284,6 +5287,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[293].wasm_size = fgconsole_v12_module_size;
     wasm_registry[294].wasm_bytes = kbd_mode_v12_module_start;
     wasm_registry[294].wasm_size = kbd_mode_v12_module_size;
+    wasm_registry[295].wasm_bytes = dumpkeys_v13_module_start;
+    wasm_registry[295].wasm_size = dumpkeys_v13_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

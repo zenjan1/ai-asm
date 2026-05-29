@@ -3645,6 +3645,16 @@ kbd_mode_v12_module_end:
 kbd_mode_v12_module_size:
     .int kbd_mode_v12_module_end - kbd_mode_v12_module_start
 
+.section .rodata.dumpkeys_v13_wasm
+.global dumpkeys_v13_module_start
+dumpkeys_v13_module_start:
+    .incbin "kernel/dumpkeys_v13.wasm"
+.global dumpkeys_v13_module_end
+dumpkeys_v13_module_end:
+.global dumpkeys_v13_module_size
+dumpkeys_v13_module_size:
+    .int dumpkeys_v13_module_end - dumpkeys_v13_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
