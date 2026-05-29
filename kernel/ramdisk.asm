@@ -202,6 +202,19 @@ cat_module_size:
     .int cat_module_end - cat_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: cat_v7 (v366.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.cat_v7_wasm
+.global cat_v7_module_start
+cat_v7_module_start:
+    .incbin "kernel/cat_v7.wasm"
+.global cat_v7_module_end
+cat_v7_module_end:
+.global cat_v7_module_size
+cat_v7_module_size:
+    .int cat_v7_module_end - cat_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * Echo module
  * --------------------------------------------------------------------------- */
 .section .rodata.echo_wasm

@@ -234,6 +234,8 @@ extern const uint8_t grep_module_start[], grep_module_end[];
 extern const uint32_t grep_module_size;
 extern const uint8_t cat_module_start[], cat_module_end[];
 extern const uint32_t cat_module_size;
+extern const uint8_t cat_v7_module_start[], cat_v7_module_end[];
+extern const uint32_t cat_v7_module_size;
 extern const uint8_t echo_module_start[], echo_module_end[];
 extern const uint32_t echo_module_size;
 extern const uint8_t tee_module_start[], tee_module_end[];
@@ -1049,6 +1051,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "shmem_test",     NULL, 0 },
     { "grep",           NULL, 0 },
     { "cat",            NULL, 0 },
+    { "cat_v7",         NULL, 0 },
     { "echo",           NULL, 0 },
     { "tee",            NULL, 0 },
     { "wc",             NULL, 0 },
@@ -5419,6 +5422,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[320].wasm_size = setmetamode_v7_module_size;
     wasm_registry[321].wasm_bytes = unicode_stop_v7_module_start;
     wasm_registry[321].wasm_size = unicode_stop_v7_module_size;
+    wasm_registry[322].wasm_bytes = cat_v7_module_start;
+    wasm_registry[322].wasm_size = cat_v7_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
