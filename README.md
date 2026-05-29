@@ -2,7 +2,7 @@
 
 Pure AArch64 assembly WASM-native operating system for QEMU virt.
 
-**298 WASM modules** · 7653976 bytes kernel · v309.0
+**299 WASM modules** · 7654136 bytes kernel · v311.0
 
 ## Features
 
@@ -15,7 +15,7 @@ Pure AArch64 assembly WASM-native operating system for QEMU virt.
 - GUI window manager with Z-order compositing (up to 16 windows)
 - WebAssembly runtime via Wasm3 with multi-module support
 - Integration test suite (FS / NET / GUI / CORE)
-- **298 WASM modules** · 7653976 bytes kernel · v309.0
+- **299 WASM modules** · 7654136 bytes kernel · v311.0
 
 ## Three-Layer Architecture
 
@@ -48,7 +48,7 @@ make && make run
 
 ## Available WASM Modules
 
-### System: init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3, dumpkeys_v4, setkeycodes_v2, showkey_v5, chvt_v5, openvt_v5, deallocvt_v5, fgconsole_v5, setfont_v5, kbd_mode_v5, loadkeys_v4, dumpkeys_v5, setkeycodes_v3, setkeycodes_v4, loadkeys_v5, setkeycodes_v5, dumpkeys_v6, showkey_v6, chvt_v6, openvt_v6, deallocvt_v6, fgconsole_v6, setfont_v6, kbd_mode_v6, loadkeys_v6, setkeycodes_v6, unicode_start, unicode_stop, mapscrn, loadunimap, setmetamode, deallocvt_v7, fgconsole_v7, kbd_mode_v7, loadkeys_v7, openvt_v7, setfont_v7, showkey_v7, chvt_v7, deallocvt_v8, fgconsole_v8, kbd_mode_v8, loadkeys_v8, openvt_v8, setfont_v8, showkey_v8, setkeycodes_v8, dumpkeys_v8, mapscrn_v8, loadunimap_v8, setmetamode_v8, unicode_start_v8, unicode_stop_v8, loadkeys_v9, openvt_v9, deallocvt_v9, fgconsole_v9, kbd_mode_v9, loadkeys_v10, openvt_v10, deallocvt_v10, fgconsole_v10, setfont_v10, kbd_mode_v10, loadkeys_v11, openvt_v11, deallocvt_v11, fgconsole_v11, setfont_v11, kbd_mode_v11, loadkeys_v12, openvt_v12, deallocvt_v12, fgconsole_v12, kbd_mode_v12, dumpkeys_v13, unicode_start_v12, mapscrn_v12
+### System: init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3, dumpkeys_v4, setkeycodes_v2, showkey_v5, chvt_v5, openvt_v5, deallocvt_v5, fgconsole_v5, setfont_v5, kbd_mode_v5, loadkeys_v4, dumpkeys_v5, setkeycodes_v3, setkeycodes_v4, loadkeys_v5, setkeycodes_v5, dumpkeys_v6, showkey_v6, chvt_v6, openvt_v6, deallocvt_v6, fgconsole_v6, setfont_v6, kbd_mode_v6, loadkeys_v6, setkeycodes_v6, unicode_start, unicode_stop, mapscrn, loadunimap, setmetamode, deallocvt_v7, fgconsole_v7, kbd_mode_v7, loadkeys_v7, openvt_v7, setfont_v7, showkey_v7, chvt_v7, deallocvt_v8, fgconsole_v8, kbd_mode_v8, loadkeys_v8, openvt_v8, setfont_v8, showkey_v8, setkeycodes_v8, dumpkeys_v8, mapscrn_v8, loadunimap_v8, setmetamode_v8, unicode_start_v8, unicode_stop_v8, loadkeys_v9, openvt_v9, deallocvt_v9, fgconsole_v9, kbd_mode_v9, loadkeys_v10, openvt_v10, deallocvt_v10, fgconsole_v10, setfont_v10, kbd_mode_v10, loadkeys_v11, openvt_v11, deallocvt_v11, fgconsole_v11, setfont_v11, kbd_mode_v11, loadkeys_v12, openvt_v12, deallocvt_v12, fgconsole_v12, kbd_mode_v12, dumpkeys_v13, unicode_start_v12, mapscrn_v12, setmetamode_v12
 ### File: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt
 ### Info: ls, pwd, env, id, uptime, whoami, hostname, uname, date, awk, df, free, ps, kill, tty, who, stty, tput, readlink, mount, umount
 ### Calendar/Time: date, cal

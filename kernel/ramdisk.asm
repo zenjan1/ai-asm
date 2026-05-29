@@ -3675,6 +3675,16 @@ mapscrn_v12_module_end:
 mapscrn_v12_module_size:
     .int mapscrn_v12_module_end - mapscrn_v12_module_start
 
+.section .rodata.setmetamode_v12_wasm
+.global setmetamode_v12_module_start
+setmetamode_v12_module_start:
+    .incbin "kernel/setmetamode_v12.wasm"
+.global setmetamode_v12_module_end
+setmetamode_v12_module_end:
+.global setmetamode_v12_module_size
+setmetamode_v12_module_size:
+    .int setmetamode_v12_module_end - setmetamode_v12_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
