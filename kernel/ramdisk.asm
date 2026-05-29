@@ -3297,6 +3297,19 @@ openvt_v8_module_size:
     .int openvt_v8_module_end - openvt_v8_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: setfont_v8 (v271.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.setfont_v8_wasm
+.global setfont_v8_module_start
+setfont_v8_module_start:
+    .incbin "kernel/setfont_v8.wasm"
+.global setfont_v8_module_end
+setfont_v8_module_end:
+.global setfont_v8_module_size
+setfont_v8_module_size:
+    .int setfont_v8_module_end - setfont_v8_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
