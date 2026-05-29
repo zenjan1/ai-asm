@@ -1,3 +1,3 @@
-创建deallocvt_v13 WASM模块，释放指定虚拟终端。包含选项：-v (verbose), -i (info), -s (status), -n NUM (VT number), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/deallocvt_v13/deallocvt_v13.wasm modules/deallocvt_v13/src/main.c
+创建kbd_mode_v13 WASM模块，显示/设置键盘模式。包含选项：-v (verbose), -i (info), -s (status), -m mode (default/unicode/raw), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/kbd_mode_v13/kbd_mode_v13.wasm modules/kbd_mode_v13/src/main.c
 
-commit message: "feat: add deallocvt_v13 WASM module for VT deallocation (v322.0)"
+commit message: "feat: add kbd_mode_v13 WASM module for keyboard mode (v323.0)"

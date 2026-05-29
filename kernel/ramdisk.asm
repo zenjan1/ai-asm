@@ -3735,6 +3735,16 @@ openvt_v13_module_end:
 openvt_v13_module_size:
     .int openvt_v13_module_end - openvt_v13_module_start
 
+.section .rodata.kbd_mode_v13_wasm
+.global kbd_mode_v13_module_start
+kbd_mode_v13_module_start:
+    .incbin "kernel/kbd_mode_v13.wasm"
+.global kbd_mode_v13_module_end
+kbd_mode_v13_module_end:
+.global kbd_mode_v13_module_size
+kbd_mode_v13_module_size:
+    .int kbd_mode_v13_module_end - kbd_mode_v13_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
