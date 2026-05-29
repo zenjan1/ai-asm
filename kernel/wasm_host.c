@@ -790,6 +790,8 @@ extern const uint8_t dumpkeys_v13_module_start[], dumpkeys_v13_module_end[];
 extern const uint32_t dumpkeys_v13_module_size;
 extern const uint8_t unicode_start_v12_module_start[], unicode_start_v12_module_end[];
 extern const uint32_t unicode_start_v12_module_size;
+extern const uint8_t mapscrn_v12_module_start[], mapscrn_v12_module_end[];
+extern const uint32_t mapscrn_v12_module_size;
 extern const uint8_t loadkeys_v7_module_start[], loadkeys_v7_module_end[];
 extern const uint32_t loadkeys_v7_module_size;
 extern const uint8_t openvt_v7_module_start[], openvt_v7_module_end[];
@@ -961,6 +963,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "kbd_mode_v12", NULL, 0 },
     { "dumpkeys_v13", NULL, 0 },
     { "unicode_start_v12", NULL, 0 },
+    { "mapscrn_v12", NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -5294,6 +5297,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[295].wasm_size = dumpkeys_v13_module_size;
     wasm_registry[296].wasm_bytes = unicode_start_v12_module_start;
     wasm_registry[296].wasm_size = unicode_start_v12_module_size;
+    wasm_registry[297].wasm_bytes = mapscrn_v12_module_start;
+    wasm_registry[297].wasm_size = mapscrn_v12_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);

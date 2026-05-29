@@ -3665,6 +3665,16 @@ unicode_start_v12_module_end:
 unicode_start_v12_module_size:
     .int unicode_start_v12_module_end - unicode_start_v12_module_start
 
+.section .rodata.mapscrn_v12_wasm
+.global mapscrn_v12_module_start
+mapscrn_v12_module_start:
+    .incbin "kernel/mapscrn_v12.wasm"
+.global mapscrn_v12_module_end
+mapscrn_v12_module_end:
+.global mapscrn_v12_module_size
+mapscrn_v12_module_size:
+    .int mapscrn_v12_module_end - mapscrn_v12_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
