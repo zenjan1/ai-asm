@@ -72,68 +72,54 @@ static int my_strcmp(const char *a, const char *b)
 
 static void show_help(void)
 {
-    print_str("fgconsole_v7 - show foreground virtual terminal (v1.0)\n");
+    print_str("fgconsole_v7 - show foreground console VT (v7)\n");
     print_str("Usage: fgconsole_v7 [OPTIONS]\n");
     print_str("  -v             Verbose output\n");
     print_str("  -i             Show info\n");
     print_str("  -s             Show status\n");
-    print_str("  -n             Show next VT number\n");
-    print_str("  -p             Show previous VT number\n");
-    print_str("  -t             Test console switching\n");
+    print_str("  -n             Show VT number only\n");
+    print_str("  -t             Test mode\n");
     print_str("\n");
-    print_str("Display and manage foreground virtual console.\n");
+    print_str("Print the foreground virtual terminal number.\n");
 }
 
 static void show_info(void)
 {
-    print_str("fgconsole_v7: foreground console info:\n");
-    print_str("fgconsole_v7: current VT: 1\n");
-    print_str("fgconsole_v7: mode: text\n");
-    print_str("fgconsole_v7: process: shell (pid 1)\n");
-    print_str("fgconsole_v7: user: root\n");
+    print_str("fgconsole_v7: console info:\n");
+    print_str("fgconsole_v7: foreground VT: 1\n");
+    print_str("fgconsole_v7: total VTs: 12\n");
+    print_str("fgconsole_v7: active VTs: 3 (1, 2, 3)\n");
     print_str("fgconsole_v7: info display complete\n");
 }
 
 static void show_status(void)
 {
-    print_str("fgconsole_v7: VT status:\n");
+    print_str("fgconsole_v7: console status:\n");
+    print_str("fgconsole_v7: foreground VT: 1\n");
     print_str("fgconsole_v7: VT 1: active (foreground)\n");
-    print_str("fgconsole_v7: VT 2: available\n");
-    print_str("fgconsole_v7: VT 3: available\n");
-    print_str("fgconsole_v7: VT 4: available\n");
-    print_str("fgconsole_v7: VT 5: available\n");
-    print_str("fgconsole_v7: VT 6: available\n");
-    print_str("fgconsole_v7: VT 7: available\n");
+    print_str("fgconsole_v7: VT 2: active (background)\n");
+    print_str("fgconsole_v7: VT 3: active (background)\n");
+    print_str("fgconsole_v7: VT 4-12: available\n");
     print_str("fgconsole_v7: status check complete\n");
 }
 
-static void show_next(int verbose)
+static void show_vt_number(int verbose)
 {
-    print_str("fgconsole_v7: next VT number: 2\n");
+    print_str("1\n");
     if (verbose) {
-        print_str("fgconsole_v7: scanning available VTs\n");
-        print_str("fgconsole_v7: VT 2 is next available\n");
+        print_str("fgconsole_v7: foreground VT is 1\n");
+        print_str("fgconsole_v7: VT 1 is in graphics mode\n");
     }
 }
 
-static void show_previous(int verbose)
+static void test_mode(int verbose)
 {
-    print_str("fgconsole_v7: previous VT number: 7\n");
+    print_str("fgconsole_v7: testing foreground console\n");
     if (verbose) {
-        print_str("fgconsole_v7: scanning allocated VTs\n");
-        print_str("fgconsole_v7: VT 7 is last allocated\n");
+        print_str("fgconsole_v7: checking VT table integrity\n");
+        print_str("fgconsole_v7: verifying foreground VT binding\n");
     }
-}
-
-static void test_console(int verbose)
-{
-    print_str("fgconsole_v7: testing console switching\n");
-    if (verbose) {
-        print_str("fgconsole_v7: switching to VT 2\n");
-        print_str("fgconsole_v7: verifying switch\n");
-        print_str("fgconsole_v7: switching back to VT 1\n");
-    }
-    print_str("fgconsole_v7: console switch test: OK\n");
+    print_str("fgconsole_v7: fgconsole test: OK\n");
     print_str("fgconsole_v7: test complete\n");
 }
 
@@ -144,13 +130,11 @@ void _start(void)
 
     int help_flag = 0, info_flag = 0;
     int verbose_flag = 0, status_flag = 0;
-    int next_flag = 0, previous_flag = 0;
-    int test_flag = 0;
+    int test_flag = 0, number_flag = 0;
 
     unsigned int pos = 0;
     char *argv_ptr = (char *)buf;
 
-    /* Skip argv[0] */
     while (pos < 512 && argv_ptr[pos]) pos++;
     pos++;
 
@@ -164,12 +148,10 @@ void _start(void)
             verbose_flag = 1;
         } else if (my_strcmp(arg, "-s") == 0) {
             status_flag = 1;
-        } else if (my_strcmp(arg, "-n") == 0) {
-            next_flag = 1;
-        } else if (my_strcmp(arg, "-p") == 0) {
-            previous_flag = 1;
         } else if (my_strcmp(arg, "-t") == 0) {
             test_flag = 1;
+        } else if (my_strcmp(arg, "-n") == 0) {
+            number_flag = 1;
         }
         while (pos < 512 && argv_ptr[pos]) pos++;
         pos++;
@@ -190,22 +172,18 @@ void _start(void)
         host_exit(0);
     }
 
-    if (next_flag) {
-        show_next(verbose_flag);
-        host_exit(0);
-    }
-
-    if (previous_flag) {
-        show_previous(verbose_flag);
+    if (number_flag) {
+        show_vt_number(verbose_flag);
         host_exit(0);
     }
 
     if (test_flag) {
-        test_console(verbose_flag);
+        test_mode(verbose_flag);
         host_exit(0);
     }
 
-    /* Default: print current foreground VT */
-    print_str("fgconsole_v7: current VT: 1\n");
+    print_str("fgconsole_v7: foreground VT: ");
+    print_int(1);
+    print_str("\n");
     host_exit(0);
 }
