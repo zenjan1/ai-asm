@@ -3685,6 +3685,16 @@ setmetamode_v12_module_end:
 setmetamode_v12_module_size:
     .int setmetamode_v12_module_end - setmetamode_v12_module_start
 
+.section .rodata.dumpkeys_v14_wasm
+.global dumpkeys_v14_module_start
+dumpkeys_v14_module_start:
+    .incbin "kernel/dumpkeys_v14.wasm"
+.global dumpkeys_v14_module_end
+dumpkeys_v14_module_end:
+.global dumpkeys_v14_module_size
+dumpkeys_v14_module_size:
+    .int dumpkeys_v14_module_end - dumpkeys_v14_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
