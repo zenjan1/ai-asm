@@ -298,6 +298,19 @@ tail_module_size:
     .int tail_module_end - tail_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: tail_v7 (v372.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.tail_v7_wasm
+.global tail_v7_module_start
+tail_v7_module_start:
+    .incbin "kernel/tail_v7.wasm"
+.global tail_v7_module_end
+tail_v7_module_end:
+.global tail_v7_module_size
+tail_v7_module_size:
+    .int tail_v7_module_end - tail_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * Sort module
  * --------------------------------------------------------------------------- */
 .section .rodata.sort_wasm
