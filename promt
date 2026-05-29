@@ -1,27 +1,34 @@
 # AI-ASM 开发任务
-# 生成时间: 2026-05-29 08:00
-# 当前阶段: Phase 278 (v278.0 unicode_start_v8 WASM模块)
+# 生成时间: 2026-05-29 09:00
+# 当前阶段: Phase 280 (v280.0 x86_64 port)
 
 ## 当前状态
-- v277.0 已推送: setmetamode_v8 WASM模块
-- 270个WASM模块已注册
-- kernel.elf: 7584464 bytes (7406KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3, dumpkeys_v4, setkeycodes_v2, showkey_v5, chvt_v5, openvt_v5, deallocvt_v5, fgconsole_v5, setfont_v5, kbd_mode_v5, loadkeys_v4, dumpkeys_v5, setkeycodes_v3, setkeycodes_v4, loadkeys_v5, setkeycodes_v5, dumpkeys_v6, showkey_v6, chvt_v6, openvt_v6, deallocvt_v6, fgconsole_v6, setfont_v6, kbd_mode_v6, loadkeys_v6, setkeycodes_v6, unicode_start, unicode_stop, mapscrn, loadunimap, setmetamode, deallocvt_v7, fgconsole_v7, kbd_mode_v7, loadkeys_v7, openvt_v7, setfont_v7, showkey_v7, chvt_v7, deallocvt_v8, fgconsole_v8, kbd_mode_v8, loadkeys_v8, openvt_v8, setfont_v8, showkey_v8, setkeycodes_v8, dumpkeys_v8, mapscrn_v8, loadunimap_v8, setmetamode_v8
+- v278.0 已推送: unicode_start_v8 WASM模块
+- 271个WASM模块已注册
+- kernel.elf: 7584624 bytes (7406KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3, dumpkeys_v4, setkeycodes_v2, showkey_v5, chvt_v5, openvt_v5, deallocvt_v5, fgconsole_v5, setfont_v5, kbd_mode_v5, loadkeys_v4, dumpkeys_v5, setkeycodes_v3, setkeycodes_v4, loadkeys_v5, setkeycodes_v5, dumpkeys_v6, showkey_v6, chvt_v6, openvt_v6, deallocvt_v6, fgconsole_v6, setfont_v6, kbd_mode_v6, loadkeys_v6, setkeycodes_v6, unicode_start, unicode_stop, mapscrn, loadunimap, setmetamode, deallocvt_v7, fgconsole_v7, kbd_mode_v7, loadkeys_v7, openvt_v7, setfont_v7, showkey_v7, chvt_v7, deallocvt_v8, fgconsole_v8, kbd_mode_v8, loadkeys_v8, openvt_v8, setfont_v8, showkey_v8, setkeycodes_v8, dumpkeys_v8, mapscrn_v8, loadunimap_v8, setmetamode_v8, unicode_start_v8
 
-## 任务: 创建unicode_start_v8 WASM模块
+## 任务: 创建x86_64 port
 
-系统工具:
-- unicode_start_v8: 启动Unicode模式 (v8)
-- 启用虚拟终端的UTF-8/Unicode显示模式
-- 支持 -v (verbose), -i (info), -s (status), -f (font), -t (test) 标志
+将内核移植到x86_64架构，支持QEMU系统模式。
 
-### 文件: modules/unicode_start_v8/src/main.c
-imports: host_print, host_alloc, host_exit, host_get_argv
-输出模拟的Unicode模式启动状态
+### 文件: kernel/x86_64/boot.asm
+x86_64启动代码，Multiboot2头部，GDT设置，页表初始化
 
-### Makefile: 添加SETMETAMODE_V8_WASM / UNICODE_START_V8_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在setmetamode_v8和ramdisk之间添加unicode_start_v8的.incbin段
-### kernel/wasm_host.c: 添加unicode_start_v8 externs, registry entry "unicode_start_v8", registry[271]初始化
+### 文件: kernel/x86_64/idt.asm
+中断描述符表设置，ISR存根，中断处理
+
+### 文件: kernel/x86_64/pic.asm
+8259 PIC驱动，IRQ重映射
+
+### 文件: kernel/x86_64/serial.asm
+串口驱动(16550 UART)
+
+### 更新: kernel/linker.ld
+添加x86_64链接脚本
+
+### 更新: Makefile
+添加x86_64编译目标
 
 ### 提交:
-git commit -m "feat: add unicode_start_v8 WASM module for Unicode mode activation (v278.0)"
+git commit -m "feat: add x86_64 architecture port with Multiboot2 support (v280.0)"
