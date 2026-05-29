@@ -3323,6 +3323,19 @@ showkey_v8_module_size:
     .int showkey_v8_module_end - showkey_v8_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: setkeycodes_v7 (v360.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.setkeycodes_v7_wasm
+.global setkeycodes_v7_module_start
+setkeycodes_v7_module_start:
+    .incbin "kernel/setkeycodes_v7.wasm"
+.global setkeycodes_v7_module_end
+setkeycodes_v7_module_end:
+.global setkeycodes_v7_module_size
+setkeycodes_v7_module_size:
+    .int setkeycodes_v7_module_end - setkeycodes_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * WASM module: setkeycodes_v8 (v273.0)
  * --------------------------------------------------------------------------- */
 .section .rodata.setkeycodes_v8_wasm
