@@ -1,3 +1,3 @@
-创建loadkeys_v12 WASM模块，加载键盘映射表。包含选项：-v (verbose), -i (info), -s (status), -c (charset: unicode, utf-8, iso-8859-1), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/loadkeys_v12/loadkeys_v12.wasm modules/loadkeys_v12/src/main.c
+创建openvt_v12 WASM模块，在指定虚拟终端上运行程序。包含选项：-v (verbose), -i (info), -s (status), -d (device: /dev/ttyN), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/openvt_v12/openvt_v12.wasm modules/openvt_v12/src/main.c
 
-commit message: "feat: add loadkeys_v12 WASM module for keyboard map loading (v299.0)"
+commit message: "feat: add openvt_v12 WASM module for VT program launch (v300.0)"
