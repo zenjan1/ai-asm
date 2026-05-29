@@ -712,6 +712,10 @@ extern const uint8_t deallocvt_v7_module_start[], deallocvt_v7_module_end[];
 extern const uint32_t deallocvt_v7_module_size;
 extern const uint8_t fgconsole_v7_module_start[], fgconsole_v7_module_end[];
 extern const uint32_t fgconsole_v7_module_size;
+extern const uint8_t deallocvt_v8_module_start[], deallocvt_v8_module_end[];
+extern const uint32_t deallocvt_v8_module_size;
+extern const uint8_t fgconsole_v8_module_start[], fgconsole_v8_module_end[];
+extern const uint32_t fgconsole_v8_module_size;
 extern const uint8_t kbd_mode_v7_module_start[], kbd_mode_v7_module_end[];
 extern const uint32_t kbd_mode_v7_module_size;
 extern const uint8_t loadkeys_v7_module_start[], loadkeys_v7_module_end[];
@@ -848,6 +852,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "showkey_v7", NULL, 0 },
     { "chvt_v7", NULL, 0 },
     { "deallocvt_v8", NULL, 0 },
+    { "fgconsole_v8", NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -5107,6 +5112,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[258].wasm_size = chvt_v7_module_size;
     wasm_registry[259].wasm_bytes = deallocvt_v8_module_start;
     wasm_registry[259].wasm_size = deallocvt_v8_module_size;
+    wasm_registry[260].wasm_bytes = fgconsole_v8_module_start;
+    wasm_registry[260].wasm_size = fgconsole_v8_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
