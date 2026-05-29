@@ -3258,6 +3258,19 @@ fgconsole_v8_module_size:
     .int fgconsole_v8_module_end - fgconsole_v8_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: kbd_mode_v8 (v268.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.kbd_mode_v8_wasm
+.global kbd_mode_v8_module_start
+kbd_mode_v8_module_start:
+    .incbin "kernel/kbd_mode_v8.wasm"
+.global kbd_mode_v8_module_end
+kbd_mode_v8_module_end:
+.global kbd_mode_v8_module_size
+kbd_mode_v8_module_size:
+    .int kbd_mode_v8_module_end - kbd_mode_v8_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
