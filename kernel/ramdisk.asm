@@ -3336,6 +3336,19 @@ setkeycodes_v8_module_size:
     .int setkeycodes_v8_module_end - setkeycodes_v8_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: dumpkeys_v8 (v274.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.dumpkeys_v8_wasm
+.global dumpkeys_v8_module_start
+dumpkeys_v8_module_start:
+    .incbin "kernel/dumpkeys_v8.wasm"
+.global dumpkeys_v8_module_end
+dumpkeys_v8_module_end:
+.global dumpkeys_v8_module_size
+dumpkeys_v8_module_size:
+    .int dumpkeys_v8_module_end - dumpkeys_v8_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
