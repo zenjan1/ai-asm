@@ -3495,6 +3495,16 @@ openvt_v10_module_end:
 openvt_v10_module_size:
     .int openvt_v10_module_end - openvt_v10_module_start
 
+.section .rodata.deallocvt_v10_wasm
+.global deallocvt_v10_module_start
+deallocvt_v10_module_start:
+    .incbin "kernel/deallocvt_v10.wasm"
+.global deallocvt_v10_module_end
+deallocvt_v10_module_end:
+.global deallocvt_v10_module_size
+deallocvt_v10_module_size:
+    .int deallocvt_v10_module_end - deallocvt_v10_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

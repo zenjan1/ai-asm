@@ -756,6 +756,8 @@ extern const uint8_t loadkeys_v10_module_start[], loadkeys_v10_module_end[];
 extern const uint32_t loadkeys_v10_module_size;
 extern const uint8_t openvt_v10_module_start[], openvt_v10_module_end[];
 extern const uint32_t openvt_v10_module_size;
+extern const uint8_t deallocvt_v10_module_start[], deallocvt_v10_module_end[];
+extern const uint32_t deallocvt_v10_module_size;
 extern const uint8_t loadkeys_v7_module_start[], loadkeys_v7_module_end[];
 extern const uint32_t loadkeys_v7_module_size;
 extern const uint8_t openvt_v7_module_start[], openvt_v7_module_end[];
@@ -910,6 +912,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "kbd_mode_v9", NULL, 0 },
     { "loadkeys_v10", NULL, 0 },
     { "openvt_v10", NULL, 0 },
+    { "deallocvt_v10", NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -5209,6 +5212,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[278].wasm_size = loadkeys_v10_module_size;
     wasm_registry[279].wasm_bytes = openvt_v10_module_start;
     wasm_registry[279].wasm_size = openvt_v10_module_size;
+    wasm_registry[280].wasm_bytes = deallocvt_v10_module_start;
+    wasm_registry[280].wasm_size = deallocvt_v10_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
