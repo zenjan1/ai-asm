@@ -1,3 +1,3 @@
-创建chvt_v12 WASM模块，切换前台虚拟终端。包含选项：-v (verbose), -i (info), -s (status), -n N (VT number), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/chvt_v12/chvt_v12.wasm modules/chvt_v12/src/main.c
+创建deallocvt_v13 WASM模块，释放指定虚拟终端。包含选项：-v (verbose), -i (info), -s (status), -n NUM (VT number), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/deallocvt_v13/deallocvt_v13.wasm modules/deallocvt_v13/src/main.c
 
-commit message: "feat: add chvt_v12 WASM module for VT switching (v320.0)"
+commit message: "feat: add deallocvt_v13 WASM module for VT deallocation (v322.0)"
