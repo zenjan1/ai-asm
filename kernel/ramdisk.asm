@@ -3725,6 +3725,16 @@ showkey_v12_module_end:
 showkey_v12_module_size:
     .int showkey_v12_module_end - showkey_v12_module_start
 
+.section .rodata.openvt_v13_wasm
+.global openvt_v13_module_start
+openvt_v13_module_start:
+    .incbin "kernel/openvt_v13.wasm"
+.global openvt_v13_module_end
+openvt_v13_module_end:
+.global openvt_v13_module_size
+openvt_v13_module_size:
+    .int openvt_v13_module_end - openvt_v13_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */

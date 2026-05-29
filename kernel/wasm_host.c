@@ -802,6 +802,8 @@ extern const uint8_t dumpkeys_v15_module_start[], dumpkeys_v15_module_end[];
 extern const uint32_t dumpkeys_v15_module_size;
 extern const uint8_t showkey_v12_module_start[], showkey_v12_module_end[];
 extern const uint32_t showkey_v12_module_size;
+extern const uint8_t openvt_v13_module_start[], openvt_v13_module_end[];
+extern const uint32_t openvt_v13_module_size;
 extern const uint8_t loadkeys_v7_module_start[], loadkeys_v7_module_end[];
 extern const uint32_t loadkeys_v7_module_size;
 extern const uint8_t openvt_v7_module_start[], openvt_v7_module_end[];
@@ -979,6 +981,7 @@ static wasm_registry_entry_t wasm_registry[] = {
     { "setkeycodes_v12", NULL, 0 },
     { "dumpkeys_v15", NULL, 0 },
     { "showkey_v12", NULL, 0 },
+    { "openvt_v13", NULL, 0 },
     { "proc_monitor",   NULL, 0 },
     { "syslog",         NULL, 0 },
     { "filemgr",        NULL, 0 },
@@ -5324,6 +5327,8 @@ const char *wasm_host_init_multi(void)
     wasm_registry[301].wasm_size = dumpkeys_v15_module_size;
     wasm_registry[302].wasm_bytes = showkey_v12_module_start;
     wasm_registry[302].wasm_size = showkey_v12_module_size;
+    wasm_registry[303].wasm_bytes = openvt_v13_module_start;
+    wasm_registry[303].wasm_size = openvt_v13_module_size;
 
     /* Initialize default environment variables */
     env_strcpy(env_table[0].key, "PATH", MAX_ENV_KEY);
