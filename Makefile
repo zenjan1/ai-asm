@@ -84,6 +84,14 @@ ASM_SRCS = $(KERNEL_DIR)/kernel.asm \
            $(KERNEL_DIR)/persist.asm
 ASM_OBJS = $(patsubst $(KERNEL_DIR)/%.asm,$(BUILD_DIR)/%.o,$(ASM_SRCS))
 
+# x86_64 sources
+X86_ASM_SRCS = $(KERNEL_DIR)/x86_64/boot.asm \
+               $(KERNEL_DIR)/x86_64/idt.asm \
+               $(KERNEL_DIR)/x86_64/pic.asm \
+               $(KERNEL_DIR)/x86_64/serial.asm
+X86_ASM_OBJS = $(patsubst $(KERNEL_DIR)/x86_64/%.asm,$(BUILD_DIR)/x86_64/%.o,$(X86_ASM_SRCS))
+X86_TARGET = $(BUILD_DIR)/kernel_x86_64.elf
+
 # C sources (freestanding)
 C_SRCS = $(KERNEL_DIR)/libc_shim.c \
          $(KERNEL_DIR)/wasm_host.c
@@ -393,7 +401,7 @@ ALL_OBJS = $(ASM_OBJS) $(C_OBJS) $(WASM3_OBJS)
 # ---------------------------------------------------------------------------
 # Phony targets
 # ---------------------------------------------------------------------------
-.PHONY: all asm wasm3 init-wasm shell-wasm ramdisk kernel run clean
+.PHONY: all asm wasm3 init-wasm shell-wasm ramdisk kernel run clean x86_64
 
 all: $(TARGET_ELF)
 
@@ -419,6 +427,22 @@ modules: $(INIT_WASM) $(SHELL_WASM) $(TEST_WASM) $(EDITOR_WASM) $(CALC_WASM) $(P
 # Link kernel only (assumes objects exist)
 kernel: $(TARGET_ELF)
 	@echo "=== kernel.elf linked ==="
+
+# x86_64 kernel target
+x86_64: $(X86_TARGET)
+	@echo "=== kernel_x86_64.elf linked ==="
+
+$(BUILD_DIR)/x86_64:
+	mkdir -p $@
+
+$(BUILD_DIR)/x86_64/%.o: $(KERNEL_DIR)/x86_64/%.asm | $(BUILD_DIR)/x86_64
+	@echo "  AS    $<"
+	clang --target=x86_64-unknown-linux-gnu -c -g -o $@ $<
+
+$(X86_TARGET): $(X86_ASM_OBJS) | $(BUILD_DIR)
+	@echo "  LD    $@"
+	ld -T kernel/linker_x86_64.ld -nostdlib -N -o $@ $(X86_ASM_OBJS)
+	@echo "kernel_x86_64.elf: $$(( $$(stat -c%s $@) )) bytes ($$(($$(stat -c%s $@) / 1024))KB)"
 
 # ---------------------------------------------------------------------------
 # Assembly compilation
