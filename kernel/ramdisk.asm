@@ -3715,6 +3715,16 @@ dumpkeys_v15_module_end:
 dumpkeys_v15_module_size:
     .int dumpkeys_v15_module_end - dumpkeys_v15_module_start
 
+.section .rodata.showkey_v12_wasm
+.global showkey_v12_module_start
+showkey_v12_module_start:
+    .incbin "kernel/showkey_v12.wasm"
+.global showkey_v12_module_end
+showkey_v12_module_end:
+.global showkey_v12_module_size
+showkey_v12_module_size:
+    .int showkey_v12_module_end - showkey_v12_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
