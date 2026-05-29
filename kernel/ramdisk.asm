@@ -3845,6 +3845,16 @@ fgconsole_v16_module_end:
 fgconsole_v16_module_size:
     .int fgconsole_v16_module_end - fgconsole_v16_module_start
 
+.section .rodata.setfont_v16_wasm
+.global setfont_v16_module_start
+setfont_v16_module_start:
+    .incbin "kernel/setfont_v16.wasm"
+.global setfont_v16_module_end
+setfont_v16_module_end:
+.global setfont_v16_module_size
+setfont_v16_module_size:
+    .int setfont_v16_module_end - setfont_v16_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
