@@ -1,3 +1,3 @@
-创建loadkeys_v13 WASM模块，加载键盘映射表。包含选项：-v (verbose), -i (info), -s (status), -f file (map file), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/loadkeys_v13/loadkeys_v13.wasm modules/loadkeys_v13/src/main.c
+创建setfont_v12 WASM模块，加载控制台字体。包含选项：-v (verbose), -i (info), -s (status), -f font (font file), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/setfont_v12/setfont_v12.wasm modules/setfont_v12/src/main.c
 
-commit message: "feat: add loadkeys_v13 WASM module for keymap loading (v304.0)"
+commit message: "feat: add setfont_v12 WASM module for console font loading (v306.0)"
