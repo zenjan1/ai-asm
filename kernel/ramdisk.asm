@@ -3271,6 +3271,19 @@ kbd_mode_v8_module_size:
     .int kbd_mode_v8_module_end - kbd_mode_v8_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: loadkeys_v8 (v269.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.loadkeys_v8_wasm
+.global loadkeys_v8_module_start
+loadkeys_v8_module_start:
+    .incbin "kernel/loadkeys_v8.wasm"
+.global loadkeys_v8_module_end
+loadkeys_v8_module_end:
+.global loadkeys_v8_module_size
+loadkeys_v8_module_size:
+    .int loadkeys_v8_module_end - loadkeys_v8_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
