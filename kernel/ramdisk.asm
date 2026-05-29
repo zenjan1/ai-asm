@@ -3855,6 +3855,16 @@ setfont_v16_module_end:
 setfont_v16_module_size:
     .int setfont_v16_module_end - setfont_v16_module_start
 
+.section .rodata.dumpkeys_v7_wasm
+.global dumpkeys_v7_module_start
+dumpkeys_v7_module_start:
+    .incbin "kernel/dumpkeys_v7.wasm"
+.global dumpkeys_v7_module_end
+dumpkeys_v7_module_end:
+.global dumpkeys_v7_module_size
+dumpkeys_v7_module_size:
+    .int dumpkeys_v7_module_end - dumpkeys_v7_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
