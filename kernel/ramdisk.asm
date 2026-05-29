@@ -3655,6 +3655,16 @@ dumpkeys_v13_module_end:
 dumpkeys_v13_module_size:
     .int dumpkeys_v13_module_end - dumpkeys_v13_module_start
 
+.section .rodata.unicode_start_v12_wasm
+.global unicode_start_v12_module_start
+unicode_start_v12_module_start:
+    .incbin "kernel/unicode_start_v12.wasm"
+.global unicode_start_v12_module_end
+unicode_start_v12_module_end:
+.global unicode_start_v12_module_size
+unicode_start_v12_module_size:
+    .int unicode_start_v12_module_end - unicode_start_v12_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
