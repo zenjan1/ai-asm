@@ -3206,6 +3206,19 @@ setfont_v7_module_size:
     .int setfont_v7_module_end - setfont_v7_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: showkey_v7 (v264.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.showkey_v7_wasm
+.global showkey_v7_module_start
+showkey_v7_module_start:
+    .incbin "kernel/showkey_v7.wasm"
+.global showkey_v7_module_end
+showkey_v7_module_end:
+.global showkey_v7_module_size
+showkey_v7_module_size:
+    .int showkey_v7_module_end - showkey_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
 .section .rodata.ramdisk
