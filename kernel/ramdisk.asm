@@ -3349,6 +3349,19 @@ dumpkeys_v8_module_size:
     .int dumpkeys_v8_module_end - dumpkeys_v8_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: mapscrn_v7 (v358.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.mapscrn_v7_wasm
+.global mapscrn_v7_module_start
+mapscrn_v7_module_start:
+    .incbin "kernel/mapscrn_v7.wasm"
+.global mapscrn_v7_module_end
+mapscrn_v7_module_end:
+.global mapscrn_v7_module_size
+mapscrn_v7_module_size:
+    .int mapscrn_v7_module_end - mapscrn_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * WASM module: mapscrn_v8 (v275.0)
  * --------------------------------------------------------------------------- */
 .section .rodata.mapscrn_v8_wasm
