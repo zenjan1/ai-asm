@@ -3401,6 +3401,19 @@ loadunimap_v8_module_size:
     .int loadunimap_v8_module_end - loadunimap_v8_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: setmetamode_v7 (v362.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.setmetamode_v7_wasm
+.global setmetamode_v7_module_start
+setmetamode_v7_module_start:
+    .incbin "kernel/setmetamode_v7.wasm"
+.global setmetamode_v7_module_end
+setmetamode_v7_module_end:
+.global setmetamode_v7_module_size
+setmetamode_v7_module_size:
+    .int setmetamode_v7_module_end - setmetamode_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * WASM module: setmetamode_v8 (v277.0)
  * --------------------------------------------------------------------------- */
 .section .rodata.setmetamode_v8_wasm
