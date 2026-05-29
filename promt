@@ -1,3 +1,3 @@
-创建fgconsole_v10 WASM模块，显示前台虚拟终端号。包含选项：-v (verbose), -i (info), -s (status), -n (next available VT), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/fgconsole_v10/fgconsole_v10.wasm modules/fgconsole_v10/src/main.c
+创建setfont_v10 WASM模块，设置控制台字体。包含选项：-v (verbose), -i (info), -s (status), -f (font name: default, 8x16, 8x8), -t (test)。使用host_print, host_alloc, host_exit, host_get_argv主机函数。编译命令: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=_start -o modules/setfont_v10/setfont_v10.wasm modules/setfont_v10/src/main.c
 
-commit message: "feat: add fgconsole_v10 WASM module for foreground console display (v290.0)"
+commit message: "feat: add setfont_v10 WASM module for console font setting (v291.0)"
