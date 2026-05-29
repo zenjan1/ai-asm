@@ -3605,6 +3605,16 @@ loadkeys_v12_module_end:
 loadkeys_v12_module_size:
     .int loadkeys_v12_module_end - loadkeys_v12_module_start
 
+.section .rodata.openvt_v12_wasm
+.global openvt_v12_module_start
+openvt_v12_module_start:
+    .incbin "kernel/openvt_v12.wasm"
+.global openvt_v12_module_end
+openvt_v12_module_end:
+.global openvt_v12_module_size
+openvt_v12_module_size:
+    .int openvt_v12_module_end - openvt_v12_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
