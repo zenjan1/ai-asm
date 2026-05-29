@@ -1,27 +1,27 @@
 # AI-ASM 开发任务
 # 生成时间: 2026-05-29 08:00
-# 当前阶段: Phase 270 (v270.0 openvt_v8 WASM模块)
+# 当前阶段: Phase 271 (v271.0 setfont_v8 WASM模块)
 
 ## 当前状态
-- v269.0 已推送: loadkeys_v8 WASM模块
-- 262个WASM模块已注册
-- kernel.elf: 7517768 bytes (7341KB)
-- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3, dumpkeys_v4, setkeycodes_v2, showkey_v5, chvt_v5, openvt_v5, deallocvt_v5, fgconsole_v5, setfont_v5, kbd_mode_v5, loadkeys_v4, dumpkeys_v5, setkeycodes_v3, setkeycodes_v4, loadkeys_v5, setkeycodes_v5, dumpkeys_v6, showkey_v6, chvt_v6, openvt_v6, deallocvt_v6, fgconsole_v6, setfont_v6, kbd_mode_v6, loadkeys_v6, setkeycodes_v6, unicode_start, unicode_stop, mapscrn, loadunimap, setmetamode, deallocvt_v7, fgconsole_v7, kbd_mode_v7, loadkeys_v7, openvt_v7, setfont_v7, showkey_v7, chvt_v7, deallocvt_v8, fgconsole_v8, kbd_mode_v8, loadkeys_v8
+- v270.0 已推送: openvt_v8 WASM模块
+- 263个WASM模块已注册
+- kernel.elf: 7517904 bytes (7341KB)
+- 工具集: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt, pr, column, expand, unexpand, numfmt, nproc, hostid, sync, link, unlink, logname, arch, setarch, nice, renice, timeout, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3, dumpkeys_v4, setkeycodes_v2, showkey_v5, chvt_v5, openvt_v5, deallocvt_v5, fgconsole_v5, setfont_v5, kbd_mode_v5, loadkeys_v4, dumpkeys_v5, setkeycodes_v3, setkeycodes_v4, loadkeys_v5, setkeycodes_v5, dumpkeys_v6, showkey_v6, chvt_v6, openvt_v6, deallocvt_v6, fgconsole_v6, setfont_v6, kbd_mode_v6, loadkeys_v6, setkeycodes_v6, unicode_start, unicode_stop, mapscrn, loadunimap, setmetamode, deallocvt_v7, fgconsole_v7, kbd_mode_v7, loadkeys_v7, openvt_v7, setfont_v7, showkey_v7, chvt_v7, deallocvt_v8, fgconsole_v8, kbd_mode_v8, loadkeys_v8, openvt_v8
 
-## 任务: 创建openvt_v8 WASM模块
+## 任务: 创建setfont_v8 WASM模块
 
 系统工具:
-- openvt_v8: 打开虚拟终端 (v8)
-- 在新的虚拟终端上启动命令或shell
-- 支持 -v (verbose), -i (info), -s (status), -n (number), -c (command), -t (test) 标志
+- setfont_v8: 设置控制台字体 (v8)
+- 加载指定的控制台字体文件
+- 支持 -v (verbose), -i (info), -s (status), -f (file), -d (default), -t (test) 标志
 
-### 文件: modules/openvt_v8/src/main.c
+### 文件: modules/setfont_v8/src/main.c
 imports: host_print, host_alloc, host_exit, host_get_argv
-输出模拟的虚拟终端打开状态
+输出模拟的控制台字体设置状态
 
-### Makefile: 添加LOADKEYS_V8_WASM / OPENVT_V8_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
-### kernel/ramdisk.asm: 在loadkeys_v8和ramdisk之间添加openvt_v8的.incbin段
-### kernel/wasm_host.c: 添加openvt_v8 externs, registry entry "openvt_v8", registry[263]初始化
+### Makefile: 添加OPENVT_V8_WASM / SETFONT_V8_WASM变量、modules目标、ramdisk.o依赖、编译规则、clean
+### kernel/ramdisk.asm: 在openvt_v8和ramdisk之间添加setfont_v8的.incbin段
+### kernel/wasm_host.c: 添加setfont_v8 externs, registry entry "setfont_v8", registry[264]初始化
 
 ### 提交:
-git commit -m "feat: add openvt_v8 WASM module for VT opening (v270.0)"
+git commit -m "feat: add setfont_v8 WASM module for console font setting (v271.0)"
