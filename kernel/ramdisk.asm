@@ -3505,6 +3505,16 @@ deallocvt_v10_module_end:
 deallocvt_v10_module_size:
     .int deallocvt_v10_module_end - deallocvt_v10_module_start
 
+.section .rodata.fgconsole_v10_wasm
+.global fgconsole_v10_module_start
+fgconsole_v10_module_start:
+    .incbin "kernel/fgconsole_v10.wasm"
+.global fgconsole_v10_module_end
+fgconsole_v10_module_end:
+.global fgconsole_v10_module_size
+fgconsole_v10_module_size:
+    .int fgconsole_v10_module_end - fgconsole_v10_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
