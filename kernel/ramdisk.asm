@@ -3535,6 +3535,16 @@ kbd_mode_v10_module_end:
 kbd_mode_v10_module_size:
     .int kbd_mode_v10_module_end - kbd_mode_v10_module_start
 
+.section .rodata.loadkeys_v11_wasm
+.global loadkeys_v11_module_start
+loadkeys_v11_module_start:
+    .incbin "kernel/loadkeys_v11.wasm"
+.global loadkeys_v11_module_end
+loadkeys_v11_module_end:
+.global loadkeys_v11_module_size
+loadkeys_v11_module_size:
+    .int loadkeys_v11_module_end - loadkeys_v11_module_start
+
 /* ---------------------------------------------------------------------------
  * RAM disk (USTAR TAR archive)
  * --------------------------------------------------------------------------- */
