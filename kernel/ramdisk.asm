@@ -383,6 +383,19 @@ date_module_size:
     .int date_module_end - date_module_start
 
 /* ---------------------------------------------------------------------------
+ * WASM module: date_v7 (v368.0)
+ * --------------------------------------------------------------------------- */
+.section .rodata.date_v7_wasm
+.global date_v7_module_start
+date_v7_module_start:
+    .incbin "kernel/date_v7.wasm"
+.global date_v7_module_end
+date_v7_module_end:
+.global date_v7_module_size
+date_v7_module_size:
+    .int date_v7_module_end - date_v7_module_start
+
+/* ---------------------------------------------------------------------------
  * Awk module
  * --------------------------------------------------------------------------- */
 .section .rodata.awk_wasm
