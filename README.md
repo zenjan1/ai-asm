@@ -1,28 +1,47 @@
-# AI-ASM AArch64 v1.0
+# AI-ASM AArch64
 
-Pure AArch64 assembly WASM-native operating system for QEMU virt.
+Pure AArch64 assembly WebAssembly-native operating system for QEMU virt.
 
-**327 WASM modules** · 7723728 bytes kernel · v374.0
+[![Version](https://img.shields.io/badge/version-v1.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Modules](https://img.shields.io/badge/wasm-335%20modules-green)]()
+[![Kernel](https://img.shields.io/badge/kernel-9.3MB-orange)]()
+[![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
+
+## Overview
+
+AI-ASM AArch64 is a from-scratch operating system written in pure AArch64 assembly with a WebAssembly-based application ecosystem. It runs on QEMU's virt machine and provides preemptive multitasking, virtual memory, VirtIO device drivers, FAT32 filesystem, TCP/IP networking, and a GUI window manager.
+
+### Why?
+
+This project explores whether a WebAssembly runtime can serve as the primary application layer for a bare-metal OS, with the kernel providing low-level resource management and the WASM modules handling user-space functionality.
 
 ## Features
 
-- Preemptive scheduling + GIC interrupt system
-- MMU virtual memory + process isolation
-- VirtIO device drivers (blk / net / gpu)
-- FAT32 filesystem with read/write/create/delete
-- TCP/IP network stack with ARP cache and socket table
-- WASI snapshot_preview1 system call interface
-- GUI window manager with Z-order compositing (up to 16 windows)
-- WebAssembly runtime via Wasm3 with multi-module support
-- Integration test suite (FS / NET / GUI / CORE)
-- **327 WASM modules** · 7723728 bytes kernel · v374.0
+- **Preemptive scheduling** with GIC interrupt system
+- **MMU virtual memory** and process isolation
+- **VirtIO device drivers** — block, network, GPU
+- **FAT32 filesystem** with read/write/create/delete
+- **TCP/IP network stack** with ARP cache and socket table
+- **WASI snapshot_preview1** system call interface
+- **GUI window manager** with Z-order compositing (up to 16 windows)
+- **Wasm3 WebAssembly runtime** with multi-module support
+- **335 WASM application modules** covering coreutils, networking, and applications
 
-## Three-Layer Architecture
+## Architecture
 
 ```
-Bottom (Assembly):  Kernel core — scheduler, MMU, drivers, filesystem, net, GUI
-Middle (C + WASI):  Wasm3 runtime, host functions, WASI syscalls
-Top (WASM):         92 Application modules
++----------------------------------------------------------+
+|  Top: WASM Applications (335 modules)                     |
+|  coreutils, networking, system tools, GUI apps            |
++----------------------------------------------------------+
+|  Middle: Wasm3 Runtime + WASI Host Functions              |
+|  host_print, host_alloc, host_fs_*, host_net_*, host_gui_*|
++----------------------------------------------------------+
+|  Bottom: AArch64 Assembly Kernel Core                     |
+|  Scheduler · MMU · VirtIO · FAT32 · TCP/IP · GUI · Wasm3  |
++----------------------------------------------------------+
+|  Hardware: QEMU virt (AArch64)                            |
++----------------------------------------------------------+
 ```
 
 ## Quick Start
@@ -46,14 +65,100 @@ make && make run
 ./run_test.sh
 ```
 
-## Available WASM Modules
+## WASM Modules
 
-### System: init, shell, test, proc_monitor, syslog, filemgr, settings, user, devmgr, httpd, dns_resolver, stdbuf, factor, seq, realpath, groups, install, pathchk, mktemp, truncate, nohup, envsubst, dircolors, expr, test, dd, hashsum, watch, wasm-dis, shred, stat, mcookie, lsof, iostat, vmstat, mpstat, pidof, pgrep, pkill, top, htop, strace, ltrace, tracepath, ss, ip, killall, nmap, dig, host, arp, iwconfig, ifup, nc, iptables, setkeycodes, loadkeys, dumpkeys, showkey, chvt, openvt, deallocvt, fgconsole, setfont, kbd_mode, showkey_v2, chvt_v2, openvt_v2, deallocvt_v2, fgconsole_v2, setfont_v2, kbd_mode_v2, showkey_v3, chvt_v3, openvt_v3, deallocvt_v3, fgconsole_v3, setfont_v3, kbd_mode_v3, loadkeys_v2, dumpkeys_v2, dumpkeys_v3, showkey_v4, chvt_v4, openvt_v4, deallocvt_v4, fgconsole_v4, setfont_v4, kbd_mode_v4, loadkeys_v3, dumpkeys_v4, setkeycodes_v2, showkey_v5, chvt_v5, openvt_v5, deallocvt_v5, fgconsole_v5, setfont_v5, kbd_mode_v5, loadkeys_v4, dumpkeys_v5, setkeycodes_v3, setkeycodes_v4, loadkeys_v5, setkeycodes_v5, dumpkeys_v6, showkey_v6, chvt_v6, openvt_v6, deallocvt_v6, fgconsole_v6, setfont_v6, kbd_mode_v6, loadkeys_v6, setkeycodes_v6, unicode_start, unicode_stop, mapscrn, loadunimap, setmetamode, deallocvt_v7, fgconsole_v7, kbd_mode_v7, loadkeys_v7, openvt_v7, setfont_v7, showkey_v7, chvt_v7, deallocvt_v8, fgconsole_v8, kbd_mode_v8, loadkeys_v8, openvt_v8, setfont_v8, showkey_v8, setkeycodes_v8, dumpkeys_v8, mapscrn_v8, loadunimap_v8, setmetamode_v8, unicode_start_v8, unicode_stop_v8, loadkeys_v9, openvt_v9, deallocvt_v9, fgconsole_v9, kbd_mode_v9, loadkeys_v10, openvt_v10, deallocvt_v10, fgconsole_v10, setfont_v10, kbd_mode_v10, loadkeys_v11, openvt_v11, deallocvt_v11, fgconsole_v11, setfont_v11, kbd_mode_v11, loadkeys_v12, openvt_v12, deallocvt_v12, fgconsole_v12, kbd_mode_v12, dumpkeys_v13, unicode_start_v12, mapscrn_v12, setmetamode_v12, dumpkeys_v14, setkeycodes_v12, dumpkeys_v15, showkey_v12, openvt_v13, kbd_mode_v13, fgconsole_v13, setfont_v13, kbd_mode_v14, fgconsole_v14, setfont_v14, kbd_mode_v15, fgconsole_v15, setfont_v15, kbd_mode_v16, fgconsole_v16, setfont_v16, dumpkeys_v7
-### File: cat, echo, wc, head, tail, sort, uniq, tr, cut, sed, xargs, grep, rev, cmp, diff, basename, dirname, yes, tee, printf, nl, shuf, comm, paste, fold, tac, cksum, sum, touch, find, du, cp, mv, rm, ln, mkdir, rmdir, chmod, gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, sha256sum, md5sum, base64, base64d, od, hexdump, strings, file, xxd, less, more, join, split, patch, diff3, tsort, csplit, fmt
-### Info: ls, pwd, env, id, uptime, whoami, hostname, uname, date, awk, df, free, ps, kill, tty, who, stty, tput, readlink, mount, umount
-### Calendar/Time: date, cal
-### Network: ifconfig, ping, netstat, route, traceroute, nslookup, wget, curl, ssh, scp, nmap, dig, arp, iwconfig, ifup, nc, iptables, socat, tcpdump, ping6, ethtool, arping, brctl, ifstat, mii-tool, nameif, plipconfig, pppd, slattach
-### Apps: editor, calc, paint, launcher, browser
+### System & Kernel (30+)
+
+| Module | Description | Module | Description |
+|--------|-------------|--------|-------------|
+| init | Bootstrapper | shell | Interactive shell |
+| test | Integration tests | proc_monitor | Process monitor |
+| syslog | System logging | filemgr | File manager |
+| settings | System settings | user | User management |
+| devmgr | Device manager | httpd | HTTP server |
+| dns_resolver | DNS resolver | launcher | App launcher |
+| install | Package installer | | |
+
+### Coreutils (80+)
+
+| Module | Description | Module | Description |
+|--------|-------------|--------|-------------|
+| cat | Display file | echo | Print text |
+| ls | List files | pwd | Working directory |
+| wc | Word/line count | head | First lines |
+| tail | Last lines | sort | Sort lines |
+| uniq | Remove duplicates | tr | Translate chars |
+| cut | Column extract | sed | Stream editor |
+| grep | Pattern match | find | Find files |
+| cp | Copy files | mv | Move files |
+| rm | Remove files | mkdir | Make directory |
+| chmod | Change mode | ln | Create links |
+| touch | Update timestamps | tee | Tee output |
+| printf | Formatted print | nl | Number lines |
+| rev | Reverse lines | cmp | Compare files |
+| diff | File diff | basename | Strip path |
+| dirname | Strip filename | yes | Repeated output |
+| fold | Wrap lines | tac | Reverse cat |
+| cksum | Checksum | sum | Simple checksum |
+| du | Disk usage | df | Disk free |
+| more | Pager | less | Advanced pager |
+| xargs | Build commands | shuf | Shuffle lines |
+| comm | Compare sorted | paste | Merge lines |
+| join | Join lines | split | Split files |
+| patch | Apply patches | diff3 | 3-way diff |
+| tsort | Topological sort | fmt | Format text |
+| column | Columnate output | expr | Evaluate expr |
+| env | Environment | envsubst | Substitute vars |
+| date | Date/time | cal | Calendar |
+| sleep | Delay | true/false | Boolean exit |
+| seq | Sequence numbers | factor | Factorize |
+| realpath | Resolve path | readlink | Read symlinks |
+| mcookie | Random cookie | stat | File stats |
+| dircolors | LS colors | test | Test expr |
+| dd | Convert & copy | hashsum | Hash files |
+| watch | Monitor command | shred | Secure delete |
+| truncate | Truncate file | nohup | No hangup |
+
+### Archive & Compression
+
+gzip, gunzip, zcat, bzip2, bunzip2, lzma, unlzma, xz, unxz, tar
+
+### Text Processing
+
+awk, sed, tr, cut, grep, sort, uniq, comm, paste, join, fold, tac, rev, head, tail, wc, nl, shuf, csplit, fmt, tsort, patch, diff3
+
+### Information
+
+id, uptime, whoami, hostname, uname, free, ps, kill, tty, who, stty, tput, pathchk, mktemp
+
+### Networking
+
+ifconfig, ping, ping6, netstat, route, traceroute, nslookup, wget, curl, ssh, scp, nmap, dig, host, arp, arping, iwconfig, ifup, ifstat, nc, iptables, socat, tcpdump, ethtool, brctl, mii-tool, nameif, plipconfig, pppd, slattach
+
+### Console & Keyboard
+
+| Module | Description | Module | Description |
+|--------|-------------|--------|-------------|
+| chvt (x7) | Switch virtual tty | setfont (x16) | Set console font |
+| kbd_mode (x16) | Keyboard mode | loadkeys (x12) | Load keymap |
+| dumpkeys (x15) | Dump keymap | showkey (x12) | Show keycodes |
+| openvt (x13) | Open virtual tty | deallocvt (x12) | Dealloc virtual tty |
+| fgconsole (x16) | Foreground console | setkeycodes (x12) | Set keycodes |
+| unicode_start (x8) | Unicode mode on | mapscrn (x8) | Screen mapping |
+| unicode_stop (x8) | Unicode mode off | setmetamode (x8) | Meta key mode |
+| loadunimap (x8) | Load Unicode map | | |
+
+### Hash & Checksum
+
+sha256sum, md5sum, cksum, sum, hashsum
+
+### Debugging & Profiling
+
+strace, ltrace, tracepath, ss, top, htop, iostat, vmstat, mpstat, pidof, pgrep, pkill, lsof
+
+### Applications
+
+editor, calc, paint, launcher, browser
 
 ## Directory Structure
 
@@ -61,38 +166,24 @@ make && make run
 aiasm-aarch64/
 ├── kernel/
 │   ├── kernel.asm          # Kernel entry, boot sequence
-│   ├── pl011.asm           # PL011 UART driver (polling)
-│   ├── log.asm             # Structured JSON log
-│   ├── event.asm           # Kernel event bus (ring buffer)
-│   ├── utils.asm           # memset/memcpy/strlen/itoa/strcmp
+│   ├── pl011.asm           # PL011 UART driver
 │   ├── memory.asm          # Physical memory manager + heap
 │   ├── mmu.asm             # MMU page tables + virtual memory
-│   ├── timer.asm           # ARM Generic Timer
 │   ├── gic.asm             # ARM GIC interrupt controller
-│   ├── exceptions.asm      # Exception vectors and handlers
 │   ├── process.asm         # Process scheduler (preemptive)
-│   ├── virtio.asm          # VirtIO-MMIO transport
 │   ├── virtio_blk.asm      # VirtIO-Block driver
 │   ├── virtio_net.asm      # VirtIO-Net driver
-│   ├── virtio_gpu.asm      # VirtIO-GPU driver (800x600 RGBA)
-│   ├── fs.asm              # FAT32 filesystem (read/write)
+│   ├── virtio_gpu.asm      # VirtIO-GPU (800x600 RGBA)
+│   ├── fs.asm              # FAT32 filesystem
 │   ├── net.asm             # TCP/IP stack (ARP + sockets)
 │   ├── wasi.asm            # WASI syscall dispatch
-│   ├── module.asm          # WASM module repository
-│   ├── fb.asm              # Framebuffer abstraction
 │   ├── gui.asm             # GUI window manager
-│   ├── serial_rx.asm       # UART RX ring buffer
-│   ├── wasm_embed.asm      # Embedded WASM modules
-│   ├── ramdisk.asm         # RAM disk (embedded TAR)
-│   ├── linker.ld           # Linker script (entry 0x40080000)
 │   ├── wasm_host.c         # Wasm3 host functions (~1680 lines)
-│   ├── libc_shim.c         # Minimal libc shim
 │   └── wasm3/              # Wasm3 WebAssembly runtime
 ├── modules/
 │   ├── init/src/main.c     # Init module (bootstrapper)
-│   ├── shell/src/main.c    # Interactive shell module
-│   ├── test/src/main.c     # Integration test suite
-│   └── ...                 # 82 additional WASM modules
+│   ├── shell/src/main.c    # Interactive shell
+│   └── ...                 # 333 additional WASM modules
 ├── ramdisk/                # RAM disk file contents
 ├── Makefile
 ├── README.md
@@ -105,7 +196,7 @@ aiasm-aarch64/
 
 | Parameter | Value |
 |-----------|-------|
-| Architecture | AArch64 (ARMv8-A) + x86_64 |
+| Architecture | AArch64 (ARMv8-A) |
 | Platform | QEMU virt machine |
 | RAM | 128MB |
 | Load address | 0x40080000 |
@@ -118,10 +209,9 @@ aiasm-aarch64/
 | Max windows | 16 (Z-order compositing) |
 | Max processes | 16 PCB entries |
 | Max sockets | 8 (2080 bytes each) |
-| Filesystem | FAT32 with cluster allocation |
-| Kernel binary | ~7.2MB (7722312 bytes) |
-| Assembly files | 26 |
-| WASM modules | 317 |
+| Kernel binary | ~9.3MB |
+| Assembly files | 51 |
+| WASM modules | 335 |
 
 ## WASM Host API
 
@@ -160,6 +250,7 @@ aiasm-aarch64/
 ## WASI Support
 
 Full `wasi_snapshot_preview1` interface:
+
 - `fd_write`, `fd_read`, `fd_close`, `fd_seek`, `fd_tell`
 - `path_open`, `path_removefile`
 - `proc_exit`
