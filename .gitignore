@@ -1,5 +1,11 @@
 # Build artifacts
 build/
+*.wasm
+*.lock
+
+# Claude automation state
+.claude/scheduled_tasks.json
+.claude/scheduled_tasks.lock
 
 # Debug logs
 *.log
