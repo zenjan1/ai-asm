@@ -4437,6 +4437,115 @@ static const void *host_audit_flush(IM3Runtime runtime, IM3ImportContext _ctx, u
     return m3Err_none;
 }
 
+/* ========================================================================== */
+/* AI Model Interface Host Functions (v9.1)                                  */
+/* ========================================================================== */
+
+#define AI_MAX_PROMPT   2048
+#define AI_MAX_RESPONSE 4096
+#define AI_LOCAL_MODEL  0
+#define AI_HTTP_API     1
+#define AI_WEBSOCKET    2
+
+static int ai_model_type = AI_LOCAL_MODEL;
+static int ai_initialized = 0;
+static char ai_prompt_buf[AI_MAX_PROMPT];
+static char ai_response_buf[AI_MAX_RESPONSE];
+static int ai_prompt_len = 0;
+static int ai_response_len = 0;
+static int ai_query_count = 0;
+
+/* host_ai_init(model_type) — initialize AI model backend */
+static const void *host_ai_init(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    (void)runtime; (void)_ctx; (void)_mem;
+    int32_t model_type = (int32_t)(int64_t)*_sp++;
+    ai_model_type = model_type;
+    ai_initialized = 1;
+    ai_query_count = 0;
+
+    uart_puts_raw("{\"event\":\"ai_init\",\"model_type\":");
+    uart_putc_raw('0' + model_type);
+    uart_puts_raw("}\n");
+    return m3Err_none;
+}
+
+/* host_ai_query(prompt_ptr, prompt_len) — send prompt to AI backend */
+static const void *host_ai_query(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    uint32_t prompt_ptr = (uint32_t)*_sp++;
+    uint32_t prompt_len = (uint32_t)*_sp;
+    uint8_t *wasm_mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (!ai_initialized) {
+        LOG_ERROR("wasm_ai", "not initialized");
+        return m3Err_none;
+    }
+
+    if (prompt_ptr + prompt_len > mem_size) {
+        LOG_ERROR("wasm_ai", "prompt out of bounds");
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    if (prompt_len > AI_MAX_PROMPT) prompt_len = AI_MAX_PROMPT;
+
+    for (uint32_t i = 0; i < prompt_len; i++) {
+        ai_prompt_buf[i] = wasm_mem[prompt_ptr + i];
+    }
+    ai_prompt_buf[prompt_len] = 0;
+    ai_prompt_len = (int)prompt_len;
+    ai_query_count++;
+
+    uart_puts_raw("{\"event\":\"ai_query\",\"model\":");
+    uart_putc_raw('0' + ai_model_type);
+    uart_puts_raw(",\"len\":");
+    int32_t len_val = ai_prompt_len;
+    char numbuf[12]; int ni = 0;
+    if (len_val == 0) numbuf[ni++] = '0';
+    else { if (len_val < 0) { uart_putc_raw('-'); len_val = -len_val; } do { numbuf[ni++] = (char)('0' + (len_val % 10)); len_val /= 10; } while (len_val > 0); }
+    for (int j = 0; j < ni; j++) uart_putc_raw(numbuf[j]);
+    uart_puts_raw("}\n");
+
+    /* Generate simulated response for local model */
+    if (ai_model_type == AI_LOCAL_MODEL) {
+        const char *resp = "AI response: query processed";
+        ai_response_len = 26;
+        for (int i = 0; i < ai_response_len; i++)
+            ai_response_buf[i] = resp[i];
+        ai_response_buf[ai_response_len] = 0;
+    }
+
+    return m3Err_none;
+}
+
+/* host_ai_response(resp_ptr, resp_len) — copy AI response to WASM memory */
+static const void *host_ai_response(IM3Runtime runtime, IM3ImportContext _ctx, uint64_t * _sp, void * _mem)
+{
+    uint32_t resp_ptr = (uint32_t)*_sp++;
+    uint32_t resp_len = (uint32_t)*_sp;
+    uint8_t *wasm_mem = (uint8_t *)_mem;
+    uint32_t mem_size = m3_GetMemorySize(runtime);
+
+    if (resp_ptr + resp_len > mem_size) {
+        int32_t *ret = (int32_t *)_sp;
+        *ret = -1;
+        return m3Err_trapOutOfBoundsMemoryAccess;
+    }
+
+    int copy_len = ai_response_len;
+    if (copy_len < 0) copy_len = 0;
+    if ((uint32_t)copy_len > resp_len) copy_len = (int)resp_len;
+
+    for (int i = 0; i < copy_len; i++) {
+        wasm_mem[resp_ptr + i] = (uint8_t)ai_response_buf[i];
+    }
+
+    int32_t *ret = (int32_t *)_sp;
+    *ret = copy_len;
+    return m3Err_none;
+}
+
 /* -------------------------------------------------------------------------- */
 /* Host function registration table                                           */
 /* -------------------------------------------------------------------------- */
@@ -4572,6 +4681,10 @@ static const host_reg_t host_registry[] = {
     /* Persistence */
     { "host", "persist_sync",         "i()",  &host_persist_sync         },
     { "host", "persist_get_sync_count","i()",  &host_persist_get_sync_count },
+    /* AI Model Interface (v9.1) */
+    { "host", "ai_init",     "v(i)",  &host_ai_init     },
+    { "host", "ai_query",    "v(ii)", &host_ai_query    },
+    { "host", "ai_response", "i(ii)", &host_ai_response },
 };
 
 #define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))
