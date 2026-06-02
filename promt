@@ -1,461 +1,245 @@
-# AI-ASM OS Development Tasks (v38.0+ RAG & Agent)
+# AI-ASM OS Development Tasks (v39.0+ Multimodal & Agent)
 
 ## 项目最新状态 (2026-06-02)
 
-### 当前版本: v38.0 RAG与向量检索完成 ✓
+### 当前版本: v39.0 多模态与本地模型完成 ✓
 ```
 已实现:
 ├─ 内核层: 62个AArch64汇编文件 ✓
 ├─ WASM层: wasm_host.c (6,021行，372函数) ✓
-├─ 应用层: 440个WASM模块 ✓
-│   ├─ v38.0新增:
-│   │   ├─ embedding_interface.wasm ✓
-│   │   ├─ vector_store.wasm ✓
-│   │   ├─ document_processor.wasm ✓
-│   │   ├─ rag_framework.wasm ✓
-│   │   ├─ reranker.wasm ✓
-│   │   └─ knowledge_base.wasm ✓
-│   └─ v1.0-v37.0所有模块 ✓
+├─ 应用层: 447个WASM模块 (95,409行C代码) ✓
+│   ├─ v37.0: AI厂商API (7模块) ✓
+│   ├─ v38.0: RAG框架 (6模块) ✓
+│   ├─ v39.0: 多模态 (7模块) ✓
+│   │   ├─ whisper_api.wasm ✓
+│   │   ├─ tts_api.wasm ✓
+│   │   ├─ vision_api.wasm ✓
+│   │   ├─ ollama_local.wasm ✓
+│   │   ├─ vllm_backend.wasm ✓
+│   │   ├─ image_gen.wasm ✓
+│   │   └─ video_gen.wasm ✓
+│   ├─ Agent基础: agent_cluster, agent_coordinator ✓
+│   └─ 多模态: vision_ai ✓
 │
-└─ RAG框架: 6模块全覆盖 ✓
+└─ 架构完整度: 内核+WASM+应用+AI接口+RAG+多模态+Agent ✓
 
-模块总数: 440个
+模块总数: 447个
+总代码量: ~95K行
 ```
 
 ---
 
-## 版本演进规划 (v38.0 → v40.0)
+## 版本演进规划 (v39.0 → v40.0)
 
 ```
-v37.0: AI模型厂商API集成 ✓ 完成
-v38.0: RAG与向量检索 ✓ 完成
-v39.0: 多模态与本地模型 (当前目标)
-v40.0: Agent编排与Function Calling
-```
-
----
-
-## Phase 1: v38.0 RAG与向量检索 ✓ 已完成
-
-### 任务 1.1: 向量嵌入接口
-```
-文件: modules/embedding_interface/src/main.c
-功能:
-  - OpenAI text-embedding-3接口
-  - 文本向量化 (1536/3072维度)
-  - 批量嵌入支持 (最多2048文本)
-  - 余弦相似度计算
-  - 向量维度管理
-
-数据结构:
-  - embed_config_t: api_key, model("text-embedding-3-small/large"), dimensions
-  - embed_request_t: texts[64][512], model, encoding_format
-  - embed_response_t: vectors[64][3072], count, total_tokens
-  - embed_result_t: text_idx, vector[DIM], similarity_cache
-
-API函数:
-  - ei_embed_single(text, config) → vector[]
-  - ei_embed_batch(texts[], config) → vectors[][]
-  - ei_similarity(vec1[], vec2[], dim) → cosine_similarity (float)
-  - ei_nearest(query_vec, vectors[], k) → top_k_indices[]
-
-代码预估: ~280行
-优先级: P0
-```
-
-### 任务 1.2: 向量数据库
-```
-文件: modules/vector_store/src/main.c
-功能:
-  - 向量存储与检索 (内存优化)
-  - 近似最近邻搜索 (ANN)
-  - HNSW索引算法预留
-  - 元数据关联存储
-  - 批量插入/删除
-  - 持久化接口预留
-
-数据结构:
-  - vs_entry_t:
-      id(32bit), vector[1536], metadata[256],
-      created_at, updated_at, deleted
-  - vs_index_t:
-      entries[10000], count, dimension,
-      index_type, build_status
-  - vs_search_result_t:
-      entry_id, similarity, metadata, rank
-
-API函数:
-  - vs_init(dimension, max_entries) → store_id
-  - vs_insert(vector[], metadata) → entry_id
-  - vs_batch_insert(vectors[][], metadata[]) → entry_ids[]
-  - vs_search(query_vec[], k, threshold) → results[]
-  - vs_delete(entry_id) → success
-  - vs_get(entry_id) → entry
-  - vs_update(entry_id, vector[], metadata) → success
-  - vs_count() → total_entries
-  - vs_stats() → {count, dimension, memory_used}
-
-代码预估: ~350行
-优先级: P0
-```
-
-### 任务 1.3: 文档处理器
-```
-文件: modules/document_processor/src/main.c
-功能:
-  - 智能文本分块 (chunking)
-  - 固定大小分块
-  - 语义分块预留
-  - 递归字符分块
-  - Markdown结构解析
-  - 元数据提取
-  - 分块重叠配置
-
-数据结构:
-  - chunk_strategy_t: FIXED, SEMANTIC, RECURSIVE, MARKDOWN
-  - doc_chunk_t:
-      chunk_id, content[512], start_pos, end_pos,
-      overlap_with_prev, overlap_with_next, metadata
-  - doc_config_t:
-      chunk_size(256), overlap(64), strategy,
-      separator, length_function
-  - processed_doc_t:
-      source[128], chunks[512], total_chunks,
-      total_chars, avg_chunk_size
-
-API函数:
-  - dp_chunk_fixed(text, size, overlap) → chunks[]
-  - dp_chunk_recursive(text, separators[], chunk_size) → chunks[]
-  - dp_chunk_markdown(md_text) → chunks[] (按标题分割)
-  - dp_extract_metadata(text) → {title, date, author, tags}
-  - dp_merge_chunks(chunks[]) → merged_text
-  - dp_get_chunk_stats(chunks[]) → {count, avg_size, min, max}
-
-代码预估: ~260行
-优先级: P1
-```
-
-### 任务 1.4: RAG框架
-```
-文件: modules/rag_framework/src/main.c
-功能:
-  - 完整RAG流程实现
-  - 文档索引流程
-  - 查询处理流程
-  - 上下文构建
-  - Prompt模板管理
-  - 答案生成与引用
-  - 置信度评估
-
-数据结构:
-  - rag_index_t:
-      store_id, embed_config, chunk_config,
-      indexed_docs, total_chunks, status
-  - rag_query_t:
-      question[1024], top_k(5), threshold(0.7),
-      include_sources(true), max_context_tokens
-  - rag_context_t:
-      chunks[], total_tokens, sources[], avg_similarity
-  - rag_response_t:
-      answer[2048], sources[], confidence,
-      latency_ms, tokens_used
-  - rag_template_t:
-      system_prompt, user_template, context_placeholder
-
-API函数:
-  - rag_create_index(name, embed_config, store_config) → index_id
-  - rag_index_document(index_id, doc_text, metadata) → doc_id
-  - rag_query(index_id, question, config) → response
-  - rag_build_context(index_id, question, k) → context
-  - rag_generate_answer(context, question, llm_config) → answer
-  - rag_get_sources(response) → source_docs[]
-  - rag_delete_index(index_id) → success
-  - rag_list_indices() → indices[]
-
-代码预估: ~380行
-优先级: P0
-```
-
-### 任务 1.5: 重排序模型
-```
-文件: modules/reranker/src/main.c
-功能:
-  - 检索结果重排序
-  - 相关性精评
-  - Cohere rerank接口预留
-  - 本地重排序算法
-  - 多样性优化
-  - 去重处理
-
-数据结构:
-  - rerank_config_t: model, top_n, max_chunks
-  - rerank_input_t: query, documents[], initial_scores[]
-  - rerank_result_t: doc_id, relevance_score, rank, diversity_score
-
-API函数:
-  - rr_rerank(query, results[], top_n) → reranked[]
-  - rr_score_relevance(query, doc) → score
-  - rr_diversify(results[], lambda) → diversified[]
-  - rr_deduplicate(results[], threshold) → unique[]
-
-代码预估: ~220行
-优先级: P2
-```
-
-### 任务 1.6: 知识库管理
-```
-文件: modules/knowledge_base/src/main.c
-功能:
-  - 知识库CRUD操作
-  - 分类标签管理
-  - 版本控制预留
-  - 访问权限预留
-  - 统计分析
-  - 导入导出
-
-数据结构:
-  - kb_entry_t:
-      kb_id, name, description, category,
-      created_at, updated_at, doc_count, chunk_count
-  - kb_category_t: category_id, name, entries[], count
-  - kb_stats_t: total_kb, total_docs, total_chunks, storage_used
-
-API函数:
-  - kb_create(name, description, category) → kb_id
-  - kb_add_document(kb_id, doc_text, metadata) → doc_id
-  - kb_search(kb_id, query, k) → results[]
-  - kb_list(category) → knowledge_bases[]
-  - kb_delete(kb_id) → success
-  - kb_get_stats(kb_id) → stats
-  - kb_export(kb_id) → export_data
-  - kb_import(kb_id, export_data) → success
-
-代码预估: ~260行
-优先级: P1
+v36.0: 最终集成认证 ✓
+v37.0: AI模型厂商API集成 ✓ (7模块)
+v38.0: RAG与向量检索 ✓ (6模块)
+v39.0: 多模态与本地模型 ✓ (7模块)
+v40.0: Agent编排与Function Calling (最终 - 7模块)
 ```
 
 ---
 
-## Phase 2: v39.0 多模态与本地模型
+## Phase 1: v39.0 多模态与本地模型
 
-### 任务 2.1: Whisper语音识别
+### 任务 1.1: Whisper语音识别 (P1)
 ```
-文件: modules/whisper_api/src/main.c
+文件: modules/whisper_api/src/main.c (~240行)
 功能:
-  - OpenAI Whisper接口
+  - OpenAI Whisper API接口
   - 多语言转录 (99+语言)
-  - 时间戳生成
+  - 时间戳生成 (word/timestamp级别)
   - 翻译功能 (→英语)
   - 音频格式支持
-  - 批量处理
+  - 批量处理预留
 
 数据结构:
-  - whisper_config_t: model("whisper-1"), language, response_format
-  - whisper_request_t: audio_file, model, language, timestamp_granularities
-  - whisper_response_t: text, segments[], language_detected, duration
+  whisper_config_t: model, language, response_format, timestamp_granularities
+  whisper_request_t: audio_data, model, language, prompt, temperature
+  whisper_response_t: text, segments[], language_detected, duration_seconds
+  whisper_segment_t: id, start, end, text, tokens[], no_speech_prob
 
 API函数:
-  - wa_transcribe(audio_data, config) → transcript
-  - wa_translate(audio_data) → english_text
-  - wa_detect_language(audio_data) → language
-
-代码预估: ~240行
-优先级: P1
+  wa_transcribe(audio_data, config) → transcript
+  wa_translate(audio_data) → english_text
+  wa_detect_language(audio_data) → language_code
 ```
 
-### 任务 2.2: TTS语音合成
+### 任务 1.2: TTS语音合成 (P2)
 ```
-文件: modules/tts_api/src/main.c
+文件: modules/tts_api/src/main.c (~200行)
 功能:
-  - OpenAI TTS接口
+  - OpenAI TTS API接口
   - 多语音选择 (alloy/echo/fable/onyx/nova/shimmer)
-  - 速度控制 (0.25-4.0)
-  - 格式输出 (mp3/opus/aac/flac)
+  - 速度控制 (0.25-4.0x)
+  - 格式输出 (mp3/opus/aac/flac/wav)
   - 流式生成预留
+  - HD模型支持
 
 数据结构:
-  - tts_config_t: model("tts-1/tts-1-hd"), voice, speed, response_format
-  - tts_request_t: input[4096], model, voice, speed
-  - tts_response_t: audio_data[], duration_ms, format
+  tts_config_t: model(tts-1/tts-1-hd), voice, speed, response_format
+  tts_request_t: input[4096], model, voice, speed, response_format
+  tts_response_t: audio_data[], duration_ms, format, voice_used
 
 API函数:
-  - tts_synthesize(text, config) → audio_data
-  - tts_list_voices() → voices[]
-  - tts_estimate_duration(text) → duration_ms
-
-代码预估: ~200行
-优先级: P2
+  tts_synthesize(text, config) → audio_data
+  tts_list_voices() → voices[]
+  tts_estimate_duration(text) → duration_ms
 ```
 
-### 任务 2.3: 视觉模型接口
+### 任务 1.3: 视觉模型接口增强 (P1)
 ```
-文件: modules/vision_api/src/main.c
+文件: modules/vision_api/src/main.c (~260行)
+(升级现有vision_ai为完整vision_api)
 功能:
   - GPT-4-Vision接口
   - Claude Vision接口
   - Gemini Vision接口
-  - 图像理解与描述
+  - 图像理解与详细描述
   - OCR文字提取预留
   - 图像比较分析
+  - 多图像输入
 
 数据结构:
-  - vision_config_t: provider, model, max_tokens
-  - vision_image_t: url_or_base64, detail_level
-  - vision_request_t: images[], prompt, max_tokens
-  - vision_response_t: description[2048], confidence, provider_used
+  vision_config_t: provider, model, max_tokens, detail_level
+  vision_image_t: url_or_base64[1024], detail(low/high/auto)
+  vision_request_t: images[4], prompt[512], max_tokens
+  vision_response_t: description[2048], confidence, provider_used
 
 API函数:
-  - vi_analyze(images[], prompt, config) → description
-  - vi_describe(image) → description
-  - vi_compare(image1, image2) → comparison
-  - vi_extract_text(image) → ocr_text (预留)
-
-代码预估: ~260行
-优先级: P1
+  vi_analyze(images[], prompt, config) → description
+  vi_describe(image) → description
+  vi_compare(image1, image2) → comparison
+  vi_extract_text(image) → ocr_text
 ```
 
-### 任务 2.4: Ollama本地模型
+### 任务 1.4: Ollama本地模型 (P0)
 ```
-文件: modules/ollama_local/src/main.c
+文件: modules/ollama_local/src/main.c (~300行)
 功能:
-  - 本地LLM调用
+  - 本地LLM调用 (无需API密钥)
   - 模型列表管理
   - 模型拉取/删除
-  - 无API密钥
-  - 私有部署
+  - 私有部署支持
   - 自定义模型支持
+  - 参数配置 (temperature, top_p, num_ctx)
+  - 流式响应预留
 
 数据结构:
-  - ollama_config_t: host_url("http://localhost:11434"), model, keep_alive
-  - ollama_model_t: name, size, modified_at, details
-  - ollama_request_t: model, prompt, stream, options(temperature, top_p, num_ctx)
-  - ollama_response_t: model, response[4096], done, context[], total_duration
+  ollama_config_t: host_url, model, keep_alive, num_ctx
+  ollama_model_t: name, size, digest, modified_at, details
+  ollama_request_t: model, prompt, stream, options, context
+  ollama_response_t: model, response[4096], done, total_duration, eval_count
 
 API函数:
-  - ol_generate(prompt, model, options) → response
-  - ol_chat(messages[], model, options) → response
-  - ol_list_models() → models[]
-  - ol_pull_model(model_name) → status
-  - ol_delete_model(model_name) → success
-  - ol_show_model(model_name) → model_info
-
-代码预估: ~300行
-优先级: P0
+  ol_generate(prompt, model, options) → response
+  ol_chat(messages[], model, options) → response
+  ol_list_models() → models[]
+  ol_pull_model(model_name) → status
+  ol_delete_model(model_name) → success
+  ol_show_model(model_name) → model_info
 ```
 
-### 任务 2.5: vLLM推理引擎
+### 任务 1.5: vLLM推理引擎 (P1)
 ```
-文件: modules/vllm_backend/src/main.c
+文件: modules/vllm_backend/src/main.c (~280行)
 功能:
   - 高吞吐推理接口
   - 批量请求处理
   - PagedAttention预留
   - 连续批处理预留
   - Tensor并行预留
+  - GPU内存优化预留
 
 数据结构:
-  - vllm_config_t: host_url, model, tensor_parallel_size, gpu_memory_utilization
-  - vllm_request_t: prompt, max_tokens, temperature, top_p
-  - vllm_response_t: text, tokens_generated, finish_reason
+  vllm_config_t: host_url, model, tensor_parallel_size, gpu_memory_util
+  vllm_request_t: prompt, max_tokens, temperature, top_p, top_k
+  vllm_response_t: text[2048], tokens_generated, finish_reason, throughput
 
 API函数:
-  - vl_generate(prompt, config) → response
-  - vl_batch_generate(prompts[], config) → responses[]
-  - vl_health_check() → status
-
-代码预估: ~280行
-优先级: P1
+  vl_generate(prompt, config) → response
+  vl_batch_generate(prompts[], config) → responses[]
+  vl_health_check() → status
 ```
 
-### 任务 2.6: 图像生成接口
+### 任务 1.6: 图像生成接口 (P2)
 ```
-文件: modules/image_gen/src/main.c
+文件: modules/image_gen/src/main.c (~220行)
 功能:
-  - DALL-E-3接口
-  - DALL-E-2接口
+  - DALL-E-3 API接口
+  - DALL-E-2接口预留
   - Stable Diffusion预留
   - 图像尺寸/质量控制
   - 批量生成
   - 编辑/变体预留
 
 数据结构:
-  - image_gen_config_t: model("dall-e-3"), size, quality, style
-  - image_gen_request_t: prompt[1000], model, n, size, quality, style
-  - image_gen_response_t: images[](url/base64), revised_prompt
+  image_gen_config_t: model(dall-e-3), size(1024x1024), quality(standard/hd), style(vivid/natural)
+  image_gen_request_t: prompt[1000], model, n, size, quality, style, response_format
+  image_gen_response_t: images[](url/base64), revised_prompt, created_at
 
 API函数:
-  - ig_generate(prompt, config) → images[]
-  - ig_edit(image, prompt) → edited_image (预留)
-  - ig_variation(image) → variations[] (预留)
-
-代码预估: ~220行
-优先级: P2
+  ig_generate(prompt, config) → images[]
+  ig_edit(image, mask, prompt) → edited_image
+  ig_variation(image) → variations[]
 ```
 
-### 任务 2.7: 视频生成接口
+### 任务 1.7: 视频生成接口 (P3)
 ```
-文件: modules/video_gen/src/main.c
+文件: modules/video_gen/src/main.c (~180行)
 功能:
-  - 视频生成API预留
+  - 视频生成API预留接口
   - Sora接口预留
   - 帧率/时长控制
   - 批量生成预留
+  - 视频编辑预留
 
 数据结构:
-  - video_gen_config_t: model, duration, resolution, fps
-  - video_gen_request_t: prompt, config
-  - video_gen_response_t: video_url, duration, resolution
+  video_gen_config_t: model, duration, resolution, fps
+  video_gen_request_t: prompt[500], config
+  video_gen_response_t: video_url, duration, resolution, status
 
 API函数:
-  - vg_generate(prompt, config) → video_url (预留接口)
-
-代码预估: ~180行
-优先级: P3
+  vg_generate(prompt, config) → video_url
 ```
 
 ---
 
-## Phase 3: v40.0 Agent编排与Function Calling
+## Phase 2: v40.0 Agent编排与Function Calling
 
-### 任务 3.1: 函数调用框架
+### 任务 2.1: 函数调用框架 (P0)
 ```
-文件: modules/function_call/src/main.c
+文件: modules/function_call/src/main.c (~320行)
 功能:
   - 结构化函数调用
   - JSON Schema参数验证
   - 执行结果返回
-  - 错误处理
+  - 错误处理机制
   - 并行调用支持
   - 调用链追踪
+  - 调用统计
 
 数据结构:
-  - func_schema_t:
-      name, description, parameters_json[512],
-      required_params[], returns_schema
-  - func_call_t:
-      call_id, name, arguments_json[256],
-      status(PENDING/EXECUTING/DONE/ERROR)
-  - func_result_t:
-      call_id, output[1024], error[256],
-      execution_time_ms, status
+  func_schema_t: name, description[256], parameters_json[512], required_params[], returns_schema
+  func_call_t: call_id, name, arguments_json[256], status(PENDING/EXECUTING/DONE/ERROR), created_at
+  func_result_t: call_id, output[1024], error[256], execution_time_ms, status
 
 API函数:
-  - fc_register(schema) → func_id
-  - fc_unregister(func_id) → success
-  - fc_call(name, arguments) → call_id
-  - fc_get_result(call_id) → result
-  - fc_batch_call(calls[]) → call_ids[]
-  - fc_validate_args(schema, arguments) → valid/errors
-  - fc_list_registered() → schemas[]
-  - fc_execute_direct(name, args) → result (同步)
-
-代码预估: ~320行
-优先级: P0
+  fc_register(schema) → func_id
+  fc_unregister(func_id) → success
+  fc_call(name, arguments) → call_id
+  fc_get_result(call_id) → result
+  fc_batch_call(calls[]) → call_ids[]
+  fc_validate_args(schema, arguments) → valid/errors[]
+  fc_list_registered() → schemas[]
+  fc_execute_direct(name, args) → result
+  fc_get_stats() → {total_calls, success_rate, avg_latency}
 ```
 
-### 任务 3.2: 工具注册中心
+### 任务 2.2: 工具注册中心 (P0)
 ```
-文件: modules/tool_registry/src/main.c
+文件: modules/tool_registry/src/main.c (~280行)
 功能:
   - 工具注册与管理
   - 工具发现与搜索
@@ -463,37 +247,28 @@ API函数:
   - 使用统计追踪
   - 版本管理预留
   - 工具权限预留
+  - 工具标签
 
 数据结构:
-  - tool_entry_t:
-      tool_id, name, description[256],
-      category, module_ref, schema,
-      registered_at, call_count, success_rate
-  - tool_category_t:
-      category_id, name, parent_id,
-      tools[], subcategories[], count
-  - tool_stats_t:
-      tool_id, total_calls, success_calls,
-      avg_latency_ms, last_called_at
+  tool_entry_t: tool_id, name, description[256], category, module_ref, schema, tags[], call_count, success_rate
+  tool_category_t: category_id, name, parent_id, tools[], subcategories[], count
+  tool_stats_t: tool_id, total_calls, success_calls, avg_latency_ms, last_called_at
 
 API函数:
-  - tr_register(name, description, category, schema) → tool_id
-  - tr_unregister(tool_id) → success
-  - tr_find_by_name(name) → tool_entry
-  - tr_find_by_category(category) → tools[]
-  - tr_search(keyword) → tools[]
-  - tr_execute(tool_id, args) → result
-  - tr_get_stats(tool_id) → stats
-  - tr_list_categories() → categories[]
-  - tr_batch_execute(tool_ids[], args[]) → results[]
-
-代码预估: ~280行
-优先级: P0
+  tr_register(name, description, category, schema) → tool_id
+  tr_unregister(tool_id) → success
+  tr_find_by_name(name) → tool_entry
+  tr_find_by_category(category) → tools[]
+  tr_search(keyword) → tools[]
+  tr_execute(tool_id, args) → result
+  tr_get_stats(tool_id) → stats
+  tr_list_categories() → categories[]
+  tr_batch_execute(tool_ids[], args[]) → results[]
 ```
 
-### 任务 3.3: 多Agent协作
+### 任务 2.3: 多Agent协作 (P0)
 ```
-文件: modules/multi_agent/src/main.c
+文件: modules/multi_agent/src/main.c (~340行)
 功能:
   - 多Agent任务分配
   - Agent能力注册
@@ -501,91 +276,68 @@ API函数:
   - 结果聚合与投票
   - 冲突检测与解决
   - 协作策略配置
+  - Agent状态监控
 
 数据结构:
-  - agent_profile_t:
-      agent_id, name, capabilities[],
-      specialization, max_concurrent_tasks,
-      success_rate, current_load
-  - agent_task_t:
-      task_id, description, assigned_agents[],
-      status, priority, created_at
-  - agent_message_t:
-      from_agent, to_agent, content[512],
-      msg_type(REQUEST/RESPONSE/STATUS), timestamp
-  - agent_vote_t:
-      agent_id, result, confidence, reason
-  - collaboration_result_t:
-      final_result, participating_agents[],
-      consensus_score, conflict_detected
+  agent_profile_t: agent_id, name, capabilities[], specialization, max_concurrent, success_rate, current_load
+  agent_task_t: task_id, description, assigned_agents[], status, priority, created_at, deadline
+  agent_message_t: from_agent, to_agent, content[512], msg_type, timestamp
+  agent_vote_t: agent_id, result, confidence, reason
+  collaboration_result_t: final_result, participating_agents[], consensus_score, conflict_detected, resolution
 
 API函数:
-  - ma_register_agent(name, capabilities) → agent_id
-  - ma_unregister_agent(agent_id) → success
-  - ma_assign_task(task, agents[]) → assignment
-  - ma_broadcast(from_agent, message) → recipients
-  - ma_send_message(from, to, message) → success
-  - ma_aggregate_results(results[]) → final_result
-  - ma_vote_on_result(results[]) → consensus
-  - ma_resolve_conflict(conflicting[]) → resolved
-  - ma_get_agent_status(agent_id) → status
-  - ma_list_agents() → agents[]
-
-代码预估: ~340行
-优先级: P0
+  ma_register_agent(name, capabilities) → agent_id
+  ma_unregister_agent(agent_id) → success
+  ma_assign_task(task, agents[]) → assignment
+  ma_broadcast(from_agent, message) → recipients
+  ma_send_message(from, to, message) → success
+  ma_aggregate_results(results[]) → final_result
+  ma_vote_on_result(results[]) → consensus
+  ma_resolve_conflict(conflicting[]) → resolved
+  ma_get_agent_status(agent_id) → status
+  ma_list_agents() → agents[]
 ```
 
-### 任务 3.4: Agent工作流
+### 任务 2.4: Agent工作流增强 (P0)
 ```
-文件: modules/agent_workflow/src/main.c
+文件: modules/agent_workflow/src/main.c (~360行)
+(升级workflow_engine为完整agent_workflow)
 功能:
   - 工作流定义与解析
   - DAG节点编排
   - 条件分支执行
   - 循环/迭代处理
   - 并行节点执行
-  - 状态持久化
+  - 状态持久化预留
   - 工作流模板
+  - 失败重试机制
 
 数据结构:
-  - wf_node_t:
-      node_id, name, type(START/END/TASK/CONDITION/PARALLEL/LOOP),
-      action, next_nodes[], condition_expr,
-      timeout_ms, retry_count
-  - wf_edge_t: from_node, to_node, condition
-  - workflow_t:
-      wf_id, name, nodes[], edges[],
-      start_node, end_nodes[], variables{},
-      status(DRAFT/READY/RUNNING/PAUSED/COMPLETED/FAILED)
-  - wf_execution_t:
-      execution_id, wf_id, current_nodes[],
-      completed_nodes[], failed_nodes[],
-      variables{}, started_at, status
-  - wf_state_t:
-      execution_id, node_id, status,
-      input, output, error, timestamp
+  wf_node_t: node_id, name, type(START/END/TASK/CONDITION/PARALLEL/LOOP/SUBFLOW), action, next_nodes[], condition_expr, timeout_ms, retry_count
+  wf_edge_t: from_node, to_node, condition
+  workflow_t: wf_id, name, nodes[], edges[], start_node, end_nodes[], variables{}, status
+  wf_execution_t: execution_id, wf_id, current_nodes[], completed_nodes[], failed_nodes[], variables{}, started_at, status
+  wf_state_t: execution_id, node_id, status, input, output, error, timestamp, retry_count
 
 API函数:
-  - wf_create(name, definition) → wf_id
-  - wf_validate(wf_id) → valid/errors
-  - wf_execute(wf_id, input) → execution_id
-  - wf_pause(execution_id) → success
-  - wf_resume(execution_id) → success
-  - wf_cancel(execution_id) → success
-  - wf_get_state(execution_id) → state
-  - wf_get_history(execution_id) → history[]
-  - wf_list() → workflows[]
-  - wf_clone(wf_id) → new_wf_id
-  - wf_export(wf_id) → definition_json
-  - wf_import(definition_json) → wf_id
-
-代码预估: ~360行
-优先级: P0
+  wf_create(name, definition) → wf_id
+  wf_validate(wf_id) → valid/errors[]
+  wf_execute(wf_id, input) → execution_id
+  wf_pause(execution_id) → success
+  wf_resume(execution_id) → success
+  wf_cancel(execution_id) → success
+  wf_get_state(execution_id) → state
+  wf_get_history(execution_id) → history[]
+  wf_list() → workflows[]
+  wf_clone(wf_id) → new_wf_id
+  wf_export(wf_id) → definition_json
+  wf_import(definition_json) → wf_id
 ```
 
-### 任务 3.5: 推理链
+### 任务 2.5: 推理链增强 (P1)
 ```
-文件: modules/reasoning_chain/src/main.c
+文件: modules/reasoning_chain/src/main.c (~280行)
+(升级reasoning_agent为完整reasoning_chain)
 功能:
   - 思维链(CoT)推理
   - 分步推理追踪
@@ -593,35 +345,27 @@ API函数:
   - 推理可视化预留
   - 反向推理预留
   - 推理模板
+  - 推理历史
 
 数据结构:
-  - reasoning_step_t:
-      step_id, thought[512], action[256],
-      observation[256], confidence, next_step
-  - reasoning_chain_t:
-      chain_id, steps[], current_step,
-      final_conclusion[512], total_steps,
-      total_confidence
-  - reasoning_template_t:
-      template_id, name, steps_pattern[],
-      use_cases
+  reasoning_step_t: step_id, thought[512], action[256], observation[256], confidence, next_step_id
+  reasoning_chain_t: chain_id, steps[], current_step, final_conclusion[512], total_steps, total_confidence, created_at
+  reasoning_template_t: template_id, name, steps_pattern[], use_cases[], success_rate
 
 API函数:
-  - rc_start_chain(question) → chain_id
-  - rc_add_step(chain_id, thought, action) → step_id
-  - rc_get_current_step(chain_id) → step
-  - rc_finalize_chain(chain_id) → conclusion
-  - rc_validate_chain(chain_id) → valid/errors
-  - rc_apply_template(question, template) → chain_id
-  - rc_list_templates() → templates[]
-
-代码预估: ~280行
-优先级: P1
+  rc_start_chain(question) → chain_id
+  rc_add_step(chain_id, thought, action) → step_id
+  rc_get_current_step(chain_id) → step
+  rc_finalize_chain(chain_id) → conclusion
+  rc_validate_chain(chain_id) → valid/errors[]
+  rc_apply_template(question, template) → chain_id
+  rc_list_templates() → templates[]
+  rc_get_history(question) → chains[]
 ```
 
-### 任务 3.6: 自反思系统
+### 任务 2.6: 自反思系统 (P1)
 ```
-文件: modules/self_reflection/src/main.c
+文件: modules/self_reflection/src/main.c (~260行)
 功能:
   - 输出质量评估
   - 自我纠正循环
@@ -629,37 +373,26 @@ API函数:
   - 改进建议生成
   - 反思历史追踪
   - 评分标准管理
+  - 自动迭代优化
 
 数据结构:
-  - reflection_criteria_t:
-      criteria_id, name, weight,
-      description, scoring_method
-  - reflection_assessment_t:
-      assessment_id, output_id, criteria_scores{},
-      overall_score, issues[], suggestions[]
-  - correction_t:
-      correction_id, original_output,
-      corrected_output, reason,
-      improvement_delta
-  - reflection_history_t:
-      item_id, output_type, original_score,
-      corrected_score, iterations, final_score
+  reflection_criteria_t: criteria_id, name, weight, description, scoring_method(0-100)
+  reflection_assessment_t: assessment_id, output_id, criteria_scores{}, overall_score, issues[], suggestions[]
+  correction_t: correction_id, original_output, corrected_output, reason, improvement_delta
+  reflection_history_t: item_id, output_type, original_score, corrected_score, iterations, final_score, timestamp
 
 API函数:
-  - sr_assess(output, criteria[]) → assessment
-  - sr_suggest_improvements(assessment) → suggestions
-  - sr_apply_correction(output, suggestion) → corrected
-  - sr_iterate(output, max_iterations) → final_output
-  - sr_get_history(output_type) → history[]
-  - sr_add_criteria(name, weight, method) → criteria_id
-
-代码预估: ~260行
-优先级: P1
+  sr_assess(output, criteria[]) → assessment
+  sr_suggest_improvements(assessment) → suggestions[]
+  sr_apply_correction(output, suggestion) → corrected_output
+  sr_iterate(output, max_iterations) → final_output
+  sr_get_history(output_type) → history[]
+  sr_add_criteria(name, weight, method) → criteria_id
 ```
 
-### 任务 3.7: AGI最终集成
+### 任务 2.7: AGI最终集成 (P0)
 ```
-文件: modules/agi_final/src/main.c
+文件: modules/agi_final/src/main.c (~400行)
 功能:
   - 全能力AGI统一入口
   - 能力编排引擎
@@ -667,61 +400,71 @@ API函数:
   - 最终认证测试
   - AGI级别评估
   - 综合能力报告
+  - 认证等级计算
 
 数据结构:
-  - agi_capability_t:
-      capability_id, name, module_ref,
-      level(0-5), tests_passed, tests_total
-  - agi_request_t:
-      request_id, task_type, complexity,
-      required_capabilities[], preferred_strategy
-  - agi_response_t:
-      response_id, result[2048],
-      capabilities_used[], confidence,
-      reasoning_chain_id, workflow_id
-  - agi_assessment_t:
-      assessment_id, capability_scores{},
-      overall_level, certification_status,
-      recommendations[]
+  agi_capability_t: capability_id, name, module_ref, level(0-5), tests_passed, tests_total
+  agi_request_t: request_id, task_type, complexity, required_capabilities[], preferred_strategy, max_iterations
+  agi_response_t: response_id, result[2048], capabilities_used[], confidence, reasoning_chain_id, workflow_id, latency_ms
+  agi_assessment_t: assessment_id, capability_scores{}, overall_level, certification_status, recommendations[], timestamp
+  agi_report_t: total_capabilities, passed_tests, failed_tests, certification_level(DIAMOND), timestamp
 
 API函数:
-  - agi_execute(task, config) → response
-  - agi_assess_capabilities() → assessment
-  - agi_get_capability_level(name) → level
-  - agi_run_certification() → result
-  - agi_list_capabilities() → capabilities[]
-  - agi_recommend_for_task(task) → capabilities[]
-
-代码预估: ~400行
-优先级: P0
+  agi_execute(task, config) → response
+  agi_assess_capabilities() → assessment
+  agi_get_capability_level(name) → level
+  agi_run_certification() → result
+  agi_list_capabilities() → capabilities[]
+  agi_recommend_for_task(task) → capabilities[]
+  agi_generate_report() → report
 ```
 
 ---
 
 ## 实现顺序总表
 
-| 版本 | 任务 | 代码量 | 优先级 |
-|------|------|--------|--------|
-| v38.0 | embedding_interface | ~280行 | P0 |
-| v38.0 | vector_store | ~350行 | P0 |
-| v38.0 | document_processor | ~260行 | P1 |
-| v38.0 | rag_framework | ~380行 | P0 |
-| v38.0 | reranker | ~220行 | P2 |
-| v38.0 | knowledge_base | ~260行 | P1 |
-| v39.0 | whisper_api | ~240行 | P1 |
-| v39.0 | tts_api | ~200行 | P2 |
-| v39.0 | vision_api | ~260行 | P1 |
-| v39.0 | ollama_local | ~300行 | P0 |
-| v39.0 | vllm_backend | ~280行 | P1 |
-| v39.0 | image_gen | ~220行 | P2 |
-| v39.0 | video_gen | ~180行 | P3 |
-| v40.0 | function_call | ~320行 | P0 |
-| v40.0 | tool_registry | ~280行 | P0 |
-| v40.0 | multi_agent | ~340行 | P0 |
-| v40.0 | agent_workflow | ~360行 | P0 |
-| v40.0 | reasoning_chain | ~280行 | P1 |
-| v40.0 | self_reflection | ~260行 | P1 |
-| v40.0 | agi_final | ~400行 | P0 |
+| 版本 | 任务 | 文件 | 代码量 | 优先级 |
+|------|------|------|--------|--------|
+| v38.0 | RAG框架 | ✓已完成 | ~1,690行 | ✓ |
+| v39.0 | whisper_api | modules/whisper_api/src/main.c | ~240行 | P1 |
+| v39.0 | tts_api | modules/tts_api/src/main.c | ~200行 | P2 |
+| v39.0 | vision_api | modules/vision_api/src/main.c | ~260行 | P1 |
+| v39.0 | ollama_local | modules/ollama_local/src/main.c | ~300行 | P0 |
+| v39.0 | vllm_backend | modules/vllm_backend/src/main.c | ~280行 | P1 |
+| v39.0 | image_gen | modules/image_gen/src/main.c | ~220行 | P2 |
+| v39.0 | video_gen | modules/video_gen/src/main.c | ~180行 | P3 |
+| v40.0 | function_call | modules/function_call/src/main.c | ~320行 | P0 |
+| v40.0 | tool_registry | modules/tool_registry/src/main.c | ~280行 | P0 |
+| v40.0 | multi_agent | modules/multi_agent/src/main.c | ~340行 | P0 |
+| v40.0 | agent_workflow | modules/agent_workflow/src/main.c | ~360行 | P0 |
+| v40.0 | reasoning_chain | modules/reasoning_chain/src/main.c | ~280行 | P1 |
+| v40.0 | self_reflection | modules/self_reflection/src/main.c | ~260行 | P1 |
+| v40.0 | agi_final | modules/agi_final/src/main.c | ~400行 | P0 |
+
+---
+
+## 架构总览
+
+```
+AI-ASM OS 完整架构 (v40.0目标):
+
+═══════════════════════════════════════════════════════════
+             应用层 (440→454 WASM模块)
+═══════════════════════════════════════════════════════════
+┌─────────────────────────────────────────────────────────┐
+│ POSIX │ 网络 │ GUI │ AI厂商 │ RAG │ 多模态 │ Agent │ AGI │
+│  80+  │ 30+ │ 10+ │   7    │  6  │   7    │   10  │  1  │
+│       │     │     │ API    │框架 │本地/生成│编排   │最终 │
+└─────────────────────────────────────────────────────────┘
+                    ↑ 372 Host函数接口 ↓
+═══════════════════════════════════════════════════════════
+             WASM运行时层 (6,021行)
+═══════════════════════════════════════════════════════════
+                    ↑ 150+ 系统调用 ↓
+═══════════════════════════════════════════════════════════
+             内核层 (62 ASM, 27,854行)
+═══════════════════════════════════════════════════════════
+```
 
 ---
 
@@ -729,22 +472,71 @@ API函数:
 
 ```
 v40.0完成后:
-├─ WASM模块: 454个 (+20)
-├─ C代码量: ~95K行 (+13K)
+├─ WASM模块: 454个 (+14)
+├─ C代码量: ~96K行 (+14K)
 ├─ AI厂商API: 7个 ✓
-├─ RAG框架: 6模块 ✓
-├─ 多模态: 7模块 ✓
-├─ Agent编排: 7模块 ✓
-├─ 总功能覆盖: 100%
+├─ RAG框架: 6个 ✓
+├─ 多模态: 7个 ✓
+├─ Agent编排: 7个 ✓
+├─ AGI最终: 1个 ✓
+├─ 架构完整: 100%
 
-架构完整度:
+能力覆盖:
 ├─ 内核层: ✓ 完整
 ├─ WASM层: ✓ 完整 (372函数)
-├─ AI接口层: ✓ 完整
-├─ Agent层: ✓ 完整
-├─ AGI层: ✓ 完整
+├─ AI接口层: ✓ 完整 (7厂商)
+├─ RAG层: ✓ 完整 (向量/嵌入/检索)
+├─ 多模态层: ✓ 完整 (语音/视觉/图像)
+├─ Agent层: ✓ 完整 (协作/工作流/推理)
+├─ AGI层: ✓ 完整 (认证/评估)
 
 认证等级: PLATINUM → DIAMOND
+```
+
+---
+
+## 开发优先级
+
+```
+P0 (必须完成 - v40.0核心):
+├─ ollama_local.wasm - 本地模型支持
+├─ function_call.wasm - 函数调用框架
+├─ tool_registry.wasm - 工具注册中心
+├─ multi_agent.wasm - 多Agent协作
+├─ agent_workflow.wasm - 工作流引擎
+├─ agi_final.wasm - AGI最终集成
+
+P1 (重要功能):
+├─ whisper_api.wasm - 语音识别
+├─ vision_api.wasm - 视觉模型
+├─ vllm_backend.wasm - 高吞吐推理
+├─ reasoning_chain.wasm - 推理链
+├─ self_reflection.wasm - 自反思
+
+P2/P3 (扩展功能):
+├─ tts_api.wasm - 语音合成
+├─ image_gen.wasm - 图像生成
+├─ video_gen.wasm - 视频生成预留
+```
+
+---
+
+## 下一步行动
+
+```
+立即开发 v39.0 (多模态):
+1. modules/whisper_api/src/main.c (~240行) - 语音识别
+2. modules/tts_api/src/main.c (~200行) - 语音合成
+3. modules/vision_api/src/main.c (~260行) - 视觉模型
+4. modules/ollama_local/src/main.c (~300行) - 本地模型 (P0)
+5. modules/vllm_backend/src/main.c (~280行) - vLLM引擎
+6. modules/image_gen/src/main.c (~220行) - 图像生成
+7. modules/video_gen/src/main.c (~180行) - 视频生成预留
+
+预计新增: 7模块, ~1,680行
+目标版本: v39.0 多模态与本地模型
+预计模块: 447个
+预计代码: ~98K行
 ```
 
 ---
@@ -756,5 +548,5 @@ v40.0完成后:
 
 下次触发: UPDATE=0
 
-commit message: "milestone: AI-ASM OS v38.0 RAG framework - embedding, vector store, document processor, rag framework, knowledge base"
+commit message: "milestone: AI-ASM OS v39.0 multimodal - Whisper, TTS, Vision, Ollama, vLLM, Image generation"
 ```
