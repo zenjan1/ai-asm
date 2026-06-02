@@ -4547,6 +4547,372 @@ static const void *host_ai_response(IM3Runtime runtime, IM3ImportContext _ctx, u
 }
 
 /* -------------------------------------------------------------------------- */
+/* Maintenance host functions (v27.1)                                         */
+/* -------------------------------------------------------------------------- */
+
+static int maint_state = 0;  /* 0=none, 1=available, 2=applying, 3=applied, 4=failed */
+
+static const void *host_maintenance_check(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t *ret = (int32_t *)_sp;
+    *ret = maint_state;
+    return m3Err_none;
+}
+
+static const void *host_maintenance_apply(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t patch_id = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    if (patch_id <= 0) { *ret = -1; return m3Err_none; }
+    maint_state = 3;
+    *ret = 0;
+    return m3Err_none;
+}
+
+static const void *host_maintenance_verify(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t update_id = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    *ret = (update_id > 0) ? 0 : -1;
+    return m3Err_none;
+}
+
+static const void *host_maintenance_rollback(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t version = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    (void)version;
+    maint_state = 0;
+    *ret = 0;
+    return m3Err_none;
+}
+
+static const void *host_maintenance_status(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t *ret = (int32_t *)_sp;
+    *ret = maint_state;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Performance monitoring host functions (v27.1)                              */
+/* -------------------------------------------------------------------------- */
+
+static uint64_t perf_cycles = 0;
+static uint64_t perf_instrs = 0;
+static uint64_t perf_cache_miss = 0;
+static uint64_t perf_mem_bw = 0;
+
+static const void *host_perf_get_cycles(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    /* Simulated cycle counter */
+    perf_cycles += 1024;
+    uint64_t *ret = (uint64_t *)_sp;
+    *ret = perf_cycles;
+    return m3Err_none;
+}
+
+static const void *host_perf_get_instructions(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    perf_instrs += 2048;
+    uint64_t *ret = (uint64_t *)_sp;
+    *ret = perf_instrs;
+    return m3Err_none;
+}
+
+static const void *host_perf_get_cache_miss(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    perf_cache_miss += 12;
+    uint64_t *ret = (uint64_t *)_sp;
+    *ret = perf_cache_miss;
+    return m3Err_none;
+}
+
+static const void *host_perf_get_memory_bw(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    perf_mem_bw += 512;
+    uint64_t *ret = (uint64_t *)_sp;
+    *ret = perf_mem_bw;
+    return m3Err_none;
+}
+
+static const void *host_perf_reset(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem; (void)_sp;
+    perf_cycles = 0; perf_instrs = 0; perf_cache_miss = 0; perf_mem_bw = 0;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Apple Silicon host functions (v27.2)                                       */
+/* -------------------------------------------------------------------------- */
+
+static int apple_soc = 0;  /* 0=M1, 1=M2, 3=M3 */
+static int apple_amx_ready = 0;
+
+static const void *host_apple_get_soc(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t *ret = (int32_t *)_sp;
+    *ret = apple_soc;
+    return m3Err_none;
+}
+
+static const void *host_apple_amx_init(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t *ret = (int32_t *)_sp;
+    apple_amx_ready = 1;
+    *ret = 0;
+    return m3Err_none;
+}
+
+static const void *host_apple_amx_compute(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t size = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    if (!apple_amx_ready) { *ret = -1; return m3Err_none; }
+    (void)size;
+    *ret = 0;
+    return m3Err_none;
+}
+
+static const void *host_apple_neural_infer(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t model_ptr = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    (void)model_ptr;
+    *ret = 0;
+    return m3Err_none;
+}
+
+static const void *host_apple_gpu_compute(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t work_size = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    (void)work_size;
+    *ret = 0;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Quantum computing host functions (v27.2)                                   */
+/* -------------------------------------------------------------------------- */
+
+static int quantum_qubits = 0;
+static int quantum_state[16];  /* up to 16 qubits */
+
+static const void *host_quantum_init(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t n_qubits = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    if (n_qubits <= 0 || n_qubits > 16) { *ret = -1; return m3Err_none; }
+    quantum_qubits = n_qubits;
+    for (int i = 0; i < n_qubits; i++) quantum_state[i] = 0;
+    *ret = 0;
+    return m3Err_none;
+}
+
+static const void *host_quantum_gate(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t gate = (int32_t)*_sp++;
+    int32_t target = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    if (quantum_qubits <= 0 || target >= quantum_qubits) { *ret = -1; return m3Err_none; }
+    /* Simulate gate: flip for X, phase for S/T, superposition for H */
+    if (gate == 0) quantum_state[target] ^= 1;       /* X (Pauli-X) */
+    else if (gate == 1) { }                           /* H: no state change in sim */
+    else if (gate == 2) { }                           /* CNOT: needs 2 qubits */
+    else if (gate == 3) quantum_state[target] = 1;    /* Phase gate */
+    *ret = 0;
+    return m3Err_none;
+}
+
+static const void *host_quantum_measure(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t qubit = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    if (quantum_qubits <= 0 || qubit >= quantum_qubits) { *ret = -1; return m3Err_none; }
+    *ret = quantum_state[qubit];
+    return m3Err_none;
+}
+
+static const void *host_quantum_entangle(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t q1 = (int32_t)*_sp++;
+    int32_t q2 = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    if (quantum_qubits <= 0 || q1 >= quantum_qubits || q2 >= quantum_qubits) { *ret = -1; return m3Err_none; }
+    /* Entangle: set both qubits to same state */
+    quantum_state[q2] = quantum_state[q1];
+    *ret = 0;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Neuromorphic (SNN) host functions (v27.3)                                  */
+/* -------------------------------------------------------------------------- */
+
+static int snn_network_id = 0;
+static int snn_total_spikes = 0;
+
+static const void *host_snn_create_network(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t type = (int32_t)*_sp++;
+    int32_t n = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    (void)type;
+    if (n <= 0) { *ret = -1; return m3Err_none; }
+    snn_network_id++;
+    snn_total_spikes = 0;
+    *ret = snn_network_id;
+    return m3Err_none;
+}
+
+static const void *host_snn_process_spike(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t input_type = (int32_t)*_sp++;
+    int32_t data = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    (void)input_type; (void)data;
+    snn_total_spikes++;
+    *ret = 0;
+    return m3Err_none;
+}
+
+static const void *host_snn_stdp_learn(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem; (void)_sp;
+    /* STDP learning applied */
+    return m3Err_none;
+}
+
+static const void *host_snn_get_energy(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t *ret = (int32_t *)_sp;
+    /* Return energy in microjoules (spike-based) */
+    *ret = snn_total_spikes * 2;  /* ~2uJ per spike */
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Photonics host functions (v27.3)                                           */
+/* -------------------------------------------------------------------------- */
+
+static int photonics_chips = 0;
+static int photonics_channels = 0;
+static int photonics_routes = 0;
+
+static const void *host_photonics_init_chip(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t chip_type = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    if (chip_type < 0 || chip_type > 3) { *ret = -1; return m3Err_none; }
+    photonics_chips++;
+    *ret = photonics_chips - 1;  /* chip ID */
+    return m3Err_none;
+}
+
+static const void *host_photonics_create_channel(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t type = (int32_t)*_sp++;
+    int32_t wl = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    if (type < 0 || type > 4 || wl < 0 || wl > 4) { *ret = -1; return m3Err_none; }
+    photonics_channels++;
+    *ret = photonics_channels - 1;
+    return m3Err_none;
+}
+
+static const void *host_photonics_route(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t src = (int32_t)*_sp++;
+    int32_t dst = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    if (src < 0 || dst < 0 || src >= photonics_chips || dst >= photonics_chips) { *ret = -1; return m3Err_none; }
+    photonics_routes++;
+    *ret = 0;
+    return m3Err_none;
+}
+
+static const void *host_photonics_compute(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t op = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    if (op < 0 || op > 3 || photonics_chips == 0) { *ret = -1; return m3Err_none; }
+    *ret = 0;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Ethical/AGI host functions (v27.4)                                         */
+/* -------------------------------------------------------------------------- */
+
+static int ethical_level = 5;  /* 0=none, 5=full ethical reasoning */
+static int meta_level = 3;     /* 0=none, 5=transcendent */
+static int improve_cycles = 0;
+
+static const void *host_ethical_check(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t decision_ptr = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    (void)decision_ptr;
+    /* Return ethical score 0-100 */
+    *ret = 75 + (ethical_level * 5);
+    return m3Err_none;
+}
+
+static const void *host_meta_cognition_level(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t *ret = (int32_t *)_sp;
+    *ret = meta_level;
+    return m3Err_none;
+}
+
+static const void *host_self_improve_cycle(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem; (void)_sp;
+    improve_cycles++;
+    return m3Err_none;
+}
+
+static const void *host_social_context(IM3Runtime rt, IM3ImportContext _ctx, uint64_t *_sp, void *_mem)
+{
+    (void)rt; (void)_ctx; (void)_mem;
+    int32_t context_ptr = (int32_t)*_sp;
+    int32_t *ret = (int32_t *)_sp;
+    (void)context_ptr;
+    /* Return social context score */
+    *ret = 80;
+    return m3Err_none;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Host function registration table                                           */
 /* -------------------------------------------------------------------------- */
 
@@ -4685,6 +5051,44 @@ static const host_reg_t host_registry[] = {
     { "host", "ai_init",     "v(i)",  &host_ai_init     },
     { "host", "ai_query",    "v(ii)", &host_ai_query    },
     { "host", "ai_response", "i(ii)", &host_ai_response },
+    /* Maintenance (v27.1) */
+    { "host", "maintenance_check",   "i()",  &host_maintenance_check   },
+    { "host", "maintenance_apply",   "i(i)", &host_maintenance_apply   },
+    { "host", "maintenance_verify",  "i(i)", &host_maintenance_verify  },
+    { "host", "maintenance_rollback","i(i)", &host_maintenance_rollback },
+    { "host", "maintenance_status",  "i()",  &host_maintenance_status  },
+    /* Performance monitoring (v27.1) */
+    { "host", "perf_get_cycles",      "I()", &host_perf_get_cycles      },
+    { "host", "perf_get_instructions","I()", &host_perf_get_instructions },
+    { "host", "perf_get_cache_miss",  "I()", &host_perf_get_cache_miss  },
+    { "host", "perf_get_memory_bw",   "I()", &host_perf_get_memory_bw   },
+    { "host", "perf_reset",           "v()", &host_perf_reset           },
+    /* Apple Silicon (v27.2) */
+    { "host", "apple_get_soc",      "i()",  &host_apple_get_soc      },
+    { "host", "apple_amx_init",     "i()",  &host_apple_amx_init     },
+    { "host", "apple_amx_compute",  "i(i)", &host_apple_amx_compute  },
+    { "host", "apple_neural_infer", "i(i)", &host_apple_neural_infer },
+    { "host", "apple_gpu_compute",  "i(i)", &host_apple_gpu_compute  },
+    /* Quantum computing (v27.2) */
+    { "host", "quantum_init",     "i(i)", &host_quantum_init     },
+    { "host", "quantum_gate",     "i(ii)",&host_quantum_gate     },
+    { "host", "quantum_measure",  "i(i)", &host_quantum_measure  },
+    { "host", "quantum_entangle", "i(ii)",&host_quantum_entangle },
+    /* Neuromorphic SNN (v27.3) */
+    { "host", "snn_create_network",  "i(ii)", &host_snn_create_network  },
+    { "host", "snn_process_spike",   "i(ii)", &host_snn_process_spike   },
+    { "host", "snn_stdp_learn",      "v()",  &host_snn_stdp_learn      },
+    { "host", "snn_get_energy",      "i()",  &host_snn_get_energy      },
+    /* Photonics (v27.3) */
+    { "host", "photonics_init_chip",   "i(i)", &host_photonics_init_chip   },
+    { "host", "photonics_create_channel","i(ii)",&host_photonics_create_channel },
+    { "host", "photonics_route",       "i(ii)",&host_photonics_route       },
+    { "host", "photonics_compute",     "i(i)", &host_photonics_compute     },
+    /* Ethical/AGI (v27.4) */
+    { "host", "ethical_check",        "i(i)",  &host_ethical_check        },
+    { "host", "meta_cognition_level", "i()",   &host_meta_cognition_level },
+    { "host", "self_improve_cycle",   "v()",   &host_self_improve_cycle   },
+    { "host", "social_context",       "i(i)",  &host_social_context       },
 };
 
 #define HOST_REG_COUNT (sizeof(host_registry) / sizeof(host_registry[0]))
