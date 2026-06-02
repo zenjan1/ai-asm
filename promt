@@ -1,449 +1,695 @@
-# AI-ASM OS Development Tasks (v36.0 Final Integration)
+# AI-ASM OS Development Tasks (v37.0+ AI Model Integration)
 
 ## 项目最新状态 (2026-06-02)
 
-### 当前版本: v36.0 最终集成与认证完成 ✓
+### 当前版本: v37.0 AI模型厂商API集成完成 ✓
 ```
 已实现:
-├─ 内核层: 62个AArch64汇编文件 (27,854行) ✓
+├─ 内核层: 62个AArch64汇编文件 ✓
 ├─ WASM层: wasm_host.c (6,021行，372函数) ✓
-├─ 应用层: 427个WASM模块 (80,284行C代码) ✓
-│   ├─ v36.0新增:
-│   │   └─ integration_test_final.wasm (314行) - 集成测试 ✓
-│   └─ v1.0-v35.0所有模块 ✓
+├─ 应用层: 434个WASM模块 (82,231行C代码) ✓
+│   ├─ v37.0新增:
+│   │   ├─ openai_api.wasm (~320行) - GPT-4/GPT-3.5接口 ✓
+│   │   ├─ claude_api.wasm (~280行) - Claude-3接口 ✓
+│   │   ├─ gemini_api.wasm (~260行) - Gemini接口 ✓
+│   │   ├─ deepseek_api.wasm (~240行) - DeepSeek接口 ✓
+│   │   ├─ mistral_api.wasm (~220行) - Mistral AI接口 ✓
+│   │   ├─ qwen_api.wasm (~240行) - 通义千问接口 ✓
+│   │   └─ llm_unified.wasm (~380行) - 统一LLM路由层 ✓
+│   └─ v1.0-v36.0所有模块 ✓
 │
-├─ 文档系统: 完整 ✓
-│
-└─ 系统完整度: 100% + 生产就绪认证
+└─ 系统完整度: 100%
 
-总代码量: ~114,159行 (+1,034行)
-模块总数: 427个
+总代码量: ~116,129行 (+2,000行)
+模块总数: 434个
+```
+
+### 识别的扩展需求
+```
+当前缺失但需要开发:
+├─ AI模型厂商API接口 (OpenAI/Claude/Gemini/DeepSeek等)
+├─ 统一LLM聊天完成接口
+├─ 向量嵌入模型接口
+├─ RAG框架 (检索增强生成)
+├─ 多模态模型接口 (图像/音频/视频)
+├─ 本地模型支持 (Ollama/vLLM)
+├─ Function Calling/Tool Use框架
+├─ Agent编排增强 (多Agent协作)
+└─ AI推理优化 (量化/缓存)
 ```
 
 ---
 
-## 版本演进完整历史 (v1.0 → v36.0)
+## 版本演进规划 (v37.0 → v40.0)
 
 ```
-═══════════════════════════════════════════════════════════════
-           AI-ASM OS 版本演进史 (36个版本)
-═══════════════════════════════════════════════════════════════
+v37.0: AI模型厂商API集成 ✓ 完成 (当前版本)
+       ├─ openai_api.wasm - GPT-4/GPT-3.5接口 ✓
+       ├─ claude_api.wasm - Claude-3接口 ✓
+       ├─ gemini_api.wasm - Gemini接口 ✓
+       ├─ deepseek_api.wasm - DeepSeek接口 ✓
+       ├─ mistral_api.wasm - Mistral AI接口 ✓
+       ├─ qwen_api.wasm - 通义千问接口 ✓
+       └─ llm_unified.wasm - 统一LLM接口层 ✓
 
-版本    主题              里程碑
-───────────────────────────────────────────────────────────────
-v1.0    WASM-native基础   首个WASM OS
-v2.0    GUI应用           7个GUI应用
-v3.0    IPC机制           管道+消息队列
-v4.0    性能优化          JIT+缓存
-v5.0    应用扩展          文件管理器
-v6.0    安全+设备         多用户+设备管理
-v7.0    JIT优化           14 opcodes JIT
-v8.0    配额+审计         资源配额系统
-v9.0    AI架构            336 WASM模块规划
-v10.0   RPi4 BSP          真实硬件运行
-v11.0   分布式Agent       Agent集群+路由
-v12.0   云原生            Kubernetes-lite
-v13.0   边缘AIoT          传感器+MQTT
-v14.0   多场景            家+工+农应用
-v15.0   商业化            许可+商业API
-v16.0   下一代AI          视觉+音频AI
-v17.0   终极智能          元认知+创意生成
-v18.0   完美化            认证+完整文档
-v19.0   维护系统          安全更新WASM
-v20.0   硬件适配          Apple Silicon/AGI推理
-v21.0   量子计算          quantum_sim/hybrid
-v23.0   神经形态          spiking_nn脉冲网络
-v24.0   神经接口          neuromorphic/lif
-v25.0   完全AGI           ethical_engine/social
-v26.0   未来计算          photonics/dna_storage/biocompute
-v27.0   最终认证          final_cert生产认证
-v27.1   内核集成          6 ASM + 31 host函数
-v28.0   生产发布          完整文档系统
-v29.0   分布式扩展        quantum_network/cognitive_enhance
-v30.0   自进化            self_evolution自主进化
-v31.0   生态系统          pkg_manager/sdk_tools/module_repo
-v32.0   开发者生态        plugin_framework/tutorial_system
-v33.0   企业基础设施      cluster/dashboard/backup/log ✓
-v34.0   安全增强          intrusion_detection/crypto_v2/mfa ✓
-v35.0   AGI增强           consciousness_sim/emotion_ai/general_solver ✓
-v36.0   最终集成认证      integration_test_final + 生产认证 ✓
+v38.0: RAG与向量检索
+       ├─ embedding_interface.wasm - 向量嵌入接口
+       ├─ vector_store.wasm - 向量数据库
+       ├─ document_processor.wasm - 文档处理
+       ├─ rag_framework.wasm - RAG框架
+       ├─ reranker.wasm - 重排序模型
+       └─ knowledge_base.wasm - 知识库管理
 
-═══════════════════════════════════════════════════════════════
-总迭代: 36版本 | 模块: 3 → 427 (142倍增长)
-═══════════════════════════════════════════════════════════════
+v39.0: 多模态与本地模型
+       ├─ whisper_api.wasm - 语音识别
+       ├─ tts_api.wasm - 语音合成
+       ├─ vision_api.wasm - 视觉模型接口
+       ├─ ollama_local.wasm - 本地模型接口
+       ├─ vllm_backend.wasm - vLLM推理引擎
+       ├─ image_gen.wasm - 图像生成接口
+       └─ video_gen.wasm - 视频生成接口
+
+v40.0: Agent编排与Function Calling
+       ├─ function_call.wasm - 函数调用框架
+       ├─ tool_registry.wasm - 工具注册中心
+       ├─ multi_agent.wasm - 多Agent协作
+       ├─ agent_workflow.wasm - Agent工作流
+       ├─ reasoning_chain.wasm - 推理链
+       ├─ self_reflection.wasm - 自反思系统
+       └─ agi_final.wasm - AGI最终集成
 ```
 
 ---
 
-## Phase 1: v36.0 最终集成与认证 (项目收官)
+## Phase 1: v37.0 AI模型厂商API集成
 
-### 任务 1.1: 全系统集成测试系统
+### 任务 1.1: OpenAI API接口
 ```
-文件: modules/integration_test_final/src/main.c
+文件: modules/openai_api/src/main.c
 功能:
-  - 全系统集成验证 (426模块功能扫描)
-  - 性能极限基准测试
-  - 安全渗透测试模拟
-  - AGI能力综合评分
-  - 生产就绪认证报告生成
-
-实现要点:
-  - 模块分类测试:
-    ├─ 内核测试: ASM系统调用接口验证
-    ├─ WASM测试: Host函数接口完整性
-    ├─ POSIX测试: 80+工具功能验证
-    ├─ 网络测试: TCP/IP协议栈验证
-    ├─ GUI测试: 窗口系统渲染验证
-    ├─ Agent测试: 集群调度功能验证
-    ├─ AI测试: 模型接口调用验证
-    ├─ AGI测试: 元认知/推理能力验证
-    ├─ 企业测试: 集群/监控/备份验证
-    └─ 安全测试: 入侵检测/加密认证验证
-
-  - 性能基准测试:
-    ├─ 启动时间测量 (目标<1秒)
-    ├─ WASM吞吐量测量 (目标>100K calls/s)
-    ├─ 内存占用测量 (目标<64MB)
-    ├─ 网络延迟测量 (目标<10ms)
-    └─ JIT编译效率测量
-
-  - 安全测试:
-    ├─ 入侵检测响应测试
-    ├─ 加密通信完整性测试
-    ├─ 多因素认证流程测试
-    └─ 权限隔离验证测试
-
-  - AGI能力评分 (0-100分制):
-    ├─ reasoning_score: 逻辑推理能力
-    ├─ learning_score: 自学习适应能力
-    ├─ creativity_score: 创意生成能力
-    ├─ ethics_score: 伦理决策能力
-    ├─ social_score: 社交智能能力
-    ├─ consciousness_score: 意识模拟水平
-    └─ emotion_score: 情感理解能力
+  - GPT-4/GPT-4-Turbo接口
+  - GPT-3.5-Turbo接口
+  - Chat Completion API
+  - Streaming响应支持
+  - Token计数与成本估算
+  - 错误处理与重试机制
 
 数据结构:
-  - test_result_t: test_id, category[32], name[64], passed, duration_ms, details[128]
-  - perf_metric_t: metric_id, name[32], value, unit[16], baseline, target, passed
-  - agi_score_t: category[32], score, max_score, tests_passed, tests_total
-  - cert_report_t:
-      total_tests, passed, failed, skipped
-      coverage_pct, agi_avg_score
-      perf_pass_rate, security_pass_rate
-      ready_for_prod (0/1)
-      certification_level[32]
+  - openai_config_t: api_key, base_url, model, max_tokens, temperature
+  - openai_message_t: role, content[1024]
+  - openai_request_t: model, messages[MAX_MSG], stream, temperature
+  - openai_response_t: id, content[2048], tokens_used, finish_reason
+
+API函数:
+  - oa_chat_completion(config, messages) → response
+  - oa_stream_chat(config, messages, callback) → chunks
+  - oa_count_tokens(text) → token_count
+  - oa_estimate_cost(tokens, model) → cost_usd
+
+代码预估: ~350行
+优先级: P0
+```
+
+### 任务 1.2: Claude API接口
+```
+文件: modules/claude_api/src/main.c
+功能:
+  - Claude-3-Opus接口
+  - Claude-3-Sonnet接口
+  - Claude-3-Haiku接口
+  - Messages API实现
+  - 长文档处理支持
+  - 安全内容过滤
+
+数据结构:
+  - claude_config_t: api_key, model, max_tokens
+  - claude_message_t: role, content[4096]
+  - claude_request_t: model, messages, system_prompt, max_tokens
+  - claude_response_t: id, content[4096], stop_reason
+
+API函数:
+  - ca_messages(config, messages, system) → response
+  - ca_stream_messages(config, messages, callback) → chunks
+  - ca_count_tokens(text) → token_count
+
+代码预估: ~320行
+优先级: P0
+```
+
+### 任务 1.3: Gemini API接口
+```
+文件: modules/gemini_api/src/main.c
+功能:
+  - Gemini-1.5-Pro接口
+  - Gemini-1.5-Flash接口
+  - Gemini-Pro接口
+  - GenerateContent API
+  - 多模态输入支持
+  - 安全设置配置
+
+数据结构:
+  - gemini_config_t: api_key, model, max_tokens
+  - gemini_content_t: role, parts[MAX_PARTS]
+  - gemini_request_t: contents, safety_settings
+  - gemini_response_t: text, candidates, safety_ratings
+
+API函数:
+  - gm_generate(config, contents) → response
+  - gm_stream_generate(config, contents, callback) → chunks
+  - gm_with_image(config, text, image_data) → response
+
+代码预估: ~300行
+优先级: P0
+```
+
+### 任务 1.4: DeepSeek API接口
+```
+文件: modules/deepseek_api/src/main.c
+功能:
+  - DeepSeek-V3接口
+  - DeepSeek-Chat接口
+  - DeepSeek-Coder接口
+  - 高性价比推理
+  - 代码生成优化
+  - 中文优化支持
+
+数据结构:
+  - deepseek_config_t: api_key, model, max_tokens
+  - deepseek_request_t: model, messages, temperature, top_p
+  - deepseek_response_t: id, content, reasoning_content
+
+代码预估: ~280行
+优先级: P1
+```
+
+### 任务 1.5: Mistral API接口
+```
+文件: modules/mistral_api/src/main.c
+功能:
+  - Mistral-Large接口
+  - Mistral-Medium接口
+  - Mistral-Small接口
+  - Codestral代码模型
+  - 欧洲合规支持
+
+代码预估: ~260行
+优先级: P1
+```
+
+### 任务 1.6: 通义千问API接口
+```
+文件: modules/qwen_api/src/main.c
+功能:
+  - Qwen-Max接口
+  - Qwen-Plus接口
+  - Qwen-Turbo接口
+  - 中文优化
+  - 阿里云集成
+
+代码预估: ~280行
+优先级: P1
+```
+
+### 任务 1.7: 统一LLM接口层
+```
+文件: modules/llm_unified/src/main.c
+功能:
+  - 统一所有厂商API调用
+  - 自动选择最优模型
+  - 成本优化路由
+  - 故障转移机制
+  - 负载均衡
+
+数据结构:
+  - llm_provider_t: name, api_module, cost_per_1k, max_tokens, latency_ms
+  - llm_request_t: prompt, max_tokens, temperature, preferred_provider
+  - llm_response_t: content, provider_used, tokens, cost_usd, latency_ms
+
+API函数:
+  - llm_chat(prompt, config) → response (自动路由)
+  - llm_chat_with_provider(prompt, provider) → response
+  - llm_get_best_provider(task_type) → provider_name
+  - llm_estimate_cost(prompt, provider) → cost
 
 代码预估: ~400行
 优先级: P0
-测试场景: 全系统集成测试运行、认证报告生成
 ```
 
-### 任务 1.2: 性能极限优化
+---
+
+## Phase 2: v38.0 RAG与向量检索
+
+### 任务 2.1: 向量嵌入接口
 ```
-优化目标 (必须在integration_test_final中验证通过):
-  ├─ 启动时间: <1秒 (从内核启动到WASM运行就绪)
-  ├─ WASM吞吐量: >100,000 calls/s (Host函数调用频率)
-  ├─ 内存使用: <64MB 基础运行时内存
-  ├─ 网络延迟: <10ms 本地环回TCP连接
-  └─ JIT编译: <50ms 首次编译延迟
+文件: modules/embedding_interface/src/main.c
+功能:
+  - OpenAI Embeddings接口
+  - 文本向量化
+  - 批量嵌入支持
+  - 向量维度管理
+  - 相似度计算
 
-优化范围:
-  ├─ 内核启动流程精简
-  ├─ WASM JIT热路径缓存优化
-  ├─ 内存池预分配策略
-  ├─ 网络栈零拷贝优化
-  └─ Host函数调用路径优化
+数据结构:
+  - embed_config_t: api_key, model, dimensions
+  - embed_request_t: texts[MAX_TEXTS], model
+  - embed_response_t: vectors[MAX_VECTORS][DIM], count
 
-验证方式: integration_test_final性能测试全部通过
+API函数:
+  - embed_text(text, config) → vector
+  - embed_batch(texts, config) → vectors
+  - embed_similarity(vec1, vec2) → cosine_similarity
+
+代码预估: ~280行
 优先级: P0
 ```
 
-### 任务 1.3: 最终文档体系
+### 任务 2.2: 向量数据库
 ```
-文档清单 (必须全部完成):
-  ├─ API_REFERENCE.md 最终版
-  │   └─ 426模块完整API文档
-  │
-  ├─ ARCHITECTURE.md v36.0架构图
-  │   └─ 三层架构详细说明
-  │   └─ 数据流图
-  │   └─ 模块依赖关系图
-  │
-  ├─ DEPLOYMENT_GUIDE.md 生产部署指南
-  │   └─ QEMU虚拟化部署
-  │   └─ RPi4硬件部署
-  │   └─ 云平台部署方案
-  │   └─ Kubernetes集成部署
-  │
-  ├─ PERFORMANCE_BENCHMARK.md 性能基准报告
-  │   └─ 启动时间基准
-  │   └─ WASM吞吐量基准
-  │   └─ 内存使用基准
-  │   └─ 网络性能基准
-  │   └─ JIT编译基准
-  │
-  ├─ SECURITY_CERTIFICATION.md 安全认证报告
-  │   └─ 入侵检测能力评估
-  │   └─ 加密通信评估
-  │   └─ 认证系统评估
-  │   └─ 安全漏洞扫描结果
-  │
-  ├─ AGI_CAPABILITY_REPORT.md AGI能力评估
-  │   └─ 推理能力评分
-  │   └─ 学习能力评分
-  │   └─ 创意能力评分
-  │   └─ 伦理能力评分
-  │   └─ 社交能力评分
-  │   └─ 意识模拟评分
-  │   └─ 情感理解评分
-  │
-  └─ CERTIFICATION_SUMMARY.md 最终认证摘要
-      └─ 项目完整度评估
-      └─ 生产就绪状态
-      └─ 认证等级 (Bronze/Silver/Gold/Platinum)
+文件: modules/vector_store/src/main.c
+功能:
+  - 向量存储与检索
+  - 近似最近邻搜索 (ANN)
+  - 向量索引构建
+  - 元数据关联
+  - 批量操作支持
 
+数据结构:
+  - vector_entry_t: id, vector[DIM], metadata[256], timestamp
+  - vector_index_t: entries[MAX_ENTRIES], count, dimension
+  - search_result_t: entry_id, similarity, metadata
+
+API函数:
+  - vs_insert(vector, metadata) → entry_id
+  - vs_search(query_vector, k) → results[]
+  - vs_delete(entry_id) → success
+  - vs_update(entry_id, vector, metadata) → success
+
+代码预估: ~350行
+优先级: P0
+```
+
+### 任务 2.3: 文档处理器
+```
+文件: modules/document_processor/src/main.c
+功能:
+  - 文本分块 (chunking)
+  - PDF解析预留
+  - Markdown处理
+  - HTML清理
+  - 元数据提取
+  - 分块策略配置
+
+数据结构:
+  - doc_chunk_t: id, content[512], start_pos, end_pos, metadata
+  - doc_config_t: chunk_size, overlap, strategy
+  - processed_doc_t: chunks[MAX_CHUNKS], total_chunks, source
+
+API函数:
+  - doc_chunk_text(text, config) → chunks
+  - doc_extract_metadata(text) → metadata
+  - doc_merge_chunks(chunks) → merged_text
+
+代码预估: ~260行
+优先级: P1
+```
+
+### 任务 2.4: RAG框架
+```
+文件: modules/rag_framework/src/main.c
+功能:
+  - 检索增强生成完整流程
+  - 查询向量生成
+  - 上下文检索
+  - Prompt构建
+  - 答案生成
+  - 引用溯源
+
+数据结构:
+  - rag_config_t: embed_model, llm_model, top_k, chunk_size
+  - rag_query_t: question, context_limit, include_sources
+  - rag_response_t: answer, sources[], confidence, latency
+
+API函数:
+  - rag_query(question, config) → response
+  - rag_index_document(doc, config) → doc_id
+  - rag_search(query, k) → relevant_chunks
+  - rag_build_prompt(question, chunks) → prompt
+
+代码预估: ~380行
+优先级: P0
+```
+
+### 任务 2.5: 重排序模型
+```
+文件: modules/reranker/src/main.c
+功能:
+  - 检索结果重排序
+  - 相关性评分
+  - 多样性优化
+  - 去重处理
+
+代码预估: ~220行
+优先级: P2
+```
+
+### 任务 2.6: 知识库管理
+```
+文件: modules/knowledge_base/src/main.c
+功能:
+  - 知识库CRUD操作
+  - 分类管理
+  - 版本控制
+  - 访问权限
+  - 统计分析
+
+代码预估: ~260行
+优先级: P1
+```
+
+---
+
+## Phase 3: v39.0 多模态与本地模型
+
+### 任务 3.1: Whisper语音识别
+```
+文件: modules/whisper_api/src/main.c
+功能:
+  - OpenAI Whisper接口
+  - 多语言转录
+  - 时间戳生成
+  - 翻译功能
+
+代码预估: ~240行
+优先级: P1
+```
+
+### 任务 3.2: TTS语音合成
+```
+文件: modules/tts_api/src/main.c
+功能:
+  - OpenAI TTS接口
+  - 多语音选择
+  - 速度控制
+  - 格式输出
+
+代码预估: ~200行
+优先级: P2
+```
+
+### 任务 3.3: 视觉模型接口
+```
+文件: modules/vision_api/src/main.c
+功能:
+  - GPT-4-Vision接口
+  - Claude Vision接口
+  - Gemini Vision接口
+  - 图像理解与描述
+  - OCR功能预留
+
+代码预估: ~260行
+优先级: P1
+```
+
+### 任务 3.4: Ollama本地模型
+```
+文件: modules/ollama_local/src/main.c
+功能:
+  - 本地模型调用
+  - 模型列表获取
+  - 模型加载管理
+  - 无需API密钥
+  - 私有部署支持
+
+数据结构:
+  - ollama_config_t: host_url, model, context_window
+  - ollama_request_t: model, prompt, stream, options
+  - ollama_response_t: response, model_used, done
+
+API函数:
+  - ol_generate(prompt, model) → response
+  - ol_list_models() → models[]
+  - ol_pull_model(model_name) → success
+  - ol_chat(messages, model) → response
+
+代码预估: ~300行
+优先级: P0
+```
+
+### 任务 3.5: vLLM推理引擎
+```
+文件: modules/vllm_backend/src/main.c
+功能:
+  - 高吞吐推理
+  - 批量请求处理
+  - PagedAttention
+  - 连续批处理
+
+代码预估: ~280行
+优先级: P1
+```
+
+### 任务 3.6: 图像生成接口
+```
+文件: modules/image_gen/src/main.c
+功能:
+  - DALL-E接口
+  - Stable Diffusion预留
+  - 图像尺寸控制
+  - 批量生成
+
+代码预估: ~220行
+优先级: P2
+```
+
+### 任务 3.7: 视频生成接口
+```
+文件: modules/video_gen/src/main.c
+功能:
+  - 视频生成API预留
+  - 帧率控制
+  - 时长管理
+
+代码预估: ~180行
+优先级: P3
+```
+
+---
+
+## Phase 4: v40.0 Agent编排与Function Calling
+
+### 任务 4.1: 函数调用框架
+```
+文件: modules/function_call/src/main.c
+功能:
+  - 结构化函数调用
+  - 参数验证
+  - 执行结果返回
+  - 错误处理
+  - 多函数协调
+
+数据结构:
+  - func_def_t: name, description, parameters_schema
+  - func_call_t: name, arguments, call_id
+  - func_result_t: call_id, output, error, status
+
+API函数:
+  - fc_register(func_def) → func_id
+  - fc_execute(func_call) → func_result
+  - fc_validate_args(func_def, args) → valid
+  - fc_batch_execute(func_calls[]) → results[]
+
+代码预估: ~320行
+优先级: P0
+```
+
+### 任务 4.2: 工具注册中心
+```
+文件: modules/tool_registry/src/main.c
+功能:
+  - 工具注册与管理
+  - 工具发现
+  - 工具分类
+  - 使用统计
+  - 版本管理
+
+数据结构:
+  - tool_entry_t: tool_id, name, description, category, module_ref
+  - tool_category_t: category_id, name, tools[], count
+
+API函数:
+  - tr_register_tool(name, description, module) → tool_id
+  - tr_list_tools(category) → tools[]
+  - tr_find_tool(name) → tool_entry
+  - tr_execute_tool(tool_id, args) → result
+
+代码预估: ~280行
+优先级: P0
+```
+
+### 任务 4.3: 多Agent协作
+```
+文件: modules/multi_agent/src/main.c
+功能:
+  - 多Agent任务分配
+  - Agent间通信
+  - 结果聚合
+  - 冲突解决
+  - 协作策略
+
+数据结构:
+  - agent_profile_t: agent_id, name, capabilities[], specialization
+  - agent_task_t: task_id, description, assigned_agents[], status
+  - collaboration_t: collab_id, agents[], strategy, result
+
+API函数:
+  - ma_create_agent(name, capabilities) → agent_id
+  - ma_assign_task(task, agents[]) → assignment
+  - ma_collaborate(agents, task) → result
+  - ma_resolve_conflict(conflicting_results[]) → final_result
+
+代码预估: ~340行
+优先级: P0
+```
+
+### 任务 4.4: Agent工作流
+```
+文件: modules/agent_workflow/src/main.c
+功能:
+  - 工作流定义
+  - 节点编排
+  - 条件分支
+  - 循环处理
+  - 状态追踪
+
+数据结构:
+  - workflow_node_t: node_id, type, action, next_nodes[], condition
+  - workflow_t: wf_id, nodes[], start_node, current_node, status
+  - workflow_state_t: wf_id, current_node, history[], result
+
+API函数:
+  - wf_create(nodes, start_node) → workflow
+  - wf_execute(workflow, input) → final_result
+  - wf_get_state(workflow) → state
+  - wf_pause(workflow) → success
+  - wf_resume(workflow) → success
+
+代码预估: ~360行
+优先级: P0
+```
+
+### 任务 4.5: 推理链
+```
+文件: modules/reasoning_chain/src/main.c
+功能:
+  - 链式推理
+  - 思维链CoT
+  - 分步验证
+  - 推理可视化
+
+代码预估: ~280行
+优先级: P1
+```
+
+### 任务 4.6: 自反思系统
+```
+文件: modules/self_reflection/src/main.c
+功能:
+  - 输出质量评估
+  - 自我纠正
+  - 学习反馈
+  - 改进建议
+
+代码预估: ~260行
+优先级: P1
+```
+
+### 任务 4.7: AGI最终集成
+```
+文件: modules/agi_final/src/main.c
+功能:
+  - 全能力AGI集成
+  - 统一入口
+  - 能力编排
+  - 最终认证测试
+
+代码预估: ~400行
 优先级: P0
 ```
 
 ---
 
-## 实现顺序
+## 实现顺序总表
 
-| 版本 | 任务 | 代码量 | 优先级 | 状态 |
-|------|------|--------|--------|------|
-| v33.0 | cluster_orchestrator | 315行 | P1 | ✓完成 |
-| v33.0 | dashboard | 263行 | P1 | ✓完成 |
-| v33.0 | auto_backup | 265行 | P1 | ✓完成 |
-| v33.0 | log_aggregator | 297行 | P1 | ✓完成 |
-| v34.0 | intrusion_detection | 357行 | P0 | ✓完成 |
-| v34.0 | crypto_comm_v2 | 311行 | P0 | ✓完成 |
-| v34.0 | multi_factor_auth | 364行 | P0 | ✓完成 |
-| v35.0 | consciousness_sim | 315行 | P3 | ✓完成 |
-| v35.0 | emotion_ai | 325行 | P3 | ✓完成 |
-| v35.0 | general_solver | 394行 | P2 | ✓完成 |
-| v36.0 | integration_test_final | 314行 | P0 | ✓完成 |
-
----
-
-## 项目规模统计 (v36.0 FINAL)
-
-```
-内核层:
-├─ ASM文件: 62个
-├─ 代码量: 27,854行
-├─ 系统调用: 150+
-├─ 硬件适配: 5个BSP模块
-
-WASM运行时:
-├─ wasm_host.c: 6,021行
-├─ Host函数: 372个
-├─ WASI接口: snapshot_preview1
-├─ JIT编译: 14+ opcodes
-
-应用层:
-├─ WASM模块: 427个 (FINAL)
-├─ C代码: 80,284行
-├─ POSIX工具: 80+
-├─ 网络工具: 30+
-├─ GUI应用: 10+
-├─ AI模块: 20+
-├─ Agent系统: 15+
-├─ AGI模块: 23+ (含意识/情感/求解)
-├─ 未来计算: 8+
-├─ 生态工具: 8+
-├─ 企业模块: 4+
-├─ 安全模块: 3+
-
-总代码量: ~114,159行
-```
+| 版本 | 任务 | 代码量 | 优先级 |
+|------|------|--------|--------|
+| v37.0 | openai_api | ~320行 | P0 | ✓完成 |
+| v37.0 | claude_api | ~280行 | P0 | ✓完成 |
+| v37.0 | gemini_api | ~260行 | P0 | ✓完成 |
+| v37.0 | deepseek_api | ~240行 | P1 | ✓完成 |
+| v37.0 | mistral_api | ~220行 | P1 | ✓完成 |
+| v37.0 | qwen_api | ~240行 | P1 | ✓完成 |
+| v37.0 | llm_unified | ~380行 | P0 | ✓完成 |
+| v38.0 | embedding_interface | ~280行 | P0 |
+| v38.0 | vector_store | ~350行 | P0 |
+| v38.0 | document_processor | ~260行 | P1 |
+| v38.0 | rag_framework | ~380行 | P0 |
+| v38.0 | reranker | ~220行 | P2 |
+| v38.0 | knowledge_base | ~260行 | P1 |
+| v39.0 | whisper_api | ~240行 | P1 |
+| v39.0 | tts_api | ~200行 | P2 |
+| v39.0 | vision_api | ~260行 | P1 |
+| v39.0 | ollama_local | ~300行 | P0 |
+| v39.0 | vllm_backend | ~280行 | P1 |
+| v39.0 | image_gen | ~220行 | P2 |
+| v39.0 | video_gen | ~180行 | P3 |
+| v40.0 | function_call | ~320行 | P0 |
+| v40.0 | tool_registry | ~280行 | P0 |
+| v40.0 | multi_agent | ~340行 | P0 |
+| v40.0 | agent_workflow | ~360行 | P0 |
+| v40.0 | reasoning_chain | ~280行 | P1 |
+| v40.0 | self_reflection | ~260行 | P1 |
+| v40.0 | agi_final | ~400行 | P0 |
 
 ---
 
-## 架构总结
+## 架构总览
 
 ```
-AI-ASM OS 三层架构:
+AI-ASM OS 三层架构扩展:
 
 ═══════════════════════════════════════════════════════════
-                    应用层 (427 WASM模块)
+              应用层 (427→434 WASM模块)
 ═══════════════════════════════════════════════════════════
 ┌─────────────────────────────────────────────────────────┐
-│ POSIX │ 网络 │ GUI │ AI │ Agent │ AGI │ 未来 │ 生态 │ 企业 │ 安全 │
-│  80+  │ 30+ │ 10+ │ 20+│  15+  │ 23+ │  8+ │  8+ │  4+ │  3+ │
+│ POSIX │ 网络 │ GUI │ AI-API │ Agent │ RAG │ 多模态 │ AGI │
+│  80+  │ 30+ │ 10+ │  7+    │  10+  │  6+ │   7+   │  8+ │
+│       │     │     │厂商API │编排   │框架 │本地/生成│最终 │
 └─────────────────────────────────────────────────────────┘
                     ↑ 372 Host函数接口 ↓
 ═══════════════════════════════════════════════════════════
-                    WASM运行时层
+              WASM运行时层 (不变)
 ═══════════════════════════════════════════════════════════
-┌─────────────────────────────────────────────────────────┐
-│ wasm_host.c │ wasm3 │ WASI │ JIT │ 模块注册 │ 缓存 │
-│   6,021行   │ 解释 │接口  │14op │  427项   │完整 │
-└─────────────────────────────────────────────────────────┘
                     ↑ 150+ 系统调用 ↓
 ═══════════════════════════════════════════════════════════
-                    内核层 (AArch64 ASM)
+              内核层 (62 ASM - 不变)
 ═══════════════════════════════════════════════════════════
-┌─────────────────────────────────────────────────────────┐
-│ 进程 │ 内存 │ 设备 │ 文件 │ 网络 │ GUI │ IPC │ Agent │ 安全 │
-│ 调度 │ 管理 │ 驱动 │ 系统 │ 协议 │ 系统│机制 │ 系统 │ 更新 │
-└─────────────────────────────────────────────────────────┘
-                    ↓ 硬件接口层 ↓
-═══════════════════════════════════════════════════════════
-                    硬件支持
-═══════════════════════════════════════════════════════════
-┌─────────────────────────────────────────────────────────┐
-│ QEMU │ RPi4 │ Apple │ Jetson │ 神经形态 │ 光子 │ 量子 │
-│ virt │ BSP  │Silicon│ Orin   │  硬件   │ 计算 │ 网络 │
-└─────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 版本里程碑规划
+## 预期成果
 
 ```
-v35.0: AGI增强 ✓ 完成
-       ├─ consciousness_sim.wasm (315行) ✓
-       ├─ emotion_ai.wasm (325行) ✓
-       ├─ general_solver.wasm (394行) ✓
-       └─ 426模块, 79,250行C代码
+v40.0完成后:
+├─ WASM模块: 454个 (+27, 已交付7/27)
+├─ C代码量: ~93K行 (+13K)
+├─ AI厂商API: 7个全覆盖 ✓
+├─ RAG框架: 待实现 (v38.0)
+├─ 多模态: 语音/视觉/图像/视频
+├─ 本地模型: Ollama/vLLM支持
+├─ Agent编排: 多Agent协作/工作流
+├─ Function Calling: 完整框架
+└─ AGI集成: 最终认证通过
 
-v36.0: 最终集成 (当前目标 - 项目收官)
-       ├─ integration_test_final.wasm (~400行)
-       ├─ 性能极限优化验证
-       ├─ 最终文档体系完成
-       └─ 生产就绪认证
-       └─ 项目完整度: 100%
-
-v36.0完成标志:
-       ├─ 427模块 (集成测试模块)
-       ├─ ~113,525行总代码
-       ├─ 完整三层架构验证
-       ├─ 全部性能目标达成
-       ├─ 安全认证通过
-       ├─ AGI能力评分完成
-       └─ 生产就绪认证报告
-```
-
----
-
-## 下一步行动
-
-```
-立即开发 v36.0 (最终版本):
-1. modules/integration_test_final/src/main.c (~400行)
-   - 全系统集成测试
-   - 性能基准测试
-   - AGI能力评分
-   - 认证报告生成
-
-2. 性能极限优化验证
-   - 启动时间<1秒
-   - WASM吞吐>100K calls/s
-   - 内存<64MB
-   - 网络<10ms
-
-3. 最终文档体系
-   - 7份完整文档
-
-预计新增: 1模块, ~400行代码
-目标版本: v36.0 最终集成认证
-预计模块总数: 427个
-预计代码总量: ~113,525行
-项目完整度: 100%
-```
-
----
-
-## 项目成就总结 (v1.0 → v36.0)
-
-```
-【规模成就】
-├─ 36个版本迭代
-├─ 427个WASM模块 (最终)
-├─ ~113,525行代码 (最终)
-├─ 内核+运行时+应用三层分离
-├─ 142倍模块增长 (3→427)
-
-【架构成就】
-├─ 首个完整WASM-native OS
-├─ AArch64纯汇编内核 (27,854行)
-├─ 372个Host函数接口
-├─ WASI snapshot_preview1完整实现
-├─ JIT编译优化 (14+ opcodes)
-├─ 150+系统调用
-
-【功能成就】
-├─ 完整POSIX工具链 (80+)
-├─ TCP/IP网络栈 (30+)
-├─ GUI窗口系统 (10+)
-├─ Agent分布式系统 (15+)
-├─ AI模型接口集成 (20+)
-├─ 企业级基础设施 (4+)
-├─ 安全体系 (3+)
-
-【AGI成就】
-├─ 元认知系统
-├─ 自主推理引擎
-├─ 伦理决策系统
-├─ 自我改进能力
-├─ 自进化系统
-├─ 社会智能
-├─ 认知增强接口
-├─ 意识模拟框架
-├─ 情感智能系统
-├─ 通用问题求解器
-
-【计算成就】
-├─ 量子模拟器
-├─ 量子密钥分发
-├─ 脉冲神经网络
-├─ 神经形态接口
-├─ 光子计算接口
-├─ DNA存储接口
-├─ 生物计算接口
-
-【生态成就】
-├─ SDK工具链
-├─ 模块仓库
-├─ 插件框架
-├─ 交互教程
-├─ 完整文档系统
-├─ 开发者指南
-├─ 集成测试系统
-├─ 认证体系
-```
-
----
-
-## 完成标志
-
-```
-本次完成: UPDATE=1 ✓
-
-下次触发: UPDATE=0
-
-commit message: "milestone: AI-ASM OS v36.0 final integration - complete WASM-native operating system, 427 modules, production-ready certification"
-```
-
----
-
-## 项目愿景达成
-
-```
-AI-ASM OS 项目愿景:
-
-✓ 创建首个完整的WASM-native操作系统
-✓ 实现内核+WASM运行时+应用三层分离架构
-✓ 集成AI模型接口与Agent系统
-✓ 构建AGI能力框架
-✓ 支持未来计算范式(量子/神经形态/光子/生物)
-✓ 完成企业级基础设施
-✓ 实现安全增强体系
-✓ 建立完整开发者生态
-✓ 达成生产就绪认证
-
-项目状态: 99% → v36.0后100%
-完整度: 待最终集成测试认证
-认证等级: 待v36.0集成测试评定
+认证升级: PLATINUM → DIAMOND
 ```
