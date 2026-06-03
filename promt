@@ -152,52 +152,13 @@ kernel/wasm_host.c (6,021行):
 
 【Host函数桥接 - 372个】
 ├─ 系统调用类 (50函数) ✓
-│  ├─ host_alloc 内存分配
-│  ├─ host_free 内存释放
-│  ├─ host_print 输出打印
-│  └─ 系统调用完整
-│
 ├─ 文件操作类 (40函数) ✓
-│  ├─ host_open 打开文件
-│  ├─ host_close 关闭文件
-│  ├─ host_read 读取文件
-│  ├─ host_write 写入文件
-│  └─ 文件操作完整
-│
 ├─ 网络操作类 (30函数) ✓
-│  ├─ host_socket 创建socket
-│  ├─ host_bind 绑定地址
-│  ├─ host_connect 发起连接
-│  └─ 网络操作完整
-│
 ├─ 进程操作类 (25函数) ✓
-│  ├─ host_fork 创建进程
-│  ├─ host_exec 执行程序
-│  └─ 进程操作完整
-│
 ├─ IPC通信类 (30函数) ✓
-│  ├─ host_ipc_create 创建IPC
-│  ├─ host_ipc_send 发送消息
-│  └─ IPC通信完整
-│
 ├─ Agent操作类 (35函数) ✓
-│  ├─ host_agent_create 创建Agent
-│  ├─ host_agent_send Agent发送
-│  ├─ host_agent_call Agent调用
-│  └─ Agent操作完整
-│
 ├─ AI调用类 (42函数) ✓
-│  ├─ host_ai_query AI查询
-│  ├─ host_ai_embed 嵌入向量
-│  ├─ host_ai_generate 内容生成
-│  └─ AI调用完整
-│
 ├─ WASI接口类 (100函数) ✓
-│  ├─ wasi_fd_write WASI写
-│  ├─ wasi_fd_read WASI读
-│  ├─ wasi_path_open WASI打开
-│  └─ WASI接口完整
-│
 └─ 其他Host函数 (50函数) ✓
 
 【JIT编译优化】
@@ -205,11 +166,6 @@ kernel/wasm_host.c (6,021行):
 ├─ jit_optimize 代码优化 ✓
 ├─ hot_path_detect 热路径检测 ✓
 └─ JIT优化完整 ✓
-
-【模块缓存系统】
-├─ cache_lookup 缓存查找 ✓
-├─ cache_insert 缓存插入 ✓
-└─ 模块缓存完整 ✓
 
 共计: 6,021行 / 372 Host函数 ✓
 ```
@@ -275,65 +231,41 @@ modules/*/src/main.c:
 modules/ AI模块:
 
 【AI厂商API - 6家】
-├─ openai_api
-│  └─ OpenAI GPT-4/GPT-4o ✓
-│  └─ DALL-E图像生成 ✓
-│  └─ Whisper语音识别 ✓
-│
-├─ claude_api
-│  └─ Anthropic Claude 3.5 ✓
-│  └─ Claude Vision多模态 ✓
-│
-├─ gemini_api
-│  └─ Google Gemini 2.0 ✓
-│  └─ Gemini Vision ✓
-│
-├─ deepseek_api
-│  └─ DeepSeek V3 ✓
-│  └─ DeepSeek R1推理 ✓
-│
-├─ mistral_api
-│  └─ Mistral Large/Medium ✓
-│
-├─ qwen_api
-│  └─ Alibaba Qwen 2.5 ✓
-│  └─ Qwen-VL视觉语言 ✓
-│
+├─ openai_api     - GPT-4o/DALL-E-3/Whisper ✓
+├─ claude_api     - Claude 3.5/Vision ✓
+├─ gemini_api     - Gemini 2.0/Pro ✓
+├─ deepseek_api   - DeepSeek V3/R1 ✓
+├─ mistral_api    - Mistral Large/Medium ✓
+├─ qwen_api       - Qwen 2.5/Qwen-VL ✓
 └─ 厂商API完整 ✓
 
 【本地推理引擎】
-├─ ollama_local
-│  └─ Ollama本地模型 ✓
-│  └─ 支持Llama/Mistral/Qwen ✓
-│
-├─ vllm_backend
-│  └─ vLLM高性能推理 ✓
-│  └─ PagedAttention优化 ✓
-│
+├─ ollama_local   - Ollama本地模型 ✓
+├─ vllm_backend   - vLLM高性能推理 ✓
 └─ 本地推理完整 ✓
 
 【AI基础设施】
-├─ ai_bridge      AI桥接层 ✓
-├─ ai_router      AI路由器 ✓
-├─ cloud_ai_gateway 云AI网关 ✓
-├─ container_mgr  容器管理 ✓
+├─ ai_bridge      - AI桥接层 ✓
+├─ ai_router      - AI路由器 ✓
+├─ cloud_ai_gateway - 云AI网关 ✓
+├─ container_mgr  - 容器管理 ✓
 └─ 基础设施完整 ✓
 
 【多模态AI】
-├─ vision_ai      视觉AI处理 ✓
-├─ audio_ai       音频AI ✓
-├─ emotion_ai     情感AI ✓
-├─ paint          AI绘画 ✓
+├─ vision_ai      - 视觉AI处理 ✓
+├─ audio_ai       - 音频AI ✓
+├─ emotion_ai     - 情感AI ✓
+├─ paint          - AI绘画 ✓
 └─ 多模态完整 ✓
 
 【RAG框架】
-├─ rag_framework  RAG核心 ✓
+├─ rag_framework  - RAG核心 ✓
 └─ RAG完整 ✓
 
 【其他AI】
-├─ dna_storage    DNA存储 ✓
-├─ edge_ai        边缘AI ✓
-├─ board_snapdragon Snapdragon ✓
+├─ dna_storage    - DNA存储 ✓
+├─ edge_ai        - 边缘AI ✓
+├─ board_snapdragon - Snapdragon适配 ✓
 └─ 其他AI完整 ✓
 
 共计: 25 AI模块 ✓
@@ -347,69 +279,24 @@ modules/ AI模块:
 modules/ Agent模块:
 
 【Agent核心系统】
-├─ agent_cluster
-│  └─ Agent集群管理 ✓
-│  └─ 多Agent分布式部署 ✓
-│
-├─ agent_coordinator
-│  └─ Agent协调调度 ✓
-│  └─ 任务分配优化 ✓
-│
-├─ agent_runtime
-│  └─ Agent运行时 ✓
-│  └─ 生命周期管理 ✓
-│
-├─ agent_workflow
-│  └─ Agent工作流 ✓
-│  └─ DAG任务编排 ✓
-│
-├─ agent_test
-│  └─ Agent测试 ✓
-│  └─ 单元/集成测试 ✓
-│
-├─ multi_agent
-│  └─ 多Agent协作 ✓
-│  └─ Agent间通信 ✓
-│
-├─ autonomous_agent_core
-│  └─ 自主Agent核心 ✓
-│  └─ 自决策执行 ✓
-│
-├─ autonomous_decision
-│  └─ 自主决策系统 ✓
-│  └─ 决策树评估 ✓
-│
-├─ self_learning_agent
-│  └─ 自学习Agent ✓
-│  └─ 经验知识积累 ✓
-│
+├─ agent_cluster      - Agent集群管理 ✓
+├─ agent_coordinator  - Agent协调调度 ✓
+├─ agent_runtime      - Agent运行时 ✓
+├─ agent_workflow     - Agent工作流 ✓
+├─ agent_test         - Agent测试 ✓
+├─ multi_agent        - 多Agent协作 ✓
+├─ autonomous_agent_core - 自主Agent核心 ✓
+├─ autonomous_decision - 自主决策系统 ✓
+├─ self_learning_agent - 自学习Agent ✓
 └─ Agent核心完整 ✓
 
 【AGI系统】
-├─ agi_final
-│  └─ AGI集成系统 ✓
-│  └─ 通用智能框架 ✓
-│
-├─ agi_goals
-│  └─ 目标管理 ✓
-│  └─ 目标设定追踪 ✓
-│
-├─ agi_reasoning
-│  └─ AGI推理引擎 ✓
-│  └─ 逻辑因果分析 ✓
-│
-├─ agi_transfer
-│  └─ 知识迁移 ✓
-│  └─ 跨领域应用 ✓
-│
-├─ reasoning_agent
-│  └─ 推理Agent ✓
-│  └─ 专门化推理 ✓
-│
-├─ reasoning_chain
-│  └─ 推理链管理 ✓
-│  └─ 多步骤推理 ✓
-│
+├─ agi_final      - AGI集成系统 ✓
+├─ agi_goals      - 目标管理 ✓
+├─ agi_reasoning  - AGI推理引擎 ✓
+├─ agi_transfer   - 知识迁移 ✓
+├─ reasoning_agent - 推理Agent ✓
+├─ reasoning_chain - 推理链管理 ✓
 └─ AGI系统完整 ✓
 
 共计: 15 Agent模块 ✓
@@ -424,16 +311,9 @@ modules/ Agent模块:
 │ 硬件平台       │ 内核   │ WASM  │
 ├────────────────────────────────────┤
 │ Apple Silicon  │ ✓    │ ✓    │
-│ (M1/M2/M3/M4)  │       │       │
-├────────────────────────────────────┤
 │ NVIDIA Jetson  │ ✓    │ ✓    │
-│ (Orin/Xavier)  │       │       │
-├────────────────────────────────────┤
 │ Raspberry Pi 4 │ ✓    │ ✓    │
-│ (BCM2711)      │       │       │
-├────────────────────────────────────┤
 │ Snapdragon     │ ✓    │ ✓    │
-├────────────────────────────────────┤
 │ Generic ARM64  │ ✓    │ ✓    │
 └────────────────────────────────────┘
 
@@ -450,26 +330,12 @@ modules/ Agent模块:
 │ 厂商      │ 模型      │ 状态 │
 ├────────────────────────────────┤
 │ OpenAI    │ GPT-4o    │ ✓   │
-│           │ DALL-E-3  │ ✓   │
-│           │ Whisper   │ ✓   │
-├────────────────────────────────┤
 │ Anthropic │ Claude 3.5│ ✓   │
-│           │ Vision    │ ✓   │
-├────────────────────────────────┤
 │ Google    │ Gemini 2.0│ ✓   │
-│           │ Gemini Pro│ ✓   │
-├────────────────────────────────┤
-│ DeepSeek  │ V3        │ ✓   │
-│           │ R1        │ ✓   │
-├────────────────────────────────┤
+│ DeepSeek  │ V3/R1     │ ✓   │
 │ Mistral   │ Large     │ ✓   │
-│           │ Medium    │ ✓   │
-├────────────────────────────────┤
 │ Alibaba   │ Qwen 2.5  │ ✓   │
-│           │ Qwen-VL   │ ✓   │
-├────────────────────────────────┤
-│ Local     │ Ollama    │ ✓   │
-│           │ vLLM      │ ✓   │
+│ Local     │ Ollama/vLLM│ ✓   │
 └────────────────────────────────┘
 
 AI生态完整 ✓
