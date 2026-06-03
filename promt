@@ -19,7 +19,7 @@
 | 内核ASM | 62 | - | ✓ |
 | WASM层 | 1 | 6,021行, 372函数 | ✓ |
 | 应用层 | 455 | - | ✓ |
-| AI/Agent | 52 | - | ✓ |
+| AI/Agent | 43 | - | ✓ |
 
 ---
 
@@ -39,7 +39,7 @@ Agent支持: agent_ipc/agent_persist ✓
 JIT编译: jit_cache/jit_codegen ✓
 WASM集成: wasi/wasm_embed ✓
 安全审计: audit ✓
-硬件板卡: board_apple/board_jetson/board_rp4 ✓
+硬件板卡: apple/jetson/rp4 ✓
 容器支持: container ✓
 边缘计算: edge_framework ✓
 未来计算: neuromorphic/photonics ✓
@@ -63,12 +63,12 @@ POSIX工具链: 34+ ✓
 网络工具集: 30+ ✓
 GUI应用程序: 10+ ✓
 安全工具: 3+ ✓
-AI集成: 52模块 ✓
+AI集成: 43模块 ✓
 ```
 
 ---
 
-## AI模型接口集成 (52模块)
+## AI模型接口集成 (43模块)
 
 ### AI厂商API (7个)
 
@@ -99,7 +99,6 @@ vision_api   ✓ 视觉理解
 vision_ai    ✓ 视觉AI
 ollama_local ✓ 本地模型
 vllm_backend ✓ vLLM推理
-audio_ai     ✓ 音频AI
 multimodal_fusion ✓ 多模态融合
 ```
 
@@ -122,6 +121,7 @@ agent_runtime     ✓ Agent运行时
 agent_workflow    ✓ Agent工作流
 agent_test        ✓ Agent测试
 autonomous_agent_core ✓ 自主Agent核心
+self_learning_agent   ✓ 自学习Agent
 ```
 
 ---
@@ -140,23 +140,23 @@ autonomous_agent_core ✓ 自主Agent核心
 项目成就:
 ├─ 首个WASM-native操作系统
 ├─ AArch64纯汇编内核 (62模块)
-├─ 372 Host函数接口
+├─ 372 Host函数接口 (6,021行)
 ├─ 455 WASM应用模块
-├─ 52 AI/Agent集成模块
+├─ 43 AI/Agent集成模块
 ├─ 7厂商AI API统一
 ├─ 完整RAG框架
 ├─ 多模态处理能力
-├─ Agent编排系统
-├─ 未来计算架构支持 (神经形态/光子计算)
+├─ Agent编排系统 (16模块)
+├─ 未来计算架构支持
 ├─ 硬件适配 (Apple/Jetson/RP4)
 
 规模统计:
 ├─ 686文件
 ├─ 120,031行代码
 ├─ 62内核ASM模块
-├─ 372 Host函数 (6,021行)
+├─ 372 Host函数
 ├─ 455应用模块
-├─ 52 AI/Agent模块
+├─ 43 AI/Agent模块
 
 ═══════════════════════════════════════════════════════════
 PROJECT COMPLETE ✓ FINAL
