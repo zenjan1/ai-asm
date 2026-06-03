@@ -26,48 +26,32 @@
 ## 三层架构
 
 ### Layer 1: 内核层 (62 ASM)
-
 ```
 内存管理 ✓ 进程管理 ✓ 文件系统 ✓
 网络栈 ✓ 设备驱动 ✓ GUI ✓
 IPC ✓ Agent支持 ✓ JIT ✓
-WASM集成 ✓ 安全 ✓ 硬件适配 ✓
+WASM ✓ 安全 ✓ 硬件适配 ✓
 ```
 
 ### Layer 2: WASM解释层
-
 ```
-372 Host函数 ✓ WASI接口 ✓ JIT优化 ✓
+372 Host函数 ✓ WASI接口 ✓
 ```
 
 ### Layer 3: 应用层 (455模块)
-
 ```
 POSIX工具 ✓ 网络工具 ✓ GUI ✓
-安全工具 ✓ AI集成(27模块) ✓
+安全 ✓ AI集成(27模块) ✓
 ```
 
 ---
 
 ## AI集成 (27模块)
 
-### AI厂商API
 ```
-openai_api ✓ claude_api ✓ gemini_api ✓
-llm_unified ✓ ollama_local ✓ vllm_backend ✓
-```
-
-### RAG/多模态
-```
-rag_framework ✓ whisper_api ✓ tts_api ✓
-vision_api ✓ vision_ai ✓
-```
-
-### Agent编排
-```
-agent_cluster ✓ agent_coordinator ✓
-agi_final ✓ agi_goals ✓ agi_reasoning ✓
-workflow_engine ✓ multi_agent ✓
+AI厂商: openai_api, claude_api, gemini_api
+RAG/多模态: rag_framework, whisper_api, tts_api, vision_api
+Agent: agent_cluster, agi_final, workflow_engine
 ```
 
 ---
