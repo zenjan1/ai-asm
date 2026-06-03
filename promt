@@ -83,9 +83,6 @@ kernel/wasm_host.c (6,021行):
 ├─ WASI接口 (100) ✓
 ├─ 其他 (50) ✓
 
-【JIT优化】 ✓
-【模块缓存】 ✓
-
 共计: 6,021行 / 372 Host函数 ✓
 ```
 
@@ -115,18 +112,14 @@ modules/*/src/main.c:
 modules/ AI模块:
 
 【厂商API - 8家】
-├─ openai_api     GPT-4o ✓
-├─ claude_api     Claude 3.5 ✓
-├─ gemini_api     Gemini 2.0 ✓
-├─ deepseek_api   DeepSeek V3 ✓
-├─ mistral_api    Mistral ✓
-├─ qwen_api       Qwen 2.5 ✓
-├─ ollama_local   Ollama ✓
-├─ vllm_backend   vLLM ✓
-
-【基础设施】 ai_bridge, ai_router, cloud_ai_gateway ✓
-【多模态】 vision_ai, audio_ai, emotion_ai, paint ✓
-【其他】 rag_framework ✓
+├─ openai_api     ✓
+├─ claude_api     ✓
+├─ gemini_api     ✓
+├─ deepseek_api   ✓
+├─ mistral_api    ✓
+├─ qwen_api       ✓
+├─ ollama_local   ✓
+├─ vllm_backend   ✓
 
 共计: 25 AI模块 ✓
 ```
@@ -150,7 +143,6 @@ modules/ Agent模块:
 【AGI系统】
 ├─ agi_final      ✓
 ├─ agi_reasoning  ✓
-├─ reasoning_agent ✓
 ├─ reasoning_chain ✓
 
 共计: 15 Agent模块 ✓
@@ -193,10 +185,6 @@ Mistral ✓ Qwen ✓ Ollama ✓ vLLM ✓
 ├─ L3: 454 WASM ✓
 ├─ L4: 25 AI ✓
 ├─ L5: 15 Agent ✓
-
-硕件: 5平台 ✓
-AI: 8厂商 ✓
-Agent: AGI ✓
 
 ══════════════════════════════════════════════════════════
               NO FUTURE TASKS ✓
