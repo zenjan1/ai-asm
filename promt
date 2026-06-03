@@ -18,7 +18,7 @@
 | 全局 | 总文件 | 686 | 120,000+行 | ✓ |
 | L1 | 内核ASM | 62 | - | ✓ |
 | L2 | WASM解释层 | 1 | 6,021行/372函数 | ✓ |
-| L3 | 应用模块 | 455 | - | ✓ |
+| L3 | 应用模块 | 454 | - | ✓ |
 | L3 | AI/Agent | 37 | - | ✓ |
 
 ---
@@ -56,7 +56,7 @@ wasm_host.c (6,021行):
 └─ 模块缓存 ✓
 ```
 
-### Layer 3: 外层应用 (455 WASM模块)
+### Layer 3: 外层应用 (454 WASM模块)
 
 ```
 ├─ POSIX工具链 (34+) ✓
@@ -90,7 +90,7 @@ wasm_host.c (6,021行):
 ├─ whisper_api - 语音识别
 ├─ tts_api - 语音合成
 ├─ vision_api - 视觉API
-└─ vision_ai - 视觉AI
+├─ vision_ai - 视觉AI
 
 【其他】
 ├─ dna_storage - DNA存储
@@ -108,7 +108,7 @@ wasm_host.c (6,021行):
 ├─ agent_test - Agent测试
 ├─ multi_agent - 多Agent协作
 ├─ autonomous_agent_core - 自主Agent
-└─ self_learning_agent - 自学习Agent
+├─ self_learning_agent - 自学习Agent
 
 【AGI系统】
 ├─ agi_final - AGI集成
@@ -116,7 +116,7 @@ wasm_host.c (6,021行):
 ├─ agi_reasoning - AGI推理
 ├─ agi_transfer - 知识迁移
 ├─ reasoning_agent - 推理Agent
-└─ reasoning_chain - 推理链
+├─ reasoning_chain - 推理链
 
 【工具系统】
 ├─ function_call - Function Calling
@@ -139,7 +139,7 @@ DIAMOND CERTIFICATION ✓
 架构完整度: 100%
 ├─ 内核层: 62 ASM ✓
 ├─ WASM层: 372 Host ✓
-├─ 应用层: 455模块 ✓
+├─ 应用层: 454模块 ✓
 ├─ AI接口: 37模块 ✓
 ├─ Agent: AGI架构 ✓
 
