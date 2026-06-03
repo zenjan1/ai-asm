@@ -19,7 +19,7 @@
 | 内核ASM | 62 | ✓ |
 | WASM Host | 6,021行/372函数 | ✓ |
 | 应用模块 | 455 | ✓ |
-| AI/Agent | 39 | ✓ |
+| AI/Agent | 27 | ✓ |
 
 ---
 
@@ -31,7 +31,7 @@
 内存管理 ✓ 进程管理 ✓ 文件系统 ✓
 网络栈 ✓ 设备驱动 ✓ GUI ✓
 IPC ✓ Agent支持 ✓ JIT ✓
-WASM集成 ✓ 安全审计 ✓ 硬件适配 ✓
+WASM ✓ 安全 ✓ 硬件适配 ✓
 ```
 
 ### Layer 2: WASM解释层
@@ -43,31 +43,25 @@ WASM集成 ✓ 安全审计 ✓ 硬件适配 ✓
 ### Layer 3: 应用层
 
 ```
-POSIX工具 ✓ 网络工具 ✓ GUI应用 ✓
-安全工具 ✓ AI集成(39模块) ✓
+POSIX工具 ✓ 网络工具 ✓ GUI ✓
+安全 ✓ AI集成(27模块) ✓
 ```
 
 ---
 
-## AI集成 (39模块)
+## AI集成 (27模块)
 
-### AI厂商API
 ```
+AI厂商API:
 openai_api ✓ claude_api ✓ gemini_api ✓
-deepseek_api ✓ mistral_api ✓ qwen_api ✓ llm_unified ✓
-```
 
-### RAG/多模态
-```
+RAG/多模态:
 rag_framework ✓ whisper_api ✓ tts_api ✓
 vision_api ✓ ollama_local ✓ vllm_backend ✓
-```
 
-### Agent编排
-```
-function_call ✓ tool_registry ✓ multi_agent ✓
-workflow_engine ✓ reasoning_agent ✓ agi_final ✓
-agent_cluster ✓ agent_coordinator ✓ agent_runtime ✓
+Agent编排:
+agent_cluster ✓ agent_coordinator ✓
+agi_final ✓ multi_agent ✓
 ```
 
 ---
@@ -82,8 +76,8 @@ DIAMOND CERTIFICATION ✓
 
 【无后续开发任务】
 
+架构: 内核(62) + WASM(372) + 应用(455) + AI(27)
 规模: 686文件 | 120K行代码
-架构: 内核(62) + WASM(372) + 应用(455) + AI(39)
 
 ═══════════════════════════════════════════
 ```
