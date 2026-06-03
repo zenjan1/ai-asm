@@ -35,11 +35,13 @@
 设备驱动: gpio/uart ✓
 显示GUI: fb/gui ✓
 IPC通信: ipc/msg ✓
-Agent支持: agent_ipc ✓
-JIT编译: jit_cache ✓
+Agent支持: agent_ipc/agent_persist ✓
+JIT编译: jit_cache/jit_codegen ✓
 WASM集成: wasi ✓
 安全审计: audit ✓
 硬件板卡: apple/jetson/rp4 ✓
+容器支持: container ✓
+边缘计算: edge_framework ✓
 ```
 
 ### Layer 2: WASM解释层 (372 Host函数)
@@ -77,7 +79,7 @@ qwen_api      ✓ Alibaba Qwen
 llm_unified   ✓ 统一路由层
 ```
 
-### RAG框架 (5个)
+### RAG框架 (4个)
 
 ```
 embedding_interface ✓ 向量嵌入
@@ -85,7 +87,7 @@ vector_store        ✓ 向量数据库
 rag_framework       ✓ RAG核心
 ```
 
-### 多模态处理 (9个)
+### 多模态处理 (8个)
 
 ```
 whisper_api  ✓ 语音识别
