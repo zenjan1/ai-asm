@@ -18,7 +18,7 @@
 | L1 | 内核ASM | 62 | - | ✓ |
 | L2 | WASM解释层 | 1 | 6,021行/372函数 | ✓ |
 | L3 | 应用WASM | 454 | - | ✓ |
-| L4 | AI接口 | 25 | - | ✓ |
+| L4 | AI接口 | 24 | - | ✓ |
 | L5 | Agent系统 | 15 | - | ✓ |
 | 总计 | 文件 | 686 | 120,000+行 | ✓ |
 
@@ -30,55 +30,20 @@
 
 ```
 AArch64纯汇编内核:
-├─ agent_ipc.asm - Agent IPC ✓
-├─ agent_persist.asm - Agent持久化 ✓
-├─ audit.asm - 安全审计 ✓
-├─ board_apple.asm - Apple Silicon ✓
-├─ board_jetson.asm - NVIDIA Jetson ✓
-├─ board_rp4.asm - Raspberry Pi 4 ✓
-├─ buddy.asm - 伙伴内存分配 ✓
-├─ container.asm - 容器支持 ✓
-├─ device.asm - 设备管理 ✓
-├─ edge_framework.asm - 边缘计算 ✓
-├─ eth_rp4.asm - 以太网驱动 ✓
-├─ event.asm - 事件系统 ✓
-├─ event_notify.asm - 事件通知 ✓
-├─ exceptions.asm - 异常处理 ✓
-├─ fb.asm - 帧缓冲 ✓
-├─ fs.asm - 文件系统 ✓
-├─ gic.asm - GIC中断 ✓
-├─ gpio_rp4.asm - GPIO驱动 ✓
-├─ gui.asm - GUI核心 ✓
-├─ ipc.asm - IPC通信 ✓
-├─ jit_cache.asm - JIT缓存 ✓
-├─ jit_codegen.asm - JIT代码生成 ✓
-├─ kernel.asm - 内核入口 ✓
-├─ log.asm - 日志系统 ✓
-├─ maintenance.asm - 维护模块 ✓
-├─ memory.asm - 内存管理 ✓
-├─ mmu.asm - MMU页表 ✓
-├─ module.asm - WASM模块 ✓
-├─ neuromorphic.asm - 神经形态 ✓
-├─ photonics.asm - 光子计算 ✓
-├─ process.asm - 进程管理 ✓
-├─ quota.asm - 配额控制 ✓
-├─ ramdisk.asm - 内存盘 ✓
-├─ semaphore.asm - 信号量 ✓
-├─ shell.asm - Shell ✓
-├─ signal.asm - 信号 ✓
-├─ syscall.asm - 系统调用 ✓
-├─ timer.asm - 定时器 ✓
-├─ user.asm - 用户管理 ✓
-├─ vfs.asm - VFS ✓
-├─ virtio.asm - VirtIO ✓
-├─ virtio_blk.asm - VirtIO块 ✓
-├─ virtio_gpu.asm - VirtIO GPU ✓
-├─ virtio_net.asm - VirtIO网络 ✓
-├─ wasi.asm - WASI ✓
-├─ wasm_embed.asm - WASM嵌入 ✓
-└─ 其他内核模块 ✓
-
-共计: 62 ASM ✓
+├─ 内存管理: buddy/memory/mmu/quota ✓
+├─ 进程管理: process/syscall/signal ✓
+├─ 文件系统: vfs/fs/ramdisk ✓
+├─ 网络栈: net/eth_rp4/virtio_net ✓
+├─ 设备驱动: device/gpio/uart/gic ✓
+├─ GUI显示: fb/gui/virtio_gpu ✓
+├─ IPC通信: ipc/event ✓
+├─ Agent内核: agent_ipc/agent_persist ✓
+├─ JIT/WASM: jit_cache/jit_codegen/wasi ✓
+├─ 安全: audit/perm ✓
+├─ 硬件适配: board_apple/jetson/rp4 ✓
+├─ 虚拟化: virtio/container ✓
+├─ 未来计算: neuromorphic/photonics ✓
+└─ 其他: kernel/timer/shell/log ✓
 ```
 
 ### Layer 2: WASM解释层 (372 Host)
@@ -101,12 +66,10 @@ wasm_host.c (6,021行):
 ├─ 系统工具 (50+) ✓
 ├─ 开发工具 (40+) ✓
 ├─ 安全工具 (3+) ✓
-└─ 其他应用 (287+) ✓
-
-共计: 454 WASM ✓
+└─ 其他应用 ✓
 ```
 
-### Layer 4: AI接口 (25模块)
+### Layer 4: AI接口 (24模块)
 
 ```
 厂商API:
@@ -121,16 +84,14 @@ wasm_host.c (6,021行):
 ├─ ollama_local ✓
 ├─ vllm_backend ✓
 
-AI基础设施:
+基础设施:
 ├─ ai_bridge ✓
 ├─ ai_router ✓
-├─ cloud_ai_gateway ✓
 
 多模态:
 ├─ vision_ai ✓
 ├─ audio_ai ✓
 ├─ emotion_ai ✓
-├─ paint ✓
 
 RAG:
 ├─ rag_framework ✓
@@ -139,8 +100,6 @@ RAG:
 ├─ dna_storage ✓
 ├─ edge_ai ✓
 ├─ board_snapdragon ✓
-
-共计: 25 AI ✓
 ```
 
 ### Layer 5: Agent系统 (15模块)
@@ -154,7 +113,6 @@ Agent核心:
 ├─ agent_test ✓
 ├─ multi_agent ✓
 ├─ autonomous_agent_core ✓
-├─ autonomous_decision ✓
 ├─ self_learning_agent ✓
 
 AGI系统:
@@ -164,8 +122,6 @@ AGI系统:
 ├─ agi_transfer ✓
 ├─ reasoning_agent ✓
 ├─ reasoning_chain ✓
-
-共计: 15 Agent ✓
 ```
 
 ---
@@ -186,12 +142,12 @@ AGI系统:
 
 ```
 7厂商API ✓
-├─ OpenAI GPT-4/GPT-4o ✓
-├─ Claude 3.5 ✓
-├─ Gemini 2.0 ✓
-├─ DeepSeek V3 ✓
+├─ OpenAI ✓
+├─ Claude ✓
+├─ Gemini ✓
+├─ DeepSeek ✓
 ├─ Mistral ✓
-├─ Qwen 2.5 ✓
+├─ Qwen ✓
 └─ 本地Ollama/vLLM ✓
 ```
 
@@ -211,7 +167,7 @@ DIAMOND CERTIFICATION ✓
 ├─ L1 内核:  62 ASM ✓
 ├─ L2 WASM: 372 Host ✓
 ├─ L3 应用: 454模块 ✓
-├─ L4 AI:   25模块 ✓
+├─ L4 AI:   24模块 ✓
 ├─ L5 Agent: 15模块 ✓
 
 规模: 686文件 | 120K+行代码
