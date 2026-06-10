@@ -1,8 +1,8 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v45.0_FINAL-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v46.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
-[![Modules](https://img.shields.io/badge/modules-562-green)]()
+[![Modules](https://img.shields.io/badge/modules-563-green)]()
 [![Kernel](https://img.shields.io/badge/kernel-66_ASM-orange)]()
 [![AI](https://img.shields.io/badge/AI-8_vendors-purple)]()
 [![Agent](https://img.shields.io/badge/Agent-15_modules-cyan)]()
@@ -16,6 +16,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 
 - **Pure AArch64 Assembly Kernel** - 66 modules with zero C code in kernel layer
 - **WASM-Native Application Layer** - All apps run as WebAssembly modules
+- **WASM Multi-Threading** - wasm_thread enables concurrent WASM execution on Wasm3
 - **AI Deep Integration** - 8 vendor APIs + local inference engines
 - **Agent Orchestration** - AGI framework with autonomous decision-making
 - **Multi-Platform Support** - Apple Silicon, Jetson, RP4, Snapdragon, ARM64
@@ -32,8 +33,8 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║  L4: AI Layer - Multi-Vendor AI Ecosystem (25 modules)                ║
 ║      OpenAI, Claude, Gemini, DeepSeek, Ollama, vLLM, RAG, Multimodal ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L3: WASM Apps - User Applications (455 modules)                      ║
-║      POSIX tools, networking, GUI, security, development, system     ║
+║  L3: WASM Apps - User Applications (456 modules)                      ║
+║      POSIX tools, networking, GUI, security, development, system, wasm_thread  ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║  L2: WASM Runtime - Host Function Bridge (372 functions, 6,021 lines)║
 ║      host_alloc, host_ai_query, host_agent_call, WASI interface      ║
@@ -52,10 +53,10 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 |:-----:|:----:|:-----:|:------:|
 | L1 | Kernel ASM | 66 | ✓ 100% |
 | L2 | WASM Host | 372 functions | ✓ 100% |
-| L3 | WASM Apps | 455 | ✓ 100% |
+| L3 | WASM Apps | 456 | ✓ 100% |
 | L4 | AI Modules | 25 | ✓ 100% |
 | L5 | Agent Modules | 15 | ✓ 100% |
-| **Total** | **Modules** | **562** | **✓ COMPLETE** |
+| **Total** | **Modules** | **563** | **✓ COMPLETE** |
 
 ## Features
 
@@ -169,7 +170,7 @@ make && make run
 | Kernel Size | 66 ASM modules |
 | WASM Runtime | Wasm3 with JIT optimization |
 | Host Functions | 372 |
-| WASM Modules | 455 applications |
+| WASM Modules | 456 applications |
 | AI Modules | 25 |
 | Agent Modules | 15 |
 | Max Windows | 16 (Z-order compositing) |
@@ -204,14 +205,14 @@ aiasm-aarch64/
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║           AI-ASM OS v45.0 FINAL                              ║
+║           AI-ASM OS v46.0                              ║
 ║           DIAMOND CERTIFICATION ✓                            ║
 ║           PROJECT COMPLETE ✓                                 ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Five-Layer Architecture: 100% Complete                      ║
 ║  ├─ L1 Kernel ASM: 66 modules    ✓                           ║
 ║  ├─ L2 WASM Host: 372 functions  ✓                           ║
-║  ├─ L3 WASM Apps: 455 modules    ✓                           ║
+║  ├─ L3 WASM Apps: 456 modules    ✓                           ║
 ║  ├─ L4 AI Layer: 25 modules      ✓                           ║
 ║  └─ L5 Agent: 15 modules         ✓                           ║
 ║                                                              ║
@@ -232,4 +233,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-**Final Release** - No future development tasks remaining.
+**v46.0 Release** - WASM multi-threading support via wasm_thread module.
