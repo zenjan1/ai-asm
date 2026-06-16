@@ -1,40 +1,16 @@
 # AI-ASM OS v46.0 - 开发建议
 
-## UPDATE=0→1 | 2026-06-16 18:00
+## UPDATE=0→1 | 2026-06-16 18:10
 
----
+**状态**: STABLE ✓ | **编译率**: 89% (407/456)
 
-## 状态: STABLE ✓
+**核心任务**: 修复49个未编译模块 → 100%
 
-```
-62内核 | 156 Host | 558总模块 | 407/456编译(89%)
-```
-
----
-
-## 核心任务: 修复49个未编译模块
-
-**目标**: 89% → 100% | **工作量**: 1-2周
-
+**命令**:
 ```bash
-# 诊断
 ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u)
-
-# 修复
-for m in $(cat /tmp/unbuilt.txt); do
-  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
-    -Wl,--no-entry -Wl,--export=shell_entry \
-    modules/$m/src/*.c -o modules/$m/$m.wasm
-done
-
-# 验证
-echo "$(find modules -name "*.wasm" | wc -l)/$(ls modules/ | wc -l)"
 ```
 
----
-
-## 后续: 测试框架 → wasm_thread → TLS/ext4
-
----
+**后续**: 测试框架 → wasm_thread → TLS/ext4
 
 **UPDATE=1** ✓
