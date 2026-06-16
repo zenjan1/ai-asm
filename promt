@@ -1,40 +1,40 @@
-# AI-ASM OS v66.0 - Phase 30安全平台开发任务
+# AI-ASM OS v67.0 - Phase 31工作流引擎开发任务
 
-## UPDATE=0 | 2026-06-17 08:40
+## UPDATE=0 | 2026-06-17 09:00
 
-**项目状态**: Phase 29 完成，开始Phase 30
-**总模块数**: 784个 (L1:62 + L2:138 + L3:552 + L4:19 + L5:13)
-**Phase 29完成**: api_gateway, graphql_server, grpc_proxy ✓
+**项目状态**: Phase 30 完成，开始Phase 31
+**总模块数**: 786个 (L1:62 + L2:138 + L3:554 + L4:19 + L5:13)
+**Phase 30完成**: zero_trust_network, siem_platform, vulnerability_manager ✓
 
 ---
 
-## 📋 Phase 30: 安全平台 (Security Platform)
+## 📋 Phase 31: 工作流引擎 (Workflow Engine)
 
 ### 新增模块
 
-1. **zero_trust_network** (~15K) - 零信任网络
-   - 身份验证：设备身份、用户身份、服务身份、多因素认证(MFA)集成
-   - 微隔离：工作负载隔离、网络分段(东西向/南北向)、策略即代码(Policy-as-Code)
-   - 访问控制：基于属性的访问控制(ABAC)、最小权限原则、动态授权
-   - 持续验证：会话持续评估、风险评分、异常行为检测、实时撤销
-   - 加密通信：mTLS强制、端到端加密、密钥管理(HSM集成)、证书生命周期
-   - 审计追踪：所有访问日志、行为关联、合规报告、取证支持
+1. **workflow_orchestrator** (~15K) - 工作流编排器
+   - 流程定义：BPMN 2.0子集(Service Task/User Task/Gateway/Event)、可视化建模、版本控制
+   - 执行引擎：Token流转、并行网关(AND/OR/XOR)、子流程、错误边界事件
+   - 状态管理：流程实例状态、变量存储、检查点恢复、暂停/继续
+   - 任务分配：用户任务队列、组任务、任务认领、超时升级
+   - 补偿机制：事务子流程、撤销动作、部分完成处理、死锁检测
+   - 监控仪表板：流程实例跟踪、瓶颈分析、性能指标、历史查询
 
-2. **siem_platform** (~15K) - 安全信息与事件管理
-   - 日志采集：多源日志聚合(Syslog/Windows Event/CloudTrail/Custom)、实时解析
-   - 关联分析：规则引擎、多事件关联、攻击链建模、MITRE ATT&CK映射
-   - 威胁检测：ML异常检测、IOC匹配(Indicators of Compromise)、UEBA用户行为分析
-   - 事件响应：自动剧本(Playbook)、工单生成、隔离动作、通知链
-   - 合规监控：PCI-DSS/HIPAA/SOC2/GDPR规则集、控制评估、差距报告
-   - 仪表板：实时威胁视图、攻击地图、风险评分、趋势分析
+2. **state_machine_engine** (~15K) - 状态机引擎
+   - 状态定义：State/Transition/Guard/Action模型、层次状态(Hierarchy)、并行状态(Orthogonal)
+   - 转换规则：事件触发、守卫条件、动作执行、内部/外部转换
+   - 历史状态：状态历史追踪、状态重放、状态回放调试
+   - 持久化：状态快照、状态迁移日志、崩溃恢复
+   - 并发控制：多实例状态机、锁机制、事务保证
+   - 调试工具：状态可视化、转换轨迹、断点调试、模拟执行
 
-3. **vulnerability_manager** (~15K) - 漏洞管理平台
-   - 资产发现：网络设备扫描、服务指纹识别、依赖清单(SBOM)、影子IT检测
-   - 漏洞扫描：CVE数据库集成、NVD同步、容器镜像扫描、代码依赖扫描
-   - 风险评估：CVSS评分、可利用性分析、业务影响评估、优先级排序
-   - 修复管理：补丁跟踪、修复工作流、验证确认、回滚计划
-   - 威胁情报：CVE公告订阅、0day预警、Vendor Advisory集成、威胁Feed
-   - 报告生成：合规报告、执行摘要、技术详情、趋势对比
+3. **event_driven_engine** (~15K) - 事件驱动引擎
+   - 事件总线：事件发布/订阅、事件路由、事件过滤、事件转换
+   - CQRS模式：命令/查询分离、命令处理、查询优化、读写模型分离
+   - Saga模式：编排式Saga、协作式Saga、补偿事务、状态协调
+   - 事件存储：事件持久化、事件排序、事件重放、事件压缩
+   - 处理保证：至少一次、至多一次、幂等处理、Exactly-once语义
+   - 响应式流：背压控制、流合并、流拆分、流窗口
 
 ---
 
@@ -42,10 +42,10 @@
 
 | 层级 | 类型 | 数量 | 状态 |
 |:-----:|:----:|:-----:|:------:|
-| L3 | WASM Apps | 555 (505 standalone + 50 libraries) | ✓ 100% |
-| **Total** | **Modules** | **787** | **✓ COMPLETE** |
+| L3 | WASM Apps | 557 (507 standalone + 50 libraries) | ✓ 100% |
+| **Total** | **Modules** | **789** | **✓ COMPLETE** |
 
 ---
 
 **UPDATE=0** ✓
-**Phase 30 READY** ✓
+**Phase 31 READY** ✓
