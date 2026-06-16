@@ -36,7 +36,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║  L3: WASM Apps - User Applications (456 modules)                      ║
 ║      POSIX tools, networking, GUI, security, development, system, wasm_thread  ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L2: WASM Runtime - Host Function Bridge (156 functions, 6,021 lines)║
+║  L2: WASM Runtime - Host Function Bridge (138 functions, 6,021 lines)║
 ║      host_alloc, host_ai_query, host_agent_call, WASI interface      ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║  L1: Kernel ASM - AArch64 Pure Assembly (62 modules)                  ║
@@ -52,7 +52,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 | Layer | Type | Count | Status |
 |:-----:|:----:|:-----:|:------:|
 | L1 | Kernel ASM | 62 | ✓ 100% |
-| L2 | WASM Host | 156 functions | ✓ 100% |
+| L2 | WASM Host | 138 functions | ✓ 100% |
 | L3 | WASM Apps | 456 | ✓ 100% |
 | L4 | AI Modules | 16 | ✓ 100% |
 | L5 | Agent Modules | 13 | ✓ 100% |
@@ -132,7 +132,7 @@ make && make run
 ./run_test.sh
 ```
 
-## WASM Host API (156 Functions)
+## WASM Host API (138 Functions)
 
 ### System Calls (50)
 - `host_alloc`, `host_free`, `host_print`, `host_exit`, `host_yield`
@@ -169,7 +169,7 @@ make && make run
 | Architecture | AArch64 (ARMv8-A) |
 | Kernel Size | 62 ASM modules |
 | WASM Runtime | Wasm3 with JIT optimization |
-| Host Functions | 156 |
+| Host Functions | 138 |
 | WASM Modules | 456 applications |
 | AI Modules | 16 |
 | Agent Modules | 13 |
@@ -183,7 +183,7 @@ make && make run
 aiasm-aarch64/
 ├── kernel/               # 62 AArch64 assembly modules
 │   ├── *.asm             # Memory, process, vfs, net, gui...
-│   ├── wasm_host.c       # 6,021 lines, 156 host functions
+│   ├── wasm_host.c       # 6,021 lines, 138 host functions
 │   └── wasm3/            # Wasm3 WebAssembly runtime
 ├── modules/              # 456 WASM application modules
 │   ├── openai_api/       # AI vendor APIs
@@ -211,7 +211,7 @@ aiasm-aarch64/
 ╠══════════════════════════════════════════════════════════════╣
 ║  Five-Layer Architecture: 100% Complete                      ║
 ║  ├─ L1 Kernel ASM: 62 modules    ✓                           ║
-║  ├─ L2 WASM Host: 156 functions  ✓                           ║
+║  ├─ L2 WASM Host: 138 functions  ✓                           ║
 ║  ├─ L3 WASM Apps: 456 modules    ✓                           ║
 ║  ├─ L4 AI Layer: 16 modules      ✓                           ║
 ║  └─ L5 Agent: 13 modules         ✓                           ║
