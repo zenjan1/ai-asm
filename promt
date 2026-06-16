@@ -1,24 +1,32 @@
-# AI-ASM OS v46.0 - 开发建议
+# AI-ASM OS v46.0 - 扫描报告
 
-## UPDATE=0→1 | 2026-06-16 20:20
+## UPDATE=1→0 | 2026-06-16 20:25
 
-**状态**: STABLE | **编译率**: 89% (407/456)
+**状态**: STABLE | **分支**: arm-v2
 
-### P0: 修复49个未编译模块 → 100%
-```bash
-ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u)
-```
+### 实际统计
 
-### P1: 完善wasm_thread多线程
-- 线程池管理、互斥锁、条件变量、线程间通信
+| 层 | 描述 | 数量 | 状态 |
+|---|------|------|------|
+| L1 | Kernel ASM | 62 | ✓ |
+| L2 | WASM Host | 138 functions (125 host + 13 WASI) | ✓ |
+| L3 | WASM Apps | 456 (407 built, 49 unbuilt) | 89% |
+| L4 | AI Modules | 16 | ✓ |
+| L5 | Agent Modules | 13 | ✓ |
+| **总计** | **Modules** | **547** | - |
 
-### P2: 增强文件系统与网络
-- TLS/SSL支持
-- ext4/NFS文件系统
-- 大页内存优化
+### 关键发现
 
-### P3: 测试框架
-- 单元测试覆盖率 (当前0%)
-- 集成测试、E2E测试
+1. **编译率**: 407/456 = 89% (49个模块未编译)
+2. **L2差异**: README声称156函数,实际138 (125 host + 13 WASI)
+3. **Git状态**: 工作树干净,已同步origin/arm-v2
+4. **最新提交**: b28a22e (修正L4/L5计数)
 
-**UPDATE=1** ✓
+### 下一步建议
+
+**P0**: 修复49个未编译模块 → 100%
+**P1**: 完善wasm_thread多线程支持
+**P2**: 增强文件系统(TLS/ext4)
+**P3**: 建立测试框架(当前0%覆盖率)
+
+**UPDATE=0** ✓
