@@ -1,90 +1,63 @@
-# AI-ASM OS v46.0 - 决策树指南
+# AI-ASM OS v46.0 - 问题解决方案
 
-## 扫描: UPDATE=0 → UPDATE=1 | 2026-06-16 17:10
-
----
-
-## 🌳 开发决策树
-
-```
-开始
-  │
-  ├─ 49个模块未编译? ──YES──→ [任务A] 修复编译问题
-  │                              │
-  │                              ├─ 源文件缺失? → 创建源文件
-  │                              ├─ 编译错误? → 修复语法/依赖
-  │                              └─ Makefile问题? → 更新规则
-  │
-  ├─ 测试覆盖=0%? ──YES──→ [任务B] 建立测试框架
-  │                           │
-  │                           ├─ 内核测试 → tests/kernel/
-  │                           ├─ WASM测试 → tests/wasm/
-  │                           └─ 集成测试 → tests/integration/
-  │
-  ├─ wasm_thread不完整? ──YES──→ [任务C] 完善多线程
-  │                                 │
-  │                                 ├─ 线程池 → wasm_thread_pool.asm
-  │                                 ├─ 互斥锁 → wasm_mutex.asm
-  │                                 └─ 条件变量 → wasm_cond.asm
-  │
-  └─ 以上都完成? ──YES──→ [任务D] 功能增强
-                            │
-                            ├─ P1: TLS/ext4/大页内存
-                            ├─ P2: GPU/安全/虚拟化
-                            └─ P3: 工具链/文档
-```
+## 扫描: UPDATE=0 → UPDATE=1 | 2026-06-16 17:20
 
 ---
 
-## 📋 任务详情
+## ❓ 常见问题与解决方案
 
-### 任务A: 修复49模块 ⭐ 最高优先级
+### Q1: 为什么有49个模块未编译?
 
-**决策条件**: 编译率 < 100%
+**问题**: modules/下有456个目录,但只有407个.wasm文件
 
-**执行步骤**:
+**原因分析**:
+1. 源文件缺失或不完整
+2. 编译错误 (语法/依赖)
+3. Makefile规则排除
+
+**解决方案**:
 ```bash
-# 1. 诊断
-UNBUILT=$(ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u))
+# 步骤1: 列出未编译模块
+ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u) > /tmp/unbuilt.txt
 
-# 2. 对每个模块
-for MOD in $UNBUILT; do
-  if [ ! -f modules/$MOD/src/main.c ]; then
-    echo "创建 $MOD/src/main.c"
-    # 创建源文件
-  fi
-
-  # 尝试编译
-  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
-    -Wl,--no-entry -Wl,--export=shell_entry \
-    modules/$MOD/src/*.c -o modules/$MOD/$MOD.wasm 2> /tmp/err_$MOD.log
-
-  if [ $? -ne 0 ]; then
-    echo "修复 $MOD 编译错误"
-    cat /tmp/err_$MOD.log
-  fi
+# 步骤2: 检查源文件
+for mod in $(head -5 /tmp/unbuilt.txt); do
+  echo "=== $mod ==="
+  ls modules/$mod/src/ 2>/dev/null || echo "无src目录"
 done
 
-# 3. 验证
-BUILT=$(find modules -name "*.wasm" | wc -l)
-[ $BUILT -eq 456 ] && echo "✓ 全部编译成功" || echo "✗ 仍有失败"
+# 步骤3: 尝试编译
+MOD=$(head -1 /tmp/unbuilt.txt)
+clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+  -Wl,--no-entry -Wl,--export=shell_entry \
+  modules/$MOD/src/*.c -o modules/$MOD/$MOD.wasm 2>&1 | head -20
+
+# 步骤4: 批量修复
+SUCCESS=0; FAIL=0
+for MOD in $(cat /tmp/unbuilt.txt); do
+  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+    -Wl,--no-entry -Wl,--export=shell_entry \
+    modules/$MOD/src/*.c -o modules/$MOD/$MOD.wasm 2>/dev/null
+  [ $? -eq 0 ] && SUCCESS=$((SUCCESS+1)) || FAIL=$((FAIL+1))
+done
+echo "成功: $SUCCESS, 失败: $FAIL"
 ```
 
-**完成标准**: 456/456模块编译成功
+**预期结果**: 456/456模块编译成功 (100%)
 
 ---
 
-### 任务B: 测试框架
+### Q2: 如何建立测试框架?
 
-**决策条件**: 测试覆盖 = 0%
+**问题**: 当前无测试覆盖,代码质量无法保证
 
-**执行步骤**:
+**解决方案**:
 ```bash
-# 1. 创建结构
+# 1. 创建目录结构
 mkdir -p tests/{kernel,wasm,integration,benchmarks}
 
-# 2. 编写测试
-cat > tests/kernel/test_memory.c << 'EOF'
+# 2. 内核单元测试
+cat > tests/kernel/test_buddy.c << 'EOF'
 #include <assert.h>
 extern void buddy_init(void);
 extern void* buddy_alloc(int order);
@@ -96,108 +69,267 @@ void test_basic() {
     assert(p != NULL);
     buddy_free(p, 0);
 }
+
+void test_exhaustion() {
+    buddy_init();
+    void* ptrs[100];
+    int count = 0;
+    for (int i = 0; i < 100; i++) {
+        ptrs[i] = buddy_alloc(0);
+        if (!ptrs[i]) break;
+        count++;
+    }
+    for (int i = 0; i < count; i++) buddy_free(ptrs[i], 0);
+}
 EOF
 
-# 3. 运行测试
+# 3. WASM Host测试
+cat > tests/wasm/test_host.c << 'EOF'
+#include <assert.h>
+extern void* host_alloc(int size, int align);
+extern void host_free(void* ptr);
+
+void test_alloc_free() {
+    void* p = host_alloc(1024, 8);
+    assert(p != NULL);
+    host_free(p);
+}
+EOF
+
+# 4. 测试运行器
 cat > tests/run_tests.sh << 'EOF'
 #!/bin/bash
-echo "Running tests..."
-# 编译并运行
-echo "All tests passed!"
+echo "=== AI-ASM Test Suite ==="
+echo "编译测试..."
+clang -c tests/kernel/test_buddy.c -o /tmp/test_buddy.o 2>/dev/null && echo "✓ kernel" || echo "✗ kernel"
+clang -c tests/wasm/test_host.c -o /tmp/test_host.o 2>/dev/null && echo "✓ wasm" || echo "✗ wasm"
+echo "测试完成!"
 EOF
 chmod +x tests/run_tests.sh
+
+# 5. 运行
+./tests/run_tests.sh
 ```
 
-**完成标准**: 80%测试覆盖率
+**目标**: 80%测试覆盖率
 
 ---
 
-### 任务C: wasm_thread完善
+### Q3: wasm_thread如何使用?
 
-**决策条件**: 缺少线程池/互斥锁
+**问题**: v46.0引入了wasm_thread,但功能不完整
 
-**执行步骤**:
+**当前状态**: 基础多线程支持,缺少同步原语
+
+**解决方案**:
 ```bash
-# 1. 线程池
+# 1. 添加线程池
 cat > kernel/wasm_thread_pool.asm << 'EOF'
 .arch armv8-a
+.data
+pool_size: .word 0
+task_queue: .space 512
+queue_head: .word 0
+queue_tail: .word 0
+
+.text
 .global wasm_thread_pool_init
 .global wasm_thread_pool_submit
 .global wasm_thread_pool_wait
-wasm_thread_pool_init: ret
-wasm_thread_pool_submit: ret
-wasm_thread_pool_wait: ret
+
+wasm_thread_pool_init:
+    mov x0, #0
+    str x0, pool_size
+    str x0, queue_head
+    str x0, queue_tail
+    ret
+
+wasm_thread_pool_submit:
+    // x0=任务函数, x1=参数
+    ldr x2, queue_tail
+    lsl x2, x2, #3
+    adr x3, task_queue
+    add x3, x3, x2
+    stp x0, x1, [x3]
+    ldr x2, queue_tail
+    add x2, x2, #1
+    str x2, queue_tail
+    mov x0, #0
+    ret
+
+wasm_thread_pool_wait:
+    ldr x0, queue_head
+    ldr x1, queue_tail
+    cmp x0, x1
+    bne wasm_thread_pool_wait
+    ret
 EOF
 
-# 2. 互斥锁
+# 2. 添加互斥锁
 cat > kernel/wasm_mutex.asm << 'EOF'
 .arch armv8-a
+.data
+mutex_locked: .word 0
+
+.text
 .global wasm_mutex_init
 .global wasm_mutex_lock
 .global wasm_mutex_unlock
-wasm_mutex_init: ret
-wasm_mutex_lock: ret
-wasm_mutex_unlock: ret
+
+wasm_mutex_init:
+    mov x0, #0
+    str x0, mutex_locked
+    ret
+
+wasm_mutex_lock:
+    mov x0, #1
+    mov x1, #0
+    adr x2, mutex_locked
+    casa x0, x1, [x2]
+    cbz x0, lock_acquired
+    wfe
+    b wasm_mutex_lock
+lock_acquired:
+    mov x0, #0
+    ret
+
+wasm_mutex_unlock:
+    mov x0, #0
+    adr x1, mutex_locked
+    str x0, [x1]
+    sev
+    ret
 EOF
 
 # 3. 编译
-as -march=armv8-a kernel/wasm_thread_pool.asm -o build/
-as -march=armv8-a kernel/wasm_mutex.asm -o build/
+as -march=armv8-a kernel/wasm_thread_pool.asm -o build/wasm_thread_pool.o
+as -march=armv8-a kernel/wasm_mutex.asm -o build/wasm_mutex.o
+
+# 4. 测试应用
+mkdir -p modules/wasm_thread_test/src
+cat > modules/wasm_thread_test/src/main.c << 'EOF'
+extern void wasm_thread_pool_init();
+extern int wasm_thread_pool_submit(void* func, void* arg);
+extern void wasm_thread_pool_wait();
+extern int host_print(const char* msg, int len);
+
+void worker(void* arg) {
+    int id = *(int*)arg;
+    char msg[50];
+    snprintf(msg, sizeof(msg), "Thread %d\n", id);
+    host_print(msg, strlen(msg));
+}
+
+int shell_entry() {
+    wasm_thread_pool_init();
+    int ids[4] = {1, 2, 3, 4};
+    for (int i = 0; i < 4; i++) {
+        wasm_thread_pool_submit(worker, &ids[i]);
+    }
+    wasm_thread_pool_wait();
+    host_print("All done\n", 10);
+    return 0;
+}
+EOF
 ```
 
-**完成标准**: 多线程测试通过
-
 ---
 
-### 任务D: 功能增强
+### Q4: 如何添加TLS/SSL支持?
 
-**决策条件**: 任务A-C全部完成
+**问题**: 网络通信缺少加密层
 
-**P1 - 网络与存储**:
-- TLS/SSL → kernel/tls.asm
-- HTTP/2 → modules/http2_server/
-- ext4 → kernel/ext4.asm
-- NFS → modules/nfs_client/
-
-**P2 - 高级功能**:
-- GPU → OpenCL集成
-- 安全 → Secure Boot
-- 虚拟化 → KVM接口
-
-**P3 - 工具链**:
-- 调试器
-- 性能分析器
-- 文档生成
-
----
-
-## 📊 状态检查表
-
-| 检查项 | 当前 | 目标 | 动作 |
-|--------|------|------|------|
-| 编译率 | 89% | 100% | 任务A |
-| 测试覆盖 | 0% | 80% | 任务B |
-| wasm_thread | 基础 | 完整 | 任务C |
-| TLS/HTTP2 | 无 | 有 | 任务D-P1 |
-| ext4/NFS | 无 | 有 | 任务D-P1 |
-
----
-
-## ⚡ 快速命令
-
+**解决方案**:
 ```bash
-# 检查当前状态
-echo "编译率: $(find modules -name "*.wasm" | wc -l)/$(ls modules/ | wc -l)"
+cat > kernel/tls.asm << 'EOF'
+.arch armv8-a
+.data
+tls_context: .space 1024
+tls_buffer: .space 16384
 
-# 执行任务A
-ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u)
+.text
+.global tls_init
+.global tls_connect
+.global tls_send
+.global tls_recv
+.global tls_close
 
-# 执行任务B
-mkdir -p tests/{kernel,wasm,integration}
+tls_init:
+    // 初始化TLS上下文
+    ret
 
-# 执行任务C
-as -march=armv8-a kernel/wasm_thread_pool.asm -o build/
+tls_connect:
+    // x0=主机名, x1=端口
+    // 返回: 连接ID
+    ret
+
+tls_send:
+    // x0=连接ID, x1=数据, x2=长度
+    // 返回: 发送字节数
+    ret
+
+tls_recv:
+    // x0=连接ID, x1=缓冲区, x2=大小
+    // 返回: 接收字节数
+    ret
+
+tls_close:
+    // x0=连接ID
+    ret
+EOF
+
+# 编译
+as -march=armv8-a kernel/tls.asm -o build/tls.o
 ```
+
+---
+
+### Q5: 如何添加ext4文件系统?
+
+**问题**: 当前仅支持FAT32
+
+**解决方案**:
+```bash
+cat > kernel/ext4.asm << 'EOF'
+.arch armv8-a
+.data
+ext4_superblock: .space 1024
+ext4_inode_table: .space 4096
+
+.text
+.global ext4_init
+.global ext4_mount
+.global ext4_read
+.global ext4_write
+
+ext4_init:
+    ret
+
+ext4_mount:
+    // x0=设备, x1=挂载点
+    ret
+
+ext4_read:
+    // x0=文件描述符, x1=缓冲区, x2=长度
+    ret
+
+ext4_write:
+    // x0=文件描述符, x1=数据, x2=长度
+    ret
+EOF
+```
+
+---
+
+## 📊 优先级总结
+
+| 问题 | 优先级 | 工作量 | 影响 |
+|------|--------|--------|------|
+| 49模块未编译 | P0 | 1-2周 | 高 |
+| 无测试框架 | P0 | 1周 | 高 |
+| wasm_thread不完整 | P0 | 1周 | 中 |
+| 无TLS/SSL | P1 | 2-3月 | 中 |
+| 仅FAT32 | P1 | 2-3月 | 中 |
 
 ---
 
