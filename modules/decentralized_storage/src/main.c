@@ -308,7 +308,7 @@ static void show_status(void) {
         for(int i=0;i<content_count;i++){
             pstr("  ["); pint(contents[i].content_id); pstr("] ");
             phex(contents[i].cid.cid,16); pstr("... "); pint(contents[i].cid.size); pstr("B ");
-            pint(contents[i].dag.shard_count); pstr("sh "); pint(contents[i].replica_count); pstr("rep";
+            pint(contents[i].dag.shard_count); pstr("sh "); pint(contents[i].replica_count); pstr("rep");
             if(contents[i].encrypted) pstr(" [ENC]"); pstr("\n");
         }
     }
