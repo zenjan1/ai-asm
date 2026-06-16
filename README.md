@@ -2,8 +2,8 @@
 
 [![Version](https://img.shields.io/badge/version-v46.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
-[![Modules](https://img.shields.io/badge/modules-563-green)]()
-[![Kernel](https://img.shields.io/badge/kernel-66_ASM-orange)]()
+[![Modules](https://img.shields.io/badge/modules-558-green)]()
+[![Kernel](https://img.shields.io/badge/kernel-62_ASM-orange)]()
 [![AI](https://img.shields.io/badge/AI-8_vendors-purple)]()
 [![Agent](https://img.shields.io/badge/Agent-15_modules-cyan)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
@@ -14,7 +14,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 
 ### Key Innovation
 
-- **Pure AArch64 Assembly Kernel** - 66 modules with zero C code in kernel layer
+- **Pure AArch64 Assembly Kernel** - 62 modules with zero C code in kernel layer
 - **WASM-Native Application Layer** - All apps run as WebAssembly modules
 - **WASM Multi-Threading** - wasm_thread enables concurrent WASM execution on Wasm3
 - **AI Deep Integration** - 8 vendor APIs + local inference engines
@@ -39,7 +39,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║  L2: WASM Runtime - Host Function Bridge (372 functions, 6,021 lines)║
 ║      host_alloc, host_ai_query, host_agent_call, WASI interface      ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L1: Kernel ASM - AArch64 Pure Assembly (66 modules)                  ║
+║  L1: Kernel ASM - AArch64 Pure Assembly (62 modules)                  ║
 ║      memory, process, vfs, net, device, gui, jit, wasi, security     ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║  Hardware Layer - Multi-Platform Support (5 platforms)               ║
@@ -51,12 +51,12 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 
 | Layer | Type | Count | Status |
 |:-----:|:----:|:-----:|:------:|
-| L1 | Kernel ASM | 66 | ✓ 100% |
+| L1 | Kernel ASM | 62 | ✓ 100% |
 | L2 | WASM Host | 372 functions | ✓ 100% |
 | L3 | WASM Apps | 456 | ✓ 100% |
 | L4 | AI Modules | 25 | ✓ 100% |
 | L5 | Agent Modules | 15 | ✓ 100% |
-| **Total** | **Modules** | **563** | **✓ COMPLETE** |
+| **Total** | **Modules** | **558** | **✓ COMPLETE** |
 
 ## Features
 
@@ -167,7 +167,7 @@ make && make run
 | Parameter | Value |
 |-----------|-------|
 | Architecture | AArch64 (ARMv8-A) |
-| Kernel Size | 66 ASM modules |
+| Kernel Size | 62 ASM modules |
 | WASM Runtime | Wasm3 with JIT optimization |
 | Host Functions | 372 |
 | WASM Modules | 456 applications |
@@ -210,7 +210,7 @@ aiasm-aarch64/
 ║           PROJECT COMPLETE ✓                                 ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Five-Layer Architecture: 100% Complete                      ║
-║  ├─ L1 Kernel ASM: 66 modules    ✓                           ║
+║  ├─ L1 Kernel ASM: 62 modules    ✓                           ║
 ║  ├─ L2 WASM Host: 372 functions  ✓                           ║
 ║  ├─ L3 WASM Apps: 456 modules    ✓                           ║
 ║  ├─ L4 AI Layer: 25 modules      ✓                           ║
