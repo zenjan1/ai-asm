@@ -1,34 +1,28 @@
-# AI-ASM OS v46.0 - 架构分析
+# AI-ASM OS v46.0 - 开发建议
 
-## UPDATE=1→0 | 2026-06-16 21:25
+## UPDATE=0→1 | 2026-06-16 21:30
 
-### 模块分类
+**状态**: STABLE | **架构**: 407独立WASM + 49库模块
 
-**独立WASM工具**: 407个 (已编译 ✓)
-- POSIX核心工具、网络工具、系统工具、GUI应用等
-- 具有shell_entry入口点，可独立运行
+### 优先级任务
 
-**库/API模块**: 49个 (源码形式，非独立可执行)
-- AI API: claude_api, openai_api, gemini_api, deepseek_api等
-- Agent框架: agent_workflow, multi_agent, reasoning_chain等
-- 功能库: tts_api, vision_api, embedding_interface等
-- 设计为源码库，供其他模块或host系统调用
+**P1**: wasm_thread多线程完善
+- 线程池管理（创建、销毁、调度）
+- 互斥锁(mutex)实现
+- 条件变量(condition variable)
+- 线程间通信机制
+- 并发WASM模块执行
 
-### 架构状态
+**P2**: 文件系统与网络增强
+- TLS/SSL加密支持
+- ext4文件系统驱动
+- NFS网络文件系统
+- 大页内存(huge pages)优化
 
-| 层 | 数量 | 状态 |
-|---|------|------|
-| L1 Kernel ASM | 62 | ✓ |
-| L2 Host Functions | 138 | ✓ |
-| L3 WASM Apps | 456 (407独立+49库) | ✓ |
-| L4 AI Modules | 16 | ✓ |
-| L5 Agent Modules | 13 | ✓ |
-| **总计** | **547** | ✓ |
+**P3**: 测试框架建设
+- 单元测试（目标80%覆盖率）
+- 集成测试（WASM模块交互）
+- E2E测试（完整用户流程）
+- 性能基准测试
 
-### 下一步
-
-P1: 完善wasm_thread多线程支持
-P2: TLS/SSL、ext4文件系统
-P3: 测试框架建设
-
-**UPDATE=0** ✓
+**UPDATE=1** ✓
