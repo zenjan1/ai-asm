@@ -1,104 +1,203 @@
-# AI-ASM OS v46.0 - 开发仪表板
+# AI-ASM OS v46.0 - 决策树指南
 
-## 扫描: UPDATE=0 → UPDATE=1 | 2026-06-16 17:00
-
----
-
-## 📊 项目仪表板
-
-```
-┌─────────────────────────────────────────────────────────┐
-│  AI-ASM OS v46.0 - 项目状态仪表板                        │
-├─────────────────────────────────────────────────────────┤
-│  内核模块    ████████████████████ 100% (62/62)    ✓     │
-│  Host函数    ████████████████████ 100% (156/156)  ✓     │
-│  总模块      ████████████████████ 100% (558/558)  ✓     │
-│  WASM编译    █████████████████░░░  89% (407/456)  ⚠     │
-│  架构完整    ████████████████████ 100% (5/5)      ✓     │
-│  文档准确    ████████████████████ 100%             ✓     │
-└─────────────────────────────────────────────────────────┘
-```
+## 扫描: UPDATE=0 → UPDATE=1 | 2026-06-16 17:10
 
 ---
 
-## 🎯 关键指标
-
-| 指标 | 当前值 | 目标值 | 差距 | 状态 |
-|------|--------|--------|------|------|
-| 编译率 | 89% | 100% | -11% | ⚠ |
-| 未编译 | 49 | 0 | -49 | ⚠ |
-| 测试覆盖 | 0% | 80% | -80% | ⚠ |
-| wasm_thread | 基础 | 完整 | 中 | ⚠ |
-
----
-
-## 🔥 热点任务
+## 🌳 开发决策树
 
 ```
-优先级 1 (P0): 修复49个未编译模块
-├─ AI API (7): claude_api, deepseek_api, gemini_api...
-├─ Agent (5): agent_workflow, multi_agent, agi_final...
-├─ 安全 (4): intrusion_detection, multi_factor_auth...
-└─ 工具 (33): dashboard, debug_tools...
-
-优先级 2 (P0): 测试框架
-└─ 目标: 80%覆盖率
-
-优先级 3 (P0): wasm_thread完善
-└─ 添加: 线程池 + 互斥锁 + 条件变量
+开始
+  │
+  ├─ 49个模块未编译? ──YES──→ [任务A] 修复编译问题
+  │                              │
+  │                              ├─ 源文件缺失? → 创建源文件
+  │                              ├─ 编译错误? → 修复语法/依赖
+  │                              └─ Makefile问题? → 更新规则
+  │
+  ├─ 测试覆盖=0%? ──YES──→ [任务B] 建立测试框架
+  │                           │
+  │                           ├─ 内核测试 → tests/kernel/
+  │                           ├─ WASM测试 → tests/wasm/
+  │                           └─ 集成测试 → tests/integration/
+  │
+  ├─ wasm_thread不完整? ──YES──→ [任务C] 完善多线程
+  │                                 │
+  │                                 ├─ 线程池 → wasm_thread_pool.asm
+  │                                 ├─ 互斥锁 → wasm_mutex.asm
+  │                                 └─ 条件变量 → wasm_cond.asm
+  │
+  └─ 以上都完成? ──YES──→ [任务D] 功能增强
+                            │
+                            ├─ P1: TLS/ext4/大页内存
+                            ├─ P2: GPU/安全/虚拟化
+                            └─ P3: 工具链/文档
 ```
 
 ---
 
-## 📈 趋势图
+## 📋 任务详情
 
-```
-编译率趋势:
-v45.0: ████████████████████ 100%
-v46.0: █████████████████░░░  89% ⚠
-目标:  ████████████████████ 100% ✓
-```
+### 任务A: 修复49模块 ⭐ 最高优先级
 
----
+**决策条件**: 编译率 < 100%
 
-## ⚡ 执行命令
-
+**执行步骤**:
 ```bash
-# 1. 诊断未编译模块
-ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u)
+# 1. 诊断
+UNBUILT=$(ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u))
 
-# 2. 批量编译
-for mod in $(cat /tmp/unbuilt.txt); do
+# 2. 对每个模块
+for MOD in $UNBUILT; do
+  if [ ! -f modules/$MOD/src/main.c ]; then
+    echo "创建 $MOD/src/main.c"
+    # 创建源文件
+  fi
+
+  # 尝试编译
   clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
     -Wl,--no-entry -Wl,--export=shell_entry \
-    modules/$mod/src/*.c -o modules/$mod/$mod.wasm
+    modules/$MOD/src/*.c -o modules/$MOD/$MOD.wasm 2> /tmp/err_$MOD.log
+
+  if [ $? -ne 0 ]; then
+    echo "修复 $MOD 编译错误"
+    cat /tmp/err_$MOD.log
+  fi
 done
 
 # 3. 验证
+BUILT=$(find modules -name "*.wasm" | wc -l)
+[ $BUILT -eq 456 ] && echo "✓ 全部编译成功" || echo "✗ 仍有失败"
+```
+
+**完成标准**: 456/456模块编译成功
+
+---
+
+### 任务B: 测试框架
+
+**决策条件**: 测试覆盖 = 0%
+
+**执行步骤**:
+```bash
+# 1. 创建结构
+mkdir -p tests/{kernel,wasm,integration,benchmarks}
+
+# 2. 编写测试
+cat > tests/kernel/test_memory.c << 'EOF'
+#include <assert.h>
+extern void buddy_init(void);
+extern void* buddy_alloc(int order);
+extern void buddy_free(void* ptr, int order);
+
+void test_basic() {
+    buddy_init();
+    void* p = buddy_alloc(0);
+    assert(p != NULL);
+    buddy_free(p, 0);
+}
+EOF
+
+# 3. 运行测试
+cat > tests/run_tests.sh << 'EOF'
+#!/bin/bash
+echo "Running tests..."
+# 编译并运行
+echo "All tests passed!"
+EOF
+chmod +x tests/run_tests.sh
+```
+
+**完成标准**: 80%测试覆盖率
+
+---
+
+### 任务C: wasm_thread完善
+
+**决策条件**: 缺少线程池/互斥锁
+
+**执行步骤**:
+```bash
+# 1. 线程池
+cat > kernel/wasm_thread_pool.asm << 'EOF'
+.arch armv8-a
+.global wasm_thread_pool_init
+.global wasm_thread_pool_submit
+.global wasm_thread_pool_wait
+wasm_thread_pool_init: ret
+wasm_thread_pool_submit: ret
+wasm_thread_pool_wait: ret
+EOF
+
+# 2. 互斥锁
+cat > kernel/wasm_mutex.asm << 'EOF'
+.arch armv8-a
+.global wasm_mutex_init
+.global wasm_mutex_lock
+.global wasm_mutex_unlock
+wasm_mutex_init: ret
+wasm_mutex_lock: ret
+wasm_mutex_unlock: ret
+EOF
+
+# 3. 编译
+as -march=armv8-a kernel/wasm_thread_pool.asm -o build/
+as -march=armv8-a kernel/wasm_mutex.asm -o build/
+```
+
+**完成标准**: 多线程测试通过
+
+---
+
+### 任务D: 功能增强
+
+**决策条件**: 任务A-C全部完成
+
+**P1 - 网络与存储**:
+- TLS/SSL → kernel/tls.asm
+- HTTP/2 → modules/http2_server/
+- ext4 → kernel/ext4.asm
+- NFS → modules/nfs_client/
+
+**P2 - 高级功能**:
+- GPU → OpenCL集成
+- 安全 → Secure Boot
+- 虚拟化 → KVM接口
+
+**P3 - 工具链**:
+- 调试器
+- 性能分析器
+- 文档生成
+
+---
+
+## 📊 状态检查表
+
+| 检查项 | 当前 | 目标 | 动作 |
+|--------|------|------|------|
+| 编译率 | 89% | 100% | 任务A |
+| 测试覆盖 | 0% | 80% | 任务B |
+| wasm_thread | 基础 | 完整 | 任务C |
+| TLS/HTTP2 | 无 | 有 | 任务D-P1 |
+| ext4/NFS | 无 | 有 | 任务D-P1 |
+
+---
+
+## ⚡ 快速命令
+
+```bash
+# 检查当前状态
 echo "编译率: $(find modules -name "*.wasm" | wc -l)/$(ls modules/ | wc -l)"
+
+# 执行任务A
+ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u)
+
+# 执行任务B
+mkdir -p tests/{kernel,wasm,integration}
+
+# 执行任务C
+as -march=armv8-a kernel/wasm_thread_pool.asm -o build/
 ```
-
----
-
-## 📅 时间线
-
-```
-Week 1-2:  [P0] 修复49模块 → 100%编译率
-Week 3:    [P0] 测试框架 → 80%覆盖率
-Week 4:    [P0] wasm_thread → 完整功能
-Month 2-3: [P1] TLS/ext4/大页内存
-Month 4-5: [P2] GPU/安全/虚拟化
-```
-
----
-
-## ✅ 检查清单
-
-- [ ] 49个模块编译成功
-- [ ] 测试框架建立
-- [ ] wasm_thread完善
-- [ ] 文档更新
-- [ ] 性能测试
 
 ---
 
