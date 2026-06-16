@@ -1,74 +1,104 @@
-# AI-ASM OS v46.0 - 开发速查表
+# AI-ASM OS v46.0 - 开发仪表板
 
-## 状态: UPDATE=0 → UPDATE=1 | 2026-06-16 16:50
-
----
-
-## 📊 指标
-
-```
-内核: 62 | Host: 156 | 总数: 558 | 编译: 407/456 (89%)
-```
+## 扫描: UPDATE=0 → UPDATE=1 | 2026-06-16 17:00
 
 ---
 
-## 🎯 核心任务: 修复49模块
+## 📊 项目仪表板
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  AI-ASM OS v46.0 - 项目状态仪表板                        │
+├─────────────────────────────────────────────────────────┤
+│  内核模块    ████████████████████ 100% (62/62)    ✓     │
+│  Host函数    ████████████████████ 100% (156/156)  ✓     │
+│  总模块      ████████████████████ 100% (558/558)  ✓     │
+│  WASM编译    █████████████████░░░  89% (407/456)  ⚠     │
+│  架构完整    ████████████████████ 100% (5/5)      ✓     │
+│  文档准确    ████████████████████ 100%             ✓     │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎯 关键指标
+
+| 指标 | 当前值 | 目标值 | 差距 | 状态 |
+|------|--------|--------|------|------|
+| 编译率 | 89% | 100% | -11% | ⚠ |
+| 未编译 | 49 | 0 | -49 | ⚠ |
+| 测试覆盖 | 0% | 80% | -80% | ⚠ |
+| wasm_thread | 基础 | 完整 | 中 | ⚠ |
+
+---
+
+## 🔥 热点任务
+
+```
+优先级 1 (P0): 修复49个未编译模块
+├─ AI API (7): claude_api, deepseek_api, gemini_api...
+├─ Agent (5): agent_workflow, multi_agent, agi_final...
+├─ 安全 (4): intrusion_detection, multi_factor_auth...
+└─ 工具 (33): dashboard, debug_tools...
+
+优先级 2 (P0): 测试框架
+└─ 目标: 80%覆盖率
+
+优先级 3 (P0): wasm_thread完善
+└─ 添加: 线程池 + 互斥锁 + 条件变量
+```
+
+---
+
+## 📈 趋势图
+
+```
+编译率趋势:
+v45.0: ████████████████████ 100%
+v46.0: █████████████████░░░  89% ⚠
+目标:  ████████████████████ 100% ✓
+```
+
+---
+
+## ⚡ 执行命令
 
 ```bash
-# 诊断
+# 1. 诊断未编译模块
 ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u)
 
-# 编译
-clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
-  -Wl,--no-entry -Wl,--export=shell_entry \
-  modules/MOD/src/*.c -o modules/MOD/MOD.wasm
+# 2. 批量编译
+for mod in $(cat /tmp/unbuilt.txt); do
+  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+    -Wl,--no-entry -Wl,--export=shell_entry \
+    modules/$mod/src/*.c -o modules/$mod/$mod.wasm
+done
 
-# 验证
-echo "$(find modules -name "*.wasm" | wc -l)/$(ls modules/ | wc -l)"
-```
-
-**关键模块**: claude_api, deepseek_api, gemini_api, agent_workflow, multi_agent, agi_final, intrusion_detection
-
----
-
-## 📋 后续任务
-
-| 优先级 | 任务 | 命令 |
-|--------|------|------|
-| P0 | 测试框架 | `mkdir -p tests/{kernel,wasm,integration}` |
-| P0 | wasm_thread | `as kernel/wasm_thread_pool.asm` |
-| P1 | TLS/HTTP2 | `cat > kernel/tls.asm` |
-| P1 | ext4/NFS | `cat > kernel/ext4.asm` |
-| P2 | GPU/安全 | OpenCL, Secure Boot, KVM |
-
----
-
-## ⚡ 快速命令
-
-```bash
-# 检查编译率
-find modules -name "*.wasm" | wc -l && ls modules/ | wc -l
-
-# 创建测试
-mkdir -p tests/{kernel,wasm,integration}
-
-# 编译线程模块
-as -march=armv8-a kernel/wasm_thread_pool.asm -o build/
-as -march=armv8-a kernel/wasm_mutex.asm -o build/
-
-# 重新链接
-ld -T kernel/linker.ld -nostdlib -N build/*.o -o build/kernel.elf
+# 3. 验证
+echo "编译率: $(find modules -name "*.wasm" | wc -l)/$(ls modules/ | wc -l)"
 ```
 
 ---
 
-## 📈 目标
+## 📅 时间线
 
 ```
-当前: 89% (407/456)
-目标: 100% (456/456)
-时间: 1-2周
+Week 1-2:  [P0] 修复49模块 → 100%编译率
+Week 3:    [P0] 测试框架 → 80%覆盖率
+Week 4:    [P0] wasm_thread → 完整功能
+Month 2-3: [P1] TLS/ext4/大页内存
+Month 4-5: [P2] GPU/安全/虚拟化
 ```
+
+---
+
+## ✅ 检查清单
+
+- [ ] 49个模块编译成功
+- [ ] 测试框架建立
+- [ ] wasm_thread完善
+- [ ] 文档更新
+- [ ] 性能测试
 
 ---
 
