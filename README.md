@@ -2,10 +2,10 @@
 
 [![Version](https://img.shields.io/badge/version-v46.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
-[![Modules](https://img.shields.io/badge/modules-558-green)]()
+[![Modules](https://img.shields.io/badge/modules-547-green)]()
 [![Kernel](https://img.shields.io/badge/kernel-62_ASM-orange)]()
 [![AI](https://img.shields.io/badge/AI-8_vendors-purple)]()
-[![Agent](https://img.shields.io/badge/Agent-15_modules-cyan)]()
+[![Agent](https://img.shields.io/badge/Agent-13_modules-cyan)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 ## Overview
@@ -27,10 +27,10 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ╔═══════════════════════════════════════════════════════════════════════╗
 ║                     AI-ASM OS Architecture                              ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L5: Agent Layer - AGI Intelligence System (15 modules)               ║
+║  L5: Agent Layer - AGI Intelligence System (13 modules)               ║
 ║      agent_cluster, agi_final, reasoning_chain, autonomous_decision  ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L4: AI Layer - Multi-Vendor AI Ecosystem (25 modules)                ║
+║  L4: AI Layer - Multi-Vendor AI Ecosystem (16 modules)                ║
 ║      OpenAI, Claude, Gemini, DeepSeek, Ollama, vLLM, RAG, Multimodal ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║  L3: WASM Apps - User Applications (456 modules)                      ║
@@ -54,9 +54,9 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 | L1 | Kernel ASM | 62 | ✓ 100% |
 | L2 | WASM Host | 156 functions | ✓ 100% |
 | L3 | WASM Apps | 456 | ✓ 100% |
-| L4 | AI Modules | 25 | ✓ 100% |
-| L5 | Agent Modules | 15 | ✓ 100% |
-| **Total** | **Modules** | **558** | **✓ COMPLETE** |
+| L4 | AI Modules | 16 | ✓ 100% |
+| L5 | Agent Modules | 13 | ✓ 100% |
+| **Total** | **Modules** | **547** | **✓ COMPLETE** |
 
 ## Features
 
@@ -171,8 +171,8 @@ make && make run
 | WASM Runtime | Wasm3 with JIT optimization |
 | Host Functions | 156 |
 | WASM Modules | 456 applications |
-| AI Modules | 25 |
-| Agent Modules | 15 |
+| AI Modules | 16 |
+| Agent Modules | 13 |
 | Max Windows | 16 (Z-order compositing) |
 | Max Processes | 16 PCB entries |
 | Total Code | 120,000+ lines |
@@ -181,11 +181,11 @@ make && make run
 
 ```
 aiasm-aarch64/
-├── kernel/               # 66 AArch64 assembly modules
+├── kernel/               # 62 AArch64 assembly modules
 │   ├── *.asm             # Memory, process, vfs, net, gui...
 │   ├── wasm_host.c       # 6,021 lines, 156 host functions
 │   └── wasm3/            # Wasm3 WebAssembly runtime
-├── modules/              # 455 WASM application modules
+├── modules/              # 456 WASM application modules
 │   ├── openai_api/       # AI vendor APIs
 │   ├── claude_api/
 │   ├── agent_cluster/    # Agent orchestration
@@ -213,8 +213,8 @@ aiasm-aarch64/
 ║  ├─ L1 Kernel ASM: 62 modules    ✓                           ║
 ║  ├─ L2 WASM Host: 156 functions  ✓                           ║
 ║  ├─ L3 WASM Apps: 456 modules    ✓                           ║
-║  ├─ L4 AI Layer: 25 modules      ✓                           ║
-║  └─ L5 Agent: 15 modules         ✓                           ║
+║  ├─ L4 AI Layer: 16 modules      ✓                           ║
+║  └─ L5 Agent: 13 modules         ✓                           ║
 ║                                                              ║
 ║  AI Ecosystem: 8 vendors + local inference ✓                 ║
 ║  Hardware: 5 platforms supported ✓                           ║

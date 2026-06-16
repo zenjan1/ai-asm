@@ -1,50 +1,24 @@
-# AI-ASM OS v46.0 - 扫描报告
+# AI-ASM OS v46.0 - 开发建议
 
-## UPDATE=1→0 | 2026-06-16 20:15
+## UPDATE=0→1 | 2026-06-16 20:20
 
-**状态**: STABLE | **分支**: arm-v2
+**状态**: STABLE | **编译率**: 89% (407/456)
 
-### 实际统计
-
-| 层 | 描述 | 数量 | 状态 |
-|---|------|------|------|
-| L1 | Kernel ASM | 62 | ✓ |
-| L2 | WASM Host | 156 functions | ✓ |
-| L3 | WASM Apps | 456 (407 built, 49 unbuilt) | 89% |
-| L4 | AI Modules | 16 | ✓ |
-| L5 | Agent Modules | 13 | ✓ |
-| **总计** | **Modules** | **547** | - |
-
-### 关键发现
-
-1. **编译率**: 407/456 = 89% (49个模块未编译)
-2. **未编译模块**: agent_workflow, agi_final, auto_backup, claude_api, cluster_orchestrator, code_examples, cognitive_enhance, consciousness_sim, crypto_comm_v2, dashboard, debug_tools, deepseek_api, document_processor, embedding_interface, emotion_ai, function_call, gemini_api, general_solver, ifplugd, image_gen... (共49个)
-3. **README差异**: 文档声称558模块(L4=25,L5=15),实际547(L4=16,L5=13)
-4. **Git状态**: 工作树干净,已同步origin/arm-v2
-
-### 下一步建议
-
-**优先级P0**: 修复49个未编译模块
+### P0: 修复49个未编译模块 → 100%
 ```bash
-# 查看未编译模块
 ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u)
-
-# 批量编译
-for m in $(ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u)); do
-  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
-    -Wl,--no-entry -Wl,--export=shell_entry \
-    modules/$m/src/*.c -o modules/$m/$m.wasm 2>/dev/null
-done
 ```
 
-**优先级P1**: 完善wasm_thread多线程支持
-- 线程池管理
-- 互斥锁/条件变量
-- 线程间通信
+### P1: 完善wasm_thread多线程
+- 线程池管理、互斥锁、条件变量、线程间通信
 
-**优先级P2**: 增强文件系统
+### P2: 增强文件系统与网络
 - TLS/SSL支持
 - ext4/NFS文件系统
-- 大页内存
+- 大页内存优化
 
-**UPDATE=0** ✓
+### P3: 测试框架
+- 单元测试覆盖率 (当前0%)
+- 集成测试、E2E测试
+
+**UPDATE=1** ✓
