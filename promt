@@ -1,184 +1,75 @@
-# AI-ASM OS v46.0 - 即时行动计划
+# AI-ASM OS v46.0 - 开发速查表
 
-## 扫描状态 (UPDATE=0 → UPDATE=1)
+## 状态: UPDATE=0 → UPDATE=1 | 2026-06-16 16:50
+
+---
+
+## 📊 指标
 
 ```
-扫描时间: 2026-06-16 16:40
-版本: v46.0 | 状态: STABLE ✓
+内核: 62 | Host: 156 | 总数: 558 | 编译: 407/456 (89%)
 ```
 
 ---
 
-## 当前状况
-
-✅ **已完成**: 文档修正 (62内核, 156 Host, 558总模块)
-⚠️ **待修复**: 49个模块未编译 (89% → 100%)
-
----
-
-## 🚀 立即执行 (今天)
-
-### 步骤1: 诊断 (5分钟)
-```bash
-# 列出未编译模块
-ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u) > /tmp/unbuilt.txt
-
-# 查看数量
-wc -l /tmp/unbuilt.txt  # 应输出49
-
-# 查看前10个
-head -10 /tmp/unbuilt.txt
-```
-
-### 步骤2: 检查源文件 (10分钟)
-```bash
-# 检查第一个模块
-cat /tmp/unbuilt.txt | head -1 | xargs -I{} ls modules/{}/src/
-
-# 检查是否有main.c
-cat /tmp/unbuilt.txt | head -1 | xargs -I{} ls modules/{}/src/main.c 2>/dev/null && echo "有main.c" || echo "无main.c"
-
-# 检查源文件大小
-cat /tmp/unbuilt.txt | head -5 | xargs -I{} wc -l modules/{}/src/*.c 2>/dev/null
-```
-
-### 步骤3: 尝试编译 (15分钟)
-```bash
-# 编译第一个模块
-MOD=$(head -1 /tmp/unbuilt.txt)
-clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
-    -Wl,--no-entry -Wl,--export=shell_entry \
-    modules/$MOD/src/*.c \
-    -o modules/$MOD/$MOD.wasm 2>&1 | head -20
-
-# 检查是否成功
-ls -lh modules/$MOD/$MOD.wasm 2>/dev/null && echo "✓ 成功" || echo "✗ 失败"
-```
-
-### 步骤4: 批量修复 (1小时)
-```bash
-# 批量编译所有未编译模块
-SUCCESS=0
-FAIL=0
-for MOD in $(cat /tmp/unbuilt.txt); do
-    clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
-        -Wl,--no-entry -Wl,--export=shell_entry \
-        modules/$MOD/src/*.c \
-        -o modules/$MOD/$MOD.wasm 2>/dev/null
-    if [ $? -eq 0 ]; then
-        SUCCESS=$((SUCCESS+1))
-        echo "✓ $MOD"
-    else
-        FAIL=$((FAIL+1))
-        echo "✗ $MOD"
-    fi
-done
-echo "成功: $SUCCESS, 失败: $FAIL"
-```
-
-### 步骤5: 验证 (5分钟)
-```bash
-# 检查编译率
-BUILT=$(find modules -name "*.wasm" | wc -l)
-TOTAL=$(ls modules/ | wc -l)
-echo "编译率: $BUILT/$TOTAL ($(echo "scale=1; $BUILT*100/$TOTAL" | bc)%)"
-
-# 应输出: 456/456 (100.0%)
-```
-
----
-
-## 📋 明天计划
-
-### 建立测试框架
-```bash
-mkdir -p tests/{kernel,wasm,integration}
-
-# 创建基础测试
-cat > tests/kernel/test_memory.c << 'EOF'
-#include <assert.h>
-extern void buddy_init(void);
-extern void* buddy_alloc(int order);
-int main() {
-    buddy_init();
-    void* p = buddy_alloc(0);
-    assert(p != NULL);
-    return 0;
-}
-EOF
-
-# 创建运行脚本
-cat > tests/run_tests.sh << 'EOF'
-#!/bin/bash
-echo "Running tests..."
-echo "All tests passed!"
-EOF
-chmod +x tests/run_tests.sh
-```
-
----
-
-## 📅 本周计划
-
-### Day 1-2: 修复49模块
-- [ ] 诊断问题
-- [ ] 批量编译
-- [ ] 修复错误
-- [ ] 验证100%
-
-### Day 3: 测试框架
-- [ ] 创建目录结构
-- [ ] 编写基础测试
-- [ ] 运行测试
-
-### Day 4-5: wasm_thread
-- [ ] 实现线程池
-- [ ] 实现互斥锁
-- [ ] 编写测试
-
----
-
-## 🎯 成功标准
-
-| 指标 | 当前 | 目标 |
-|------|------|------|
-| 编译率 | 89% | 100% |
-| 未编译 | 49 | 0 |
-| 测试覆盖 | 0% | 80% |
-
----
-
-## ⚡ 快速参考
+## 🎯 核心任务: 修复49模块
 
 ```bash
 # 诊断
 ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u)
 
-# 编译单个
+# 编译
 clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
-    -Wl,--no-entry -Wl,--export=shell_entry \
-    modules/MODULE_NAME/src/*.c \
-    -o modules/MODULE_NAME/MODULE_NAME.wasm
+  -Wl,--no-entry -Wl,--export=shell_entry \
+  modules/MOD/src/*.c -o modules/MOD/MOD.wasm
 
-# 检查编译率
+# 验证
 echo "$(find modules -name "*.wasm" | wc -l)/$(ls modules/ | wc -l)"
+```
+
+**关键模块**: claude_api, deepseek_api, gemini_api, agent_workflow, multi_agent, agi_final, intrusion_detection
+
+---
+
+## 📋 后续任务
+
+| 优先级 | 任务 | 命令 |
+|--------|------|------|
+| P0 | 测试框架 | `mkdir -p tests/{kernel,wasm,integration}` |
+| P0 | wasm_thread | `as kernel/wasm_thread_pool.asm` |
+| P1 | TLS/HTTP2 | `cat > kernel/tls.asm` |
+| P1 | ext4/NFS | `cat > kernel/ext4.asm` |
+| P2 | GPU/安全 | OpenCL, Secure Boot, KVM |
+
+---
+
+## ⚡ 快速命令
+
+```bash
+# 检查编译率
+find modules -name "*.wasm" | wc -l && ls modules/ | wc -l
 
 # 创建测试
 mkdir -p tests/{kernel,wasm,integration}
+
+# 编译线程模块
+as -march=armv8-a kernel/wasm_thread_pool.asm -o build/
+as -march=armv8-a kernel/wasm_mutex.asm -o build/
+
+# 重新链接
+ld -T kernel/linker.ld -nostdlib -N build/*.o -o build/kernel.elf
 ```
 
 ---
 
-## UPDATE状态
+## 📈 目标
 
 ```
-执行前: UPDATE=0
-扫描后: UPDATE=1
-扫描时间: 2026-06-16 16:40
-格式: 即时行动计划
-核心任务: 今天修复49模块
+当前: 89% (407/456)
+目标: 100% (456/456)
+时间: 1-2周
 ```
 
 ---
 
-**UPDATE=1** ✓ (已生成即时行动计划)
+**UPDATE=1** ✓
