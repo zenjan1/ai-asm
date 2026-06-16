@@ -33,7 +33,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║  L4: AI Layer - Multi-Vendor AI Ecosystem (16 modules)                ║
 ║      OpenAI, Claude, Gemini, DeepSeek, Ollama, vLLM, RAG, Multimodal ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L3: WASM Apps - User Applications (456 modules)                      ║
+║  L3: WASM Apps - User Applications (456: 407 standalone + 49 libraries)  ║
 ║      POSIX tools, networking, GUI, security, development, system, wasm_thread  ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║  L2: WASM Runtime - Host Function Bridge (138 functions, 6,021 lines)║
@@ -53,7 +53,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 |:-----:|:----:|:-----:|:------:|
 | L1 | Kernel ASM | 62 | ✓ 100% |
 | L2 | WASM Host | 138 functions | ✓ 100% |
-| L3 | WASM Apps | 456 | ✓ 100% |
+| L3 | WASM Apps | 456 (407 standalone + 49 libraries) | ✓ 100% |
 | L4 | AI Modules | 16 | ✓ 100% |
 | L5 | Agent Modules | 13 | ✓ 100% |
 | **Total** | **Modules** | **547** | **✓ COMPLETE** |
