@@ -1,40 +1,40 @@
-# AI-ASM OS v67.0 - Phase 31工作流引擎开发任务
+# AI-ASM OS v68.0 - Phase 32数据集成平台开发任务
 
-## UPDATE=0 | 2026-06-17 09:00
+## UPDATE=0 | 2026-06-17 09:20
 
-**项目状态**: Phase 30 完成，开始Phase 31
-**总模块数**: 786个 (L1:62 + L2:138 + L3:554 + L4:19 + L5:13)
-**Phase 30完成**: zero_trust_network, siem_platform, vulnerability_manager ✓
+**项目状态**: Phase 31 完成，开始Phase 32
+**总模块数**: 789个 (L1:62 + L2:138 + L3:557 + L4:19 + L5:13)
+**Phase 31完成**: workflow_orchestrator, state_machine_engine, event_driven_engine ✓
 
 ---
 
-## 📋 Phase 31: 工作流引擎 (Workflow Engine)
+## 📋 Phase 32: 数据集成平台 (Data Integration Platform)
 
 ### 新增模块
 
-1. **workflow_orchestrator** (~15K) - 工作流编排器
-   - 流程定义：BPMN 2.0子集(Service Task/User Task/Gateway/Event)、可视化建模、版本控制
-   - 执行引擎：Token流转、并行网关(AND/OR/XOR)、子流程、错误边界事件
-   - 状态管理：流程实例状态、变量存储、检查点恢复、暂停/继续
-   - 任务分配：用户任务队列、组任务、任务认领、超时升级
-   - 补偿机制：事务子流程、撤销动作、部分完成处理、死锁检测
-   - 监控仪表板：流程实例跟踪、瓶颈分析、性能指标、历史查询
+1. **etl_pipeline** (~15K) - ETL数据管道
+   - 数据抽取：多源连接器(RDBMS/NoSQL/File/API/Streaming)、增量抽取(CDC)、全量抽取、变更数据捕获
+   - 数据转换：字段映射、类型转换、数据清洗(去重/填充/规范化)、聚合计算、UDF自定义函数
+   - 数据加载：批量加载、流式加载、Upsert策略、分区写入、并行加载
+   - 任务调度：DAG依赖、时间调度(Cron)、事件触发、失败重试、断点续传
+   - 数据质量：Schema校验、数据血缘、数据 profiling、异常检测
+   - 监控告警：作业状态、吞吐量、延迟监控、失败告警、性能报告
 
-2. **state_machine_engine** (~15K) - 状态机引擎
-   - 状态定义：State/Transition/Guard/Action模型、层次状态(Hierarchy)、并行状态(Orthogonal)
-   - 转换规则：事件触发、守卫条件、动作执行、内部/外部转换
-   - 历史状态：状态历史追踪、状态重放、状态回放调试
-   - 持久化：状态快照、状态迁移日志、崩溃恢复
-   - 并发控制：多实例状态机、锁机制、事务保证
-   - 调试工具：状态可视化、转换轨迹、断点调试、模拟执行
+2. **change_data_capture** (~15K) - 变更数据捕获
+   - 日志解析：Binlog解析(MySQL)、WAL解析(PostgreSQL)、Oplog解析(MongoDB)
+   - Schema变更检测：DDL捕获、Schema Evolution、兼容性检查
+   - 事件序列化：Avro/JSON/Protobuf格式、Schema Registry集成、压缩编码
+   - 路由分发：基于表/库路由、条件过滤、多目标分发、数据脱敏
+   - Exactly-once：Offset管理、Checkpoint、Idempotent消费、事务性发布
+   - 延迟同步：初始全量快照、增量同步、延迟监控、断点续传
 
-3. **event_driven_engine** (~15K) - 事件驱动引擎
-   - 事件总线：事件发布/订阅、事件路由、事件过滤、事件转换
-   - CQRS模式：命令/查询分离、命令处理、查询优化、读写模型分离
-   - Saga模式：编排式Saga、协作式Saga、补偿事务、状态协调
-   - 事件存储：事件持久化、事件排序、事件重放、事件压缩
-   - 处理保证：至少一次、至多一次、幂等处理、Exactly-once语义
-   - 响应式流：背压控制、流合并、流拆分、流窗口
+3. **data_sync** (~15K) - 数据同步引擎
+   - 同步模式：单向同步、双向同步、广播同步、环形同步
+   - 冲突解决：Last-Write-Wins、字段级合并、自定义Resolver、冲突日志
+   - 多目标：一对多分发、多对一聚合、链式传播、星型拓扑
+   - 压缩传输：增量压缩、差分传输、批量压缩、断点续传
+   - 验证机制：校验和验证、行数对比、抽样对比、全量对比
+   - 故障恢复：自动重试、故障转移、数据修复、一致性检查
 
 ---
 
@@ -42,10 +42,10 @@
 
 | 层级 | 类型 | 数量 | 状态 |
 |:-----:|:----:|:-----:|:------:|
-| L3 | WASM Apps | 557 (507 standalone + 50 libraries) | ✓ 100% |
-| **Total** | **Modules** | **789** | **✓ COMPLETE** |
+| L3 | WASM Apps | 560 (510 standalone + 50 libraries) | ✓ 100% |
+| **Total** | **Modules** | **792** | **✓ COMPLETE** |
 
 ---
 
 **UPDATE=0** ✓
-**Phase 31 READY** ✓
+**Phase 32 READY** ✓
