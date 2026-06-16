@@ -1,28 +1,33 @@
-# AI-ASM OS v46.0 - 极简指南
+# AI-ASM OS v46.0 - 开发建议
 
-## UPDATE=0→1 | 2026-06-16 17:40
+## UPDATE=0→1 | 2026-06-16 17:50
 
 ---
 
-## 状态
+## 状态: STABLE ✓
+
 ```
-62内核 | 156 Host | 558总模块 | 407/456编译(89%) | 5层100%
+内核: 62 | Host: 156 | 总数: 558 | 编译: 407/456 (89%)
 ```
 
 ---
 
-## 核心任务
-**修复49个未编译模块** → 编译率 89%→100%
+## 核心任务: 修复49个未编译模块
 
----
+**影响**: AI API, Agent系统, 安全模块, 工具模块
+**工作量**: 1-2周
+**目标**: 89% → 100%
 
-## 命令
 ```bash
 # 诊断
 ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u)
 
 # 修复
-for m in $(cat /tmp/unbuilt.txt); do clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=shell_entry modules/$m/src/*.c -o modules/$m/$m.wasm; done
+for m in $(cat /tmp/unbuilt.txt); do
+  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+    -Wl,--no-entry -Wl,--export=shell_entry \
+    modules/$m/src/*.c -o modules/$m/$m.wasm
+done
 
 # 验证
 echo "$(find modules -name "*.wasm" | wc -l)/$(ls modules/ | wc -l)"
@@ -30,10 +35,11 @@ echo "$(find modules -name "*.wasm" | wc -l)/$(ls modules/ | wc -l)"
 
 ---
 
-## 后续
+## 后续任务
 1. 测试框架 (80%覆盖)
 2. wasm_thread完善
-3. TLS/ext4/大页内存
+3. TLS/ext4/大页内存 (P1)
+4. GPU/安全/虚拟化 (P2)
 
 ---
 
