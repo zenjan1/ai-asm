@@ -1,40 +1,40 @@
-# AI-ASM OS v60.0 - Phase 24无服务器计算开发任务
+# AI-ASM OS v61.0 - Phase 25可观测性平台开发任务
 
-## UPDATE=0 | 2026-06-17 06:45
+## UPDATE=0 | 2026-06-17 07:00
 
-**项目状态**: Phase 23 完成，开始Phase 24
-**总模块数**: 766个 (L1:62 + L2:138 + L3:534 + L4:19 + L5:13)
-**Phase 23完成**: container_runtime, kubernetes_orchestrator, service_mesh ✓
+**项目状态**: Phase 24 完成，开始Phase 25
+**总模块数**: 769个 (L1:62 + L2:138 + L3:537 + L4:19 + L5:13)
+**Phase 24完成**: serverless_runtime, function_scheduler, event_bus ✓
 
 ---
 
-## 📋 Phase 24: 无服务器计算 (Serverless Computing)
+## 📋 Phase 25: 可观测性平台 (Observability Platform)
 
 ### 新增模块
 
-1. **serverless_runtime** (~15K) - 无服务器运行时
-   - 函数执行：冷启动优化、预热池、执行超时、内存限制
-   - 触发器：HTTP触发、定时触发(Cron)、事件触发(S3/MQ/IoT)
-   - 运行时环境：Node.js/Python/Go/WASM多语言沙箱隔离
-   - 资源管理：CPU配额、内存配额、并发控制、实例回收
-   - 日志与监控：执行日志、错误追踪、性能指标、成本核算
-   - 版本管理：函数版本、别名路由、灰度发布、回滚
+1. **prometheus_metrics** (~15K) - 指标监控系统
+   - 数据模型：时间序列(Time Series)、样本(Sample)、标签(Label)、指标类型(Counter/Gauge/Histogram/Summary)
+   - 采集协议：Pull模式(Pushgateway)、远程写入(Remote Write)、联邦集群(Federation)
+   - 查询语言：PromQL子集(瞬时/范围向量、聚合函数、二元运算、函数:rate/irate/histogram_quantile)
+   - 告警规则：规则评估、Alertmanager集成、分组/抑制/静默、通知渠道(邮件/Slack/Webhook)
+   - 存储引擎：TSDB分块(2小时块)、压缩合并、 retention策略、标签索引
+   - 服务发现：静态配置、DNS SRV、Consul、K8s SD、文件SD
 
-2. **function_scheduler** (~15K) - 函数调度器
-   - 调度策略：公平调度(FIFO/Priority)、亲和性调度、地域感知
-   - 自动伸缩：基于请求量(QPS)、并发数、队列深度的弹性伸缩
-   - 预热策略：预测性预热、空闲超时回收、最小实例保障
-   - 资源装箱：Bin-Packing算法、碎片整理、跨节点负载均衡
-   - 故障恢复：节点故障迁移、执行重试、死信队列
-   - 限流降级：令牌桶限流、熔断降级、优先级队列
+2. **loki_logging** (~15K) - 日志聚合系统
+   - 日志采集：Fluentbit/Promtail风格、多行聚合、标签提取、JSON解析
+   - 索引策略：Chunk存储、倒排索引(Label-based)、时间范围分片、LSMT结构
+   - 查询语言：LogQL子集(日志流选择器、管道运算符、解析器:json/regexp/logfmt、格式化器)
+   - 日志告警：基于日志模式的告警、频率检测、错误率突增、关键词监控
+   -  retention管理：日志保留策略、过期清理、压缩归档、冷热分层
+   - 多租户：租户隔离、配额管理、标签权限、审计日志
 
-3. **event_bus** (~15K) - 事件总线
-   - 发布订阅：Topic管理、消息路由、扇出/扇入、消息过滤
-   - 事件溯源：事件存储、事件重放、状态恢复、时间旅行
-   - 消息保证：At-least-once/Exactly-once语义、幂等处理、事务消息
-   - 死信队列：失败消息隔离、重试策略、手动重发、告警
-   - Schema注册：事件Schema版本管理、兼容性检查、演进策略
-   - 事件转换：CloudEvents规范、格式适配、协议桥接(HTTP/MQTT/gRPC)
+3. **jaeger_tracing** (~15K) - 分布式追踪系统
+   - 追踪模型：Trace/Span/Log结构、上下文传播(W3C Trace Context/B3/Jaeger格式)
+   - 采样策略：固定采样、概率采样、自适应采样(基于速率)、头部采样、尾采样
+   - Span处理：Span接收(gRPC/HTTP)、Span验证、Span去重、Span批处理
+   - 存储后端：内存存储、Cassandra模型、Elasticsearch模型、Kafka缓冲
+   - 查询API：trace搜索(服务/操作/时间/标签/延迟)、依赖图、临界路径分析
+   - 性能分析：火焰图、热点检测、慢请求分析、跨服务延迟分解
 
 ---
 
@@ -42,10 +42,10 @@
 
 | 层级 | 类型 | 数量 | 状态 |
 |:-----:|:----:|:-----:|:------:|
-| L3 | WASM Apps | 537 (487 standalone + 50 libraries) | ✓ 100% |
-| **Total** | **Modules** | **769** | **✓ COMPLETE** |
+| L3 | WASM Apps | 540 (490 standalone + 50 libraries) | ✓ 100% |
+| **Total** | **Modules** | **772** | **✓ COMPLETE** |
 
 ---
 
 **UPDATE=0** ✓
-**Phase 24 READY** ✓
+**Phase 25 READY** ✓
