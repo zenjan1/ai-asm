@@ -32,40 +32,25 @@ extern int host_get_argv(unsigned int buf_off, unsigned int max_len);
 
 /* ---- Type definitions ---- */
 typedef struct {
-    int    num_layers;
-    int    layer_sizes[MAX_LAYERS];
+    int num_layers, layer_sizes[MAX_LAYERS];
     double weights[MAX_LAYERS][MAX_WEIGHTS];
 } model_weights_t;
-typedef struct {
-    int    mechanism;
-    double epsilon, delta, sensitivity, max_norm;
-} dp_config_t;
-typedef struct {
-    int          threshold_k;
-    int          total_shares_n;
-    unsigned int prime;
-} shamir_config_t;
+typedef struct { int mechanism; double epsilon, delta, sensitivity, max_norm; } dp_config_t;
+typedef struct { int threshold_k, total_shares_n; unsigned int prime; } shamir_config_t;
 typedef struct {
     int client_id, data_samples, compute_power;
     int bandwidth_mbps, battery_pct, active, last_seen;
 } client_info_t;
-typedef struct {
-    int strategy, min_clients, max_clients;
-} selection_config_t;
-typedef struct {
-    int    data_distribution;
-    double imbalance_ratio;
-    int    num_classes;
-} hetero_config_t;
+typedef struct { int strategy, min_clients, max_clients; } selection_config_t;
+typedef struct { int data_distribution; double imbalance_ratio; int num_classes; } hetero_config_t;
 
 /* ---- Global state ---- */
 static unsigned int rng_state = 42;
 static double g_priv_epsilon = 0.0, g_priv_delta = 0.0, g_priv_spent = 0.0;
 
-/* ---- Helper functions ---- */unsigned int my_strlen(const char *s) {
-    unsigned int n = 0;
-    while (s[n]) n++;
-    return n;
+/* ---- Helper functions ---- */
+unsigned int my_strlen(const char *s) {
+    unsigned int n = 0; while (s[n]) n++; return n;
 }
 void my_strncpy(char *dst, const char *src, unsigned int n) {
     unsigned int i;
@@ -74,10 +59,8 @@ void my_strncpy(char *dst, const char *src, unsigned int n) {
 }
 void print_str(const char *s) { host_print(s); }
 void print_int(int v) {
-    char buf[16];
-    int i = 14, neg = (v < 0);
-    if (neg) v = -v;
-    buf[15] = '\0';
+    char buf[16]; int i = 14, neg = (v < 0);
+    if (neg) v = -v; buf[15] = '\0';
     if (v == 0) buf[--i] = '0';
     else while (v > 0 && i > 0) { buf[--i] = '0' + (v % 10); v /= 10; }
     if (neg && i > 0) buf[--i] = '-';
@@ -85,27 +68,19 @@ void print_int(int v) {
 }
 void print_double(double v) {
     if (v < 0.0) { print_str("-"); v = -v; }
-    int whole = (int)v;
-    double frac = v - (double)whole;
-    print_int(whole);
-    print_str(".");
-    int f = (int)(frac * 10000.0 + 0.5);
-    if (f >= 10000) f = 9999;
+    int whole = (int)v; double frac = v - (double)whole;
+    print_int(whole); print_str(".");
+    int f = (int)(frac * 10000.0 + 0.5); if (f >= 10000) f = 9999;
     char buf[8];
-    buf[0] = '0' + (f / 1000); f %= 1000;
-    buf[1] = '0' + (f / 100);  f %= 100;
-    buf[2] = '0' + (f / 10);   f %= 10;
-    buf[3] = '0' + f;
-    buf[4] = '\0';
+    buf[0] = '0' + (f / 1000); f %= 1000; buf[1] = '0' + (f / 100); f %= 100;
+    buf[2] = '0' + (f / 10); f %= 10; buf[3] = '0' + f; buf[4] = '\0';
     host_print(buf);
 }
 double my_abs(double v) { return (v < 0.0) ? -v : v; }
 double my_sqrt(double v) {
     if (v <= 0.0) return 0.0;
     double x = v * 0.5;
-    for (int i = 0; i < 30; i++) {
-        if (x > 0.0) x = x - (x * x - v) / (2.0 * x);
-    }
+    for (int i = 0; i < 30; i++) if (x > 0.0) x = x - (x * x - v) / (2.0 * x);
     return x;
 }
 unsigned int lcg_rand(void) {
@@ -119,10 +94,10 @@ void model_init(model_weights_t *m, int layers, int *sizes) {
     m->num_layers = layers;
     for (int i = 0; i < layers; i++) {
         m->layer_sizes[i] = (sizes[i] < MAX_WEIGHTS) ? sizes[i] : MAX_WEIGHTS;
-        for (int j = 0; j < m->layer_sizes[i]; j++)
-            m->weights[i][j] = lcg_rand_double() * 0.1;
+        for (int j = 0; j < m->layer_sizes[i]; j++) m->weights[i][j] = lcg_rand_double() * 0.1;
     }
 }
+/* FedAvg: weighted average by sample counts */
 void fed_avg(model_weights_t *out, model_weights_t models[],
              int sample_counts[], int num_clients) {
     int total = 0;
@@ -139,51 +114,55 @@ void fed_avg(model_weights_t *out, model_weights_t models[],
         }
     }
 }
+/* FedProx: FedAvg with proximal regularization term */
 void fed_prox(model_weights_t *out, model_weights_t models[],
-              model_weights_t *global, double mu, int num_clients) {
+              model_weights_t *gl, double mu, int num_clients) {
     int sc[MAX_CLIENTS];
     for (int i = 0; i < num_clients; i++) sc[i] = 1;
     fed_avg(out, models, sc, num_clients);
-    for (int l = 0; l < global->num_layers; l++)
-        for (int w = 0; w < global->layer_sizes[l]; w++) {
-            double prox = mu * (global->weights[l][w] - out->weights[l][w]);
+    for (int l = 0; l < gl->num_layers; l++)
+        for (int w = 0; w < gl->layer_sizes[l]; w++) {
+            double prox = mu * (gl->weights[l][w] - out->weights[l][w]);
             out->weights[l][w] -= prox / (double)num_clients;
         }
 }
 static int ones16[16] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+/* FedYogi: adaptive optimizer with sign-based updates */
 void fed_yogi(model_weights_t *out, model_weights_t models[],
-              model_weights_t *global, double beta1, double beta2,
+              model_weights_t *gl, double beta1, double beta2,
               double epsilon, int num_clients) {
     model_weights_t avg;
     fed_avg(&avg, models, ones16, num_clients);
-    out->num_layers = global->num_layers;
+    out->num_layers = gl->num_layers;
     for (int l = 0; l < out->num_layers; l++) {
-        out->layer_sizes[l] = global->layer_sizes[l];
+        out->layer_sizes[l] = gl->layer_sizes[l];
         for (int w = 0; w < out->layer_sizes[l]; w++) {
-            double delta = avg.weights[l][w] - global->weights[l][w];
+            double delta = avg.weights[l][w] - gl->weights[l][w];
             double sign = (delta >= 0.0) ? 1.0 : -1.0;
             double vt = beta2 * my_abs(delta) + (1.0 - beta2);
             double denom = my_sqrt(vt) + epsilon;
-            out->weights[l][w] = global->weights[l][w] + beta1 * sign / denom * delta;
+            out->weights[l][w] = gl->weights[l][w] + beta1 * sign / denom * delta;
         }
     }
 }
+/* FedAdam: adaptive moment estimation for federated setting */
 void fed_adam(model_weights_t *out, model_weights_t models[],
-              model_weights_t *global, double beta1, double beta2,
+              model_weights_t *gl, double beta1, double beta2,
               double epsilon, int num_clients) {
     model_weights_t avg;
     fed_avg(&avg, models, ones16, num_clients);
-    out->num_layers = global->num_layers;
+    out->num_layers = gl->num_layers;
     for (int l = 0; l < out->num_layers; l++) {
-        out->layer_sizes[l] = global->layer_sizes[l];
+        out->layer_sizes[l] = gl->layer_sizes[l];
         for (int w = 0; w < out->layer_sizes[l]; w++) {
-            double delta = avg.weights[l][w] - global->weights[l][w];
+            double delta = avg.weights[l][w] - gl->weights[l][w];
             double mt = beta1 * delta / (1.0 - beta1);
             double vt = beta2 * delta * delta / (1.0 - beta2);
-            out->weights[l][w] = global->weights[l][w] + mt / (my_sqrt(vt) + epsilon);
+            out->weights[l][w] = gl->weights[l][w] + mt / (my_sqrt(vt) + epsilon);
         }
     }
 }
+
 double compute_convergence(model_weights_t *old_g, model_weights_t *new_g) {
     double sum_sq = 0.0;
     for (int l = 0; l < new_g->num_layers; l++)
@@ -193,19 +172,22 @@ double compute_convergence(model_weights_t *old_g, model_weights_t *new_g) {
         }
     return my_sqrt(sum_sq);
 }
-
 /* ---- 2. Differential Privacy ---- */
+/* Gaussian noise via Box-Muller approximation */
 double dp_gaussian_noise(double value, double sigma) {
     double u1 = lcg_rand_double(), u2 = lcg_rand_double();
     if (u1 < 0.0001) u1 = 0.0001;
     double z = my_sqrt(-2.0 * u1) * (u2 * 6.2831853 - 3.14159);
     return value + z * sigma;
 }
-double dp_laplace_noise(double value, double b) {    double u = lcg_rand_double() - 0.5;
+/* Laplace noise: scale b = sensitivity / epsilon */
+double dp_laplace_noise(double value, double b) {
+    double u = lcg_rand_double() - 0.5;
     if (u == 0.0) u = 0.0001;
     double sign = (u > 0.0) ? 1.0 : -1.0;
     return value - b * sign;
 }
+/* Clip gradients to maximum L2 norm */
 void dp_clip_gradient(double gradients[], int len, double max_norm) {
     double norm_sq = 0.0;
     for (int i = 0; i < len; i++) norm_sq += gradients[i] * gradients[i];
@@ -218,6 +200,7 @@ void dp_clip_gradient(double gradients[], int len, double max_norm) {
 void dp_privacy_budget_init(double epsilon, double delta) {
     g_priv_epsilon = epsilon; g_priv_delta = delta; g_priv_spent = 0.0;
 }
+
 double dp_privacy_budget_spend(double noise_scale) {
     if (noise_scale <= 0.0) return g_priv_epsilon - g_priv_spent;
     double cost = g_priv_epsilon / (noise_scale + 1.0);
@@ -229,8 +212,8 @@ double dp_compute_sensitivity(int dataset_size, int num_classes) {
     if (dataset_size <= 0) return 1.0;
     return (double)num_classes / (double)dataset_size;
 }
-
 /* ---- 3. Secure Aggregation ---- */
+/* Compute one Shamir secret share via polynomial evaluation */
 unsigned int shamir_share(unsigned int secret, unsigned int index,
                           unsigned int k, unsigned int prime) {
     unsigned int result = secret % prime;
@@ -242,6 +225,7 @@ unsigned int shamir_share(unsigned int secret, unsigned int index,
     }
     return result;
 }
+/* Modular inverse via Fermat's little theorem */
 unsigned int mod_inverse(unsigned int a, unsigned int p) {
     unsigned int result = 1, base = a % p, exp = p - 2;
     while (exp > 0) {
@@ -251,6 +235,7 @@ unsigned int mod_inverse(unsigned int a, unsigned int p) {
     }
     return result;
 }
+/* Reconstruct secret via Lagrange interpolation at x=0 */
 unsigned int shamir_reconstruct(unsigned int shares[], unsigned int indices[],
                                 unsigned int k, unsigned int prime) {
     unsigned int secret = 0;
@@ -258,17 +243,19 @@ unsigned int shamir_reconstruct(unsigned int shares[], unsigned int indices[],
         unsigned int num = 1, den = 1;
         for (unsigned int j = 0; j < k; j++) {
             if (i == j) continue;
-            unsigned int xi = indices[i] % prime, xj = indices[j] % prime;
+            unsigned int xi = indices[i] % prime;
+            unsigned int xj = indices[j] % prime;
             num = ((unsigned long long)num * (prime - xj)) % prime;
             unsigned int diff = (xi >= xj) ? (xi - xj) : (prime - (xj - xi));
             den = ((unsigned long long)den * diff) % prime;
         }
-        unsigned int lag = ((unsigned long long)shares[i] * num % prime
-                            * mod_inverse(den, prime)) % prime;
-        secret = (secret + lag) % prime;
+        unsigned int lagrange = ((unsigned long long)shares[i] * num % prime
+                                 * mod_inverse(den, prime)) % prime;
+        secret = (secret + lagrange) % prime;
     }
     return secret;
 }
+/* Aggregate with pairwise masking that cancels out */
 double secure_mask_aggregate(double updates[], double masks[], int num_clients) {
     double sum = 0.0, mask_sum = 0.0;
     for (int i = 0; i < num_clients; i++) {
@@ -279,14 +266,12 @@ double secure_mask_aggregate(double updates[], double masks[], int num_clients) 
 }
 int secure_detect_dropouts(int masks_received[], int expected_clients) {
     int dropped = 0;
-    for (int i = 0; i < expected_clients; i++)
-        if (!masks_received[i]) dropped++;
+    for (int i = 0; i < expected_clients; i++) if (!masks_received[i]) dropped++;
     return dropped;
 }
 int secure_verify_aggregate(double aggregate, double expected_sum, double tolerance) {
     return (my_abs(aggregate - expected_sum) <= tolerance) ? 1 : 0;
 }
-
 /* ---- 4. Client Selection ---- */
 void client_init(client_info_t *c, int id, int samples, int power,
                  int bandwidth, int battery, int active) {
@@ -347,8 +332,8 @@ int client_select_activity_weighted(client_info_t clients[], int n,
     }
     return count;
 }
-
 /* ---- 5. Model Compression ---- */
+/* Keep top-k gradients by magnitude, zero the rest */
 int compress_sparse_topk(double gradients[], int len, int k) {
     if (k >= len) return len;
     double thr[MAX_GRADIENTS];
@@ -366,6 +351,7 @@ int compress_sparse_topk(double gradients[], int len, int k) {
     }
     return kept;
 }
+/* Quantize model update to N bits per parameter */
 int compress_quantize_update(double update[], int len, int bits) {
     if (bits <= 0 || bits > 30) return 0;
     double min_val = update[0], max_val = update[0];
@@ -383,6 +369,7 @@ int compress_quantize_update(double update[], int len, int bits) {
     }
     return len * bits / 8 + 1;
 }
+/* Knowledge distillation: student mimics teacher weights */
 double compress_knowledge_distill(model_weights_t *teacher,
                                   model_weights_t *student, double data[]) {
     (void)data;
@@ -412,8 +399,8 @@ double compress_estimate_savings(double update[], int len, int method) {
     }
     return 0.0;
 }
-
 /* ---- 6. Heterogeneity Handling ---- */
+/* Simulate Dirichlet distribution for non-IID data partitioning */
 void hetero_generate_noniid_data(double dist[][MAX_CLASSES], int num_clients,
                                  int num_classes, double alpha) {
     for (int c = 0; c < num_clients; c++) {
@@ -449,12 +436,12 @@ double hetero_measure_divergence(double local_stats[][4], double global_stats[],
     }
     return divergence / (double)num_clients;
 }
+
 int hetero_adjust_epochs(double divergence, int base_epochs) {
     if (divergence > 0.5) return base_epochs / 2;
     if (divergence > 0.2) return base_epochs * 3 / 4;
     return base_epochs;
 }
-
 /* ---- Test & Entry Point ---- */
 static void test_all(void) {
     print_str("=== Federated Learning Framework Test ===\n\n");
@@ -472,33 +459,35 @@ static void test_all(void) {
     print_str("  FedYogi l0[0]: "); print_double(result.weights[0][0]); print_str("\n");
     fed_adam(&result, models, &global, 0.9, 0.999, 1e-8, 3);
     print_str("  FedAdam l0[0]: "); print_double(result.weights[0][0]); print_str("\n");
-    print_str("  Convergence: "); print_double(compute_convergence(&global, &result)); print_str("\n\n");
-
+    double conv = compute_convergence(&global, &result);
+    print_str("  Convergence: "); print_double(conv); print_str("\n\n");
     print_str("[2] Differential Privacy\n");
     dp_privacy_budget_init(1.0, 1e-5);
     print_str("  Gaussian: "); print_double(dp_gaussian_noise(1.0, 0.5)); print_str("\n");
-    print_str("  Laplace: "); print_double(dp_laplace_noise(1.0, 0.1)); print_str("\n");
+    print_str("  Laplace:  "); print_double(dp_laplace_noise(1.0, 0.1)); print_str("\n");
     double grads[8] = {0.5, -0.3, 1.2, -0.8, 0.1, 0.7, -0.4, 0.9};
     dp_clip_gradient(grads, 8, 1.0);
     print_str("  Clipped[2]: "); print_double(grads[2]); print_str("\n");
-    print_str("  Budget: "); print_double(dp_privacy_budget_spend(0.5)); print_str("\n");
+    double remaining = dp_privacy_budget_spend(0.5);
+    print_str("  Budget remaining: "); print_double(remaining); print_str("\n");
     print_str("  Sensitivity: "); print_double(dp_compute_sensitivity(1000, 10)); print_str("\n\n");
-
     print_str("[3] Secure Aggregation\n");
     unsigned int prime = 1000003, secret = 42;
     unsigned int shares[5], indices[5];
-    for (int i = 0; i < 5; i++) { indices[i] = (unsigned int)(i + 1);
-        shares[i] = shamir_share(secret, indices[i], 3, prime); }
+    for (int i = 0; i < 5; i++) {
+        indices[i] = (unsigned int)(i + 1);
+        shares[i] = shamir_share(secret, indices[i], 3, prime);
+    }
     print_str("  Shares: ");
     for (int i = 0; i < 5; i++) { print_int((int)shares[i]); print_str(" "); }
     print_str("\n");
-    print_str("  Reconstructed: "); print_int((int)shamir_reconstruct(shares, indices, 3, prime)); print_str("\n");
+    unsigned int recon = shamir_reconstruct(shares, indices, 3, prime);
+    print_str("  Reconstructed: "); print_int((int)recon); print_str("\n");
     double upd[4] = {1.0, 2.0, 3.0, 4.0}, msk[4] = {0.5, -0.3, 0.1, -0.3};
     print_str("  Secure agg: "); print_double(secure_mask_aggregate(upd, msk, 4)); print_str("\n");
     int masks[4] = {1, 1, 0, 1};
     print_str("  Dropouts: "); print_int(secure_detect_dropouts(masks, 4)); print_str("\n");
     print_str("  Verified: "); print_int(secure_verify_aggregate(10.0, 10.0, 0.01)); print_str("\n\n");
-
     print_str("[4] Client Selection\n");
     client_info_t clients[6], selected[4];
     client_init(&clients[0], 0, 500, 80, 50, 90, 1);
@@ -508,35 +497,40 @@ static void test_all(void) {
     client_init(&clients[4], 4, 600, 70, 40, 85, 1);
     client_init(&clients[5], 5, 100, 30, 10, 10, 0);
     print_str("  Random: "); print_int(client_select_random(clients, 6, 3, selected, 123)); print_str("\n");
-    print_str("  Power: "); print_int(client_select_power_aware(clients, 6, 50, 25, selected, 4)); print_str("\n");
+    print_str("  Power-aware: "); print_int(client_select_power_aware(clients, 6, 50, 25, selected, 4)); print_str("\n");
     int hist[6] = {5, 2, 1, 8, 3, 0};
-    print_str("  Fair: "); print_int(client_select_fair_round(clients, 6, hist, selected, 3)); print_str("\n");
-    print_str("  Activity: "); print_int(client_select_activity_weighted(clients, 6, selected, 3)); print_str("\n\n");
-
+    print_str("  Fair-round: "); print_int(client_select_fair_round(clients, 6, hist, selected, 3)); print_str("\n");
+    print_str("  Activity-wt: "); print_int(client_select_activity_weighted(clients, 6, selected, 3)); print_str("\n\n");
     print_str("[5] Model Compression\n");
     double g2[16], orig[16];
     for (int i = 0; i < 16; i++) g2[i] = orig[i] = lcg_rand_double() * 2.0 - 1.0;
-    print_str("  Top-k: "); print_int(compress_sparse_topk(g2, 16, 5)); print_str(" / 16\n");
+    int kept = compress_sparse_topk(g2, 16, 5);
+    print_str("  Top-k kept: "); print_int(kept); print_str(" / 16\n");
     double u2[8] = {0.1, 0.5, 0.9, 0.3, 0.7, 0.2, 0.8, 0.4};
-    print_str("  Quantized: "); print_int(compress_quantize_update(u2, 8, 8)); print_str(" bytes\n");
+    print_str("  Quantized bytes: "); print_int(compress_quantize_update(u2, 8, 8)); print_str("\n");
     model_weights_t teacher, student;
     model_init(&teacher, 2, sizes); model_init(&student, 2, sizes);
-    print_str("  Distill: "); print_double(compress_knowledge_distill(&teacher, &student, (double[]){0.0})); print_str("\n");
-    print_str("  Ratio: "); print_double(compress_compute_ratio(1024, 256)); print_str("\n");
+    double dloss = compress_knowledge_distill(&teacher, &student, (double[]){0.0});
+    print_str("  Distill loss: "); print_double(dloss); print_str("\n");
+    print_str("  Compression ratio: "); print_double(compress_compute_ratio(1024, 256)); print_str("\n");
     print_str("  Savings: "); print_double(compress_estimate_savings(orig, 16, COMP_SPARSE_TOPK)); print_str("\n\n");
 
-    print_str("[6] Heterogeneity\n");
+    print_str("[6] Heterogeneity Handling\n");
     double dist_arr[MAX_CLIENTS][MAX_CLASSES];
     hetero_generate_noniid_data(dist_arr, 4, 5, 0.3);
-    print_str("  Dirichlet: "); print_double(dist_arr[0][0]); print_str("\n");
+    print_str("  Dirichlet[0][0]: "); print_double(dist_arr[0][0]); print_str("\n");
     double stats[4];
     hetero_compute_local_stats(dist_arr[0], 5, stats);
-    print_str("  Mean: "); print_double(stats[0]); print_str(" Var: "); print_double(stats[1]); print_str("\n");
+    print_str("  Mean: "); print_double(stats[0]); print_str("\n");
+    print_str("  Variance: "); print_double(stats[1]); print_str("\n");
     double g_stats[4] = {0.2, 0.01, 0.4, 0.05};
     double local_stats[4][4];
-    for (int c = 0; c < 4; c++) hetero_compute_local_stats(dist_arr[c], 5, local_stats[c]);
-    print_str("  Divergence: "); print_double(hetero_measure_divergence(local_stats, g_stats, 4)); print_str("\n");
-    print_str("  Epochs: "); print_int(hetero_adjust_epochs(0.35, 10)); print_str("\n\n");
+    for (int c = 0; c < 4; c++)
+        hetero_compute_local_stats(dist_arr[c], 5, local_stats[c]);
+    double div = hetero_measure_divergence(local_stats, g_stats, 4);
+    print_str("  Divergence: "); print_double(div); print_str("\n");
+    print_str("  Adjusted epochs: "); print_int(hetero_adjust_epochs(0.35, 10)); print_str("\n\n");
+
     print_str("=== All tests passed ===\n");
 }
 
