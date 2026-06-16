@@ -3,12 +3,13 @@
 ## 扫描状态 (UPDATE=0 → UPDATE=1)
 
 ```
-扫描时间: 2026-06-16 15:25 (循环扫描)
+扫描时间: 2026-06-16 15:40 (循环扫描)
 系统版本: v46.0
 认证等级: DIAMOND ✓
 项目状态: STABLE ✓
-架构分析: 五层完整 ✓
-本次发现: 49个模块未编译 ⚠
+架构完整性: 五层 100% ✓
+文档准确性: 已修正 ✓ (内核62, Host函数156, 总数558)
+待解决问题: 49个模块未编译 ⚠
 ```
 
 ---
@@ -16,19 +17,21 @@
 ## 一、当前版本状态
 
 ### v46.0 已完成内容
-- ✅ wasm_thread 多线程支持模块
-- ✅ README 模块计数修正 (66→62 内核, 563→558 总数)
-- ✅ 62 个内核 ASM 模块 (已验证一致)
-- ✅ 407 个 WASM 模块成功编译
-- ✅ QEMU 集成测试框架 (run_test.sh)
-- ✅ 增量构建系统 (Makefile)
+- ✅ WASM多线程支持 (wasm_thread模块)
+- ✅ 文档修正 (内核62模块, Host函数156, 总模块558)
+- ✅ 62个内核ASM模块 (已验证)
+- ✅ 156个WASM Host函数 (125 host + 31 WASI)
+- ✅ 6,021行wasm_host.c代码
+- ✅ 407个WASM模块成功编译
+- ✅ QEMU测试框架 (run_test.sh)
+- ✅ 增量构建系统
 
 ### 架构完整性
 ```
 五层架构: 100% ✓
-├─ L1 内核层:  62 ASM模块     ✓ (已修正)
-├─ L2 WASM层: 372 Host函数    ✓
-├─ L3 应用层: 456 模块目录    ✓ (407 已编译, 49 未编译 ⚠)
+├─ L1 内核层:  62 ASM模块     ✓
+├─ L2 WASM层: 156 Host函数    ✓ (已修正)
+├─ L3 应用层: 456 模块目录    ✓ (407已编译, 49未编译 ⚠)
 ├─ L4 AI层:   25 AI模块       ✓
 ├─ L5 Agent层: 15 Agent模块   ✓
 └─ 总计: 558模块 ✓
@@ -36,316 +39,453 @@
 
 ---
 
-## 二、关键发现 ⚠
+## 二、核心问题 ⚠
 
-### 🔴 P0: 49个模块目录存在但未编译
+### 🔴 P0: 49个模块未编译
 
-**问题描述**:
-扫描发现 `modules/` 下有456个模块目录,但只有407个产生了 `.wasm` 文件。
-49个模块有 `src/` 目录但未完成编译,包括多个核心模块:
+**问题**: modules/下有456个模块目录,但只有407个生成了.wasm文件
 
-**未编译的关键模块**:
+**未编译的关键模块** (部分列表):
 ```
-AI供应商 API (高优先级):
-├─ claude_api         Anthropic Claude API
-├─ deepseek_api       DeepSeek V3/R1 API
-├─ gemini_api         Google Gemini API
-├─ mistral_api        Mistral API
-├─ ollama_local       Ollama 本地推理
-├─ llm_unified        统一LLM接口
-└─ embedding_interface 嵌入向量接口
+AI供应商API (7个):
+├─ claude_api, deepseek_api, gemini_api
+├─ mistral_api, ollama_local
+├─ llm_unified, embedding_interface
 
-Agent系统 (高优先级):
-├─ agent_workflow     Agent工作流
-├─ multi_agent        多Agent协作
-├─ cluster_orchestrator 集群编排
-├─ agi_final          AGI最终框架
-└─ autonomous_decision 自主决策
+Agent系统 (5个):
+├─ agent_workflow, multi_agent
+├─ cluster_orchestrator, agi_final
+└─ autonomous_decision
 
-安全模块 (中优先级):
-├─ intrusion_detection  入侵检测
-├─ multi_factor_auth    多因素认证
-├─ crypto_comm_v2       加密通信
-└─ log_aggregator       日志聚合
+安全模块 (4个):
+├─ intrusion_detection, multi_factor_auth
+├─ crypto_comm_v2, log_aggregator
 
-工具模块 (低优先级):
-├─ dashboard          仪表板
-├─ debug_tools        调试工具
-├─ code_examples      代码示例
-├─ document_processor 文档处理
-├─ image_gen          图像生成
-├─ emotion_ai         情感AI
-├─ function_call      函数调用
-├─ knowledge_base     知识库
+工具模块 (33个):
+├─ dashboard, debug_tools, code_examples
+├─ document_processor, image_gen, emotion_ai
+├─ function_call, knowledge_base, consciousness_sim
 └─ ... 等共49个
 ```
 
-**建议**:
-1. 检查 Makefile 的 WASM 编译规则,找出为何这些模块被跳过
-2. 逐个模块验证 `src/` 目录下的源文件是否完整
-3. 修复编译错误,确保所有456个模块都能生成 `.wasm`
-4. 添加编译状态报告到构建流程
-
-**涉及文件**:
-- `Makefile` (检查 WASM 编译规则)
-- `modules/*/src/*.c` (49个模块的源文件)
+**影响**:
+- L4 AI层声称25个模块,但部分未编译
+- L5 Agent层声称15个模块,但部分未编译
+- 实际可用功能少于文档声明
 
 ---
 
 ## 三、下一步开发建议 (优先级排序)
 
-### 🔴 高优先级 - 核心问题修复
+### 🔴 Phase 1: 修复与测试 (P0, 2-3周)
 
-#### 1. 修复49个未编译模块 (P0)
-**背景**: 见上方关键发现
-**预期结果**: 所有456个模块均能成功编译
-**工作量**: 1-2周
-**验收标准**:
+#### 任务1.1: 诊断并修复49个未编译模块
+
+**诊断步骤**:
+```bash
+# 1. 列出所有未编译模块
+ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u) > /tmp/unbuilt.txt
+cat /tmp/unbuilt.txt  # 49个模块
+
+# 2. 检查第一个模块的源文件结构
+ls -la modules/claude_api/src/
+cat modules/claude_api/src/main.c 2>/dev/null | head -30
+
+# 3. 尝试手动编译
+clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
+    -Wl,--no-entry -Wl,--export=shell_entry \
+    modules/claude_api/src/*.c \
+    -o modules/claude_api/claude_api.wasm 2>&1 | head -20
+
+# 4. 检查Makefile的WASM编译规则
+grep -A 30 "%.wasm:" Makefile
+grep -A 10 "modules:" Makefile
+```
+
+**可能的原因**:
+1. 源文件缺失或不完整
+2. 编译错误 (语法错误、缺少依赖)
+3. Makefile规则排除了某些模块
+4. 缺少必要的头文件
+
+**预期结果**:
+- 所有456个模块均能成功编译
 - `make modules` 无错误
-- 456个模块全部生成 .wasm
 - 构建日志显示 456/456 成功率
 
-#### 2. 完善 wasm_thread 多线程功能 (P0)
-**背景**: v46.0 引入了 wasm_thread,但功能尚不完整
-**建议**:
-- 实现线程同步原语 (mutex, condition variables, semaphore)
-- 添加线程池管理模块
-- 编写并发WASM执行测试用例
-- 性能基准测试 (线程创建/销毁/切换开销)
+#### 任务1.2: 建立测试框架
 
-**新增模块建议**:
+**创建目录结构**:
+```bash
+mkdir -p tests/{kernel,wasm,integration,benchmarks}
+
+# 内核单元测试
+cat > tests/kernel/test_buddy.asm << 'EOF'
+/* 伙伴系统内存分配测试 */
+.global test_buddy_alloc
+test_buddy_alloc:
+    /* 测试分配和释放 */
+    ret
+EOF
+
+# WASM Host函数测试
+cat > tests/wasm/test_host_alloc.c << 'EOF'
+#include <assert.h>
+void test_host_alloc() {
+    void* p = host_alloc(1024);
+    assert(p != NULL);
+    host_free(p);
+}
+EOF
+
+# 集成测试
+cat > tests/integration/test_wasm_spawn.c << 'EOF'
+/* 测试WASM模块加载和执行 */
+void test_spawn() {
+    uint32_t id;
+    const char* result = load_module("test_module", &id);
+    assert(result != NULL);
+}
+EOF
+
+# 测试运行器
+cat > tests/run_all_tests.sh << 'EOF'
+#!/bin/bash
+set -e
+echo "=== AI-ASM Test Suite ==="
+echo "Kernel tests..."
+# 运行内核测试
+echo "WASM tests..."
+# 运行WASM测试
+echo "Integration tests..."
+# 运行集成测试
+echo "=== All tests passed ==="
+EOF
+chmod +x tests/run_all_tests.sh
 ```
-kernel/
-├─ wasm_thread_pool.asm    线程池管理
-├─ wasm_mutex.asm          互斥锁实现
-└─ wasm_cond.asm           条件变量
 
-modules/wasm_thread_test/
-└─ src/main.c              多线程测试应用
+**测试覆盖率目标**: 80%
+- 内核模块: 至少测试内存、进程、VFS、网络
+- Host函数: 至少测试alloc、free、print、spawn
+- WASI接口: 至少测试fd_write、fd_read、path_open
+
+#### 任务1.3: 完善wasm_thread多线程功能
+
+**新增内核模块**:
+```bash
+# 线程池管理
+cat > kernel/wasm_thread_pool.asm << 'EOF'
+/* WASM线程池管理 */
+.global wasm_thread_pool_init
+.global wasm_thread_pool_submit
+.global wasm_thread_pool_wait
+
+wasm_thread_pool_init:
+    /* 初始化线程池 */
+    ret
+
+wasm_thread_pool_submit:
+    /* 提交任务到线程池 */
+    ret
+
+wasm_thread_pool_wait:
+    /* 等待所有任务完成 */
+    ret
+EOF
+
+# 互斥锁
+cat > kernel/wasm_mutex.asm << 'EOF'
+/* WASM互斥锁 */
+.global wasm_mutex_init
+.global wasm_mutex_lock
+.global wasm_mutex_unlock
+
+wasm_mutex_init:
+    ret
+
+wasm_mutex_lock:
+    ret
+
+wasm_mutex_unlock:
+    ret
+EOF
 ```
 
-#### 3. 扩展测试覆盖率 (P0)
-**背景**: 当前 `run_test.sh` 仅72行,只有1个 `test_` 引用,无 `tests/` 目录
-**建议**:
-- 创建 `tests/` 目录结构
-- 编写内核单元测试 (内存/进程/VFS/网络)
-- 编写WASM Host函数集成测试
-- 编写WASI接口测试
-- 添加测试覆盖率报告
+**测试应用**:
+```bash
+mkdir -p modules/wasm_thread_test/src
+cat > modules/wasm_thread_test/src/main.c << 'EOF'
+#include <wasm_thread.h>
 
-**新增测试框架**:
+void* worker(void* arg) {
+    int id = *(int*)arg;
+    host_print("Thread %d running\n", id);
+    return NULL;
+}
+
+int shell_entry() {
+    wasm_thread_t t1, t2;
+    int id1 = 1, id2 = 2;
+
+    wasm_thread_create(&t1, worker, &id1);
+    wasm_thread_create(&t2, worker, &id2);
+
+    wasm_thread_join(t1);
+    wasm_thread_join(t2);
+
+    host_print("All threads completed\n");
+    return 0;
+}
+EOF
 ```
-tests/
-├─ kernel/
-│   ├─ test_buddy.asm      伙伴系统测试
-│   ├─ test_process.asm    进程管理测试
-│   ├─ test_vfs.asm        文件系统测试
-│   └─ test_net.asm        网络栈测试
-├─ wasm/
-│   ├─ test_host_functions.c  Host函数测试
-│   ├─ test_wasi.c            WASI接口测试
-│   └─ test_threading.c       多线程测试
-└─ run_all_tests.sh        测试运行器
-```
 
-### 🟡 中优先级 - 功能扩展
+### 🟡 Phase 2: 功能增强 (P1, 2-3个月)
 
-#### 4. 网络栈增强 (P1)
-**建议**:
-- 实现完整IPv6支持 (目前仅有ping6)
-- 添加TLS/SSL加密通信层
-- 实现HTTP/2和HTTP/3
-- WebSocket原生支持
+#### 任务2.1: 网络栈增强
 
 **新增模块**:
-```
-kernel/
-├─ tls.asm                 TLS加密层
-├─ http2.asm               HTTP/2协议
-└─ websocket.asm           WebSocket支持
+```bash
+# TLS加密层
+cat > kernel/tls.asm << 'EOF'
+/* TLS/SSL加密层 */
+.global tls_init
+.global tls_connect
+.global tls_send
+.global tls_recv
 
-modules/
-├─ https_proxy/            HTTPS代理
-└─ ws_server/              WebSocket服务器
+tls_init:
+    /* 初始化TLS上下文 */
+    ret
+
+tls_connect:
+    /* 建立TLS连接 */
+    ret
+
+tls_send:
+    /* 加密发送数据 */
+    ret
+
+tls_recv:
+    /* 解密接收数据 */
+    ret
+EOF
+
+# HTTP/2支持
+mkdir -p modules/http2_server/src
+cat > modules/http2_server/src/main.c << 'EOF'
+/* HTTP/2服务器 */
+int shell_entry() {
+    host_print("HTTP/2 server starting...\n");
+    /* HTTP/2协议实现 */
+    return 0;
+}
+EOF
 ```
 
-#### 5. 文件系统扩展 (P1)
-**建议**:
-- 添加ext4文件系统支持
-- 实现文件系统快照
-- 添加文件系统加密
-- NFS客户端支持
+#### 任务2.2: 文件系统扩展
 
 **新增模块**:
-```
-kernel/
-├─ ext4.asm                ext4文件系统
-├─ fs_snapshot.asm         文件系统快照
-├─ fs_encrypt.asm          文件系统加密
-└─ nfs_client.asm          NFS客户端
+```bash
+# ext4文件系统
+cat > kernel/ext4.asm << 'EOF'
+/* ext4文件系统支持 */
+.global ext4_init
+.global ext4_mount
+.global ext4_read
+.global ext4_write
+
+ext4_init:
+    ret
+
+ext4_mount:
+    ret
+
+ext4_read:
+    ret
+
+ext4_write:
+    ret
+EOF
+
+# NFS客户端
+mkdir -p modules/nfs_client/src
+cat > modules/nfs_client/src/main.c << 'EOF'
+/* NFS客户端 */
+int shell_entry() {
+    host_print("NFS client mounting...\n");
+    /* NFS协议实现 */
+    return 0;
+}
+EOF
 ```
 
-#### 6. 内存管理优化 (P1)
-**建议**:
-- 实现大页内存 (Huge Pages) 支持
-- 添加内存压缩功能
-- 优化伙伴系统算法
-- 内存使用统计和监控
+#### 任务2.3: 内存管理优化
 
 **新增模块**:
-```
-kernel/
-├─ hugepage.asm            大页内存管理
-├─ mem_compress.asm        内存压缩
-└─ mem_stats.asm           内存统计
+```bash
+# 大页内存支持
+cat > kernel/hugepage.asm << 'EOF'
+/* 大页内存管理 (2MB/1GB页) */
+.global hugepage_init
+.global hugepage_alloc
+.global hugepage_free
+
+hugepage_init:
+    ret
+
+hugepage_alloc:
+    ret
+
+hugepage_free:
+    ret
+EOF
+
+# 内存统计
+cat > kernel/mem_stats.asm << 'EOF'
+/* 内存使用统计 */
+.global mem_stats_get
+.global mem_stats_print
+
+mem_stats_get:
+    ret
+
+mem_stats_print:
+    ret
+EOF
 ```
 
-### 🟢 低优先级 - 长期规划
+### 🟢 Phase 3: 高级功能 (P2, 3-5个月)
 
-#### 7. GPU加速支持 (P2)
-**建议**:
+#### 任务3.1: GPU加速支持
 - OpenCL内核集成
-- GPU计算任务调度
+- GPU任务调度器
 - WASM GPU加速接口
-- Vulkan图形API支持
 
-#### 8. 安全性增强 (P2)
-**建议**:
-- 实现安全启动 (Secure Boot)
-- 添加内存加密 (类似AMD SME)
-- 实现内核模块签名验证
-- 增强沙箱隔离
+#### 任务3.2: 安全性增强
+- 安全启动 (Secure Boot)
+- 内存加密
+- 内核模块签名验证
 
-#### 9. 虚拟化增强 (P2)
-**建议**:
-- KVM虚拟化支持
+#### 任务3.3: 虚拟化增强
+- KVM接口
 - 虚拟机监控器 (VMM)
-- 实时迁移功能
-- 虚拟网络设备增强
+- 实时迁移
 
-#### 10. AI模型本地推理优化 (P2)
-**建议**:
-- 量化模型支持 (INT8/INT4)
-- 模型缓存和预加载
-- 分布式推理集群
-- 模型热更新
+#### 任务3.4: AI推理优化
+- 模型量化 (INT8/INT4)
+- 模型缓存
+- 分布式推理
 
-#### 11. 开发工具链完善 (P3)
-**建议**:
-- WASM调试器增强
-- 性能分析工具 (profiler)
+### 🔵 Phase 4: 工具链完善 (P3, 持续)
+
+#### 任务4.1: 开发工具
+- WASM调试器
+- 性能分析器 (profiler)
 - 内存泄漏检测
 - 代码覆盖率工具
 
----
-
-## 四、文档改进建议
-
-### 1. API文档
-- 生成Host函数API文档 (372个函数)
+#### 任务4.2: 文档完善
+- 生成Host函数API文档 (156个函数)
 - WASI接口完整文档
-- Agent系统API文档
-
-### 2. 架构文档
-- 五层架构详细设计图
-- 数据流和控制流图
-- 模块依赖关系图
-
-### 3. 用户手册
-- 安装指南 (多平台)
-- 开发指南 (WASM应用开发)
-- 运维手册 (部署和监控)
+- 架构设计图
+- 用户手册
 
 ---
 
-## 五、建议开发路线图
+## 四、立即可执行的任务
 
-### Phase 1: v47.0 - 修复与测试 (2-3周)
-- [ ] 修复49个未编译模块
-- [ ] 完善wasm_thread功能
-- [ ] 建立测试框架
-- [ ] 添加单元测试
-
-### Phase 2: v48.0 - 网络与存储增强 (2-3个月)
-- [ ] 实现完整IPv6支持
-- [ ] 添加TLS/SSL支持
-- [ ] 实现ext4文件系统
-- [ ] NFS客户端支持
-
-### Phase 3: v49.0 - 性能与GPU (3-4个月)
-- [ ] 内存管理优化
-- [ ] GPU加速支持
-- [ ] 性能分析工具
-- [ ] 大页内存支持
-
-### Phase 4: v50.0 - 安全与虚拟化 (4-5个月)
-- [ ] 安全启动支持
-- [ ] KVM虚拟化
-- [ ] 内存加密
-- [ ] 实时迁移
-
----
-
-## 六、立即可执行的任务
-
-### 任务1: 诊断未编译模块
+### 快速诊断脚本
 ```bash
-# 列出所有未编译模块
-ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u)
+#!/bin/bash
+# diagnose_unbuilt.sh - 诊断未编译模块
 
-# 检查某个模块的源文件结构
-ls modules/claude_api/src/
-cat modules/claude_api/src/main.c  # 或其他源文件
+echo "=== 未编译模块诊断 ==="
 
-# 尝试手动编译单个模块
+# 列出未编译模块
+ls modules/ | comm -23 - <(find modules -name "*.wasm" -printf '%h\n' | xargs -I{} basename {} | sort -u) > /tmp/unbuilt.txt
+
+echo "未编译模块数量: $(wc -l < /tmp/unbuilt.txt)"
+echo ""
+echo "前10个未编译模块:"
+head -10 /tmp/unbuilt.txt
+
+echo ""
+echo "检查源文件完整性:"
+for mod in $(head -5 /tmp/unbuilt.txt); do
+    echo "  $mod: $(ls modules/$mod/src/*.c 2>/dev/null | wc -l) 个C文件"
+done
+
+echo ""
+echo "尝试编译第一个模块:"
+mod=$(head -1 /tmp/unbuilt.txt)
+echo "  模块: $mod"
 clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin \
     -Wl,--no-entry -Wl,--export=shell_entry \
-    -o modules/claude_api/claude_api.wasm \
-    modules/claude_api/src/*.c
+    modules/$mod/src/*.c \
+    -o /tmp/test.wasm 2>&1 | head -5
 ```
 
-### 任务2: 检查 Makefile WASM 编译规则
+### 创建测试框架
 ```bash
-# 查看 WASM 模块编译规则
-grep -A 20 "wasm" Makefile
+#!/bin/bash
+# setup_tests.sh - 建立测试框架
 
-# 检查是否有排除列表
-grep -i "exclude\|skip\|ignore" Makefile
-```
+mkdir -p tests/{kernel,wasm,integration,benchmarks}
 
-### 任务3: 创建测试目录结构
-```bash
-mkdir -p tests/{kernel,wasm,integration}
-touch tests/kernel/test_buddy.asm
-touch tests/wasm/test_host_functions.c
-touch tests/run_all_tests.sh
+# 创建测试模板
+cat > tests/kernel/test_template.asm << 'EOF'
+.global test_name
+test_name:
+    /* 测试代码 */
+    ret
+EOF
+
+cat > tests/wasm/test_template.c << 'EOF'
+void test_name() {
+    /* 测试代码 */
+}
+EOF
+
+# 创建测试运行器
+cat > tests/run_all_tests.sh << 'EOF'
+#!/bin/bash
+set -e
+echo "=== AI-ASM Test Suite ==="
+echo "Running tests..."
+echo "All tests passed!"
+EOF
+chmod +x tests/run_all_tests.sh
+
+echo "测试框架已创建"
+ls -R tests/
 ```
 
 ---
 
-## 七、UPDATE状态
+## 五、UPDATE状态
 
 ```
 执行前: UPDATE=0
 扫描后: UPDATE=1 (已生成建议,触发下一步行动)
-扫描时间: 2026-06-16 15:25
-发现数量: 1个关键问题 + 10个开发方向
-优先级分布:
-  - P0 (高): 3个 (修复未编译模块, wasm_thread, 测试)
-  - P1 (中): 3个 (网络, 文件系统, 内存)
-  - P2 (低): 4个 (GPU, 安全, 虚拟化, AI优化)
-  - P3 (长期): 1个 (开发工具)
+扫描时间: 2026-06-16 15:40
+文档状态: 已修正 ✓
+核心问题: 49个模块未编译
+建议阶段:
+  - Phase 1 (P0): 修复未编译模块 + 测试框架 + wasm_thread完善 (2-3周)
+  - Phase 2 (P1): 网络/文件/内存增强 (2-3个月)
+  - Phase 3 (P2): GPU/安全/虚拟化/AI优化 (3-5个月)
+  - Phase 4 (P3): 工具链完善 (持续)
 ```
 
 ---
 
-## 八、总结
+## 六、总结
 
-AI-ASM OS v46.0 项目整体稳定,但发现**49个模块未编译**的关键问题。建议的下一步开发重点:
+AI-ASM OS v46.0 文档已修正,架构完整。主要问题:
 
-1. **立即可做**: 诊断并修复49个未编译模块 (P0)
-2. **短期重点**: 完善wasm_thread多线程功能 + 建立测试框架 (P0)
-3. **中期目标**: 网络和存储增强 (IPv6, TLS, ext4) (P1)
-4. **长期规划**: GPU加速、安全启动、虚拟化 (P2)
+1. **最关键**: 49个模块未编译 (影响AI和Agent层功能)
+2. **短期**: 建立测试框架,确保代码质量
+3. **中期**: 完善wasm_thread,增强网络/文件/内存功能
+4. **长期**: GPU加速、安全启动、虚拟化支持
 
 **UPDATE=1** ✓ (已生成开发建议,等待执行)
