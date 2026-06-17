@@ -59,107 +59,70 @@ static void print_kv(const char *k, int v) {
 typedef struct {
     unsigned int peer_id, sequence, ack_seq;
     int rtt_ms, clock_offset_us, drift_rate_ppm;
-    unsigned int last_sync_time, state_version;
-    unsigned char state_buf[256];
-    unsigned int state_size;
-    int connected;
+    unsigned int last_sync_time, state_version, state_size;
+    unsigned char state_buf[256]; int connected;
 } PeerState;
-
 typedef struct {
     unsigned int frame_number, authoritative[16], predicted[16];
-    int correction_applied;
-    unsigned int rollback_count;
+    int correction_applied; unsigned int rollback_count;
 } FrameHistory;
-
 typedef struct {
-    long long local_time_us, remote_time_us, offset_us;
+    long long local_time_us, remote_time_us, offset_us, last_sample_time;
     int drift_ppm, sample_count, sample_index;
-    long long last_sample_time, samples[CLOCK_SAMPLES];
+    long long samples[CLOCK_SAMPLES];
 } ClockSync;
-
 typedef struct {
     long long virtual_time_us, real_time_us, interpolation_delay_us, last_tick_us;
     int time_scale_pct;
 } TimeManager;
-
 typedef struct {
     unsigned char buffer[STATE_BUF_SIZE];
     unsigned int size, compressed_size, checksum, version;
 } CompressedState;
-
 typedef struct {
-    unsigned int base_version, current_version;
+    unsigned int base_version, current_version, delta_size;
     unsigned char delta_buffer[DELTA_BUF_SIZE];
-    unsigned int delta_size;
 } IncrementalSync;
-
 typedef struct {
-    unsigned int keyframe_interval, last_keyframe_ver, delta_count;
+    unsigned int keyframe_interval, last_keyframe_ver, delta_count, keyframe_size;
     unsigned char keyframe_buf[STATE_BUF_SIZE];
-    unsigned int keyframe_size;
 } KeyframeCompressor;
-
 typedef struct {
-    unsigned int version, timestamp, peer_id;
-    unsigned int causal_clock[VCLOCK_SIZE];
-    unsigned char data[256];
-    unsigned int data_size, checksum;
+    unsigned int version, timestamp, peer_id, data_size, checksum;
+    unsigned int causal_clock[VCLOCK_SIZE]; unsigned char data[256];
 } VersionedState;
-
 typedef struct {
     unsigned int local_clock[VCLOCK_SIZE];
-    VersionedState pending[MAX_PENDING];
-    int pending_count, consistency_model;
+    VersionedState pending[MAX_PENDING]; int pending_count, consistency_model;
 } ConsistencyManager;
-
 typedef struct {
-    unsigned int shard_id, primary_peer;
+    unsigned int shard_id, primary_peer, version, state_size;
     unsigned int replica_peers[MAX_REPLICAS];
-    int replica_count, healthy;
-    unsigned int version;
-    unsigned char state[SHARD_STATE_SIZE];
-    unsigned int state_size;
+    int replica_count, healthy; unsigned char state[SHARD_STATE_SIZE];
 } StateShard;
-
 typedef struct {
-    StateShard shards[MAX_SHARDS];
-    int shard_count;
-    unsigned int local_peer_id;
+    StateShard shards[MAX_SHARDS]; int shard_count; unsigned int local_peer_id;
 } DistributedState;
-
 typedef struct {
-    unsigned int action_id, frame, peer_id, action_type;
-    unsigned int data[8], data_size, timestamp;
+    unsigned int action_id, frame, peer_id, action_type, data[8], data_size, timestamp;
 } Action;
-
 typedef struct {
     Action actions[MAX_ACTIONS];
     unsigned int action_count, current_frame, head_index;
     int playback_speed_pct, playing;
 } ReplayBuffer;
-
 typedef struct {
-    unsigned int frame;
-    unsigned char state[SNAP_STATE_SIZE];
-    unsigned int state_size, checksum;
+    unsigned int frame, state_size, checksum; unsigned char state[SNAP_STATE_SIZE];
 } Snapshot;
-
 typedef struct {
-    Snapshot snapshots[MAX_SNAPSHOTS];
-    unsigned int snapshot_count, snapshot_interval;
+    Snapshot snapshots[MAX_SNAPSHOTS]; unsigned int snapshot_count, snapshot_interval;
 } SnapshotManager;
-
 typedef struct {
-    PeerState peers[MAX_PEERS];
-    int peer_count;
-    FrameHistory frame_history[FRAME_HIST_SIZE];
-    int frame_history_count;
-    ClockSync clock_sync;
-    TimeManager time_mgr;
-    ConsistencyManager consistency;
-    DistributedState distributed;
-    ReplayBuffer replay;
-    SnapshotManager snapshots;
+    PeerState peers[MAX_PEERS]; int peer_count;
+    FrameHistory frame_history[FRAME_HIST_SIZE]; int frame_history_count;
+    ClockSync clock_sync; TimeManager time_mgr;
+    ConsistencyManager consistency; DistributedState distributed;
+    ReplayBuffer replay; SnapshotManager snapshots;
     unsigned int local_frame, local_peer_id, bandwidth_bytes_sec, total_bytes_sent;
     int running;
 } RealTimeSync;
@@ -183,8 +146,7 @@ static int mem_equal(const unsigned char *a, const unsigned char *b, unsigned in
 static int abs_val(int x) { return x < 0 ? -x : x; }
 static int clamp(int v, int lo, int hi) { return v < lo ? lo : (v > hi ? hi : v); }
 
-/* ── Network synchronization ─────────────────────────────────────────── */
-static void peer_init(PeerState *p, unsigned int id) {
+/* ── Network synchronization ─────────────────────────────────────────── */static void peer_init(PeerState *p, unsigned int id) {
     p->peer_id = id; p->sequence = 0; p->ack_seq = 0;
     p->rtt_ms = 0; p->clock_offset_us = 0; p->drift_rate_ppm = 0;
     p->last_sync_time = 0; p->state_version = 0; p->state_size = 0; p->connected = 1;
@@ -198,9 +160,7 @@ static int peer_receive_state(PeerState *p, unsigned char *o, unsigned int *osz)
     if (!p->connected || p->state_size == 0) return 0;
     mem_copy(o, p->state_buf, p->state_size); *osz = p->state_size; return 1;
 }
-static void peer_update_rtt(PeerState *p, int rtt) {
-    p->rtt_ms = (p->rtt_ms * 7 + rtt) >> 3;
-}
+static void peer_update_rtt(PeerState *p, int rtt) { p->rtt_ms = (p->rtt_ms * 7 + rtt) >> 3; }
 static void frame_sync_init(FrameHistory *fh, unsigned int frame) {
     fh->frame_number = frame; fh->correction_applied = 0; fh->rollback_count = 0;
     for (int i = 0; i < 16; i++) { fh->authoritative[i] = 0; fh->predicted[i] = 0; }
@@ -209,8 +169,7 @@ static int frame_sync_detect_error(FrameHistory *fh) {
     int err = 0;
     for (int i = 0; i < 16; i++) err += abs_val((int)fh->authoritative[i] - (int)fh->predicted[i]);
     return err;
-}
-static void frame_sync_rollback(RealTimeSync *sys, unsigned int target) {
+}static void frame_sync_rollback(RealTimeSync *sys, unsigned int target) {
     if (target >= sys->local_frame) return;
     unsigned int back = sys->local_frame - target;
     int idx = (int)(sys->local_frame % FRAME_HIST_SIZE) - (int)back;
@@ -222,7 +181,6 @@ static void frame_sync_rollback(RealTimeSync *sys, unsigned int target) {
 static void lag_compensate(PeerState *p, int *pos, int vel, int rtt_ms) {
     *pos = *pos + (vel * (rtt_ms >> 1)) / 1000; (void)p;
 }
-
 /* ── Time management ─────────────────────────────────────────────────── */
 static void clock_sync_init(ClockSync *cs) {
     cs->local_time_us = 0; cs->remote_time_us = 0; cs->offset_us = 0;
@@ -246,8 +204,7 @@ static void clock_sync_correct_drift(ClockSync *cs, long long el_loc, long long 
     cs->drift_ppm = (int)(((el_rem - el_loc) * 1000000LL) / el_loc);
 }
 static long long clock_sync_get_corrected(ClockSync *cs, long long now) { return now + cs->offset_us; }
-static void time_mgr_init(TimeManager *tm, long long start) {
-    tm->virtual_time_us = start; tm->real_time_us = start; tm->time_scale_pct = 100;
+static void time_mgr_init(TimeManager *tm, long long start) {    tm->virtual_time_us = start; tm->real_time_us = start; tm->time_scale_pct = 100;
     tm->interpolation_delay_us = 100000; tm->last_tick_us = start;
 }
 static void time_mgr_tick(TimeManager *tm, long long real_now) {
@@ -261,7 +218,6 @@ static long long time_mgr_interpolate(TimeManager *tm, long long server_time) {
     return target < tm->virtual_time_us ? tm->virtual_time_us : target;
 }
 static void time_mgr_set_scale(TimeManager *tm, int pct) { tm->time_scale_pct = clamp(pct, 10, 400); }
-
 /* ── Data compression ────────────────────────────────────────────────── */
 static unsigned int compress_rle(const unsigned char *in, unsigned int isz,
                                   unsigned char *out, unsigned int ocap) {
@@ -318,7 +274,6 @@ static void keyframe_emit(KeyframeCompressor *kc, const unsigned char *st, unsig
 static unsigned int estimate_bandwidth(unsigned int bytes, unsigned int ms) {
     return ms == 0 ? 0 : (bytes * 1000) / ms;
 }
-
 /* ── Consistency guarantees ──────────────────────────────────────────── */
 static void consistency_init(ConsistencyManager *cm, int model) {
     cm->consistency_model = model; cm->pending_count = 0;
@@ -355,7 +310,6 @@ static unsigned int resolve_vclock(const VersionedState *a, const VersionedState
     if (happens_before(b->causal_clock, a->causal_clock)) return a->peer_id;
     return a->peer_id < b->peer_id ? b->peer_id : a->peer_id;
 }
-
 /* ── Distributed state ───────────────────────────────────────────────── */
 static void shard_init(StateShard *s, unsigned int id, unsigned int pri) {
     s->shard_id = id; s->primary_peer = pri; s->replica_count = 0;
@@ -395,7 +349,6 @@ static int distributed_recover(DistributedState *ds, int idx) {
     for (int i = 0; i < s->replica_count - 1; i++) s->replica_peers[i] = s->replica_peers[i + 1];
     s->replica_count--; s->healthy = 1; return 1;
 }
-
 /* ── Replay system ───────────────────────────────────────────────────── */
 static void replay_init(ReplayBuffer *rb) {
     rb->action_count = 0; rb->current_frame = 0;
@@ -434,19 +387,15 @@ static int snapshot_load(SnapshotManager *sm, unsigned int frame, unsigned char 
 }
 static void replay_play(ReplayBuffer *rb) { rb->playing = 1; }
 static void replay_pause(ReplayBuffer *rb) { rb->playing = 0; }
-static void replay_set_speed(ReplayBuffer *rb, int pct) { rb->playback_speed_pct = clamp(pct, 10, 800); }
-static int replay_step(ReplayBuffer *rb, unsigned int *out_frame) {
+static void replay_set_speed(ReplayBuffer *rb, int pct) { rb->playback_speed_pct = clamp(pct, 10, 800); }static int replay_step(ReplayBuffer *rb, unsigned int *out_frame) {
     if (!rb->playing || rb->head_index >= rb->action_count) return 0;
     *out_frame = rb->actions[rb->head_index].frame;
     rb->current_frame = *out_frame; rb->head_index++; return 1;
 }
 static void time_travel_to(RealTimeSync *sys, unsigned int target) {
     unsigned char buf[SNAP_STATE_SIZE]; unsigned int sz = 0;
-    if (snapshot_load(&sys->snapshots, target, buf, &sz)) {
-        sys->local_frame = target; (void)buf;
-    }
+    if (snapshot_load(&sys->snapshots, target, buf, &sz)) { sys->local_frame = target; (void)buf; }
 }
-
 /* ── System orchestration ────────────────────────────────────────────── */
 static void sync_init(RealTimeSync *sys, unsigned int local) {
     sys->peer_count = 0; sys->frame_history_count = 0;
@@ -482,7 +431,6 @@ static void sync_shutdown(RealTimeSync *sys) {
     sys->running = 0;
     for (int i = 0; i < sys->peer_count; i++) sys->peers[i].connected = 0;
 }
-
 /* ── Main demo ───────────────────────────────────────────────────────── */
 int main(void) {
     print_str("=== real_time_sync module v1.0 ==="); print_nl();
@@ -490,7 +438,6 @@ int main(void) {
     if (ctx_ptr == 0) { print_str("FATAL: alloc failed"); print_nl(); host_exit(1); return 1; }
     RealTimeSync *sys = (RealTimeSync *)(unsigned long)ctx_ptr;
     sync_init(sys, 1);
-
     print_str("[network-sync]"); print_nl();
     sync_add_peer(sys, 2); sync_add_peer(sys, 3); sync_add_peer(sys, 4);
     print_kv("  peers_connected", sys->peer_count);
@@ -505,7 +452,6 @@ int main(void) {
     int pos = 1000;
     lag_compensate(&sys->peers[0], &pos, 200, sys->peers[0].rtt_ms);
     print_kv("  lag_comp_pos", pos);
-
     print_str("[time-mgmt]"); print_nl();
     clock_sync_add_sample(&sys->clock_sync, 1000000LL, 1000050LL);
     clock_sync_add_sample(&sys->clock_sync, 2000000LL, 2000055LL);
@@ -518,7 +464,6 @@ int main(void) {
     time_mgr_tick(&sys->time_mgr, 100000LL);
     print_kv("  time_scale_pct", sys->time_mgr.time_scale_pct);
     print_kv("  virtual_time_us", (int)sys->time_mgr.virtual_time_us);
-
     print_str("[compression]"); print_nl();
     unsigned char raw[128];
     for (int i = 0; i < 128; i++) raw[i] = (i < 64) ? 0xAA : 0x55;
@@ -535,7 +480,6 @@ int main(void) {
     for (int i = 0; i < 32; i++) { old_s[i] = 0; new_s[i] = (unsigned char)i; }
     IncrementalSync inc; incremental_init(&inc, 0);
     print_kv("  delta_bytes", (int)incremental_delta(&inc, old_s, 32, new_s, 32));
-
     print_str("[consistency]"); print_nl();
     print_kv("  model", sys->consistency.consistency_model);
     VersionedState va, vb;
@@ -551,7 +495,6 @@ int main(void) {
     print_kv("  a_hb_b", happens_before(va.causal_clock, vb.causal_clock));
     print_kv("  concurrent", concurrent(va.causal_clock, vb.causal_clock));
     print_kv("  conflict_winner", (int)resolve_vclock(&va, &vb));
-
     print_str("[distributed]"); print_nl();
     sys->distributed.shard_count = 4;
     for (int i = 0; i < 4; i++) {
@@ -571,7 +514,6 @@ int main(void) {
     print_kv("  recovered", distributed_recover(&sys->distributed, route));
     print_kv("  new_primary", (int)sys->distributed.shards[route].primary_peer);
     print_kv("  migrated", distributed_migrate(&sys->distributed, 0, 5));
-
     print_str("[replay]"); print_nl();
     unsigned int ad[4] = { 100, 200, 0, 0 };
     replay_record(&sys->replay, 1, 1, ACTION_MOVE, ad, 2);
@@ -593,7 +535,6 @@ int main(void) {
     replay_pause(&sys->replay);
     time_travel_to(sys, 2);
     print_kv("  time_travel_frame", (int)sys->local_frame);
-
     print_str("[simulation]"); print_nl();
     for (int t = 0; t < 10; t++) sync_tick(sys, (long long)(t + 1) * 16000LL);
     print_kv("  local_frame", (int)sys->local_frame);

@@ -366,12 +366,10 @@ static int dep_proxy(int pt, unsigned int ci) {
     if (ci >= MAX_C) return E_OP;
     upg_t *s = &ups[ci]; s->pt = pt; s->ver = 1; s->init = 1; s->fc = 0;
     for (int i = 0; i < ADDR; i++) { s->impl[i] = cs[ci].addr[i]; s->px[i] = cs[ci].addr[i] ^ 0xFF; }
-    if (pt == PX_TRANS) ps("  Transparent proxy\n");
-    else if (pt == PX_UUPS) ps("  UUPS proxy\n");
-    else if (pt == PX_DIAM) {
-        s->fc = 1; for (int i = 0; i < ADDR; i++) s->fac[0][i] = cs[ci].addr[i];
-        ps("  Diamond proxy (1 facet)\n");
-    } return E_OK;
+    if (pt == PX_TRANS) ps("  Transparent proxy\n"); else if (pt == PX_UUPS) ps("  UUPS proxy\n");
+    else if (pt == PX_DIAM) { s->fc = 1;
+        for (int i = 0; i < ADDR; i++) s->fac[0][i] = cs[ci].addr[i];
+        ps("  Diamond proxy (1 facet)\n"); } return E_OK;
 }
 static int upgrade(unsigned int ci, unsigned int ni) {
     if (ci >= MAX_C || ni >= MAX_C) return E_OP;
@@ -389,21 +387,17 @@ static int add_facet(unsigned int ci, unsigned int fi) {
 }
 
 /* Cross-chain */
-static int xc_send(unsigned int src, unsigned int dst, unsigned int val,
-                   const unsigned char *pl, unsigned int pln) {
+static int xc_send(unsigned int src, unsigned int dst, unsigned int val, const unsigned char *pl, unsigned int pln) {
     if (xcnt >= MAX_CH * 4 || src >= MAX_CH || dst >= MAX_CH) return E_XC;
-    xmsg_t *m = &xm[xcnt];
-    m->mt = 0; m->src = src; m->dst = dst; m->val = val; m->nonce = xcnt;
-    m->conf = 0; m->fin = 0;
+    xmsg_t *m = &xm[xcnt]; m->mt = 0; m->src = src; m->dst = dst; m->val = val;
+    m->nonce = xcnt; m->conf = 0; m->fin = 0;
     for (int i = 0; i < ADDR; i++) { m->snd[i] = (unsigned char)(src + i); m->rcv[i] = (unsigned char)(dst + i); }
     m->ph[0] = hash(pl, pln) & 0xFF; xcnt++;
-    ps("  XChain "); pi(src); ps("->"); pi(dst);
-    ps(" val="); pi(val); ps("\n"); return E_OK;
+    ps("  XChain "); pi(src); ps("->"); pi(dst); ps(" val="); pi(val); ps("\n"); return E_OK;
 }
 static int mk_swap(unsigned int aa, unsigned int ab, unsigned int tl) {
     if (scnt >= 16) return E_XC;
-    swap_t *s = &sw[scnt]; s->id = scnt; s->aa = aa; s->ab = ab;
-    s->tl = bts + tl; s->st = 0;
+    swap_t *s = &sw[scnt]; s->id = scnt; s->aa = aa; s->ab = ab; s->tl = bts + tl; s->st = 0;
     unsigned int hl = hash((const unsigned char *)&scnt, 4);
     for (int i = 0; i < HASH; i++) s->hl[i] = (hl >> ((i & 3) * 8)) & 0xFF;
     for (int i = 0; i < ADDR; i++) { s->pa[i] = (unsigned char)(0xAA + i); s->pb[i] = (unsigned char)(0xBB + i); }
@@ -421,9 +415,9 @@ static int cf_swap(unsigned int sid, unsigned int secret) {
 /* Oracles */
 static int reg_ora(const char *nm, int ot, unsigned int iv, unsigned int cf) {
     if (ocnt >= MAX_ORA) return E_ORA;
-    ora_t *f = &ora[ocnt]; cstr(f->nm, nm, 32); f->ot = ot;
-    f->v = iv; f->ts = bts; f->cf = cf; f->act = 1; f->sc = 1; f->rnd = 0;
-    ocnt++; ps("  Oracle: "); ps(nm); ps(" type="); pi(ot); ps("\n"); return E_OK;
+    ora_t *f = &ora[ocnt]; cstr(f->nm, nm, 32); f->ot = ot; f->v = iv; f->ts = bts;
+    f->cf = cf; f->act = 1; f->sc = 1; f->rnd = 0; ocnt++;
+    ps("  Oracle: "); ps(nm); ps(" type="); pi(ot); ps("\n"); return E_OK;
 }
 static unsigned int get_ora(const char *nm) {
     for (int i = 0; i < ocnt; i++) {
@@ -431,14 +425,12 @@ static unsigned int get_ora(const char *nm) {
         while (*a && *b) { if (*a != *b) { m = 0; break; } a++; b++; }
         if (*a != *b) m = 0;
         if (m && ora[i].act) {
-            if (ora[i].ot == OR_DEC) return ora[i].v + (ora[i].rnd % 5) - 2;
-            return ora[i].v;
+            if (ora[i].ot == OR_DEC) return ora[i].v + (ora[i].rnd % 5) - 2; return ora[i].v;
         }
     } return 0;
 }
 static int upd_ora(int idx, unsigned int nv, unsigned int ts, unsigned int sc) {
-    if (idx >= ocnt) return E_ORA;
-    ora_t *f = &ora[idx]; if (!f->act) return E_ORA;
+    if (idx >= ocnt) return E_ORA; ora_t *f = &ora[idx]; if (!f->act) return E_ORA;
     f->v = nv; f->ts = ts; f->sc = sc; f->rnd++;
     if (ts + 3600 < bts) { f->act = 0; return E_ORA; } return E_OK;
 }
@@ -455,7 +447,7 @@ static unsigned int gen_rng(unsigned int mn, unsigned int mx) {
 /* Deploy */
 static int deploy(const char *nm, int vt, const unsigned char *bc, unsigned int bl, unsigned int bal) {
     if (ccnt >= MAX_C || bl > MAX_BC) return E_OP;
-    contract_t *c = &cs[ccnt]; cstr(c->nm, nm, 32); c->vm = vt;
+    contract_t *c = &cs[ccnt]; cstr(c->name, nm, 32); c->vm = vt;
     c->clen = bl; for (unsigned int i = 0; i < bl; i++) c->code[i] = bc[i];
     c->scnt = 0; c->status = ST_DEP; c->bal = bal; c->nonce = 0;
     unsigned int h = hash((const unsigned char *)nm, slen(nm));
