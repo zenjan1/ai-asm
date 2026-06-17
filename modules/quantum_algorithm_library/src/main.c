@@ -1,972 +1,532 @@
 /*
  * Quantum Algorithm Library for AI-ASM OS
- *
- * Implements quantum algorithms across six domains:
- *   - Classical: Shor's, Grover's, Deutsch-Jozsa, Bernstein-Vazirani, Simon's
- *   - Variational: VQE, QAOA, VQLS
- *   - Quantum ML: kernel methods, neural networks, RL, generative models
- *   - Quantum Chemistry: molecular energy, electronic structure, dynamics, materials
- *   - Quantum Cryptography: BB84, E91, teleportation, superdense coding
- *   - Quantum RNG: generation, randomness verification, entropy evaluation
+ * Classical, variational, ML, chemistry, crypto, and RNG algorithms
  */
-
 #include <stddef.h>
 
 /* ── Host Imports ──────────────────────────────────────────────────── */
-
 __attribute__((import_module("host"), import_name("alloc")))
 extern unsigned int host_alloc(unsigned int size, unsigned int align);
-
 __attribute__((import_module("host"), import_name("print")))
 extern void host_print(const char *str);
-
 __attribute__((import_module("host"), import_name("exit")))
 extern void host_exit(int code);
-
 __attribute__((import_module("host"), import_name("get_argv")))
 extern int host_get_argv(unsigned int buf_off, unsigned int max_len);
 
 /* ── Constants ─────────────────────────────────────────────────────── */
+#define MQ 32
+#define MS 1024
+#define PI 31415
+#define PS 10
+#define GATE_X 0x01
+#define GATE_Z 0x03
+#define GATE_H  0x10
+#define GATE_CX 0x20
+#define GATE_CZ 0x21
+#define GATE_SW 0x30
+#define GATE_T  0x40
+#define GATE_S  0x41
+#define GATE_RX 0x50
+#define GATE_RY 0x51
+#define GATE_RZ 0x52
+#define KL 0x01
+#define KG 0x02
+#define KP 0x03
+#define BP0 0xA0
+#define BP1 0xA1
+#define BS0 0xA2
+#define BS1 0xA3
 
-#define MAX_QUBITS       32
-#define MAX_SHOTS        1024
-#define PI_FIXED         31415
-#define PREC_SHIFT       10
-
-#define GATE_PAULI_X     0x01
-#define GATE_PAULI_Z     0x03
-#define GATE_HADAMARD    0x10
-#define GATE_CNOT        0x20
-#define GATE_CZ          0x21
-#define GATE_SWAP        0x30
-#define GATE_T           0x40
-#define GATE_S           0x41
-#define GATE_RX          0x50
-#define GATE_RY          0x51
-#define GATE_RZ          0x52
-
-#define KERNEL_LINEAR    0x01
-#define KERNEL_GAUSSIAN  0x02
-#define KERNEL_POLY      0x03
-
-#define BELL_PHI_PLUS    0xA0
-#define BELL_PHI_MINUS   0xA1
-#define BELL_PSI_PLUS    0xA2
-#define BELL_PSI_MINUS   0xA3
-
-/* ── Data Structures ───────────────────────────────────────────────── */
-
-typedef struct { int real; int imag; } Complex;
-typedef int (*BooleanFunc)(int);
-
-typedef struct {
-    int num_qubits;
-    int num_gates;
-    unsigned int gate_types[MAX_QUBITS * 4];
-    int gate_targets[MAX_QUBITS * 4];
-    int gate_controls[MAX_QUBITS * 4];
-    int gate_params[MAX_QUBITS * 4];
-} QuantumCircuit;
-
-typedef struct {
-    unsigned int counts[MAX_QUBITS];
-    int num_shots;
-    int num_qubits;
-} MeasurementResult;
-
-typedef struct {
-    int kernel_type;
-    int num_features;
-    int matrix[MAX_QUBITS * MAX_QUBITS];
-} QuantumKernel;
-
-typedef struct {
-    int num_qubits;
-    int num_layers;
-    int weights[MAX_QUBITS * 4];
-    int num_classes;
-} QuantumNeuralNet;
-
-typedef struct {
-    int state[MAX_QUBITS];
-    int basis[MAX_QUBITS];
-    int key_length;
-    int error_rate;
-    int sifted_key[MAX_QUBITS];
-} BB84Result;
-
-typedef struct {
-    int alice_choices[MAX_QUBITS];
-    int bob_choices[MAX_QUBITS];
-    int correlations[MAX_QUBITS];
-    int chsh_value;
-} E91Result;
-
-typedef struct {
-    unsigned int seed;
-    unsigned int counter;
-    int entropy_bits;
-    int quality;
-} QRNGState;
-
+typedef struct { int r, i; } Cx;
+typedef int (*BF)(int);
+typedef struct { int nq, ng; unsigned int gt[MQ*4]; int gT[MQ*4], gC[MQ*4], gP[MQ*4]; } QCir;
+typedef struct { unsigned int cnt[MQ]; int ns, nq; } MRes;
+typedef struct { int nq; Cx sv[MQ*2]; int fid; } QState;
+typedef struct { int kt, nf, m[MQ*MQ]; } QKern;
+typedef struct { int nq, nl, w[MQ*4], nc; } QNN;
+typedef struct { int st[MQ], bs[MQ], kl, er, sk[MQ]; } BB84;
+typedef struct { int ac[MQ], bc[MQ], co[MQ], ch; } E91;
+typedef struct { unsigned int sd, ct; int eb, ql; } QRNG;
+typedef struct { int np, p[MQ*2], e, cv, it; } VarRes;
+typedef struct { int nq, d, gm[MQ], bt[MQ], ov; } QAOARes;
 /* ── Print Helpers ─────────────────────────────────────────────────── */
+static void ps(const char *s) { host_print(s); }
+static char ib[16];
+static void pi(int v) {
+    int i=0, n=0;
+    if (v<0) { n=1; v=-v; }
+    if (v==0) ib[i++]='0';
+    while (v>0 && i<14) { ib[i++]='0'+(v%10); v/=10; }
+    if (n && i<14) ib[i++]='-';
+    char t[16]; int j=0;
+    while (j<i) { t[j]=ib[i-1-j]; j++; }
+    t[i]='\0'; host_print(t);
+}
+static void ph(unsigned int v) {
+    const char h[]="0123456789ABCDEF";
+    char b[10]; b[0]='0'; b[1]='x';
+    for (int i=9; i>=2; i--) { b[i]=h[v&0x0F]; v>>=4; }
+    b[9]='\0'; host_print(b);
+}
+static int fsin(int x) {
+    if (x<0) return -fsin(-x);
+    while (x>2*PI) x-=2*PI;
+    if (x>PI) return -fsin(x-PI);
+    if (x>PI/2) return fsin(PI-x);
+    int x2=(x*x)>>PS, x3=(x2*x)>>PS, x5=(x3*x2)>>PS;
+    return x-(x3/6)+(x5/120);
+}
+static int fcos(int x) { return fsin(x+PI/2); }
+static Cx cxnew(int r, int i) { Cx c; c.r=r; c.i=i; return c; }
+static Cx cxmul(Cx a, Cx b) {
+    Cx c;
+    c.r = (a.r*b.r - a.i*b.i) >> PS;
+    c.i = (a.r*b.i + a.i*b.r) >> PS;
+    return c;
+}
+static Cx cxadd(Cx a, Cx b) { Cx c; c.r=a.r+b.r; c.i=a.i+b.i; return c; }
+static int cxmag(Cx a) { return (a.r*a.r + a.i*a.i) >> PS; }
 
-static void print_str(const char *s) { host_print(s); }
+static QState qstate_init(int nq) {
+    QState qs;
+    qs.nq = nq;
+    qs.fid = 0;
+    for (int i = 0; i < MQ*2; i++) { qs.sv[i] = cxnew(0, 0); }
+    qs.sv[0] = cxnew(1 << PS, 0);
+    return qs;
+}
 
-static char int_buf[16];
-
-static void print_int(int val) {
-    int i = 0;
-    int neg = 0;
-    if (val < 0) { neg = 1; val = -val; }
-    if (val == 0) { int_buf[i++] = '0'; }
-    while (val > 0 && i < 14) {
-        int_buf[i++] = '0' + (val % 10);
-        val /= 10;
+static void qstate_apply_h(QState *qs, int qubit) {
+    int inv2 = 724; /* 1/sqrt(2) * 1024 */
+    for (int i = 0; i < (1 << qubit) && i < MQ; i++) {
+        int idx0 = i;
+        int idx1 = i + (1 << qubit);
+        if (idx1 >= MQ*2) break;
+        Cx a = qs->sv[idx0];
+        Cx b = qs->sv[idx1];
+        qs->sv[idx0] = cxnew(((a.r+b.r)*inv2)>>PS, ((a.i+b.i)*inv2)>>PS);
+        qs->sv[idx1] = cxnew(((a.r-b.r)*inv2)>>PS, ((a.i-b.i)*inv2)>>PS);
     }
-    if (neg && i < 14) { int_buf[i++] = '-'; }
-    int j = 0;
-    char tmp[16];
-    while (j < i) { tmp[j] = int_buf[i - 1 - j]; j++; }
-    tmp[i] = '\0';
-    host_print(tmp);
 }
 
-static void print_hex(unsigned int val) {
-    const char hex[] = "0123456789ABCDEF";
-    char buf[10];
-    buf[0] = '0';
-    buf[1] = 'x';
-    for (int i = 9; i >= 2; i--) {
-        buf[i] = hex[val & 0x0F];
-        val >>= 4;
+static void qstate_fidelity(QState *qs, QState *target) {
+    int fid = 0;
+    int n = (1 << qs->nq);
+    for (int i = 0; i < n && i < MQ*2; i++) {
+        Cx prod = cxmul(qs->sv[i], target->sv[i]);
+        fid += prod.r;
     }
-    buf[9] = '\0';
-    host_print(buf);
+    qs->fid = fid >> PS;
 }
 
-/* ── Fixed-Point Math ──────────────────────────────────────────────── */
-
-static int fixed_sin(int x) {
-    if (x < 0) return -fixed_sin(-x);
-    while (x > 2 * PI_FIXED) x -= 2 * PI_FIXED;
-    if (x > PI_FIXED) return -fixed_sin(x - PI_FIXED);
-    if (x > PI_FIXED / 2) return fixed_sin(PI_FIXED - x);
-    int x2 = (x * x) >> PREC_SHIFT;
-    int x3 = (x2 * x) >> PREC_SHIFT;
-    int x5 = (x3 * x2) >> PREC_SHIFT;
-    return x - (x3 / 6) + (x5 / 120);
+static int gcd(int a, int b) { while (b) { int t=b; b=a%b; a=t; } return a; }
+static int modexp(int b, int e, int m) {
+    int r=1; b%=m;
+    while (e>0) { if (e&1) r=(r*b)%m; e>>=1; b=(b*b)%m; }
+    return r;
 }
-
-static int fixed_cos(int x) { return fixed_sin(x + PI_FIXED / 2); }
-
-static int gcd(int a, int b) {
-    while (b != 0) { int t = b; b = a % b; a = t; }
-    return a;
-}
-
-static int modular_exp(int base, int exp, int mod) {
-    int result = 1;
-    base = base % mod;
-    while (exp > 0) {
-        if (exp & 1) result = (result * base) % mod;
-        exp >>= 1;
-        base = (base * base) % mod;
-    }
-    return result;
-}
-
 /* ── Quantum Circuit Primitives ────────────────────────────────────── */
-
-static QuantumCircuit circuit_create(int nq) {
-    QuantumCircuit qc;
-    qc.num_qubits = nq;
-    qc.num_gates = 0;
-    return qc;
+static QCir qcmk(int n) { QCir q; q.nq=n; q.ng=0; return q; }
+static void qcadd(QCir *q, int t, int tg, int c, int p) {
+    if (q->ng>=MQ*4) return;
+    q->gt[q->ng]=t; q->gT[q->ng]=tg; q->gC[q->ng]=c; q->gP[q->ng]=p; q->ng++;
 }
-
-static void circuit_add_gate(QuantumCircuit *qc, int type, int target, int ctrl, int param) {
-    int g = qc->num_gates;
-    if (g >= MAX_QUBITS * 4) return;
-    qc->gate_types[g] = type;
-    qc->gate_targets[g] = target;
-    qc->gate_controls[g] = ctrl;
-    qc->gate_params[g] = param;
-    qc->num_gates++;
-}
-
-static void circuit_hadamard(QuantumCircuit *qc, int qubit) {
-    circuit_add_gate(qc, GATE_HADAMARD, qubit, -1, 0);
-}
-
-static void circuit_pauli_x(QuantumCircuit *qc, int qubit) {
-    circuit_add_gate(qc, GATE_PAULI_X, qubit, -1, 0);
-}
-
-static void circuit_cnot(QuantumCircuit *qc, int ctrl, int target) {
-    circuit_add_gate(qc, GATE_CNOT, target, ctrl, 0);
-}
-
-static void circuit_rotation(QuantumCircuit *qc, int type, int qubit, int angle) {
-    circuit_add_gate(qc, type, qubit, -1, angle);
-}
-
-static void circuit_measure(QuantumCircuit *qc, MeasurementResult *result) {
-    result->num_qubits = qc->num_qubits;
-    result->num_shots = MAX_SHOTS;
-    unsigned int hash = 0x1234;
-    for (int s = 0; s < MAX_SHOTS; s++) {
-        unsigned int outcome = 0;
-        for (int q = 0; q < qc->num_qubits; q++) {
-            hash = hash * 1103515245 + 12345;
-            int bit = (hash >> 16) & 1;
-            outcome |= ((unsigned int)bit << q);
-        }
-        result->counts[outcome % MAX_QUBITS]++;
+static void qch(QCir *q, int qb) { qcadd(q, GATE_H, qb, -1, 0); }
+static void qcx(QCir *q, int qb) { qcadd(q, GATE_X, qb, -1, 0); }
+static void qccx(QCir *q, int c, int t) { qcadd(q, GATE_CX, t, c, 0); }
+static void qcr(QCir *q, int t, int qb, int a) { qcadd(q, t, qb, -1, a); }
+static void qcmeas(QCir *q, MRes *r) {
+    r->nq=q->nq; r->ns=MS;
+    unsigned int h=0x1234;
+    for (int s=0; s<MS; s++) {
+        unsigned int o=0;
+        for (int b=0; b<q->nq; b++) { h=h*1103515245+12345; o|=((h>>16)&1)<<b; }
+        r->cnt[o%MQ]++;
     }
 }
-
 /* ── Shor's Factoring Algorithm ────────────────────────────────────── */
-
-static void shors_factor(int N, int *factor1, int *factor2) {
-    print_str("  Shor: factoring N=");
-    print_int(N);
-    print_str("\n");
-
-    int a = 2;
-    for (int attempt = 0; attempt < 8; attempt++) {
-        if (gcd(a, N) > 1) {
-            *factor1 = gcd(a, N);
-            *factor2 = N / (*factor1);
-            return;
+static void shors(int N, int *f1, int *f2) {
+    ps("  Shor: N="); pi(N); ps("\n");
+    int a=2;
+    for (int at=0; at<8; at++) {
+        if (gcd(a,N)>1) { *f1=gcd(a,N); *f2=N/(*f1); return; }
+        int p=1, v=a%N;
+        while (v!=1 && p<N) { v=(v*a)%N; p++; }
+        if (p%2==0) {
+            int x=modexp(a,p/2,N);
+            *f1=gcd(x-1,N); *f2=gcd(x+1,N);
+            if (*f1>1 && *f1<N) { *f2=N/(*f1); return; }
+            if (*f2>1 && *f2<N) { *f1=N/(*f2); return; }
         }
-        int period = 1;
-        int val = a % N;
-        while (val != 1 && period < N) {
-            val = (val * a) % N;
-            period++;
-        }
-        if (period % 2 == 0) {
-            int x = modular_exp(a, period / 2, N);
-            *factor1 = gcd(x - 1, N);
-            *factor2 = gcd(x + 1, N);
-            if (*factor1 > 1 && *factor1 < N) {
-                *factor2 = N / (*factor1);
-                return;
-            }
-            if (*factor2 > 1 && *factor2 < N) {
-                *factor1 = N / (*factor2);
-                return;
-            }
-        }
-        a = a + 1;
+        a++;
     }
-    *factor1 = 1;
-    *factor2 = N;
+    *f1=1; *f2=N;
 }
-
 /* ── Grover's Search Algorithm ─────────────────────────────────────── */
-
-static int grover_oracle(int state, int target) {
-    return (state == target) ? -1 : 1;
+static int gorcl(int s, int t) { return (s==t)?-1:1; }
+static void grover(int nq, int tgt) {
+    ps("  Grover: nq="); pi(nq); ps(" tgt="); pi(tgt); ps("\n");
+    int ns=1<<nq, amp[MQ*2], ia=(1<<PS)*100/ns;
+    for (int i=0; i<ns && i<MQ*2; i++) amp[i]=ia;
+    int ni=1, sq=1, tmp=ns;
+    while (tmp>1) { sq*=2; tmp>>=2; }
+    if (sq>0) ni=(PI/2)/sq;
+    if (ni<1) ni=1;
+    if (ni>10) ni=10;
+    for (int it=0; it<ni; it++) {
+        for (int i=0; i<ns && i<MQ*2; i++) amp[i]=amp[i]*gorcl(i,tgt)/100;
+        int av=0;
+        for (int i=0; i<ns && i<MQ*2; i++) av+=amp[i];
+        av/=ns;
+        for (int i=0; i<ns && i<MQ*2; i++) amp[i]=2*av-amp[i];
+    }
+    int bi=0, ba=0;
+    for (int i=0; i<ns && i<MQ*2; i++)
+        if (amp[i]>ba) { ba=amp[i]; bi=i; }
+    ps("  Found: "); pi(bi); ps("\n");
 }
-
-static void grovers_search(int num_qubits, int target) {
-    print_str("  Grover: nq=");
-    print_int(num_qubits);
-    print_str(" target=");
-    print_int(target);
-    print_str("\n");
-
-    int n_states = 1 << num_qubits;
-    int amplitudes[MAX_QUBITS * 2];
-    int init_amp = (1 << PREC_SHIFT) * 100 / n_states;
-    for (int i = 0; i < n_states && i < MAX_QUBITS * 2; i++) {
-        amplitudes[i] = init_amp;
-    }
-
-    int num_iters = 1;
-    if (n_states > 4) {
-        int sqrt_n = 1;
-        int temp = n_states;
-        while (temp > 1) { sqrt_n *= 2; temp >>= 2; }
-        if (sqrt_n > 0) num_iters = (PI_FIXED / 2) / sqrt_n;
-    }
-    if (num_iters < 1) num_iters = 1;
-    if (num_iters > 10) num_iters = 10;
-
-    for (int iter = 0; iter < num_iters; iter++) {
-        for (int i = 0; i < n_states && i < MAX_QUBITS * 2; i++) {
-            amplitudes[i] = amplitudes[i] * grover_oracle(i, target) / 100;
-        }
-        int avg = 0;
-        for (int i = 0; i < n_states && i < MAX_QUBITS * 2; i++) avg += amplitudes[i];
-        avg /= n_states;
-        for (int i = 0; i < n_states && i < MAX_QUBITS * 2; i++) {
-            amplitudes[i] = 2 * avg - amplitudes[i];
-        }
-    }
-
-    int best = 0;
-    int best_amp = 0;
-    for (int i = 0; i < n_states && i < MAX_QUBITS * 2; i++) {
-        if (amplitudes[i] > best_amp) { best_amp = amplitudes[i]; best = i; }
-    }
-    print_str("  Grover: found state=");
-    print_int(best);
-    print_str("\n");
+/* ── Deutsch-Jozsa, Bernstein-Vazirani, Simon's ────────────────────── */
+static int cfn(int x) { (void)x; return 0; }
+static int bfn(int x) { return x&1; }
+static void dj(int nq, BF f) {
+    ps("  DJ: nq="); pi(nq); ps("\n");
+    int ni=1<<nq, s=0;
+    for (int i=0; i<ni; i++) s+=f(i);
+    ps("  Result: "); ps((s==0||s==ni)?"CONSTANT\n":"BALANCED\n");
 }
-
-/* ── Deutsch-Jozsa Algorithm ───────────────────────────────────────── */
-
-static int constant_func(int x) { (void)x; return 0; }
-static int balanced_func(int x) { return x & 1; }
-
-static void deutsch_jozsa(int num_qubits, BooleanFunc func) {
-    print_str("  DJ: nq=");
-    print_int(num_qubits);
-    print_str("\n");
-    int n_inputs = 1 << num_qubits;
-    int sum = 0;
-    for (int i = 0; i < n_inputs; i++) sum += func(i);
-    if (sum == 0 || sum == n_inputs) {
-        print_str("  Result: CONSTANT\n");
-    } else {
-        print_str("  Result: BALANCED\n");
-    }
+static int bvh=0;
+static int bvorcl(int x) {
+    int r=0, tx=x, ts=bvh;
+    while (tx>0 && ts>0) { r^=(tx&ts&1); tx>>=1; ts>>=1; }
+    return r;
 }
-
-/* ── Bernstein-Vazirani Algorithm ──────────────────────────────────── */
-
-static int bv_hidden_string = 0;
-
-static int bv_oracle(int x) {
-    int result = 0;
-    int temp_x = x;
-    int temp_s = bv_hidden_string;
-    while (temp_x > 0 && temp_s > 0) {
-        result ^= (temp_x & temp_s & 1);
-        temp_x >>= 1;
-        temp_s >>= 1;
+static void bv(int nq, int hs) {
+    bvh=hs;
+    ps("  BV: nq="); pi(nq); ps(" hidden="); ph((unsigned int)hs); ps("\n");
+    int rec=0;
+    for (int b=0; b<nq; b++) {
+        int ti=1<<b;
+        if (bvorcl(0)!=bvorcl(ti)) rec|=(1<<b);
     }
-    return result;
+    ps("  Recovered: "); ph((unsigned int)rec); ps("\n");
 }
-
-static void bernstein_vazirani(int num_qubits, int hidden_string) {
-    bv_hidden_string = hidden_string;
-    print_str("  BV: nq=");
-    print_int(num_qubits);
-    print_str(" hidden=");
-    print_hex((unsigned int)hidden_string);
-    print_str("\n");
-    int recovered = 0;
-    for (int bit = 0; bit < num_qubits; bit++) {
-        int test_input = 1 << bit;
-        int f0 = bv_oracle(0);
-        int f1 = bv_oracle(test_input);
-        if (f0 != f1) recovered |= (1 << bit);
+static int simh=0;
+static int simorcl(int x) { return (x^simh)&0x0F; }
+static void simon(int nq, int hs) {
+    simh=hs;
+    ps("  Simon: nq="); pi(nq); ps(" hidden="); ph((unsigned int)hs); ps("\n");
+    int rec=0;
+    for (int i=0; i<nq*2; i++) {
+        int x1=i*3+1, y1=simorcl(x1), x2=x1^hs, y2=simorcl(x2);
+        if (y1==y2) { rec=hs; break; }
     }
-    print_str("  Recovered: ");
-    print_hex((unsigned int)recovered);
-    print_str("\n");
+    ps("  Found s="); ph((unsigned int)rec); ps("\n");
 }
-
-/* ── Simon's Algorithm ─────────────────────────────────────────────── */
-
-static int simon_hidden_string = 0;
-
-static int simon_oracle(int x) { return (x ^ simon_hidden_string) & 0x0F; }
-
-static void simons_algorithm(int num_qubits, int hidden_s) {
-    simon_hidden_string = hidden_s;
-    print_str("  Simon: nq=");
-    print_int(num_qubits);
-    print_str(" hidden=");
-    print_hex((unsigned int)hidden_s);
-    print_str("\n");
-    int recovered = 0;
-    for (int i = 0; i < num_qubits * 2; i++) {
-        int x1 = i * 3 + 1;
-        int y1 = simon_oracle(x1);
-        int x2 = x1 ^ hidden_s;
-        int y2 = simon_oracle(x2);
-        if (y1 == y2) { recovered = hidden_s; break; }
+/* ── Variational Algorithms: VQE, QAOA, VQLS ───────────────────────── */
+static void vqe(int nq, int nl) {
+    ps("  VQE: nq="); pi(nq); ps(" layers="); pi(nl); ps("\n");
+    int e=100<<PS;
+    for (int l=0; l<nl; l++) {
+        int a=(l*PI)/nl, c=fcos(a*2);
+        e=e-((c*(nl-l))/(nl*10));
+        if (e<0) e=-e/2;
     }
-    print_str("  Found s=");
-    print_hex((unsigned int)recovered);
-    print_str("\n");
+    e-=(nq*3);
+    ps("  Energy="); pi(e); ps(" iters="); pi(nl*10); ps("\n");
 }
-
-/* ── VQE: Variational Quantum Eigensolver ──────────────────────────── */
-
-static void vqe_solve(int num_qubits, int num_layers) {
-    print_str("  VQE: qubits=");
-    print_int(num_qubits);
-    print_str(" layers=");
-    print_int(num_layers);
-    print_str("\n");
-    int energy = 100 << PREC_SHIFT;
-    for (int layer = 0; layer < num_layers; layer++) {
-        int angle = (layer * PI_FIXED) / num_layers;
-        int cos_val = fixed_cos(angle * 2);
-        int contribution = (cos_val * (num_layers - layer)) / (num_layers * 10);
-        energy = energy - contribution;
-        if (energy < 0) energy = -energy / 2;
+static void qaoa(int nq, int d, int *w) {
+    ps("  QAOA: nq="); pi(nq); ps(" depth="); pi(d); ps("\n");
+    int obj=0;
+    for (int l=0; l<d; l++) {
+        int gm=(PI/4)/(l+1), bt=(PI/8)/(l+1);
+        for (int i=0; i<nq-1 && i<MQ-1; i++) obj+=(w[i]*fsin(gm+bt))>>PS;
     }
-    energy = energy - (num_qubits * 3);
-    print_str("  Energy=");
-    print_int(energy);
-    print_str(" converged after ");
-    print_int(num_layers * 10);
-    print_str(" iterations\n");
+    ps("  Objective="); pi(obj); ps("\n");
 }
-
-/* ── QAOA: Quantum Approximate Optimization ────────────────────────── */
-
-static void qaoa_solve(int num_qubits, int depth, int *weights) {
-    print_str("  QAOA: qubits=");
-    print_int(num_qubits);
-    print_str(" depth=");
-    print_int(depth);
-    print_str("\n");
-    int objective = 0;
-    for (int d = 0; d < depth; d++) {
-        int gamma = (PI_FIXED / 4) / (d + 1);
-        int beta = (PI_FIXED / 8) / (d + 1);
-        for (int i = 0; i < num_qubits - 1 && i < MAX_QUBITS - 1; i++) {
-            int edge_val = weights[i] * fixed_sin(gamma + beta);
-            objective += edge_val >> PREC_SHIFT;
+static void vqls(int sz) {
+    ps("  VQLS: sz="); pi(sz); ps("\n");
+    int res=100<<PS, p[8];
+    for (int i=0; i<8; i++) p[i]=(i+1)*100;
+    for (int it=0; it<20; it++) {
+        int g=0;
+        for (int i=0; i<sz && i<8; i++) g+=p[i]*(i+1);
+        for (int i=0; i<8; i++) p[i]=p[i]-2*(g/sz);
+        res=res-(res/10);
+    }
+    ps("  Residual="); pi(res>>PS); ps("\n");
+}
+/* ── Quantum Machine Learning ──────────────────────────────────────── */
+static void qkern(QKern *qk, int ns, int *d) {
+    ps("  QKernel: type="); pi(qk->kt); ps(" samples="); pi(ns); ps("\n");
+    for (int i=0; i<ns && i<MQ; i++) {
+        for (int j=i; j<ns && j<MQ; j++) {
+            int kv=0;
+            if (qk->kt==KL) kv=d[i]*d[j];
+            else if (qk->kt==KG) { int df=d[i]-d[j]; kv=(1000<<PS)/(100+df*df); }
+            else { int pr=d[i]*d[j]; kv=(pr*pr)/100; }
+            qk->m[i*MQ+j]=kv; qk->m[j*MQ+i]=kv;
         }
     }
-    print_str("  Objective=");
-    print_int(objective);
-    print_str("\n");
+    ps("  Matrix computed\n");
 }
-
-/* ── VQLS: Variational Quantum Linear Solver ───────────────────────── */
-
-static void vqls_solve(int matrix_size) {
-    print_str("  VQLS: size=");
-    print_int(matrix_size);
-    print_str("\n");
-    int residual = 100 << PREC_SHIFT;
-    int params[8];
-    for (int i = 0; i < 8; i++) params[i] = (i + 1) * 100;
-    for (int iter = 0; iter < 20; iter++) {
-        int grad = 0;
-        for (int i = 0; i < matrix_size && i < 8; i++) {
-            grad += params[i] * (i + 1);
+static void qnnfwd(QNN *qn, int *in, int *out) {
+    ps("  QNN: layers="); pi(qn->nl); ps(" classes="); pi(qn->nc); ps("\n");
+    for (int l=0; l<qn->nl && l<4; l++)
+        for (int q=0; q<qn->nq && q<MQ; q++)
+            in[q%qn->nq]=fsin(in[q%qn->nq]+qn->w[l*MQ+q]);
+    for (int c=0; c<qn->nc && c<MQ; c++) {
+        out[c]=0;
+        for (int q=0; q<qn->nq && q<MQ; q++) out[c]+=in[q]*(c+1);
+        out[c]=out[c]/qn->nq;
+    }
+    ps("  Forward complete\n");
+}
+static void qrl(int ns, int na, int nst) {
+    ps("  QRL: states="); pi(ns); ps(" actions="); pi(na); ps(" steps="); pi(nst); ps("\n");
+    int s=0, tr=0;
+    unsigned int h=0xBEEF;
+    for (int st=0; st<nst; st++) {
+        h=h*2654435761U+0xCAFE; h^=(h>>16); h=h*0x85EBCA6B; h^=(h>>13);
+        int a=(int)(h%(unsigned int)na);
+        s=(s+a+1)%ns;
+        tr+=(s==ns-1)?10:-1;
+    }
+    ps("  Reward="); pi(tr); ps("\n");
+}
+static void qgan(int nq, int ns) {
+    ps("  QGAN: nq="); pi(nq); ps(" samples="); pi(ns); ps("\n");
+    unsigned int fr[MQ], g=0xDEADBEEF;
+    for (int i=0; i<MQ; i++) fr[i]=0;
+    for (int s=0; s<ns; s++) {
+        unsigned int sm=0;
+        for (int q=0; q<nq; q++) {
+            g=g*1103515245+12345;
+            sm|=((unsigned int)(((g>>16)&1)^((g>>8)&1)))<<q;
         }
-        for (int i = 0; i < 8; i++) {
-            params[i] = params[i] - 2 * (grad / matrix_size);
+        fr[sm%MQ]++;
+    }
+    int mf=0, mi=0;
+    for (int i=0; i<MQ; i++)
+        if ((int)fr[i]>mf) { mf=(int)fr[i]; mi=i; }
+    ps("  Most freq="); pi(mi); ps(" count="); pi(mf); ps("\n");
+}
+/* ── Quantum Chemistry ─────────────────────────────────────────────── */
+static void mole(const char *mol, int bz) {
+    ps("  MolEnergy: "); ps(mol); ps(" basis="); pi(bz); ps("\n");
+    int nr=0;
+    if (mol[0]=='H' && mol[1]=='2') nr=7<<PS;
+    else if (mol[0]=='L' && mol[1]=='i') nr=14<<PS;
+    else if (mol[0]=='H' && mol[1]=='e') nr=18<<PS;
+    else nr=10<<PS;
+    int ob=0;
+    for (int i=0; i<bz; i++) ob+=-(20+i*5);
+    int tb=0;
+    for (int i=0; i<bz; i++)
+        for (int j=i+1; j<bz; j++) tb+=(3+i+j);
+    int tot=nr+((ob+tb)<<PS);
+    ps("  Energy="); pi(tot>>PS); ps(" Hartree\n");
+}
+static void elecs(int ne, int no) {
+    ps("  ElecStruct: e="); pi(ne); ps(" orb="); pi(no); ps("\n");
+    int oc[MQ];
+    for (int i=0; i<MQ; i++) oc[i]=0;
+    for (int e=0; e<ne; e++) { int o=e/2; if (o<no) oc[o]++; }
+    int he=0;
+    for (int i=0; i<no && i<MQ; i++) he+=oc[i]*(-(10+i*3));
+    ps("  HF energy="); pi(he); ps("\n");
+    for (int i=0; i<no && i<MQ; i++)
+        if (oc[i]>0) { ps("    orb "); pi(i); ps(": occ="); pi(oc[i]); ps("\n"); }
+}
+static void reactd(int ns, int nt) {
+    ps("  ReactDyn: states="); pi(ns); ps(" steps="); pi(nt); ps("\n");
+    int pop[MQ];
+    for (int i=0; i<MQ; i++) pop[i]=0;
+    pop[0]=1<<PS;
+    for (int t=0; t<nt && t<50; t++) {
+        int np[MQ];
+        for (int i=0; i<MQ; i++) np[i]=0;
+        for (int s=0; s<ns && s<MQ; s++) {
+            int d=pop[s]/20;
+            np[s]+=pop[s]-d;
+            if (s+1<ns && s+1<MQ) np[s+1]+=d;
         }
-        residual = residual - (residual / 10);
+        for (int i=0; i<MQ; i++) pop[i]=np[i];
     }
-    print_str("  Residual=");
-    print_int(residual >> PREC_SHIFT);
-    print_str("\n");
+    for (int s=0; s<ns && s<MQ; s++)
+        if (pop[s]>0) { ps("    state "); pi(s); ps(": "); pi(pop[s]>>PS); ps("\n"); }
 }
-
-/* ── Quantum Kernel Methods ────────────────────────────────────────── */
-
-static void quantum_kernel_compute(QuantumKernel *qk, int num_samples, int *data) {
-    print_str("  QKernel: type=");
-    print_int(qk->kernel_type);
-    print_str(" samples=");
-    print_int(num_samples);
-    print_str("\n");
-    for (int i = 0; i < num_samples && i < MAX_QUBITS; i++) {
-        for (int j = i; j < num_samples && j < MAX_QUBITS; j++) {
-            int kernel_val = 0;
-            if (qk->kernel_type == KERNEL_LINEAR) {
-                kernel_val = data[i] * data[j];
-            } else if (qk->kernel_type == KERNEL_GAUSSIAN) {
-                int diff = data[i] - data[j];
-                kernel_val = (1000 << PREC_SHIFT) / (100 + diff * diff);
-            } else {
-                int prod = data[i] * data[j];
-                kernel_val = (prod * prod) / 100;
-            }
-            qk->matrix[i * MAX_QUBITS + j] = kernel_val;
-            qk->matrix[j * MAX_QUBITS + i] = kernel_val;
-        }
-    }
-    print_str("  Matrix computed\n");
+static void matsim(int ls, int tmp) {
+    ps("  MatSim: lat="); pi(ls); ps(" temp="); pi(tmp); ps("\n");
+    int sp[MQ];
+    for (int i=0; i<ls && i<MQ; i++) sp[i]=(i%2==0)?1:-1;
+    int te=0, mg=0;
+    for (int i=0; i<ls-1 && i<MQ-1; i++) te-=sp[i]*sp[i+1];
+    for (int i=0; i<ls && i<MQ; i++) mg+=sp[i];
+    ps("  Energy="); pi(te); ps(" Mag="); pi(mg); ps("\n");
 }
-
-/* ── Quantum Neural Network ────────────────────────────────────────── */
-
-static void qnn_forward(QuantumNeuralNet *qnn, int *input, int *output) {
-    print_str("  QNN: layers=");
-    print_int(qnn->num_layers);
-    print_str(" classes=");
-    print_int(qnn->num_classes);
-    print_str("\n");
-    for (int l = 0; l < qnn->num_layers && l < 4; l++) {
-        for (int q = 0; q < qnn->num_qubits && q < MAX_QUBITS; q++) {
-            int angle = qnn->weights[l * MAX_QUBITS + q];
-            int idx = q % qnn->num_qubits;
-            input[idx] = fixed_sin(input[idx] + angle);
-        }
+/* ── Quantum Cryptography ──────────────────────────────────────────── */
+static void bb84(int kl) {
+    ps("  BB84: kl="); pi(kl); ps("\n");
+    BB84 r; r.kl=kl; r.er=0;
+    unsigned int rg=0xCAFE;
+    for (int i=0; i<kl && i<MQ; i++) {
+        rg=rg*1103515245+12345; r.st[i]=(rg>>16)&1;
+        rg=rg*1103515245+12345; r.bs[i]=(rg>>16)&1;
     }
-    for (int c = 0; c < qnn->num_classes && c < MAX_QUBITS; c++) {
-        output[c] = 0;
-        for (int q = 0; q < qnn->num_qubits && q < MAX_QUBITS; q++) {
-            output[c] += input[q] * (c + 1);
-        }
-        output[c] = output[c] / qnn->num_qubits;
+    int sc=0; rg=0xFACE;
+    for (int i=0; i<kl && i<MQ; i++) {
+        rg=rg*1103515245+12345;
+        if (((rg>>16)&1)==r.bs[i]) r.sk[sc++]=r.st[i];
     }
-    print_str("  Forward pass complete\n");
+    ps("  Sifted="); pi(sc); ps(" err="); pi(r.er); ps("%\n");
+    if (sc>0) {
+        ps("  Key: ");
+        for (int i=0; i<sc && i<16; i++) pi(r.sk[i]);
+        ps("\n");
+    }
 }
-
-/* ── Quantum Reinforcement Learning ────────────────────────────────── */
-
-static int quantum_rl_select_action(int state, int num_actions) {
-    unsigned int hash = (unsigned int)(state * 2654435761U + 0xBEEF);
-    hash = hash ^ (hash >> 16);
-    hash = hash * 0x85EBCA6B;
-    hash = hash ^ (hash >> 13);
-    return (int)(hash % (unsigned int)num_actions);
+static void e91(int np) {
+    ps("  E91: pairs="); pi(np); ps("\n");
+    E91 r; r.ch=0;
+    unsigned int rg=0xBABE;
+    for (int i=0; i<np && i<MQ; i++) {
+        rg=rg*1103515245+12345; r.ac[i]=(rg>>16)%3;
+        rg=rg*1103515245+12345; r.bc[i]=(rg>>16)%3;
+    }
+    int cs=0;
+    for (int i=0; i<np && i<MQ; i++) {
+        int a=(r.ac[i]<2)?1:-1, b=(r.bc[i]<2)?1:-1;
+        r.co[i]=a*b; cs+=a*b;
+    }
+    r.ch=(cs*100)/np;
+    ps("  CHSH="); pi(r.ch); ps("/100 ");
+    ps(r.ch>70?"VIOLATED (quantum)\n":"satisfied (classical)\n");
 }
-
-static void quantum_rl_episode(int num_states, int num_actions, int num_steps) {
-    print_str("  QRL: states=");
-    print_int(num_states);
-    print_str(" actions=");
-    print_int(num_actions);
-    print_str(" steps=");
-    print_int(num_steps);
-    print_str("\n");
-    int state = 0;
-    int total_reward = 0;
-    for (int step = 0; step < num_steps; step++) {
-        int action = quantum_rl_select_action(state, num_actions);
-        state = (state + action + 1) % num_states;
-        int reward = (state == num_states - 1) ? 10 : -1;
-        total_reward += reward;
-    }
-    print_str("  Reward=");
-    print_int(total_reward);
-    print_str("\n");
+static void teleport(int st) {
+    ps("  Teleport: st="); pi(st); ps("\n");
+    int ab=st^1, bc=ab, rec=st^bc^bc;
+    ps("  Alice="); pi(ab); ps(" Bob="); pi(bc);
+    ps(" Recv="); pi(rec); ps(" Fid=100%\n");
 }
-
-/* ── Quantum Generative Model ──────────────────────────────────────── */
-
-static void quantum_generative_sample(int num_qubits, int num_samples) {
-    print_str("  QGAN: qubits=");
-    print_int(num_qubits);
-    print_str(" samples=");
-    print_int(num_samples);
-    print_str("\n");
-    unsigned int freq[MAX_QUBITS];
-    for (int i = 0; i < MAX_QUBITS; i++) freq[i] = 0;
-    unsigned int gen_seed = 0xDEADBEEF;
-    for (int s = 0; s < num_samples; s++) {
-        unsigned int sample = 0;
-        for (int q = 0; q < num_qubits; q++) {
-            gen_seed = gen_seed * 1103515245 + 12345;
-            int bit = ((gen_seed >> 16) & 1) ^ ((gen_seed >> 8) & 1);
-            sample |= ((unsigned int)bit << q);
-        }
-        freq[sample % MAX_QUBITS]++;
-    }
-    int max_freq = 0;
-    int max_idx = 0;
-    for (int i = 0; i < MAX_QUBITS; i++) {
-        if ((int)freq[i] > max_freq) { max_freq = (int)freq[i]; max_idx = i; }
-    }
-    print_str("  Most frequent=");
-    print_int(max_idx);
-    print_str(" count=");
-    print_int(max_freq);
-    print_str("\n");
+static void sdense(int mb) {
+    ps("  SuperDense: msg="); pi(mb); ps("\n");
+    int ao=mb&0x03, bs=BP0+ao, dec=ao;
+    ps("  Bell="); ph((unsigned int)bs);
+    ps(" Decoded="); pi(dec); ps(" (2bits/1qubit)\n");
 }
-
-/* ── Molecular Energy Calculation ──────────────────────────────────── */
-
-static void molecular_energy(const char *molecule, int basis_size) {
-    print_str("  MolEnergy: ");
-    print_str(molecule);
-    print_str(" basis=");
-    print_int(basis_size);
-    print_str("\n");
-    int nuc_repulsion = 0;
-    if (molecule[0] == 'H' && molecule[1] == '2') {
-        nuc_repulsion = 7 << PREC_SHIFT;
-    } else if (molecule[0] == 'L' && molecule[1] == 'i') {
-        nuc_repulsion = 14 << PREC_SHIFT;
-    } else if (molecule[0] == 'H' && molecule[1] == 'e') {
-        nuc_repulsion = 18 << PREC_SHIFT;
-    } else {
-        nuc_repulsion = 10 << PREC_SHIFT;
+/* ── Quantum Random Number Generation & Verification ───────────────── */
+static void qrnggen(QRNG *q, int nb) {
+    ps("  QRNG: bits="); pi(nb); ps("\n");
+    unsigned int v=q->sd; int ones=0;
+    for (int i=0; i<nb; i++) {
+        v=v*1103515245+12345; v^=(v>>13); v^=(v<<17);
+        ones+=(v>>16)&1;
     }
-    int one_body = 0;
-    for (int i = 0; i < basis_size; i++) {
-        one_body += -(20 + i * 5);
-    }
-    int two_body = 0;
-    for (int i = 0; i < basis_size; i++) {
-        for (int j = i + 1; j < basis_size; j++) {
-            two_body += (3 + i + j);
-        }
-    }
-    int total = nuc_repulsion + ((one_body + two_body) << PREC_SHIFT);
-    print_str("  Energy=");
-    print_int(total >> PREC_SHIFT);
-    print_str(" Hartree (fixed-point)\n");
+    q->sd=v; q->eb=ones;
+    int rt=(ones*100)/nb;
+    q->ql=100-((rt-50)*(rt-50))/25;
+    if (q->ql<0) q->ql=0;
+    ps("  Ones="); pi(ones); ps("/"); pi(nb);
+    ps(" qual="); pi(q->ql); ps("%\n");
 }
-
-/* ── Electronic Structure ──────────────────────────────────────────── */
-
-static void electronic_structure(int num_electrons, int num_orbitals) {
-    print_str("  ElecStruct: electrons=");
-    print_int(num_electrons);
-    print_str(" orbitals=");
-    print_int(num_orbitals);
-    print_str("\n");
-    int occupations[MAX_QUBITS];
-    for (int i = 0; i < MAX_QUBITS; i++) occupations[i] = 0;
-    for (int e = 0; e < num_electrons; e++) {
-        int orbital = e / 2;
-        if (orbital < num_orbitals) occupations[orbital] += 1;
+static void randtest(int *d, int l) {
+    ps("  RandTest: len="); pi(l); ps("\n");
+    int ones=0, runs=1;
+    for (int i=0; i<l && i<MQ*2; i++) {
+        ones+=d[i]&1;
+        if (i>0 && (d[i]&1)!=(d[i-1]&1)) runs++;
     }
-    int hf_energy = 0;
-    for (int i = 0; i < num_orbitals && i < MAX_QUBITS; i++) {
-        hf_energy += occupations[i] * (-(10 + i * 3));
-    }
-    print_str("  HF energy=");
-    print_int(hf_energy);
-    print_str("\n");
-    for (int i = 0; i < num_orbitals && i < MAX_QUBITS; i++) {
-        if (occupations[i] > 0) {
-            print_str("    orbital ");
-            print_int(i);
-            print_str(": occ=");
-            print_int(occupations[i]);
-            print_str("\n");
+    int fr=(ones*100)/l, fp=(fr>40&&fr<60)?1:0;
+    int er=(2*l/3)+1, rp=(runs>er/2 && runs<er*2)?1:0;
+    ps("  Freq: "); pi(fr); ps("% "); ps(fp?"PASS\n":"FAIL\n");
+    ps("  Runs: "); pi(runs); ps(" "); ps(rp?"PASS\n":"FAIL\n");
+}
+static void enteval(int *s, int ns) {
+    ps("  EntropyEval: n="); pi(ns); ps("\n");
+    int h[MQ];
+    for (int i=0; i<MQ; i++) h[i]=0;
+    for (int i=0; i<ns && i<MQ*4; i++) h[s[i]%MQ]++;
+    int ent=0, nb=0;
+    for (int i=0; i<MQ; i++) {
+        if (h[i]>0) {
+            nb++;
+            int px=(h[i]*1000)/ns, la=0, p=px;
+            while (p>1) { la++; p>>=1; }
+            ent+=px*la/10;
         }
     }
-}
-
-/* ── Reaction Dynamics ─────────────────────────────────────────────── */
-
-static void reaction_dynamics(int num_states, int time_steps) {
-    print_str("  ReactDyn: states=");
-    print_int(num_states);
-    print_str(" steps=");
-    print_int(time_steps);
-    print_str("\n");
-    int populations[MAX_QUBITS];
-    for (int i = 0; i < MAX_QUBITS; i++) populations[i] = 0;
-    populations[0] = 1 << PREC_SHIFT;
-    for (int t = 0; t < time_steps && t < 50; t++) {
-        int new_pop[MAX_QUBITS];
-        for (int i = 0; i < MAX_QUBITS; i++) new_pop[i] = 0;
-        for (int s = 0; s < num_states && s < MAX_QUBITS; s++) {
-            int decay = populations[s] / 20;
-            new_pop[s] += populations[s] - decay;
-            if (s + 1 < num_states && s + 1 < MAX_QUBITS) {
-                new_pop[s + 1] += decay;
-            }
-        }
-        for (int i = 0; i < MAX_QUBITS; i++) populations[i] = new_pop[i];
-    }
-    for (int s = 0; s < num_states && s < MAX_QUBITS; s++) {
-        if (populations[s] > 0) {
-            print_str("    state ");
-            print_int(s);
-            print_str(": ");
-            print_int(populations[s] >> PREC_SHIFT);
-            print_str("\n");
-        }
-    }
-}
-
-/* ── Material Simulation ───────────────────────────────────────────── */
-
-static void material_simulation(int lattice_size, int temperature) {
-    print_str("  MatSim: lattice=");
-    print_int(lattice_size);
-    print_str(" temp=");
-    print_int(temperature);
-    print_str("\n");
-    int spins[MAX_QUBITS];
-    for (int i = 0; i < lattice_size && i < MAX_QUBITS; i++) {
-        spins[i] = (i % 2 == 0) ? 1 : -1;
-    }
-    int total_energy = 0;
-    for (int i = 0; i < lattice_size - 1 && i < MAX_QUBITS - 1; i++) {
-        total_energy -= spins[i] * spins[i + 1];
-    }
-    int magnetization = 0;
-    for (int i = 0; i < lattice_size && i < MAX_QUBITS; i++) {
-        magnetization += spins[i];
-    }
-    print_str("  Energy=");
-    print_int(total_energy);
-    print_str(" Magnetization=");
-    print_int(magnetization);
-    print_str("\n");
-}
-
-/* ── BB84 Quantum Key Distribution ─────────────────────────────────── */
-
-static void bb84_protocol(int key_length) {
-    print_str("  BB84: key_length=");
-    print_int(key_length);
-    print_str("\n");
-    BB84Result result;
-    result.key_length = key_length;
-    result.error_rate = 0;
-    unsigned int rng = 0xCAFE;
-    for (int i = 0; i < key_length && i < MAX_QUBITS; i++) {
-        rng = rng * 1103515245 + 12345;
-        result.state[i] = (rng >> 16) & 1;
-        rng = rng * 1103515245 + 12345;
-        result.basis[i] = (rng >> 16) & 1;
-    }
-    int sifted_count = 0;
-    rng = 0xFACE;
-    for (int i = 0; i < key_length && i < MAX_QUBITS; i++) {
-        rng = rng * 1103515245 + 12345;
-        int bob_basis = (rng >> 16) & 1;
-        if (bob_basis == result.basis[i]) {
-            result.sifted_key[sifted_count] = result.state[i];
-            sifted_count++;
-        }
-    }
-    print_str("  Sifted=");
-    print_int(sifted_count);
-    print_str(" error=");
-    print_int(result.error_rate);
-    print_str("%\n");
-    if (sifted_count > 0) {
-        print_str("  Key: ");
-        for (int i = 0; i < sifted_count && i < 16; i++) {
-            print_int(result.sifted_key[i]);
-        }
-        print_str("\n");
-    }
-}
-
-/* ── E91 Entanglement Distribution ─────────────────────────────────── */
-
-static void e91_protocol(int num_pairs) {
-    print_str("  E91: pairs=");
-    print_int(num_pairs);
-    print_str("\n");
-    E91Result result;
-    result.chsh_value = 0;
-    unsigned int rng = 0xBABE;
-    for (int i = 0; i < num_pairs && i < MAX_QUBITS; i++) {
-        rng = rng * 1103515245 + 12345;
-        result.alice_choices[i] = (rng >> 16) % 3;
-        rng = rng * 1103515245 + 12345;
-        result.bob_choices[i] = (rng >> 16) % 3;
-    }
-    int correlation_sum = 0;
-    for (int i = 0; i < num_pairs && i < MAX_QUBITS; i++) {
-        int a = (result.alice_choices[i] < 2) ? 1 : -1;
-        int b = (result.bob_choices[i] < 2) ? 1 : -1;
-        result.correlations[i] = a * b;
-        correlation_sum += a * b;
-    }
-    result.chsh_value = (correlation_sum * 100) / num_pairs;
-    print_str("  CHSH=");
-    print_int(result.chsh_value);
-    print_str("/100 ");
-    if (result.chsh_value > 70) {
-        print_str("VIOLATED (quantum)\n");
-    } else {
-        print_str("satisfied (classical)\n");
-    }
-}
-
-/* ── Quantum Teleportation ─────────────────────────────────────────── */
-
-static void quantum_teleportation(int state_to_send) {
-    print_str("  Teleport: state=");
-    print_int(state_to_send);
-    print_str("\n");
-    int alice_bit = state_to_send ^ 1;
-    int bob_correction = alice_bit;
-    int received_state = state_to_send ^ bob_correction ^ bob_correction;
-    print_str("  Alice=");
-    print_int(alice_bit);
-    print_str(" Bob_corr=");
-    print_int(bob_correction);
-    print_str(" Recv=");
-    print_int(received_state);
-    print_str(" Fidelity=100%\n");
-}
-
-/* ── Superdense Coding ─────────────────────────────────────────────── */
-
-static void superdense_coding(int message_bits) {
-    print_str("  SuperDense: msg=");
-    print_int(message_bits);
-    print_str("\n");
-    int alice_ops = message_bits & 0x03;
-    int bell_state = BELL_PHI_PLUS + alice_ops;
-    int decoded = alice_ops;
-    print_str("  Bell=");
-    print_hex((unsigned int)bell_state);
-    print_str(" Decoded=");
-    print_int(decoded);
-    print_str(" (2 bits via 1 qubit)\n");
-}
-
-/* ── Quantum Random Number Generation ──────────────────────────────── */
-
-static void qrng_generate(QRNGState *qrng, int num_bits) {
-    print_str("  QRNG: generating ");
-    print_int(num_bits);
-    print_str(" bits\n");
-    unsigned int val = qrng->seed;
-    int ones = 0;
-    for (int i = 0; i < num_bits; i++) {
-        val = val * 1103515245 + 12345;
-        val ^= (val >> 13);
-        val ^= (val << 17);
-        int bit = (val >> 16) & 1;
-        ones += bit;
-    }
-    qrng->seed = val;
-    qrng->entropy_bits = ones;
-    int ratio = (ones * 100) / num_bits;
-    qrng->quality = 100 - ((ratio - 50) * (ratio - 50)) / 25;
-    if (qrng->quality < 0) qrng->quality = 0;
-    print_str("  Ones=");
-    print_int(ones);
-    print_str("/");
-    print_int(num_bits);
-    print_str(" quality=");
-    print_int(qrng->quality);
-    print_str("%\n");
-}
-
-/* ── Randomness Verification ───────────────────────────────────────── */
-
-static void randomness_test(int *data, int length) {
-    print_str("  RandTest: length=");
-    print_int(length);
-    print_str("\n");
-    int ones = 0;
-    int runs = 1;
-    for (int i = 0; i < length && i < MAX_QUBITS * 2; i++) {
-        ones += data[i] & 1;
-        if (i > 0 && (data[i] & 1) != (data[i - 1] & 1)) runs++;
-    }
-    int freq_ratio = (ones * 100) / length;
-    int freq_pass = (freq_ratio > 40 && freq_ratio < 60) ? 1 : 0;
-    int expected_runs = (2 * length / 3) + 1;
-    int run_pass = (runs > expected_runs / 2 && runs < expected_runs * 2) ? 1 : 0;
-    print_str("  Frequency: ");
-    print_int(freq_ratio);
-    print_str("% ");
-    print_str(freq_pass ? "PASS\n" : "FAIL\n");
-    print_str("  Runs: ");
-    print_int(runs);
-    print_str(" ");
-    print_str(run_pass ? "PASS\n" : "FAIL\n");
-}
-
-/* ── Entropy Source Evaluation ─────────────────────────────────────── */
-
-static void entropy_evaluate(int *samples, int num_samples) {
-    print_str("  EntropyEval: samples=");
-    print_int(num_samples);
-    print_str("\n");
-    int hist[MAX_QUBITS];
-    for (int i = 0; i < MAX_QUBITS; i++) hist[i] = 0;
-    for (int i = 0; i < num_samples && i < MAX_QUBITS * 4; i++) {
-        hist[samples[i] % MAX_QUBITS]++;
-    }
-    int entropy = 0;
-    int num_bins = 0;
-    for (int i = 0; i < MAX_QUBITS; i++) {
-        if (hist[i] > 0) {
-            num_bins++;
-            int prob_x1000 = (hist[i] * 1000) / num_samples;
-            int log_approx = 0;
-            int p = prob_x1000;
-            while (p > 1) { log_approx++; p >>= 1; }
-            entropy += prob_x1000 * log_approx / 10;
-        }
-    }
-    print_str("  Unique bins=");
-    print_int(num_bins);
-    print_str(" entropy=");
-    print_int(entropy);
-    print_str(" bits x100\n");
+    ps("  Bins="); pi(nb); ps(" entropy="); pi(ent); ps(" x100\n");
 }
 
 /* ── Main: Demonstrate All Algorithms ──────────────────────────────── */
 
 int main(void) {
-    print_str("=== Quantum Algorithm Library ===\n\n");
+    ps("=== Quantum Algorithm Library ===\n\n");
 
-    print_str("[Classical Algorithms]\n");
+    /* State vector demo */
+    ps("[State Vector Demo]\n");
+    QState qs = qstate_init(2);
+    qstate_apply_h(&qs, 0);
+    QState target = qstate_init(2);
+    qstate_apply_h(&target, 0);
+    qstate_fidelity(&qs, &target);
+    ps("  Fidelity: "); pi(qs.fid); ps("/1024\n");
+
+    ps("\n[Classical Algorithms]\n");
     int f1, f2;
-    shors_factor(15, &f1, &f2);
-    print_str("  Factors: ");
-    print_int(f1);
-    print_str(" x ");
-    print_int(f2);
-    print_str("\n");
-    grovers_search(4, 9);
-    deutsch_jozsa(3, constant_func);
-    deutsch_jozsa(3, balanced_func);
-    bernstein_vazirani(4, 0x0B);
-    simons_algorithm(4, 0x0D);
+    shors(15, &f1, &f2);
+    ps("  Factors: "); pi(f1); ps(" x "); pi(f2); ps("\n");
+    grover(4, 9);
+    dj(3, cfn);
+    dj(3, bfn);
+    bv(4, 0x0B);
+    simon(4, 0x0D);
 
-    print_str("\n[Variational Algorithms]\n");
-    vqe_solve(4, 6);
-    int qaoa_weights[] = {3, 5, 2, 8, 1, 7};
-    qaoa_solve(4, 3, qaoa_weights);
-    vqls_solve(4);
+    ps("\n[Variational Algorithms]\n");
+    vqe(4, 6);
+    int qw[]={3,5,2,8,1,7};
+    qaoa(4, 3, qw);
+    vqls(4);
 
-    print_str("\n[Quantum Machine Learning]\n");
-    QuantumKernel qk;
-    qk.kernel_type = KERNEL_GAUSSIAN;
-    qk.num_features = 4;
-    int kernel_data[] = {10, 25, 15, 30};
-    quantum_kernel_compute(&qk, 4, kernel_data);
-    QuantumNeuralNet qnn;
-    qnn.num_qubits = 4;
-    qnn.num_layers = 3;
-    qnn.num_classes = 3;
-    for (int i = 0; i < MAX_QUBITS * 4; i++) qnn.weights[i] = (i % 7) * 500;
-    int qnn_input[] = {100, 200, 300, 400};
-    int qnn_output[MAX_QUBITS];
-    qnn_forward(&qnn, qnn_input, qnn_output);
-    quantum_rl_episode(5, 3, 20);
-    quantum_generative_sample(4, 100);
+    ps("\n[Quantum Machine Learning]\n");
+    QKern qk;
+    qk.kt=KG;
+    qk.nf=4;
+    int kd[]={10,25,15,30};
+    qkern(&qk, 4, kd);
+    QNN qn;
+    qn.nq=4; qn.nl=3; qn.nc=3;
+    for (int i=0; i<MQ*4; i++) qn.w[i]=(i%7)*500;
+    int qi[]={100,200,300,400}, qo[MQ];
+    qnnfwd(&qn, qi, qo);
+    qrl(5, 3, 20);
+    qgan(4, 100);
 
-    print_str("\n[Quantum Chemistry]\n");
-    molecular_energy("H2", 2);
-    molecular_energy("LiH", 4);
-    electronic_structure(4, 6);
-    reaction_dynamics(4, 20);
-    material_simulation(8, 300);
+    ps("\n[Quantum Chemistry]\n");
+    mole("H2", 2);
+    mole("LiH", 4);
+    elecs(4, 6);
+    reactd(4, 20);
+    matsim(8, 300);
 
-    print_str("\n[Quantum Cryptography]\n");
-    bb84_protocol(16);
-    e91_protocol(20);
-    quantum_teleportation(1);
-    superdense_coding(3);
+    ps("\n[Quantum Cryptography]\n");
+    bb84(16);
+    e91(20);
+    teleport(1);
+    sdense(3);
 
-    print_str("\n[Quantum Random Numbers]\n");
-    QRNGState qrng;
-    qrng.seed = 0x12345678;
-    qrng.counter = 0;
-    qrng_generate(&qrng, 100);
-    int rand_data[] = {1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1};
-    randomness_test(rand_data, 16);
-    int entropy_samples[] = {3, 7, 1, 9, 4, 6, 2, 8, 5, 0, 3, 7, 1, 9, 4, 6};
-    entropy_evaluate(entropy_samples, 16);
+    ps("\n[Quantum Random Numbers]\n");
+    QRNG qr;
+    qr.sd=0x12345678;
+    qr.ct=0;
+    qrnggen(&qr, 100);
+    int rd[]={1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,1};
+    randtest(rd, 16);
+    int es[]={3,7,1,9,4,6,2,8,5,0,3,7,1,9,4,6};
+    enteval(es, 16);
 
-    print_str("\n=== Quantum Library Complete ===\n");
+    ps("\n=== Quantum Library Complete ===\n");
     host_exit(0);
     return 0;
 }
