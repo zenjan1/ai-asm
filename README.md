@@ -1,6 +1,6 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v92.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v400.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
 [![Modules](https://img.shields.io/badge/modules-848-green)]()
 [![Kernel](https://img.shields.io/badge/kernel-62_ASM-orange)]()
@@ -205,7 +205,7 @@ aiasm-aarch64/
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║           AI-ASM OS v92.0                              ║
+║           AI-ASM OS v400.0                              ║
 ║           DIAMOND CERTIFICATION ✓                            ║
 ║           PROJECT COMPLETE ✓                                 ║
 ╠══════════════════════════════════════════════════════════════╣
@@ -233,4 +233,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-**v92.0 Release** - Phase 54 advanced graphics and rendering platform (ray_tracing_engine, vr_ar_engine, compute_shader_framework).
+**v400.0 Release** - Phase 54 advanced graphics and rendering platform (ray_tracing_engine, vr_ar_engine, compute_shader_framework).
