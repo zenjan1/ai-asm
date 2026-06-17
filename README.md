@@ -1,8 +1,8 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v410.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v411.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
-[![Modules](https://img.shields.io/badge/modules-873-green)]()
+[![Modules](https://img.shields.io/badge/modules-876-green)]()
 [![Kernel](https://img.shields.io/badge/kernel-62_ASM-orange)]()
 [![AI](https://img.shields.io/badge/AI-11_vendors-purple)]()
 [![Agent](https://img.shields.io/badge/Agent-13_modules-cyan)]()
@@ -33,8 +33,9 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║  L4: AI Layer - Multi-Vendor AI Ecosystem (19 modules)                ║
 ║      OpenAI, Claude, Gemini, DeepSeek, Ollama, vLLM, RAG, Multimodal ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L3: WASM Apps - User Applications (641: 591 standalone + 50 libraries)  ║
+║  L3: WASM Apps - User Applications (644: 594 standalone + 50 libraries)  ║
 ║      POSIX tools, networking, GUI, security, development, system, wasm_thread  ║
+║      autonomous_vehicle, drone_control, sensor_fusion                      ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║  L2: WASM Runtime - Host Function Bridge (138 functions, 6,021 lines)║
 ║      host_alloc, host_ai_query, host_agent_call, WASI interface      ║
@@ -53,10 +54,10 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 |:-----:|:----:|:-----:|:------:|
 | L1 | Kernel ASM | 62 | ✓ 100% |
 | L2 | WASM Host | 138 functions | ✓ 100% |
-| L3 | WASM Apps | 641 (591 standalone + 50 libraries) | ✓ 100% |
+| L3 | WASM Apps | 644 (594 standalone + 50 libraries) | ✓ 100% |
 | L4 | AI Modules | 19 | ✓ 100% |
 | L5 | Agent Modules | 13 | ✓ 100% |
-| **Total** | **Modules** | **873** | **✓ COMPLETE** |
+| **Total** | **Modules** | **876** | **✓ COMPLETE** |
 
 ## Features
 
@@ -170,7 +171,7 @@ make && make run
 | Kernel Size | 62 ASM modules |
 | WASM Runtime | Wasm3 with JIT optimization |
 | Host Functions | 138 |
-| WASM Modules | 641 applications |
+| WASM Modules | 644 applications |
 | AI Modules | 19 |
 | Agent Modules | 13 |
 | Max Windows | 16 (Z-order compositing) |
@@ -205,14 +206,14 @@ aiasm-aarch64/
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║           AI-ASM OS v410.0                              ║
+║           AI-ASM OS v411.0                              ║
 ║           DIAMOND CERTIFICATION ✓                            ║
 ║           PROJECT COMPLETE ✓                                 ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Five-Layer Architecture: 100% Complete                      ║
 ║  ├─ L1 Kernel ASM: 62 modules    ✓                           ║
 ║  ├─ L2 WASM Host: 138 functions  ✓                           ║
-║  ├─ L3 WASM Apps: 641 modules    ✓                           ║
+║  ├─ L3 WASM Apps: 644 modules    ✓                           ║
 ║  ├─ L4 AI Layer: 19 modules      ✓                           ║
 ║  └─ L5 Agent: 13 modules         ✓                           ║
 ║                                                              ║
@@ -233,4 +234,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-**v410.0 Release** - Phase 64 medical imaging and diagnostic platform (medical_imaging, mri_reconstruction, ct_reconstruction).
+**v411.0 Release** - Phase 65 autonomous vehicles and sensor fusion platform (autonomous_vehicle, drone_control, sensor_fusion).
