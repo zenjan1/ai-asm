@@ -1,6 +1,6 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v90.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v91.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
 [![Modules](https://img.shields.io/badge/modules-845-green)]()
 [![Kernel](https://img.shields.io/badge/kernel-62_ASM-orange)]()
@@ -205,7 +205,7 @@ aiasm-aarch64/
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║           AI-ASM OS v90.0                              ║
+║           AI-ASM OS v91.0                              ║
 ║           DIAMOND CERTIFICATION ✓                            ║
 ║           PROJECT COMPLETE ✓                                 ║
 ╠══════════════════════════════════════════════════════════════╣
@@ -233,4 +233,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-**v90.0 Release** - Phase 53 cloud-native platform (serverless_framework).
+**v91.0 Release** - Phase 53 cloud-native platform (serverless_framework).
