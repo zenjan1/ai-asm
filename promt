@@ -1,40 +1,40 @@
-# AI-ASM OS v434.0 - Phase 90 美容影院游乐系统开发任务
+# AI-ASM OS v435.0 - Phase 91 医院学校餐饮系统开发任务
 
 ## UPDATE=1 | 2026-06-18
 
-**项目状态**: Phase 89 完成，开始Phase 90
-**总模块数**: 945个 (L1:62 + L2:138 + L3:713 + L4:19 + L5:13)
-**Phase 89完成**: moving_company, printing_shop, storage_facility ✓
+**项目状态**: Phase 90 完成，开始Phase 91
+**总模块数**: 946个 (L1:62 + L2:138 + L3:714 + L4:19 + L5:13)
+**Phase 90完成**: beauty_salon, cinema_theater, amusement_park ✓
 
 ---
 
-## 📋 Phase 90: 美容影院游乐系统 (Beauty Cinema Amusement)
+## 📋 Phase 91: 医院学校餐饮系统 (Hospital School Restaurant)
 
 ### 新增模块
 
-1. **beauty_salon** (~15K) - 美容沙龙管理系统
-   - 服务管理： haircut, facial, manicure, pedicure, massage, coloring
-   - 员工管理：stylists (skill levels 1-3), commission rates, schedules
-   - 客户管理：membership tiers (bronze/silver/gold/platinum), loyalty points
-   - 预约管理：appointments with time slots, duration, service combos
-   - 产品管理：shampoo, conditioner, color, styling products, inventory
-   - 收入分析：service revenue, product sales, tips, commission payouts
+1. **hospital_management** (~15K) - 医院管理系统
+   - 科室管理：内科、外科、儿科、急诊、ICU、影像科
+   - 医生管理：科室分配、职称、排班、门诊量统计
+   - 患者管理：挂号、就诊记录、住院、出院、随访
+   - 床位管理：病房类型、床位占用、周转率
+   - 药品管理：库存、处方、发药、药物相互作用
+   - 收入分析：门诊收入、住院收入、检查收入、药品收入
 
-2. **cinema_theater** (~15K) - 影院管理系统
-   - 影厅管理：screens (type: standard/IMAX/3D/VIP), seating capacity
-   - 排片管理：movies, showtimes, genres, duration, rating
-   - 票务管理：tickets (adult/child/senior), matinee pricing, group discounts
-   - 卖品管理：concessions (popcorn/drinks/candy), combo deals
-   - 会员管理：members, points, rewards, birthday specials
-   - 收入分析：ticket revenue, concession revenue, occupancy rates
+2. **school_management** (~15K) - 学校管理系统
+   - 班级管理：年级、班级、学生名册、班主任
+   - 教师管理：科目分配、课时统计、评分、职称
+   - 课程管理：课表安排、教室分配、考试时间
+   - 成绩管理：考试分数、平均分、排名、及格率
+   - 考勤管理：学生出勤、教师出勤、请假记录
+   - 财务分析：学费收入、支出统计、奖学金发放
 
-3. **amusement_park** (~15K) - 游乐园管理系统
-   - 设施管理：rides (thrill/family/kids/water), capacity, maintenance status
-   - 票务管理：single-day/multi-day/season passes, group rates, fast-pass
-   - 游客管理：visitors, age groups, spending patterns, satisfaction
-   - 餐饮管理：food stands, restaurants, snack carts, meal deals
-   - 员工管理：ride operators, security, maintenance crew, entertainers
-   - 收入分析：gate revenue, ride revenue, food revenue, merchandise
+3. **restaurant_chain** (~15K) - 连锁餐饮管理系统
+   - 门店管理：分店信息、座位数、营业时间、区域
+   - 菜品管理：分类、价格、成本、销量排行、库存
+   - 订单管理：堂食、外卖、预订、套餐组合
+   - 员工管理：厨师、服务员、经理、排班、绩效
+   - 会员管理：积分、优惠券、充值卡、等级优惠
+   - 收入分析：堂食收入、外卖收入、各门店对比
 
 ---
 
@@ -42,10 +42,10 @@
 
 | 层级 | 类型 | 数量 | 状态 |
 |:-----:|:----:|:-----:|:------:|
-| L3 | WASM Apps | 716 (666 standalone + 50 libraries) | ✓ 100% |
-| **Total** | **Modules** | **948** | **✓ COMPLETE** |
+| L3 | WASM Apps | 717 (667 standalone + 50 libraries) | ✓ 100% |
+| **Total** | **Modules** | **949** | **✓ COMPLETE** |
 
 ---
 
 **UPDATE=0** ✓
-**Phase 90 READY** ✓
+**Phase 91 READY** ✓
