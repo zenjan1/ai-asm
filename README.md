@@ -1,8 +1,8 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v522.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v523.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
-[![Modules](https://img.shields.io/badge/modules-1198-green)]()
+[![Modules](https://img.shields.io/badge/modules-1201-green)]()
 [![Kernel](https://img.shields.io/badge/kernel-62_ASM-orange)]()
 [![AI](https://img.shields.io/badge/AI-11_vendors-purple)]()
 [![Agent](https://img.shields.io/badge/Agent-13_modules-cyan)]()
@@ -33,7 +33,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║  L4: AI Layer - Multi-Vendor AI Ecosystem (19 modules)                ║
 ║      OpenAI, Claude, Gemini, DeepSeek, Ollama, vLLM, RAG, Multimodal ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L3: WASM Apps - User Applications (966: 916 standalone + 50 libraries)  ║
+║  L3: WASM Apps - User Applications (969: 919 standalone + 50 libraries)  ║
 ║      POSIX tools, networking, GUI, security, development, system, wasm_thread  ║
 ║      industrial_iot, predictive_maintenance, supply_chain                  ║
 ║      smart_city, energy_management, building_automation                    ║
@@ -145,6 +145,8 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║      surveying_engineering_admin                                  ║
 ║      materials_science_admin, mining_engineering_admin,           ║
 ║      petroleum_engineering_admin                                  ║
+║      chemical_engineering_admin, civil_engineering_admin,         ║
+║      architectural_engineering_admin                              ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║  L2: WASM Runtime - Host Function Bridge (138 functions, 6,021 lines)║
 ║      host_alloc, host_ai_query, host_agent_call, WASI interface      ║
@@ -163,10 +165,10 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 |:-----:|:----:|:-----:|:------:|
 | L1 | Kernel ASM | 62 | ✓ 100% |
 | L2 | WASM Host | 138 functions | ✓ 100% |
-| L3 | WASM Apps | 966 (916 standalone + 50 libraries) | ✓ 100% |
+| L3 | WASM Apps | 969 (919 standalone + 50 libraries) | ✓ 100% |
 | L4 | AI Modules | 19 | ✓ 100% |
 | L5 | Agent Modules | 13 | ✓ 100% |
-| **Total** | **Modules** | **1198** | **✓ COMPLETE** |
+| **Total** | **Modules** | **1201** | **✓ COMPLETE** |
 
 ## Features
 
@@ -280,7 +282,7 @@ make && make run
 | Kernel Size | 62 ASM modules |
 | WASM Runtime | Wasm3 with JIT optimization |
 | Host Functions | 138 |
-| WASM Modules | 966 applications |
+| WASM Modules | 969 applications |
 | AI Modules | 19 |
 | Agent Modules | 13 |
 | Max Windows | 16 (Z-order compositing) |
@@ -295,7 +297,7 @@ aiasm-aarch64/
 │   ├── *.asm             # Memory, process, vfs, net, gui...
 │   ├── wasm_host.c       # 6,021 lines, 138 host functions
 │   └── wasm3/            # Wasm3 WebAssembly runtime
-├── modules/              # 966 WASM application modules
+├── modules/              # 969 WASM application modules
 │   ├── openai_api/       # AI vendor APIs
 │   ├── claude_api/
 │   ├── agent_cluster/    # Agent orchestration
@@ -315,14 +317,14 @@ aiasm-aarch64/
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║           AI-ASM OS v522.0                              ║
+║           AI-ASM OS v523.0                              ║
 ║           DIAMOND CERTIFICATION ✓                            ║
 ║           PROJECT COMPLETE ✓                                 ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Five-Layer Architecture: 100% Complete                      ║
 ║  ├─ L1 Kernel ASM: 62 modules    ✓                           ║
 ║  ├─ L2 WASM Host: 138 functions  ✓                           ║
-║  ├─ L3 WASM Apps: 966 modules    ✓                           ║
+║  ├─ L3 WASM Apps: 969 modules    ✓                           ║
 ║  ├─ L4 AI Layer: 19 modules      ✓                           ║
 ║  └─ L5 Agent: 13 modules         ✓                           ║
 ║                                                              ║
@@ -343,4 +345,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-**v522.0 Release** - 🎉 Phase 177 materials science, mining engineering, petroleum engineering. 1198 modules.
+**v523.0 Release** - 🎉 Phase 178 chemical engineering, civil engineering, architectural engineering. 1201 modules.
