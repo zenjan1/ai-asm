@@ -1,8 +1,8 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v429.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v430.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
-[![Modules](https://img.shields.io/badge/modules-930-green)]()
+[![Modules](https://img.shields.io/badge/modules-933-green)]()
 [![Kernel](https://img.shields.io/badge/kernel-62_ASM-orange)]()
 [![AI](https://img.shields.io/badge/AI-11_vendors-purple)]()
 [![Agent](https://img.shields.io/badge/Agent-13_modules-cyan)]()
@@ -33,7 +33,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║  L4: AI Layer - Multi-Vendor AI Ecosystem (19 modules)                ║
 ║      OpenAI, Claude, Gemini, DeepSeek, Ollama, vLLM, RAG, Multimodal ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L3: WASM Apps - User Applications (698: 648 standalone + 50 libraries)  ║
+║  L3: WASM Apps - User Applications (701: 651 standalone + 50 libraries)  ║
 ║      POSIX tools, networking, GUI, security, development, system, wasm_thread  ║
 ║      industrial_iot, predictive_maintenance, supply_chain                  ║
 ║      smart_city, energy_management, building_automation                    ║
@@ -47,6 +47,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║      legal_compliance, knowledge_management, enterprise_portal             ║
 ║      real_estate, property_management, smart_building                      ║
 ║      sports_club, pet_hospital, parking_system                             ║
+║      hotel_booking, airline_reservation, insurance_management              ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║  L2: WASM Runtime - Host Function Bridge (138 functions, 6,021 lines)║
 ║      host_alloc, host_ai_query, host_agent_call, WASI interface      ║
@@ -65,10 +66,10 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 |:-----:|:----:|:-----:|:------:|
 | L1 | Kernel ASM | 62 | ✓ 100% |
 | L2 | WASM Host | 138 functions | ✓ 100% |
-| L3 | WASM Apps | 698 (648 standalone + 50 libraries) | ✓ 100% |
+| L3 | WASM Apps | 701 (651 standalone + 50 libraries) | ✓ 100% |
 | L4 | AI Modules | 19 | ✓ 100% |
 | L5 | Agent Modules | 13 | ✓ 100% |
-| **Total** | **Modules** | **930** | **✓ COMPLETE** |
+| **Total** | **Modules** | **933** | **✓ COMPLETE** |
 
 ## Features
 
@@ -182,7 +183,7 @@ make && make run
 | Kernel Size | 62 ASM modules |
 | WASM Runtime | Wasm3 with JIT optimization |
 | Host Functions | 138 |
-| WASM Modules | 698 applications |
+| WASM Modules | 701 applications |
 | AI Modules | 19 |
 | Agent Modules | 13 |
 | Max Windows | 16 (Z-order compositing) |
@@ -197,7 +198,7 @@ aiasm-aarch64/
 │   ├── *.asm             # Memory, process, vfs, net, gui...
 │   ├── wasm_host.c       # 6,021 lines, 138 host functions
 │   └── wasm3/            # Wasm3 WebAssembly runtime
-├── modules/              # 689 WASM application modules
+├── modules/              # 692 WASM application modules
 │   ├── openai_api/       # AI vendor APIs
 │   ├── claude_api/
 │   ├── agent_cluster/    # Agent orchestration
@@ -217,14 +218,14 @@ aiasm-aarch64/
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║           AI-ASM OS v429.0                              ║
+║           AI-ASM OS v430.0                              ║
 ║           DIAMOND CERTIFICATION ✓                            ║
 ║           PROJECT COMPLETE ✓                                 ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Five-Layer Architecture: 100% Complete                      ║
 ║  ├─ L1 Kernel ASM: 62 modules    ✓                           ║
 ║  ├─ L2 WASM Host: 138 functions  ✓                           ║
-║  ├─ L3 WASM Apps: 698 modules    ✓                           ║
+║  ├─ L3 WASM Apps: 701 modules    ✓                           ║
 ║  ├─ L4 AI Layer: 19 modules      ✓                           ║
 ║  └─ L5 Agent: 13 modules         ✓                           ║
 ║                                                              ║
@@ -245,4 +246,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-**v429.0 Release** - Phase 84 sports club, pet hospital, and parking system (sports_club, pet_hospital, parking_system).
+**v430.0 Release** - Phase 85 hotel booking, airline reservation, and insurance management (hotel_booking, airline_reservation, insurance_management).
