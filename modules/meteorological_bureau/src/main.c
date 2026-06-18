@@ -1,5 +1,5 @@
-/* meteorological_bureau: Weather and climate management (v1.0)
- * Weather stations, forecasts, warnings, climate monitoring
+/* meteorological_bureau: Meteorological administration system (v1.0)
+ * Weather observation, forecasting, disaster warning, climate services, meteorological technology
  */
 #include <stddef.h>
 
@@ -12,93 +12,85 @@ extern void host_exit(int code);
 __attribute__((import_module("host"), import_name("get_argv")))
 extern int host_get_argv(unsigned int buf_off, unsigned int max_len);
 
-#define MAX_STATIONS   14
-#define MAX_FORECASTS  12
-#define MAX_WARNINGS   16
-#define MAX_CLIMATE    10
-#define MAX_AVIATION   8
+#define MAX_OBSERVATION  16
+#define MAX_FORECAST     14
+#define MAX_WARNING      12
+#define MAX_CLIMATE      10
+#define MAX_TECHNOLOGY   10
 
 typedef struct {
-    int    station_id;
-    int    zone;
-    int    temperature;
-    int    humidity;
-    int    pressure;
-    int    wind_speed;
-    int    rainfall;
+    int    observation_id;
+    int    station_type;
+    int    region_id;
+    int    stations_online;
+    int    data_quality_score;
+    int    observations_daily;
     int    year;
-    int    month;
-    int    day;
-    int    hour;
     int    active;
-} station_t;
+} observation_t;
 
 typedef struct {
     int    forecast_id;
-    int    zone;
-    int    type;
-    int    temp_high;
-    int    temp_low;
-    int    precipitation;
-    int    wind;
-    int    validity_days;
-    int    issued_hour;
+    int    forecast_type;
+    int    lead_time;
+    int    accuracy_score;
+    int    forecasts_issued;
+    int    warnings_corrected;
+    int    year;
     int    active;
 } forecast_t;
 
 typedef struct {
-    int    warn_id;
-    int    zone;
-    int    type;
-    int    severity;
-    int    issued_hour;
-    int    expires_hour;
-    int    affected;
+    int    warning_id;
+    int    disaster_type;
+    int    severity_level;
+    int    warnings_issued;
+    int    lead_time_min;
+    int    population_warned;
+    int    year;
     int    active;
 } warning_t;
 
 typedef struct {
     int    climate_id;
-    int    zone;
-    int    avg_temp;
-    int    avg_rainfall;
-    int    anomaly;
+    int    monitoring_type;
+    int    assessment_period;
+    int    indicators_monitored;
+    int    anomaly_detected;
+    int    adaptation_projects;
     int    year;
     int    active;
 } climate_t;
 
 typedef struct {
-    int    aviation_id;
-    int    airport_id;
-    int    visibility;
-    int    ceiling;
-    int    wind_dir;
-    int    wind_speed;
-    int    weather;
-    int    issued_hour;
+    int    technology_id;
+    int    research_area;
+    int    project_type;
+    int    projects_funded;
+    int    patents_granted;
+    int    international_cooperation;
+    int    year;
     int    active;
-} aviation_t;
+} technology_t;
 
 typedef struct {
-    int    n_stations;
-    int    n_forecasts;
-    int    n_warnings;
+    int    n_observation;
+    int    n_forecast;
+    int    n_warning;
     int    n_climate;
-    int    n_aviation;
-    int    total_readings;
-    int    total_warnings_issued;
-    int    total_warnings_active;
-    int    max_temp;
-    int    min_temp;
-    int    max_wind;
-    int    max_rainfall;
+    int    n_technology;
+    int    total_stations;
+    int    total_forecasts;
+    int    total_warnings;
+    int    total_indicators;
+    int    total_patents;
 } mb_state_t;
 
-static station_t stations[MAX_STATIONS];
-static forecast_t forecasts[MAX_FORECASTS];
-static warning_t warnings[MAX_WARNINGS];
+static observation_t observations[MAX_OBSERVATION];
+static forecast_t forecasts[MAX_FORECAST];
+static warning_t warnings[MAX_WARNING];
 static climate_t climates[MAX_CLIMATE];
-static aviation_t aviation[MAX_AVIATION];
+static technology_t technologies[MAX_TECHNOLOGY];
 static mb_state_t mb;
 
 static int initialized = 0;
@@ -115,182 +107,159 @@ static void print_int(int val) {
 
 int mb_init(void) {
     if (initialized) return -1;
-    mb.n_stations = 0; mb.n_forecasts = 0; mb.n_warnings = 0;
-    mb.n_climate = 0; mb.n_aviation = 0;
-    mb.total_readings = 0; mb.total_warnings_issued = 0;
-    mb.total_warnings_active = 0;
-    mb.max_temp = -100; mb.min_temp = 100; mb.max_wind = 0; mb.max_rainfall = 0;
-    for (int i = 0; i < MAX_STATIONS; i++) stations[i].active = 0;
-    for (int i = 0; i < MAX_FORECASTS; i++) forecasts[i].active = 0;
-    for (int i = 0; i < MAX_WARNINGS; i++) warnings[i].active = 0;
+    mb.n_observation = 0; mb.n_forecast = 0; mb.n_warning = 0;
+    mb.n_climate = 0; mb.n_technology = 0;
+    mb.total_stations = 0; mb.total_forecasts = 0;
+    mb.total_warnings = 0; mb.total_indicators = 0;
+    mb.total_patents = 0;
+    for (int i = 0; i < MAX_OBSERVATION; i++) observations[i].active = 0;
+    for (int i = 0; i < MAX_FORECAST; i++) forecasts[i].active = 0;
+    for (int i = 0; i < MAX_WARNING; i++) warnings[i].active = 0;
     for (int i = 0; i < MAX_CLIMATE; i++) climates[i].active = 0;
-    for (int i = 0; i < MAX_AVIATION; i++) aviation[i].active = 0;
+    for (int i = 0; i < MAX_TECHNOLOGY; i++) technologies[i].active = 0;
     initialized = 1;
     print_str("[MB] Meteorological bureau initialized\n");
     return 0;
 }
 
-int mb_add_station(int zone) {
-    if (mb.n_stations >= MAX_STATIONS) return -1;
-    station_t* s = &stations[mb.n_stations];
-    s->station_id = mb.n_stations;
-    s->zone = zone;
-    s->temperature = 0;
-    s->humidity = 0;
-    s->pressure = 1013;
-    s->wind_speed = 0;
-    s->rainfall = 0;
-    s->year = 2024;
-    s->month = 1;
-    s->day = 1;
-    s->hour = 0;
-    s->active = 1;
-    mb.n_stations++;
-    print_str("[MB] Station "); print_int(mb.n_stations - 1);
-    print_str(" zone="); print_int(zone); print_str("\n");
-    return mb.n_stations - 1;
+int mb_observation(int stn_type, int region, int stations, int quality, int daily_obs, int year) {
+    if (mb.n_observation >= MAX_OBSERVATION) return -1;
+    observation_t* o = &observations[mb.n_observation];
+    o->observation_id = mb.n_observation;
+    o->station_type = stn_type;
+    o->region_id = region;
+    o->stations_online = stations;
+    o->data_quality_score = quality;
+    o->observations_daily = daily_obs;
+    o->year = year;
+    o->active = 1;
+    mb.total_stations += stations;
+    mb.n_observation++;
+    print_str("[MB] Observation "); print_int(mb.n_observation - 1);
+    print_str(" type="); print_int(stn_type);
+    print_str(" rgn="); print_int(region);
+    print_str(" stn="); print_int(stations);
+    print_str(" qual="); print_int(quality);
+    print_str(" dly="); print_int(daily_obs); print_str("\n");
+    return mb.n_observation - 1;
 }
 
-int mb_record_reading(int station_id, int temp, int humidity, int pressure, int wind, int rain, int hour) {
-    if (station_id >= mb.n_stations) return -1;
-    station_t* s = &stations[station_id];
-    s->temperature = temp;
-    s->humidity = humidity;
-    s->pressure = pressure;
-    s->wind_speed = wind;
-    s->rainfall = rain;
-    s->hour = hour;
-    mb.total_readings++;
-    if (temp > mb.max_temp) mb.max_temp = temp;
-    if (temp < mb.min_temp) mb.min_temp = temp;
-    if (wind > mb.max_wind) mb.max_wind = wind;
-    if (rain > mb.max_rainfall) mb.max_rainfall = rain;
-    print_str("[MB] St"); print_int(station_id);
-    print_str(" T="); print_int(temp); print_str("C");
-    print_str(" H="); print_int(humidity); print_str("%");
-    print_str(" P="); print_int(pressure);
-    print_str(" W="); print_int(wind);
-    print_str(" R="); print_int(rain); print_str("mm\n");
-    return 0;
-}
-
-int mb_issue_forecast(int zone, int type, int high, int low, int precip, int wind, int validity, int hour) {
-    if (mb.n_forecasts >= MAX_FORECASTS) return -1;
-    forecast_t* f = &forecasts[mb.n_forecasts];
-    f->forecast_id = mb.n_forecasts;
-    f->zone = zone;
-    f->type = type;
-    f->temp_high = high;
-    f->temp_low = low;
-    f->precipitation = precip;
-    f->wind = wind;
-    f->validity_days = validity;
-    f->issued_hour = hour;
+int mb_forecast(int fc_type, int lead, int accuracy, int issued, int corrected, int year) {
+    if (mb.n_forecast >= MAX_FORECAST) return -1;
+    forecast_t* f = &forecasts[mb.n_forecast];
+    f->forecast_id = mb.n_forecast;
+    f->forecast_type = fc_type;
+    f->lead_time = lead;
+    f->accuracy_score = accuracy;
+    f->forecasts_issued = issued;
+    f->warnings_corrected = corrected;
+    f->year = year;
     f->active = 1;
-    mb.n_forecasts++;
-    print_str("[MB] Forecast "); print_int(mb.n_forecasts - 1);
-    print_str(" zone="); print_int(zone);
-    print_str(" type="); print_int(type);
-    print_str(" "); print_int(low); print_str("-"); print_int(high); print_str("C");
-    print_str(" P="); print_int(precip); print_str("mm\n");
-    return mb.n_forecasts - 1;
+    mb.total_forecasts += issued;
+    mb.n_forecast++;
+    print_str("[MB] Forecast "); print_int(mb.n_forecast - 1);
+    print_str(" type="); print_int(fc_type);
+    print_str(" lead="); print_int(lead);
+    print_str(" acc="); print_int(accuracy); print_str("%");
+    print_str(" iss="); print_int(issued);
+    print_str(" cor="); print_int(corrected); print_str("\n");
+    return mb.n_forecast - 1;
 }
 
-int mb_issue_warning(int zone, int type, int severity, int issued, int expires, int affected) {
-    if (mb.n_warnings >= MAX_WARNINGS) return -1;
-    warning_t* w = &warnings[mb.n_warnings];
-    w->warn_id = mb.n_warnings;
-    w->zone = zone;
-    w->type = type;
-    w->severity = severity;
-    w->issued_hour = issued;
-    w->expires_hour = expires;
-    w->affected = affected;
+int mb_warning(int dis_type, int severity, int issued, int lead_min, int population, int year) {
+    if (mb.n_warning >= MAX_WARNING) return -1;
+    warning_t* w = &warnings[mb.n_warning];
+    w->warning_id = mb.n_warning;
+    w->disaster_type = dis_type;
+    w->severity_level = severity;
+    w->warnings_issued = issued;
+    w->lead_time_min = lead_min;
+    w->population_warned = population;
+    w->year = year;
     w->active = 1;
-    mb.total_warnings_issued++;
-    mb.total_warnings_active++;
-    mb.n_warnings++;
-    print_str("[MB] Warning "); print_int(mb.n_warnings - 1);
-    print_str(" zone="); print_int(zone);
-    print_str(" type="); print_int(type);
+    mb.total_warnings += issued;
+    mb.n_warning++;
+    print_str("[MB] Warning "); print_int(mb.n_warning - 1);
+    print_str(" type="); print_int(dis_type);
     print_str(" sev="); print_int(severity);
-    print_str(" affected="); print_int(affected); print_str("\n");
-    return mb.n_warnings - 1;
+    print_str(" iss="); print_int(issued);
+    print_str(" lead="); print_int(lead_min); print_str("m");
+    print_str(" pop="); print_int(population); print_str("\n");
+    return mb.n_warning - 1;
 }
 
-int mb_expire_warning(int warn_id) {
-    if (warn_id >= mb.n_warnings) return -1;
-    if (warnings[warn_id].active) {
-        warnings[warn_id].active = 0;
-        mb.total_warnings_active--;
-    }
-    print_str("[MB] Expire W"); print_int(warn_id); print_str("\n");
-    return 0;
-}
-
-int mb_record_climate(int zone, int avg_temp, int avg_rain, int anomaly, int year) {
+int mb_climate(int mon_type, int period, int indicators, int anomaly, int adaptation, int year) {
     if (mb.n_climate >= MAX_CLIMATE) return -1;
     climate_t* c = &climates[mb.n_climate];
     c->climate_id = mb.n_climate;
-    c->zone = zone;
-    c->avg_temp = avg_temp;
-    c->avg_rainfall = avg_rain;
-    c->anomaly = anomaly;
+    c->monitoring_type = mon_type;
+    c->assessment_period = period;
+    c->indicators_monitored = indicators;
+    c->anomaly_detected = anomaly;
+    c->adaptation_projects = adaptation;
     c->year = year;
     c->active = 1;
+    mb.total_indicators += indicators;
     mb.n_climate++;
     print_str("[MB] Climate "); print_int(mb.n_climate - 1);
-    print_str(" zone="); print_int(zone);
-    print_str(" T="); print_int(avg_temp); print_str("C");
-    print_str(" R="); print_int(avg_rain); print_str("mm");
+    print_str(" type="); print_int(mon_type);
+    print_str(" per="); print_int(period);
+    print_str(" ind="); print_int(indicators);
     print_str(" anom="); print_int(anomaly);
-    print_str(" "); print_int(year); print_str("\n");
+    print_str(" adp="); print_int(adaptation); print_str("\n");
     return mb.n_climate - 1;
 }
 
-int mb_add_aviation(int airport, int vis, int ceiling, int wind_dir, int wind_spd, int weather, int hour) {
-    if (mb.n_aviation >= MAX_AVIATION) return -1;
-    aviation_t* a = &aviation[mb.n_aviation];
-    a->aviation_id = mb.n_aviation;
-    a->airport_id = airport;
-    a->visibility = vis;
-    a->ceiling = ceiling;
-    a->wind_dir = wind_dir;
-    a->wind_speed = wind_spd;
-    a->weather = weather;
-    a->issued_hour = hour;
-    a->active = 1;
-    mb.n_aviation++;
-    print_str("[MB] Aviation "); print_int(mb.n_aviation - 1);
-    print_str(" ap="); print_int(airport);
-    print_str(" vis="); print_int(vis);
-    print_str(" ceil="); print_int(ceiling);
-    print_str(" W"); print_int(wind_dir); print_str("/"); print_int(wind_spd); print_str("\n");
-    return mb.n_aviation - 1;
+int mb_technology(int res_area, int proj_type, int funded, int patents, int intl_coop, int year) {
+    if (mb.n_technology >= MAX_TECHNOLOGY) return -1;
+    technology_t* t = &technologies[mb.n_technology];
+    t->technology_id = mb.n_technology;
+    t->research_area = res_area;
+    t->project_type = proj_type;
+    t->projects_funded = funded;
+    t->patents_granted = patents;
+    t->international_cooperation = intl_coop;
+    t->year = year;
+    t->active = 1;
+    mb.total_patents += patents;
+    mb.n_technology++;
+    print_str("[MB] Technology "); print_int(mb.n_technology - 1);
+    print_str(" area="); print_int(res_area);
+    print_str(" type="); print_int(proj_type);
+    print_str(" fnd="); print_int(funded);
+    print_str(" pat="); print_int(patents);
+    print_str(" int="); print_int(intl_coop); print_str("\n");
+    return mb.n_technology - 1;
 }
 
 void mb_observation_report(void) {
-    print_str("[MB] Observations:\n");
-    print_str("  Stations: "); print_int(mb.n_stations); print_str("\n");
-    print_str("  Readings: "); print_int(mb.total_readings); print_str("\n");
-    print_str("  Max temp: "); print_int(mb.max_temp); print_str("C\n");
-    print_str("  Min temp: "); print_int(mb.min_temp); print_str("C\n");
-    print_str("  Max wind: "); print_int(mb.max_wind); print_str("km/h\n");
-    print_str("  Max rain: "); print_int(mb.max_rainfall); print_str("mm\n");
+    print_str("[MB] Observation report:\n");
+    print_str("  Station networks: "); print_int(mb.n_observation); print_str("\n");
+    print_str("  Total stations online: "); print_int(mb.total_stations); print_str("\n");
+}
+
+void mb_forecast_report(void) {
+    print_str("[MB] Forecast report:\n");
+    print_str("  Forecast types: "); print_int(mb.n_forecast); print_str("\n");
+    print_str("  Total forecasts issued: "); print_int(mb.total_forecasts); print_str("\n");
 }
 
 void mb_warning_report(void) {
-    print_str("[MB] Warnings:\n");
-    print_str("  Issued: "); print_int(mb.total_warnings_issued); print_str("\n");
-    print_str("  Active: "); print_int(mb.total_warnings_active); print_str("\n");
+    print_str("[MB] Warning report:\n");
+    print_str("  Disaster warnings: "); print_int(mb.n_warning); print_str("\n");
+    print_str("  Total warnings issued: "); print_int(mb.total_warnings); print_str("\n");
+    print_str("  Climate monitoring: "); print_int(mb.n_climate); print_str("\n");
+    print_str("  Total indicators: "); print_int(mb.total_indicators); print_str("\n");
+    print_str("  Technology projects: "); print_int(mb.n_technology); print_str("\n");
+    print_str("  Total patents: "); print_int(mb.total_patents); print_str("\n");
 }
 
 void mb_print_state(void) {
-    print_str("[MB] Stn="); print_int(mb.n_stations);
-    print_str(" Fcst="); print_int(mb.n_forecasts);
-    print_str(" Warn="); print_int(mb.n_warnings);
-    print_str(" Clim="); print_int(mb.n_climate);
-    print_str(" Avia="); print_int(mb.n_aviation);
+    print_str("[MB] Ob="); print_int(mb.n_observation);
+    print_str(" Fc="); print_int(mb.n_forecast);
+    print_str(" Wn="); print_int(mb.n_warning);
+    print_str(" Cl="); print_int(mb.n_climate);
+    print_str(" Tc="); print_int(mb.n_technology);
     print_str("\n");
 }
 
@@ -298,76 +267,66 @@ int main(void) {
     print_str("=== Meteorological Bureau Demo ===\n\n");
     mb_init();
 
-    print_str("Adding weather stations...\n");
-    for (int i = 0; i < 14; i++) {
-        mb_add_station((i % 4) + 1);
-    }
-
-    print_str("\nRecording readings...\n");
-    for (int i = 0; i < 28; i++) {
-        int st = i % 14;
-        int temp = -5 + (i * 3);
-        int humidity = 40 + (i % 50);
-        int pressure = 1000 + (i % 30);
-        int wind = 5 + (i * 4);
-        int rain = i % 20;
-        int hour = i % 24;
-        mb_record_reading(st, temp, humidity, pressure, wind, rain, hour);
-    }
-
-    print_str("\nIssuing forecasts...\n");
-    for (int i = 0; i < 12; i++) {
-        int zone = (i % 4) + 1;
-        int type = (i % 3) + 1;
-        int high = 20 + (i * 2);
-        int low = high - 10;
-        int precip = i * 5;
-        int wind = 10 + (i * 3);
-        int validity = 1 + (i % 5);
-        int hour = i * 2;
-        mb_issue_forecast(zone, type, high, low, precip, wind, validity, hour);
-    }
-
-    print_str("\nIssuing warnings...\n");
+    print_str("Weather observation...\n");
     for (int i = 0; i < 16; i++) {
-        int zone = (i % 4) + 1;
         int type = (i % 5) + 1;
-        int severity = (i % 4) + 1;
-        int issued = 6 + i;
-        int expires = issued + 12;
-        int affected = 1000 + (i * 500);
-        mb_issue_warning(zone, type, severity, issued, expires, affected);
+        int rgn = (i % 8) + 1;
+        int stn = 50 + (i * 20);
+        int qual = 85 + (i % 15);
+        int dly = 1000 + (i * 500);
+        int year = 2020 + (i % 5);
+        mb_observation(type, rgn, stn, qual, dly, year);
     }
 
-    print_str("\nExpiring warnings...\n");
+    print_str("\nWeather forecasting...\n");
+    for (int i = 0; i < 14; i++) {
+        int type = (i % 4) + 1;
+        int lead = 1 + (i % 7);
+        int acc = 80 + (i * 2);
+        int iss = 500 + (i * 100);
+        int cor = iss / 20;
+        int year = 2021 + (i % 4);
+        mb_forecast(type, lead, acc, iss, cor, year);
+    }
+
+    print_str("\nDisaster warnings...\n");
+    for (int i = 0; i < 12; i++) {
+        int type = (i % 6) + 1;
+        int sev = (i % 4) + 1;
+        int iss = 100 + (i * 30);
+        int lead = 30 + (i * 10);
+        int pop = 10000 + (i * 5000);
+        int year = 2022 + (i % 3);
+        mb_warning(type, sev, iss, lead, pop, year);
+    }
+
+    print_str("\nClimate services...\n");
     for (int i = 0; i < 10; i++) {
-        mb_expire_warning(i);
+        int type = (i % 4) + 1;
+        int per = (i % 5) + 1;
+        int ind = 20 + (i * 5);
+        int anom = 2 + (i % 4);
+        int adp = 3 + (i % 5);
+        int year = 2023 + (i % 2);
+        mb_climate(type, per, ind, anom, adp, year);
     }
 
-    print_str("\nRecording climate data...\n");
+    print_str("\nMeteorological technology...\n");
     for (int i = 0; i < 10; i++) {
-        int zone = (i % 4) + 1;
-        int avg_temp = 10 + (i * 2);
-        int avg_rain = 500 + (i * 100);
-        int anomaly = -2 + (i % 5);
-        int year = 2015 + i;
-        mb_record_climate(zone, avg_temp, avg_rain, anomaly, year);
-    }
-
-    print_str("\nAdding aviation weather...\n");
-    for (int i = 0; i < 8; i++) {
-        int airport = 10 + i;
-        int vis = 5000 + (i * 1000);
-        int ceiling = 2000 + (i * 500);
-        int wind_dir = (i * 45) % 360;
-        int wind_spd = 10 + (i * 5);
-        int weather = (i % 4) + 1;
-        int hour = 6 + (i * 2);
-        mb_add_aviation(airport, vis, ceiling, wind_dir, wind_spd, weather, hour);
+        int area = (i % 6) + 1;
+        int type = (i % 4) + 1;
+        int fnd = 10 + (i * 3);
+        int pat = 5 + (i * 2);
+        int intl = 2 + (i % 4);
+        int year = 2024;
+        mb_technology(area, type, fnd, pat, intl, year);
     }
 
     print_str("\nObservation report...\n");
     mb_observation_report();
+
+    print_str("\nForecast report...\n");
+    mb_forecast_report();
 
     print_str("\nWarning report...\n");
     mb_warning_report();
