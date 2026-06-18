@@ -1,5 +1,5 @@
-/* civil_admin: Civil affairs administration system (v1.0)
- * Social assistance, marriage, funeral, charity, community governance
+/* civil_admin: Civil engineering administration system (v1.0)
+ * Structural, hydraulic, transportation, municipal, construction engineering
  */
 #include <stddef.h>
 
@@ -12,86 +12,91 @@ extern void host_exit(int code);
 __attribute__((import_module("host"), import_name("get_argv")))
 extern int host_get_argv(unsigned int buf_off, unsigned int max_len);
 
-#define MAX_ASSISTANCE   16
-#define MAX_MARRIAGE     14
-#define MAX_FUNERAL      12
-#define MAX_CHARITY      10
-#define MAX_COMMUNITY    10
+#define MAX_STR_ENG     16
+#define MAX_HYD_ENG     14
+#define MAX_TRA_ENG     12
+#define MAX_MUN_ENG     10
+#define MAX_CON_ENG     10
 
 typedef struct {
-    int    assistance_id;
-    int    beneficiary_id;
-    int    assistance_type;
-    int    amount;
-    int    duration_months;
-    int    family_size;
+    int    se_id;
+    int    se_type;
+    int    se_category;
+    int    bld_str;
+    int    bri_eng;
+    int    geo_tec;
+    int    ase_eng;
     int    year;
     int    active;
-} assistance_t;
+} str_eng_t;
 
 typedef struct {
-    int    marriage_id;
-    int    couple_id;
-    int    marriage_type;
-    int    region_id;
-    int    age_groom;
-    int    age_bride;
+    int    he_id;
+    int    he_type;
+    int    he_category;
+    int    hyd_hyd;
+    int    hyd_mec;
+    int    hyd_hbu;
+    int    irr_dra;
     int    year;
     int    active;
-} marriage_t;
+} hyd_eng_t;
 
 typedef struct {
-    int    funeral_id;
-    int    deceased_id;
-    int    service_type;
-    int    burial_type;
-    int    cost;
-    int    ceremony_size;
+    int    te_id;
+    int    te_type;
+    int    te_category;
+    int    roa_eng;
+    int    rai_eng;
+    int    air_eng;
+    int    tun_eng;
     int    year;
     int    active;
-} funeral_t;
+} tra_eng_t;
 
 typedef struct {
-    int    charity_id;
-    int    organization_id;
-    int    charity_type;
-    int    donations;
-    int    volunteers;
-    int    beneficiaries;
+    int    me_id;
+    int    me_type;
+    int    me_category;
+    int    wat_sup;
+    int    urb_heat;
+    int    gas_eng;
+    int    env_san;
     int    year;
     int    active;
-} charity_t;
+} mun_eng_t;
 
 typedef struct {
-    int    community_id;
-    int    region_id;
-    int    governance_type;
-    int    residents;
-    int    services;
-    int    satisfaction;
+    int    ce_id;
+    int    ce_type;
+    int    ce_category;
+    int    bld_des;
+    int    bld_tec;
+    int    bld_eco;
+    int    bld_man;
     int    year;
     int    active;
-} community_t;
+} con_eng_t;
 
 typedef struct {
-    int    n_assistance;
-    int    n_marriage;
-    int    n_funeral;
-    int    n_charity;
-    int    n_community;
-    int    total_assistance_amount;
-    int    total_beneficiaries;
-    int    total_donations;
-    int    total_volunteers;
-    int    total_residents;
-} cvl_state_t;
+    int    n_str_eng;
+    int    n_hyd_eng;
+    int    n_tra_eng;
+    int    n_mun_eng;
+    int    n_con_eng;
+    int    total_bld_str;
+    int    total_hyd_hyd;
+    int    total_roa_eng;
+    int    total_wat_sup;
+    int    total_bld_des;
+} cia_state_t;
 
-static assistance_t assistances[MAX_ASSISTANCE];
-static marriage_t marriages[MAX_MARRIAGE];
-static funeral_t funerals[MAX_FUNERAL];
-static charity_t charities[MAX_CHARITY];
-static community_t communities[MAX_COMMUNITY];
-static cvl_state_t cvl;
+static str_eng_t str_engs[MAX_STR_ENG];
+static hyd_eng_t hyd_engs[MAX_HYD_ENG];
+static tra_eng_t tra_engs[MAX_TRA_ENG];
+static mun_eng_t mun_engs[MAX_MUN_ENG];
+static con_eng_t con_engs[MAX_CON_ENG];
+static cia_state_t cia;
 
 static int initialized = 0;
 
@@ -105,234 +110,249 @@ static void print_int(int val) {
     buf[i] = '\0'; host_print(buf);
 }
 
-int cvl_init(void) {
+int cia_init(void) {
     if (initialized) return -1;
-    cvl.n_assistance = 0; cvl.n_marriage = 0; cvl.n_funeral = 0;
-    cvl.n_charity = 0; cvl.n_community = 0;
-    cvl.total_assistance_amount = 0; cvl.total_beneficiaries = 0;
-    cvl.total_donations = 0; cvl.total_volunteers = 0;
-    cvl.total_residents = 0;
-    for (int i = 0; i < MAX_ASSISTANCE; i++) assistances[i].active = 0;
-    for (int i = 0; i < MAX_MARRIAGE; i++) marriages[i].active = 0;
-    for (int i = 0; i < MAX_FUNERAL; i++) funerals[i].active = 0;
-    for (int i = 0; i < MAX_CHARITY; i++) charities[i].active = 0;
-    for (int i = 0; i < MAX_COMMUNITY; i++) communities[i].active = 0;
+    cia.n_str_eng = 0; cia.n_hyd_eng = 0; cia.n_tra_eng = 0;
+    cia.n_mun_eng = 0; cia.n_con_eng = 0;
+    cia.total_bld_str = 0; cia.total_hyd_hyd = 0;
+    cia.total_roa_eng = 0; cia.total_wat_sup = 0;
+    cia.total_bld_des = 0;
+    for (int i = 0; i < MAX_STR_ENG; i++) str_engs[i].active = 0;
+    for (int i = 0; i < MAX_HYD_ENG; i++) hyd_engs[i].active = 0;
+    for (int i = 0; i < MAX_TRA_ENG; i++) tra_engs[i].active = 0;
+    for (int i = 0; i < MAX_MUN_ENG; i++) mun_engs[i].active = 0;
+    for (int i = 0; i < MAX_CON_ENG; i++) con_engs[i].active = 0;
     initialized = 1;
-    print_str("[CVL] Civil admin initialized\n");
+    print_str("[CIA] Civil initialized\n");
     return 0;
 }
 
-int cvl_assistance(int beneficiary, int assistance_type, int amount, int duration, int family_size, int year) {
-    if (cvl.n_assistance >= MAX_ASSISTANCE) return -1;
-    assistance_t* a = &assistances[cvl.n_assistance];
-    a->assistance_id = cvl.n_assistance;
-    a->beneficiary_id = beneficiary;
-    a->assistance_type = assistance_type;
-    a->amount = amount;
-    a->duration_months = duration;
-    a->family_size = family_size;
-    a->year = year;
-    a->active = 1;
-    cvl.total_assistance_amount += amount * duration;
-    cvl.total_beneficiaries += family_size;
-    cvl.n_assistance++;
-    print_str("[CVL] Assistance "); print_int(cvl.n_assistance - 1);
-    print_str(" ben="); print_int(beneficiary);
-    print_str(" type="); print_int(assistance_type);
-    print_str(" amt=$"); print_int(amount);
-    print_str(" dur="); print_int(duration); print_str("mo");
-    print_str(" fm="); print_int(family_size); print_str("\n");
-    return cvl.n_assistance - 1;
+int cia_str_eng(int st_type, int cat, int bsr, int ber, int gte, int aee, int year) {
+    if (cia.n_str_eng >= MAX_STR_ENG) return -1;
+    str_eng_t* s = &str_engs[cia.n_str_eng];
+    s->se_id = cia.n_str_eng;
+    s->se_type = st_type;
+    s->se_category = cat;
+    s->bld_str = bsr;
+    s->bri_eng = ber;
+    s->geo_tec = gte;
+    s->ase_eng = aee;
+    s->year = year;
+    s->active = 1;
+    cia.total_bld_str += bsr;
+    cia.n_str_eng++;
+    print_str("[CIA] Str eng "); print_int(cia.n_str_eng - 1);
+    print_str(" type="); print_int(st_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" bsr="); print_int(bsr);
+    print_str(" ber="); print_int(ber);
+    print_str(" gte="); print_int(gte);
+    print_str(" aee="); print_int(aee); print_str("\n");
+    return cia.n_str_eng - 1;
 }
 
-int cvl_marriage(int couple, int marriage_type, int region, int age_groom, int age_bride, int year) {
-    if (cvl.n_marriage >= MAX_MARRIAGE) return -1;
-    marriage_t* m = &marriages[cvl.n_marriage];
-    m->marriage_id = cvl.n_marriage;
-    m->couple_id = couple;
-    m->marriage_type = marriage_type;
-    m->region_id = region;
-    m->age_groom = age_groom;
-    m->age_bride = age_bride;
+int cia_hyd_eng(int ht_type, int cat, int hhd, int hmc, int hhu, int idr, int year) {
+    if (cia.n_hyd_eng >= MAX_HYD_ENG) return -1;
+    hyd_eng_t* h = &hyd_engs[cia.n_hyd_eng];
+    h->he_id = cia.n_hyd_eng;
+    h->he_type = ht_type;
+    h->he_category = cat;
+    h->hyd_hyd = hhd;
+    h->hyd_mec = hmc;
+    h->hyd_hbu = hhu;
+    h->irr_dra = idr;
+    h->year = year;
+    h->active = 1;
+    cia.total_hyd_hyd += hhd;
+    cia.n_hyd_eng++;
+    print_str("[CIA] Hyd eng "); print_int(cia.n_hyd_eng - 1);
+    print_str(" type="); print_int(ht_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" hhd="); print_int(hhd);
+    print_str(" hmc="); print_int(hmc);
+    print_str(" hhu="); print_int(hhu);
+    print_str(" idr="); print_int(idr); print_str("\n");
+    return cia.n_hyd_eng - 1;
+}
+
+int cia_tra_eng(int tt_type, int cat, int ren, int raen, int aen, int ten, int year) {
+    if (cia.n_tra_eng >= MAX_TRA_ENG) return -1;
+    tra_eng_t* t = &tra_engs[cia.n_tra_eng];
+    t->te_id = cia.n_tra_eng;
+    t->te_type = tt_type;
+    t->te_category = cat;
+    t->roa_eng = ren;
+    t->rai_eng = raen;
+    t->air_eng = aen;
+    t->tun_eng = ten;
+    t->year = year;
+    t->active = 1;
+    cia.total_roa_eng += ren;
+    cia.n_tra_eng++;
+    print_str("[CIA] Tra eng "); print_int(cia.n_tra_eng - 1);
+    print_str(" type="); print_int(tt_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" ren="); print_int(ren);
+    print_str(" raen="); print_int(raen);
+    print_str(" aen="); print_int(aen);
+    print_str(" ten="); print_int(ten); print_str("\n");
+    return cia.n_tra_eng - 1;
+}
+
+int cia_mun_eng(int mt_type, int cat, int wts, int uht, int gen, int esn, int year) {
+    if (cia.n_mun_eng >= MAX_MUN_ENG) return -1;
+    mun_eng_t* m = &mun_engs[cia.n_mun_eng];
+    m->me_id = cia.n_mun_eng;
+    m->me_type = mt_type;
+    m->me_category = cat;
+    m->wat_sup = wts;
+    m->urb_heat = uht;
+    m->gas_eng = gen;
+    m->env_san = esn;
     m->year = year;
     m->active = 1;
-    cvl.n_marriage++;
-    print_str("[CVL] Marriage "); print_int(cvl.n_marriage - 1);
-    print_str(" cup="); print_int(couple);
-    print_str(" type="); print_int(marriage_type);
-    print_str(" rgn="); print_int(region);
-    print_str(" gAge="); print_int(age_groom);
-    print_str(" bAge="); print_int(age_bride); print_str("\n");
-    return cvl.n_marriage - 1;
+    cia.total_wat_sup += wts;
+    cia.n_mun_eng++;
+    print_str("[CIA] Mun eng "); print_int(cia.n_mun_eng - 1);
+    print_str(" type="); print_int(mt_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" wts="); print_int(wts);
+    print_str(" uht="); print_int(uht);
+    print_str(" gen="); print_int(gen);
+    print_str(" esn="); print_int(esn); print_str("\n");
+    return cia.n_mun_eng - 1;
 }
 
-int cvl_funeral(int deceased, int service_type, int burial_type, int cost, int ceremony_size, int year) {
-    if (cvl.n_funeral >= MAX_FUNERAL) return -1;
-    funeral_t* f = &funerals[cvl.n_funeral];
-    f->funeral_id = cvl.n_funeral;
-    f->deceased_id = deceased;
-    f->service_type = service_type;
-    f->burial_type = burial_type;
-    f->cost = cost;
-    f->ceremony_size = ceremony_size;
-    f->year = year;
-    f->active = 1;
-    cvl.n_funeral++;
-    print_str("[CVL] Funeral "); print_int(cvl.n_funeral - 1);
-    print_str(" dec="); print_int(deceased);
-    print_str(" svc="); print_int(service_type);
-    print_str(" brl="); print_int(burial_type);
-    print_str(" cst=$"); print_int(cost);
-    print_str(" crm="); print_int(ceremony_size); print_str("\n");
-    return cvl.n_funeral - 1;
-}
-
-int cvl_charity(int organization, int charity_type, int donations, int volunteers, int beneficiaries, int year) {
-    if (cvl.n_charity >= MAX_CHARITY) return -1;
-    charity_t* c = &charities[cvl.n_charity];
-    c->charity_id = cvl.n_charity;
-    c->organization_id = organization;
-    c->charity_type = charity_type;
-    c->donations = donations;
-    c->volunteers = volunteers;
-    c->beneficiaries = beneficiaries;
+int cia_con_eng(int ct_type, int cat, int bds, int bte, int bec, int bma, int year) {
+    if (cia.n_con_eng >= MAX_CON_ENG) return -1;
+    con_eng_t* c = &con_engs[cia.n_con_eng];
+    c->ce_id = cia.n_con_eng;
+    c->ce_type = ct_type;
+    c->ce_category = cat;
+    c->bld_des = bds;
+    c->bld_tec = bte;
+    c->bld_eco = bec;
+    c->bld_man = bma;
     c->year = year;
     c->active = 1;
-    cvl.total_donations += donations;
-    cvl.total_volunteers += volunteers;
-    cvl.n_charity++;
-    print_str("[CVL] Charity "); print_int(cvl.n_charity - 1);
-    print_str(" org="); print_int(organization);
-    print_str(" type="); print_int(charity_type);
-    print_str(" dnt=$"); print_int(donations);
-    print_str(" vlt="); print_int(volunteers);
-    print_str(" ben="); print_int(beneficiaries); print_str("\n");
-    return cvl.n_charity - 1;
+    cia.total_bld_des += bds;
+    cia.n_con_eng++;
+    print_str("[CIA] Con eng "); print_int(cia.n_con_eng - 1);
+    print_str(" type="); print_int(ct_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" bds="); print_int(bds);
+    print_str(" bte="); print_int(bte);
+    print_str(" bec="); print_int(bec);
+    print_str(" bma="); print_int(bma); print_str("\n");
+    return cia.n_con_eng - 1;
 }
 
-int cvl_community(int region, int governance_type, int residents, int services, int satisfaction, int year) {
-    if (cvl.n_community >= MAX_COMMUNITY) return -1;
-    community_t* cm = &communities[cvl.n_community];
-    cm->community_id = cvl.n_community;
-    cm->region_id = region;
-    cm->governance_type = governance_type;
-    cm->residents = residents;
-    cm->services = services;
-    cm->satisfaction = satisfaction;
-    cm->year = year;
-    cm->active = 1;
-    cvl.total_residents += residents;
-    cvl.n_community++;
-    print_str("[CVL] Community "); print_int(cvl.n_community - 1);
-    print_str(" rgn="); print_int(region);
-    print_str(" type="); print_int(governance_type);
-    print_str(" res="); print_int(residents);
-    print_str(" svc="); print_int(services);
-    print_str(" sat="); print_int(satisfaction); print_str("\n");
-    return cvl.n_community - 1;
+void cia_structural_report(void) {
+    print_str("[CIA] Structural report:\n");
+    print_str("  Structural categories: "); print_int(cia.n_str_eng); print_str("\n");
+    print_str("  Total building structures: "); print_int(cia.total_bld_str); print_str("\n");
 }
 
-void cvl_assistance_report(void) {
-    print_str("[CVL] Assistance report:\n");
-    print_str("  Assistance cases: "); print_int(cvl.n_assistance); print_str("\n");
-    print_str("  Total amount: $"); print_int(cvl.total_assistance_amount); print_str("\n");
-    print_str("  Total beneficiaries: "); print_int(cvl.total_beneficiaries); print_str("\n");
+void cia_hydraulic_report(void) {
+    print_str("[CIA] Hydraulic report:\n");
+    print_str("  Hydraulic categories: "); print_int(cia.n_hyd_eng); print_str("\n");
+    print_str("  Total hydrology studies: "); print_int(cia.total_hyd_hyd); print_str("\n");
 }
 
-void cvl_marriage_report(void) {
-    print_str("[CVL] Marriage report:\n");
-    print_str("  Marriages registered: "); print_int(cvl.n_marriage); print_str("\n");
-    print_str("  Funeral services: "); print_int(cvl.n_funeral); print_str("\n");
+void cia_full_report(void) {
+    print_str("[CIA] Full report:\n");
+    print_str("  Transportation categories: "); print_int(cia.n_tra_eng); print_str("\n");
+    print_str("  Total road engineering: "); print_int(cia.total_roa_eng); print_str("\n");
+    print_str("  Municipal categories: "); print_int(cia.n_mun_eng); print_str("\n");
+    print_str("  Total water supply: "); print_int(cia.total_wat_sup); print_str("\n");
+    print_str("  Construction categories: "); print_int(cia.n_con_eng); print_str("\n");
+    print_str("  Total building design: "); print_int(cia.total_bld_des); print_str("\n");
 }
 
-void cvl_charity_report(void) {
-    print_str("[CVL] Charity report:\n");
-    print_str("  Charity organizations: "); print_int(cvl.n_charity); print_str("\n");
-    print_str("  Total donations: $"); print_int(cvl.total_donations); print_str("\n");
-    print_str("  Total volunteers: "); print_int(cvl.total_volunteers); print_str("\n");
-    print_str("  Communities: "); print_int(cvl.n_community); print_str("\n");
-    print_str("  Total residents: "); print_int(cvl.total_residents); print_str("\n");
-}
-
-void cvl_print_state(void) {
-    print_str("[CVL] As="); print_int(cvl.n_assistance);
-    print_str(" Mr="); print_int(cvl.n_marriage);
-    print_str(" Fn="); print_int(cvl.n_funeral);
-    print_str(" Ch="); print_int(cvl.n_charity);
-    print_str(" Cm="); print_int(cvl.n_community);
+void cia_print_state(void) {
+    print_str("[CIA] Se="); print_int(cia.n_str_eng);
+    print_str(" He="); print_int(cia.n_hyd_eng);
+    print_str(" Te="); print_int(cia.n_tra_eng);
+    print_str(" Me="); print_int(cia.n_mun_eng);
+    print_str(" Ce="); print_int(cia.n_con_eng);
     print_str("\n");
 }
 
 int main(void) {
     print_str("=== Civil Admin Demo ===\n\n");
-    cvl_init();
+    cia_init();
 
-    print_str("Social assistance...\n");
+    print_str("Structural...\n");
     for (int i = 0; i < 16; i++) {
-        int ben = 1000 + (i * 11);
-        int type = (i % 4) + 1;
-        int amt = 500 + (i * 100);
-        int dur = 6 + (i % 7);
-        int fm = 2 + (i % 5);
+        int type = (i % 5) + 1;
+        int cat = (i % 4) + 1;
+        int bsr = 55 + (i * 13);
+        int ber = 40 + (i * 10);
+        int gte = 22 + (i * 5);
+        int aee = 15 + (i * 3);
         int year = 2020 + (i % 5);
-        cvl_assistance(ben, type, amt, dur, fm, year);
+        cia_str_eng(type, cat, bsr, ber, gte, aee, year);
     }
 
-    print_str("\nMarriage registration...\n");
+    print_str("\nHydraulic...\n");
     for (int i = 0; i < 14; i++) {
-        int cup = 2000 + (i * 7);
-        int type = (i % 3) + 1;
-        int rgn = (i % 8) + 1;
-        int ag = 25 + (i % 10);
-        int ab = 23 + (i % 10);
-        int year = 2021 + (i % 4);
-        cvl_marriage(cup, type, rgn, ag, ab, year);
-    }
-
-    print_str("\nFuneral services...\n");
-    for (int i = 0; i < 12; i++) {
-        int dec = 3000 + (i * 13);
-        int svc = (i % 3) + 1;
-        int brl = (i % 4) + 1;
-        int cst = 5000 + (i * 2000);
-        int crm = 30 + (i * 10);
-        int year = 2022 + (i % 3);
-        cvl_funeral(dec, svc, brl, cst, crm, year);
-    }
-
-    print_str("\nCharity organizations...\n");
-    for (int i = 0; i < 10; i++) {
-        int org = 4000 + (i * 17);
         int type = (i % 4) + 1;
-        int dnt = 100000 + (i * 50000);
-        int vlt = 20 + (i * 10);
-        int ben = 500 + (i * 200);
-        int year = 2023 + (i % 2);
-        cvl_charity(org, type, dnt, vlt, ben, year);
+        int cat = (i % 5) + 1;
+        int hhd = 48 + (i * 11);
+        int hmc = 35 + (i * 8);
+        int hhu = 20 + (i * 4);
+        int idr = 12 + (i * 3);
+        int year = 2021 + (i % 4);
+        cia_hyd_eng(type, cat, hhd, hmc, hhu, idr, year);
     }
 
-    print_str("\nCommunity governance...\n");
+    print_str("\nTransportation...\n");
+    for (int i = 0; i < 12; i++) {
+        int type = (i % 4) + 1;
+        int cat = (i % 5) + 1;
+        int ren = 42 + (i * 10);
+        int raen = 28 + (i * 7);
+        int aen = 18 + (i * 4);
+        int ten = 10 + (i * 2);
+        int year = 2022 + (i % 3);
+        cia_tra_eng(type, cat, ren, raen, aen, ten, year);
+    }
+
+    print_str("\nMunicipal...\n");
     for (int i = 0; i < 10; i++) {
-        int rgn = (i % 8) + 1;
-        int type = (i % 3) + 1;
-        int res = 2000 + (i * 500);
-        int svc = 10 + (i * 3);
-        int sat = 70 + (i * 3);
-        int year = 2024;
-        cvl_community(rgn, type, res, svc, sat, year);
+        int type = (i % 4) + 1;
+        int cat = (i % 5) + 1;
+        int wts = 35 + (i * 8);
+        int uht = 25 + (i * 6);
+        int gen = 15 + (i * 3);
+        int esn = 10 + (i * 2);
+        int year = 2023 + (i % 2);
+        cia_mun_eng(type, cat, wts, uht, gen, esn, year);
     }
 
-    print_str("\nAssistance report...\n");
-    cvl_assistance_report();
+    print_str("\nConstruction...\n");
+    for (int i = 0; i < 10; i++) {
+        int type = (i % 4) + 1;
+        int cat = (i % 5) + 1;
+        int bds = 30 + (i * 7);
+        int bte = 22 + (i * 5);
+        int bec = 12 + (i * 3);
+        int bma = 8 + (i * 2);
+        int year = 2024;
+        cia_con_eng(type, cat, bds, bte, bec, bma, year);
+    }
 
-    print_str("\nMarriage report...\n");
-    cvl_marriage_report();
+    print_str("\nStructural report...\n");
+    cia_structural_report();
 
-    print_str("\nCharity report...\n");
-    cvl_charity_report();
+    print_str("\nHydraulic report...\n");
+    cia_hydraulic_report();
+
+    print_str("\nFull report...\n");
+    cia_full_report();
 
     print_str("\nFinal state...\n");
-    cvl_print_state();
+    cia_print_state();
     print_str("\n=== Demo Complete ===\n");
     return 0;
 }
