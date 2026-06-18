@@ -1,5 +1,5 @@
 /* energy_admin: Energy administration system (v1.0)
- * Energy planning, electricity, oil and gas, new energy, energy security
+ * Energy science, renewable energy, nuclear engineering, fossil energy, new energy
  */
 #include <stddef.h>
 
@@ -12,88 +12,91 @@ extern void host_exit(int code);
 __attribute__((import_module("host"), import_name("get_argv")))
 extern int host_get_argv(unsigned int buf_off, unsigned int max_len);
 
-#define MAX_PLAN         16
-#define MAX_ELECTRIC     14
-#define MAX_OILGAS       12
-#define MAX_NEWENERGY    10
-#define MAX_SECURITY     10
+#define MAX_ENG_SCI     16
+#define MAX_REN_ENG     14
+#define MAX_NUC_ENG     12
+#define MAX_FOS_ENG     10
+#define MAX_NEW_ENG     10
 
 typedef struct {
-    int    plan_id;
-    int    plan_type;
-    int    region_id;
-    int    target_output;
-    int    investment;
-    int    completion_pct;
+    int    es_id;
+    int    es_type;
+    int    es_category;
+    int    eng_the;
+    int    eng_con;
+    int    eng_sto;
+    int    eng_eff;
     int    year;
     int    active;
-} plan_t;
+} eng_sci_t;
 
 typedef struct {
-    int    electric_id;
-    int    power_plant_id;
-    int    type;
-    int    capacity_mw;
-    int    generation_mwh;
-    int    grid_dispatch;
-    int    efficiency;
+    int    re_id;
+    int    re_type;
+    int    re_category;
+    int    sol_ene;
+    int    win_ene;
+    int    wat_ene;
+    int    bio_ene;
     int    year;
     int    active;
-} electric_t;
+} ren_eng_t;
 
 typedef struct {
-    int    oilgas_id;
-    int    field_id;
-    int    type;
-    int    production;
-    int    reserves;
-    int    pipeline_km;
+    int    nu_id;
+    int    nu_type;
+    int    nu_category;
+    int    nuc_phy;
+    int    nuc_rea;
+    int    nuc_fue;
+    int    nuc_saf;
     int    year;
     int    active;
-} oilgas_t;
+} nuc_eng_t;
 
 typedef struct {
-    int    newenergy_id;
-    int    source_type;
-    int    location_id;
-    int    capacity_mw;
-    int    generation_mwh;
-    int    subsidy;
-    int    co2_reduced;
+    int    fo_id;
+    int    fo_type;
+    int    fo_category;
+    int    coa_eng;
+    int    pet_eng;
+    int    nat_gas;
+    int    sha_gas;
     int    year;
     int    active;
-} newenergy_t;
+} fos_eng_t;
 
 typedef struct {
-    int    security_id;
-    int    reserve_type;
-    int    facility_id;
-    int    capacity;
-    int    current_stock;
-    int    days_of_supply;
+    int    ne_id;
+    int    ne_type;
+    int    ne_category;
+    int    geo_ene;
+    int    oce_ene;
+    int    hyd_ene;
+    int    fue_cell;
     int    year;
     int    active;
-} security_t;
+} new_eng_t;
 
 typedef struct {
-    int    n_plan;
-    int    n_electric;
-    int    n_oilgas;
-    int    n_newenergy;
-    int    n_security;
-    int    total_capacity;
-    int    total_generation;
-    int    total_production;
-    int    total_reserves;
-    int    total_co2;
-} ea_state_t;
+    int    n_eng_sci;
+    int    n_ren_eng;
+    int    n_nuc_eng;
+    int    n_fos_eng;
+    int    n_new_eng;
+    int    total_eng_the;
+    int    total_sol_ene;
+    int    total_nuc_phy;
+    int    total_coa_eng;
+    int    total_geo_ene;
+} ena_state_t;
 
-static plan_t plans[MAX_PLAN];
-static electric_t electrics[MAX_ELECTRIC];
-static oilgas_t oilgases[MAX_OILGAS];
-static newenergy_t newenergies[MAX_NEWENERGY];
-static security_t securities[MAX_SECURITY];
-static ea_state_t ea;
+static eng_sci_t eng_scis[MAX_ENG_SCI];
+static ren_eng_t ren_engs[MAX_REN_ENG];
+static nuc_eng_t nuc_engs[MAX_NUC_ENG];
+static fos_eng_t fos_engs[MAX_FOS_ENG];
+static new_eng_t new_engs[MAX_NEW_ENG];
+static ena_state_t ena;
 
 static int initialized = 0;
 
@@ -107,237 +110,249 @@ static void print_int(int val) {
     buf[i] = '\0'; host_print(buf);
 }
 
-int ea_init(void) {
+int ena_init(void) {
     if (initialized) return -1;
-    ea.n_plan = 0; ea.n_electric = 0; ea.n_oilgas = 0;
-    ea.n_newenergy = 0; ea.n_security = 0;
-    ea.total_capacity = 0; ea.total_generation = 0;
-    ea.total_production = 0; ea.total_reserves = 0;
-    ea.total_co2 = 0;
-    for (int i = 0; i < MAX_PLAN; i++) plans[i].active = 0;
-    for (int i = 0; i < MAX_ELECTRIC; i++) electrics[i].active = 0;
-    for (int i = 0; i < MAX_OILGAS; i++) oilgases[i].active = 0;
-    for (int i = 0; i < MAX_NEWENERGY; i++) newenergies[i].active = 0;
-    for (int i = 0; i < MAX_SECURITY; i++) securities[i].active = 0;
+    ena.n_eng_sci = 0; ena.n_ren_eng = 0; ena.n_nuc_eng = 0;
+    ena.n_fos_eng = 0; ena.n_new_eng = 0;
+    ena.total_eng_the = 0; ena.total_sol_ene = 0;
+    ena.total_nuc_phy = 0; ena.total_coa_eng = 0;
+    ena.total_geo_ene = 0;
+    for (int i = 0; i < MAX_ENG_SCI; i++) eng_scis[i].active = 0;
+    for (int i = 0; i < MAX_REN_ENG; i++) ren_engs[i].active = 0;
+    for (int i = 0; i < MAX_NUC_ENG; i++) nuc_engs[i].active = 0;
+    for (int i = 0; i < MAX_FOS_ENG; i++) fos_engs[i].active = 0;
+    for (int i = 0; i < MAX_NEW_ENG; i++) new_engs[i].active = 0;
     initialized = 1;
-    print_str("[EA] Energy admin initialized\n");
+    print_str("[ENA] Energy initialized\n");
     return 0;
 }
 
-int ea_plan(int plan_type, int region, int target, int investment, int completion, int year) {
-    if (ea.n_plan >= MAX_PLAN) return -1;
-    plan_t* p = &plans[ea.n_plan];
-    p->plan_id = ea.n_plan;
-    p->plan_type = plan_type;
-    p->region_id = region;
-    p->target_output = target;
-    p->investment = investment;
-    p->completion_pct = completion;
-    p->year = year;
-    p->active = 1;
-    ea.n_plan++;
-    print_str("[EA] Plan "); print_int(ea.n_plan - 1);
-    print_str(" type="); print_int(plan_type);
-    print_str(" reg="); print_int(region);
-    print_str(" tgt="); print_int(target);
-    print_str(" inv=$"); print_int(investment);
-    print_str(" cmp="); print_int(completion); print_str("%\n");
-    return ea.n_plan - 1;
-}
-
-int ea_electric(int plant, int type, int capacity, int generation, int dispatch, int efficiency, int year) {
-    if (ea.n_electric >= MAX_ELECTRIC) return -1;
-    electric_t* e = &electrics[ea.n_electric];
-    e->electric_id = ea.n_electric;
-    e->power_plant_id = plant;
-    e->type = type;
-    e->capacity_mw = capacity;
-    e->generation_mwh = generation;
-    e->grid_dispatch = dispatch;
-    e->efficiency = efficiency;
+int ena_eng_sci(int st_type, int cat, int eth, int eco, int est, int eef, int year) {
+    if (ena.n_eng_sci >= MAX_ENG_SCI) return -1;
+    eng_sci_t* e = &eng_scis[ena.n_eng_sci];
+    e->es_id = ena.n_eng_sci;
+    e->es_type = st_type;
+    e->es_category = cat;
+    e->eng_the = eth;
+    e->eng_con = eco;
+    e->eng_sto = est;
+    e->eng_eff = eef;
     e->year = year;
     e->active = 1;
-    ea.total_capacity += capacity;
-    ea.total_generation += generation;
-    ea.n_electric++;
-    print_str("[EA] Electric "); print_int(ea.n_electric - 1);
-    print_str(" plt="); print_int(plant);
-    print_str(" type="); print_int(type);
-    print_str(" cap="); print_int(capacity); print_str("MW");
-    print_str(" gen="); print_int(generation); print_str("MWh");
-    print_str(" eff="); print_int(efficiency); print_str("%\n");
-    return ea.n_electric - 1;
+    ena.total_eng_the += eth;
+    ena.n_eng_sci++;
+    print_str("[ENA] Eng sci "); print_int(ena.n_eng_sci - 1);
+    print_str(" type="); print_int(st_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" eth="); print_int(eth);
+    print_str(" eco="); print_int(eco);
+    print_str(" est="); print_int(est);
+    print_str(" eef="); print_int(eef); print_str("\n");
+    return ena.n_eng_sci - 1;
 }
 
-int ea_oilgas(int field, int type, int production, int reserves, int pipeline, int year) {
-    if (ea.n_oilgas >= MAX_OILGAS) return -1;
-    oilgas_t* o = &oilgases[ea.n_oilgas];
-    o->oilgas_id = ea.n_oilgas;
-    o->field_id = field;
-    o->type = type;
-    o->production = production;
-    o->reserves = reserves;
-    o->pipeline_km = pipeline;
-    o->year = year;
-    o->active = 1;
-    ea.total_production += production;
-    ea.total_reserves += reserves;
-    ea.n_oilgas++;
-    print_str("[EA] OilGas "); print_int(ea.n_oilgas - 1);
-    print_str(" fld="); print_int(field);
-    print_str(" type="); print_int(type);
-    print_str(" prd="); print_int(production); print_str("t");
-    print_str(" rsv="); print_int(reserves); print_str("t");
-    print_str(" pip="); print_int(pipeline); print_str("km\n");
-    return ea.n_oilgas - 1;
+int ena_ren_eng(int rt_type, int cat, int sen, int wen, int wat, int ben, int year) {
+    if (ena.n_ren_eng >= MAX_REN_ENG) return -1;
+    ren_eng_t* r = &ren_engs[ena.n_ren_eng];
+    r->re_id = ena.n_ren_eng;
+    r->re_type = rt_type;
+    r->re_category = cat;
+    r->sol_ene = sen;
+    r->win_ene = wen;
+    r->wat_ene = wat;
+    r->bio_ene = ben;
+    r->year = year;
+    r->active = 1;
+    ena.total_sol_ene += sen;
+    ena.n_ren_eng++;
+    print_str("[ENA] Ren eng "); print_int(ena.n_ren_eng - 1);
+    print_str(" type="); print_int(rt_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" sen="); print_int(sen);
+    print_str(" wen="); print_int(wen);
+    print_str(" wat="); print_int(wat);
+    print_str(" ben="); print_int(ben); print_str("\n");
+    return ena.n_ren_eng - 1;
 }
 
-int ea_newenergy(int source, int location, int capacity, int generation, int subsidy, int co2, int year) {
-    if (ea.n_newenergy >= MAX_NEWENERGY) return -1;
-    newenergy_t* n = &newenergies[ea.n_newenergy];
-    n->newenergy_id = ea.n_newenergy;
-    n->source_type = source;
-    n->location_id = location;
-    n->capacity_mw = capacity;
-    n->generation_mwh = generation;
-    n->subsidy = subsidy;
-    n->co2_reduced = co2;
+int ena_nuc_eng(int nt_type, int cat, int nph, int nre, int nfue, int nsaf, int year) {
+    if (ena.n_nuc_eng >= MAX_NUC_ENG) return -1;
+    nuc_eng_t* n = &nuc_engs[ena.n_nuc_eng];
+    n->nu_id = ena.n_nuc_eng;
+    n->nu_type = nt_type;
+    n->nu_category = cat;
+    n->nuc_phy = nph;
+    n->nuc_rea = nre;
+    n->nuc_fue = nfue;
+    n->nuc_saf = nsaf;
     n->year = year;
     n->active = 1;
-    ea.total_co2 += co2;
-    ea.n_newenergy++;
-    print_str("[EA] NewEnergy "); print_int(ea.n_newenergy - 1);
-    print_str(" src="); print_int(source);
-    print_str(" loc="); print_int(location);
-    print_str(" cap="); print_int(capacity); print_str("MW");
-    print_str(" gen="); print_int(generation); print_str("MWh");
-    print_str(" co2="); print_int(co2); print_str("t\n");
-    return ea.n_newenergy - 1;
+    ena.total_nuc_phy += nph;
+    ena.n_nuc_eng++;
+    print_str("[ENA] Nuc eng "); print_int(ena.n_nuc_eng - 1);
+    print_str(" type="); print_int(nt_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" nph="); print_int(nph);
+    print_str(" nre="); print_int(nre);
+    print_str(" nfue="); print_int(nfue);
+    print_str(" nsaf="); print_int(nsaf); print_str("\n");
+    return ena.n_nuc_eng - 1;
 }
 
-int ea_security(int reserve_type, int facility, int capacity, int stock, int days_supply, int year) {
-    if (ea.n_security >= MAX_SECURITY) return -1;
-    security_t* s = &securities[ea.n_security];
-    s->security_id = ea.n_security;
-    s->reserve_type = reserve_type;
-    s->facility_id = facility;
-    s->capacity = capacity;
-    s->current_stock = stock;
-    s->days_of_supply = days_supply;
-    s->year = year;
-    s->active = 1;
-    ea.n_security++;
-    print_str("[EA] Security "); print_int(ea.n_security - 1);
-    print_str(" type="); print_int(reserve_type);
-    print_str(" fac="); print_int(facility);
-    print_str(" cap="); print_int(capacity);
-    print_str(" stk="); print_int(stock);
-    print_str(" day="); print_int(days_supply); print_str("d\n");
-    return ea.n_security - 1;
+int ena_fos_eng(int ft_type, int cat, int coa, int pet, int ngas, int shg, int year) {
+    if (ena.n_fos_eng >= MAX_FOS_ENG) return -1;
+    fos_eng_t* f = &fos_engs[ena.n_fos_eng];
+    f->fo_id = ena.n_fos_eng;
+    f->fo_type = ft_type;
+    f->fo_category = cat;
+    f->coa_eng = coa;
+    f->pet_eng = pet;
+    f->nat_gas = ngas;
+    f->sha_gas = shg;
+    f->year = year;
+    f->active = 1;
+    ena.total_coa_eng += coa;
+    ena.n_fos_eng++;
+    print_str("[ENA] Fos eng "); print_int(ena.n_fos_eng - 1);
+    print_str(" type="); print_int(ft_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" coa="); print_int(coa);
+    print_str(" pet="); print_int(pet);
+    print_str(" ngas="); print_int(ngas);
+    print_str(" shg="); print_int(shg); print_str("\n");
+    return ena.n_fos_eng - 1;
 }
 
-void ea_plan_report(void) {
-    print_str("[EA] Plan report:\n");
-    print_str("  Plans: "); print_int(ea.n_plan); print_str("\n");
+int ena_new_eng(int nt_type, int cat, int geo, int oce, int hyd, int fce, int year) {
+    if (ena.n_new_eng >= MAX_NEW_ENG) return -1;
+    new_eng_t* n = &new_engs[ena.n_new_eng];
+    n->ne_id = ena.n_new_eng;
+    n->ne_type = nt_type;
+    n->ne_category = cat;
+    n->geo_ene = geo;
+    n->oce_ene = oce;
+    n->hyd_ene = hyd;
+    n->fue_cell = fce;
+    n->year = year;
+    n->active = 1;
+    ena.total_geo_ene += geo;
+    ena.n_new_eng++;
+    print_str("[ENA] New eng "); print_int(ena.n_new_eng - 1);
+    print_str(" type="); print_int(nt_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" geo="); print_int(geo);
+    print_str(" oce="); print_int(oce);
+    print_str(" hyd="); print_int(hyd);
+    print_str(" fce="); print_int(fce); print_str("\n");
+    return ena.n_new_eng - 1;
 }
 
-void ea_electric_report(void) {
-    print_str("[EA] Electricity report:\n");
-    print_str("  Power plants: "); print_int(ea.n_electric); print_str("\n");
-    print_str("  Total capacity: "); print_int(ea.total_capacity); print_str(" MW\n");
-    print_str("  Total generation: "); print_int(ea.total_generation); print_str(" MWh\n");
+void ena_science_report(void) {
+    print_str("[ENA] Energy science report:\n");
+    print_str("  Science categories: "); print_int(ena.n_eng_sci); print_str("\n");
+    print_str("  Total energy theory: "); print_int(ena.total_eng_the); print_str("\n");
 }
 
-void ea_energy_report(void) {
-    print_str("[EA] Energy report:\n");
-    print_str("  Oil and gas fields: "); print_int(ea.n_oilgas); print_str("\n");
-    print_str("  Total production: "); print_int(ea.total_production); print_str(" tons\n");
-    print_str("  New energy: "); print_int(ea.n_newenergy); print_str("\n");
-    print_str("  CO2 reduced: "); print_int(ea.total_co2); print_str(" tons\n");
-    print_str("  Energy security: "); print_int(ea.n_security); print_str("\n");
+void ena_renewable_report(void) {
+    print_str("[ENA] Renewable report:\n");
+    print_str("  Renewable categories: "); print_int(ena.n_ren_eng); print_str("\n");
+    print_str("  Total solar energy: "); print_int(ena.total_sol_ene); print_str("\n");
 }
 
-void ea_print_state(void) {
-    print_str("[EA] Pl="); print_int(ea.n_plan);
-    print_str(" El="); print_int(ea.n_electric);
-    print_str(" Og="); print_int(ea.n_oilgas);
-    print_str(" Ne="); print_int(ea.n_newenergy);
-    print_str(" Sc="); print_int(ea.n_security);
+void ena_full_report(void) {
+    print_str("[ENA] Full report:\n");
+    print_str("  Nuclear categories: "); print_int(ena.n_nuc_eng); print_str("\n");
+    print_str("  Total nuclear physics: "); print_int(ena.total_nuc_phy); print_str("\n");
+    print_str("  Fossil categories: "); print_int(ena.n_fos_eng); print_str("\n");
+    print_str("  Total coal engineering: "); print_int(ena.total_coa_eng); print_str("\n");
+    print_str("  New energy categories: "); print_int(ena.n_new_eng); print_str("\n");
+    print_str("  Total geothermal energy: "); print_int(ena.total_geo_ene); print_str("\n");
+}
+
+void ena_print_state(void) {
+    print_str("[ENA] Es="); print_int(ena.n_eng_sci);
+    print_str(" Re="); print_int(ena.n_ren_eng);
+    print_str(" Nu="); print_int(ena.n_nuc_eng);
+    print_str(" Fo="); print_int(ena.n_fos_eng);
+    print_str(" Ne="); print_int(ena.n_new_eng);
     print_str("\n");
 }
 
 int main(void) {
     print_str("=== Energy Admin Demo ===\n\n");
-    ea_init();
+    ena_init();
 
-    print_str("Energy planning...\n");
+    print_str("Energy science...\n");
     for (int i = 0; i < 16; i++) {
-        int type = (i % 4) + 1;
-        int reg = (i % 6) + 1;
-        int tgt = 1000 + (i * 500);
-        int inv = 1000000 + (i * 500000);
-        int cmp = 50 + (i * 3);
+        int type = (i % 5) + 1;
+        int cat = (i % 4) + 1;
+        int eth = 55 + (i * 13);
+        int eco = 40 + (i * 10);
+        int est = 22 + (i * 5);
+        int eef = 15 + (i * 3);
         int year = 2020 + (i % 5);
-        ea_plan(type, reg, tgt, inv, cmp, year);
+        ena_eng_sci(type, cat, eth, eco, est, eef, year);
     }
 
-    print_str("\nElectricity management...\n");
+    print_str("\nRenewable...\n");
     for (int i = 0; i < 14; i++) {
-        int plt = 100 + (i * 10);
         int type = (i % 4) + 1;
-        int cap = 100 + (i * 50);
-        int gen = cap * 24 * 30;
-        int dsp = gen - (i * 1000);
-        int eff = 35 + (i * 2);
+        int cat = (i % 5) + 1;
+        int sen = 48 + (i * 11);
+        int wen = 35 + (i * 8);
+        int wat = 20 + (i * 4);
+        int ben = 12 + (i * 3);
         int year = 2021 + (i % 4);
-        ea_electric(plt, type, cap, gen, dsp, eff, year);
+        ena_ren_eng(type, cat, sen, wen, wat, ben, year);
     }
 
-    print_str("\nOil and gas...\n");
+    print_str("\nNuclear...\n");
     for (int i = 0; i < 12; i++) {
-        int fld = 200 + (i * 15);
-        int type = (i % 3) + 1;
-        int prd = 50000 + (i * 20000);
-        int rsv = 500000 + (i * 200000);
-        int pip = 100 + (i * 50);
+        int type = (i % 4) + 1;
+        int cat = (i % 5) + 1;
+        int nph = 42 + (i * 10);
+        int nre = 28 + (i * 7);
+        int nfue = 18 + (i * 4);
+        int nsaf = 10 + (i * 2);
         int year = 2022 + (i % 3);
-        ea_oilgas(fld, type, prd, rsv, pip, year);
+        ena_nuc_eng(type, cat, nph, nre, nfue, nsaf, year);
+    }
+
+    print_str("\nFossil...\n");
+    for (int i = 0; i < 10; i++) {
+        int type = (i % 4) + 1;
+        int cat = (i % 5) + 1;
+        int coa = 35 + (i * 8);
+        int pet = 25 + (i * 6);
+        int ngas = 15 + (i * 3);
+        int shg = 10 + (i * 2);
+        int year = 2023 + (i % 2);
+        ena_fos_eng(type, cat, coa, pet, ngas, shg, year);
     }
 
     print_str("\nNew energy...\n");
     for (int i = 0; i < 10; i++) {
-        int src = (i % 4) + 1;
-        int loc = (i % 6) + 1;
-        int cap = 50 + (i * 20);
-        int gen = cap * 20 * 30;
-        int sub = 10000 + (i * 5000);
-        int co2 = 1000 + (i * 500);
-        int year = 2023 + (i % 2);
-        ea_newenergy(src, loc, cap, gen, sub, co2, year);
-    }
-
-    print_str("\nEnergy security...\n");
-    for (int i = 0; i < 10; i++) {
-        int type = (i % 3) + 1;
-        int fac = 300 + (i * 20);
-        int cap = 100000 + (i * 50000);
-        int stk = 70000 + (i * 30000);
-        int day = 30 + (i * 5);
+        int type = (i % 4) + 1;
+        int cat = (i % 5) + 1;
+        int geo = 30 + (i * 7);
+        int oce = 22 + (i * 5);
+        int hyd = 12 + (i * 3);
+        int fce = 8 + (i * 2);
         int year = 2024;
-        ea_security(type, fac, cap, stk, day, year);
+        ena_new_eng(type, cat, geo, oce, hyd, fce, year);
     }
 
-    print_str("\nPlan report...\n");
-    ea_plan_report();
+    print_str("\nScience report...\n");
+    ena_science_report();
 
-    print_str("\nElectricity report...\n");
-    ea_electric_report();
+    print_str("\nRenewable report...\n");
+    ena_renewable_report();
 
-    print_str("\nEnergy report...\n");
-    ea_energy_report();
+    print_str("\nFull report...\n");
+    ena_full_report();
 
     print_str("\nFinal state...\n");
-    ea_print_state();
+    ena_print_state();
     print_str("\n=== Demo Complete ===\n");
     return 0;
 }

@@ -1,5 +1,5 @@
 /* environment_admin: Environment administration system (v1.0)
- * Monitoring, pollution control, ecology, climate, enforcement
+ * Environmental science, environmental engineering, ecology, management, protection
  */
 #include <stddef.h>
 
@@ -12,86 +12,91 @@ extern void host_exit(int code);
 __attribute__((import_module("host"), import_name("get_argv")))
 extern int host_get_argv(unsigned int buf_off, unsigned int max_len);
 
-#define MAX_MONITOR      16
-#define MAX_POLLUTION    14
-#define MAX_ECOLOGY      12
-#define MAX_CLIMATE      10
-#define MAX_ENFORCE      10
+#define MAX_ENV_SCI     16
+#define MAX_ENV_ENG     14
+#define MAX_ECO_SCI     12
+#define MAX_ENV_MAN     10
+#define MAX_ENV_PRO     10
 
 typedef struct {
-    int    monitor_id;
-    int    station_id;
-    int    monitor_type;
-    int    reading;
-    int    threshold;
-    int    compliance;
+    int    es_id;
+    int    es_type;
+    int    es_category;
+    int    env_che;
+    int    env_bio;
+    int    env_phy;
+    int    env_geo;
     int    year;
     int    active;
-} monitor_t;
+} env_sci_t;
 
 typedef struct {
-    int    pollution_id;
-    int    source_id;
-    int    pollution_type;
-    int    emission_level;
-    int    treatment_rate;
-    int    reduction;
+    int    ee_id;
+    int    ee_type;
+    int    ee_category;
+    int    wat_con;
+    int    air_con;
+    int    sol_dis;
+    int    noi_con;
     int    year;
     int    active;
-} pollution_t;
+} env_eng_t;
 
 typedef struct {
-    int    ecology_id;
-    int    reserve_id;
-    int    eco_type;
-    int    area_hectares;
-    int    species_count;
-    int    health_score;
+    int    ec_id;
+    int    ec_type;
+    int    ec_category;
+    int    eco_sys;
+    int    eco_pro;
+    int    eco_res;
+    int    eco_eva;
     int    year;
     int    active;
-} ecology_t;
+} eco_sci_t;
 
 typedef struct {
-    int    climate_id;
-    int    region_id;
-    int    program_type;
-    int    carbon_tons;
-    int    energy_saving;
-    int    renewable_pct;
+    int    em_id;
+    int    em_type;
+    int    em_category;
+    int    env_pla;
+    int    env_mon;
+    int    env_eva;
+    int    env_law;
     int    year;
     int    active;
-} climate_t;
+} env_man_t;
 
 typedef struct {
-    int    enforce_id;
-    int    case_id;
-    int    violation_type;
-    int    penalty;
-    int    rectified;
-    int    resolved;
+    int    ep_id;
+    int    ep_type;
+    int    ep_category;
+    int    pro_equ;
+    int    pro_mat;
+    int    pro_tec;
+    int    pro_ind;
     int    year;
     int    active;
-} enforce_t;
+} env_pro_t;
 
 typedef struct {
-    int    n_monitor;
-    int    n_pollution;
-    int    n_ecology;
-    int    n_climate;
-    int    n_enforce;
-    int    total_stations;
-    int    total_emissions;
-    int    total_area;
-    int    total_carbon;
-    int    total_penalty;
-} ea_state_t;
+    int    n_env_sci;
+    int    n_env_eng;
+    int    n_eco_sci;
+    int    n_env_man;
+    int    n_env_pro;
+    int    total_env_che;
+    int    total_wat_con;
+    int    total_eco_sys;
+    int    total_env_pla;
+    int    total_pro_equ;
+} ena_state_t;
 
-static monitor_t monitors[MAX_MONITOR];
-static pollution_t pollutions[MAX_POLLUTION];
-static ecology_t ecologies[MAX_ECOLOGY];
-static climate_t climates[MAX_CLIMATE];
-static enforce_t enforces[MAX_ENFORCE];
-static ea_state_t ea;
+static env_sci_t env_scis[MAX_ENV_SCI];
+static env_eng_t env_engs[MAX_ENV_ENG];
+static eco_sci_t eco_scis[MAX_ECO_SCI];
+static env_man_t env_mans[MAX_ENV_MAN];
+static env_pro_t env_pros[MAX_ENV_PRO];
+static ena_state_t ena;
 
 static int initialized = 0;
 
@@ -105,234 +110,249 @@ static void print_int(int val) {
     buf[i] = '\0'; host_print(buf);
 }
 
-int ea_init(void) {
+int ena_init(void) {
     if (initialized) return -1;
-    ea.n_monitor = 0; ea.n_pollution = 0; ea.n_ecology = 0;
-    ea.n_climate = 0; ea.n_enforce = 0;
-    ea.total_stations = 0; ea.total_emissions = 0;
-    ea.total_area = 0; ea.total_carbon = 0;
-    ea.total_penalty = 0;
-    for (int i = 0; i < MAX_MONITOR; i++) monitors[i].active = 0;
-    for (int i = 0; i < MAX_POLLUTION; i++) pollutions[i].active = 0;
-    for (int i = 0; i < MAX_ECOLOGY; i++) ecologies[i].active = 0;
-    for (int i = 0; i < MAX_CLIMATE; i++) climates[i].active = 0;
-    for (int i = 0; i < MAX_ENFORCE; i++) enforces[i].active = 0;
+    ena.n_env_sci = 0; ena.n_env_eng = 0; ena.n_eco_sci = 0;
+    ena.n_env_man = 0; ena.n_env_pro = 0;
+    ena.total_env_che = 0; ena.total_wat_con = 0;
+    ena.total_eco_sys = 0; ena.total_env_pla = 0;
+    ena.total_pro_equ = 0;
+    for (int i = 0; i < MAX_ENV_SCI; i++) env_scis[i].active = 0;
+    for (int i = 0; i < MAX_ENV_ENG; i++) env_engs[i].active = 0;
+    for (int i = 0; i < MAX_ECO_SCI; i++) eco_scis[i].active = 0;
+    for (int i = 0; i < MAX_ENV_MAN; i++) env_mans[i].active = 0;
+    for (int i = 0; i < MAX_ENV_PRO; i++) env_pros[i].active = 0;
     initialized = 1;
-    print_str("[EA] Environment admin initialized\n");
+    print_str("[ENA] Environment initialized\n");
     return 0;
 }
 
-int ea_monitor(int station, int monitor_type, int reading, int threshold, int compliance, int year) {
-    if (ea.n_monitor >= MAX_MONITOR) return -1;
-    monitor_t* m = &monitors[ea.n_monitor];
-    m->monitor_id = ea.n_monitor;
-    m->station_id = station;
-    m->monitor_type = monitor_type;
-    m->reading = reading;
-    m->threshold = threshold;
-    m->compliance = compliance;
-    m->year = year;
-    m->active = 1;
-    ea.total_stations++;
-    ea.n_monitor++;
-    print_str("[EA] Monitor "); print_int(ea.n_monitor - 1);
-    print_str(" stn="); print_int(station);
-    print_str(" type="); print_int(monitor_type);
-    print_str(" rdg="); print_int(reading);
-    print_str(" thr="); print_int(threshold);
-    print_str(" cpl="); print_int(compliance); print_str("\n");
-    return ea.n_monitor - 1;
-}
-
-int ea_pollution(int source, int pollution_type, int emission, int treatment, int reduction, int year) {
-    if (ea.n_pollution >= MAX_POLLUTION) return -1;
-    pollution_t* p = &pollutions[ea.n_pollution];
-    p->pollution_id = ea.n_pollution;
-    p->source_id = source;
-    p->pollution_type = pollution_type;
-    p->emission_level = emission;
-    p->treatment_rate = treatment;
-    p->reduction = reduction;
-    p->year = year;
-    p->active = 1;
-    ea.total_emissions += emission;
-    ea.n_pollution++;
-    print_str("[EA] Pollution "); print_int(ea.n_pollution - 1);
-    print_str(" src="); print_int(source);
-    print_str(" type="); print_int(pollution_type);
-    print_str(" emt="); print_int(emission); print_str("t");
-    print_str(" trt="); print_int(treatment); print_str("%");
-    print_str(" rdc="); print_int(reduction); print_str("t\n");
-    return ea.n_pollution - 1;
-}
-
-int ea_ecology(int reserve, int eco_type, int area, int species, int health, int year) {
-    if (ea.n_ecology >= MAX_ECOLOGY) return -1;
-    ecology_t* e = &ecologies[ea.n_ecology];
-    e->ecology_id = ea.n_ecology;
-    e->reserve_id = reserve;
-    e->eco_type = eco_type;
-    e->area_hectares = area;
-    e->species_count = species;
-    e->health_score = health;
+int ena_env_sci(int st_type, int cat, int ech, int ebi, int eph, int ege, int year) {
+    if (ena.n_env_sci >= MAX_ENV_SCI) return -1;
+    env_sci_t* e = &env_scis[ena.n_env_sci];
+    e->es_id = ena.n_env_sci;
+    e->es_type = st_type;
+    e->es_category = cat;
+    e->env_che = ech;
+    e->env_bio = ebi;
+    e->env_phy = eph;
+    e->env_geo = ege;
     e->year = year;
     e->active = 1;
-    ea.total_area += area;
-    ea.n_ecology++;
-    print_str("[EA] Ecology "); print_int(ea.n_ecology - 1);
-    print_str(" rsv="); print_int(reserve);
-    print_str(" type="); print_int(eco_type);
-    print_str(" area="); print_int(area); print_str("ha");
-    print_str(" spc="); print_int(species);
-    print_str(" hlt="); print_int(health); print_str("\n");
-    return ea.n_ecology - 1;
+    ena.total_env_che += ech;
+    ena.n_env_sci++;
+    print_str("[ENA] Env sci "); print_int(ena.n_env_sci - 1);
+    print_str(" type="); print_int(st_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" ech="); print_int(ech);
+    print_str(" ebi="); print_int(ebi);
+    print_str(" eph="); print_int(eph);
+    print_str(" ege="); print_int(ege); print_str("\n");
+    return ena.n_env_sci - 1;
 }
 
-int ea_climate(int region, int program_type, int carbon, int energy, int renewable, int year) {
-    if (ea.n_climate >= MAX_CLIMATE) return -1;
-    climate_t* c = &climates[ea.n_climate];
-    c->climate_id = ea.n_climate;
-    c->region_id = region;
-    c->program_type = program_type;
-    c->carbon_tons = carbon;
-    c->energy_saving = energy;
-    c->renewable_pct = renewable;
+int ena_env_eng(int et_type, int cat, int wco, int aco, int sdi, int nco, int year) {
+    if (ena.n_env_eng >= MAX_ENV_ENG) return -1;
+    env_eng_t* e = &env_engs[ena.n_env_eng];
+    e->ee_id = ena.n_env_eng;
+    e->ee_type = et_type;
+    e->ee_category = cat;
+    e->wat_con = wco;
+    e->air_con = aco;
+    e->sol_dis = sdi;
+    e->noi_con = nco;
+    e->year = year;
+    e->active = 1;
+    ena.total_wat_con += wco;
+    ena.n_env_eng++;
+    print_str("[ENA] Env eng "); print_int(ena.n_env_eng - 1);
+    print_str(" type="); print_int(et_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" wco="); print_int(wco);
+    print_str(" aco="); print_int(aco);
+    print_str(" sdi="); print_int(sdi);
+    print_str(" nco="); print_int(nco); print_str("\n");
+    return ena.n_env_eng - 1;
+}
+
+int ena_eco_sci(int ct_type, int cat, int esy, int epr, int ere, int eev, int year) {
+    if (ena.n_eco_sci >= MAX_ECO_SCI) return -1;
+    eco_sci_t* c = &eco_scis[ena.n_eco_sci];
+    c->ec_id = ena.n_eco_sci;
+    c->ec_type = ct_type;
+    c->ec_category = cat;
+    c->eco_sys = esy;
+    c->eco_pro = epr;
+    c->eco_res = ere;
+    c->eco_eva = eev;
     c->year = year;
     c->active = 1;
-    ea.total_carbon += carbon;
-    ea.n_climate++;
-    print_str("[EA] Climate "); print_int(ea.n_climate - 1);
-    print_str(" rgn="); print_int(region);
-    print_str(" type="); print_int(program_type);
-    print_str(" co2="); print_int(carbon); print_str("t");
-    print_str(" nrg="); print_int(energy); print_str("%");
-    print_str(" rnb="); print_int(renewable); print_str("%\n");
-    return ea.n_climate - 1;
+    ena.total_eco_sys += esy;
+    ena.n_eco_sci++;
+    print_str("[ENA] Eco sci "); print_int(ena.n_eco_sci - 1);
+    print_str(" type="); print_int(ct_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" esy="); print_int(esy);
+    print_str(" epr="); print_int(epr);
+    print_str(" ere="); print_int(ere);
+    print_str(" eev="); print_int(eev); print_str("\n");
+    return ena.n_eco_sci - 1;
 }
 
-int ea_enforce(int case_id, int violation_type, int penalty, int rectified, int resolved, int year) {
-    if (ea.n_enforce >= MAX_ENFORCE) return -1;
-    enforce_t* ef = &enforces[ea.n_enforce];
-    ef->enforce_id = ea.n_enforce;
-    ef->case_id = case_id;
-    ef->violation_type = violation_type;
-    ef->penalty = penalty;
-    ef->rectified = rectified;
-    ef->resolved = resolved;
-    ef->year = year;
-    ef->active = 1;
-    ea.total_penalty += penalty;
-    ea.n_enforce++;
-    print_str("[EA] Enforce "); print_int(ea.n_enforce - 1);
-    print_str(" cas="); print_int(case_id);
-    print_str(" type="); print_int(violation_type);
-    print_str(" pen=$"); print_int(penalty);
-    print_str(" rct="); print_int(rectified);
-    print_str(" res="); print_int(resolved); print_str("\n");
-    return ea.n_enforce - 1;
+int ena_env_man(int mt_type, int cat, int epl, int emo, int eev, int elw, int year) {
+    if (ena.n_env_man >= MAX_ENV_MAN) return -1;
+    env_man_t* e = &env_mans[ena.n_env_man];
+    e->em_id = ena.n_env_man;
+    e->em_type = mt_type;
+    e->em_category = cat;
+    e->env_pla = epl;
+    e->env_mon = emo;
+    e->env_eva = eev;
+    e->env_law = elw;
+    e->year = year;
+    e->active = 1;
+    ena.total_env_pla += epl;
+    ena.n_env_man++;
+    print_str("[ENA] Env man "); print_int(ena.n_env_man - 1);
+    print_str(" type="); print_int(mt_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" epl="); print_int(epl);
+    print_str(" emo="); print_int(emo);
+    print_str(" eev="); print_int(eev);
+    print_str(" elw="); print_int(elw); print_str("\n");
+    return ena.n_env_man - 1;
 }
 
-void ea_monitor_report(void) {
-    print_str("[EA] Monitoring report:\n");
-    print_str("  Stations: "); print_int(ea.total_stations); print_str("\n");
-    print_str("  Monitoring points: "); print_int(ea.n_monitor); print_str("\n");
+int ena_env_pro(int pt_type, int cat, int peq, int pma, int pte, int pid, int year) {
+    if (ena.n_env_pro >= MAX_ENV_PRO) return -1;
+    env_pro_t* p = &env_pros[ena.n_env_pro];
+    p->ep_id = ena.n_env_pro;
+    p->ep_type = pt_type;
+    p->ep_category = cat;
+    p->pro_equ = peq;
+    p->pro_mat = pma;
+    p->pro_tec = pte;
+    p->pro_ind = pid;
+    p->year = year;
+    p->active = 1;
+    ena.total_pro_equ += peq;
+    ena.n_env_pro++;
+    print_str("[ENA] Env pro "); print_int(ena.n_env_pro - 1);
+    print_str(" type="); print_int(pt_type);
+    print_str(" cat="); print_int(cat);
+    print_str(" peq="); print_int(peq);
+    print_str(" pma="); print_int(pma);
+    print_str(" pte="); print_int(pte);
+    print_str(" pid="); print_int(pid); print_str("\n");
+    return ena.n_env_pro - 1;
 }
 
-void ea_pollution_report(void) {
-    print_str("[EA] Pollution report:\n");
-    print_str("  Pollution sources: "); print_int(ea.n_pollution); print_str("\n");
-    print_str("  Total emissions: "); print_int(ea.total_emissions); print_str(" tons\n");
+void ena_science_report(void) {
+    print_str("[ENA] Environmental science report:\n");
+    print_str("  Science categories: "); print_int(ena.n_env_sci); print_str("\n");
+    print_str("  Total environmental chemistry: "); print_int(ena.total_env_che); print_str("\n");
 }
 
-void ea_ecology_report(void) {
-    print_str("[EA] Ecology report:\n");
-    print_str("  Nature reserves: "); print_int(ea.n_ecology); print_str("\n");
-    print_str("  Total area: "); print_int(ea.total_area); print_str(" hectares\n");
-    print_str("  Climate programs: "); print_int(ea.n_climate); print_str("\n");
-    print_str("  Total carbon reduced: "); print_int(ea.total_carbon); print_str(" tons\n");
-    print_str("  Enforcement cases: "); print_int(ea.n_enforce); print_str("\n");
-    print_str("  Total penalties: $"); print_int(ea.total_penalty); print_str("\n");
+void ena_engineering_report(void) {
+    print_str("[ENA] Environmental engineering report:\n");
+    print_str("  Engineering categories: "); print_int(ena.n_env_eng); print_str("\n");
+    print_str("  Total water control: "); print_int(ena.total_wat_con); print_str("\n");
 }
 
-void ea_print_state(void) {
-    print_str("[EA] Mn="); print_int(ea.n_monitor);
-    print_str(" Pl="); print_int(ea.n_pollution);
-    print_str(" Ec="); print_int(ea.n_ecology);
-    print_str(" Cl="); print_int(ea.n_climate);
-    print_str(" En="); print_int(ea.n_enforce);
+void ena_full_report(void) {
+    print_str("[ENA] Full report:\n");
+    print_str("  Ecology categories: "); print_int(ena.n_eco_sci); print_str("\n");
+    print_str("  Total ecosystem: "); print_int(ena.total_eco_sys); print_str("\n");
+    print_str("  Management categories: "); print_int(ena.n_env_man); print_str("\n");
+    print_str("  Total environmental planning: "); print_int(ena.total_env_pla); print_str("\n");
+    print_str("  Protection categories: "); print_int(ena.n_env_pro); print_str("\n");
+    print_str("  Total protection equipment: "); print_int(ena.total_pro_equ); print_str("\n");
+}
+
+void ena_print_state(void) {
+    print_str("[ENA] Es="); print_int(ena.n_env_sci);
+    print_str(" Ee="); print_int(ena.n_env_eng);
+    print_str(" Ec="); print_int(ena.n_eco_sci);
+    print_str(" Em="); print_int(ena.n_env_man);
+    print_str(" Ep="); print_int(ena.n_env_pro);
     print_str("\n");
 }
 
 int main(void) {
     print_str("=== Environment Admin Demo ===\n\n");
-    ea_init();
+    ena_init();
 
-    print_str("Environmental monitoring...\n");
+    print_str("Environmental science...\n");
     for (int i = 0; i < 16; i++) {
-        int stn = 100 + (i * 10);
-        int type = (i % 4) + 1;
-        int rdg = 50 + (i * 5);
-        int thr = 100;
-        int cpl = (rdg <= thr) ? 1 : 0;
+        int type = (i % 5) + 1;
+        int cat = (i % 4) + 1;
+        int ech = 55 + (i * 13);
+        int ebi = 40 + (i * 10);
+        int eph = 22 + (i * 5);
+        int ege = 15 + (i * 3);
         int year = 2020 + (i % 5);
-        ea_monitor(stn, type, rdg, thr, cpl, year);
+        ena_env_sci(type, cat, ech, ebi, eph, ege, year);
     }
 
-    print_str("\nPollution control...\n");
+    print_str("\nEnvironmental engineering...\n");
     for (int i = 0; i < 14; i++) {
-        int src = 200 + (i * 8);
-        int type = (i % 3) + 1;
-        int emt = 1000 + (i * 300);
-        int trt = 60 + (i * 3);
-        int rdc = emt * trt / 100;
+        int type = (i % 4) + 1;
+        int cat = (i % 5) + 1;
+        int wco = 48 + (i * 11);
+        int aco = 35 + (i * 8);
+        int sdi = 20 + (i * 4);
+        int nco = 12 + (i * 3);
         int year = 2021 + (i % 4);
-        ea_pollution(src, type, emt, trt, rdc, year);
+        ena_env_eng(type, cat, wco, aco, sdi, nco, year);
     }
 
-    print_str("\nEcological protection...\n");
+    print_str("\nEcology...\n");
     for (int i = 0; i < 12; i++) {
-        int rsv = 300 + (i * 12);
         int type = (i % 4) + 1;
-        int area = 500 + (i * 200);
-        int spc = 50 + (i * 15);
-        int hlt = 70 + (i * 2);
+        int cat = (i % 5) + 1;
+        int esy = 42 + (i * 10);
+        int epr = 28 + (i * 7);
+        int ere = 18 + (i * 4);
+        int eev = 10 + (i * 2);
         int year = 2022 + (i % 3);
-        ea_ecology(rsv, type, area, spc, hlt, year);
+        ena_eco_sci(type, cat, esy, epr, ere, eev, year);
     }
 
-    print_str("\nClimate action...\n");
+    print_str("\nManagement...\n");
     for (int i = 0; i < 10; i++) {
-        int rgn = (i % 8) + 1;
-        int type = (i % 3) + 1;
-        int co2 = 5000 + (i * 2000);
-        int nrg = 10 + (i * 3);
-        int rnb = 15 + (i * 5);
-        int year = 2023 + (i % 2);
-        ea_climate(rgn, type, co2, nrg, rnb, year);
-    }
-
-    print_str("\nEnvironmental enforcement...\n");
-    for (int i = 0; i < 10; i++) {
-        int cas = 400 + (i * 11);
         int type = (i % 4) + 1;
-        int pen = 10000 + (i * 5000);
-        int rct = (i % 3 == 0) ? 0 : 1;
-        int res = (i % 4 == 0) ? 0 : 1;
-        int year = 2024;
-        ea_enforce(cas, type, pen, rct, res, year);
+        int cat = (i % 5) + 1;
+        int epl = 35 + (i * 8);
+        int emo = 25 + (i * 6);
+        int eev = 15 + (i * 3);
+        int elw = 10 + (i * 2);
+        int year = 2023 + (i % 2);
+        ena_env_man(type, cat, epl, emo, eev, elw, year);
     }
 
-    print_str("\nMonitoring report...\n");
-    ea_monitor_report();
+    print_str("\nProtection...\n");
+    for (int i = 0; i < 10; i++) {
+        int type = (i % 4) + 1;
+        int cat = (i % 5) + 1;
+        int peq = 30 + (i * 7);
+        int pma = 22 + (i * 5);
+        int pte = 12 + (i * 3);
+        int pid = 8 + (i * 2);
+        int year = 2024;
+        ena_env_pro(type, cat, peq, pma, pte, pid, year);
+    }
 
-    print_str("\nPollution report...\n");
-    ea_pollution_report();
+    print_str("\nScience report...\n");
+    ena_science_report();
 
-    print_str("\nEcology report...\n");
-    ea_ecology_report();
+    print_str("\nEngineering report...\n");
+    ena_engineering_report();
+
+    print_str("\nFull report...\n");
+    ena_full_report();
 
     print_str("\nFinal state...\n");
-    ea_print_state();
+    ena_print_state();
     print_str("\n=== Demo Complete ===\n");
     return 0;
 }
