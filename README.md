@@ -1,8 +1,8 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v530.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v531.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
-[![Modules](https://img.shields.io/badge/modules-1222-green)]()
+[![Modules](https://img.shields.io/badge/modules-1225-green)]()
 [![Kernel](https://img.shields.io/badge/kernel-62_ASM-orange)]()
 [![AI](https://img.shields.io/badge/AI-11_vendors-purple)]()
 [![Agent](https://img.shields.io/badge/Agent-13_modules-cyan)]()
@@ -33,7 +33,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║  L4: AI Layer - Multi-Vendor AI Ecosystem (19 modules)                ║
 ║      OpenAI, Claude, Gemini, DeepSeek, Ollama, vLLM, RAG, Multimodal ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L3: WASM Apps - User Applications (990: 940 standalone + 50 libraries)  ║
+║  L3: WASM Apps - User Applications (993: 943 standalone + 50 libraries)  ║
 ║      POSIX tools, networking, GUI, security, development, system, wasm_thread  ║
 ║      industrial_iot, predictive_maintenance, supply_chain                  ║
 ║      smart_city, energy_management, building_automation                    ║
@@ -160,7 +160,8 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║      preventive_medicine_admin, pharmacy_admin,                   ║
 ║      public_health_admin, nursing_admin, medical_technology_admin ║
 ║      psychology_admin, forensic_medicine_admin,                   ║
-║      traditional_chinese_medicine_admin                           ║
+║      traditional_chinese_medicine_admin, law_admin,               ║
+║      journalism_admin, sociology_admin                            ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║  L2: WASM Runtime - Host Function Bridge (138 functions, 6,021 lines)║
 ║      host_alloc, host_ai_query, host_agent_call, WASI interface      ║
@@ -179,10 +180,10 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 |:-----:|:----:|:-----:|:------:|
 | L1 | Kernel ASM | 62 | ✓ 100% |
 | L2 | WASM Host | 138 functions | ✓ 100% |
-| L3 | WASM Apps | 990 (940 standalone + 50 libraries) | ✓ 100% |
+| L3 | WASM Apps | 993 (943 standalone + 50 libraries) | ✓ 100% |
 | L4 | AI Modules | 19 | ✓ 100% |
 | L5 | Agent Modules | 13 | ✓ 100% |
-| **Total** | **Modules** | **1222** | **✓ COMPLETE** |
+| **Total** | **Modules** | **1225** | **✓ COMPLETE** |
 
 ## Features
 
@@ -296,7 +297,7 @@ make && make run
 | Kernel Size | 62 ASM modules |
 | WASM Runtime | Wasm3 with JIT optimization |
 | Host Functions | 138 |
-| WASM Modules | 990 applications |
+| WASM Modules | 993 applications |
 | AI Modules | 19 |
 | Agent Modules | 13 |
 | Max Windows | 16 (Z-order compositing) |
@@ -331,14 +332,14 @@ aiasm-aarch64/
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║           AI-ASM OS v530.0                              ║
+║           AI-ASM OS v531.0                              ║
 ║           DIAMOND CERTIFICATION ✓                            ║
 ║           PROJECT COMPLETE ✓                                 ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Five-Layer Architecture: 100% Complete                      ║
 ║  ├─ L1 Kernel ASM: 62 modules    ✓                           ║
 ║  ├─ L2 WASM Host: 138 functions  ✓                           ║
-║  ├─ L3 WASM Apps: 990 modules    ✓                           ║
+║  ├─ L3 WASM Apps: 993 modules    ✓                           ║
 ║  ├─ L4 AI Layer: 19 modules      ✓                           ║
 ║  └─ L5 Agent: 13 modules         ✓                           ║
 ║                                                              ║
@@ -359,4 +360,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-**v530.0 Release** - 🎉 Phase 185 psychology, forensic medicine, TCM. 1222 modules.
+**v531.0 Release** - 🎉 Phase 186 law, journalism, sociology. 1225 modules.
