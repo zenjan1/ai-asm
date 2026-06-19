@@ -1,5 +1,11 @@
 # Changelog
 
+## v570.0 - Phase 225: Digital Banking, Payment & Private Banking (2026-06-19)
+- **digital_banking_admin**: Mobile banking, online banking, open banking, digital currency, smart risk control
+- **payment_admin**: Payment clearing, payment channels, e-wallet, merchant services, risk monitoring
+- **private_banking_admin**: HNW services, investment management, trust services, tax consulting, value-added services
+- Total modules: 1342 (L3: 1110)
+
 ## v569.0 - Phase 224: Credit Card, Mortgage & Trade Finance (2026-06-19)
 - **credit_card_admin**: Card issuance, transaction processing, risk management, customer service, marketing analytics
 - **mortgage_admin**: Loan application, loan products, repayment management, risk management, post-loan management
