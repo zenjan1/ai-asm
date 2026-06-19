@@ -1,5 +1,11 @@
 # Changelog
 
+## v574.0 - Phase 229: Retailtech, Logitech & Envirotech (2026-06-20)
+- **retailtech_admin**: Smart store, omnichannel retail, new retail platform, smart marketing, supply chain management
+- **logitech_admin**: Smart warehousing, smart transport, logistics platform, express service, supply chain finance
+- **envirotech_admin**: Environmental monitoring, pollution control, clean energy, circular economy, carbon management
+- Total modules: 1354 (L3: 1122)
+
 ## v573.0 - Phase 228: Edtech, Medtech & Agritech (2026-06-20)
 - **edtech_admin**: Online education, smart tutoring, education platform, education assessment, campus management
 - **medtech_admin**: Telemedicine, smart diagnosis, medical platform, health management, medical devices
