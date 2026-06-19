@@ -1,5 +1,11 @@
 # Changelog
 
+## v568.0 - Phase 223: Factoring, Custody & Securitization (2026-06-19)
+- **factoring_admin**: Accounts receivable, factoring finance, credit assessment, risk management, factoring accounting
+- **custody_admin**: Asset custody, fund settlement, securities lending, corporate actions, custody services
+- **securitization_admin**: Underlying assets, structure design, credit rating, issuance sales, servicing
+- Total modules: 1336 (L3: 1104)
+
 ## v567.0 - Phase 222: Compliance, Treasury & Leasing (2026-06-19)
 - **compliance_admin**: Regulatory compliance, anti-money laundering, KYC management, sanctions compliance, regulatory reporting
 - **treasury_admin**: Cash management, liquidity management, funding strategy, FX risk, interest rate risk
