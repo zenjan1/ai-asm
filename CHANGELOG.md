@@ -1,5 +1,11 @@
 # Changelog
 
+## v557.0 - Phase 212: Managerial, Law & Experimental Economics (2026-06-19)
+- **managerial_economics_admin**: Demand analysis, production decisions, cost analysis, pricing strategy, competition strategy
+- **law_economics_admin**: Property rights, contract law, tort law, antitrust law, law enforcement
+- **experimental_economics_admin**: Experimental methods, market experiments, game experiments, decision experiments, behavioral experiments
+- Total modules: 1303 (L3: 1071)
+
 ## v556.0 - Phase 211: Comparative, Transition & Evolutionary Economics (2026-06-19)
 - **comparative_economics_admin**: Economic systems, ownership comparison, resource allocation, performance comparison, transition comparison
 - **transition_economics_admin**: Transition theory, privatization, marketization, opening up, social security
