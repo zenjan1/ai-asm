@@ -1,5 +1,11 @@
 # Changelog
 
+## v565.0 - Phase 220: Corporate Finance, Financial Markets & Financial Engineering (2026-06-19)
+- **corporate_finance_admin**: Corporate investment, capital structure, dividend policy, M&A, corporate governance
+- **financial_markets_admin**: Money market, capital market, derivatives market, forex market, market infrastructure
+- **financial_engineering_admin**: Derivative pricing, risk modeling, structured products, quant strategies, algo trading
+- Total modules: 1327 (L3: 1095)
+
 ## v564.0 - Phase 219: Public Economics, International Finance & Development Finance (2026-06-19)
 - **public_economics_admin**: Public goods, externalities, public choice, tax design, fiscal federalism
 - **international_finance_admin**: Exchange rate theory, international monetary, international capital, financial architecture, open macro
