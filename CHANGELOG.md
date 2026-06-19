@@ -1,5 +1,11 @@
 # Changelog
 
+## v567.0 - Phase 222: Compliance, Treasury & Leasing (2026-06-19)
+- **compliance_admin**: Regulatory compliance, anti-money laundering, KYC management, sanctions compliance, regulatory reporting
+- **treasury_admin**: Cash management, liquidity management, funding strategy, FX risk, interest rate risk
+- **leasing_admin**: Equipment leasing, vehicle leasing, real estate leasing, lease accounting, lease pricing
+- Total modules: 1333 (L3: 1101)
+
 ## v566.0 - Phase 221: Asset Management, Wealth Management & Actuarial (2026-06-19)
 - **asset_management_admin**: Portfolio theory, asset allocation, security analysis, performance evaluation, investment advisory
 - **wealth_management_admin**: HNW clients, estate planning, tax planning, retirement planning, comprehensive advisory
