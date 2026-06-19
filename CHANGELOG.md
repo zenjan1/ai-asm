@@ -1,5 +1,11 @@
 # Changelog
 
+## v558.0 - Phase 213: Neuroeconomics, Computational & Data Economics (2026-06-19)
+- **neuroeconomics_admin**: Neural basis, risk decisions, time preference, social decisions, consumer neuroscience
+- **computational_economics_admin**: Computational methods, agent-based models, equilibrium computation, economic simulation, algorithmic game theory
+- **data_economics_admin**: Data value, digital economy, data governance, algorithmic economy, intelligent economy
+- Total modules: 1306 (L3: 1074)
+
 ## v557.0 - Phase 212: Managerial, Law & Experimental Economics (2026-06-19)
 - **managerial_economics_admin**: Demand analysis, production decisions, cost analysis, pricing strategy, competition strategy
 - **law_economics_admin**: Property rights, contract law, tort law, antitrust law, law enforcement
