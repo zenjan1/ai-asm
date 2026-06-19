@@ -1,5 +1,11 @@
 # Changelog
 
+## v564.0 - Phase 219: Public Economics, International Finance & Development Finance (2026-06-19)
+- **public_economics_admin**: Public goods, externalities, public choice, tax design, fiscal federalism
+- **international_finance_admin**: Exchange rate theory, international monetary, international capital, financial architecture, open macro
+- **development_finance_admin**: Financial development, microfinance, project finance, development institutions, financial stability
+- Total modules: 1324 (L3: 1092)
+
 ## v563.0 - Phase 218: Real Estate, Insurance & Resource Economics (2026-06-19)
 - **real_estate_economics_admin**: Housing market, land economics, real estate finance, urban renewal, real estate policy
 - **insurance_economics_admin**: Insurance demand, insurance supply, insurance contracts, insurance types, insurance regulation
