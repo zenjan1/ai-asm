@@ -1,5 +1,11 @@
 # Changelog
 
+## v561.0 - Phase 216: Energy, Agricultural & Transportation Economics (2026-06-19)
+- **energy_economics_admin**: Energy markets, energy pricing, energy security, energy transition, energy policy
+- **agricultural_economics_admin**: Agricultural production, farm product markets, land economics, rural development, agricultural policy
+- **transportation_economics_admin**: Transportation demand, transportation supply, transportation pricing, transportation market, transportation policy
+- Total modules: 1315 (L3: 1083)
+
 ## v560.0 - Phase 215: Behavioral Finance, Mathematical & Quantum Economics (2026-06-19)
 - **behavioral_finance_admin**: Cognitive biases, prospect theory, market anomalies, investor behavior, behavioral corporate finance
 - **mathematical_economics_admin**: Mathematical foundations, optimization theory, equilibrium theory, game mathematics, dynamic systems
