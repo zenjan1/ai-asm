@@ -1,5 +1,11 @@
 # Changelog
 
+## v572.0 - Phase 227: Wealthtech, Proptech & Legaltech (2026-06-19)
+- **wealthtech_admin**: Smart wealth, digital assets, family office, cross-border wealth, data analytics
+- **proptech_admin**: Smart property, property management, real estate finance, construction tech, space operations
+- **legaltech_admin**: Contract management, legal research, litigation management, compliance management, legal services
+- Total modules: 1348 (L3: 1116)
+
 ## v571.0 - Phase 226: Fintech, Insurtech & Regtech (2026-06-19)
 - **fintech_admin**: P2P lending, crowdfunding, robo-advisor, digital lending, neo-bank
 - **insurtech_admin**: Usage-based insurance, claims automation, digital underwriting, parametric insurance, mutual insurance
