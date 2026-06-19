@@ -1,5 +1,11 @@
 # Changelog
 
+## v571.0 - Phase 226: Fintech, Insurtech & Regtech (2026-06-19)
+- **fintech_admin**: P2P lending, crowdfunding, robo-advisor, digital lending, neo-bank
+- **insurtech_admin**: Usage-based insurance, claims automation, digital underwriting, parametric insurance, mutual insurance
+- **regtech_admin**: Regulatory reporting, compliance automation, reg change management, supervisory tech, reg data analytics
+- Total modules: 1345 (L3: 1113)
+
 ## v570.0 - Phase 225: Digital Banking, Payment & Private Banking (2026-06-19)
 - **digital_banking_admin**: Mobile banking, online banking, open banking, digital currency, smart risk control
 - **payment_admin**: Payment clearing, payment channels, e-wallet, merchant services, risk monitoring
