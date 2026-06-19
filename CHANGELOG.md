@@ -1,5 +1,11 @@
 # Changelog
 
+## v563.0 - Phase 218: Real Estate, Insurance & Resource Economics (2026-06-19)
+- **real_estate_economics_admin**: Housing market, land economics, real estate finance, urban renewal, real estate policy
+- **insurance_economics_admin**: Insurance demand, insurance supply, insurance contracts, insurance types, insurance regulation
+- **resource_economics_admin**: Renewable resources, non-renewable resources, resource pricing, resource management, resource policy
+- Total modules: 1321 (L3: 1089)
+
 ## v562.0 - Phase 217: Welfare, Cultural & Sports Economics (2026-06-19)
 - **welfare_economics_admin**: Social welfare, Pareto efficiency, social choice, inequality measurement, redistribution policy
 - **cultural_economics_admin**: Cultural products, cultural heritage, cultural policy, creative industries, cultural capital
