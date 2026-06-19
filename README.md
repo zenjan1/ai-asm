@@ -1,8 +1,8 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v551.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v552.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
-[![Modules](https://img.shields.io/badge/modules-1285-green)]()
+[![Modules](https://img.shields.io/badge/modules-1288-green)]()
 [![Kernel](https://img.shields.io/badge/kernel-62_ASM-orange)]()
 [![AI](https://img.shields.io/badge/AI-11_vendors-purple)]()
 [![Agent](https://img.shields.io/badge/Agent-13_modules-cyan)]()
@@ -33,7 +33,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║  L4: AI Layer - Multi-Vendor AI Ecosystem (19 modules)                ║
 ║      OpenAI, Claude, Gemini, DeepSeek, Ollama, vLLM, RAG, Multimodal ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L3: WASM Apps - User Applications (1053: 1003 standalone + 50 libraries) ║
+║  L3: WASM Apps - User Applications (1056: 1006 standalone + 50 libraries) ║
 ║      POSIX tools, networking, GUI, security, development, system, wasm_thread  ║
 ║      industrial_iot, predictive_maintenance, supply_chain                  ║
 ║      smart_city, energy_management, building_automation                    ║
@@ -125,6 +125,8 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║      international_economics_admin                                            ║
 ║      macro_economics_admin, micro_economics_admin,                            ║
 ║      econometrics_admin                                                       ║
+║      monetary_economics_admin, behavioral_economics_admin,                    ║
+║      game_theory_admin                                                        ║
 ║      e_commerce_admin, cross_border_ecommerce, digital_trade                 ║
 ║      smart_manufacturing, industrial_internet, digital_transformation        ║
 ║      cloud_computing_admin, big_data_admin, artificial_intelligence_admin ║
@@ -202,10 +204,10 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 |:-----:|:----:|:-----:|:------:|
 | L1 | Kernel ASM | 62 | ✓ 100% |
 | L2 | WASM Host | 138 functions | ✓ 100% |
-| L3 | WASM Apps | 1053 (1003 standalone + 50 libraries) | ✓ 100% |
+| L3 | WASM Apps | 1056 (1006 standalone + 50 libraries) | ✓ 100% |
 | L4 | AI Modules | 19 | ✓ 100% |
 | L5 | Agent Modules | 13 | ✓ 100% |
-| **Total** | **Modules** | **1285** | **✓ COMPLETE** |
+| **Total** | **Modules** | **1288** | **✓ COMPLETE** |
 
 ## Features
 
@@ -319,7 +321,7 @@ make && make run
 | Kernel Size | 62 ASM modules |
 | WASM Runtime | Wasm3 with JIT optimization |
 | Host Functions | 138 |
-| WASM Modules | 1053 applications |
+| WASM Modules | 1056 applications |
 | AI Modules | 19 |
 | Agent Modules | 13 |
 | Max Windows | 16 (Z-order compositing) |
@@ -354,14 +356,14 @@ aiasm-aarch64/
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║           AI-ASM OS v551.0                              ║
+║           AI-ASM OS v552.0                              ║
 ║           DIAMOND CERTIFICATION ✓                            ║
 ║           PROJECT COMPLETE ✓                                 ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Five-Layer Architecture: 100% Complete                      ║
 ║  ├─ L1 Kernel ASM: 62 modules    ✓                           ║
 ║  ├─ L2 WASM Host: 138 functions  ✓                           ║
-║  ├─ L3 WASM Apps: 1053 modules   ✓                           ║
+║  ├─ L3 WASM Apps: 1056 modules   ✓                           ║
 ║  ├─ L4 AI Layer: 19 modules      ✓                           ║
 ║  └─ L5 Agent: 13 modules         ✓                           ║
 ║                                                              ║
@@ -382,4 +384,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-**v551.0 Release** - 🎉 Phase 206 macroeconomics, microeconomics, econometrics. 1285 modules.
+**v552.0 Release** - 🎉 Phase 207 monetary economics, behavioral economics, game theory. 1288 modules.

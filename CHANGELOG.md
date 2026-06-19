@@ -1,5 +1,11 @@
 # Changelog
 
+## v552.0 - Phase 207: Monetary, Behavioral & Game Theory (2026-06-19)
+- **monetary_economics_admin**: Monetary theory, banking, transmission, intermediation, innovation
+- **behavioral_economics_admin**: Bounded rationality, prospect theory, mental accounting, heuristics, behavioral finance
+- **game_theory_admin**: Static games, dynamic games, incomplete info, cooperative games, mechanism design
+- Total modules: 1288 (L3: 1056)
+
 ## v551.0 - Phase 206: Macroeconomics, Microeconomics & Econometrics (2026-06-19)
 - **macro_economics_admin**: National accounts, employment, fiscal policy, monetary policy, international macro
 - **micro_economics_admin**: Supply-demand, consumer theory, production theory, market structure, welfare
