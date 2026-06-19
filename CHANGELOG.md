@@ -1,5 +1,11 @@
 # Changelog
 
+## v566.0 - Phase 221: Asset Management, Wealth Management & Actuarial (2026-06-19)
+- **asset_management_admin**: Portfolio theory, asset allocation, security analysis, performance evaluation, investment advisory
+- **wealth_management_admin**: HNW clients, estate planning, tax planning, retirement planning, comprehensive advisory
+- **actuarial_admin**: Life contingency, pension mathematics, risk theory, ruin theory, credibility theory
+- Total modules: 1330 (L3: 1098)
+
 ## v565.0 - Phase 220: Corporate Finance, Financial Markets & Financial Engineering (2026-06-19)
 - **corporate_finance_admin**: Corporate investment, capital structure, dividend policy, M&A, corporate governance
 - **financial_markets_admin**: Money market, capital market, derivatives market, forex market, market infrastructure
