@@ -1,5 +1,11 @@
 # Changelog
 
+## v575.0 - Phase 230: Smartcity, Sportstech & Spacetech (2026-06-20)
+- **smartcity_admin**: Smart traffic, smart security, smart energy, smart governance, smart livelihood
+- **sportstech_admin**: Smart training, event management, sports health, sports venues, sports marketing
+- **spacetech_admin**: Satellite operations, space exploration, space communication, space manufacturing, space tourism
+- Total modules: 1357 (L3: 1125)
+
 ## v574.0 - Phase 229: Retailtech, Logitech & Envirotech (2026-06-20)
 - **retailtech_admin**: Smart store, omnichannel retail, new retail platform, smart marketing, supply chain management
 - **logitech_admin**: Smart warehousing, smart transport, logistics platform, express service, supply chain finance
