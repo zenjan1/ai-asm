@@ -1,5 +1,11 @@
 # Changelog
 
+## v553.0 - Phase 208: Institutional, Development & Information Economics (2026-06-19)
+- **institutional_economics_admin**: Institutional theory, property rights, transaction costs, principal-agent, new institutional
+- **development_economics_admin**: Development theory, poverty/inequality, human capital, structural transformation, development policy
+- **information_economics_admin**: Information value, adverse selection, moral hazard, signaling games, mechanism design
+- Total modules: 1291 (L3: 1059)
+
 ## v552.0 - Phase 207: Monetary, Behavioral & Game Theory (2026-06-19)
 - **monetary_economics_admin**: Monetary theory, banking, transmission, intermediation, innovation
 - **behavioral_economics_admin**: Bounded rationality, prospect theory, mental accounting, heuristics, behavioral finance
