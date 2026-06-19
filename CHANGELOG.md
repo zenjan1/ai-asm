@@ -1,5 +1,11 @@
 # Changelog
 
+## v577.0 - Phase 232: Autotech, Constructiontech & Marinetech (2026-06-20)
+- **autotech_admin**: Autonomous driving, V2X connectivity, new energy vehicles, car sharing, smart cabin
+- **constructiontech_admin**: BIM design, smart construction, green building, building ops, prefab construction
+- **marinetech_admin**: Marine monitoring, deep sea exploration, marine resources, marine ecology, marine engineering
+- Total modules: 1363 (L3: 1131)
+
 ## v576.0 - Phase 231: Foodtech, Traveltech & Fashiontech (2026-06-20)
 - **foodtech_admin**: Smart farming, food traceability, smart processing, cold chain, nutrition health
 - **traveltech_admin**: Smart itinerary, online booking, destination management, travel experience, travel data
