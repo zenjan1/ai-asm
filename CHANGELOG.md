@@ -1,5 +1,11 @@
 # Changelog
 
+## v569.0 - Phase 224: Credit Card, Mortgage & Trade Finance (2026-06-19)
+- **credit_card_admin**: Card issuance, transaction processing, risk management, customer service, marketing analytics
+- **mortgage_admin**: Loan application, loan products, repayment management, risk management, post-loan management
+- **trade_finance_admin**: Letter of credit, guarantee business, trade financing, supply chain finance, cross-border settlement
+- Total modules: 1339 (L3: 1107)
+
 ## v568.0 - Phase 223: Factoring, Custody & Securitization (2026-06-19)
 - **factoring_admin**: Accounts receivable, factoring finance, credit assessment, risk management, factoring accounting
 - **custody_admin**: Asset custody, fund settlement, securities lending, corporate actions, custody services
