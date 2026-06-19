@@ -1,5 +1,11 @@
 # Changelog
 
+## v554.0 - Phase 209: Labor Market, Regional & Public Finance (2026-06-19)
+- **labor_market_admin**: Labor supply, labor demand, employment theory, human capital, labor policy
+- **regional_economics_admin**: Regional theory, spatial economics, regional policy, city clusters, regional competition
+- **public_finance_admin**: Fiscal theory, tax theory, fiscal expenditure, debt management, fiscal system
+- Total modules: 1294 (L3: 1062)
+
 ## v553.0 - Phase 208: Institutional, Development & Information Economics (2026-06-19)
 - **institutional_economics_admin**: Institutional theory, property rights, transaction costs, principal-agent, new institutional
 - **development_economics_admin**: Development theory, poverty/inequality, human capital, structural transformation, development policy
