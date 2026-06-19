@@ -1,5 +1,11 @@
 # Changelog
 
+## v560.0 - Phase 215: Behavioral Finance, Mathematical & Quantum Economics (2026-06-19)
+- **behavioral_finance_admin**: Cognitive biases, prospect theory, market anomalies, investor behavior, behavioral corporate finance
+- **mathematical_economics_admin**: Mathematical foundations, optimization theory, equilibrium theory, game mathematics, dynamic systems
+- **quantum_economics_admin**: Quantum decision, quantum finance, quantum game theory, quantum information, quantum computing economy
+- Total modules: 1312 (L3: 1080)
+
 ## v559.0 - Phase 214: Spatial, Network & Platform Economics (2026-06-19)
 - **spatial_economics_admin**: Spatial theory, urban space, regional economy, spatial policy, globalization space
 - **network_economics_admin**: Network effects, network structure, pricing strategy, competition policy, digital networks
