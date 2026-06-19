@@ -1,5 +1,11 @@
 # Changelog
 
+## v559.0 - Phase 214: Spatial, Network & Platform Economics (2026-06-19)
+- **spatial_economics_admin**: Spatial theory, urban space, regional economy, spatial policy, globalization space
+- **network_economics_admin**: Network effects, network structure, pricing strategy, competition policy, digital networks
+- **platform_economics_admin**: Platform theory, platform governance, platform competition, data platforms, platform regulation
+- Total modules: 1309 (L3: 1077)
+
 ## v558.0 - Phase 213: Neuroeconomics, Computational & Data Economics (2026-06-19)
 - **neuroeconomics_admin**: Neural basis, risk decisions, time preference, social decisions, consumer neuroscience
 - **computational_economics_admin**: Computational methods, agent-based models, equilibrium computation, economic simulation, algorithmic game theory
