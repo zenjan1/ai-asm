@@ -1,5 +1,10 @@
 # Changelog
 
+## v708.0 - Phase 363: Habitat, Forest & Water (2026-06-20)
+- **habitat_admin**: Habitat planning/execution/evaluation, accessories, marketing
+- **forest_admin**: Forest planning/execution/evaluation, accessories, marketing
+- **water_admin**: Water planning/execution/evaluation, accessories, marketing
+
 ## v707.0 - Phase 362: Carbon, Emission & Conservation (2026-06-20)
 - **carbon_admin**: Carbon planning/execution/evaluation, accessories, marketing
 - **emission_admin**: Emission planning/execution/evaluation, accessories, marketing
