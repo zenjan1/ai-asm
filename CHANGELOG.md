@@ -1,5 +1,11 @@
 # Changelog
 
+## v588.0 - Phase 243: Snacktech, Drinktech & Froztech (2026-06-20)
+- **snacktech_admin**: Puffed food, nuts, dried fruits, jerky, marketing
+- **drinktech_admin**: Carbonated drinks, juice drinks, bottled water, functional drinks, marketing
+- **froztech_admin**: Frozen vegetables, meat, seafood, pastry, ice cream
+- Total modules: 1396 (L3: 1164)
+
 ## v587.0 - Phase 242: Sugartech, Saucetech & Candytech (2026-06-20)
 - **sugartech_admin**: Sugarcane planting, sugar beet, extraction, refining, marketing
 - **saucetech_admin**: Soy sauce brewing, vinegar brewing, hot sauce, compound seasoning, marketing
