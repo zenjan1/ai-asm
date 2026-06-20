@@ -1,5 +1,11 @@
 # Changelog
 
+## v620.0 - Phase 275: Castech, Heathtech & Surftech (2026-06-20)
+- **castech_admin**: Sand/investment/die/centrifugal casting, marketing
+- **heathtech_admin**: Annealing, quenching, tempering, chemical heat treatment, marketing
+- **surftech_admin**: Electroplating, coating, thermal spraying, surface modification, marketing
+- Total modules: 1492 (L3: 1260)
+
 ## v619.0 - Phase 274: Hydrautech, Pneutech & Forgtech (2026-06-20)
 - **hydrautech_admin**: Hydraulic pump, motor, cylinder, valve, marketing
 - **pneutech_admin**: Air source, pneumatic cylinder, valve, accessories, marketing
