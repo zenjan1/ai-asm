@@ -1,5 +1,11 @@
 # Changelog
 
+## v627.0 - Phase 282: Lifttech, Conveytech & Compresstech (2026-06-20)
+- **lifttech_admin**: Hydraulic/scissor/mast lifts, accessories, marketing
+- **conveytech_admin**: Belt/roller/chain conveyors, accessories, marketing
+- **compresstech_admin**: Air/refrigeration/process compressors, accessories, marketing
+Total modules: 1513 (L3: 1281)
+
 ## v626.0 - Phase 281: Crantech, Pumptech & Dronetech (2026-06-20)
 - **crantech_admin**: Bridge/gantry/jib cranes, accessories, marketing
 - **pumptech_admin**: Water/oil/special pumps, valves, marketing
