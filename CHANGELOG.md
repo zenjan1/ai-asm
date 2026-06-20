@@ -1,5 +1,10 @@
 # Changelog
 
+## v692.0 - Phase 347: Risk, Organization & Governance (2026-06-20)
+- **risk_admin**: Risk identification/assessment/response, accessories, marketing
+- **organization_admin**: Organization design/operations/change, accessories, marketing
+- **governance_admin**: Governance structure/mechanism/compliance, accessories, marketing
+
 ## v691.0 - Phase 346: Standards, Asset & Strategy (2026-06-20)
 - **standards_admin**: Standards development/implementation/management, accessories, marketing
 - **asset_admin**: Asset procurement/operations/disposal, accessories, marketing
