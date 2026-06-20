@@ -1,5 +1,11 @@
 # Changelog
 
+## v586.0 - Phase 241: Milktech, Graintech & Oiltech (2026-06-20)
+- **milktech_admin**: Dairy cow breeding, milk collection, dairy processing, products, marketing
+- **graintech_admin**: Wheat planting, rice planting, corn planting, grain processing, storage
+- **oiltech_admin**: Oil crop planting, oil extraction, oil refining, oil products, marketing
+- Total modules: 1390 (L3: 1158)
+
 ## v585.0 - Phase 240: Coffeetech, Chocolatech & Baketech (2026-06-20)
 - **coffeetech_admin**: Coffee planting, processing, roasting, brewing, marketing
 - **chocolatech_admin**: Cocoa planting, cocoa processing, chocolate making, design, marketing
