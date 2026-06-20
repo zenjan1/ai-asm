@@ -1,5 +1,11 @@
 # Changelog
 
+## v609.0 - Phase 264: Consulttech, Eventtech & Hrtech (2026-06-20)
+- **consulttech_admin**: Management consulting, IT consulting, financial consulting, market consulting, marketing
+- **eventtech_admin**: Event planning, exhibitions, conference services, wedding services, marketing
+- **hrtech_admin**: Recruitment, HR outsourcing, training development, performance management, marketing
+- Total modules: 1459 (L3: 1227)
+
 ## v608.0 - Phase 263: Moneitech, Risktech & Justitech (2026-06-20)
 - **moneitech_admin**: Payment and lending, investment and wealth, blockchain, digital banking, marketing
 - **risktech_admin**: Life insurance, property insurance, reinsurance, insurance services, marketing
