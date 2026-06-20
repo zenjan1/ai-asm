@@ -1,5 +1,11 @@
 # Changelog
 
+## v589.0 - Phase 244: Noodletech, Tofutech & Egtech (2026-06-20)
+- **noodletech_admin**: Wheat noodles, rice noodles, instant noodles, dried noodles, marketing
+- **tofutech_admin**: Soy milk, tofu making, soy products, fermented soy, marketing
+- **egtech_admin**: Layer breeding, egg collection, egg processing, egg products, marketing
+- Total modules: 1399 (L3: 1167)
+
 ## v588.0 - Phase 243: Snacktech, Drinktech & Froztech (2026-06-20)
 - **snacktech_admin**: Puffed food, nuts, dried fruits, jerky, marketing
 - **drinktech_admin**: Carbonated drinks, juice drinks, bottled water, functional drinks, marketing
