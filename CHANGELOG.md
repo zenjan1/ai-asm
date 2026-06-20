@@ -1,5 +1,10 @@
 # Changelog
 
+## v722.0 - Phase 377: Tulip, Lily & Jasmine (2026-06-20)
+- **tulip_admin**: Tulip planning/execution/evaluation, accessories, marketing
+- **lily_admin**: Lily planning/execution/evaluation, accessories, marketing
+- **jasmine_admin**: Jasmine planning/execution/evaluation, accessories, marketing
+
 ## v721.0 - Phase 376: Basil, Thyme & Rose (2026-06-20)
 - **basil_admin**: Basil planning/execution/evaluation, accessories, marketing
 - **thyme_admin**: Thyme planning/execution/evaluation, accessories, marketing
