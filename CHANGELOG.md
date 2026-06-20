@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v665.0 - Phase 320: Fan, Blower & Motor (2026-06-20)
+- **fan_admin**: Axial/centrifugal/mixed fans, accessories, marketing
+- **blower_admin**: Centrifugal/roots/rotary blowers, accessories, marketing
+- **motor_admin**: AC/DC/special motors, accessories, marketing
+
 ## v664.0 - Phase 319: Valve, Pump & Compressor (2026-06-20)
 - **valve_admin**: Gate/globe/ball valves, accessories, marketing
 - **pump_admin**: Centrifugal/volume/special pumps, accessories, marketing
