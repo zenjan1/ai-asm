@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v681.0 - Phase 336: Adhesive, Gasket & Anchor (2026-06-20)
+- **adhesive_admin**: Structural/non-structural/special adhesives, accessories, marketing
+- **gasket_admin**: Non-metallic/metallic/semi-metallic gaskets, accessories, marketing
+- **anchor_admin**: Mechanical/chemical/special anchoring, accessories, marketing
+
 ## v680.0 - Phase 335: Assemble, Rivet & Braze (2026-06-20)
 - **assemble_admin**: Mechanical/automated/precision assembly, accessories, marketing
 - **rivet_admin**: Solid/hollow/special riveting, accessories, marketing
