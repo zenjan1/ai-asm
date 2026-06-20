@@ -1,5 +1,11 @@
 # Changelog
 
+## v619.0 - Phase 274: Hydrautech, Pneutech & Forgtech (2026-06-20)
+- **hydrautech_admin**: Hydraulic pump, motor, cylinder, valve, marketing
+- **pneutech_admin**: Air source, pneumatic cylinder, valve, accessories, marketing
+- **forgtech_admin**: Free forging, die forging, special forging, equipment, marketing
+- Total modules: 1489 (L3: 1257)
+
 ## v618.0 - Phase 273: Springtech, Geartech & Chaintech (2026-06-20)
 - **springtech_admin**: Compression/extension/torsion/special springs, marketing
 - **geartech_admin**: Cylindrical/bevel/worm gears, gearbox, marketing
