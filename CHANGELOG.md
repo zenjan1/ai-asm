@@ -1,5 +1,10 @@
 # Changelog
 
+## v694.0 - Phase 349: Capability, Performance & Service (2026-06-20)
+- **capability_admin**: Capability assessment/development/application, accessories, marketing
+- **performance_admin**: Performance planning/execution/evaluation, accessories, marketing
+- **service_admin**: Service design/delivery/improvement, accessories, marketing
+
 ## v693.0 - Phase 348: Knowledge, Data & Resource (2026-06-20)
 - **knowledge_admin**: Knowledge acquisition/sharing/application, accessories, marketing
 - **data_admin**: Data collection/storage/analysis, accessories, marketing
