@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v679.0 - Phase 334: Polish, Coating & Heat (2026-06-20)
+- **polish_admin**: Mechanical/chemical/grinding polishing, accessories, marketing
+- **coating_admin**: PVD/CVD coating, thermal spray, accessories, marketing
+- **heat_admin**: Conventional/surface/chemical heat treatment, accessories, marketing
+
 ## v678.0 - Phase 333: Laser, Plasma & Waterjet (2026-06-20)
 - **laser_admin**: Laser cutting/welding/marking, accessories, marketing
 - **plasma_admin**: Plasma cutting/spraying/welding, accessories, marketing
