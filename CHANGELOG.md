@@ -1,5 +1,10 @@
 # Changelog
 
+## v704.0 - Phase 359: Sharing, Circular & Sustainability (2026-06-20)
+- **sharing_admin**: Sharing planning/operations/evaluation, accessories, marketing
+- **circular_admin**: Circular planning/building/evaluation, accessories, marketing
+- **sustainability_admin**: Sustainability planning/execution/evaluation, accessories, marketing
+
 ## v703.0 - Phase 358: Platform, Ecosystem & Globalization (2026-06-20)
 - **platform_admin**: Platform planning/operations/evaluation, accessories, marketing
 - **ecosystem_admin**: Ecosystem planning/building/evaluation, accessories, marketing
