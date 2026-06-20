@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v686.0 - Phase 341: Convey, Crane & Lift (2026-06-20)
+- **convey_admin**: Belt/chain/roller conveyors, accessories, marketing
+- **crane_admin**: Bridge/gantry/jib cranes, accessories, marketing
+- **lift_admin**: Elevators/hoists/aerial platforms, accessories, marketing
+
 ## v685.0 - Phase 340: Warehouse, Material & Inventory (2026-06-20)
 - **warehouse_admin**: General/special warehousing, equipment, accessories, marketing
 - **material_admin**: Metal/non-metal materials, handling, accessories, marketing
