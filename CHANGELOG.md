@@ -1,5 +1,11 @@
 # Changelog
 
+## v635.0 - Phase 290: Assemblingtech, Shearingtech & Adhesivetech (2026-06-20)
+- **assemblingtech_admin**: Mechanical/electrical/hydraulic assembly, accessories, marketing
+- **shearingtech_admin**: Plate/profile/special shearing, accessories, marketing
+- **adhesivetech_admin**: Structural/sealant/special adhesives, accessories, marketing
+Total modules: 1537 (L3: 1305)
+
 ## v634.0 - Phase 289: Rollingtech, Extrudingtech & Drawingtech (2026-06-20)
 - **rollingtech_admin**: Hot/cold/special rolling, accessories, marketing
 - **extrudingtech_admin**: Forward/backward/special extrusion, accessories, marketing
