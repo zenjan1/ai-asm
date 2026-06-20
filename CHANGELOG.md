@@ -1,5 +1,11 @@
 # Changelog
 
+## v662.0 - Phase 317: Bolttech, Nuttech & Washtech (2026-06-20)
+- **bolttech_admin**: Hex/socket/anchor bolts, accessories, marketing
+- **nuttech_admin**: Hex/lock/special nuts, accessories, marketing
+- **washtech_admin**: Flat/spring washers, snap rings, accessories, marketing
+Total modules: 1618 (L3: 1386)
+
 ## v661.0 - Phase 316: Flange, Rivettech & Gaskettech (2026-06-20)
 - **flange_admin**: Plate welding/butt-weld/loose flanges, accessories, marketing
 - **rivettech_admin**: Solid/hollow/special rivets, accessories, marketing
