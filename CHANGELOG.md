@@ -1,5 +1,11 @@
 # Changelog
 
+## v651.0 - Phase 306: Nitridingtech, Carburizingtech & Carbonitridingtech (2026-06-20)
+- **nitridingtech_admin**: Gas/ion/salt-bath nitriding, accessories, marketing
+- **carburizingtech_admin**: Gas/liquid/solid carburizing, accessories, marketing
+- **carbonitridingtech_admin**: Gas/liquid/ion carbonitriding, accessories, marketing
+Total modules: 1585 (L3: 1353)
+
 ## v650.0 - Phase 305: Hardeningtech, Annealingtech & Quenchtech (2026-06-20)
 - **hardeningtech_admin**: Full/surface/local hardening, accessories, marketing
 - **annealingtech_admin**: Full/spheroidize/stress annealing, accessories, marketing
