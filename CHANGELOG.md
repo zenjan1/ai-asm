@@ -1,5 +1,10 @@
 # Changelog
 
+## v693.0 - Phase 348: Knowledge, Data & Resource (2026-06-20)
+- **knowledge_admin**: Knowledge acquisition/sharing/application, accessories, marketing
+- **data_admin**: Data collection/storage/analysis, accessories, marketing
+- **resource_admin**: Resource planning/allocation/protection, accessories, marketing
+
 ## v692.0 - Phase 347: Risk, Organization & Governance (2026-06-20)
 - **risk_admin**: Risk identification/assessment/response, accessories, marketing
 - **organization_admin**: Organization design/operations/change, accessories, marketing
