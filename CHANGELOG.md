@@ -1,5 +1,10 @@
 # Changelog
 
+## v733.0 - Phase 388: Dianthus, Foxglove & Lupine (2026-06-20)
+- **dianthus_admin**: Dianthus planning/execution/evaluation, accessories, marketing
+- **foxglove_admin**: Foxglove planning/execution/evaluation, accessories, marketing
+- **lupine_admin**: Lupine planning/execution/evaluation, accessories, marketing
+
 ## v732.0 - Phase 387: Gazania, Anemone & Aster (2026-06-20)
 - **gazania_admin**: Gazania planning/execution/evaluation, accessories, marketing
 - **anemone_admin**: Anemone planning/execution/evaluation, accessories, marketing
