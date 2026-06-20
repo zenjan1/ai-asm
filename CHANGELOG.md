@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v675.0 - Phase 330: Saw, Planer & Broach (2026-06-20)
+- **saw_admin**: Circular/band/bow saws, accessories, marketing
+- **planer_admin**: Shaper/planer/slotter, accessories, marketing
+- **broach_admin**: Horizontal/vertical/special broaches, accessories, marketing
+
 ## v674.0 - Phase 329: Punch, Shear & Bend (2026-06-20)
 - **punch_admin**: Mechanical/hydraulic/servo presses, accessories, marketing
 - **shear_admin**: Gate/swing/special shears, accessories, marketing
