@@ -1,5 +1,10 @@
 # Changelog
 
+## v723.0 - Phase 378: Peony, Daisy & Sunflower (2026-06-20)
+- **peony_admin**: Peony planning/execution/evaluation, accessories, marketing
+- **daisy_admin**: Daisy planning/execution/evaluation, accessories, marketing
+- **sunflower_admin**: Sunflower planning/execution/evaluation, accessories, marketing
+
 ## v722.0 - Phase 377: Tulip, Lily & Jasmine (2026-06-20)
 - **tulip_admin**: Tulip planning/execution/evaluation, accessories, marketing
 - **lily_admin**: Lily planning/execution/evaluation, accessories, marketing
