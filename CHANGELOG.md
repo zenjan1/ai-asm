@@ -1,5 +1,11 @@
 # Changelog
 
+## v621.0 - Phase 276: Assembltech, Moldtech & Measttech (2026-06-20)
+- **assembltech_admin**: Mechanical/electrical/hydraulic/automation assembly, marketing
+- **moldtech_admin**: Injection/stamping/die-casting/forging mold, marketing
+- **measttech_admin**: Length/angle/surface measurement, CMM, marketing
+- Total modules: 1495 (L3: 1263)
+
 ## v620.0 - Phase 275: Castech, Heathtech & Surftech (2026-06-20)
 - **castech_admin**: Sand/investment/die/centrifugal casting, marketing
 - **heathtech_admin**: Annealing, quenching, tempering, chemical heat treatment, marketing
