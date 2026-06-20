@@ -1,5 +1,11 @@
 # Changelog
 
+## v618.0 - Phase 273: Springtech, Geartech & Chaintech (2026-06-20)
+- **springtech_admin**: Compression/extension/torsion/special springs, marketing
+- **geartech_admin**: Cylindrical/bevel/worm gears, gearbox, marketing
+- **chaintech_admin**: Transmission/conveyor/special chains, sprocket, marketing
+- Total modules: 1486 (L3: 1254)
+
 ## v617.0 - Phase 272: Beartech, Valvetech & Weldtech (2026-06-20)
 - **beartech_admin**: Rolling bearing, sliding bearing, special bearing, accessories, marketing
 - **valvetech_admin**: Gate valve, ball valve, butterfly valve, control valve, marketing
