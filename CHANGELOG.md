@@ -1,5 +1,11 @@
 # Changelog
 
+## v655.0 - Phase 310: Anodizingtech, Galvanizingtech & Metallizing (2026-06-20)
+- **anodizingtech_admin**: Sulfuric/oxalic/chromic acid anodizing, accessories, marketing
+- **galvanizingtech_admin**: Batch/continuous/alloy hot-dip galvanizing, accessories, marketing
+- **metallizing_admin**: Flame/arc/plasma spraying, accessories, marketing
+Total modules: 1597 (L3: 1365)
+
 ## v654.0 - Phase 309: Platingtech, Powdercoat & Spraytech (2026-06-20)
 - **platingtech_admin**: Zinc/nickel/chrome plating, accessories, marketing
 - **powdercoat_admin**: Epoxy/polyester/acrylic powder coating, accessories, marketing
