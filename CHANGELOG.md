@@ -1,5 +1,11 @@
 # Changelog
 
+## v661.0 - Phase 316: Flange, Rivettech & Gaskettech (2026-06-20)
+- **flange_admin**: Plate welding/butt-weld/loose flanges, accessories, marketing
+- **rivettech_admin**: Solid/hollow/special rivets, accessories, marketing
+- **gaskettech_admin**: Non-metallic/semi-metallic/metal gaskets, accessories, marketing
+Total modules: 1615 (L3: 1383)
+
 ## v660.0 - Phase 315: Splinetech, Keytech & Threadtech (2026-06-20)
 - **splinetech_admin**: Rectangular/involute/triangular splines, accessories, marketing
 - **keytech_admin**: Flat/half-round/taper keys, accessories, marketing
