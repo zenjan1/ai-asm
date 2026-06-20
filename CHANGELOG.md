@@ -1,5 +1,11 @@
 # Changelog
 
+## v644.0 - Phase 299: Automationtech, Opticaltech & Vacuumtech (2026-06-20)
+- **automationtech_admin**: Production line/industrial robots/automation control, accessories, marketing
+- **opticaltech_admin**: Optical elements/instruments/laser equipment, accessories, marketing
+- **vacuumtech_admin**: Vacuum pumps/chambers/measurement, accessories, marketing
+Total modules: 1564 (L3: 1332)
+
 ## v643.0 - Phase 298: Qualitytech, Analyzetech & Instrumentech (2026-06-20)
 - **qualitytech_admin**: Quality control/assurance/improvement/inspection, marketing
 - **analyzetech_admin**: Chemical/physical/material analysis, accessories, marketing
