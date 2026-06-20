@@ -1,5 +1,11 @@
 # Changelog
 
+## v584.0 - Phase 239: Beetech, Teatech & Winetech (2026-06-20)
+- **beetech_admin**: Bee breeding, bee product processing, bee equipment, bee disease, bee tourism
+- **teatech_admin**: Tea planting, tea processing, tea culture, tea marketing, tea equipment
+- **winetech_admin**: Grape planting, winemaking, cellar management, wine tasting, wine marketing
+- Total modules: 1384 (L3: 1152)
+
 ## v583.0 - Phase 238: Horsetech, Animationtech & Museutech (2026-06-20)
 - **horsetech_admin**: Horse breeding, equestrian sports, horse stud, equipment, tourism
 - **animationtech_admin**: Animation production, comic creation, IP operation, derivatives, virtual idol
