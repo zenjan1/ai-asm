@@ -1,5 +1,11 @@
 # Changelog
 
+## v632.0 - Phase 287: Surfacetech, Coatingtech & Polishingtech (2026-06-20)
+- **surfacetech_admin**: Electroplating/chemical/anodizing treatments, accessories, marketing
+- **coatingtech_admin**: Paint/powder/thermal spray coatings, accessories, marketing
+- **polishingtech_admin**: Mechanical/chemical/electrolytic polishing, accessories, marketing
+Total modules: 1528 (L3: 1296)
+
 ## v631.0 - Phase 286: Castingtech, Forgingtech & Heattreattech (2026-06-20)
 - **castingtech_admin**: Sand/precision/die casting, accessories, marketing
 - **forgingtech_admin**: Free/die/special forging, accessories, marketing
