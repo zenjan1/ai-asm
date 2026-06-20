@@ -1,5 +1,10 @@
 # Changelog
 
+## v730.0 - Phase 385: Violet, Begonia & Freesia (2026-06-20)
+- **violet_admin**: Violet planning/execution/evaluation, accessories, marketing
+- **begonia_admin**: Begonia planning/execution/evaluation, accessories, marketing
+- **freesia_admin**: Freesia planning/execution/evaluation, accessories, marketing
+
 ## v729.0 - Phase 384: Snapdragon, Daffodil & Lilac (2026-06-20)
 - **snapdragon_admin**: Snapdragon planning/execution/evaluation, accessories, marketing
 - **daffodil_admin**: Daffodil planning/execution/evaluation, accessories, marketing
