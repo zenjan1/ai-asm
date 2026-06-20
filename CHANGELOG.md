@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v672.0 - Phase 327: Cast, Machine & Lathe (2026-06-20)
+- **cast_admin**: Sand/special/continuous casting, accessories, marketing
+- **machine_admin**: Cutting/forming/special machining machines, accessories, marketing
+- **lathe_admin**: Ordinary/CNC/special lathes, accessories, marketing
+
 ## v671.0 - Phase 326: Fixture, Abrasive & Forge (2026-06-20)
 - **fixture_admin**: Lathe/milling/drilling fixtures, accessories, marketing
 - **abrasive_admin**: Bonded/coated/superhard abrasives, accessories, marketing
