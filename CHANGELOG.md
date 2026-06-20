@@ -1,5 +1,10 @@
 # Changelog
 
+## v691.0 - Phase 346: Standards, Asset & Strategy (2026-06-20)
+- **standards_admin**: Standards development/implementation/management, accessories, marketing
+- **asset_admin**: Asset procurement/operations/disposal, accessories, marketing
+- **strategy_admin**: Strategic planning/execution/evaluation, accessories, marketing
+
 ## v690.0 - Phase 345: Engineering, Project & Innovation (2026-06-20)
 - **engineering_admin**: Engineering design/construction/supervision, accessories, marketing
 - **project_admin**: Project initiation/execution/closure, accessories, marketing
