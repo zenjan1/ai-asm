@@ -1,5 +1,10 @@
 # Changelog
 
+## v726.0 - Phase 381: Camellia, Gardenia & Lavender (2026-06-20)
+- **camellia_admin**: Camellia planning/execution/evaluation, accessories, marketing
+- **gardenia_admin**: Gardenia planning/execution/evaluation, accessories, marketing
+- **lavender_admin**: Lavender planning/execution/evaluation, accessories, marketing
+
 ## v725.0 - Phase 380: Carnation, Chrysanthemum & Iris (2026-06-20)
 - **carnation_admin**: Carnation planning/execution/evaluation, accessories, marketing
 - **chrysanthemum_admin**: Chrysanthemum planning/execution/evaluation, accessories, marketing
