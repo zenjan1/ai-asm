@@ -1,5 +1,11 @@
 # Changelog
 
+## v612.0 - Phase 267: Miningtech, Textiletech & Machinetech (2026-06-20)
+- **miningtech_admin**: Coal mining, metal mining, non-metal mining, mining services, marketing
+- **textiletech_admin**: Spinning weaving, garment manufacturing, home textiles, industrial textiles, marketing
+- **machinetech_admin**: General machinery, engineering machinery, machine tools, smart manufacturing, marketing
+- Total modules: 1468 (L3: 1236)
+
 ## v611.0 - Phase 266: Agrotech, Aquatech & Flighttech (2026-06-20)
 - **agrotech_admin**: Crop planting, livestock, agricultural machinery, agro-processing, marketing
 - **aquatech_admin**: Marine farming, freshwater farming, ocean fishing, seafood processing, marketing
