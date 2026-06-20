@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v664.0 - Phase 319: Valve, Pump & Compressor (2026-06-20)
+- **valve_admin**: Gate/globe/ball valves, accessories, marketing
+- **pump_admin**: Centrifugal/volume/special pumps, accessories, marketing
+- **compressor_admin**: Piston/screw/centrifugal compressors, accessories, marketing
+
 ## v663.0 - Phase 318: Pinjoint, Tubetech & Hose (2026-06-20)
 - **pinjoint_admin**: Cylindrical/conical/special pins, accessories, marketing
 - **tubetech_admin**: Elbow/tee/flange fittings, accessories, marketing
