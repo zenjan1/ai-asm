@@ -1,5 +1,11 @@
 # Changelog
 
+## v646.0 - Phase 301: Electrontech, Powertech & Radiotech (2026-06-20)
+- **electrontech_admin**: Electronic components/IC/equipment, accessories, marketing
+- **powertech_admin**: Power generation/transmission/distribution, accessories, marketing
+- **radiotech_admin**: Radiation sources/applications/protection, accessories, marketing
+Total modules: 1570 (L3: 1338)
+
 ## v645.0 - Phase 300 🎉: Cryotech, Acousttech & Lubricatetech (MILESTONE) (2026-06-20)
 - **cryotech_admin**: Cryogenic refrigeration/storage/transfer, accessories, marketing
 - **acousttech_admin**: Acoustic measurement/noise control/ultrasonic, accessories, marketing
