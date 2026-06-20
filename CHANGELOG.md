@@ -1,5 +1,10 @@
 # Changelog
 
+## v706.0 - Phase 361: Ecoadmin, Clean & Renew (2026-06-20)
+- **ecoadmin_admin**: Ecoadmin planning/execution/evaluation, accessories, marketing
+- **clean_admin**: Clean planning/execution/evaluation, accessories, marketing
+- **renew_admin**: Renew planning/execution/evaluation, accessories, marketing
+
 ## v705.0 - Phase 360: Green, Lowcarbon & Recycle (2026-06-20)
 - **green_admin**: Green planning/execution/evaluation, accessories, marketing
 - **lowcarbon_admin**: Lowcarbon planning/execution/evaluation, accessories, marketing
