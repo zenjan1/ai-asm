@@ -1,5 +1,11 @@
 # Changelog
 
+## v654.0 - Phase 309: Platingtech, Powdercoat & Spraytech (2026-06-20)
+- **platingtech_admin**: Zinc/nickel/chrome plating, accessories, marketing
+- **powdercoat_admin**: Epoxy/polyester/acrylic powder coating, accessories, marketing
+- **spraytech_admin**: Air/electrostatic/thermal spraying, accessories, marketing
+Total modules: 1594 (L3: 1362)
+
 ## v653.0 - Phase 308: Phosphatingtech, Oxidizingtech & Passivationtech (2026-06-20)
 - **phosphatingtech_admin**: Zinc/manganese/iron phosphating, accessories, marketing
 - **oxidizingtech_admin**: Alkaline/acidic/anodic oxidizing, accessories, marketing
