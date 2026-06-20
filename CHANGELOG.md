@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v682.0 - Phase 337: NDT, Measure & Metrology (2026-06-20)
+- **ndt_admin**: Ultrasonic/radiographic/surface NDT, accessories, marketing
+- **measure_admin**: Dimensional/geometric/online measurement, accessories, marketing
+- **metrology_admin**: Dimensional/mechanical/thermal metrology, accessories, marketing
+
 ## v681.0 - Phase 336: Adhesive, Gasket & Anchor (2026-06-20)
 - **adhesive_admin**: Structural/non-structural/special adhesives, accessories, marketing
 - **gasket_admin**: Non-metallic/metallic/semi-metallic gaskets, accessories, marketing
