@@ -1,5 +1,11 @@
 # Changelog
 
+## v610.0 - Phase 265: Edutech, Culturetech & Adtech (2026-06-20)
+- **eductech_admin**: Basic education, higher education, vocational education, online education, marketing
+- **culturetech_admin**: Film production, publishing, cultural heritage, performing arts, marketing
+- **adtech_admin**: Brand planning, digital marketing, media placement, PR services, marketing
+- Total modules: 1462 (L3: 1230)
+
 ## v609.0 - Phase 264: Consulttech, Eventtech & Hrtech (2026-06-20)
 - **consulttech_admin**: Management consulting, IT consulting, financial consulting, market consulting, marketing
 - **eventtech_admin**: Event planning, exhibitions, conference services, wedding services, marketing
