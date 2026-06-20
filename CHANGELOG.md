@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v668.0 - Phase 323: Coupling, Weld & Chain (2026-06-20)
+- **coupling_admin**: Rigid/flexible/safety couplings, accessories, marketing
+- **weld_admin**: Arc/resistance/special welding, accessories, marketing
+- **chain_admin**: Transmission/conveyor/special chains, accessories, marketing
+
 ## v667.0 - Phase 322: Reducer, Bearing & Gear (2026-06-20)
 - **reducer_admin**: Gear/worm/planetary reducers, accessories, marketing
 - **bearing_admin**: Rolling/sliding/special bearings, accessories, marketing
