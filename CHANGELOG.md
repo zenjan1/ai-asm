@@ -1,5 +1,11 @@
 # Changelog
 
+## v605.0 - Phase 260: Gametech, Animtech & Edutech (2026-06-20)
+- **gametech_admin**: Game development, game engines, mobile games, PC games, marketing
+- **animtech_admin**: 2D animation, 3D animation, animation film/TV, animation derivatives, marketing
+- **edutech_admin**: Online education, smart classrooms, educational content, training platforms, marketing
+- Total modules: 1447 (L3: 1215)
+
 ## v604.0 - Phase 259: Furntech, Pettech & Musitech (2026-06-20)
 - **furntech_admin**: Solid wood furniture, panel furniture, soft furnishing, office furniture, marketing
 - **pettech_admin**: Pet food, pet supplies, pet medical, pet services, marketing
