@@ -1,5 +1,10 @@
 # Changelog
 
+## v735.0 - Phase 390: Yarrow, Columbine & Celandine (2026-06-20)
+- **yarrow_admin**: Yarrow planning/execution/evaluation, accessories, marketing
+- **columbine_admin**: Columbine planning/execution/evaluation, accessories, marketing
+- **celandine_admin**: Celandine planning/execution/evaluation, accessories, marketing
+
 ## v734.0 - Phase 389: Delphinium, Hollyhock & Sweetpea (2026-06-20)
 - **delphinium_admin**: Delphinium planning/execution/evaluation, accessories, marketing
 - **hollyhock_admin**: Hollyhock planning/execution/evaluation, accessories, marketing
