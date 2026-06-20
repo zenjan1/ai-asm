@@ -1,5 +1,10 @@
 # Changelog
 
+## v736.0 - Phase 391: Buttercup, Wisteria & Jonquil (2026-06-21)
+- **buttercup_admin**: Buttercup planning/execution/evaluation, accessories, marketing
+- **wisteria_admin**: Wisteria planning/execution/evaluation, accessories, marketing
+- **jonquil_admin**: Jonquil planning/execution/evaluation, accessories, marketing
+
 ## v735.0 - Phase 390: Yarrow, Columbine & Celandine (2026-06-20)
 - **yarrow_admin**: Yarrow planning/execution/evaluation, accessories, marketing
 - **columbine_admin**: Columbine planning/execution/evaluation, accessories, marketing
