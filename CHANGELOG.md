@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v667.0 - Phase 322: Reducer, Bearing & Gear (2026-06-20)
+- **reducer_admin**: Gear/worm/planetary reducers, accessories, marketing
+- **bearing_admin**: Rolling/sliding/special bearings, accessories, marketing
+- **gear_admin**: Cylindrical/bevel/special gears, accessories, marketing
+
 ## v666.0 - Phase 321: Generator, Turbine & Engine (2026-06-20)
 - **generator_admin**: Synchronous/asynchronous/DC generators, accessories, marketing
 - **turbine_admin**: Steam/gas/hydraulic turbines, accessories, marketing
