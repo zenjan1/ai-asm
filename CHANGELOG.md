@@ -1,5 +1,11 @@
 # Changelog
 
+## v634.0 - Phase 289: Rollingtech, Extrudingtech & Drawingtech (2026-06-20)
+- **rollingtech_admin**: Hot/cold/special rolling, accessories, marketing
+- **extrudingtech_admin**: Forward/backward/special extrusion, accessories, marketing
+- **drawingtech_admin**: Bar/tube/wire drawing, accessories, marketing
+Total modules: 1534 (L3: 1302)
+
 ## v633.0 - Phase 288: Grindingtech, Bendingtech & Stampingtech (2026-06-20)
 - **grindingtech_admin**: External/internal/surface grinding, accessories, marketing
 - **bendingtech_admin**: Profile/tube/plate bending, accessories, marketing
