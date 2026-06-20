@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v676.0 - Phase 331: Roll, Extrude & Draw (2026-06-20)
+- **roll_admin**: Hot/cold/special rolling mills, accessories, marketing
+- **extrude_admin**: Direct/indirect/special extrusion, accessories, marketing
+- **draw_admin**: Bar/tube/profile drawing, accessories, marketing
+
 ## v675.0 - Phase 330: Saw, Planer & Broach (2026-06-20)
 - **saw_admin**: Circular/band/bow saws, accessories, marketing
 - **planer_admin**: Shaper/planer/slotter, accessories, marketing
