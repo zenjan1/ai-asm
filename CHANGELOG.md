@@ -1,5 +1,11 @@
 # Changelog
 
+## v649.0 - Phase 304: Automatetech, Processcontrol & Surfacetreat (2026-06-20)
+- **automatetech_admin**: Automated assembly/welding/coating, accessories, marketing
+- **processcontrol_admin**: Temperature/pressure/flow control, accessories, marketing
+- **surfacetreat_admin**: Mechanical/chemical/electrochemical treatment, accessories, marketing
+Total modules: 1579 (L3: 1347)
+
 ## v648.0 - Phase 303: Cvdtech, Pvdtech & Electricaltech (2026-06-20)
 - **cvdtech_admin**: CVD equipment/process/materials, accessories, marketing
 - **pvdtech_admin**: PVD equipment/process/materials, accessories, marketing
