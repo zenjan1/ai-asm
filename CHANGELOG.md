@@ -1,5 +1,10 @@
 # Changelog
 
+## v729.0 - Phase 384: Snapdragon, Daffodil & Lilac (2026-06-20)
+- **snapdragon_admin**: Snapdragon planning/execution/evaluation, accessories, marketing
+- **daffodil_admin**: Daffodil planning/execution/evaluation, accessories, marketing
+- **lilac_admin**: Lilac planning/execution/evaluation, accessories, marketing
+
 ## v728.0 - Phase 383: Primrose, Marigold & Poppy (2026-06-20)
 - **primrose_admin**: Primrose planning/execution/evaluation, accessories, marketing
 - **marigold_admin**: Marigold planning/execution/evaluation, accessories, marketing
