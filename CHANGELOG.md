@@ -1,5 +1,10 @@
 # Changelog
 
+## v707.0 - Phase 362: Carbon, Emission & Conservation (2026-06-20)
+- **carbon_admin**: Carbon planning/execution/evaluation, accessories, marketing
+- **emission_admin**: Emission planning/execution/evaluation, accessories, marketing
+- **conservation_admin**: Conservation planning/execution/evaluation, accessories, marketing
+
 ## v706.0 - Phase 361: Ecoadmin, Clean & Renew (2026-06-20)
 - **ecoadmin_admin**: Ecoadmin planning/execution/evaluation, accessories, marketing
 - **clean_admin**: Clean planning/execution/evaluation, accessories, marketing
