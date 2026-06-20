@@ -1,5 +1,10 @@
 # Changelog
 
+## v688.0 - Phase 343: Quality, Maintenance & Safety (2026-06-20)
+- **quality_admin**: Quality control/assurance/improvement, accessories, marketing
+- **maintenance_admin**: Preventive/corrective/TPM maintenance, accessories, marketing
+- **safety_admin**: Safety prevention/management/health, accessories, marketing
+
 
 ## v687.0 - Phase 342: Supply, Procurement & Packaging (2026-06-20)
 - **supply_admin**: Supplier management/collaboration/finance, accessories, marketing
