@@ -1,5 +1,10 @@
 # Changelog
 
+## v696.0 - Phase 351: Communication, Public & Advertising (2026-06-20)
+- **communication_admin**: Communication planning/execution/evaluation, accessories, marketing
+- **public_admin**: Public relations/affairs/communication, accessories, marketing
+- **advertising_admin**: Advertising planning/production/placement, accessories, marketing
+
 ## v695.0 - Phase 350: Brand, Customer & Channel (2026-06-20)
 - **brand_admin**: Brand planning/building/maintenance, accessories, marketing
 - **customer_admin**: Customer development/service/maintenance, accessories, marketing
