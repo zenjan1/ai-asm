@@ -1,5 +1,11 @@
 # Changelog
 
+## v638.0 - Phase 293: Laserweldtech, Plasmattech & Calibrtech (2026-06-20)
+- **laserweldtech_admin**: Laser welding/cutting/cladding, accessories, marketing
+- **plasmattech_admin**: Plasma cutting/spraying/welding, accessories, marketing
+- **calibrtech_admin**: Geometry/mechanical/electromagnetic calibration, accessories, marketing
+Total modules: 1546 (L3: 1314)
+
 ## v637.0 - Phase 292: Measuringtech, Inspectech & Testingtech (2026-06-20)
 - **measuringtech_admin**: Length/angle/form- position measurement, accessories, marketing
 - **inspectech_admin**: NDT/online/chemical inspection, accessories, marketing
