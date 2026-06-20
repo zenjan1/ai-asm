@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v677.0 - Phase 332: Thread, Gearcut & EDM (2026-06-20)
+- **thread_admin**: Thread turning/milling/rolling, accessories, marketing
+- **gearcut_admin**: Hobbing/shaping/finishing, accessories, marketing
+- **edm_admin**: Sinker/wire-cut/small-hole EDM, accessories, marketing
+
 ## v676.0 - Phase 331: Roll, Extrude & Draw (2026-06-20)
 - **roll_admin**: Hot/cold/special rolling mills, accessories, marketing
 - **extrude_admin**: Direct/indirect/special extrusion, accessories, marketing
