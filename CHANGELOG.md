@@ -1,5 +1,10 @@
 # Changelog
 
+## v714.0 - Phase 369: Grain, Vegetable & Fruit (2026-06-20)
+- **grain_admin**: Grain planning/execution/evaluation, accessories, marketing
+- **vegetable_admin**: Vegetable planning/execution/evaluation, accessories, marketing
+- **fruit_admin**: Fruit planning/execution/evaluation, accessories, marketing
+
 ## v713.0 - Phase 368: Orchard, Floriculture & Tobacco (2026-06-20)
 - **orchard_admin**: Orchard planning/execution/evaluation, accessories, marketing
 - **floriculture_admin**: Floriculture planning/execution/evaluation, accessories, marketing
