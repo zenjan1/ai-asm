@@ -1,5 +1,10 @@
 # Changelog
 
+## v699.0 - Phase 354: Integration, Coordination & Collaboration (2026-06-20)
+- **integration_admin**: Integration planning/execution/testing, accessories, marketing
+- **coordination_admin**: Coordination planning/execution/evaluation, accessories, marketing
+- **collaboration_admin**: Collaboration planning/execution/optimization, accessories, marketing
+
 ## v698.0 - Phase 353: Partnership, Alliance & Cooperation (2026-06-20)
 - **partnership_admin**: Partnership planning/execution/evaluation, accessories, marketing
 - **alliance_admin**: Alliance formation/operations/evaluation, accessories, marketing
