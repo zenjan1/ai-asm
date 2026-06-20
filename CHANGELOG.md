@@ -1,5 +1,11 @@
 # Changelog
 
+## v636.0 - Phase 291: Punchingtech, Formingtech & Blankingtech (2026-06-20)
+- **punchingtech_admin**: Plate/profile/CNC punching, accessories, marketing
+- **formingtech_admin**: Plastic/precision/incremental forming, accessories, marketing
+- **blankingtech_admin**: Saw/shear/flame cutting, accessories, marketing
+Total modules: 1540 (L3: 1308)
+
 ## v635.0 - Phase 290: Assemblingtech, Shearingtech & Adhesivetech (2026-06-20)
 - **assemblingtech_admin**: Mechanical/electrical/hydraulic assembly, accessories, marketing
 - **shearingtech_admin**: Plate/profile/special shearing, accessories, marketing
