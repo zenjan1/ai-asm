@@ -1,5 +1,10 @@
 # Changelog
 
+## v711.0 - Phase 366: Poultry, Dairy & Beekeeping (2026-06-20)
+- **poultry_admin**: Poultry planning/execution/evaluation, accessories, marketing
+- **dairy_admin**: Dairy planning/execution/evaluation, accessories, marketing
+- **beekeeping_admin**: Beekeeping planning/execution/evaluation, accessories, marketing
+
 ## v710.0 - Phase 365: Crop, Livestock & Fishery (2026-06-20)
 - **crop_admin**: Crop planning/execution/evaluation, accessories, marketing
 - **livestock_admin**: Livestock planning/execution/evaluation, accessories, marketing
