@@ -1,5 +1,11 @@
 # Changelog
 
+## v611.0 - Phase 266: Agrotech, Aquatech & Flighttech (2026-06-20)
+- **agrotech_admin**: Crop planting, livestock, agricultural machinery, agro-processing, marketing
+- **aquatech_admin**: Marine farming, freshwater farming, ocean fishing, seafood processing, marketing
+- **flighttech_admin**: Civil aviation, general aviation, aircraft maintenance, manufacturing, marketing
+- Total modules: 1465 (L3: 1233)
+
 ## v610.0 - Phase 265: Edutech, Culturetech & Adtech (2026-06-20)
 - **eductech_admin**: Basic education, higher education, vocational education, online education, marketing
 - **culturetech_admin**: Film production, publishing, cultural heritage, performing arts, marketing
