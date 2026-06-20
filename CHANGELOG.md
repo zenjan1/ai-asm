@@ -1,5 +1,10 @@
 # Changelog
 
+## v715.0 - Phase 370: Herb, Spice & Sugar (2026-06-20)
+- **herb_admin**: Herb planning/execution/evaluation, accessories, marketing
+- **spice_admin**: Spice planning/execution/evaluation, accessories, marketing
+- **sugar_admin**: Sugar planning/execution/evaluation, accessories, marketing
+
 ## v714.0 - Phase 369: Grain, Vegetable & Fruit (2026-06-20)
 - **grain_admin**: Grain planning/execution/evaluation, accessories, marketing
 - **vegetable_admin**: Vegetable planning/execution/evaluation, accessories, marketing
