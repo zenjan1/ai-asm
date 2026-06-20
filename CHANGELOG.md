@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v680.0 - Phase 335: Assemble, Rivet & Braze (2026-06-20)
+- **assemble_admin**: Mechanical/automated/precision assembly, accessories, marketing
+- **rivet_admin**: Solid/hollow/special riveting, accessories, marketing
+- **braze_admin**: Soft/hard/special brazing, accessories, marketing
+
 ## v679.0 - Phase 334: Polish, Coating & Heat (2026-06-20)
 - **polish_admin**: Mechanical/chemical/grinding polishing, accessories, marketing
 - **coating_admin**: PVD/CVD coating, thermal spray, accessories, marketing
