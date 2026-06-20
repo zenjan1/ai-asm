@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v670.0 - Phase 325: Seal, Tool & Mold (2026-06-20)
+- **seal_admin**: Static/dynamic/special seals, accessories, marketing
+- **tool_admin**: Turning/milling/hole machining tools, accessories, marketing
+- **mold_admin**: Stamping/plastic/casting molds, accessories, marketing
+
 ## v669.0 - Phase 324: Cable, Spring & Clamp (2026-06-20)
 - **cable_admin**: Power/control/special cables, accessories, marketing
 - **spring_admin**: Compression/extension/special springs, accessories, marketing
