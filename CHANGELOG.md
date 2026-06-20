@@ -1,5 +1,10 @@
 # Changelog
 
+## v697.0 - Phase 352: Event, Exhibition & Conference (2026-06-20)
+- **event_admin**: Event planning/execution/evaluation, accessories, marketing
+- **exhibition_admin**: Exhibition planning/execution/evaluation, accessories, marketing
+- **conference_admin**: Conference planning/execution/evaluation, accessories, marketing
+
 ## v696.0 - Phase 351: Communication, Public & Advertising (2026-06-20)
 - **communication_admin**: Communication planning/execution/evaluation, accessories, marketing
 - **public_admin**: Public relations/affairs/communication, accessories, marketing
