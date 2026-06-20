@@ -1,5 +1,11 @@
 # Changelog
 
+## v581.0 - Phase 236: Metatech, Mintech & Watertech (2026-06-20)
+- **metatech_admin**: Ferrous metallurgy, nonferrous metallurgy, powder metallurgy, equipment, environmental
+- **mintech_admin**: Mineral exploration, mining, mineral processing, mine safety, mine environmental
+- **watertech_admin**: Water source engineering, water supply, wastewater treatment, water environment, smart water
+- Total modules: 1375 (L3: 1143)
+
 ## v580.0 - Phase 235: Pharmatech, Chemtech & Petrotech (2026-06-20)
 - **pharmatech_admin**: Drug R&D, drug production, quality control, clinical trials, regulation
 - **chemtech_admin**: Basic chemicals, fine chemicals, new materials, equipment, safety
