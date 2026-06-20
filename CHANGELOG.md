@@ -1,5 +1,10 @@
 # Changelog
 
+## v734.0 - Phase 389: Delphinium, Hollyhock & Sweetpea (2026-06-20)
+- **delphinium_admin**: Delphinium planning/execution/evaluation, accessories, marketing
+- **hollyhock_admin**: Hollyhock planning/execution/evaluation, accessories, marketing
+- **sweetpea_admin**: Sweetpea planning/execution/evaluation, accessories, marketing
+
 ## v733.0 - Phase 388: Dianthus, Foxglove & Lupine (2026-06-20)
 - **dianthus_admin**: Dianthus planning/execution/evaluation, accessories, marketing
 - **foxglove_admin**: Foxglove planning/execution/evaluation, accessories, marketing
