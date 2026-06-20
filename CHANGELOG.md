@@ -1,5 +1,10 @@
 # Changelog
 
+## v721.0 - Phase 376: Basil, Thyme & Rose (2026-06-20)
+- **basil_admin**: Basil planning/execution/evaluation, accessories, marketing
+- **thyme_admin**: Thyme planning/execution/evaluation, accessories, marketing
+- **rose_admin**: Rose planning/execution/evaluation, accessories, marketing
+
 ## v720.0 - Phase 375: Ivy, Clover & Sage (2026-06-20)
 - **ivy_admin**: Ivy planning/execution/evaluation, accessories, marketing
 - **clover_admin**: Clover planning/execution/evaluation, accessories, marketing
