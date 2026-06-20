@@ -1,5 +1,11 @@
 # Changelog
 
+## v587.0 - Phase 242: Sugartech, Saucetech & Candytech (2026-06-20)
+- **sugartech_admin**: Sugarcane planting, sugar beet, extraction, refining, marketing
+- **saucetech_admin**: Soy sauce brewing, vinegar brewing, hot sauce, compound seasoning, marketing
+- **candytech_admin**: Hard candy, soft candy, chocolate candy, chewing gum, marketing
+- Total modules: 1393 (L3: 1161)
+
 ## v586.0 - Phase 241: Milktech, Graintech & Oiltech (2026-06-20)
 - **milktech_admin**: Dairy cow breeding, milk collection, dairy processing, products, marketing
 - **graintech_admin**: Wheat planting, rice planting, corn planting, grain processing, storage
