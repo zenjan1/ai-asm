@@ -1,5 +1,10 @@
 # Changelog
 
+## v716.0 - Phase 371: Oil, Cotton & Rubber (2026-06-20)
+- **oil_admin**: Oil planning/execution/evaluation, accessories, marketing
+- **cotton_admin**: Cotton/fiber planning/execution/evaluation, accessories, marketing
+- **rubber_admin**: Rubber planning/execution/evaluation, accessories, marketing
+
 ## v715.0 - Phase 370: Herb, Spice & Sugar (2026-06-20)
 - **herb_admin**: Herb planning/execution/evaluation, accessories, marketing
 - **spice_admin**: Spice planning/execution/evaluation, accessories, marketing
