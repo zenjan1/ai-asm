@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v669.0 - Phase 324: Cable, Spring & Clamp (2026-06-20)
+- **cable_admin**: Power/control/special cables, accessories, marketing
+- **spring_admin**: Compression/extension/special springs, accessories, marketing
+- **clamp_admin**: Machine/welding/assembly clamps, accessories, marketing
+
 ## v668.0 - Phase 323: Coupling, Weld & Chain (2026-06-20)
 - **coupling_admin**: Rigid/flexible/safety couplings, accessories, marketing
 - **weld_admin**: Arc/resistance/special welding, accessories, marketing
