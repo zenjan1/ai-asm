@@ -1,5 +1,11 @@
 # Changelog
 
+## v624.0 - Phase 279: Traffictech, Signtech & Lighttech (2026-06-20)
+- **traffictech_admin**: Traffic signals, smart traffic, parking management, road facilities, marketing
+- **signtech_admin**: Luminous/metal/acrylic/electronic signs, marketing
+- **lighttech_admin**: Indoor/outdoor/industrial/special lighting, marketing
+- Total modules: 1504 (L3: 1272)
+
 ## v623.0 - Phase 278: Safetytech, Firetech & Sectech (2026-06-20)
 - **safetytech_admin**: Personal protection, production safety, environmental safety, emergency rescue, marketing
 - **firetech_admin**: Fire extinguishing, fire alarm, smoke control, fire vehicles, marketing
