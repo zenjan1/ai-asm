@@ -1,5 +1,11 @@
 # Changelog
 
+## v591.0 - Phase 246: Petfoodtech, Floritech & Herbtech (2026-06-20)
+- **petfoodtech_admin**: Dog food, cat food, pet snacks, pet supplements, marketing
+- **floritech_admin**: Flower planting, processing, floral design, packaging, marketing
+- **herbtech_admin**: Herb planting, processing, herb products, R&D, marketing
+- Total modules: 1405 (L3: 1173)
+
 ## v590.0 - Phase 245: Fruittech, Vegtech & Nutritech (2026-06-20)
 - **fruittech_admin**: Fruit planting, fruit processing, juice production, dried fruits, marketing
 - **vegtech_admin**: Vegetable planting, vegetable processing, packaging, cold chain, marketing
