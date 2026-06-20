@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v666.0 - Phase 321: Generator, Turbine & Engine (2026-06-20)
+- **generator_admin**: Synchronous/asynchronous/DC generators, accessories, marketing
+- **turbine_admin**: Steam/gas/hydraulic turbines, accessories, marketing
+- **engine_admin**: Gasoline/diesel/alternative fuel engines, accessories, marketing
+
 ## v665.0 - Phase 320: Fan, Blower & Motor (2026-06-20)
 - **fan_admin**: Axial/centrifugal/mixed fans, accessories, marketing
 - **blower_admin**: Centrifugal/roots/rotary blowers, accessories, marketing
