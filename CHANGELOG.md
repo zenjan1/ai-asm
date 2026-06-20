@@ -1,5 +1,11 @@
 # Changelog
 
+## v626.0 - Phase 281: Crantech, Pumptech & Dronetech (2026-06-20)
+- **crantech_admin**: Bridge/gantry/jib cranes, accessories, marketing
+- **pumptech_admin**: Water/oil/special pumps, valves, marketing
+- **dronetech_admin**: Consumer/industrial/military drones, accessories, marketing
+Total modules: 1510 (L3: 1278)
+
 ## v625.0 - Phase 280: Elevtech, Escaltech & Hometech (2026-06-20)
 - **elevtech_admin**: Passenger/cargo/special elevators, accessories, marketing
 - **escaltech_admin**: Automatic escalators, moving walks, accessories, installation/maintenance, marketing
