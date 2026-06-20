@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v687.0 - Phase 342: Supply, Procurement & Packaging (2026-06-20)
+- **supply_admin**: Supplier management/collaboration/finance, accessories, marketing
+- **procurement_admin**: Procurement planning/execution/strategic, accessories, marketing
+- **packaging_admin**: Packaging materials/containers/equipment, accessories, marketing
+
 ## v686.0 - Phase 341: Convey, Crane & Lift (2026-06-20)
 - **convey_admin**: Belt/chain/roller conveyors, accessories, marketing
 - **crane_admin**: Bridge/gantry/jib cranes, accessories, marketing
