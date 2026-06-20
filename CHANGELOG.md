@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v678.0 - Phase 333: Laser, Plasma & Waterjet (2026-06-20)
+- **laser_admin**: Laser cutting/welding/marking, accessories, marketing
+- **plasma_admin**: Plasma cutting/spraying/welding, accessories, marketing
+- **waterjet_admin**: Pure water/abrasive/special waterjet, accessories, marketing
+
 ## v677.0 - Phase 332: Thread, Gearcut & EDM (2026-06-20)
 - **thread_admin**: Thread turning/milling/rolling, accessories, marketing
 - **gearcut_admin**: Hobbing/shaping/finishing, accessories, marketing
