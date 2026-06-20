@@ -1,5 +1,10 @@
 # Changelog
 
+## v738.0 - Phase 393: Snowdrop, Periwinkle & Crocus (2026-06-21)
+- **snowdrop_admin**: Snowdrop planning/execution/evaluation, accessories, marketing
+- **periwinkle_admin**: Periwinkle planning/execution/evaluation, accessories, marketing
+- **crocus_admin**: Crocus planning/execution/evaluation, accessories, marketing
+
 ## v737.0 - Phase 392: Bluebell, Honeysuckle & Cyclamen (2026-06-21)
 - **bluebell_admin**: Bluebell planning/execution/evaluation, accessories, marketing
 - **honeysuckle_admin**: Honeysuckle planning/execution/evaluation, accessories, marketing
