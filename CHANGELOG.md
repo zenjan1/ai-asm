@@ -1,5 +1,11 @@
 # Changelog
 
+## v604.0 - Phase 259: Furntech, Pettech & Musitech (2026-06-20)
+- **furntech_admin**: Solid wood furniture, panel furniture, soft furnishing, office furniture, marketing
+- **pettech_admin**: Pet food, pet supplies, pet medical, pet services, marketing
+- **musitech_admin**: Keyboard instruments, string instruments, wind instruments, percussion, marketing
+- Total modules: 1444 (L3: 1212)
+
 ## v603.0 - Phase 258: Chemeng, Envtech & Sportech (2026-06-20)
 - **chemeng_admin**: Basic chemicals, fine chemicals, polymer chemicals, chemical equipment, marketing
 - **envtech_admin**: Water treatment, air purification, waste treatment, environmental monitoring, marketing
