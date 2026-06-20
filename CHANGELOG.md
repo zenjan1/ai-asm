@@ -1,5 +1,11 @@
 # Changelog
 
+## v647.0 - Phase 302: Drillingtech, Millingtech & Turningtech (2026-06-20)
+- **drillingtech_admin**: Drilling/expanding/reaming, accessories, marketing
+- **millingtech_admin**: Face/profile/cavity milling, accessories, marketing
+- **turningtech_admin**: OD/ID/face turning, accessories, marketing
+Total modules: 1573 (L3: 1341)
+
 ## v646.0 - Phase 301: Electrontech, Powertech & Radiotech (2026-06-20)
 - **electrontech_admin**: Electronic components/IC/equipment, accessories, marketing
 - **powertech_admin**: Power generation/transmission/distribution, accessories, marketing
