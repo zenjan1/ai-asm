@@ -1,5 +1,11 @@
 # Changelog
 
+## v598.0 - Phase 253: Woodtech, Phototech & Shiptech (2026-06-20)
+- **woodtech_admin**: Wood processing, board production, furniture making, wood products, marketing
+- **phototech_admin**: Optical elements, camera manufacturing, imaging equipment, optical instruments, marketing
+- **shiptech_admin**: Shipbuilding, marine equipment, port equipment, marine services, marketing
+- Total modules: 1426 (L3: 1194)
+
 ## v597.0 - Phase 252: Ironsteel, Plastictech & Painttech (2026-06-20)
 - **ironsteel_admin**: Iron smelting, steel production, aluminum production, metal products, marketing
 - **plastictech_admin**: Plastic raw materials, plastic molding, plastic films, plastic products, marketing
