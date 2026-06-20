@@ -1,5 +1,11 @@
 # Changelog
 
+## v657.0 - Phase 312: Shafttech, Couplingtech & Chaindrive (2026-06-20)
+- **shafttech_admin**: Drive/support/special shafts, accessories, marketing
+- **couplingtech_admin**: Rigid/flexible/elastic couplings, accessories, marketing
+- **chaindrive_admin**: Roller/silent/special chain drives, accessories, marketing
+Total modules: 1603 (L3: 1371)
+
 ## v656.0 - Phase 311: Enamelingtech, Ceramiccoat & Diamondcoat (2026-06-20)
 - **enamelingtech_admin**: Base/face/special enameling, accessories, marketing
 - **ceramiccoat_admin**: Oxide/non-oxide/composite ceramic coating, accessories, marketing
