@@ -1,5 +1,11 @@
 # Changelog
 
+## v652.0 - Phase 307: Boronizingtech, Chromizingtech & Aluminizingtech (2026-06-20)
+- **boronizingtech_admin**: Solid/liquid/gas boronizing, accessories, marketing
+- **chromizingtech_admin**: Solid/liquid/gas chromizing, accessories, marketing
+- **aluminizingtech_admin**: Hot-dip/pack/gas aluminizing, accessories, marketing
+Total modules: 1588 (L3: 1356)
+
 ## v651.0 - Phase 306: Nitridingtech, Carburizingtech & Carbonitridingtech (2026-06-20)
 - **nitridingtech_admin**: Gas/ion/salt-bath nitriding, accessories, marketing
 - **carburizingtech_admin**: Gas/liquid/solid carburizing, accessories, marketing
