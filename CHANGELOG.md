@@ -1,5 +1,11 @@
 # Changelog
 
+## v582.0 - Phase 237: Nucleartech, Forestech & Fisherytech (2026-06-20)
+- **nucleartech_admin**: Nuclear fuel, nuclear power, nuclear application, safety, waste
+- **forestech_admin**: Forest cultivation, protection, wood processing, forest chemical, management
+- **fisherytech_admin**: Aquaculture, marine fishing, fishery processing, equipment, resources
+- Total modules: 1378 (L3: 1146)
+
 ## v581.0 - Phase 236: Metatech, Mintech & Watertech (2026-06-20)
 - **metatech_admin**: Ferrous metallurgy, nonferrous metallurgy, powder metallurgy, equipment, environmental
 - **mintech_admin**: Mineral exploration, mining, mineral processing, mine safety, mine environmental
