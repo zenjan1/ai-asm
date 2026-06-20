@@ -1,5 +1,10 @@
 # Changelog
 
+## v701.0 - Phase 356: Modernization, Digitization & Informatization (2026-06-20) 🎉
+- **modernization_admin**: Modernization planning/execution/evaluation, accessories, marketing
+- **digitization_admin**: Digitization planning/execution/evaluation, accessories, marketing
+- **informatization_admin**: Informatization planning/execution/evaluation, accessories, marketing
+
 ## v700.0 - Phase 355: Optimization, Transformation & Development (2026-06-20) 🎉
 - **optimization_admin**: Optimization planning/execution/evaluation, accessories, marketing
 - **transformation_admin**: Transformation planning/execution/evaluation, accessories, marketing
