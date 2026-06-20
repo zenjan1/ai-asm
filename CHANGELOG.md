@@ -1,5 +1,10 @@
 # Changelog
 
+## v698.0 - Phase 353: Partnership, Alliance & Cooperation (2026-06-20)
+- **partnership_admin**: Partnership planning/execution/evaluation, accessories, marketing
+- **alliance_admin**: Alliance formation/operations/evaluation, accessories, marketing
+- **cooperation_admin**: Cooperation planning/execution/optimization, accessories, marketing
+
 ## v697.0 - Phase 352: Event, Exhibition & Conference (2026-06-20)
 - **event_admin**: Event planning/execution/evaluation, accessories, marketing
 - **exhibition_admin**: Exhibition planning/execution/evaluation, accessories, marketing
