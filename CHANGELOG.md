@@ -1,5 +1,11 @@
 # Changelog
 
+## v656.0 - Phase 311: Enamelingtech, Ceramiccoat & Diamondcoat (2026-06-20)
+- **enamelingtech_admin**: Base/face/special enameling, accessories, marketing
+- **ceramiccoat_admin**: Oxide/non-oxide/composite ceramic coating, accessories, marketing
+- **diamondcoat_admin**: CVD/PVD diamond, diamond film coating, accessories, marketing
+Total modules: 1600 (L3: 1368)
+
 ## v655.0 - Phase 310: Anodizingtech, Galvanizingtech & Metallizing (2026-06-20)
 - **anodizingtech_admin**: Sulfuric/oxalic/chromic acid anodizing, accessories, marketing
 - **galvanizingtech_admin**: Batch/continuous/alloy hot-dip galvanizing, accessories, marketing
