@@ -1,5 +1,10 @@
 # Changelog
 
+## v689.0 - Phase 344: Environmental, Reliability & Training (2026-06-20)
+- **environmental_admin**: Environmental monitoring/pollution treatment/clean production, accessories, marketing
+- **reliability_admin**: Reliability design/testing/management, accessories, marketing
+- **training_admin**: Training planning/implementation/evaluation, accessories, marketing
+
 ## v688.0 - Phase 343: Quality, Maintenance & Safety (2026-06-20)
 - **quality_admin**: Quality control/assurance/improvement, accessories, marketing
 - **maintenance_admin**: Preventive/corrective/TPM maintenance, accessories, marketing
