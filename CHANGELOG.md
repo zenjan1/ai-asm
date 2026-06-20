@@ -1,5 +1,11 @@
 # Changelog
 
+## v596.0 - Phase 251: Glasstech, Cementtech & Pottertech (2026-06-20)
+- **glasstech_admin**: Flat glass, container glass, fiberglass, specialty glass, marketing
+- **cementtech_admin**: Limestone mining, clinker production, cement grinding, cement products, marketing
+- **pottertech_admin**: Ceramic raw materials, forming, firing, ceramic products, marketing
+- Total modules: 1420 (L3: 1188)
+
 ## v595.0 - Phase 250: Tobaccotech, Papertech & Rubbertech (2026-06-20)
 - **tobaccotech_admin**: Tobacco planting, processing, cigarette production, cigar production, marketing
 - **papertech_admin**: Pulp production, paper making, coating, paper products, marketing
