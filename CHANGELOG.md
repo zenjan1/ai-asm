@@ -1,5 +1,10 @@
 # Changelog
 
+## v727.0 - Phase 382: Azalea, Zinnia & Pansy (2026-06-20)
+- **azalea_admin**: Azalea planning/execution/evaluation, accessories, marketing
+- **zinnia_admin**: Zinnia planning/execution/evaluation, accessories, marketing
+- **pansy_admin**: Pansy planning/execution/evaluation, accessories, marketing
+
 ## v726.0 - Phase 381: Camellia, Gardenia & Lavender (2026-06-20)
 - **camellia_admin**: Camellia planning/execution/evaluation, accessories, marketing
 - **gardenia_admin**: Gardenia planning/execution/evaluation, accessories, marketing
