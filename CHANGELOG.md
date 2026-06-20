@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v673.0 - Phase 328: Mill, Drill & Grind (2026-06-20)
+- **mill_admin**: Ordinary/CNC/special milling machines, accessories, marketing
+- **drill_admin**: Ordinary/CNC/special drilling machines, accessories, marketing
+- **grind_admin**: External/internal/surface grinders, accessories, marketing
+
 ## v672.0 - Phase 327: Cast, Machine & Lathe (2026-06-20)
 - **cast_admin**: Sand/special/continuous casting, accessories, marketing
 - **machine_admin**: Cutting/forming/special machining machines, accessories, marketing
