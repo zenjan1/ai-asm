@@ -1,5 +1,11 @@
 # Changelog
 
+## v660.0 - Phase 315: Splinetech, Keytech & Threadtech (2026-06-20)
+- **splinetech_admin**: Rectangular/involute/triangular splines, accessories, marketing
+- **keytech_admin**: Flat/half-round/taper keys, accessories, marketing
+- **threadtech_admin**: Standard/transmission/special threads, accessories, marketing
+Total modules: 1612 (L3: 1380)
+
 ## v659.0 - Phase 314: Reducegeartech, Wormgeartech & Bevelgeartech (2026-06-20)
 - **reducegeartech_admin**: Gear/worm/planetary reducers, accessories, marketing
 - **wormgeartech_admin**: Cylindrical/toroidal/special worm gears, accessories, marketing
