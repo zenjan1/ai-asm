@@ -1,5 +1,10 @@
 # Changelog
 
+## v712.0 - Phase 367: Silk, Tea & Vineyard (2026-06-20)
+- **silk_admin**: Silk planning/execution/evaluation, accessories, marketing
+- **tea_admin**: Tea planning/execution/evaluation, accessories, marketing
+- **vineyard_admin**: Vineyard planning/execution/evaluation, accessories, marketing
+
 ## v711.0 - Phase 366: Poultry, Dairy & Beekeeping (2026-06-20)
 - **poultry_admin**: Poultry planning/execution/evaluation, accessories, marketing
 - **dairy_admin**: Dairy planning/execution/evaluation, accessories, marketing
