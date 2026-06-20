@@ -1,5 +1,11 @@
 # Changelog
 
+## v628.0 - Phase 283: Generatortech, Boilertech & Bearingtech (2026-06-20)
+- **generatortech_admin**: Diesel/gas/wind generators, accessories, marketing
+- **boilertech_admin**: Steam/hot water/special boilers, accessories, marketing
+- **bearingtech_admin**: Rolling/sliding/special bearings, accessories, marketing
+Total modules: 1516 (L3: 1284)
+
 ## v627.0 - Phase 282: Lifttech, Conveytech & Compresstech (2026-06-20)
 - **lifttech_admin**: Hydraulic/scissor/mast lifts, accessories, marketing
 - **conveytech_admin**: Belt/roller/chain conveyors, accessories, marketing
