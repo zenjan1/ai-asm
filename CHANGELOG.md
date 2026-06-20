@@ -1,5 +1,11 @@
 # Changelog
 
+## v648.0 - Phase 303: Cvdtech, Pvdtech & Electricaltech (2026-06-20)
+- **cvdtech_admin**: CVD equipment/process/materials, accessories, marketing
+- **pvdtech_admin**: PVD equipment/process/materials, accessories, marketing
+- **electricaltech_admin**: Electrical equipment/control/protection, accessories, marketing
+Total modules: 1576 (L3: 1344)
+
 ## v647.0 - Phase 302: Drillingtech, Millingtech & Turningtech (2026-06-20)
 - **drillingtech_admin**: Drilling/expanding/reaming, accessories, marketing
 - **millingtech_admin**: Face/profile/cavity milling, accessories, marketing
