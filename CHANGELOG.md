@@ -1,5 +1,11 @@
 # Changelog
 
+## v658.0 - Phase 313: Beltdrive, Pulleytech & Sprocket (2026-06-20)
+- **beltdrive_admin**: Flat/V-belt/synchronous belt drive, accessories, marketing
+- **pulleytech_admin**: Fixed/movable/block pulleys, accessories, marketing
+- **sprocket_admin**: Standard/special sprockets, sprocket assemblies, accessories, marketing
+Total modules: 1606 (L3: 1374)
+
 ## v657.0 - Phase 312: Shafttech, Couplingtech & Chaindrive (2026-06-20)
 - **shafttech_admin**: Drive/support/special shafts, accessories, marketing
 - **couplingtech_admin**: Rigid/flexible/elastic couplings, accessories, marketing
