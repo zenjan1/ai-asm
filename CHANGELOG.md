@@ -1,5 +1,11 @@
 # Changelog
 
+## v603.0 - Phase 258: Chemeng, Envtech & Sportech (2026-06-20)
+- **chemeng_admin**: Basic chemicals, fine chemicals, polymer chemicals, chemical equipment, marketing
+- **envtech_admin**: Water treatment, air purification, waste treatment, environmental monitoring, marketing
+- **sportech_admin**: Sports equipment, athletic wear, venue facilities, sports services, marketing
+- Total modules: 1441 (L3: 1209)
+
 ## v602.0 - Phase 257: Croptech, Textech & Packtech (2026-06-20)
 - **croptech_admin**: Crop farming, livestock, agricultural machinery, fertilizer and pesticide, marketing
 - **textech_admin**: Spinning, weaving, dyeing and printing, textile products, marketing
