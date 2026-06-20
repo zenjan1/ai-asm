@@ -1,5 +1,11 @@
 # Changelog
 
+## v606.0 - Phase 261: Mediatech, Tourtech & Logistech (2026-06-20)
+- **mediatech_admin**: News media, video media, social media, advertising, marketing
+- **tourtech_admin**: Travel agencies, hotels, attractions, travel services, marketing
+- **logistech_admin**: Warehousing, transportation, distribution, supply chain, marketing
+- Total modules: 1450 (L3: 1218)
+
 ## v605.0 - Phase 260: Gametech, Animtech & Edutech (2026-06-20)
 - **gametech_admin**: Game development, game engines, mobile games, PC games, marketing
 - **animtech_admin**: 2D animation, 3D animation, animation film/TV, animation derivatives, marketing
