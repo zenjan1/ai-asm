@@ -1,5 +1,11 @@
 # Changelog
 
+## v625.0 - Phase 280: Elevtech, Escaltech & Hometech (2026-06-20)
+- **elevtech_admin**: Passenger/cargo/special elevators, accessories, marketing
+- **escaltech_admin**: Automatic escalators, moving walks, accessories, installation/maintenance, marketing
+- **hometech_admin**: Smart lighting/security/appliances/control, marketing
+Total modules: 1507 (L3: 1275)
+
 ## v624.0 - Phase 279: Traffictech, Signtech & Lighttech (2026-06-20)
 - **traffictech_admin**: Traffic signals, smart traffic, parking management, road facilities, marketing
 - **signtech_admin**: Luminous/metal/acrylic/electronic signs, marketing
