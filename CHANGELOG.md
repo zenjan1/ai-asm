@@ -1,5 +1,11 @@
 # Changelog
 
+## v640.0 - Phase 295: Moldmakingtech, Mechatrontech & Controltech (2026-06-20)
+- **moldmakingtech_admin**: Injection/die casting/stamping dies, accessories, marketing
+- **mechatrontech_admin**: Mechanical/electronic/control/integration systems, marketing
+- **controltech_admin**: Process/motion/logic control, control elements, marketing
+Total modules: 1552 (L3: 1320)
+
 ## v639.0 - Phase 294: Fixturtech, Jigtech & Diemakingtech (2026-06-20)
 - **fixturtech_admin**: Machine/welding/assembly fixtures, accessories, marketing
 - **jigtech_admin**: Assembly/welding/inspection jigs, accessories, marketing
