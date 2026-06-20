@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v684.0 - Phase 339: Robot, Factory & Production (2026-06-20)
+- **robot_admin**: Industrial/collaborative/special robots, accessories, marketing
+- **factory_admin**: Smart factory/automated lines/management systems, accessories, marketing
+- **production_admin**: Production planning/control/lean production, accessories, marketing
+
 ## v683.0 - Phase 338: CNC, CAD & CAM (2026-06-20)
 - **cnc_admin**: CNC lathes/milling/special CNC, accessories, marketing
 - **cad_admin**: Mechanical/electrical/architectural CAD, accessories, marketing
