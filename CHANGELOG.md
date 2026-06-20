@@ -1,5 +1,10 @@
 # Changelog
 
+
+## v663.0 - Phase 318: Pinjoint, Tubetech & Hose (2026-06-20)
+- **pinjoint_admin**: Cylindrical/conical/special pins, accessories, marketing
+- **tubetech_admin**: Elbow/tee/flange fittings, accessories, marketing
+- **hose_admin**: Rubber/plastic/metal hoses, accessories, marketing
 ## v662.0 - Phase 317: Bolttech, Nuttech & Washtech (2026-06-20)
 - **bolttech_admin**: Hex/socket/anchor bolts, accessories, marketing
 - **nuttech_admin**: Hex/lock/special nuts, accessories, marketing
