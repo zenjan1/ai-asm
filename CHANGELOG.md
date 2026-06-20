@@ -1,5 +1,10 @@
 # Changelog
 
+## v713.0 - Phase 368: Orchard, Floriculture & Tobacco (2026-06-20)
+- **orchard_admin**: Orchard planning/execution/evaluation, accessories, marketing
+- **floriculture_admin**: Floriculture planning/execution/evaluation, accessories, marketing
+- **tobacco_admin**: Tobacco planning/execution/evaluation, accessories, marketing
+
 ## v712.0 - Phase 367: Silk, Tea & Vineyard (2026-06-20)
 - **silk_admin**: Silk planning/execution/evaluation, accessories, marketing
 - **tea_admin**: Tea planning/execution/evaluation, accessories, marketing
