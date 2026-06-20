@@ -1,5 +1,10 @@
 # Changelog
 
+## v728.0 - Phase 383: Primrose, Marigold & Poppy (2026-06-20)
+- **primrose_admin**: Primrose planning/execution/evaluation, accessories, marketing
+- **marigold_admin**: Marigold planning/execution/evaluation, accessories, marketing
+- **poppy_admin**: Poppy planning/execution/evaluation, accessories, marketing
+
 ## v727.0 - Phase 382: Azalea, Zinnia & Pansy (2026-06-20)
 - **azalea_admin**: Azalea planning/execution/evaluation, accessories, marketing
 - **zinnia_admin**: Zinnia planning/execution/evaluation, accessories, marketing
