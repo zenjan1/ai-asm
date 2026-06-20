@@ -1,5 +1,10 @@
 # Changelog
 
+## v725.0 - Phase 380: Carnation, Chrysanthemum & Iris (2026-06-20)
+- **carnation_admin**: Carnation planning/execution/evaluation, accessories, marketing
+- **chrysanthemum_admin**: Chrysanthemum planning/execution/evaluation, accessories, marketing
+- **iris_admin**: Iris planning/execution/evaluation, accessories, marketing
+
 ## v724.0 - Phase 379: Lotus, Orchid & Dahlia (2026-06-20)
 - **lotus_admin**: Lotus planning/execution/evaluation, accessories, marketing
 - **orchid_admin**: Orchid planning/execution/evaluation, accessories, marketing
