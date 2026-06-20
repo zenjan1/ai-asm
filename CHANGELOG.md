@@ -1,5 +1,10 @@
 # Changelog
 
+## v702.0 - Phase 357: Automation, Intelligent & Network (2026-06-20)
+- **automation_admin**: Automation planning/execution/evaluation, accessories, marketing
+- **intelligent_admin**: Intelligent planning/execution/evaluation, accessories, marketing
+- **network_admin**: Network planning/execution/evaluation, accessories, marketing
+
 ## v701.0 - Phase 356: Modernization, Digitization & Informatization (2026-06-20) 🎉
 - **modernization_admin**: Modernization planning/execution/evaluation, accessories, marketing
 - **digitization_admin**: Digitization planning/execution/evaluation, accessories, marketing
