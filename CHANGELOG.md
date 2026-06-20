@@ -1,5 +1,10 @@
 # Changelog
 
+## v724.0 - Phase 379: Lotus, Orchid & Dahlia (2026-06-20)
+- **lotus_admin**: Lotus planning/execution/evaluation, accessories, marketing
+- **orchid_admin**: Orchid planning/execution/evaluation, accessories, marketing
+- **dahlia_admin**: Dahlia planning/execution/evaluation, accessories, marketing
+
 ## v723.0 - Phase 378: Peony, Daisy & Sunflower (2026-06-20)
 - **peony_admin**: Peony planning/execution/evaluation, accessories, marketing
 - **daisy_admin**: Daisy planning/execution/evaluation, accessories, marketing
