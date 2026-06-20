@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v685.0 - Phase 340: Warehouse, Material & Inventory (2026-06-20)
+- **warehouse_admin**: General/special warehousing, equipment, accessories, marketing
+- **material_admin**: Metal/non-metal materials, handling, accessories, marketing
+- **inventory_admin**: Inventory planning/control/optimization, accessories, marketing
+
 ## v684.0 - Phase 339: Robot, Factory & Production (2026-06-20)
 - **robot_admin**: Industrial/collaborative/special robots, accessories, marketing
 - **factory_admin**: Smart factory/automated lines/management systems, accessories, marketing
