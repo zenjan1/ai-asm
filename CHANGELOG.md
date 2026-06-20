@@ -1,5 +1,11 @@
 # Changelog
 
+## v601.0 - Phase 256: Sattech, Robottech & Meddev (2026-06-20)
+- **sattech_admin**: Satellite manufacturing, launch vehicles, spacecraft, ground systems, marketing
+- **robottech_admin**: Industrial robots, service robots, core components, system integration, marketing
+- **meddev_admin**: Medical devices, medical imaging, in vitro diagnostics, medical consumables, marketing
+- Total modules: 1435 (L3: 1203)
+
 ## v600.0 - Phase 255: Aerotech, Railtech & Lifetech (2026-06-20)
 - **aerotech_admin**: Aircraft manufacturing, aviation engines, avionics, aviation services, marketing
 - **railtech_admin**: Vehicle manufacturing, track systems, signaling systems, rail services, marketing
