@@ -1,5 +1,11 @@
 # Changelog
 
+## v580.0 - Phase 235: Pharmatech, Chemtech & Petrotech (2026-06-20)
+- **pharmatech_admin**: Drug R&D, drug production, quality control, clinical trials, regulation
+- **chemtech_admin**: Basic chemicals, fine chemicals, new materials, equipment, safety
+- **petrotech_admin**: Oil & gas exploration, development, storage & transport, refining, petrochemical
+- Total modules: 1372 (L3: 1140)
+
 ## v579.0 - Phase 234: Robotech, Aviatech & Textitech (2026-06-20)
 - **robotech_admin**: Industrial robots, service robots, special robots, control, sensing
 - **aviatech_admin**: Aircraft design, aero engine, avionics, aviation materials, flight training
