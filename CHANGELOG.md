@@ -1,5 +1,11 @@
 # Changelog
 
+## v659.0 - Phase 314: Reducegeartech, Wormgeartech & Bevelgeartech (2026-06-20)
+- **reducegeartech_admin**: Gear/worm/planetary reducers, accessories, marketing
+- **wormgeartech_admin**: Cylindrical/toroidal/special worm gears, accessories, marketing
+- **bevelgeartech_admin**: Straight/spiral bevel gears, hypoid gears, accessories, marketing
+Total modules: 1609 (L3: 1377)
+
 ## v658.0 - Phase 313: Beltdrive, Pulleytech & Sprocket (2026-06-20)
 - **beltdrive_admin**: Flat/V-belt/synchronous belt drive, accessories, marketing
 - **pulleytech_admin**: Fixed/movable/block pulleys, accessories, marketing
