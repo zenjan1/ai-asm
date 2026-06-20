@@ -1,5 +1,11 @@
 # Changelog
 
+## v585.0 - Phase 240: Coffeetech, Chocolatech & Baketech (2026-06-20)
+- **coffeetech_admin**: Coffee planting, processing, roasting, brewing, marketing
+- **chocolatech_admin**: Cocoa planting, cocoa processing, chocolate making, design, marketing
+- **baketech_admin**: Bread making, cake making, cookie making, pastry making, equipment
+- Total modules: 1387 (L3: 1155)
+
 ## v584.0 - Phase 239: Beetech, Teatech & Winetech (2026-06-20)
 - **beetech_admin**: Bee breeding, bee product processing, bee equipment, bee disease, bee tourism
 - **teatech_admin**: Tea planting, tea processing, tea culture, tea marketing, tea equipment
