@@ -1,5 +1,11 @@
 # Changelog
 
+## v600.0 - Phase 255: Aerotech, Railtech & Lifetech (2026-06-20)
+- **aerotech_admin**: Aircraft manufacturing, aviation engines, avionics, aviation services, marketing
+- **railtech_admin**: Vehicle manufacturing, track systems, signaling systems, rail services, marketing
+- **lifetech_admin**: Biopharmaceuticals, gene engineering, biomaterials, bioenergy, marketing
+- Total modules: 1432 (L3: 1200)
+
 ## v599.0 - Phase 254: Motortech, Electech & Energitech (2026-06-20)
 - **motortech_admin**: Vehicle manufacturing, engine production, chassis systems, automotive electronics, marketing
 - **electech_admin**: Electronic components, circuit boards, consumer electronics, electronic instruments, marketing
