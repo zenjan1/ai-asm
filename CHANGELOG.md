@@ -1,5 +1,11 @@
 # Changelog
 
+## v641.0 - Phase 296: Pneumatech, Weldingtech & Machiningtech (2026-06-20)
+- **pneumatech_admin**: Air source/actuators/control valves, accessories, marketing
+- **weldingtech_admin**: Arc/resistance/special welding, accessories, marketing
+- **machiningtech_admin**: Turning/milling/drilling-boring, accessories, marketing
+Total modules: 1555 (L3: 1323)
+
 ## v640.0 - Phase 295: Moldmakingtech, Mechatrontech & Controltech (2026-06-20)
 - **moldmakingtech_admin**: Injection/die casting/stamping dies, accessories, marketing
 - **mechatrontech_admin**: Mechanical/electronic/control/integration systems, marketing
