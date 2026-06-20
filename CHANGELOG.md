@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v674.0 - Phase 329: Punch, Shear & Bend (2026-06-20)
+- **punch_admin**: Mechanical/hydraulic/servo presses, accessories, marketing
+- **shear_admin**: Gate/swing/special shears, accessories, marketing
+- **bend_admin**: Hydraulic/CNC/special benders, accessories, marketing
+
 ## v673.0 - Phase 328: Mill, Drill & Grind (2026-06-20)
 - **mill_admin**: Ordinary/CNC/special milling machines, accessories, marketing
 - **drill_admin**: Ordinary/CNC/special drilling machines, accessories, marketing
