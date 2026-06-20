@@ -1,5 +1,10 @@
 # Changelog
 
+## v709.0 - Phase 364: Soil, Mineral & Land (2026-06-20)
+- **soil_admin**: Soil planning/execution/evaluation, accessories, marketing
+- **mineral_admin**: Mineral planning/execution/evaluation, accessories, marketing
+- **land_admin**: Land planning/execution/evaluation, accessories, marketing
+
 ## v708.0 - Phase 363: Habitat, Forest & Water (2026-06-20)
 - **habitat_admin**: Habitat planning/execution/evaluation, accessories, marketing
 - **forest_admin**: Forest planning/execution/evaluation, accessories, marketing
