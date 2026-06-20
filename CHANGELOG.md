@@ -1,5 +1,10 @@
 # Changelog
 
+## v690.0 - Phase 345: Engineering, Project & Innovation (2026-06-20)
+- **engineering_admin**: Engineering design/construction/supervision, accessories, marketing
+- **project_admin**: Project initiation/execution/closure, accessories, marketing
+- **innovation_admin**: Innovation planning/R&D/management, accessories, marketing
+
 ## v689.0 - Phase 344: Environmental, Reliability & Training (2026-06-20)
 - **environmental_admin**: Environmental monitoring/pollution treatment/clean production, accessories, marketing
 - **reliability_admin**: Reliability design/testing/management, accessories, marketing
