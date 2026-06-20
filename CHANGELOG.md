@@ -1,5 +1,11 @@
 # Changelog
 
+## v617.0 - Phase 272: Beartech, Valvetech & Weldtech (2026-06-20)
+- **beartech_admin**: Rolling bearing, sliding bearing, special bearing, accessories, marketing
+- **valvetech_admin**: Gate valve, ball valve, butterfly valve, control valve, marketing
+- **weldtech_admin**: Arc welding, resistance welding, laser welding, welding materials, marketing
+- Total modules: 1483 (L3: 1251)
+
 ## v616.0 - Phase 271: Tooltech, Wiretech & Cabletech (2026-06-20)
 - **tooltech_admin**: Hand tools, power tools, pneumatic tools, measuring tools, marketing
 - **wiretech_admin**: Electric wire, copper wire, aluminum wire, alloy wire, marketing
