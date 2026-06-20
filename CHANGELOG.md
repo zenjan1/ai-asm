@@ -1,5 +1,10 @@
 # Changelog
 
+## v718.0 - Phase 373: Bamboo, Cactus & Algae (2026-06-20)
+- **bamboo_admin**: Bamboo planning/execution/evaluation, accessories, marketing
+- **cactus_admin**: Cactus planning/execution/evaluation, accessories, marketing
+- **algae_admin**: Algae planning/execution/evaluation, accessories, marketing
+
 ## v717.0 - Phase 372: Wool, Hemp & Flax (2026-06-20)
 - **wool_admin**: Wool planning/execution/evaluation, accessories, marketing
 - **hemp_admin**: Hemp planning/execution/evaluation, accessories, marketing
