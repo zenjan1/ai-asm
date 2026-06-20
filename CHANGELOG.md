@@ -1,5 +1,11 @@
 # Changelog
 
+## v597.0 - Phase 252: Ironsteel, Plastictech & Painttech (2026-06-20)
+- **ironsteel_admin**: Iron smelting, steel production, aluminum production, metal products, marketing
+- **plastictech_admin**: Plastic raw materials, plastic molding, plastic films, plastic products, marketing
+- **painttech_admin**: Paint manufacturing, pigment production, coating application, special paints, marketing
+- Total modules: 1423 (L3: 1191)
+
 ## v596.0 - Phase 251: Glasstech, Cementtech & Pottertech (2026-06-20)
 - **glasstech_admin**: Flat glass, container glass, fiberglass, specialty glass, marketing
 - **cementtech_admin**: Limestone mining, clinker production, cement grinding, cement products, marketing
