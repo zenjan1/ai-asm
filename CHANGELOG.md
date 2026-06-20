@@ -1,5 +1,11 @@
 # Changelog
 
+## v629.0 - Phase 284: Filtertech, Mixertech & Sealtech (2026-06-20)
+- **filtertech_admin**: Air/liquid/industrial filters, accessories, marketing
+- **mixertech_admin**: Stirrers/mixers/dispersers, accessories, marketing
+- **sealtech_admin**: Mechanical/static/dynamic seals, accessories, marketing
+Total modules: 1519 (L3: 1287)
+
 ## v628.0 - Phase 283: Generatortech, Boilertech & Bearingtech (2026-06-20)
 - **generatortech_admin**: Diesel/gas/wind generators, accessories, marketing
 - **boilertech_admin**: Steam/hot water/special boilers, accessories, marketing
