@@ -1,5 +1,11 @@
 # Changelog
 
+## v590.0 - Phase 245: Fruittech, Vegtech & Nutritech (2026-06-20)
+- **fruittech_admin**: Fruit planting, fruit processing, juice production, dried fruits, marketing
+- **vegtech_admin**: Vegetable planting, vegetable processing, packaging, cold chain, marketing
+- **nutritech_admin**: Nutritional supplements, health food, functional food, organic food, marketing
+- Total modules: 1402 (L3: 1170)
+
 ## v589.0 - Phase 244: Noodletech, Tofutech & Egtech (2026-06-20)
 - **noodletech_admin**: Wheat noodles, rice noodles, instant noodles, dried noodles, marketing
 - **tofutech_admin**: Soy milk, tofu making, soy products, fermented soy, marketing
