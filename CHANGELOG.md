@@ -1,5 +1,11 @@
 # Changelog
 
+## v579.0 - Phase 234: Robotech, Aviatech & Textitech (2026-06-20)
+- **robotech_admin**: Industrial robots, service robots, special robots, control, sensing
+- **aviatech_admin**: Aircraft design, aero engine, avionics, aviation materials, flight training
+- **textitech_admin**: Smart textiles, functional fabrics, textile equipment, industrial textiles, design
+- Total modules: 1369 (L3: 1137)
+
 ## v578.0 - Phase 233: Energytech, Gamestch & Welletech (2026-06-20)
 - **energytech_admin**: Smart grid, energy storage, renewable generation, energy trading, energy efficiency
 - **gamestch_admin**: Game engine, game AI, game art, game operations, esports
