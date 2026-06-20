@@ -1,5 +1,11 @@
 # Changelog
 
+## v631.0 - Phase 286: Castingtech, Forgingtech & Heattreattech (2026-06-20)
+- **castingtech_admin**: Sand/precision/die casting, accessories, marketing
+- **forgingtech_admin**: Free/die/special forging, accessories, marketing
+- **heattreattech_admin**: Annealing/quenching/chemical treatment, accessories, marketing
+Total modules: 1525 (L3: 1293)
+
 ## v630.0 - Phase 285: Pulletech, Cuttech & Fastenertech (2026-06-20)
 - **pulletech_admin**: Transmission/lifting/cableway pulleys, accessories, marketing
 - **cuttech_admin**: Turning/milling/drilling, cutting tools, marketing
