@@ -1,5 +1,10 @@
 # Changelog
 
+## v717.0 - Phase 372: Wool, Hemp & Flax (2026-06-20)
+- **wool_admin**: Wool planning/execution/evaluation, accessories, marketing
+- **hemp_admin**: Hemp planning/execution/evaluation, accessories, marketing
+- **flax_admin**: Flax planning/execution/evaluation, accessories, marketing
+
 ## v716.0 - Phase 371: Oil, Cotton & Rubber (2026-06-20)
 - **oil_admin**: Oil planning/execution/evaluation, accessories, marketing
 - **cotton_admin**: Cotton/fiber planning/execution/evaluation, accessories, marketing
