@@ -1,5 +1,10 @@
 # Changelog
 
+## v719.0 - Phase 374: Moss, Fungi & Vine (2026-06-20)
+- **moss_admin**: Moss planning/execution/evaluation, accessories, marketing
+- **fungi_admin**: Fungi planning/execution/evaluation, accessories, marketing
+- **vine_admin**: Vine planning/execution/evaluation, accessories, marketing
+
 ## v718.0 - Phase 373: Bamboo, Cactus & Algae (2026-06-20)
 - **bamboo_admin**: Bamboo planning/execution/evaluation, accessories, marketing
 - **cactus_admin**: Cactus planning/execution/evaluation, accessories, marketing
