@@ -1,5 +1,10 @@
 # Changelog
 
+## v720.0 - Phase 375: Ivy, Clover & Sage (2026-06-20)
+- **ivy_admin**: Ivy planning/execution/evaluation, accessories, marketing
+- **clover_admin**: Clover planning/execution/evaluation, accessories, marketing
+- **sage_admin**: Sage planning/execution/evaluation, accessories, marketing
+
 ## v719.0 - Phase 374: Moss, Fungi & Vine (2026-06-20)
 - **moss_admin**: Moss planning/execution/evaluation, accessories, marketing
 - **fungi_admin**: Fungi planning/execution/evaluation, accessories, marketing
