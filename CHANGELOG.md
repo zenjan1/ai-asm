@@ -1,5 +1,11 @@
 # Changelog
 
+## v593.0 - Phase 248: Shoetech, Hattech & Spectech (2026-06-20)
+- **shoetech_admin**: Sports shoes, leather shoes, casual shoes, boots, marketing
+- **hattech_admin**: Baseball caps, sun hats, winter hats, fashion hats, marketing
+- **spectech_admin**: Optical glasses, sunglasses, protective glasses, fashion frames, marketing
+- Total modules: 1411 (L3: 1179)
+
 ## v592.0 - Phase 247: Toytech, Statitech & Bagtech (2026-06-20)
 - **toytech_admin**: Plastic toys, plush toys, educational toys, electronic toys, marketing
 - **statitech_admin**: Pen manufacturing, paper products, office supplies, art supplies, marketing
