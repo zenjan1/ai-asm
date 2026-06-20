@@ -1,5 +1,10 @@
 # Changelog
 
+## v705.0 - Phase 360: Green, Lowcarbon & Recycle (2026-06-20)
+- **green_admin**: Green planning/execution/evaluation, accessories, marketing
+- **lowcarbon_admin**: Lowcarbon planning/execution/evaluation, accessories, marketing
+- **recycle_admin**: Recycle planning/execution/evaluation, accessories, marketing
+
 ## v704.0 - Phase 359: Sharing, Circular & Sustainability (2026-06-20)
 - **sharing_admin**: Sharing planning/operations/evaluation, accessories, marketing
 - **circular_admin**: Circular planning/building/evaluation, accessories, marketing
