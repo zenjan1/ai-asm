@@ -1,5 +1,10 @@
 # Changelog
 
+## v710.0 - Phase 365: Crop, Livestock & Fishery (2026-06-20)
+- **crop_admin**: Crop planning/execution/evaluation, accessories, marketing
+- **livestock_admin**: Livestock planning/execution/evaluation, accessories, marketing
+- **fishery_admin**: Fishery planning/execution/evaluation, accessories, marketing
+
 ## v709.0 - Phase 364: Soil, Mineral & Land (2026-06-20)
 - **soil_admin**: Soil planning/execution/evaluation, accessories, marketing
 - **mineral_admin**: Mineral planning/execution/evaluation, accessories, marketing
