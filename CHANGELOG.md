@@ -1,5 +1,11 @@
 # Changelog
 
+## v583.0 - Phase 238: Horsetech, Animationtech & Museutech (2026-06-20)
+- **horsetech_admin**: Horse breeding, equestrian sports, horse stud, equipment, tourism
+- **animationtech_admin**: Animation production, comic creation, IP operation, derivatives, virtual idol
+- **museutech_admin**: Collection management, exhibition planning, digital display, education, conservation
+- Total modules: 1381 (L3: 1149)
+
 ## v582.0 - Phase 237: Nucleartech, Forestech & Fisherytech (2026-06-20)
 - **nucleartech_admin**: Nuclear fuel, nuclear power, nuclear application, safety, waste
 - **forestech_admin**: Forest cultivation, protection, wood processing, forest chemical, management
