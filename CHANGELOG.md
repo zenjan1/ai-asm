@@ -1,5 +1,11 @@
 # Changelog
 
+## v650.0 - Phase 305: Hardeningtech, Annealingtech & Quenchtech (2026-06-20)
+- **hardeningtech_admin**: Full/surface/local hardening, accessories, marketing
+- **annealingtech_admin**: Full/spheroidize/stress annealing, accessories, marketing
+- **quenchtech_admin**: Low/medium/high tempering, accessories, marketing
+Total modules: 1582 (L3: 1350)
+
 ## v649.0 - Phase 304: Automatetech, Processcontrol & Surfacetreat (2026-06-20)
 - **automatetech_admin**: Automated assembly/welding/coating, accessories, marketing
 - **processcontrol_admin**: Temperature/pressure/flow control, accessories, marketing
