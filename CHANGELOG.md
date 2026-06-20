@@ -1,5 +1,10 @@
 # Changelog
 
+## v703.0 - Phase 358: Platform, Ecosystem & Globalization (2026-06-20)
+- **platform_admin**: Platform planning/operations/evaluation, accessories, marketing
+- **ecosystem_admin**: Ecosystem planning/building/evaluation, accessories, marketing
+- **globalization_admin**: Globalization planning/execution/evaluation, accessories, marketing
+
 ## v702.0 - Phase 357: Automation, Intelligent & Network (2026-06-20)
 - **automation_admin**: Automation planning/execution/evaluation, accessories, marketing
 - **intelligent_admin**: Intelligent planning/execution/evaluation, accessories, marketing
