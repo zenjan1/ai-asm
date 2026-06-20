@@ -1,5 +1,10 @@
 # Changelog
 
+## v732.0 - Phase 387: Gazania, Anemone & Aster (2026-06-20)
+- **gazania_admin**: Gazania planning/execution/evaluation, accessories, marketing
+- **anemone_admin**: Anemone planning/execution/evaluation, accessories, marketing
+- **aster_admin**: Aster planning/execution/evaluation, accessories, marketing
+
 ## v731.0 - Phase 386: Hibiscus, Cosmos & Petunia (2026-06-20)
 - **hibiscus_admin**: Hibiscus planning/execution/evaluation, accessories, marketing
 - **cosmos_admin**: Cosmos planning/execution/evaluation, accessories, marketing
