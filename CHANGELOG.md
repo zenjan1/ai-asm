@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v671.0 - Phase 326: Fixture, Abrasive & Forge (2026-06-20)
+- **fixture_admin**: Lathe/milling/drilling fixtures, accessories, marketing
+- **abrasive_admin**: Bonded/coated/superhard abrasives, accessories, marketing
+- **forge_admin**: Free/die/special forging, accessories, marketing
+
 ## v670.0 - Phase 325: Seal, Tool & Mold (2026-06-20)
 - **seal_admin**: Static/dynamic/special seals, accessories, marketing
 - **tool_admin**: Turning/milling/hole machining tools, accessories, marketing
