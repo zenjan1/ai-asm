@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v683.0 - Phase 338: CNC, CAD & CAM (2026-06-20)
+- **cnc_admin**: CNC lathes/milling/special CNC, accessories, marketing
+- **cad_admin**: Mechanical/electrical/architectural CAD, accessories, marketing
+- **cam_admin**: CNC programming/process planning/simulation, accessories, marketing
+
 ## v682.0 - Phase 337: NDT, Measure & Metrology (2026-06-20)
 - **ndt_admin**: Ultrasonic/radiographic/surface NDT, accessories, marketing
 - **measure_admin**: Dimensional/geometric/online measurement, accessories, marketing
