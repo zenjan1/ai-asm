@@ -1,5 +1,11 @@
 # Changelog
 
+## v642.0 - Phase 297: Cuttingtech, Toolingtech & Thermaltech (2026-06-20)
+- **cuttingtech_admin**: Turning/milling/drilling-boring cutting, accessories, marketing
+- **toolingtech_admin**: Assembly/machining/inspection tooling, accessories, marketing
+- **thermaltech_admin**: Heat treatment/thermal spray/cutting, accessories, marketing
+Total modules: 1558 (L3: 1326)
+
 ## v641.0 - Phase 296: Pneumatech, Weldingtech & Machiningtech (2026-06-20)
 - **pneumatech_admin**: Air source/actuators/control valves, accessories, marketing
 - **weldingtech_admin**: Arc/resistance/special welding, accessories, marketing
