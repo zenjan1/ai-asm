@@ -1,5 +1,10 @@
 # Changelog
 
+## v731.0 - Phase 386: Hibiscus, Cosmos & Petunia (2026-06-20)
+- **hibiscus_admin**: Hibiscus planning/execution/evaluation, accessories, marketing
+- **cosmos_admin**: Cosmos planning/execution/evaluation, accessories, marketing
+- **petunia_admin**: Petunia planning/execution/evaluation, accessories, marketing
+
 ## v730.0 - Phase 385: Violet, Begonia & Freesia (2026-06-20)
 - **violet_admin**: Violet planning/execution/evaluation, accessories, marketing
 - **begonia_admin**: Begonia planning/execution/evaluation, accessories, marketing
