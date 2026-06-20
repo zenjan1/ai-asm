@@ -1,5 +1,11 @@
 # Changelog
 
+## v614.0 - Phase 269: Furnitech, Leathertech & Printtech (2026-06-20)
+- **furnitech_admin**: Solid wood furniture, panel furniture, soft furniture, office furniture, marketing
+- **leathertech_admin**: Leather processing, leather shoes, leather bags, leather clothing, marketing
+- **printtech_admin**: Book printing, packaging printing, commercial printing, digital printing, marketing
+- Total modules: 1474 (L3: 1242)
+
 ## v613.0 - Phase 268: Electech, Ceramtech & Plastech (2026-06-20)
 - **electech_admin**: Electronic components, circuit boards, consumer electronics, instruments, marketing
 - **ceramtech_admin**: Building ceramics, daily ceramics, industrial ceramics, art ceramics, marketing
