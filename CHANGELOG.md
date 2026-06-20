@@ -1,5 +1,11 @@
 # Changelog
 
+## v630.0 - Phase 285: Pulletech, Cuttech & Fastenertech (2026-06-20)
+- **pulletech_admin**: Transmission/lifting/cableway pulleys, accessories, marketing
+- **cuttech_admin**: Turning/milling/drilling, cutting tools, marketing
+- **fastenertech_admin**: Bolts/nuts/screws, accessories, marketing
+Total modules: 1522 (L3: 1290)
+
 ## v629.0 - Phase 284: Filtertech, Mixertech & Sealtech (2026-06-20)
 - **filtertech_admin**: Air/liquid/industrial filters, accessories, marketing
 - **mixertech_admin**: Stirrers/mixers/dispersers, accessories, marketing
