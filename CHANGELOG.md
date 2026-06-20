@@ -1,5 +1,10 @@
 # Changelog
 
+## v737.0 - Phase 392: Bluebell, Honeysuckle & Cyclamen (2026-06-21)
+- **bluebell_admin**: Bluebell planning/execution/evaluation, accessories, marketing
+- **honeysuckle_admin**: Honeysuckle planning/execution/evaluation, accessories, marketing
+- **cyclamen_admin**: Cyclamen planning/execution/evaluation, accessories, marketing
+
 ## v736.0 - Phase 391: Buttercup, Wisteria & Jonquil (2026-06-21)
 - **buttercup_admin**: Buttercup planning/execution/evaluation, accessories, marketing
 - **wisteria_admin**: Wisteria planning/execution/evaluation, accessories, marketing
