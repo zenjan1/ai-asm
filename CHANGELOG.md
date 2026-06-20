@@ -1,5 +1,10 @@
 # Changelog
 
+## v695.0 - Phase 350: Brand, Customer & Channel (2026-06-20)
+- **brand_admin**: Brand planning/building/maintenance, accessories, marketing
+- **customer_admin**: Customer development/service/maintenance, accessories, marketing
+- **channel_admin**: Channel planning/operations/evaluation, accessories, marketing
+
 ## v694.0 - Phase 349: Capability, Performance & Service (2026-06-20)
 - **capability_admin**: Capability assessment/development/application, accessories, marketing
 - **performance_admin**: Performance planning/execution/evaluation, accessories, marketing
