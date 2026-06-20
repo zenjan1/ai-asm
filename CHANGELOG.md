@@ -1,5 +1,11 @@
 # Changelog
 
+## v595.0 - Phase 250: Tobaccotech, Papertech & Rubbertech (2026-06-20)
+- **tobaccotech_admin**: Tobacco planting, processing, cigarette production, cigar production, marketing
+- **papertech_admin**: Pulp production, paper making, coating, paper products, marketing
+- **rubbertech_admin**: Rubber planting, processing, tire production, rubber products, marketing
+- Total modules: 1417 (L3: 1185)
+
 ## v594.0 - Phase 249: Watchtech, Jewelrytech & Cosmetech (2026-06-20)
 - **watchtech_admin**: Mechanical watches, quartz watches, smartwatches, wall clocks, marketing
 - **jewelrytech_admin**: Rings, necklaces, earrings, bracelets, marketing
