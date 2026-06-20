@@ -1,5 +1,11 @@
 # Changelog
 
+## v653.0 - Phase 308: Phosphatingtech, Oxidizingtech & Passivationtech (2026-06-20)
+- **phosphatingtech_admin**: Zinc/manganese/iron phosphating, accessories, marketing
+- **oxidizingtech_admin**: Alkaline/acidic/anodic oxidizing, accessories, marketing
+- **passivationtech_admin**: Chromate/organic/electrochemical passivation, accessories, marketing
+Total modules: 1591 (L3: 1359)
+
 ## v652.0 - Phase 307: Boronizingtech, Chromizingtech & Aluminizingtech (2026-06-20)
 - **boronizingtech_admin**: Solid/liquid/gas boronizing, accessories, marketing
 - **chromizingtech_admin**: Solid/liquid/gas chromizing, accessories, marketing
