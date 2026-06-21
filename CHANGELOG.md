@@ -1,4 +1,9 @@
 # Changelog
+## v752.0 - Phase 407: Plumeria, Mandevilla & Stephanotis (2026-06-21)
+- **plumeria_admin**: Plumeria planning/execution/evaluation, accessories, marketing
+- **mandevilla_admin**: Mandevilla planning/execution/evaluation, accessories, marketing
+- **stephanotis_admin**: Stephanotis planning/execution/evaluation, accessories, marketing
+
 ## v751.0 - Phase 406: Adenium, Pachypodium & Allamanda (2026-06-21)
 - **adenium_admin**: Adenium planning/execution/evaluation, accessories, marketing
 - **pachypodium_admin**: Pachypodium planning/execution/evaluation, accessories, marketing
