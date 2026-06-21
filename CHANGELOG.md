@@ -1,4 +1,9 @@
 # Changelog
+## v852.0 - Phase 507: Kniphofia, Kochia & Kohleria (2026-06-21)
+- **kniphofia_admin**: Kniphofia planning/execution/evaluation, accessories, marketing
+- **kochia_admin**: Kochia planning/execution/evaluation, accessories, marketing
+- **kohleria_admin**: Kohleria planning/execution/evaluation, accessories, marketing
+
 ## v851.0 - Phase 506: Iberis, Jasminum & Kirengeshoma (2026-06-21)
 - **iberis_admin**: Iberis planning/execution/evaluation, accessories, marketing
 - **jasminum_admin**: Jasminum planning/execution/evaluation, accessories, marketing
