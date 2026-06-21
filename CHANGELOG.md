@@ -1,4 +1,9 @@
 # Changelog
+## v866.0 - Phase 521: Arum, Asclepias & Asparagus (2026-06-21)
+- **arum_admin**: Arum planning/execution/evaluation, accessories, marketing
+- **asclepias_admin**: Asclepias planning/execution/evaluation, accessories, marketing
+- **asparagus_admin**: Asparagus planning/execution/evaluation, accessories, marketing
+
 ## v865.0 - Phase 520: Alchemilla, Aloe & Amaryllis (2026-06-21)
 - **alchemilla_admin**: Alchemilla planning/execution/evaluation, accessories, marketing
 - **aloe_admin**: Aloe planning/execution/evaluation, accessories, marketing

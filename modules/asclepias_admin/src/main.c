@@ -22,9 +22,9 @@ void asc_report(void){ps("[ASC] Ascp: ");pi(st.n_ascp);ps(" PCS=");pi(st.t_f1);p
 void asc_state(void){ps("[ASC] Ascp=");pi(st.n_ascp);ps(" Asce=");pi(st.n_asce);ps(" Ascv=");pi(st.n_asc2);ps(" Ascc=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
 int main(void){
 ps("=== Asclepias Admin Demo ===\n\n");asc_init();
-ps("Asclepias planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;asc_planning(t,c,899+(i*17),888+(i*14),868+(i*10),850+(i*6),2020+(i%5));}
-ps("\nAsclepias execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;asc_execution(t,c,888+(i*15),877+(i*12),859+(i*8),846+(i*5),2021+(i%4));}
-ps("\nAsclepias evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;asc_evaluation(t,c,880+(i*13),869+(i*10),853+(i*7),842+(i*4),2022+(i%3));}
-ps("\nAsclepias accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;asc_accessory(t,c,872+(i*11),863+(i*9),849+(i*6),839+(i*3),2023+(i%2));}
-ps("\nAsclepias marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;asc_market(t,c,866+(i*9),857+(i*7),844+(i*5),836+(i*3),2024);}
+ps("Asclepias planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;asc_planning(t,c,974+(i*17),963+(i*14),943+(i*10),925+(i*6),2020+(i%5));}
+ps("\nAsclepias execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;asc_execution(t,c,963+(i*15),952+(i*12),934+(i*8),921+(i*5),2021+(i%4));}
+ps("\nAsclepias evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;asc_evaluation(t,c,955+(i*13),944+(i*10),928+(i*7),917+(i*4),2022+(i%3));}
+ps("\nAsclepias accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;asc_accessory(t,c,947+(i*11),938+(i*9),924+(i*6),914+(i*3),2023+(i%2));}
+ps("\nAsclepias marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;asc_market(t,c,941+(i*9),932+(i*7),919+(i*5),911+(i*3),2024);}
 ps("\n");asc_report();asc_state();ps("\n=== Demo Complete ===\n");return 0;}
