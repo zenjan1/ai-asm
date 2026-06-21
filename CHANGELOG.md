@@ -1,4 +1,9 @@
 # Changelog
+## v868.0 - Phase 523: Berberis, Buddleja & Calceolaria (2026-06-21)
+- **berberis_admin**: Berberis planning/execution/evaluation, accessories, marketing
+- **buddleja_admin**: Buddleja planning/execution/evaluation, accessories, marketing
+- **calceolaria_admin**: Calceolaria planning/execution/evaluation, accessories, marketing
+
 ## v867.0 - Phase 522: Astilbe, Auricula & Baptisia (2026-06-21)
 - **astilbe_admin**: Astilbe planning/execution/evaluation, accessories, marketing
 - **auricula_admin**: Auricula planning/execution/evaluation, accessories, marketing
