@@ -1,4 +1,9 @@
 # Changelog
+## v791.0 - Phase 446: Oenothera, Phygelius & Raphanus (2026-06-21)
+- **oenothera_admin**: Oenothera planning/execution/evaluation, accessories, marketing
+- **phygelius_admin**: Phygelius planning/execution/evaluation, accessories, marketing
+- **raphanus_admin**: Raphanus planning/execution/evaluation, accessories, marketing
+
 ## v790.0 - Phase 445: Kalanchoe, Leonotis & Nicotiana (2026-06-21)
 - **kalanchoe_admin**: Kalanchoe planning/execution/evaluation, accessories, marketing
 - **leonotis_admin**: Leonotis planning/execution/evaluation, accessories, marketing
