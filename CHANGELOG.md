@@ -1,4 +1,9 @@
 # Changelog
+## v838.0 - Phase 493: Abelia, Acacia & Ailanthus (2026-06-21)
+- **abelia_admin**: Abelia planning/execution/evaluation, accessories, marketing
+- **acacia_admin**: Acacia planning/execution/evaluation, accessories, marketing
+- **ailanthus_admin**: Ailanthus planning/execution/evaluation, accessories, marketing
+
 ## v837.0 - Phase 492: Asarum, Asphodel & Adonis (2026-06-21)
 - **asarum_admin**: Asarum planning/execution/evaluation, accessories, marketing
 - **asphodel_admin**: Asphodel planning/execution/evaluation, accessories, marketing
