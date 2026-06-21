@@ -1,4 +1,9 @@
 # Changelog
+## v786.0 - Phase 441: Helenium, Gypsophila & Platycodon (2026-06-21)
+- **helenium_admin**: Helenium planning/execution/evaluation, accessories, marketing
+- **gypsophila_admin**: Gypsophila planning/execution/evaluation, accessories, marketing
+- **platycodon_admin**: Platycodon planning/execution/evaluation, accessories, marketing
+
 ## v785.0 - Phase 440: Lycopersicon, Malva & Veronica (2026-06-21)
 - **lycopersicon_admin**: Lycopersicon planning/execution/evaluation, accessories, marketing
 - **malva_admin**: Malva planning/execution/evaluation, accessories, marketing
