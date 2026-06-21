@@ -1,4 +1,9 @@
 # Changelog
+## v819.0 - Phase 474: Leycesteria, Libertia & Lupinus (2026-06-21)
+- **leycesteria_admin**: Leycesteria planning/execution/evaluation, accessories, marketing
+- **libertia_admin**: Libertia planning/execution/evaluation, accessories, marketing
+- **lupinus_admin**: Lupinus planning/execution/evaluation, accessories, marketing
+
 ## v818.0 - Phase 473: Heucherella, Lavatera & Leucanthemum (2026-06-21)
 - **heucherella_admin**: Heucherella planning/execution/evaluation, accessories, marketing
 - **lavatera_admin**: Lavatera planning/execution/evaluation, accessories, marketing
