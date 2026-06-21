@@ -1,4 +1,9 @@
 # Changelog
+## v807.0 - Phase 462: Phlox, Plumbago & Primula (2026-06-21)
+- **phlox_admin**: Phlox planning/execution/evaluation, accessories, marketing
+- **plumbago_admin**: Plumbago planning/execution/evaluation, accessories, marketing
+- **primula_admin**: Primula planning/execution/evaluation, accessories, marketing
+
 ## v806.0 - Phase 461: Nemesia, Osteospermum & Pendulina (2026-06-21)
 - **nemesia_admin**: Nemesia planning/execution/evaluation, accessories, marketing
 - **osteospermum_admin**: Osteospermum planning/execution/evaluation, accessories, marketing
