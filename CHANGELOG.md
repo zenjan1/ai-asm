@@ -1,4 +1,9 @@
 # Changelog
+## v813.0 - Phase 468: Clethra, Convallaria & Crocosmia (2026-06-21)
+- **clethra_admin**: Clethra planning/execution/evaluation, accessories, marketing
+- **convallaria_admin**: Convallaria planning/execution/evaluation, accessories, marketing
+- **crocosmia_admin**: Crocosmia planning/execution/evaluation, accessories, marketing
+
 ## v812.0 - Phase 467: Callistemon, Celosia & Ceratostigma (2026-06-21)
 - **callistemon_admin**: Callistemon planning/execution/evaluation, accessories, marketing
 - **celosia_admin**: Celosia planning/execution/evaluation, accessories, marketing
