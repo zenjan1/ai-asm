@@ -1,4 +1,9 @@
 # Changelog
+## v830.0 - Phase 485: Tanacetum, Taraxacum & Tilia (2026-06-21)
+- **tanacetum_admin**: Tanacetum planning/execution/evaluation, accessories, marketing
+- **taraxacum_admin**: Taraxacum planning/execution/evaluation, accessories, marketing
+- **tilia_admin**: Tilia planning/execution/evaluation, accessories, marketing
+
 ## v829.0 - Phase 484: Sanguisorba, Schisandra & Solidago (2026-06-21)
 - **sanguisorba_admin**: Sanguisorba planning/execution/evaluation, accessories, marketing
 - **schisandra_admin**: Schisandra planning/execution/evaluation, accessories, marketing
