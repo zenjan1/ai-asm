@@ -1,4 +1,9 @@
 # Changelog
+## v871.0 - Phase 526: Couroupita, Crupina & Cyanus (2026-06-21)
+- **couroupita_admin**: Couroupita planning/execution/evaluation, accessories, marketing
+- **crupina_admin**: Crupina planning/execution/evaluation, accessories, marketing
+- **cyanus_admin**: Cyanus planning/execution/evaluation, accessories, marketing
+
 ## v870.0 - Phase 525: Cineraria, Cobaea & Cocculus (2026-06-21)
 - **cineraria_admin**: Cineraria planning/execution/evaluation, accessories, marketing
 - **cobaea_admin**: Cobaea planning/execution/evaluation, accessories, marketing
