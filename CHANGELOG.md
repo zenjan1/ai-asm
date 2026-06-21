@@ -1,5 +1,10 @@
 # Changelog
 
+## v742.0 - Phase 397: Achimenes, Browallia & Calistege (2026-06-21)
+- **achimenes_admin**: Achimenes planning/execution/evaluation, accessories, marketing
+- **browallia_admin**: Browallia planning/execution/evaluation, accessories, marketing
+- **calistege_admin**: Calistege planning/execution/evaluation, accessories, marketing
+
 ## v741.0 - Phase 396: Lantana, Torenia & Portulaca (2026-06-21)
 - **lantana_admin**: Lantana planning/execution/evaluation, accessories, marketing
 - **torenia_admin**: Torenia planning/execution/evaluation, accessories, marketing
