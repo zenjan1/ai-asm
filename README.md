@@ -1,8 +1,8 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v780.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v781.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
-[![Modules](https://img.shields.io/badge/modules-1972-green)]()
+[![Modules](https://img.shields.io/badge/modules-1975-green)]()
 [![Kernel](https://img.shields.io/badge/kernel-62_ASM-orange)]()
 [![AI](https://img.shields.io/badge/AI-11_vendors-purple)]()
 [![Agent](https://img.shields.io/badge/Agent-13_modules-cyan)]()
@@ -33,7 +33,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║  L4: AI Layer - Multi-Vendor AI Ecosystem (19 modules)                ║
 ║      OpenAI, Claude, Gemini, DeepSeek, Ollama, vLLM, RAG, Multimodal ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L3: WASM Apps - User Applications (1740: 1693 standalone + 47 libraries) ║
+║  L3: WASM Apps - User Applications (1743: 1696 standalone + 47 libraries) ║
 ║      POSIX tools, networking, GUI, security, development, system, wasm_thread  ║
 ║      industrial_iot, predictive_maintenance, supply_chain                  ║
 ║      smart_city, energy_management, building_automation                    ║
@@ -250,10 +250,10 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 |:-----:|:----:|:-----:|:------:|
 | L1 | Kernel ASM | 62 | ✓ 100% |
 | L2 | WASM Host | 138 functions | ✓ 100% |
-| L3 | WASM Apps | 1740 (1693 standalone + 47 libraries) | ✓ 100% |
+| L3 | WASM Apps | 1743 (1696 standalone + 47 libraries) | ✓ 100% |
 | L4 | AI Modules | 19 | ✓ 100% |
 | L5 | Agent Modules | 13 | ✓ 100% |
-| **Total** | **Modules** | **1972** | **✓ COMPLETE** |
+| **Total** | **Modules** | **1975** | **✓ COMPLETE** |
 
 ## Features
 
@@ -402,14 +402,14 @@ aiasm-aarch64/
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║           AI-ASM OS v780.0                              ║
+║           AI-ASM OS v781.0                              ║
 ║           DIAMOND CERTIFICATION ✓                            ║
 ║           PROJECT COMPLETE ✓                                 ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Five-Layer Architecture: 100% Complete                      ║
 ║  ├─ L1 Kernel ASM: 62 modules    ✓                           ║
 ║  ├─ L2 WASM Host: 138 functions  ✓                           ║
-║  ├─ L3 WASM Apps: 1740 modules   ✓                           ║
+║  ├─ L3 WASM Apps: 1743 modules   ✓                           ║
 ║  ├─ L4 AI Layer: 19 modules      ✓                           ║
 ║  └─ L5 Agent: 13 modules         ✓                           ║
 ║                                                              ║

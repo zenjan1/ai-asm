@@ -1,4 +1,9 @@
 # Changelog
+## v781.0 - Phase 436: Linaria, Nemophila & Pelargonium (2026-06-21)
+- **linaria_admin**: Linaria planning/execution/evaluation, accessories, marketing
+- **nemophila_admin**: Nemophila planning/execution/evaluation, accessories, marketing
+- **pelargonium_admin**: Pelargonium planning/execution/evaluation, accessories, marketing
+
 ## v780.0 - Phase 435: Chicory, Tiger Lily & Knautia (2026-06-21)
 - **chicory_admin**: Chicory planning/execution/evaluation, accessories, marketing
 - **tiger_lily_admin**: Tiger lily planning/execution/evaluation, accessories, marketing
