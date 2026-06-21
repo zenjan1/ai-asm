@@ -1,4 +1,9 @@
 # Changelog
+## v757.0 - Phase 412: Gladiolus, Hyacinth & Narcissus (2026-06-21)
+- **gladiolus_admin**: Gladiolus planning/execution/evaluation, accessories, marketing
+- **hyacinth_admin**: Hyacinth planning/execution/evaluation, accessories, marketing
+- **narcissus_admin**: Narcissus planning/execution/evaluation, accessories, marketing
+
 ## v756.0 - Phase 411: Bougainvillea, Rhododendron & Hydrangea (2026-06-21)
 - **bougainvillea_admin**: Bougainvillea planning/execution/evaluation, accessories, marketing
 - **rhododendron_admin**: Rhododendron planning/execution/evaluation, accessories, marketing
