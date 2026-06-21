@@ -1,4 +1,9 @@
 # Changelog
+
+## v908.0 - Phase 563: Saccharum, Saussurea & Saxifraga (2026-06-22)
+- **saccharum_admin**: Saccharum planning/execution/evaluation, accessories, marketing
+- **saussurea_admin**: Saussurea planning/execution/evaluation, accessories, marketing
+- **saxifraga_admin**: Saxifraga planning/execution/evaluation, accessories, marketing
 ## v907.0 - Phase 562: Ruprechtia, Ruta & Sabal (2026-06-22)
 - **ruprechtia_admin**: Ruprechtia planning/execution/evaluation, accessories, marketing
 - **ruta_admin**: Ruta planning/execution/evaluation, accessories, marketing
