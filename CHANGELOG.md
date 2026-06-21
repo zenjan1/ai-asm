@@ -1,4 +1,9 @@
 # Changelog
+## v823.0 - Phase 478: Nicotiana, Nigella & Oleracea (2026-06-21)
+- **nicotiana_admin**: Nicotiana planning/execution/evaluation, accessories, marketing
+- **nigella_admin**: Nigella planning/execution/evaluation, accessories, marketing
+- **oleracea_admin**: Oleracea planning/execution/evaluation, accessories, marketing
+
 ## v822.0 - Phase 477: Nepeta, Nerine & Nerium (2026-06-21)
 - **nepeta_admin**: Nepeta planning/execution/evaluation, accessories, marketing
 - **nerine_admin**: Nerine planning/execution/evaluation, accessories, marketing
