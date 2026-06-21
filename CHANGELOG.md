@@ -1,4 +1,9 @@
 # Changelog
+## v884.0 - Phase 539: Jaborandi, Jateorhiza & Jeffersonia (2026-06-22)
+- **jaborandi_admin**: Jaborandi planning/execution/evaluation, accessories, marketing
+- **jateorhiza_admin**: Jateorhiza planning/execution/evaluation, accessories, marketing
+- **jeffersonia_admin**: Jeffersonia planning/execution/evaluation, accessories, marketing
+
 ## v883.0 - Phase 538: Hyoscyamus, Ipomoea & Isoetes (2026-06-22)
 - **hyoscyamus_admin**: Hyoscyamus planning/execution/evaluation, accessories, marketing
 - **ipomoea_admin**: Ipomoea planning/execution/evaluation, accessories, marketing
