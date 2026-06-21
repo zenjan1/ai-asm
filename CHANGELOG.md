@@ -1,4 +1,8 @@
 # Changelog
+## v900.0 - Phase 555: Onoclea, Ophiopogon & Opopanax (2026-06-22)
+- **onoclea_admin**: Onoclea planning/execution/evaluation, accessories, marketing
+- **ophiopogon_admin**: Ophiopogon planning/execution/evaluation, accessories, marketing
+- **opopanax_admin**: Opopanax planning/execution/evaluation, accessories, marketing
 ## v899.0 - Phase 554: Ochna, Oedera & Oemleria (2026-06-22)
 - **ochna_admin**: Ochna planning/execution/evaluation, accessories, marketing
 - **oedera_admin**: Oedera planning/execution/evaluation, accessories, marketing
