@@ -1,4 +1,9 @@
 # Changelog
+## v848.0 - Phase 503: Eclipta, Elsholtzia & Epigaea (2026-06-21)
+- **eclipta_admin**: Eclipta planning/execution/evaluation, accessories, marketing
+- **elsholtzia_admin**: Elsholtzia planning/execution/evaluation, accessories, marketing
+- **epigaea_admin**: Epigaea planning/execution/evaluation, accessories, marketing
+
 ## v847.0 - Phase 502: Disporum, Dracocephalum & Drosera (2026-06-21)
 - **disporum_admin**: Disporum planning/execution/evaluation, accessories, marketing
 - **dracocephalum_admin**: Dracocephalum planning/execution/evaluation, accessories, marketing
