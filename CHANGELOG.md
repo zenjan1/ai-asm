@@ -1,4 +1,9 @@
 # Changelog
+## v839.0 - Phase 494: Alcea, Althaea & Alyssum (2026-06-21)
+- **alcea_admin**: Alcea planning/execution/evaluation, accessories, marketing
+- **althaea_admin**: Althaea planning/execution/evaluation, accessories, marketing
+- **alyssum_admin**: Alyssum planning/execution/evaluation, accessories, marketing
+
 ## v838.0 - Phase 493: Abelia, Acacia & Ailanthus (2026-06-21)
 - **abelia_admin**: Abelia planning/execution/evaluation, accessories, marketing
 - **acacia_admin**: Acacia planning/execution/evaluation, accessories, marketing
