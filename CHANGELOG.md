@@ -1,5 +1,10 @@
 # Changelog
 
+## v747.0 - Phase 402: Tigridia, Zephyranthes & Hymenocallis (2026-06-21)
+- **tigridia_admin**: Tigridia planning/execution/evaluation, accessories, marketing
+- **zephyranthes_admin**: Zephyranthes planning/execution/evaluation, accessories, marketing
+- **hymenocallis_admin**: Hymenocallis planning/execution/evaluation, accessories, marketing
+
 ## v746.0 - Phase 401: Galanthus, Erythronium & Ranunculus (2026-06-21)
 - **galanthus_admin**: Galanthus planning/execution/evaluation, accessories, marketing
 - **erythronium_admin**: Erythronium planning/execution/evaluation, accessories, marketing
