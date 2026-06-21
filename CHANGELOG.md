@@ -1,4 +1,9 @@
 # Changelog
+## v792.0 - Phase 447: Urtica, Vitex & Woodfordia (2026-06-21)
+- **urtica_admin**: Urtica planning/execution/evaluation, accessories, marketing
+- **vitex_admin**: Vitex planning/execution/evaluation, accessories, marketing
+- **woodfordia_admin**: Woodfordia planning/execution/evaluation, accessories, marketing
+
 ## v791.0 - Phase 446: Oenothera, Phygelius & Raphanus (2026-06-21)
 - **oenothera_admin**: Oenothera planning/execution/evaluation, accessories, marketing
 - **phygelius_admin**: Phygelius planning/execution/evaluation, accessories, marketing
