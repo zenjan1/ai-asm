@@ -1,4 +1,9 @@
 # Changelog
+## v788.0 - Phase 443: Ligularia, Equisetum & Eupatorium (2026-06-21)
+- **ligularia_admin**: Ligularia planning/execution/evaluation, accessories, marketing
+- **equisetum_admin**: Equisetum planning/execution/evaluation, accessories, marketing
+- **eupatorium_admin**: Eupatorium planning/execution/evaluation, accessories, marketing
+
 ## v787.0 - Phase 442: Scilla, Tradescantia & Rudbeckia (2026-06-21)
 - **scilla_admin**: Scilla planning/execution/evaluation, accessories, marketing
 - **tradescantia_admin**: Tradescantia planning/execution/evaluation, accessories, marketing
