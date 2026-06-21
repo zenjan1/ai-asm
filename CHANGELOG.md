@@ -1,4 +1,9 @@
 # Changelog
+## v889.0 - Phase 544: Lamarckia, Lapageria & Larix (2026-06-22)
+- **lamarckia_admin**: Lamarckia planning/execution/evaluation, accessories, marketing
+- **lapageria_admin**: Lapageria planning/execution/evaluation, accessories, marketing
+- **larix_admin**: Larix planning/execution/evaluation, accessories, marketing
+
 ## v888.0 - Phase 543: Lachenalia, Laggera & Laelia (2026-06-22)
 - **lachenalia_admin**: Lachenalia planning/execution/evaluation, accessories, marketing
 - **laggera_admin**: Laggera planning/execution/evaluation, accessories, marketing
