@@ -1,4 +1,9 @@
 # Changelog
+## v753.0 - Phase 408: Ixora, Tabernaemontana & Cascabella (2026-06-21)
+- **ixora_admin**: Ixora planning/execution/evaluation, accessories, marketing
+- **tabernaemontana_admin**: Tabernaemontana planning/execution/evaluation, accessories, marketing
+- **cascabella_admin**: Cascabella planning/execution/evaluation, accessories, marketing
+
 ## v752.0 - Phase 407: Plumeria, Mandevilla & Stephanotis (2026-06-21)
 - **plumeria_admin**: Plumeria planning/execution/evaluation, accessories, marketing
 - **mandevilla_admin**: Mandevilla planning/execution/evaluation, accessories, marketing
