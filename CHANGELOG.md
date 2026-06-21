@@ -1,4 +1,9 @@
 # Changelog
+## v773.0 - Phase 428: Dittany, Woodruff & Burnet (2026-06-21)
+- **dittany_admin**: Dittany planning/execution/evaluation, accessories, marketing
+- **woodruff_admin**: Woodruff planning/execution/evaluation, accessories, marketing
+- **burnet_admin**: Burnet planning/execution/evaluation, accessories, marketing
+
 ## v772.0 - Phase 427: Alehoof, Betony & Comfrey (2026-06-21)
 - **alehoof_admin**: Alehoof planning/execution/evaluation, accessories, marketing
 - **betony_admin**: Betony planning/execution/evaluation, accessories, marketing
