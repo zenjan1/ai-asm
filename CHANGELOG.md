@@ -1,4 +1,9 @@
 # Changelog
+## v805.0 - Phase 460: Lewisia, Lysimachia & Magnolia (2026-06-21)
+- **lewisia_admin**: Lewisia planning/execution/evaluation, accessories, marketing
+- **lysimachia_admin**: Lysimachia planning/execution/evaluation, accessories, marketing
+- **magnolia_admin**: Magnolia planning/execution/evaluation, accessories, marketing
+
 ## v804.0 - Phase 459: Huttonia, Hyacinthoides & Impatiens (2026-06-21)
 - **huttonia_admin**: Huttonia planning/execution/evaluation, accessories, marketing
 - **hyacinthoides_admin**: Hyacinthoides planning/execution/evaluation, accessories, marketing
