@@ -1,4 +1,9 @@
 # Changelog
+## v897.0 - Phase 552: Nolana, Nuphar & Nuxia (2026-06-22)
+- **nolana_admin**: Nolana planning/execution/evaluation, accessories, marketing
+- **nuphar_admin**: Nuphar planning/execution/evaluation, accessories, marketing
+- **nuxia_admin**: Nuxia planning/execution/evaluation, accessories, marketing
+
 ## v896.0 - Phase 551: Luronium, Lutheria & Luxemburgia (2026-06-22)
 - **luronium_admin**: Luronium planning/execution/evaluation, accessories, marketing
 - **lutheria_admin**: Lutheria planning/execution/evaluation, accessories, marketing
