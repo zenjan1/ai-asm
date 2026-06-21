@@ -1,4 +1,9 @@
 # Changelog
+## v859.0 - Phase 514: Tweedia, Typha & Ugni (2026-06-21)
+- **tweedia_admin**: Tweedia planning/execution/evaluation, accessories, marketing
+- **typha_admin**: Typha planning/execution/evaluation, accessories, marketing
+- **ugni_admin**: Ugni planning/execution/evaluation, accessories, marketing
+
 ## v858.0 - Phase 513: Stachys, Stokesia & Thalictrum (2026-06-21)
 - **stachys_admin**: Stachys planning/execution/evaluation, accessories, marketing
 - **stokesia_admin**: Stokesia planning/execution/evaluation, accessories, marketing
