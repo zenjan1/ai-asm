@@ -1,4 +1,9 @@
 # Changelog
+## v775.0 - Phase 430: Lungwort, Pennyroyal & Groundsel (2026-06-21)
+- **lungwort_admin**: Lungwort planning/execution/evaluation, accessories, marketing
+- **pennyroyal_admin**: Pennyroyal planning/execution/evaluation, accessories, marketing
+- **groundsel_admin**: Groundsel planning/execution/evaluation, accessories, marketing
+
 ## v774.0 - Phase 429: Pennywort, Selfheal & Valerian (2026-06-21)
 - **pennywort_admin**: Pennywort planning/execution/evaluation, accessories, marketing
 - **selfheal_admin**: Selfheal planning/execution/evaluation, accessories, marketing
