@@ -1,4 +1,9 @@
 # Changelog
+## v862.0 - Phase 517: Yarrow, Yucca & Winterberry (2026-06-21)
+- **yarrow_admin**: Yarrow planning/execution/evaluation, accessories, marketing
+- **yucca_admin**: Yucca planning/execution/evaluation, accessories, marketing
+- **winterberry_admin**: Winterberry planning/execution/evaluation, accessories, marketing
+
 ## v861.0 - Phase 516: Xylosma, Yellowwood & Wormwood (2026-06-21)
 - **xylosma_admin**: Xylosma planning/execution/evaluation, accessories, marketing
 - **yellowwood_admin**: Yellowwood planning/execution/evaluation, accessories, marketing
