@@ -1,4 +1,8 @@
 # Changelog
+## v905.0 - Phase 560: Pycnanthemum, Pygeum & Puya (2026-06-22)
+- **pycnanthemum_admin**: Pycnanthemum planning/execution/evaluation, accessories, marketing
+- **pygeum_admin**: Pygeum planning/execution/evaluation, accessories, marketing
+- **puya_admin**: Puya planning/execution/evaluation, accessories, marketing
 ## v904.0 - Phase 559: Prunus, Pteris & Punica (2026-06-22)
 - **prunus_admin**: Prunus planning/execution/evaluation, accessories, marketing
 - **pteris_admin**: Pteris planning/execution/evaluation, accessories, marketing
