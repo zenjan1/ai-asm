@@ -1,4 +1,9 @@
 # Changelog
+## v857.0 - Phase 512: Pulmonaria, Tiarella & Trillium (2026-06-21)
+- **pulmonaria_admin**: Pulmonaria planning/execution/evaluation, accessories, marketing
+- **tiarella_admin**: Tiarella planning/execution/evaluation, accessories, marketing
+- **trillium_admin**: Trillium planning/execution/evaluation, accessories, marketing
+
 ## v856.0 - Phase 511: Penstemon, Philadelphus & Polemonium (2026-06-21)
 - **penstemon_admin**: Penstemon planning/execution/evaluation, accessories, marketing
 - **philadelphus_admin**: Philadelphus planning/execution/evaluation, accessories, marketing
