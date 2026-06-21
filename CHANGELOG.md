@@ -1,4 +1,9 @@
 # Changelog
+## v776.0 - Phase 431: Borage, Horehound & Bistort (2026-06-21)
+- **borage_admin**: Borage planning/execution/evaluation, accessories, marketing
+- **horehound_admin**: Horehound planning/execution/evaluation, accessories, marketing
+- **bistort_admin**: Bistort planning/execution/evaluation, accessories, marketing
+
 ## v775.0 - Phase 430: Lungwort, Pennyroyal & Groundsel (2026-06-21)
 - **lungwort_admin**: Lungwort planning/execution/evaluation, accessories, marketing
 - **pennyroyal_admin**: Pennyroyal planning/execution/evaluation, accessories, marketing
