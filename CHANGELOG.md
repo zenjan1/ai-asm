@@ -1,4 +1,9 @@
 # Changelog
+## v778.0 - Phase 433: Feverfew, Cowslip & Groundivy (2026-06-21)
+- **feverfew_admin**: Feverfew planning/execution/evaluation, accessories, marketing
+- **cowslip_admin**: Cowslip planning/execution/evaluation, accessories, marketing
+- **groundivy_admin**: Groundivy planning/execution/evaluation, accessories, marketing
+
 ## v777.0 - Phase 432: Motherwort, Wildcarrot & Meadowsweet (2026-06-21)
 - **motherwort_admin**: Motherwort planning/execution/evaluation, accessories, marketing
 - **wildcarrot_admin**: Wildcarrot planning/execution/evaluation, accessories, marketing
