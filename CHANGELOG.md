@@ -1,5 +1,10 @@
 # Changelog
 
+## v750.0 - Phase 405: Boophone, Clivia & Haemanthus (2026-06-21)
+- **boophone_admin**: Boophone planning/execution/evaluation, accessories, marketing
+- **clivia_admin**: Clivia planning/execution/evaluation, accessories, marketing
+- **haemanthus_admin**: Haemanthus planning/execution/evaluation, accessories, marketing
+
 ## v749.0 - Phase 404: Agapanthus, Dietes & Ismene (2026-06-21)
 - **agapanthus_admin**: Agapanthus planning/execution/evaluation, accessories, marketing
 - **dietes_admin**: Dietes planning/execution/evaluation, accessories, marketing
