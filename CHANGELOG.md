@@ -1,4 +1,9 @@
 # Changelog
+## v809.0 - Phase 464: Solenostemon, Spathiphyllum & Strelitzia (2026-06-21)
+- **solenostemon_admin**: Solenostemon planning/execution/evaluation, accessories, marketing
+- **spathiphyllum_admin**: Spathiphyllum planning/execution/evaluation, accessories, marketing
+- **strelitzia_admin**: Strelitzia planning/execution/evaluation, accessories, marketing
+
 ## v808.0 - Phase 463: Pyracantha, Rhodochiton & Schizanthus (2026-06-21)
 - **pyracantha_admin**: Pyracantha planning/execution/evaluation, accessories, marketing
 - **rhodochiton_admin**: Rhodochiton planning/execution/evaluation, accessories, marketing
