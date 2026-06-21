@@ -1,4 +1,9 @@
 # Changelog
+## v787.0 - Phase 442: Scilla, Tradescantia & Rudbeckia (2026-06-21)
+- **scilla_admin**: Scilla planning/execution/evaluation, accessories, marketing
+- **tradescantia_admin**: Tradescantia planning/execution/evaluation, accessories, marketing
+- **rudbeckia_admin**: Rudbeckia planning/execution/evaluation, accessories, marketing
+
 ## v786.0 - Phase 441: Helenium, Gypsophila & Platycodon (2026-06-21)
 - **helenium_admin**: Helenium planning/execution/evaluation, accessories, marketing
 - **gypsophila_admin**: Gypsophila planning/execution/evaluation, accessories, marketing
