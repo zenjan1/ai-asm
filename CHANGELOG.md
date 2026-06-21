@@ -1,4 +1,9 @@
 # Changelog
+## v799.0 - Phase 454: Fatsia, Felicia & Fothergilla (2026-06-21)
+- **fatsia_admin**: Fatsia planning/execution/evaluation, accessories, marketing
+- **felicia_admin**: Felicia planning/execution/evaluation, accessories, marketing
+- **fothergilla_admin**: Fothergilla planning/execution/evaluation, accessories, marketing
+
 ## v798.0 - Phase 453: Doronicum, Echeveria & Eryngium (2026-06-21)
 - **doronicum_admin**: Doronicum planning/execution/evaluation, accessories, marketing
 - **echeveria_admin**: Echeveria planning/execution/evaluation, accessories, marketing
