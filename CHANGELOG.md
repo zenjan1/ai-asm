@@ -1,4 +1,9 @@
 # Changelog
+## v801.0 - Phase 456: Gesneria, Gloxinia & Hakonechloa (2026-06-21)
+- **gesneria_admin**: Gesneria planning/execution/evaluation, accessories, marketing
+- **gloxinia_admin**: Gloxinia planning/execution/evaluation, accessories, marketing
+- **hakonechloa_admin**: Hakonechloa planning/execution/evaluation, accessories, marketing
+
 ## v800.0 - Phase 455: Fraxinus, Galtonia & Genista (2026-06-21)
 - **fraxinus_admin**: Fraxinus planning/execution/evaluation, accessories, marketing
 - **galtonia_admin**: Galtonia planning/execution/evaluation, accessories, marketing
