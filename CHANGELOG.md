@@ -1,4 +1,9 @@
 # Changelog
+## v835.0 - Phase 490: Zea, Zanthoxylum & Zebrina (2026-06-21)
+- **zea_admin**: Zea planning/execution/evaluation, accessories, marketing
+- **zanthoxylum_admin**: Zanthoxylum planning/execution/evaluation, accessories, marketing
+- **zebrina_admin**: Zebrina planning/execution/evaluation, accessories, marketing
+
 ## v834.0 - Phase 489: Viola, Wahlenbergia & Wallflower (2026-06-21)
 - **viola_admin**: Viola planning/execution/evaluation, accessories, marketing
 - **wahlenbergia_admin**: Wahlenbergia planning/execution/evaluation, accessories, marketing
