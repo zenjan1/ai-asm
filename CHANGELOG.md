@@ -1,4 +1,9 @@
 # Changelog
+## v844.0 - Phase 499: Chaenomeles, Chelone & Cimicifuga (2026-06-21)
+- **chaenomeles_admin**: Chaenomeles planning/execution/evaluation, accessories, marketing
+- **chelone_admin**: Chelone planning/execution/evaluation, accessories, marketing
+- **cimicifuga_admin**: Cimicifuga planning/execution/evaluation, accessories, marketing
+
 ## v843.0 - Phase 498: Canna, Catalpa & Cerastium (2026-06-21)
 - **canna_admin**: Canna planning/execution/evaluation, accessories, marketing
 - **catalpa_admin**: Catalpa planning/execution/evaluation, accessories, marketing
