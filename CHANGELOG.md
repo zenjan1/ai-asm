@@ -1,4 +1,8 @@
 # Changelog
+## v907.0 - Phase 562: Ruprechtia, Ruta & Sabal (2026-06-22)
+- **ruprechtia_admin**: Ruprechtia planning/execution/evaluation, accessories, marketing
+- **ruta_admin**: Ruta planning/execution/evaluation, accessories, marketing
+- **sabal_admin**: Sabal planning/execution/evaluation, accessories, marketing
 ## v906.0 - Phase 561: Rhus, Rinorea & Roystonea (2026-06-22)
 - **rhus_admin**: Rhus planning/execution/evaluation, accessories, marketing
 - **rinorea_admin**: Rinorea planning/execution/evaluation, accessories, marketing
