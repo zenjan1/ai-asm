@@ -1,4 +1,9 @@
 # Changelog
+## v764.0 - Phase 419: Saffron, Vanilla & Ginger (2026-06-21)
+- **saffron_admin**: Saffron planning/execution/evaluation, accessories, marketing
+- **vanilla_admin**: Vanilla planning/execution/evaluation, accessories, marketing
+- **ginger_admin**: Ginger planning/execution/evaluation, accessories, marketing
+
 ## v763.0 - Phase 418: Lemongrass, Catnip & Chamomile (2026-06-21)
 - **lemongrass_admin**: Lemongrass planning/execution/evaluation, accessories, marketing
 - **catnip_admin**: Catnip planning/execution/evaluation, accessories, marketing
