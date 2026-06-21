@@ -1,4 +1,9 @@
 # Changelog
+## v847.0 - Phase 502: Disporum, Dracocephalum & Drosera (2026-06-21)
+- **disporum_admin**: Disporum planning/execution/evaluation, accessories, marketing
+- **dracocephalum_admin**: Dracocephalum planning/execution/evaluation, accessories, marketing
+- **drosera_admin**: Drosera planning/execution/evaluation, accessories, marketing
+
 ## v846.0 - Phase 501: Corydalis, Cynara & Daphne (2026-06-21)
 - **corydalis_admin**: Corydalis planning/execution/evaluation, accessories, marketing
 - **cynara_admin**: Cynara planning/execution/evaluation, accessories, marketing
