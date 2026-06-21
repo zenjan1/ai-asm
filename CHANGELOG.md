@@ -1,4 +1,9 @@
 # Changelog
+## v755.0 - Phase 410: Sansevieria, Yucca & Dracaena (2026-06-21)
+- **sansevieria_admin**: Sansevieria planning/execution/evaluation, accessories, marketing
+- **yucca_admin**: Yucca planning/execution/evaluation, accessories, marketing
+- **dracaena_admin**: Dracaena planning/execution/evaluation, accessories, marketing
+
 ## v754.0 - Phase 409: Vinca, Catharantha & Agave (2026-06-21)
 - **vinca_admin**: Vinca planning/execution/evaluation, accessories, marketing
 - **catharantha_admin**: Catharantha planning/execution/evaluation, accessories, marketing
