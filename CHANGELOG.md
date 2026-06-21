@@ -1,4 +1,9 @@
 # Changelog
+## v758.0 - Phase 413: Geranium, Salvia & Laventa (2026-06-21)
+- **geranium_admin**: Geranium planning/execution/evaluation, accessories, marketing
+- **salvia_admin**: Salvia planning/execution/evaluation, accessories, marketing
+- **laventa_admin**: Laventa planning/execution/evaluation, accessories, marketing
+
 ## v757.0 - Phase 412: Gladiolus, Hyacinth & Narcissus (2026-06-21)
 - **gladiolus_admin**: Gladiolus planning/execution/evaluation, accessories, marketing
 - **hyacinth_admin**: Hyacinth planning/execution/evaluation, accessories, marketing
