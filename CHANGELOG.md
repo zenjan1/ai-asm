@@ -1,5 +1,10 @@
 # Changelog
 
+## v909.0 - Phase 564: Taxus, Thlaspi & Tolmiea (2026-06-22)
+- **taxus_admin**: Taxus planning/execution/evaluation, accessories, marketing
+- **thlaspi_admin**: Thlaspi planning/execution/evaluation, accessories, marketing
+- **tolmiea_admin**: Tolmiea planning/execution/evaluation, accessories, marketing
+
 ## v908.0 - Phase 563: Saccharum, Saussurea & Saxifraga (2026-06-22)
 - **saccharum_admin**: Saccharum planning/execution/evaluation, accessories, marketing
 - **saussurea_admin**: Saussurea planning/execution/evaluation, accessories, marketing
