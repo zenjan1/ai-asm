@@ -1,4 +1,9 @@
 # Changelog
+## v800.0 - Phase 455: Fraxinus, Galtonia & Genista (2026-06-21)
+- **fraxinus_admin**: Fraxinus planning/execution/evaluation, accessories, marketing
+- **galtonia_admin**: Galtonia planning/execution/evaluation, accessories, marketing
+- **genista_admin**: Genista planning/execution/evaluation, accessories, marketing
+
 ## v799.0 - Phase 454: Fatsia, Felicia & Fothergilla (2026-06-21)
 - **fatsia_admin**: Fatsia planning/execution/evaluation, accessories, marketing
 - **felicia_admin**: Felicia planning/execution/evaluation, accessories, marketing
