@@ -1,4 +1,9 @@
 # Changelog
+## v893.0 - Phase 548: Limnanthes, Lippia & Liquidambar (2026-06-22)
+- **limnanthes_admin**: Limnanthes planning/execution/evaluation, accessories, marketing
+- **lippia_admin**: Lippia planning/execution/evaluation, accessories, marketing
+- **liquidambar_admin**: Liquidambar planning/execution/evaluation, accessories, marketing
+
 ## v892.0 - Phase 547: Leonurus, Lepidium & Leveria (2026-06-22)
 - **leonurus_admin**: Leonurus planning/execution/evaluation, accessories, marketing
 - **lepidium_admin**: Lepidium planning/execution/evaluation, accessories, marketing
