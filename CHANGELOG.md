@@ -1,4 +1,9 @@
 # Changelog
+## v760.0 - Phase 415: Parsley, Cilantro & Dill (2026-06-21)
+- **parsley_admin**: Parsley planning/execution/evaluation, accessories, marketing
+- **cilantro_admin**: Cilantro planning/execution/evaluation, accessories, marketing
+- **dill_admin**: Dill planning/execution/evaluation, accessories, marketing
+
 ## v759.0 - Phase 414: Rosemary, Mint & Oregano (2026-06-21)
 - **rosemary_admin**: Rosemary planning/execution/evaluation, accessories, marketing
 - **mint_admin**: Mint planning/execution/evaluation, accessories, marketing
