@@ -1,4 +1,9 @@
 # Changelog
+## v829.0 - Phase 484: Sanguisorba, Schisandra & Solidago (2026-06-21)
+- **sanguisorba_admin**: Sanguisorba planning/execution/evaluation, accessories, marketing
+- **schisandra_admin**: Schisandra planning/execution/evaluation, accessories, marketing
+- **solidago_admin**: Solidago planning/execution/evaluation, accessories, marketing
+
 ## v828.0 - Phase 483: Salix, Sambucus & Saponaria (2026-06-21)
 - **salix_admin**: Salix planning/execution/evaluation, accessories, marketing
 - **sambucus_admin**: Sambucus planning/execution/evaluation, accessories, marketing
