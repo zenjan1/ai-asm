@@ -1,4 +1,9 @@
 # Changelog
+## v804.0 - Phase 459: Huttonia, Hyacinthoides & Impatiens (2026-06-21)
+- **huttonia_admin**: Huttonia planning/execution/evaluation, accessories, marketing
+- **hyacinthoides_admin**: Hyacinthoides planning/execution/evaluation, accessories, marketing
+- **impatiens_admin**: Impatiens planning/execution/evaluation, accessories, marketing
+
 ## v803.0 - Phase 458: Helleborus, Hieracium & Hosta (2026-06-21)
 - **helleborus_admin**: Helleborus planning/execution/evaluation, accessories, marketing
 - **hieracium_admin**: Hieracium planning/execution/evaluation, accessories, marketing
