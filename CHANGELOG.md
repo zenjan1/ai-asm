@@ -1,4 +1,8 @@
 # Changelog
+## v899.0 - Phase 554: Ochna, Oedera & Oemleria (2026-06-22)
+- **ochna_admin**: Ochna planning/execution/evaluation, accessories, marketing
+- **oedera_admin**: Oedera planning/execution/evaluation, accessories, marketing
+- **oemleria_admin**: Oemleria planning/execution/evaluation, accessories, marketing
 ## v898.0 - Phase 553: Nyctago, Nymphaea & Nyssa (2026-06-22)
 - **nyctago_admin**: Nyctago planning/execution/evaluation, accessories, marketing
 - **nymphaea_admin**: Nymphaea planning/execution/evaluation, accessories, marketing
