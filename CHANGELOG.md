@@ -1,4 +1,9 @@
 # Changelog
+## v782.0 - Phase 437: Scabiosa, Sedum & Sempervivum (2026-06-21)
+- **scabiosa_admin**: Scabiosa planning/execution/evaluation, accessories, marketing
+- **sedum_admin**: Sedum planning/execution/evaluation, accessories, marketing
+- **sempervivum_admin**: Sempervivum planning/execution/evaluation, accessories, marketing
+
 ## v781.0 - Phase 436: Linaria, Nemophila & Pelargonium (2026-06-21)
 - **linaria_admin**: Linaria planning/execution/evaluation, accessories, marketing
 - **nemophila_admin**: Nemophila planning/execution/evaluation, accessories, marketing
