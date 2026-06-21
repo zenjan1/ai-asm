@@ -1,4 +1,9 @@
 # Changelog
+## v761.0 - Phase 416: Chive, Fennel & Tarragon (2026-06-21)
+- **chive_admin**: Chive planning/execution/evaluation, accessories, marketing
+- **fennel_admin**: Fennel planning/execution/evaluation, accessories, marketing
+- **tarragon_admin**: Tarragon planning/execution/evaluation, accessories, marketing
+
 ## v760.0 - Phase 415: Parsley, Cilantro & Dill (2026-06-21)
 - **parsley_admin**: Parsley planning/execution/evaluation, accessories, marketing
 - **cilantro_admin**: Cilantro planning/execution/evaluation, accessories, marketing
