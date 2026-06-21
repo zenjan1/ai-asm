@@ -1,4 +1,9 @@
 # Changelog
+## v769.0 - Phase 424: Wormwood, Tansy & Hyssop (2026-06-21)
+- **wormwood_admin**: Wormwood planning/execution/evaluation, accessories, marketing
+- **tansy_admin**: Tansy planning/execution/evaluation, accessories, marketing
+- **hyssop_admin**: Hyssop planning/execution/evaluation, accessories, marketing
+
 ## v768.0 - Phase 423: Anise, Fenugreek & Safflower (2026-06-21)
 - **anise_admin**: Anise planning/execution/evaluation, accessories, marketing
 - **fenugreek_admin**: Fenugreek planning/execution/evaluation, accessories, marketing
