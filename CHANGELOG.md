@@ -1,4 +1,9 @@
 # Changelog
+## v870.0 - Phase 525: Cineraria, Cobaea & Cocculus (2026-06-21)
+- **cineraria_admin**: Cineraria planning/execution/evaluation, accessories, marketing
+- **cobaea_admin**: Cobaea planning/execution/evaluation, accessories, marketing
+- **cocculus_admin**: Cocculus planning/execution/evaluation, accessories, marketing
+
 ## v869.0 - Phase 524: Cassia, Chionodoxa & Choysia (2026-06-21)
 - **cassia_admin**: Cassia planning/execution/evaluation, accessories, marketing
 - **chionodoxa_admin**: Chionodoxa planning/execution/evaluation, accessories, marketing
