@@ -1,4 +1,9 @@
 # Changelog
+## v779.0 - Phase 434: Watercress, Winter Savory & Scorzonera (2026-06-21)
+- **watercress_admin**: Watercress planning/execution/evaluation, accessories, marketing
+- **winter_savory_admin**: Winter savory planning/execution/evaluation, accessories, marketing
+- **scorzonera_admin**: Scorzonera planning/execution/evaluation, accessories, marketing
+
 ## v778.0 - Phase 433: Feverfew, Cowslip & Groundivy (2026-06-21)
 - **feverfew_admin**: Feverfew planning/execution/evaluation, accessories, marketing
 - **cowslip_admin**: Cowslip planning/execution/evaluation, accessories, marketing
