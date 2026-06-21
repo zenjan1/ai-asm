@@ -1,4 +1,9 @@
 # Changelog
+## v759.0 - Phase 414: Rosemary, Mint & Oregano (2026-06-21)
+- **rosemary_admin**: Rosemary planning/execution/evaluation, accessories, marketing
+- **mint_admin**: Mint planning/execution/evaluation, accessories, marketing
+- **oregano_admin**: Oregano planning/execution/evaluation, accessories, marketing
+
 ## v758.0 - Phase 413: Geranium, Salvia & Laventa (2026-06-21)
 - **geranium_admin**: Geranium planning/execution/evaluation, accessories, marketing
 - **salvia_admin**: Salvia planning/execution/evaluation, accessories, marketing
