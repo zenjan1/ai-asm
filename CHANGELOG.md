@@ -1,4 +1,9 @@
 # Changelog
+## v796.0 - Phase 451: Cleome, Coleus & Echium (2026-06-21)
+- **cleome_admin**: Cleome planning/execution/evaluation, accessories, marketing
+- **coleus_admin**: Coleus planning/execution/evaluation, accessories, marketing
+- **echium_admin**: Echium planning/execution/evaluation, accessories, marketing
+
 ## v795.0 - Phase 450: Aspidistra, Brunfelsia & Calceolaria (2026-06-21)
 - **aspidistra_admin**: Aspidistra planning/execution/evaluation, accessories, marketing
 - **brunfelsia_admin**: Brunfelsia planning/execution/evaluation, accessories, marketing
