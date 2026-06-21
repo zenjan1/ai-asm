@@ -1,5 +1,10 @@
 # Changelog
 
+## v739.0 - Phase 394: Oleander, Fuchsia & Verbena (2026-06-21)
+- **oleander_admin**: Oleander planning/execution/evaluation, accessories, marketing
+- **fuchsia_admin**: Fuchsia planning/execution/evaluation, accessories, marketing
+- **verbena_admin**: Verbena planning/execution/evaluation, accessories, marketing
+
 ## v738.0 - Phase 393: Snowdrop, Periwinkle & Crocus (2026-06-21)
 - **snowdrop_admin**: Snowdrop planning/execution/evaluation, accessories, marketing
 - **periwinkle_admin**: Periwinkle planning/execution/evaluation, accessories, marketing
