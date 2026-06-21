@@ -1,5 +1,10 @@
 # Changelog
 
+## v743.0 - Phase 398: Hoya, Streptocarpus & Aeschynanthus (2026-06-21)
+- **hoya_admin**: Hoya planning/execution/evaluation, accessories, marketing
+- **streptocarpus_admin**: Streptocarpus planning/execution/evaluation, accessories, marketing
+- **aeschynanthus_admin**: Aeschynanthus planning/execution/evaluation, accessories, marketing
+
 ## v742.0 - Phase 397: Achimenes, Browallia & Calistege (2026-06-21)
 - **achimenes_admin**: Achimenes planning/execution/evaluation, accessories, marketing
 - **browallia_admin**: Browallia planning/execution/evaluation, accessories, marketing
