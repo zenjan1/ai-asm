@@ -1,4 +1,9 @@
 # Changelog
+## v768.0 - Phase 423: Anise, Fenugreek & Safflower (2026-06-21)
+- **anise_admin**: Anise planning/execution/evaluation, accessories, marketing
+- **fenugreek_admin**: Fenugreek planning/execution/evaluation, accessories, marketing
+- **safflower_admin**: Safflower planning/execution/evaluation, accessories, marketing
+
 ## v767.0 - Phase 422: Turmeric, Caraway & Mace (2026-06-21)
 - **turmeric_admin**: Turmeric planning/execution/evaluation, accessories, marketing
 - **caraway_admin**: Caraway planning/execution/evaluation, accessories, marketing
