@@ -1,4 +1,9 @@
 # Changelog
+## v797.0 - Phase 452: Diascia, Digitalis & Epimedium (2026-06-21)
+- **diascia_admin**: Diascia planning/execution/evaluation, accessories, marketing
+- **digitalis_admin**: Digitalis planning/execution/evaluation, accessories, marketing
+- **epimedium_admin**: Epimedium planning/execution/evaluation, accessories, marketing
+
 ## v796.0 - Phase 451: Cleome, Coleus & Echium (2026-06-21)
 - **cleome_admin**: Cleome planning/execution/evaluation, accessories, marketing
 - **coleus_admin**: Coleus planning/execution/evaluation, accessories, marketing
