@@ -1,4 +1,9 @@
 # Changelog
+## v886.0 - Phase 541: Justica, Kadsura & Kaempferia (2026-06-22)
+- **justica_admin**: Justica planning/execution/evaluation, accessories, marketing
+- **kadsura_admin**: Kadsura planning/execution/evaluation, accessories, marketing
+- **kaempferia_admin**: Kaempferia planning/execution/evaluation, accessories, marketing
+
 ## v885.0 - Phase 540: Jensenia, Jubea & Juglans (2026-06-22)
 - **jensenia_admin**: Jensenia planning/execution/evaluation, accessories, marketing
 - **jubea_admin**: Jubea planning/execution/evaluation, accessories, marketing
