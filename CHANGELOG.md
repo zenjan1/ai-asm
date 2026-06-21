@@ -1,4 +1,9 @@
 # Changelog
+## v812.0 - Phase 467: Callistemon, Celosia & Ceratostigma (2026-06-21)
+- **callistemon_admin**: Callistemon planning/execution/evaluation, accessories, marketing
+- **celosia_admin**: Celosia planning/execution/evaluation, accessories, marketing
+- **ceratostigma_admin**: Ceratostigma planning/execution/evaluation, accessories, marketing
+
 ## v811.0 - Phase 466: Viburnum, Amaranthus & Baileyia (2026-06-21)
 - **viburnum_admin**: Viburnum planning/execution/evaluation, accessories, marketing
 - **amaranthus_admin**: Amaranthus planning/execution/evaluation, accessories, marketing
