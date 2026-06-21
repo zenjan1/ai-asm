@@ -1,4 +1,8 @@
 # Changelog
+## v903.0 - Phase 558: Pieris, Pistacia & Poncirus (2026-06-22)
+- **pieris_admin**: Pieris planning/execution/evaluation, accessories, marketing
+- **pistacia_admin**: Pistacia planning/execution/evaluation, accessories, marketing
+- **poncirus_admin**: Poncirus planning/execution/evaluation, accessories, marketing
 ## v902.0 - Phase 557: Paeonia, Phegopteris & Phormium (2026-06-22)
 - **paeonia_admin**: Paeonia planning/execution/evaluation, accessories, marketing
 - **phegopteris_admin**: Phegopteris planning/execution/evaluation, accessories, marketing
