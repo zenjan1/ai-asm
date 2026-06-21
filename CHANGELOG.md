@@ -1,4 +1,9 @@
 # Changelog
+## v815.0 - Phase 470: Echinops, Euonymus & Edelweiss (2026-06-21)
+- **echinops_admin**: Echinops planning/execution/evaluation, accessories, marketing
+- **euonymus_admin**: Euonymus planning/execution/evaluation, accessories, marketing
+- **edelweiss_admin**: Edelweiss planning/execution/evaluation, accessories, marketing
+
 ## v814.0 - Phase 469: Datura, Dicentra & Dipsacus (2026-06-21)
 - **datura_admin**: Datura planning/execution/evaluation, accessories, marketing
 - **dicentra_admin**: Dicentra planning/execution/evaluation, accessories, marketing
