@@ -1,4 +1,9 @@
 # Changelog
+## v880.0 - Phase 535: Guarea, Guzmania & Gynerium (2026-06-22)
+- **guarea_admin**: Guarea planning/execution/evaluation, accessories, marketing
+- **guzmania_admin**: Guzmania planning/execution/evaluation, accessories, marketing
+- **gynerium_admin**: Gynerium planning/execution/evaluation, accessories, marketing
+
 ## v879.0 - Phase 534: Gossypium, Goupia & Gorteria (2026-06-22)
 - **gossypium_admin**: Gossypium planning/execution/evaluation, accessories, marketing
 - **goupia_admin**: Goupia planning/execution/evaluation, accessories, marketing
