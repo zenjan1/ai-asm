@@ -1,4 +1,9 @@
 # Changelog
+## v878.0 - Phase 533: Gaillardia, Gilia & Ginkgo (2026-06-22)
+- **gaillardia_admin**: Gaillardia planning/execution/evaluation, accessories, marketing
+- **gilia_admin**: Gilia planning/execution/evaluation, accessories, marketing
+- **ginkgo_admin**: Ginkgo planning/execution/evaluation, accessories, marketing
+
 ## v877.0 - Phase 532: Ficus, Fagus & Foeniculum (2026-06-22)
 - **ficus_admin**: Ficus planning/execution/evaluation, accessories, marketing
 - **fagus_admin**: Fagus planning/execution/evaluation, accessories, marketing
