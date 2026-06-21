@@ -1,4 +1,9 @@
 # Changelog
+## v875.0 - Phase 530: Fragaria, Furcraea & Fontanesia (2026-06-22)
+- **fragaria_admin**: Fragaria planning/execution/evaluation, accessories, marketing
+- **furcraea_admin**: Furcraea planning/execution/evaluation, accessories, marketing
+- **fontanesia_admin**: Fontanesia planning/execution/evaluation, accessories, marketing
+
 ## v874.0 - Phase 529: Euphorbia, Fabiana & Ferocactus (2026-06-22)
 - **euphorbia_admin**: Euphorbia planning/execution/evaluation, accessories, marketing
 - **fabiana_admin**: Fabiana planning/execution/evaluation, accessories, marketing
