@@ -1,4 +1,9 @@
 # Changelog
+## v888.0 - Phase 543: Lachenalia, Laggera & Laelia (2026-06-22)
+- **lachenalia_admin**: Lachenalia planning/execution/evaluation, accessories, marketing
+- **laggera_admin**: Laggera planning/execution/evaluation, accessories, marketing
+- **laelia_admin**: Laelia planning/execution/evaluation, accessories, marketing
+
 ## v887.0 - Phase 542: Krameria, Kolkwitzia & Kuenowia (2026-06-22)
 - **krameria_admin**: Krameria planning/execution/evaluation, accessories, marketing
 - **kolkwitzia_admin**: Kolkwitzia planning/execution/evaluation, accessories, marketing
