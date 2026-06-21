@@ -1,4 +1,9 @@
 # Changelog
+## v887.0 - Phase 542: Krameria, Kolkwitzia & Kuenowia (2026-06-22)
+- **krameria_admin**: Krameria planning/execution/evaluation, accessories, marketing
+- **kolkwitzia_admin**: Kolkwitzia planning/execution/evaluation, accessories, marketing
+- **kuenowia_admin**: Kuenowia planning/execution/evaluation, accessories, marketing
+
 ## v886.0 - Phase 541: Justica, Kadsura & Kaempferia (2026-06-22)
 - **justica_admin**: Justica planning/execution/evaluation, accessories, marketing
 - **kadsura_admin**: Kadsura planning/execution/evaluation, accessories, marketing
