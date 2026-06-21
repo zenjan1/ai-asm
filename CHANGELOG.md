@@ -1,4 +1,9 @@
 # Changelog
+## v777.0 - Phase 432: Motherwort, Wildcarrot & Meadowsweet (2026-06-21)
+- **motherwort_admin**: Motherwort planning/execution/evaluation, accessories, marketing
+- **wildcarrot_admin**: Wildcarrot planning/execution/evaluation, accessories, marketing
+- **meadowsweet_admin**: Meadowsweet planning/execution/evaluation, accessories, marketing
+
 ## v776.0 - Phase 431: Borage, Horehound & Bistort (2026-06-21)
 - **borage_admin**: Borage planning/execution/evaluation, accessories, marketing
 - **horehound_admin**: Horehound planning/execution/evaluation, accessories, marketing
