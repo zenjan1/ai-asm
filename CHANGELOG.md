@@ -1,4 +1,9 @@
 # Changelog
+## v840.0 - Phase 495: Anchusa, Androsace & Argemone (2026-06-21)
+- **anchusa_admin**: Anchusa planning/execution/evaluation, accessories, marketing
+- **androsace_admin**: Androsace planning/execution/evaluation, accessories, marketing
+- **argemone_admin**: Argemone planning/execution/evaluation, accessories, marketing
+
 ## v839.0 - Phase 494: Alcea, Althaea & Alyssum (2026-06-21)
 - **alcea_admin**: Alcea planning/execution/evaluation, accessories, marketing
 - **althaea_admin**: Althaea planning/execution/evaluation, accessories, marketing
