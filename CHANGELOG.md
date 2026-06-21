@@ -1,4 +1,9 @@
 # Changelog
+## v762.0 - Phase 417: Marjoram, Savory & Balm (2026-06-21)
+- **marjoram_admin**: Marjoram planning/execution/evaluation, accessories, marketing
+- **savory_admin**: Savory planning/execution/evaluation, accessories, marketing
+- **balm_admin**: Balm planning/execution/evaluation, accessories, marketing
+
 ## v761.0 - Phase 416: Chive, Fennel & Tarragon (2026-06-21)
 - **chive_admin**: Chive planning/execution/evaluation, accessories, marketing
 - **fennel_admin**: Fennel planning/execution/evaluation, accessories, marketing
