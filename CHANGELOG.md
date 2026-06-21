@@ -1,4 +1,9 @@
 # Changelog
+## v767.0 - Phase 422: Turmeric, Caraway & Mace (2026-06-21)
+- **turmeric_admin**: Turmeric planning/execution/evaluation, accessories, marketing
+- **caraway_admin**: Caraway planning/execution/evaluation, accessories, marketing
+- **mace_admin**: Mace planning/execution/evaluation, accessories, marketing
+
 ## v766.0 - Phase 421: Paprika, Cardamom & Allspice (2026-06-21)
 - **paprika_admin**: Paprika planning/execution/evaluation, accessories, marketing
 - **cardamom_admin**: Cardamom planning/execution/evaluation, accessories, marketing
