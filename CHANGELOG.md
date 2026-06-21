@@ -1,4 +1,9 @@
 # Changelog
+## v849.0 - Phase 504: Eucalyptus, Filipendula & Fumitory (2026-06-21)
+- **eucalyptus_admin**: Eucalyptus planning/execution/evaluation, accessories, marketing
+- **filipendula_admin**: Filipendula planning/execution/evaluation, accessories, marketing
+- **fumitory_admin**: Fumitory planning/execution/evaluation, accessories, marketing
+
 ## v848.0 - Phase 503: Eclipta, Elsholtzia & Epigaea (2026-06-21)
 - **eclipta_admin**: Eclipta planning/execution/evaluation, accessories, marketing
 - **elsholtzia_admin**: Elsholtzia planning/execution/evaluation, accessories, marketing
