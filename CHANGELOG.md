@@ -1,4 +1,9 @@
 # Changelog
+## v867.0 - Phase 522: Astilbe, Auricula & Baptisia (2026-06-21)
+- **astilbe_admin**: Astilbe planning/execution/evaluation, accessories, marketing
+- **auricula_admin**: Auricula planning/execution/evaluation, accessories, marketing
+- **baptisia_admin**: Baptisia planning/execution/evaluation, accessories, marketing
+
 ## v866.0 - Phase 521: Arum, Asclepias & Asparagus (2026-06-21)
 - **arum_admin**: Arum planning/execution/evaluation, accessories, marketing
 - **asclepias_admin**: Asclepias planning/execution/evaluation, accessories, marketing
