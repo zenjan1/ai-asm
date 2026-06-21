@@ -1,4 +1,9 @@
 # Changelog
+## v785.0 - Phase 440: Lycopersicon, Malva & Veronica (2026-06-21)
+- **lycopersicon_admin**: Lycopersicon planning/execution/evaluation, accessories, marketing
+- **malva_admin**: Malva planning/execution/evaluation, accessories, marketing
+- **veronica_admin**: Veronica planning/execution/evaluation, accessories, marketing
+
 ## v784.0 - Phase 439: Coreopsis, Gaura & Heuchera (2026-06-21)
 - **coreopsis_admin**: Coreopsis planning/execution/evaluation, accessories, marketing
 - **gaura_admin**: Gaura planning/execution/evaluation, accessories, marketing
