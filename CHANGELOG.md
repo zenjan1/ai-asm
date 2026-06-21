@@ -1,4 +1,9 @@
 # Changelog
+## v890.0 - Phase 545: Lauranthena, Lavandula & Lawsonia (2026-06-22)
+- **lauranthena_admin**: Lauranthena planning/execution/evaluation, accessories, marketing
+- **lavandula_admin**: Lavandula planning/execution/evaluation, accessories, marketing
+- **lawsonia_admin**: Lawsonia planning/execution/evaluation, accessories, marketing
+
 ## v889.0 - Phase 544: Lamarckia, Lapageria & Larix (2026-06-22)
 - **lamarckia_admin**: Lamarckia planning/execution/evaluation, accessories, marketing
 - **lapageria_admin**: Lapageria planning/execution/evaluation, accessories, marketing
