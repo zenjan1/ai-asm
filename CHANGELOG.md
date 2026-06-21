@@ -1,4 +1,8 @@
 # Changelog
+## v901.0 - Phase 556: Origanum, Orostachys & Othonna (2026-06-22)
+- **origanum_admin**: Origanum planning/execution/evaluation, accessories, marketing
+- **orostachys_admin**: Orostachys planning/execution/evaluation, accessories, marketing
+- **othonna_admin**: Othonna planning/execution/evaluation, accessories, marketing
 ## v900.0 - Phase 555: Onoclea, Ophiopogon & Opopanax (2026-06-22)
 - **onoclea_admin**: Onoclea planning/execution/evaluation, accessories, marketing
 - **ophiopogon_admin**: Ophiopogon planning/execution/evaluation, accessories, marketing
