@@ -1,4 +1,9 @@
 # Changelog
+## v883.0 - Phase 538: Hyoscyamus, Ipomoea & Isoetes (2026-06-22)
+- **hyoscyamus_admin**: Hyoscyamus planning/execution/evaluation, accessories, marketing
+- **ipomoea_admin**: Ipomoea planning/execution/evaluation, accessories, marketing
+- **isoetes_admin**: Isoetes planning/execution/evaluation, accessories, marketing
+
 ## v882.0 - Phase 537: Hyacinthus, Hypericum & Hymenocallis (2026-06-22)
 - **hyacinthus_admin**: Hyacinthus planning/execution/evaluation, accessories, marketing
 - **hypericum_admin**: Hypericum planning/execution/evaluation, accessories, marketing
