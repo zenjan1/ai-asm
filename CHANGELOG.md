@@ -1,4 +1,9 @@
 # Changelog
+## v841.0 - Phase 496: Artemisia, Asclepias & Bellis (2026-06-21)
+- **artemisia_admin**: Artemisia planning/execution/evaluation, accessories, marketing
+- **asclepias_admin**: Asclepias planning/execution/evaluation, accessories, marketing
+- **bellis_admin**: Bellis planning/execution/evaluation, accessories, marketing
+
 ## v840.0 - Phase 495: Anchusa, Androsace & Argemone (2026-06-21)
 - **anchusa_admin**: Anchusa planning/execution/evaluation, accessories, marketing
 - **androsace_admin**: Androsace planning/execution/evaluation, accessories, marketing
