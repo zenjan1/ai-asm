@@ -1,4 +1,9 @@
 # Changelog
+## v876.0 - Phase 531: Flueggea, Fouquieria & Festuca (2026-06-22)
+- **flueggea_admin**: Flueggea planning/execution/evaluation, accessories, marketing
+- **fouquieria_admin**: Fouquieria planning/execution/evaluation, accessories, marketing
+- **festuca_admin**: Festuca planning/execution/evaluation, accessories, marketing
+
 ## v875.0 - Phase 530: Fragaria, Furcraea & Fontanesia (2026-06-22)
 - **fragaria_admin**: Fragaria planning/execution/evaluation, accessories, marketing
 - **furcraea_admin**: Furcraea planning/execution/evaluation, accessories, marketing
