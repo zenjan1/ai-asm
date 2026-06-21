@@ -1,4 +1,9 @@
 # Changelog
+## v770.0 - Phase 425: Lovage, Sorrel & Chervil (2026-06-21)
+- **lovage_admin**: Lovage planning/execution/evaluation, accessories, marketing
+- **sorrel_admin**: Sorrel planning/execution/evaluation, accessories, marketing
+- **chervil_admin**: Chervil planning/execution/evaluation, accessories, marketing
+
 ## v769.0 - Phase 424: Wormwood, Tansy & Hyssop (2026-06-21)
 - **wormwood_admin**: Wormwood planning/execution/evaluation, accessories, marketing
 - **tansy_admin**: Tansy planning/execution/evaluation, accessories, marketing
