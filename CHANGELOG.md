@@ -1,4 +1,9 @@
 # Changelog
+## v806.0 - Phase 461: Nemesia, Osteospermum & Pendulina (2026-06-21)
+- **nemesia_admin**: Nemesia planning/execution/evaluation, accessories, marketing
+- **osteospermum_admin**: Osteospermum planning/execution/evaluation, accessories, marketing
+- **pendulina_admin**: Pendulina planning/execution/evaluation, accessories, marketing
+
 ## v805.0 - Phase 460: Lewisia, Lysimachia & Magnolia (2026-06-21)
 - **lewisia_admin**: Lewisia planning/execution/evaluation, accessories, marketing
 - **lysimachia_admin**: Lysimachia planning/execution/evaluation, accessories, marketing
