@@ -1,4 +1,9 @@
 # Changelog
+## v834.0 - Phase 489: Viola, Wahlenbergia & Wallflower (2026-06-21)
+- **viola_admin**: Viola planning/execution/evaluation, accessories, marketing
+- **wahlenbergia_admin**: Wahlenbergia planning/execution/evaluation, accessories, marketing
+- **wallflower_admin**: Wallflower planning/execution/evaluation, accessories, marketing
+
 ## v833.0 - Phase 488: Vaccaria, Valeriana & Verbascum (2026-06-21)
 - **vaccaria_admin**: Vaccaria planning/execution/evaluation, accessories, marketing
 - **valeriana_admin**: Valeriana planning/execution/evaluation, accessories, marketing
