@@ -1,4 +1,9 @@
 # Changelog
+## v861.0 - Phase 516: Xylosma, Yellowwood & Wormwood (2026-06-21)
+- **xylosma_admin**: Xylosma planning/execution/evaluation, accessories, marketing
+- **yellowwood_admin**: Yellowwood planning/execution/evaluation, accessories, marketing
+- **wormwood_admin**: Wormwood planning/execution/evaluation, accessories, marketing
+
 ## v860.0 - Phase 515: Urtica, Uvularia & Vanilla (2026-06-21)
 - **urtica_admin**: Urtica planning/execution/evaluation, accessories, marketing
 - **uvularia_admin**: Uvularia planning/execution/evaluation, accessories, marketing
