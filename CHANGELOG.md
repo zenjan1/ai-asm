@@ -1,4 +1,9 @@
 # Changelog
+## v833.0 - Phase 488: Vaccaria, Valeriana & Verbascum (2026-06-21)
+- **vaccaria_admin**: Vaccaria planning/execution/evaluation, accessories, marketing
+- **valeriana_admin**: Valeriana planning/execution/evaluation, accessories, marketing
+- **verbascum_admin**: Verbascum planning/execution/evaluation, accessories, marketing
+
 ## v832.0 - Phase 487: Ulmaria, Urticaria & Uvularia (2026-06-21)
 - **ulmaria_admin**: Ulmaria planning/execution/evaluation, accessories, marketing
 - **urticaria_admin**: Urticaria planning/execution/evaluation, accessories, marketing
