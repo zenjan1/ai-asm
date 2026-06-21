@@ -1,4 +1,9 @@
 # Changelog
+## v810.0 - Phase 465: Thunbergia, Tibouchina & Tropaeolum (2026-06-21)
+- **thunbergia_admin**: Thunbergia planning/execution/evaluation, accessories, marketing
+- **tibouchina_admin**: Tibouchina planning/execution/evaluation, accessories, marketing
+- **tropaeolum_admin**: Tropaeolum planning/execution/evaluation, accessories, marketing
+
 ## v809.0 - Phase 464: Solenostemon, Spathiphyllum & Strelitzia (2026-06-21)
 - **solenostemon_admin**: Solenostemon planning/execution/evaluation, accessories, marketing
 - **spathiphyllum_admin**: Spathiphyllum planning/execution/evaluation, accessories, marketing
