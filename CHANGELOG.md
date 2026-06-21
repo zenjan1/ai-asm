@@ -1,4 +1,9 @@
 # Changelog
+## v898.0 - Phase 553: Nyctago, Nymphaea & Nyssa (2026-06-22)
+- **nyctago_admin**: Nyctago planning/execution/evaluation, accessories, marketing
+- **nymphaea_admin**: Nymphaea planning/execution/evaluation, accessories, marketing
+- **nyssa_admin**: Nyssa planning/execution/evaluation, accessories, marketing
+
 ## v897.0 - Phase 552: Nolana, Nuphar & Nuxia (2026-06-22)
 - **nolana_admin**: Nolana planning/execution/evaluation, accessories, marketing
 - **nuphar_admin**: Nuphar planning/execution/evaluation, accessories, marketing
