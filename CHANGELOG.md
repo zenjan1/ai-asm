@@ -1,4 +1,9 @@
 # Changelog
+## v895.0 - Phase 550: Ludisia, Luehea & Lunaria (2026-06-22)
+- **ludisia_admin**: Ludisia planning/execution/evaluation, accessories, marketing
+- **luehea_admin**: Luehea planning/execution/evaluation, accessories, marketing
+- **lunaria_admin**: Lunaria planning/execution/evaluation, accessories, marketing
+
 ## v894.0 - Phase 549: Liriope, Lisianthus & Luculia (2026-06-22)
 - **liriope_admin**: Liriope planning/execution/evaluation, accessories, marketing
 - **lisianthus_admin**: Lisianthus planning/execution/evaluation, accessories, marketing
