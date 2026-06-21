@@ -1,4 +1,9 @@
 # Changelog
+## v853.0 - Phase 508: Laburnum, Lathyrus & Lobelia (2026-06-21)
+- **laburnum_admin**: Laburnum planning/execution/evaluation, accessories, marketing
+- **lathyrus_admin**: Lathyrus planning/execution/evaluation, accessories, marketing
+- **lobelia_admin**: Lobelia planning/execution/evaluation, accessories, marketing
+
 ## v852.0 - Phase 507: Kniphofia, Kochia & Kohleria (2026-06-21)
 - **kniphofia_admin**: Kniphofia planning/execution/evaluation, accessories, marketing
 - **kochia_admin**: Kochia planning/execution/evaluation, accessories, marketing
