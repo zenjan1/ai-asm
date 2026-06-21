@@ -1,4 +1,9 @@
 # Changelog
+## v845.0 - Phase 500: Clarkia, Commelina & Convolvulus (2026-06-21)
+- **clarkia_admin**: Clarkia planning/execution/evaluation, accessories, marketing
+- **commelina_admin**: Commelina planning/execution/evaluation, accessories, marketing
+- **convolvulus_admin**: Convolvulus planning/execution/evaluation, accessories, marketing
+
 ## v844.0 - Phase 499: Chaenomeles, Chelone & Cimicifuga (2026-06-21)
 - **chaenomeles_admin**: Chaenomeles planning/execution/evaluation, accessories, marketing
 - **chelone_admin**: Chelone planning/execution/evaluation, accessories, marketing
