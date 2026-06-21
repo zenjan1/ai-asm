@@ -1,4 +1,9 @@
 # Changelog
+## v793.0 - Phase 448: Xanthosia, Xeranthemum & Zantedeschia (2026-06-21)
+- **xanthosia_admin**: Xanthosia planning/execution/evaluation, accessories, marketing
+- **xeranthemum_admin**: Xeranthemum planning/execution/evaluation, accessories, marketing
+- **zantedeschia_admin**: Zantedeschia planning/execution/evaluation, accessories, marketing
+
 ## v792.0 - Phase 447: Urtica, Vitex & Woodfordia (2026-06-21)
 - **urtica_admin**: Urtica planning/execution/evaluation, accessories, marketing
 - **vitex_admin**: Vitex planning/execution/evaluation, accessories, marketing
