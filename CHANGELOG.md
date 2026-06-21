@@ -1,5 +1,10 @@
 # Changelog
 
+## v744.0 - Phase 399: Dipcadi, Ornithogalum & Fritillaria (2026-06-21)
+- **dipcadi_admin**: Dipcadi planning/execution/evaluation, accessories, marketing
+- **ornithogalum_admin**: Ornithogalum planning/execution/evaluation, accessories, marketing
+- **fritillaria_admin**: Fritillaria planning/execution/evaluation, accessories, marketing
+
 ## v743.0 - Phase 398: Hoya, Streptocarpus & Aeschynanthus (2026-06-21)
 - **hoya_admin**: Hoya planning/execution/evaluation, accessories, marketing
 - **streptocarpus_admin**: Streptocarpus planning/execution/evaluation, accessories, marketing
