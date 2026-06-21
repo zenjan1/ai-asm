@@ -1,4 +1,9 @@
 # Changelog
+## v751.0 - Phase 406: Adenium, Pachypodium & Allamanda (2026-06-21)
+- **adenium_admin**: Adenium planning/execution/evaluation, accessories, marketing
+- **pachypodium_admin**: Pachypodium planning/execution/evaluation, accessories, marketing
+- **allamanda_admin**: Allamanda planning/execution/evaluation, accessories, marketing
+
 
 ## v750.0 - Phase 405: Boophone, Clivia & Haemanthus (2026-06-21)
 - **boophone_admin**: Boophone planning/execution/evaluation, accessories, marketing
