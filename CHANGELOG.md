@@ -1,4 +1,9 @@
 # Changelog
+## v877.0 - Phase 532: Ficus, Fagus & Foeniculum (2026-06-22)
+- **ficus_admin**: Ficus planning/execution/evaluation, accessories, marketing
+- **fagus_admin**: Fagus planning/execution/evaluation, accessories, marketing
+- **foeniculum_admin**: Foeniculum planning/execution/evaluation, accessories, marketing
+
 ## v876.0 - Phase 531: Flueggea, Fouquieria & Festuca (2026-06-22)
 - **flueggea_admin**: Flueggea planning/execution/evaluation, accessories, marketing
 - **fouquieria_admin**: Fouquieria planning/execution/evaluation, accessories, marketing
