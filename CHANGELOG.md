@@ -1,4 +1,9 @@
 # Changelog
+## v858.0 - Phase 513: Stachys, Stokesia & Thalictrum (2026-06-21)
+- **stachys_admin**: Stachys planning/execution/evaluation, accessories, marketing
+- **stokesia_admin**: Stokesia planning/execution/evaluation, accessories, marketing
+- **thalictrum_admin**: Thalictrum planning/execution/evaluation, accessories, marketing
+
 ## v857.0 - Phase 512: Pulmonaria, Tiarella & Trillium (2026-06-21)
 - **pulmonaria_admin**: Pulmonaria planning/execution/evaluation, accessories, marketing
 - **tiarella_admin**: Tiarella planning/execution/evaluation, accessories, marketing
