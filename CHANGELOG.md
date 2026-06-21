@@ -1,4 +1,9 @@
 # Changelog
+## v821.0 - Phase 476: Melianthus, Michelia & Mimulus (2026-06-21)
+- **melianthus_admin**: Melianthus planning/execution/evaluation, accessories, marketing
+- **michelia_admin**: Michelia planning/execution/evaluation, accessories, marketing
+- **mimulus_admin**: Mimulus planning/execution/evaluation, accessories, marketing
+
 ## v820.0 - Phase 475: Mahonia, Meconopsis & Macleania (2026-06-21)
 - **mahonia_admin**: Mahonia planning/execution/evaluation, accessories, marketing
 - **meconopsis_admin**: Meconopsis planning/execution/evaluation, accessories, marketing
