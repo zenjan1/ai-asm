@@ -1,4 +1,9 @@
 # Changelog
+## v826.0 - Phase 481: Quassia, Quercus & Quillaja (2026-06-21)
+- **quassia_admin**: Quassia planning/execution/evaluation, accessories, marketing
+- **quercus_admin**: Quercus planning/execution/evaluation, accessories, marketing
+- **quillaja_admin**: Quillaja planning/execution/evaluation, accessories, marketing
+
 ## v825.0 - Phase 480: Panicum, Parrotia & Paulownia (2026-06-21)
 - **panicum_admin**: Panicum planning/execution/evaluation, accessories, marketing
 - **parrotia_admin**: Parrotia planning/execution/evaluation, accessories, marketing
