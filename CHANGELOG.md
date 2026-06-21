@@ -1,4 +1,9 @@
 # Changelog
+## v855.0 - Phase 510: Mentha, Monarda & Muscari (2026-06-21)
+- **mentha_admin**: Mentha planning/execution/evaluation, accessories, marketing
+- **monarda_admin**: Monarda planning/execution/evaluation, accessories, marketing
+- **muscari_admin**: Muscari planning/execution/evaluation, accessories, marketing
+
 ## v854.0 - Phase 509: Lonicera, Lychnis & Lythrum (2026-06-21)
 - **lonicera_admin**: Lonicera planning/execution/evaluation, accessories, marketing
 - **lychnis_admin**: Lychnis planning/execution/evaluation, accessories, marketing
