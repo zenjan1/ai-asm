@@ -1,5 +1,10 @@
 # Changelog
 
+## v749.0 - Phase 404: Agapanthus, Dietes & Ismene (2026-06-21)
+- **agapanthus_admin**: Agapanthus planning/execution/evaluation, accessories, marketing
+- **dietes_admin**: Dietes planning/execution/evaluation, accessories, marketing
+- **ismene_admin**: Ismene planning/execution/evaluation, accessories, marketing
+
 ## v748.0 - Phase 403: Crinum, Nerine & Alstroemeria (2026-06-21)
 - **crinum_admin**: Crinum planning/execution/evaluation, accessories, marketing
 - **nerine_admin**: Nerine planning/execution/evaluation, accessories, marketing
