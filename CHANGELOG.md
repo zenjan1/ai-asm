@@ -1,4 +1,9 @@
 # Changelog
+## v808.0 - Phase 463: Pyracantha, Rhodochiton & Schizanthus (2026-06-21)
+- **pyracantha_admin**: Pyracantha planning/execution/evaluation, accessories, marketing
+- **rhodochiton_admin**: Rhodochiton planning/execution/evaluation, accessories, marketing
+- **schizanthus_admin**: Schizanthus planning/execution/evaluation, accessories, marketing
+
 ## v807.0 - Phase 462: Phlox, Plumbago & Primula (2026-06-21)
 - **phlox_admin**: Phlox planning/execution/evaluation, accessories, marketing
 - **plumbago_admin**: Plumbago planning/execution/evaluation, accessories, marketing
