@@ -1,5 +1,10 @@
 # Changelog
 
+## v741.0 - Phase 396: Lantana, Torenia & Portulaca (2026-06-21)
+- **lantana_admin**: Lantana planning/execution/evaluation, accessories, marketing
+- **torenia_admin**: Torenia planning/execution/evaluation, accessories, marketing
+- **portulaca_admin**: Portulaca planning/execution/evaluation, accessories, marketing
+
 ## v740.0 - Phase 395: Ageratum, Gomphrena & Nigella (2026-06-21)
 - **ageratum_admin**: Ageratum planning/execution/evaluation, accessories, marketing
 - **gomphrena_admin**: Gomphrena planning/execution/evaluation, accessories, marketing
