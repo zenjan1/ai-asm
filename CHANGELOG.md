@@ -1,4 +1,9 @@
 # Changelog
+## v798.0 - Phase 453: Doronicum, Echeveria & Eryngium (2026-06-21)
+- **doronicum_admin**: Doronicum planning/execution/evaluation, accessories, marketing
+- **echeveria_admin**: Echeveria planning/execution/evaluation, accessories, marketing
+- **eryngium_admin**: Eryngium planning/execution/evaluation, accessories, marketing
+
 ## v797.0 - Phase 452: Diascia, Digitalis & Epimedium (2026-06-21)
 - **diascia_admin**: Diascia planning/execution/evaluation, accessories, marketing
 - **digitalis_admin**: Digitalis planning/execution/evaluation, accessories, marketing
