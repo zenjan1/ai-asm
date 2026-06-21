@@ -1,4 +1,9 @@
 # Changelog
+## v816.0 - Phase 471: Gentian, Geum & Godetia (2026-06-21)
+- **gentian_admin**: Gentian planning/execution/evaluation, accessories, marketing
+- **geum_admin**: Geum planning/execution/evaluation, accessories, marketing
+- **godetia_admin**: Godetia planning/execution/evaluation, accessories, marketing
+
 ## v815.0 - Phase 470: Echinops, Euonymus & Edelweiss (2026-06-21)
 - **echinops_admin**: Echinops planning/execution/evaluation, accessories, marketing
 - **euonymus_admin**: Euonymus planning/execution/evaluation, accessories, marketing
