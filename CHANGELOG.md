@@ -1,4 +1,9 @@
 # Changelog
+## v882.0 - Phase 537: Hyacinthus, Hypericum & Hymenocallis (2026-06-22)
+- **hyacinthus_admin**: Hyacinthus planning/execution/evaluation, accessories, marketing
+- **hypericum_admin**: Hypericum planning/execution/evaluation, accessories, marketing
+- **hymenocallis_admin**: Hymenocallis planning/execution/evaluation, accessories, marketing
+
 ## v881.0 - Phase 536: Halesia, Hedera & Humulus (2026-06-22)
 - **halesia_admin**: Halesia planning/execution/evaluation, accessories, marketing
 - **hedera_admin**: Hedera planning/execution/evaluation, accessories, marketing
