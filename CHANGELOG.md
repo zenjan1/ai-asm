@@ -1,4 +1,9 @@
 # Changelog
+## v756.0 - Phase 411: Bougainvillea, Rhododendron & Hydrangea (2026-06-21)
+- **bougainvillea_admin**: Bougainvillea planning/execution/evaluation, accessories, marketing
+- **rhododendron_admin**: Rhododendron planning/execution/evaluation, accessories, marketing
+- **hydrangea_admin**: Hydrangea planning/execution/evaluation, accessories, marketing
+
 ## v755.0 - Phase 410: Sansevieria, Yucca & Dracaena (2026-06-21)
 - **sansevieria_admin**: Sansevieria planning/execution/evaluation, accessories, marketing
 - **yucca_admin**: Yucca planning/execution/evaluation, accessories, marketing
