@@ -1,4 +1,9 @@
 # Changelog
+## v825.0 - Phase 480: Panicum, Parrotia & Paulownia (2026-06-21)
+- **panicum_admin**: Panicum planning/execution/evaluation, accessories, marketing
+- **parrotia_admin**: Parrotia planning/execution/evaluation, accessories, marketing
+- **paulownia_admin**: Paulownia planning/execution/evaluation, accessories, marketing
+
 ## v824.0 - Phase 479: Opuntia, Oxalis & Pachysandra (2026-06-21)
 - **opuntia_admin**: Opuntia planning/execution/evaluation, accessories, marketing
 - **oxalis_admin**: Oxalis planning/execution/evaluation, accessories, marketing
