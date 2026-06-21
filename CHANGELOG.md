@@ -1,4 +1,9 @@
 # Changelog
+## v763.0 - Phase 418: Lemongrass, Catnip & Chamomile (2026-06-21)
+- **lemongrass_admin**: Lemongrass planning/execution/evaluation, accessories, marketing
+- **catnip_admin**: Catnip planning/execution/evaluation, accessories, marketing
+- **chamomile_admin**: Chamomile planning/execution/evaluation, accessories, marketing
+
 ## v762.0 - Phase 417: Marjoram, Savory & Balm (2026-06-21)
 - **marjoram_admin**: Marjoram planning/execution/evaluation, accessories, marketing
 - **savory_admin**: Savory planning/execution/evaluation, accessories, marketing
