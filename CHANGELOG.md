@@ -1,4 +1,9 @@
 # Changelog
+## v872.0 - Phase 527: Datura, Dicentra & Dimorphotheca (2026-06-21)
+- **datura_admin**: Datura planning/execution/evaluation, accessories, marketing
+- **dicentra_admin**: Dicentra planning/execution/evaluation, accessories, marketing
+- **dimorphotheca_admin**: Dimorphotheca planning/execution/evaluation, accessories, marketing
+
 ## v871.0 - Phase 526: Couroupita, Crupina & Cyanus (2026-06-21)
 - **couroupita_admin**: Couroupita planning/execution/evaluation, accessories, marketing
 - **crupina_admin**: Crupina planning/execution/evaluation, accessories, marketing
