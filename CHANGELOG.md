@@ -1,4 +1,9 @@
 # Changelog
+## v869.0 - Phase 524: Cassia, Chionodoxa & Choysia (2026-06-21)
+- **cassia_admin**: Cassia planning/execution/evaluation, accessories, marketing
+- **chionodoxa_admin**: Chionodoxa planning/execution/evaluation, accessories, marketing
+- **choysia_admin**: Choysia planning/execution/evaluation, accessories, marketing
+
 ## v868.0 - Phase 523: Berberis, Buddleja & Calceolaria (2026-06-21)
 - **berberis_admin**: Berberis planning/execution/evaluation, accessories, marketing
 - **buddleja_admin**: Buddleja planning/execution/evaluation, accessories, marketing
