@@ -1,4 +1,9 @@
 # Changelog
+## v854.0 - Phase 509: Lonicera, Lychnis & Lythrum (2026-06-21)
+- **lonicera_admin**: Lonicera planning/execution/evaluation, accessories, marketing
+- **lychnis_admin**: Lychnis planning/execution/evaluation, accessories, marketing
+- **lythrum_admin**: Lythrum planning/execution/evaluation, accessories, marketing
+
 ## v853.0 - Phase 508: Laburnum, Lathyrus & Lobelia (2026-06-21)
 - **laburnum_admin**: Laburnum planning/execution/evaluation, accessories, marketing
 - **lathyrus_admin**: Lathyrus planning/execution/evaluation, accessories, marketing
