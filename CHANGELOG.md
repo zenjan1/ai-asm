@@ -1,4 +1,9 @@
 # Changelog
+## v784.0 - Phase 439: Coreopsis, Gaura & Heuchera (2026-06-21)
+- **coreopsis_admin**: Coreopsis planning/execution/evaluation, accessories, marketing
+- **gaura_admin**: Gaura planning/execution/evaluation, accessories, marketing
+- **heuchera_admin**: Heuchera planning/execution/evaluation, accessories, marketing
+
 ## v783.0 - Phase 438: Campanula, Echinacea & Gaillardia (2026-06-21)
 - **campanula_admin**: Campanula planning/execution/evaluation, accessories, marketing
 - **echinacea_admin**: Echinacea planning/execution/evaluation, accessories, marketing
