@@ -1,5 +1,10 @@
 # Changelog
 
+## v748.0 - Phase 403: Crinum, Nerine & Alstroemeria (2026-06-21)
+- **crinum_admin**: Crinum planning/execution/evaluation, accessories, marketing
+- **nerine_admin**: Nerine planning/execution/evaluation, accessories, marketing
+- **alstroemeria_admin**: Alstroemeria planning/execution/evaluation, accessories, marketing
+
 ## v747.0 - Phase 402: Tigridia, Zephyranthes & Hymenocallis (2026-06-21)
 - **tigridia_admin**: Tigridia planning/execution/evaluation, accessories, marketing
 - **zephyranthes_admin**: Zephyranthes planning/execution/evaluation, accessories, marketing
