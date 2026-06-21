@@ -1,4 +1,9 @@
 # Changelog
+## v811.0 - Phase 466: Viburnum, Amaranthus & Baileyia (2026-06-21)
+- **viburnum_admin**: Viburnum planning/execution/evaluation, accessories, marketing
+- **amaranthus_admin**: Amaranthus planning/execution/evaluation, accessories, marketing
+- **baileyia_admin**: Baileyia planning/execution/evaluation, accessories, marketing
+
 ## v810.0 - Phase 465: Thunbergia, Tibouchina & Tropaeolum (2026-06-21)
 - **thunbergia_admin**: Thunbergia planning/execution/evaluation, accessories, marketing
 - **tibouchina_admin**: Tibouchina planning/execution/evaluation, accessories, marketing
