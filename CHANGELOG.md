@@ -1,4 +1,9 @@
 # Changelog
+## v842.0 - Phase 497: Bergenia, Brunnera & Caladium (2026-06-21)
+- **bergenia_admin**: Bergenia planning/execution/evaluation, accessories, marketing
+- **brunnera_admin**: Brunnera planning/execution/evaluation, accessories, marketing
+- **caladium_admin**: Caladium planning/execution/evaluation, accessories, marketing
+
 ## v841.0 - Phase 496: Artemisia, Asclepias & Bellis (2026-06-21)
 - **artemisia_admin**: Artemisia planning/execution/evaluation, accessories, marketing
 - **asclepias_admin**: Asclepias planning/execution/evaluation, accessories, marketing
