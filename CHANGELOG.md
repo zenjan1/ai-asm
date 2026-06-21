@@ -1,4 +1,9 @@
 # Changelog
+## v818.0 - Phase 473: Heucherella, Lavatera & Leucanthemum (2026-06-21)
+- **heucherella_admin**: Heucherella planning/execution/evaluation, accessories, marketing
+- **lavatera_admin**: Lavatera planning/execution/evaluation, accessories, marketing
+- **leucanthemum_admin**: Leucanthemum planning/execution/evaluation, accessories, marketing
+
 ## v817.0 - Phase 472: Hemerocallis, Hepatica & Hesperis (2026-06-21)
 - **hemerocallis_admin**: Hemerocallis planning/execution/evaluation, accessories, marketing
 - **hepatica_admin**: Hepatica planning/execution/evaluation, accessories, marketing
