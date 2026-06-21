@@ -1,4 +1,9 @@
 # Changelog
+## v802.0 - Phase 457: Hebe, Helianthemum & Helichrysum (2026-06-21)
+- **hebe_admin**: Hebe planning/execution/evaluation, accessories, marketing
+- **helianthemum_admin**: Helianthemum planning/execution/evaluation, accessories, marketing
+- **helichrysum_admin**: Helichrysum planning/execution/evaluation, accessories, marketing
+
 ## v801.0 - Phase 456: Gesneria, Gloxinia & Hakonechloa (2026-06-21)
 - **gesneria_admin**: Gesneria planning/execution/evaluation, accessories, marketing
 - **gloxinia_admin**: Gloxinia planning/execution/evaluation, accessories, marketing
