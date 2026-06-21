@@ -1,4 +1,9 @@
 # Changelog
+## v894.0 - Phase 549: Liriope, Lisianthus & Luculia (2026-06-22)
+- **liriope_admin**: Liriope planning/execution/evaluation, accessories, marketing
+- **lisianthus_admin**: Lisianthus planning/execution/evaluation, accessories, marketing
+- **luculia_admin**: Luculia planning/execution/evaluation, accessories, marketing
+
 ## v893.0 - Phase 548: Limnanthes, Lippia & Liquidambar (2026-06-22)
 - **limnanthes_admin**: Limnanthes planning/execution/evaluation, accessories, marketing
 - **lippia_admin**: Lippia planning/execution/evaluation, accessories, marketing
