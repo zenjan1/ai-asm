@@ -1,4 +1,9 @@
 # Changelog
+## v771.0 - Phase 426: Cicely, Skullcap & Lemonbalm (2026-06-21)
+- **cicely_admin**: Cicely planning/execution/evaluation, accessories, marketing
+- **skullcap_admin**: Skullcap planning/execution/evaluation, accessories, marketing
+- **lemonbalm_admin**: Lemonbalm planning/execution/evaluation, accessories, marketing
+
 ## v770.0 - Phase 425: Lovage, Sorrel & Chervil (2026-06-21)
 - **lovage_admin**: Lovage planning/execution/evaluation, accessories, marketing
 - **sorrel_admin**: Sorrel planning/execution/evaluation, accessories, marketing
