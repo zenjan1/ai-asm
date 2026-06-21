@@ -1,4 +1,9 @@
 # Changelog
+## v820.0 - Phase 475: Mahonia, Meconopsis & Macleania (2026-06-21)
+- **mahonia_admin**: Mahonia planning/execution/evaluation, accessories, marketing
+- **meconopsis_admin**: Meconopsis planning/execution/evaluation, accessories, marketing
+- **macleania_admin**: Macleania planning/execution/evaluation, accessories, marketing
+
 ## v819.0 - Phase 474: Leycesteria, Libertia & Lupinus (2026-06-21)
 - **leycesteria_admin**: Leycesteria planning/execution/evaluation, accessories, marketing
 - **libertia_admin**: Libertia planning/execution/evaluation, accessories, marketing
