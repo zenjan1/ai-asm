@@ -1,4 +1,9 @@
 # Changelog
+## v765.0 - Phase 420: Cinnamon, Clove & Nutmeg (2026-06-21)
+- **cinnamon_admin**: Cinnamon planning/execution/evaluation, accessories, marketing
+- **clove_admin**: Clove planning/execution/evaluation, accessories, marketing
+- **nutmeg_admin**: Nutmeg planning/execution/evaluation, accessories, marketing
+
 ## v764.0 - Phase 419: Saffron, Vanilla & Ginger (2026-06-21)
 - **saffron_admin**: Saffron planning/execution/evaluation, accessories, marketing
 - **vanilla_admin**: Vanilla planning/execution/evaluation, accessories, marketing
