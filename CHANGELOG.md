@@ -1,4 +1,9 @@
 # Changelog
+## v874.0 - Phase 529: Euphorbia, Fabiana & Ferocactus (2026-06-22)
+- **euphorbia_admin**: Euphorbia planning/execution/evaluation, accessories, marketing
+- **fabiana_admin**: Fabiana planning/execution/evaluation, accessories, marketing
+- **ferocactus_admin**: Ferocactus planning/execution/evaluation, accessories, marketing
+
 ## v873.0 - Phase 528: Dioscorea, Dorstenia & Echeveria (2026-06-21)
 - **dioscorea_admin**: Dioscorea planning/execution/evaluation, accessories, marketing
 - **dorstenia_admin**: Dorstenia planning/execution/evaluation, accessories, marketing
