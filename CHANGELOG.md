@@ -1,4 +1,9 @@
 # Changelog
+## v891.0 - Phase 546: Lecanora, Ledderia & Leibnitzia (2026-06-22)
+- **lecanora_admin**: Lecanora planning/execution/evaluation, accessories, marketing
+- **ledderia_admin**: Ledderia planning/execution/evaluation, accessories, marketing
+- **leibnitzia_admin**: Leibnitzia planning/execution/evaluation, accessories, marketing
+
 ## v890.0 - Phase 545: Lauranthena, Lavandula & Lawsonia (2026-06-22)
 - **lauranthena_admin**: Lauranthena planning/execution/evaluation, accessories, marketing
 - **lavandula_admin**: Lavandula planning/execution/evaluation, accessories, marketing
