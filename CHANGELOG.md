@@ -1,4 +1,9 @@
 # Changelog
+## v832.0 - Phase 487: Ulmaria, Urticaria & Uvularia (2026-06-21)
+- **ulmaria_admin**: Ulmaria planning/execution/evaluation, accessories, marketing
+- **urticaria_admin**: Urticaria planning/execution/evaluation, accessories, marketing
+- **uvularia_admin**: Uvularia planning/execution/evaluation, accessories, marketing
+
 ## v831.0 - Phase 486: Trollius, Tsuga & Tuberose (2026-06-21)
 - **trollius_admin**: Trollius planning/execution/evaluation, accessories, marketing
 - **tsuga_admin**: Tsuga planning/execution/evaluation, accessories, marketing
