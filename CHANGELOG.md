@@ -1,5 +1,10 @@
 # Changelog
 
+## v746.0 - Phase 401: Galanthus, Erythronium & Ranunculus (2026-06-21)
+- **galanthus_admin**: Galanthus planning/execution/evaluation, accessories, marketing
+- **erythronium_admin**: Erythronium planning/execution/evaluation, accessories, marketing
+- **ranunculus_admin**: Ranunculus planning/execution/evaluation, accessories, marketing
+
 ## v745.0 - Phase 400: Puschkinia, Ipheion & Leucojum (2026-06-21) 🎉
 - **puschkinia_admin**: Puschkinia planning/execution/evaluation, accessories, marketing
 - **ipheion_admin**: Ipheion planning/execution/evaluation, accessories, marketing
