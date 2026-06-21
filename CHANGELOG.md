@@ -1,4 +1,9 @@
 # Changelog
+## v850.0 - Phase 505: Gaultheria, Hamamelis & Houttuynia (2026-06-21)
+- **gaultheria_admin**: Gaultheria planning/execution/evaluation, accessories, marketing
+- **hamamelis_admin**: Hamamelis planning/execution/evaluation, accessories, marketing
+- **houttuynia_admin**: Houttuynia planning/execution/evaluation, accessories, marketing
+
 ## v849.0 - Phase 504: Eucalyptus, Filipendula & Fumitory (2026-06-21)
 - **eucalyptus_admin**: Eucalyptus planning/execution/evaluation, accessories, marketing
 - **filipendula_admin**: Filipendula planning/execution/evaluation, accessories, marketing
