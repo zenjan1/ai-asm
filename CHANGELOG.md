@@ -1,4 +1,9 @@
 # Changelog
+## v824.0 - Phase 479: Opuntia, Oxalis & Pachysandra (2026-06-21)
+- **opuntia_admin**: Opuntia planning/execution/evaluation, accessories, marketing
+- **oxalis_admin**: Oxalis planning/execution/evaluation, accessories, marketing
+- **pachysandra_admin**: Pachysandra planning/execution/evaluation, accessories, marketing
+
 ## v823.0 - Phase 478: Nicotiana, Nigella & Oleracea (2026-06-21)
 - **nicotiana_admin**: Nicotiana planning/execution/evaluation, accessories, marketing
 - **nigella_admin**: Nigella planning/execution/evaluation, accessories, marketing
