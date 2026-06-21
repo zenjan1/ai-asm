@@ -1,4 +1,9 @@
 # Changelog
+## v790.0 - Phase 445: Kalanchoe, Leonotis & Nicotiana (2026-06-21)
+- **kalanchoe_admin**: Kalanchoe planning/execution/evaluation, accessories, marketing
+- **leonotis_admin**: Leonotis planning/execution/evaluation, accessories, marketing
+- **nicotiana_admin**: Nicotiana planning/execution/evaluation, accessories, marketing
+
 ## v789.0 - Phase 444: Bacopa, Delosperma & Jacobinia (2026-06-21)
 - **bacopa_admin**: Bacopa planning/execution/evaluation, accessories, marketing
 - **delosperma_admin**: Delosperma planning/execution/evaluation, accessories, marketing
