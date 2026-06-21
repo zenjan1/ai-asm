@@ -1,4 +1,9 @@
 # Changelog
+## v754.0 - Phase 409: Vinca, Catharantha & Agave (2026-06-21)
+- **vinca_admin**: Vinca planning/execution/evaluation, accessories, marketing
+- **catharantha_admin**: Catharantha planning/execution/evaluation, accessories, marketing
+- **agave_admin**: Agave planning/execution/evaluation, accessories, marketing
+
 ## v753.0 - Phase 408: Ixora, Tabernaemontana & Cascabella (2026-06-21)
 - **ixora_admin**: Ixora planning/execution/evaluation, accessories, marketing
 - **tabernaemontana_admin**: Tabernaemontana planning/execution/evaluation, accessories, marketing
