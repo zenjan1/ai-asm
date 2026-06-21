@@ -1,4 +1,9 @@
 # Changelog
+## v860.0 - Phase 515: Urtica, Uvularia & Vanilla (2026-06-21)
+- **urtica_admin**: Urtica planning/execution/evaluation, accessories, marketing
+- **uvularia_admin**: Uvularia planning/execution/evaluation, accessories, marketing
+- **vanilla_admin**: Vanilla planning/execution/evaluation, accessories, marketing
+
 ## v859.0 - Phase 514: Tweedia, Typha & Ugni (2026-06-21)
 - **tweedia_admin**: Tweedia planning/execution/evaluation, accessories, marketing
 - **typha_admin**: Typha planning/execution/evaluation, accessories, marketing
