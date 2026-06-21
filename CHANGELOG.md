@@ -1,5 +1,10 @@
 # Changelog
 
+## v745.0 - Phase 400: Puschkinia, Ipheion & Leucojum (2026-06-21) 🎉
+- **puschkinia_admin**: Puschkinia planning/execution/evaluation, accessories, marketing
+- **ipheion_admin**: Ipheion planning/execution/evaluation, accessories, marketing
+- **leucojum_admin**: Leucojum planning/execution/evaluation, accessories, marketing
+
 ## v744.0 - Phase 399: Dipcadi, Ornithogalum & Fritillaria (2026-06-21)
 - **dipcadi_admin**: Dipcadi planning/execution/evaluation, accessories, marketing
 - **ornithogalum_admin**: Ornithogalum planning/execution/evaluation, accessories, marketing
