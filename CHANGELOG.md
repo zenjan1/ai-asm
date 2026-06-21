@@ -1,4 +1,9 @@
 # Changelog
+## v864.0 - Phase 519: Adonis, Adenium & Agapanthus (2026-06-21)
+- **adonis_admin**: Adonis planning/execution/evaluation, accessories, marketing
+- **adenium_admin**: Adenium planning/execution/evaluation, accessories, marketing
+- **agapanthus_admin**: Agapanthus planning/execution/evaluation, accessories, marketing
+
 ## v863.0 - Phase 518: Zamia, Zedoary & Zenobia (2026-06-21)
 - **zamia_admin**: Zamia planning/execution/evaluation, accessories, marketing
 - **zedoary_admin**: Zedoary planning/execution/evaluation, accessories, marketing
