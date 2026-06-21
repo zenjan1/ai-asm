@@ -1,4 +1,9 @@
 # Changelog
+## v828.0 - Phase 483: Salix, Sambucus & Saponaria (2026-06-21)
+- **salix_admin**: Salix planning/execution/evaluation, accessories, marketing
+- **sambucus_admin**: Sambucus planning/execution/evaluation, accessories, marketing
+- **saponaria_admin**: Saponaria planning/execution/evaluation, accessories, marketing
+
 ## v827.0 - Phase 482: Rhamnus, Rhodiola & Robinia (2026-06-21)
 - **rhamnus_admin**: Rhamnus planning/execution/evaluation, accessories, marketing
 - **rhodiola_admin**: Rhodiola planning/execution/evaluation, accessories, marketing
