@@ -1,4 +1,9 @@
 # Changelog
+## v892.0 - Phase 547: Leonurus, Lepidium & Leveria (2026-06-22)
+- **leonurus_admin**: Leonurus planning/execution/evaluation, accessories, marketing
+- **lepidium_admin**: Lepidium planning/execution/evaluation, accessories, marketing
+- **leveria_admin**: Leveria planning/execution/evaluation, accessories, marketing
+
 ## v891.0 - Phase 546: Lecanora, Ledderia & Leibnitzia (2026-06-22)
 - **lecanora_admin**: Lecanora planning/execution/evaluation, accessories, marketing
 - **ledderia_admin**: Ledderia planning/execution/evaluation, accessories, marketing
