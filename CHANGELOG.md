@@ -1,4 +1,9 @@
 # Changelog
+## v772.0 - Phase 427: Alehoof, Betony & Comfrey (2026-06-21)
+- **alehoof_admin**: Alehoof planning/execution/evaluation, accessories, marketing
+- **betony_admin**: Betony planning/execution/evaluation, accessories, marketing
+- **comfrey_admin**: Comfrey planning/execution/evaluation, accessories, marketing
+
 ## v771.0 - Phase 426: Cicely, Skullcap & Lemonbalm (2026-06-21)
 - **cicely_admin**: Cicely planning/execution/evaluation, accessories, marketing
 - **skullcap_admin**: Skullcap planning/execution/evaluation, accessories, marketing
