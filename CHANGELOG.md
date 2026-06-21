@@ -1,4 +1,9 @@
 # Changelog
+## v814.0 - Phase 469: Datura, Dicentra & Dipsacus (2026-06-21)
+- **datura_admin**: Datura planning/execution/evaluation, accessories, marketing
+- **dicentra_admin**: Dicentra planning/execution/evaluation, accessories, marketing
+- **dipsacus_admin**: Dipsacus planning/execution/evaluation, accessories, marketing
+
 ## v813.0 - Phase 468: Clethra, Convallaria & Crocosmia (2026-06-21)
 - **clethra_admin**: Clethra planning/execution/evaluation, accessories, marketing
 - **convallaria_admin**: Convallaria planning/execution/evaluation, accessories, marketing
