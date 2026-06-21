@@ -1,4 +1,9 @@
 # Changelog
+## v837.0 - Phase 492: Asarum, Asphodel & Adonis (2026-06-21)
+- **asarum_admin**: Asarum planning/execution/evaluation, accessories, marketing
+- **asphodel_admin**: Asphodel planning/execution/evaluation, accessories, marketing
+- **adonis_admin**: Adonis planning/execution/evaluation, accessories, marketing
+
 ## v836.0 - Phase 491: Abutilon, Achillea & Armeria (2026-06-21)
 - **abutilon_admin**: Abutilon planning/execution/evaluation, accessories, marketing
 - **achillea_admin**: Achillea planning/execution/evaluation, accessories, marketing
