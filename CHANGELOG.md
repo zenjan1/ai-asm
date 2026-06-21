@@ -1,4 +1,9 @@
 # Changelog
+## v863.0 - Phase 518: Zamia, Zedoary & Zenobia (2026-06-21)
+- **zamia_admin**: Zamia planning/execution/evaluation, accessories, marketing
+- **zedoary_admin**: Zedoary planning/execution/evaluation, accessories, marketing
+- **zenobia_admin**: Zenobia planning/execution/evaluation, accessories, marketing
+
 ## v862.0 - Phase 517: Yarrow, Yucca & Winterberry (2026-06-21)
 - **yarrow_admin**: Yarrow planning/execution/evaluation, accessories, marketing
 - **yucca_admin**: Yucca planning/execution/evaluation, accessories, marketing
