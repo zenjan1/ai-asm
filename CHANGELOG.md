@@ -1,4 +1,9 @@
 # Changelog
+## v803.0 - Phase 458: Helleborus, Hieracium & Hosta (2026-06-21)
+- **helleborus_admin**: Helleborus planning/execution/evaluation, accessories, marketing
+- **hieracium_admin**: Hieracium planning/execution/evaluation, accessories, marketing
+- **hosta_admin**: Hosta planning/execution/evaluation, accessories, marketing
+
 ## v802.0 - Phase 457: Hebe, Helianthemum & Helichrysum (2026-06-21)
 - **hebe_admin**: Hebe planning/execution/evaluation, accessories, marketing
 - **helianthemum_admin**: Helianthemum planning/execution/evaluation, accessories, marketing
