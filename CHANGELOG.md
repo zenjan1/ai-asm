@@ -1,5 +1,10 @@
 # Changelog
 
+## v740.0 - Phase 395: Ageratum, Gomphrena & Nigella (2026-06-21)
+- **ageratum_admin**: Ageratum planning/execution/evaluation, accessories, marketing
+- **gomphrena_admin**: Gomphrena planning/execution/evaluation, accessories, marketing
+- **nigella_admin**: Nigella planning/execution/evaluation, accessories, marketing
+
 ## v739.0 - Phase 394: Oleander, Fuchsia & Verbena (2026-06-21)
 - **oleander_admin**: Oleander planning/execution/evaluation, accessories, marketing
 - **fuchsia_admin**: Fuchsia planning/execution/evaluation, accessories, marketing
