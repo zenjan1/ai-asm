@@ -1,4 +1,9 @@
 # Changelog
+## v822.0 - Phase 477: Nepeta, Nerine & Nerium (2026-06-21)
+- **nepeta_admin**: Nepeta planning/execution/evaluation, accessories, marketing
+- **nerine_admin**: Nerine planning/execution/evaluation, accessories, marketing
+- **nerium_admin**: Nerium planning/execution/evaluation, accessories, marketing
+
 ## v821.0 - Phase 476: Melianthus, Michelia & Mimulus (2026-06-21)
 - **melianthus_admin**: Melianthus planning/execution/evaluation, accessories, marketing
 - **michelia_admin**: Michelia planning/execution/evaluation, accessories, marketing
