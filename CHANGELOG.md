@@ -1,4 +1,9 @@
 # Changelog
+## v774.0 - Phase 429: Pennywort, Selfheal & Valerian (2026-06-21)
+- **pennywort_admin**: Pennywort planning/execution/evaluation, accessories, marketing
+- **selfheal_admin**: Selfheal planning/execution/evaluation, accessories, marketing
+- **valerian_admin**: Valerian planning/execution/evaluation, accessories, marketing
+
 ## v773.0 - Phase 428: Dittany, Woodruff & Burnet (2026-06-21)
 - **dittany_admin**: Dittany planning/execution/evaluation, accessories, marketing
 - **woodruff_admin**: Woodruff planning/execution/evaluation, accessories, marketing
