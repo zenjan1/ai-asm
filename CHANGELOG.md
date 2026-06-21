@@ -1,4 +1,9 @@
 # Changelog
+## v851.0 - Phase 506: Iberis, Jasminum & Kirengeshoma (2026-06-21)
+- **iberis_admin**: Iberis planning/execution/evaluation, accessories, marketing
+- **jasminum_admin**: Jasminum planning/execution/evaluation, accessories, marketing
+- **kirengeshoma_admin**: Kirengeshoma planning/execution/evaluation, accessories, marketing
+
 ## v850.0 - Phase 505: Gaultheria, Hamamelis & Houttuynia (2026-06-21)
 - **gaultheria_admin**: Gaultheria planning/execution/evaluation, accessories, marketing
 - **hamamelis_admin**: Hamamelis planning/execution/evaluation, accessories, marketing
