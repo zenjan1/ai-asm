@@ -1,4 +1,9 @@
 # Changelog
+## v795.0 - Phase 450: Aspidistra, Brunfelsia & Calceolaria (2026-06-21)
+- **aspidistra_admin**: Aspidistra planning/execution/evaluation, accessories, marketing
+- **brunfelsia_admin**: Brunfelsia planning/execution/evaluation, accessories, marketing
+- **calceolaria_admin**: Calceolaria planning/execution/evaluation, accessories, marketing
+
 ## v794.0 - Phase 449: Amaryllis, Aquilegia & Arum (2026-06-21)
 - **amaryllis_admin**: Amaryllis planning/execution/evaluation, accessories, marketing
 - **aquilegia_admin**: Aquilegia planning/execution/evaluation, accessories, marketing
