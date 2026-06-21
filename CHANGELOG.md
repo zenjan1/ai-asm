@@ -1,4 +1,9 @@
 # Changelog
+## v783.0 - Phase 438: Campanula, Echinacea & Gaillardia (2026-06-21)
+- **campanula_admin**: Campanula planning/execution/evaluation, accessories, marketing
+- **echinacea_admin**: Echinacea planning/execution/evaluation, accessories, marketing
+- **gaillardia_admin**: Gaillardia planning/execution/evaluation, accessories, marketing
+
 ## v782.0 - Phase 437: Scabiosa, Sedum & Sempervivum (2026-06-21)
 - **scabiosa_admin**: Scabiosa planning/execution/evaluation, accessories, marketing
 - **sedum_admin**: Sedum planning/execution/evaluation, accessories, marketing
