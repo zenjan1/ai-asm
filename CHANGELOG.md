@@ -1,4 +1,9 @@
 # Changelog
+## v817.0 - Phase 472: Hemerocallis, Hepatica & Hesperis (2026-06-21)
+- **hemerocallis_admin**: Hemerocallis planning/execution/evaluation, accessories, marketing
+- **hepatica_admin**: Hepatica planning/execution/evaluation, accessories, marketing
+- **hesperis_admin**: Hesperis planning/execution/evaluation, accessories, marketing
+
 ## v816.0 - Phase 471: Gentian, Geum & Godetia (2026-06-21)
 - **gentian_admin**: Gentian planning/execution/evaluation, accessories, marketing
 - **geum_admin**: Geum planning/execution/evaluation, accessories, marketing
