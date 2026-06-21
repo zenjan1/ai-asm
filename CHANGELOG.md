@@ -1,4 +1,9 @@
 # Changelog
+## v881.0 - Phase 536: Halesia, Hedera & Humulus (2026-06-22)
+- **halesia_admin**: Halesia planning/execution/evaluation, accessories, marketing
+- **hedera_admin**: Hedera planning/execution/evaluation, accessories, marketing
+- **humulus_admin**: Humulus planning/execution/evaluation, accessories, marketing
+
 ## v880.0 - Phase 535: Guarea, Guzmania & Gynerium (2026-06-22)
 - **guarea_admin**: Guarea planning/execution/evaluation, accessories, marketing
 - **guzmania_admin**: Guzmania planning/execution/evaluation, accessories, marketing
