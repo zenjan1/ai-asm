@@ -1,4 +1,9 @@
 # Changelog
+## v896.0 - Phase 551: Luronium, Lutheria & Luxemburgia (2026-06-22)
+- **luronium_admin**: Luronium planning/execution/evaluation, accessories, marketing
+- **lutheria_admin**: Lutheria planning/execution/evaluation, accessories, marketing
+- **luxemburgia_admin**: Luxemburgia planning/execution/evaluation, accessories, marketing
+
 ## v895.0 - Phase 550: Ludisia, Luehea & Lunaria (2026-06-22)
 - **ludisia_admin**: Ludisia planning/execution/evaluation, accessories, marketing
 - **luehea_admin**: Luehea planning/execution/evaluation, accessories, marketing
