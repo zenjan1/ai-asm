@@ -1,4 +1,8 @@
 # Changelog
+## v906.0 - Phase 561: Rhus, Rinorea & Roystonea (2026-06-22)
+- **rhus_admin**: Rhus planning/execution/evaluation, accessories, marketing
+- **rinorea_admin**: Rinorea planning/execution/evaluation, accessories, marketing
+- **roystonea_admin**: Roystonea planning/execution/evaluation, accessories, marketing
 ## v905.0 - Phase 560: Pycnanthemum, Pygeum & Puya (2026-06-22)
 - **pycnanthemum_admin**: Pycnanthemum planning/execution/evaluation, accessories, marketing
 - **pygeum_admin**: Pygeum planning/execution/evaluation, accessories, marketing
