@@ -1,4 +1,9 @@
 # Changelog
+## v865.0 - Phase 520: Alchemilla, Aloe & Amaryllis (2026-06-21)
+- **alchemilla_admin**: Alchemilla planning/execution/evaluation, accessories, marketing
+- **aloe_admin**: Aloe planning/execution/evaluation, accessories, marketing
+- **amaryllis_admin**: Amaryllis planning/execution/evaluation, accessories, marketing
+
 ## v864.0 - Phase 519: Adonis, Adenium & Agapanthus (2026-06-21)
 - **adonis_admin**: Adonis planning/execution/evaluation, accessories, marketing
 - **adenium_admin**: Adenium planning/execution/evaluation, accessories, marketing
