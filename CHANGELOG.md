@@ -1,4 +1,9 @@
 # Changelog
+## v856.0 - Phase 511: Penstemon, Philadelphus & Polemonium (2026-06-21)
+- **penstemon_admin**: Penstemon planning/execution/evaluation, accessories, marketing
+- **philadelphus_admin**: Philadelphus planning/execution/evaluation, accessories, marketing
+- **polemonium_admin**: Polemonium planning/execution/evaluation, accessories, marketing
+
 ## v855.0 - Phase 510: Mentha, Monarda & Muscari (2026-06-21)
 - **mentha_admin**: Mentha planning/execution/evaluation, accessories, marketing
 - **monarda_admin**: Monarda planning/execution/evaluation, accessories, marketing
