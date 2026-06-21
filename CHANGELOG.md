@@ -1,4 +1,8 @@
 # Changelog
+## v902.0 - Phase 557: Paeonia, Phegopteris & Phormium (2026-06-22)
+- **paeonia_admin**: Paeonia planning/execution/evaluation, accessories, marketing
+- **phegopteris_admin**: Phegopteris planning/execution/evaluation, accessories, marketing
+- **phormium_admin**: Phormium planning/execution/evaluation, accessories, marketing
 ## v901.0 - Phase 556: Origanum, Orostachys & Othonna (2026-06-22)
 - **origanum_admin**: Origanum planning/execution/evaluation, accessories, marketing
 - **orostachys_admin**: Orostachys planning/execution/evaluation, accessories, marketing
