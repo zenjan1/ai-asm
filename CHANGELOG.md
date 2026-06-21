@@ -1,4 +1,9 @@
 # Changelog
+## v873.0 - Phase 528: Dioscorea, Dorstenia & Echeveria (2026-06-21)
+- **dioscorea_admin**: Dioscorea planning/execution/evaluation, accessories, marketing
+- **dorstenia_admin**: Dorstenia planning/execution/evaluation, accessories, marketing
+- **echeveria_admin**: Echeveria planning/execution/evaluation, accessories, marketing
+
 ## v872.0 - Phase 527: Datura, Dicentra & Dimorphotheca (2026-06-21)
 - **datura_admin**: Datura planning/execution/evaluation, accessories, marketing
 - **dicentra_admin**: Dicentra planning/execution/evaluation, accessories, marketing
