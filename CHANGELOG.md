@@ -1,4 +1,9 @@
 # Changelog
+## v836.0 - Phase 491: Abutilon, Achillea & Armeria (2026-06-21)
+- **abutilon_admin**: Abutilon planning/execution/evaluation, accessories, marketing
+- **achillea_admin**: Achillea planning/execution/evaluation, accessories, marketing
+- **armeria_admin**: Armeria planning/execution/evaluation, accessories, marketing
+
 ## v835.0 - Phase 490: Zea, Zanthoxylum & Zebrina (2026-06-21)
 - **zea_admin**: Zea planning/execution/evaluation, accessories, marketing
 - **zanthoxylum_admin**: Zanthoxylum planning/execution/evaluation, accessories, marketing
