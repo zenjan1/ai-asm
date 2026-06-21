@@ -1,4 +1,8 @@
 # Changelog
+## v904.0 - Phase 559: Prunus, Pteris & Punica (2026-06-22)
+- **prunus_admin**: Prunus planning/execution/evaluation, accessories, marketing
+- **pteris_admin**: Pteris planning/execution/evaluation, accessories, marketing
+- **punica_admin**: Punica planning/execution/evaluation, accessories, marketing
 ## v903.0 - Phase 558: Pieris, Pistacia & Poncirus (2026-06-22)
 - **pieris_admin**: Pieris planning/execution/evaluation, accessories, marketing
 - **pistacia_admin**: Pistacia planning/execution/evaluation, accessories, marketing
