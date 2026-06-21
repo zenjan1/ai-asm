@@ -1,4 +1,9 @@
 # Changelog
+## v827.0 - Phase 482: Rhamnus, Rhodiola & Robinia (2026-06-21)
+- **rhamnus_admin**: Rhamnus planning/execution/evaluation, accessories, marketing
+- **rhodiola_admin**: Rhodiola planning/execution/evaluation, accessories, marketing
+- **robinia_admin**: Robinia planning/execution/evaluation, accessories, marketing
+
 ## v826.0 - Phase 481: Quassia, Quercus & Quillaja (2026-06-21)
 - **quassia_admin**: Quassia planning/execution/evaluation, accessories, marketing
 - **quercus_admin**: Quercus planning/execution/evaluation, accessories, marketing
