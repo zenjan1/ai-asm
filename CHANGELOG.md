@@ -1,4 +1,9 @@
 # Changelog
+## v885.0 - Phase 540: Jensenia, Jubea & Juglans (2026-06-22)
+- **jensenia_admin**: Jensenia planning/execution/evaluation, accessories, marketing
+- **jubea_admin**: Jubea planning/execution/evaluation, accessories, marketing
+- **juglans_admin**: Juglans planning/execution/evaluation, accessories, marketing
+
 ## v884.0 - Phase 539: Jaborandi, Jateorhiza & Jeffersonia (2026-06-22)
 - **jaborandi_admin**: Jaborandi planning/execution/evaluation, accessories, marketing
 - **jateorhiza_admin**: Jateorhiza planning/execution/evaluation, accessories, marketing
