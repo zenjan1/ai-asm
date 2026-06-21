@@ -1,4 +1,9 @@
 # Changelog
+## v794.0 - Phase 449: Amaryllis, Aquilegia & Arum (2026-06-21)
+- **amaryllis_admin**: Amaryllis planning/execution/evaluation, accessories, marketing
+- **aquilegia_admin**: Aquilegia planning/execution/evaluation, accessories, marketing
+- **arum_admin**: Arum planning/execution/evaluation, accessories, marketing
+
 ## v793.0 - Phase 448: Xanthosia, Xeranthemum & Zantedeschia (2026-06-21)
 - **xanthosia_admin**: Xanthosia planning/execution/evaluation, accessories, marketing
 - **xeranthemum_admin**: Xeranthemum planning/execution/evaluation, accessories, marketing
