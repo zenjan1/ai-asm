@@ -1,4 +1,9 @@
 # Changelog
+## v843.0 - Phase 498: Canna, Catalpa & Cerastium (2026-06-21)
+- **canna_admin**: Canna planning/execution/evaluation, accessories, marketing
+- **catalpa_admin**: Catalpa planning/execution/evaluation, accessories, marketing
+- **cerastium_admin**: Cerastium planning/execution/evaluation, accessories, marketing
+
 ## v842.0 - Phase 497: Bergenia, Brunnera & Caladium (2026-06-21)
 - **bergenia_admin**: Bergenia planning/execution/evaluation, accessories, marketing
 - **brunnera_admin**: Brunnera planning/execution/evaluation, accessories, marketing
