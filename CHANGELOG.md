@@ -1,4 +1,9 @@
 # Changelog
+## v831.0 - Phase 486: Trollius, Tsuga & Tuberose (2026-06-21)
+- **trollius_admin**: Trollius planning/execution/evaluation, accessories, marketing
+- **tsuga_admin**: Tsuga planning/execution/evaluation, accessories, marketing
+- **tuberose_admin**: Tuberose planning/execution/evaluation, accessories, marketing
+
 ## v830.0 - Phase 485: Tanacetum, Taraxacum & Tilia (2026-06-21)
 - **tanacetum_admin**: Tanacetum planning/execution/evaluation, accessories, marketing
 - **taraxacum_admin**: Taraxacum planning/execution/evaluation, accessories, marketing
