@@ -1,4 +1,9 @@
 # Changelog
+## v780.0 - Phase 435: Chicory, Tiger Lily & Knautia (2026-06-21)
+- **chicory_admin**: Chicory planning/execution/evaluation, accessories, marketing
+- **tiger_lily_admin**: Tiger lily planning/execution/evaluation, accessories, marketing
+- **knautia_admin**: Knautia planning/execution/evaluation, accessories, marketing
+
 ## v779.0 - Phase 434: Watercress, Winter Savory & Scorzonera (2026-06-21)
 - **watercress_admin**: Watercress planning/execution/evaluation, accessories, marketing
 - **winter_savory_admin**: Winter savory planning/execution/evaluation, accessories, marketing
