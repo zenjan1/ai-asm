@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 659 - v1004.0 (2644 modules)
+- Added: acaenae_admin, acanthi_admin, achilleae_admin
+
 ## Phase 658 - v1003.0 (2641 modules)
 - Added: zygophyllas_admin, abutilae_admin, acaciae_admin
 
