@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 631 - v976.0 (2560 modules)
+- Added: jacaranda_admin, juniperus_admin, jujube_admin
+
 ## Phase 630 - v975.0 (2557 modules)
 - Added: isatis_admin, iresine_admin, icica_admin
 
