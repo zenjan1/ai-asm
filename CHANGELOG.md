@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 628 - v973.0 (2551 modules)
+- Added: huernia_admin, hunnemannia_admin, homalocladium_admin
+
 ## Phase 627 - v972.0 (2548 modules)
 - Added: haworthia_admin, hiptage_admin, hoffmannia_admin
 
