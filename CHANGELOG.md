@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 698 - v1043.0 (2761 modules)
+- Added: goldenseal_admin, graptopetalum_admin, grevillea_admin
+
 ## Phase 697 - v1042.0 (2758 modules)
 - Added: galax_admin, gloriosa_admin, gnaphalium_admin
 
