@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 736 - v1081.0 (2875 modules)
+- Added: pilea_admin, pleione_admin, pistia_admin
+
 ## Phase 735 - v1080.0 (2872 modules)
 - Added: ozothamnus_admin, pfeiffera_admin, phalaroides_admin
 
