@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 692 - v1037.0 (2743 modules)
+- Added: decumaria_admin, delonix_admin, dendromecon_admin
+
 ## Phase 691 - v1036.0 (2740 modules)
 - Added: darlingtonia_admin, dasiphora_admin, davidia_admin
 

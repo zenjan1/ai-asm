@@ -1,27 +1,27 @@
-Phase 692: Create 3 plant-themed admin modules (alphabetically after dendromecon):
+Phase 693: Create 3 plant-themed admin modules (alphabetically after dryas):
 
-1. dichorisandra_admin (prefix: dich_, base offset: 1495, tag: [DICH])
-   - planning: 1495/1484/1464/1446
-   - execution: 1484/1473/1455/1442
-   - evaluation: 1476/1465/1449/1438
-   - accessory: 1468/1459/1445/1435
-   - market: 1462/1453/1440/1432
+1. dryopteris_admin (prefix: dryo_, base offset: 1501, tag: [DRYO])
+   - planning: 1501/1490/1470/1452
+   - execution: 1490/1479/1461/1448
+   - evaluation: 1482/1471/1455/1444
+   - accessory: 1474/1465/1451/1441
+   - market: 1468/1459/1446/1438
 
-2. diosma_admin (prefix: dios_, base offset: 1496, tag: [DIOS])
-   - planning: 1496/1485/1465/1447
-   - execution: 1485/1474/1456/1443
-   - evaluation: 1477/1466/1450/1439
-   - accessory: 1469/1460/1446/1436
-   - market: 1463/1454/1441/1433
+2. duguetia_admin (prefix: dugu_, base offset: 1502, tag: [DUGU])
+   - planning: 1502/1491/1471/1453
+   - execution: 1491/1480/1462/1449
+   - evaluation: 1483/1472/1456/1445
+   - accessory: 1475/1466/1452/1442
+   - market: 1469/1460/1447/1439
 
-3. disporum_admin (prefix: disp_, base offset: 1497, tag: [DISP])
-   - planning: 1497/1486/1466/1448
-   - execution: 1486/1475/1457/1444
-   - evaluation: 1478/1467/1451/1440
-   - accessory: 1470/1461/1447/1437
-   - market: 1464/1455/1442/1434
+3. duranta_admin (prefix: dura_, base offset: 1503, tag: [DURA])
+   - planning: 1503/1492/1472/1454
+   - execution: 1492/1481/1463/1450
+   - evaluation: 1484/1473/1457/1446
+   - accessory: 1476/1467/1453/1443
+   - market: 1470/1461/1448/1440
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1036.0→v1037.0, 2740→2743, L3: 2508→2511, 2461→2464),
-add Phase 692 entry to CHANGELOG, find Phase 693 candidates (alphabetically after disporum),
+Build WASM, update README (v1037.0→v1038.0, 2743→2746, L3: 2511→2514, 2464→2467),
+add Phase 693 entry to CHANGELOG, find Phase 694 candidates (alphabetically after duranta),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
