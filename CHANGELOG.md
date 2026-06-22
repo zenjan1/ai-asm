@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 690 - v1035.0 (2737 modules)
+- Added: cyananthus_admin, cycas_admin, cypella_admin
+
 ## Phase 689 - v1034.0 (2734 modules)
 - Added: cornus_admin, cortusa_admin, crepis_admin
 

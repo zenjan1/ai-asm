@@ -1,27 +1,27 @@
-Phase 690: Create 3 plant-themed admin modules (alphabetically after cypella):
+Phase 691: Create 3 plant-themed admin modules (alphabetically after damasonium):
 
-1. cyananthus_admin (prefix: cyan_, base offset: 1483, tag: [CYAN])
-   - planning: 1483/1472/1452/1434
-   - execution: 1472/1461/1443/1430
-   - evaluation: 1464/1453/1437/1426
-   - accessory: 1456/1447/1433/1423
-   - market: 1450/1441/1428/1420
+1. darlingtonia_admin (prefix: darl_, base offset: 1489, tag: [DARL])
+   - planning: 1489/1478/1458/1440
+   - execution: 1478/1467/1449/1436
+   - evaluation: 1470/1459/1443/1432
+   - accessory: 1462/1453/1439/1429
+   - market: 1456/1447/1434/1426
 
-2. cycas_admin (prefix: cyca_, base offset: 1484, tag: [CYCA])
-   - planning: 1484/1473/1453/1435
-   - execution: 1473/1462/1444/1431
-   - evaluation: 1465/1454/1438/1427
-   - accessory: 1457/1448/1434/1424
-   - market: 1451/1442/1429/1421
+2. dasiphora_admin (prefix: dasi_, base offset: 1490, tag: [DASI])
+   - planning: 1490/1479/1459/1441
+   - execution: 1479/1468/1450/1437
+   - evaluation: 1471/1460/1444/1433
+   - accessory: 1463/1454/1440/1430
+   - market: 1457/1448/1435/1427
 
-3. cypella_admin (prefix: cype_, base offset: 1485, tag: [CYPE])
-   - planning: 1485/1474/1454/1436
-   - execution: 1474/1463/1445/1432
-   - evaluation: 1466/1455/1439/1428
-   - accessory: 1458/1449/1435/1425
-   - market: 1452/1443/1430/1422
+3. davidia_admin (prefix: davi_, base offset: 1491, tag: [DAVI])
+   - planning: 1491/1480/1460/1442
+   - execution: 1480/1469/1451/1438
+   - evaluation: 1472/1461/1445/1434
+   - accessory: 1464/1455/1441/1431
+   - market: 1458/1449/1436/1428
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1034.0→v1035.0, 2734→2737, L3: 2502→2505, 2455→2458),
-add Phase 690 entry to CHANGELOG, find Phase 691 candidates (alphabetically after cypella),
+Build WASM, update README (v1035.0→v1036.0, 2737→2740, L3: 2505→2508, 2458→2461),
+add Phase 691 entry to CHANGELOG, find Phase 692 candidates (alphabetically after davidia),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
