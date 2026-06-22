@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 605 - Burns, Capsicum & Cacalia Technologies (v950.0, 2482 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **burns_admin** (Burns management technology administration system)
+  - Prefix: `bur_`, Type: `bur_t`, Tag: [BUR], Base address: 1225
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **capsicum_admin** (Capsicum management technology administration system)
+  - Prefix: `cap_`, Type: `cap_t`, Tag: [CAP], Base address: 1226
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **cacalia_admin** (Cacalia management technology administration system)
+  - Prefix: `caa_`, Type: `caa_t`, Tag: [CAA], Base address: 1227
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2482 (L1:62 + L2:138 + L3:2250 + L4:19 + L5:13)
+- L3 WASM Apps: 2250 (2203 standalone + 47 libraries)
+
+
 ## Phase 604 - Bonariensis, Bugloss & Buphthalmum Technologies (v949.0, 2479 modules)
 
 *Date: 2026-06-22*

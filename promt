@@ -1,25 +1,25 @@
-# AI-ASM OS v950.0 - Phase 605 Burns、Capsicum与Cacalia技术研究任务
+# AI-ASM OS v951.0 - Phase 606 Carthamus、Camassia与Cannabis技术研究任务
 
 ## UPDATE=0 | 2026-06-22
 
-**项目状态**: Phase 604 完成 ✓ 2479模块！开始Phase 605
-**总模块数**: 2482个 (L1:62 + L2:138 + L3:2250 + L4:19 + L5:13)
-**Phase 604完成**: bonariensis_admin, bugloss_admin, buphthalmum_admin ✓
+**项目状态**: Phase 605 完成 ✓ 2482模块！开始Phase 606
+**总模块数**: 2485个 (L1:62 + L2:138 + L3:2253 + L4:19 + L5:13)
+**Phase 605完成**: burns_admin, capsicum_admin, cacalia_admin ✓
 
 ---
 
-## 📋 Phase 605: Burns、Capsicum与Cacalia技术
+## 📋 Phase 606: Carthamus、Camassia与Cannabis技术
 
 ### 新增模块
 
-1. **burns_admin** (~20K) - Burns管理技术行政管理系统
-   - prefix: `bur_`, type: `bur_t`, tag: [BUR], base: 1225
+1. **carthamus_admin** (~20K) - Carthamus管理技术行政管理系统
+   - prefix: `rth_`, type: `rth_t`, tag: [RTH], base: 1228
 
-2. **capsicum_admin** (~20K) - Capsicum管理技术行政管理系统
-   - prefix: `cap_`, type: `cap_t`, tag: [CAP], base: 1226
+2. **camassia_admin** (~20K) - Camassia管理技术行政管理系统
+   - prefix: `cms_`, type: `cms_t`, tag: [CMS], base: 1229
 
-3. **cacalia_admin** (~20K) - Cacalia管理技术行政管理系统
-   - prefix: `caa_`, type: `caa_t`, tag: [CAA], base: 1227
+3. **cannabis_admin** (~20K) - Cannabis管理技术行政管理系统
+   - prefix: `nab_`, type: `nab_t`, tag: [NAB], base: 1230
 
 ---
 
@@ -27,10 +27,10 @@
 
 | 层级 | 类型 | 数量 | 状态 |
 |:-----|:----:|:-----:|:------:|
-| L3 | WASM Apps | 2250 (2203 standalone + 47 libraries) | ✓ 100% |
-| **Total** | **Modules** | **2482** | **✓ COMPLETE** |
+| L3 | WASM Apps | 2253 (2206 standalone + 47 libraries) | ✓ 100% |
+| **Total** | **Modules** | **2485** | **✓ COMPLETE** |
 
 ---
 
 **UPDATE=0** ✓
-**Phase 605 READY** ✓
+**Phase 606 READY** ✓
