@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 772 - v1117.0 (2983 modules)
+- Added: orange_admin, osier_admin, papaya_admin
+
 ## Phase 771 - v1116.0 (2980 modules)
 - Added: mangrove_admin, mulberry_admin, neem_admin
 
