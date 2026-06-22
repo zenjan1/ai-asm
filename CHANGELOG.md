@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 654 - v999.0 (2629 modules)
+- Added: wolfia_admin, wollemia_admin, wulffia_admin
+
 ## Phase 653 - v998.0 (2626 modules)
 - Added: vogelae_admin, volcanica_admin, volkowia_admin
 
