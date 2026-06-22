@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 745 - v1090.0 (2902 modules)
+- Added: stenanthium_admin, stevia_admin, stigmaphyllon_admin
+
 ## Phase 744 - v1089.0 (2899 modules)
 - Added: sorbus_admin, spirogyra_admin, stauntonia_admin
 

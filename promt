@@ -1,27 +1,27 @@
-Phase 745: Create 3 plant-themed admin modules (alphabetically after stauntonia):
+Phase 746: Create 3 plant-themed admin modules (alphabetically after stigmaphyllon):
 
-1. stenanthium_admin (prefix: sten_, base offset: 1661, tag: [STEN])
-   - planning: 1661/1650/1630/1612
-   - execution: 1650/1639/1621/1608
-   - evaluation: 1642/1631/1615/1604
-   - accessory: 1634/1625/1611/1601
-   - market: 1628/1619/1606/1598
+1. strophanthus_admin (prefix: stro_, base offset: 1664, tag: [STRO])
+   - planning: 1664/1653/1633/1615
+   - execution: 1653/1642/1624/1611
+   - evaluation: 1645/1634/1618/1607
+   - accessory: 1637/1628/1614/1604
+   - market: 1631/1622/1609/1601
 
-2. stevia_admin (prefix: stev_, base offset: 1662, tag: [STEV])
-   - planning: 1662/1651/1631/1613
-   - execution: 1651/1640/1622/1609
-   - evaluation: 1643/1632/1616/1605
-   - accessory: 1635/1626/1612/1602
-   - market: 1629/1620/1607/1599
+2. sutherlandia_admin (prefix: suth_, base offset: 1665, tag: [SUTH])
+   - planning: 1665/1654/1634/1616
+   - execution: 1654/1643/1625/1612
+   - evaluation: 1646/1635/1619/1608
+   - accessory: 1638/1629/1615/1605
+   - market: 1632/1623/1610/1602
 
-3. stigmaphyllon_admin (prefix: stig_, base offset: 1663, tag: [STIG])
-   - planning: 1663/1652/1632/1614
-   - execution: 1652/1641/1623/1610
-   - evaluation: 1644/1633/1617/1606
-   - accessory: 1636/1627/1613/1603
-   - market: 1630/1621/1608/1600
+3. swertia_admin (prefix: swer_, base offset: 1666, tag: [SWER])
+   - planning: 1666/1655/1635/1617
+   - execution: 1655/1644/1626/1613
+   - evaluation: 1647/1636/1620/1609
+   - accessory: 1639/1630/1616/1606
+   - market: 1633/1624/1611/1603
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1089.0->v1090.0, 2899->2902, L3: 2667->2670, 2620->2623, L3 table 2430->2433/2383->2386, L3 WASM Apps 2283->2286),
-add Phase 745 entry to CHANGELOG, find Phase 746 candidates (alphabetically after stigmaphyllon),
+Build WASM, update README (v1090.0->v1091.0, 2902->2905, L3: 2670->2673, 2623->2626, L3 table 2433->2436/2386->2389, L3 WASM Apps 2286->2289),
+add Phase 746 entry to CHANGELOG, find Phase 747 candidates (alphabetically after swertia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
