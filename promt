@@ -1,27 +1,27 @@
-Phase 743: Create 3 plant-themed admin modules (alphabetically after silene):
+Phase 744: Create 3 plant-themed admin modules (alphabetically after sonchus):
 
-1. siraitia_admin (prefix: siri_, base offset: 1655, tag: [SIRI])
-   - planning: 1655/1644/1624/1606
-   - execution: 1644/1633/1615/1602
-   - evaluation: 1636/1625/1609/1598
-   - accessory: 1628/1619/1605/1595
-   - market: 1622/1613/1600/1592
+1. sorbus_admin (prefix: sorb_, base offset: 1658, tag: [SORB])
+   - planning: 1658/1647/1627/1609
+   - execution: 1647/1636/1618/1605
+   - evaluation: 1639/1628/1612/1601
+   - accessory: 1631/1622/1608/1598
+   - market: 1625/1616/1603/1595
 
-2. silybum_admin (prefix: sily_, base offset: 1656, tag: [SILY])
-   - planning: 1656/1645/1625/1607
-   - execution: 1645/1634/1616/1603
-   - evaluation: 1637/1626/1610/1599
-   - accessory: 1629/1620/1606/1596
-   - market: 1623/1614/1601/1593
+2. spirogyra_admin (prefix: spog_, base offset: 1659, tag: [SPOG])
+   - planning: 1659/1648/1628/1610
+   - execution: 1648/1637/1619/1606
+   - evaluation: 1640/1629/1613/1602
+   - accessory: 1632/1623/1609/1599
+   - market: 1626/1617/1604/1596
 
-3. sonchus_admin (prefix: sonc_, base offset: 1657, tag: [SONC])
-   - planning: 1657/1646/1626/1608
-   - execution: 1646/1635/1617/1604
-   - evaluation: 1638/1627/1611/1600
-   - accessory: 1630/1621/1607/1597
-   - market: 1624/1615/1602/1594
+3. stauntonia_admin (prefix: stau_, base offset: 1660, tag: [STAU])
+   - planning: 1660/1649/1629/1611
+   - execution: 1649/1638/1620/1607
+   - evaluation: 1641/1630/1614/1603
+   - accessory: 1633/1624/1610/1600
+   - market: 1627/1618/1605/1597
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1087.0->v1088.0, 2893->2896, L3: 2661->2664, 2614->2617, L3 table 2424->2427/2377->2380, L3 WASM Apps 2277->2280),
-add Phase 743 entry to CHANGELOG, find Phase 744 candidates (alphabetically after sonchus),
+Build WASM, update README (v1088.0->v1089.0, 2896->2899, L3: 2664->2667, 2617->2620, L3 table 2427->2430/2380->2383, L3 WASM Apps 2280->2283),
+add Phase 744 entry to CHANGELOG, find Phase 745 candidates (alphabetically after stauntonia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

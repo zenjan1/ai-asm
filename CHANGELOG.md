@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 743 - v1088.0 (2896 modules)
+- Added: siraitia_admin, silybum_admin, sonchus_admin
+
 ## Phase 742 - v1087.0 (2893 modules)
 - Added: sidalcea_admin, sigesbeckia_admin, silene_admin
 
