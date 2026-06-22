@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 650 - v995.0 (2617 modules)
+- Added: vigna_admin, viminaria_admin, violaria_admin
+
 ## Phase 649 - v994.0 (2614 modules)
 - Added: versicolor_admin, vestia_admin, victoria_admin
 
