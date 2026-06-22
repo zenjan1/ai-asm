@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 705 - v1050.0 (2782 modules)
+- Added: hypoxys_admin, hyssopus_admin, jacquemontia_admin
+
 ## Phase 704 - v1049.0 (2779 modules)
 - Added: hunnemania_admin, hydrastis_admin, hylocereus_admin
 
