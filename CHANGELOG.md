@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 735 - v1080.0 (2872 modules)
+- Added: ozothamnus_admin, pfeiffera_admin, phalaroides_admin
+
 ## Phase 734 - v1079.0 (2869 modules)
 - Added: oligomeris_admin, omphalodes_admin, onopordum_admin
 
