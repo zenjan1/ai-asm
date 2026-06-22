@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 640 - v985.0 (2587 modules)
+- Added: polygala_admin, protea_admin, pteridium_admin
+
 ## Phase 639 - v984.0 (2584 modules)
 - Added: phillyrea_admin, physalis_admin, pittosporum_admin
 
