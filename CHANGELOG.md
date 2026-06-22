@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 595 - Talinum, Tecoma & Telanthophila Technologies (v940.0, 2452 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **talinum_admin** (Talinum management technology administration system)
+  - Prefix: `tal_`, Type: `tal_t`, Tag: [TAL], Base address: 1195
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **tecoma_admin** (Tecoma management technology administration system)
+  - Prefix: `tec_`, Type: `tec_t`, Tag: [TEC], Base address: 1196
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **telanthophila_admin** (Telanthophila management technology administration system)
+  - Prefix: `tel_`, Type: `tel_t`, Tag: [TEL], Base address: 1197
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2452 (L1:62 + L2:138 + L3:2220 + L4:19 + L5:13)
+- L3 WASM Apps: 2220 (2173 standalone + 47 libraries)
+- Version: v940.0 (Phase + 345)
+
 ## Phase 594 - Sinapis, Smilax & Sophora Technologies (v939.0, 2449 modules)
 
 *Date: 2026-06-22*
