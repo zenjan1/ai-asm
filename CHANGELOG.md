@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 769 - v1114.0 (2974 modules)
+- Added: laurel_admin, lemon_admin, lime_admin
+
 ## Phase 768 - v1113.0 (2971 modules)
 - Added: fig_admin, hazel_admin, holly_admin
 
