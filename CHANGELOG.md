@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 717 - v1062.0 (2818 modules)
+- Added: monochoria_admin, monolena_admin, morisonia_admin
+
 ## Phase 716 - v1061.0 (2815 modules)
 - Added: mimosa_admin, mirabilis_admin, molinaea_admin
 

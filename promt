@@ -1,27 +1,27 @@
-Phase 717: Create 3 plant-themed admin modules (alphabetically after molinaea):
+Phase 718: Create 3 plant-themed admin modules (alphabetically after morisonia):
 
-1. monochoria_admin (prefix: mono_, base offset: 1577, tag: [MONO])
-   - planning: 1577/1566/1546/1528
-   - execution: 1566/1555/1537/1524
-   - evaluation: 1558/1547/1531/1520
-   - accessory: 1550/1541/1527/1517
-   - market: 1544/1535/1522/1514
+1. mortonia_admin (prefix: mort_, base offset: 1580, tag: [MORT])
+   - planning: 1580/1569/1549/1531
+   - execution: 1569/1558/1540/1527
+   - evaluation: 1561/1550/1534/1523
+   - accessory: 1553/1544/1530/1520
+   - market: 1547/1538/1525/1517
 
-2. monolena_admin (prefix: monl_, base offset: 1578, tag: [MONL])
-   - planning: 1578/1567/1547/1529
-   - execution: 1567/1556/1538/1525
-   - evaluation: 1559/1548/1532/1521
-   - accessory: 1551/1542/1528/1518
-   - market: 1545/1536/1523/1515
+2. mossia_admin (prefix: moss_, base offset: 1581, tag: [MOSS])
+   - planning: 1581/1570/1550/1532
+   - execution: 1570/1559/1541/1528
+   - evaluation: 1562/1551/1535/1524
+   - accessory: 1554/1545/1531/1521
+   - market: 1548/1539/1526/1518
 
-3. morisonia_admin (prefix: mori_, base offset: 1579, tag: [MORI])
-   - planning: 1579/1568/1548/1530
-   - execution: 1568/1557/1539/1526
-   - evaluation: 1560/1549/1533/1522
-   - accessory: 1552/1543/1529/1519
-   - market: 1546/1537/1524/1516
+3. mucuna_admin (prefix: mucu_, base offset: 1582, tag: [MUCU])
+   - planning: 1582/1571/1551/1533
+   - execution: 1571/1560/1542/1529
+   - evaluation: 1563/1552/1536/1525
+   - accessory: 1555/1546/1532/1522
+   - market: 1549/1540/1527/1519
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1061.0->v1062.0, 2815->2818, L3: 2583->2586, 2536->2539),
-add Phase 717 entry to CHANGELOG, find Phase 718 candidates (alphabetically after morisonia),
+Build WASM, update README (v1062.0->v1063.0, 2818->2821, L3: 2586->2589, 2539->2542),
+add Phase 718 entry to CHANGELOG, find Phase 719 candidates (alphabetically after mucuna),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
