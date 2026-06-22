@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 606 - Carthamus, Camassia & Cannabis Technologies (v951.0, 2485 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **carthamus_admin** (Carthamus management technology administration system)
+  - Prefix: `rth_`, Type: `rth_t`, Tag: [RTH], Base address: 1228
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **camassia_admin** (Camassia management technology administration system)
+  - Prefix: `cms_`, Type: `cms_t`, Tag: [CMS], Base address: 1229
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **cannabis_admin** (Cannabis management technology administration system)
+  - Prefix: `nab_`, Type: `nab_t`, Tag: [NAB], Base address: 1230
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2485 (L1:62 + L2:138 + L3:2253 + L4:19 + L5:13)
+- L3 WASM Apps: 2253 (2206 standalone + 47 libraries)
+
+
 ## Phase 605 - Burns, Capsicum & Cacalia Technologies (v950.0, 2482 modules)
 
 *Date: 2026-06-22*

@@ -1,25 +1,25 @@
-# AI-ASM OS v951.0 - Phase 606 Carthamus、Camassia与Cannabis技术研究任务
+# AI-ASM OS v952.0 - Phase 607 Caryophyllus、Cephalanthus与Chelidonium技术研究任务
 
 ## UPDATE=0 | 2026-06-22
 
-**项目状态**: Phase 605 完成 ✓ 2482模块！开始Phase 606
-**总模块数**: 2485个 (L1:62 + L2:138 + L3:2253 + L4:19 + L5:13)
-**Phase 605完成**: burns_admin, capsicum_admin, cacalia_admin ✓
+**项目状态**: Phase 606 完成 ✓ 2485模块！开始Phase 607
+**总模块数**: 2488个 (L1:62 + L2:138 + L3:2256 + L4:19 + L5:13)
+**Phase 606完成**: carthamus_admin, camassia_admin, cannabis_admin ✓
 
 ---
 
-## 📋 Phase 606: Carthamus、Camassia与Cannabis技术
+## 📋 Phase 607: Caryophyllus、Cephalanthus与Chelidonium技术
 
 ### 新增模块
 
-1. **carthamus_admin** (~20K) - Carthamus管理技术行政管理系统
-   - prefix: `rth_`, type: `rth_t`, tag: [RTH], base: 1228
+1. **caryophyllus_admin** (~20K) - Caryophyllus管理技术行政管理系统
+   - prefix: `rph_`, type: `rph_t`, tag: [RPH], base: 1231
 
-2. **camassia_admin** (~20K) - Camassia管理技术行政管理系统
-   - prefix: `cms_`, type: `cms_t`, tag: [CMS], base: 1229
+2. **cephalanthus_admin** (~20K) - Cephalanthus管理技术行政管理系统
+   - prefix: `cph_`, type: `cph_t`, tag: [CPH], base: 1232
 
-3. **cannabis_admin** (~20K) - Cannabis管理技术行政管理系统
-   - prefix: `nab_`, type: `nab_t`, tag: [NAB], base: 1230
+3. **chelidonium_admin** (~20K) - Chelidonium管理技术行政管理系统
+   - prefix: `lid_`, type: `lid_t`, tag: [LID], base: 1233
 
 ---
 
@@ -27,10 +27,10 @@
 
 | 层级 | 类型 | 数量 | 状态 |
 |:-----|:----:|:-----:|:------:|
-| L3 | WASM Apps | 2253 (2206 standalone + 47 libraries) | ✓ 100% |
-| **Total** | **Modules** | **2485** | **✓ COMPLETE** |
+| L3 | WASM Apps | 2256 (2209 standalone + 47 libraries) | ✓ 100% |
+| **Total** | **Modules** | **2488** | **✓ COMPLETE** |
 
 ---
 
 **UPDATE=0** ✓
-**Phase 606 READY** ✓
+**Phase 607 READY** ✓
