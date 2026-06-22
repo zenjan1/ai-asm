@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 586 - Phystegia, Picea & Podocarpus Technologies (v931.0, 2425 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **phystegia_admin** (Phystegia management technology administration system)
+  - Prefix: `phy_`, Type: `phy_t`, Tag: [PHY], Base address: 1168
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **picea_admin** (Picea management technology administration system)
+  - Prefix: `pic_`, Type: `pic_t`, Tag: [PIC], Base address: 1169
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **podocarpus_admin** (Podocarpus management technology administration system)
+  - Prefix: `pod_`, Type: `pod_t`, Tag: [POD], Base address: 1170
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2425 (L1:62 + L2:138 + L3:2193 + L4:19 + L5:13)
+- L3 WASM Apps: 2193 (2146 standalone + 47 libraries)
+- Version: v931.0 (Phase + 345)
+
 ## Phase 585 - Oxydendrum, Papaver & Phacelia Technologies (v930.0, 2422 modules)
 
 *Date: 2026-06-22*
