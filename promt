@@ -1,27 +1,27 @@
-Phase 693: Create 3 plant-themed admin modules (alphabetically after dryas):
+Phase 695: Create 3 plant-themed admin modules (alphabetically after eschscholzia):
 
-1. dryopteris_admin (prefix: dryo_, base offset: 1501, tag: [DRYO])
-   - planning: 1501/1490/1470/1452
-   - execution: 1490/1479/1461/1448
-   - evaluation: 1482/1471/1455/1444
-   - accessory: 1474/1465/1451/1441
-   - market: 1468/1459/1446/1438
+1. euryale_admin (prefix: eury_, base offset: 1507, tag: [EURY])
+   - planning: 1507/1496/1476/1458
+   - execution: 1496/1485/1467/1454
+   - evaluation: 1488/1477/1461/1450
+   - accessory: 1480/1471/1457/1447
+   - market: 1474/1465/1452/1444
 
-2. duguetia_admin (prefix: dugu_, base offset: 1502, tag: [DUGU])
-   - planning: 1502/1491/1471/1453
-   - execution: 1491/1480/1462/1449
-   - evaluation: 1483/1472/1456/1445
-   - accessory: 1475/1466/1452/1442
-   - market: 1469/1460/1447/1439
+2. evenia_admin (prefix: even_, base offset: 1508, tag: [EVEN])
+   - planning: 1508/1497/1477/1459
+   - execution: 1497/1486/1468/1455
+   - evaluation: 1489/1478/1462/1451
+   - accessory: 1481/1472/1458/1448
+   - market: 1475/1466/1453/1445
 
-3. duranta_admin (prefix: dura_, base offset: 1503, tag: [DURA])
-   - planning: 1503/1492/1472/1454
-   - execution: 1492/1481/1463/1450
-   - evaluation: 1484/1473/1457/1446
-   - accessory: 1476/1467/1453/1443
-   - market: 1470/1461/1448/1440
+3. exacum_admin (prefix: exac_, base offset: 1509, tag: [EXAC])
+   - planning: 1509/1498/1478/1460
+   - execution: 1498/1487/1469/1456
+   - evaluation: 1490/1479/1463/1452
+   - accessory: 1482/1473/1459/1449
+   - market: 1476/1467/1454/1446
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1037.0→v1038.0, 2743→2746, L3: 2511→2514, 2464→2467),
-add Phase 693 entry to CHANGELOG, find Phase 694 candidates (alphabetically after duranta),
+Build WASM, update README (v1038.0→v1039.0, 2746→2749, L3: 2514→2517, 2467→2470),
+add Phase 695 entry to CHANGELOG, find Phase 696 candidates (alphabetically after exacum),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
