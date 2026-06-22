@@ -18,3 +18,6 @@ build/
 release/
 disk.img
 qemu_serial*.log
+qemu_debug.log
+qemu_v02_test.log
+disk.img
