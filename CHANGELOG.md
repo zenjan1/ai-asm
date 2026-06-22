@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 642 - v987.0 (2593 modules)
+- Added: sideritis_admin, silphium_admin, sisyrinchium_admin
+
 ## Phase 641 - v986.0 (2590 modules)
 - Added: pudus_admin, senecio_admin, serrula_admin
 
