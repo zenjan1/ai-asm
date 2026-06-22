@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 618 - v963.0 (2521 modules)
+- Added: dictamnus_admin, dierama_admin, diospyros_admin
+
 ## Phase 617 - v962.0 (2518 modules)
 - Added: deutzia_admin, dianella_admin, dichondra_admin
 
