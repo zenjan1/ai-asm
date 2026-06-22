@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 655 - v1000.0 (2632 modules)
+- Added: wullfia_admin, xylosmopsis_admin, zinniaea_admin
+
 ## Phase 654 - v999.0 (2629 modules)
 - Added: wolfia_admin, wollemia_admin, wulffia_admin
 
