@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 614 - Cyperus, Cyrilla & Cytisus Technologies (v959.0, 2509 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **cyperus_admin** (Cyperus management technology administration system)
+  - Prefix: `eru_`, Type: `eru_t`, Tag: [ERU], Base address: 1252
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **cyrilla_admin** (Cyrilla management technology administration system)
+  - Prefix: `ril_`, Type: `ril_t`, Tag: [RIL], Base address: 1253
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **cytisus_admin** (Cytisus management technology administration system)
+  - Prefix: `tis_`, Type: `tis_t`, Tag: [TIS], Base address: 1254
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2509 (L1:62 + L2:138 + L3:2277 + L4:19 + L5:13)
+- L3 WASM Apps: 2277 (2230 standalone + 47 libraries)
+
+
 ## Phase 613 - Cunila, Cyclamen & Cynara Technologies (v958.0, 2506 modules)
 
 *Date: 2026-06-22*
