@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 592 - Sanguinaria, Sarmentosa & Scoparia Technologies (v937.0, 2443 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **sanguinaria_admin** (Sanguinaria management technology administration system)
+  - Prefix: `san_`, Type: `san_t`, Tag: [SAN], Base address: 1186
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **sarmentosa_admin** (Sarmentosa management technology administration system)
+  - Prefix: `sar_`, Type: `sar_t`, Tag: [SAR], Base address: 1187
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **scoparia_admin** (Scoparia management technology administration system)
+  - Prefix: `sco_`, Type: `sco_t`, Tag: [SCO], Base address: 1188
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2443 (L1:62 + L2:138 + L3:2211 + L4:19 + L5:13)
+- L3 WASM Apps: 2211 (2164 standalone + 47 libraries)
+- Version: v937.0 (Phase + 345)
+
 ## Phase 591 - Rugosa, Rumex & Ruschia Technologies (v936.0, 2440 modules)
 
 *Date: 2026-06-22*
