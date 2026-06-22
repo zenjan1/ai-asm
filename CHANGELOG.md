@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 710 - v1055.0 (2797 modules)
+- Added: leptinella_admin, leucocoryne_admin, luzuriopsis_admin
+
 ## Phase 709 - v1054.0 (2794 modules)
 - Added: lecanopteris_admin, ledbouria_admin, lepidogrammitis_admin
 
