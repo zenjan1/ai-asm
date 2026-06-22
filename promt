@@ -1,27 +1,27 @@
-Phase 712: Create 3 plant-themed admin modules (alphabetically after malope):
+Phase 713: Create 3 plant-themed admin modules (alphabetically after maoutia):
 
-1. malvaviscus_admin (prefix: malv_, base offset: 1561, tag: [MALV])
-   - planning: 1561/1550/1530/1512
-   - execution: 1550/1539/1521/1508
-   - evaluation: 1542/1531/1515/1504
-   - accessory: 1534/1525/1511/1501
-   - market: 1528/1519/1506/1498
+1. marcetia_admin (prefix: marc_, base offset: 1564, tag: [MARC])
+   - planning: 1564/1553/1533/1515
+   - execution: 1553/1542/1524/1511
+   - evaluation: 1545/1534/1518/1507
+   - accessory: 1537/1528/1514/1504
+   - market: 1531/1522/1509/1501
 
-2. manglietia_admin (prefix: mang_, base offset: 1562, tag: [MANG])
-   - planning: 1562/1551/1531/1513
-   - execution: 1551/1540/1522/1509
-   - evaluation: 1543/1532/1516/1505
-   - accessory: 1535/1526/1512/1502
-   - market: 1529/1520/1507/1499
+2. marsilea_admin (prefix: mars_, base offset: 1565, tag: [MARS])
+   - planning: 1565/1554/1534/1516
+   - execution: 1554/1543/1525/1512
+   - evaluation: 1546/1535/1519/1508
+   - accessory: 1538/1529/1515/1505
+   - market: 1532/1523/1510/1502
 
-3. maoutia_admin (prefix: mao_, base offset: 1563, tag: [MAO])
-   - planning: 1563/1552/1532/1514
-   - execution: 1552/1541/1523/1510
-   - evaluation: 1544/1533/1517/1506
-   - accessory: 1536/1527/1513/1503
-   - market: 1530/1521/1508/1500
+3. matricaria_admin (prefix: matri_, base offset: 1566, tag: [MATRI])
+   - planning: 1566/1555/1535/1517
+   - execution: 1555/1544/1526/1513
+   - evaluation: 1547/1536/1520/1509
+   - accessory: 1539/1530/1516/1506
+   - market: 1533/1524/1511/1503
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1056.0->v1057.0, 2800->2803, L3: 2568->2571, 2521->2524),
-add Phase 712 entry to CHANGELOG, find Phase 713 candidates (alphabetically after maoutia),
+Build WASM, update README (v1057.0->v1058.0, 2803->2806, L3: 2571->2574, 2524->2527),
+add Phase 713 entry to CHANGELOG, find Phase 714 candidates (alphabetically after matricaria),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.

@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 712 - v1057.0 (2803 modules)
+- Added: malvaviscus_admin, manglietia_admin, maoutia_admin
+
 ## Phase 711 - v1056.0 (2800 modules)
 - Added: machaerina_admin, mahernia_admin, malope_admin
 
