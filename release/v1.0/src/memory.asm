@@ -1,0 +1,654 @@
+/*
+ * aiasm-aarch64/kernel/memory.asm
+ * Physical memory manager: bitmap page frame allocator + buddy-like kernel heap
+ * 4KB pages, bitmap tracks allocated/free frames
+ * v0.4: adds aligned allocation, heap alloc/free, memory stats
+ *
+ * Memory map (QEMU virt 128MB):
+ *   RAM:     0x40000000 - 0x48000000 (128MB)
+ *   Kernel:  0x40080000 - __image_end
+ *   Pages:   bitmap-tracked after kernel
+ *
+ * Public API:
+ *   mem_init()                — initialize page bitmap
+ *   mem_alloc_page() => x0    — allocate one 4KB page, return physical addr
+ *   mem_free_page(x0)         — free a page frame
+ *   mem_alloc_aligned(size, align) => x0 — allocate aligned memory from heap
+ *   mem_free(addr)            — free heap allocation
+ *   mem_total() => w0         — total free pages
+ *   mem_used() => w0          — used pages
+ *   mem_dump(x0=buffer)       — JSON stats string
+ */
+.arch armv8-a
+
+/* Page size */
+.set PAGE_SIZE,     0x1000
+.set PAGE_SHIFT,    12
+
+/* Heap region — defined by linker script, not in BSS */
+.global __kernel_heap_start
+.global __kernel_heap_end
+
+.text
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_init
+ * Description: Initialize physical memory manager, build page bitmap
+ * Input: none
+ * Output: none
+ * Clobbered: x0-x5
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_init
+mem_init:
+    stp     x29, x30, [sp, #-16]!
+
+    /* Total RAM: 128MB = 0x08000000 bytes */
+    mov     x0, #0x08000          /* 128MB in 16-bit chunks */
+    lsl     x0, x0, #8            /* = 0x08000000 */
+
+    /* RAM base: 0x40000000 */
+    movz    x1, #0x4000, lsl #16
+    movk    x1, #0x0000
+
+    /* Pages = total_bytes / PAGE_SIZE */
+    lsr     x2, x0, #PAGE_SHIFT   /* 32768 pages */
+
+    /* Store total pages */
+    adrp    x3, mem_total_pages
+    add     x3, x3, #:lo12:mem_total_pages
+    str     w2, [x3]
+
+    /* Kernel end page = (__image_end - RAM_BASE) / PAGE_SIZE */
+    adrp    x3, __image_end
+    add     x3, x3, #:lo12:__image_end
+    sub     x3, x3, x1            /* kernel offset from RAM base */
+    lsr     x3, x3, #PAGE_SHIFT   /* kernel page count */
+    add     x3, x3, #1            /* round up */
+
+    /* Store used pages */
+    adrp    x4, mem_used_pages
+    add     x4, x4, #:lo12:mem_used_pages
+    str     w3, [x4]
+
+    /* Bitmap: clear all bytes using memset */
+    mov     x9, x3              /* save kernel page count */
+    adrp    x0, page_bitmap
+    add     x0, x0, #:lo12:page_bitmap
+    mov     w1, #0                /* value */
+    mov     x2, #1024             /* length (1024 bytes = 8192 pages) */
+    bl      memset
+    mov     x3, x9              /* restore kernel page count */
+
+    /* Mark used pages in bitmap */
+    adrp    x4, page_bitmap
+    add     x4, x4, #:lo12:page_bitmap
+    mov     w5, #1
+    mov     x8, x4              /* x8 = bitmap pointer */
+mark_loop:
+    cbz     x3, mark_done
+    strb    w5, [x8], #1          /* mark page as allocated */
+    sub     x3, x3, #1
+    b       mark_loop
+
+mark_done:
+    /* Free pages = total - used */
+    adrp    x3, mem_total_pages
+    add     x3, x3, #:lo12:mem_total_pages
+    ldr     w3, [x3]
+    adrp    x4, mem_used_pages
+    add     x4, x4, #:lo12:mem_used_pages
+    ldr     w4, [x4]
+    sub     w3, w3, w4
+
+    adrp    x4, mem_free_pages
+    add     x4, x4, #:lo12:mem_free_pages
+    str     w3, [x4]
+
+    /* Initialize kernel heap from linker-defined region */
+    adrp    x0, heap_next
+    add     x0, x0, #:lo12:heap_next
+    adrp    x1, __kernel_heap_start
+    add     x1, x1, #:lo12:__kernel_heap_start
+    str     x1, [x0]
+
+    /* Initialize heap free list (empty) */
+    adrp    x0, heap_free_list
+    add     x0, x0, #:lo12:heap_free_list
+    str     xzr, [x0]
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_alloc_page
+ * Description: Allocate one page frame, return physical address
+ * Input: none
+ * Output: x0 = physical address of page, or 0 if OOM
+ * Clobbered: x0-x3
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_alloc_page
+mem_alloc_page:
+    stp     x29, x30, [sp, #-16]!
+
+    /* Scan bitmap for free page */
+    adrp    x1, page_bitmap
+    add     x1, x1, #:lo12:page_bitmap
+    adrp    x2, mem_total_pages
+    add     x2, x2, #:lo12:mem_total_pages
+    ldr     w2, [x2]
+
+    mov     x0, #0                /* page index */
+1:
+    cmp     x0, x2
+    b.ge    mem_oom
+    ldrb    w3, [x1, x0]
+    cbz     w3, 2f                /* found free page */
+    add     x0, x0, #1
+    b       1b
+
+2:
+    /* Mark as allocated */
+    mov     w3, #1
+    strb    w3, [x1, x0]
+
+    /* Update free count */
+    adrp    x1, mem_free_pages
+    add     x1, x1, #:lo12:mem_free_pages
+    ldr     w3, [x1]
+    sub     w3, w3, #1
+    str     w3, [x1]
+
+    /* Update used count */
+    adrp    x1, mem_used_pages
+    add     x1, x1, #:lo12:mem_used_pages
+    ldr     w3, [x1]
+    add     w3, w3, #1
+    str     w3, [x1]
+
+    /* Convert page index to physical address */
+    lsl     x0, x0, #PAGE_SHIFT   /* page_index * PAGE_SIZE */
+    /* Add RAM base */
+    movz    x1, #0x4000, lsl #16
+    add     x0, x0, x1
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+mem_oom:
+    mov     x0, #0                /* OOM */
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: kernel_alloc_page
+ * Description: Allocate one 4KB page from kernel reserved area (C-callable)
+ * Input: none
+ * Output: x0 = virtual address of page
+ * Clobbered: x0-x3
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global kernel_alloc_page
+kernel_alloc_page:
+    stp     x29, x30, [sp, #-16]!
+
+    /* Allocate from page bitmap */
+    bl      mem_alloc_page
+    cbz     x0, kernel_alloc_oom
+
+    /* Convert physical address to virtual (same mapping in QEMU virt) */
+    /* Already returns usable address since we map 1:1 */
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+kernel_alloc_oom:
+    mov     x0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_free_page
+ * Description: Free a page frame
+ * Input: x0 = physical address
+ * Output: none
+ * Clobbered: x0-x2
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_free_page
+mem_free_page:
+    stp     x29, x30, [sp, #-16]!
+
+    /* Convert phys addr to page index */
+    movz    x1, #0x4000, lsl #16
+    sub     x0, x0, x1
+    lsr     x0, x0, #PAGE_SHIFT
+
+    /* Clear bitmap bit */
+    adrp    x1, page_bitmap
+    add     x1, x1, #:lo12:page_bitmap
+    strb    wzr, [x1, x0]
+
+    /* Update counts */
+    adrp    x1, mem_free_pages
+    add     x1, x1, #:lo12:mem_free_pages
+    ldr     w2, [x1]
+    add     w2, w2, #1
+    str     w2, [x1]
+
+    adrp    x1, mem_used_pages
+    add     x1, x1, #:lo12:mem_used_pages
+    ldr     w2, [x1]
+    sub     w2, w2, #1
+    str     w2, [x1]
+
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_alloc_aligned
+ * Description: Allocate aligned memory from kernel heap (bump + alignment)
+ * Input: x0 = size (bytes), x1 = alignment (power of 2)
+ * Output: x0 = pointer, or 0 if OOM
+ * Clobbered: x0-x3
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_alloc_aligned
+mem_alloc_aligned:
+    stp     x29, x30, [sp, #-16]!
+    mov     x2, x0                /* save size */
+    mov     x3, x1                /* save alignment */
+
+    /* --- First: try free list (first-fit) --- */
+    adrp    x4, heap_free_list
+    add     x4, x4, #:lo12:heap_free_list
+    ldr     x5, [x4]              /* x5 = free list head */
+    mov     x6, xzr               /* x6 = prev pointer */
+
+free_list_search:
+    cbz     x5, free_list_miss    /* no free block found */
+
+    ldr     w7, [x5]              /* block size (bit0=0 since free) */
+    cmp     w7, w2
+    b.lt    free_list_next        /* block too small */
+
+    /* Found a suitable block — remove from free list */
+    cbz     x6, free_list_remove_head
+    ldr     x8, [x5, #4]
+    str     x8, [x6, #4]          /* prev.next = current.next */
+    b       free_list_use_block
+
+free_list_remove_head:
+    ldr     x8, [x5, #4]
+    str     x8, [x4]              /* free list head = current.next */
+
+free_list_use_block:
+    /* User data starts at x5 + 8 (past header) */
+    add     x0, x5, #8
+    ldp     x29, x30, [sp], #16
+    ret
+
+free_list_next:
+    mov     x6, x5
+    ldr     x5, [x5, #4]
+    b       free_list_search
+
+free_list_miss:
+    /* --- Free list miss: fall through to bump allocator --- */
+
+    /* Get current heap pointer */
+    adrp    x0, heap_next
+    add     x0, x0, #:lo12:heap_next
+    ldr     x4, [x0]              /* current heap_next */
+
+    /* Align: ptr = (ptr + align - 1) & ~(align - 1) */
+    add     x4, x4, x3
+    sub     x4, x4, #1
+    sub     x1, x3, #1
+    bic     x4, x4, x1
+
+    /* new_end = ptr + size + 8 (header) */
+    add     x1, x4, x2
+    add     x1, x1, #8
+
+    /* Check heap bounds */
+    adrp    x0, __kernel_heap_end
+    add     x0, x0, #:lo12:__kernel_heap_end
+    cmp     x1, x0
+    b.ge    heap_oom
+
+    /* Update heap_next */
+    adrp    x0, heap_next
+    add     x0, x0, #:lo12:heap_next
+    str     x1, [x0]
+
+    /* Write block header: size (with allocated bit), next=0 */
+    sub     x1, x1, x2
+    sub     x1, x1, #8            /* x1 = header address */
+    orr     w2, w2, #1            /* set allocated flag */
+    str     w2, [x1]
+    str     wzr, [x1, #4]
+
+    /* User data pointer = header + 8 */
+    add     x0, x1, #8
+
+    /* Zero the allocation */
+    mov     x1, x0                /* dest */
+    mov     w2, #0                /* value */
+    mov     x3, x2                /* size — wait, x2 was modified */
+    /* Recalculate size from header */
+    ldr     w3, [x1, #-8]
+    and     w3, w3, #~1           /* clear allocated flag */
+    bl      memset
+
+    mov     x0, x1
+    ldp     x29, x30, [sp], #16
+    ret
+
+heap_oom:
+    mov     x0, #0
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_free
+ * Description: Free heap allocation — inserts block into free list, coalesces
+ * Input: x0 = pointer (must be a prior mem_alloc_aligned result)
+ * Output: none
+ * Clobbered: x0-x3
+ * Stack: 16 bytes
+ * -----------------------------------------------------------------------------
+ * Block header layout (8 bytes, placed before user data):
+ *   +0: size (32-bit) — bit0=1 if allocated, 0 if free
+ *   +4: next free block offset (32-bit) — used only when free
+ * User pointer points past this header.
+ * ----------------------------------------------------------------------------- */
+.global mem_free
+mem_free:
+    stp     x29, x30, [sp, #-16]!
+
+    cbz     x0, mem_free_done     /* null pointer — no-op */
+
+    /* Get block header (pointer - 8) */
+    sub     x1, x0, #8
+
+    /* Read size and mark as free (clear bit0) */
+    ldr     w2, [x1]
+    and     w2, w2, #~1           /* clear allocated flag */
+    str     w2, [x1]
+
+    /* Insert at head of free list */
+    adrp    x3, heap_free_list
+    add     x3, x3, #:lo12:heap_free_list
+    ldr     x4, [x3]              /* old head */
+    str     x4, [x1, #4]          /* new block → old head */
+    str     x1, [x3]              /* free list head → new block */
+
+    /* Coalesce: merge adjacent free blocks in the free list */
+    bl      heap_coalesce
+
+mem_free_done:
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * heap_coalesce: walk free list, merge adjacent blocks
+ * Adjacency check: if block A end == block B start, merge B into A
+ * Simple O(n^2) pass — sufficient for kernel heap
+ * ----------------------------------------------------------------------------- */
+heap_coalesce:
+    stp     x29, x30, [sp, #-16]!
+
+    adrp    x0, heap_free_list
+    add     x0, x0, #:lo12:heap_free_list
+    ldr     x4, [x0]              /* x4 = current free list head */
+
+    /* Sort free list by address (insertion sort) for easy coalescing */
+coalesce_sort:
+    mov     x5, x4                /* x5 = prev in sorted list */
+    mov     x6, xzr               /* x6 = sorted list head */
+    mov     x7, xzr               /* x7 = tail of sorted list */
+
+sort_loop:
+    cbz     x5, sort_done
+    ldr     x8, [x5]              /* x8 = next in unsorted */
+
+    /* Find insertion point in sorted list */
+    mov     x9, x6                /* search pointer */
+    mov     x10, xzr              /* prev in search */
+
+search_loop:
+    cbz     x9, insert_here       /* end of sorted list */
+    cmp     x9, x5
+    b.lt    search_next
+    /* x9 >= x5, insert before x9 */
+    b       insert_before
+
+search_next:
+    mov     x10, x9
+    ldr     x9, [x9]
+    b       search_loop
+
+insert_before:
+    /* Insert x5 before x9 */
+    str     x5, [x10]
+    str     x9, [x5, #4]
+    b       sort_next_node
+
+insert_here:
+    /* Append at end */
+    cbz     x10, 1f
+    str     x5, [x10]
+    b       sort_next_node
+1:
+    mov     x6, x5                /* first node */
+
+sort_next_node:
+    str     xzr, [x5, #4]         /* clear next pointer of inserted node */
+    mov     x5, x8
+    b       sort_loop
+
+sort_done:
+    mov     x4, x6                /* x4 = sorted free list */
+
+    /* Pass 2: coalesce adjacent blocks */
+coalesce_pass:
+    cbz     x4, coalesce_done
+    ldr     x5, [x4]              /* x5 = next block */
+    cbz     x5, coalesce_done
+
+    /* Check if x4 end == x5 start */
+    ldr     w2, [x4]              /* x4 size */
+    add     x2, x4, x2            /* x4 end address */
+    cmp     x2, x5
+    b.ne    coalesce_next
+
+    /* Merge: x4.size += x5.size, x4.next = x5.next */
+    ldr     w3, [x5]
+    add     w2, w2, w3            /* combined size */
+    str     w2, [x4]
+    ldr     x3, [x5, #4]
+    str     x3, [x4, #4]
+    /* x5 is now merged, continue with x4 */
+    b       coalesce_pass
+
+coalesce_next:
+    mov     x4, x5
+    b       coalesce_pass
+
+coalesce_done:
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_alloc
+ * Description: Simple allocation (16-byte aligned default)
+ * Input: x0 = size
+ * Output: x0 = pointer, or 0 if OOM
+ * Clobbered: x0-x3
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_alloc
+mem_alloc:
+    stp     x29, x30, [sp, #-16]!
+    mov     x1, #16               /* default alignment */
+    bl      mem_alloc_aligned
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_total
+ * Description: Get total free page count
+ * Input: none
+ * Output: w0 = free pages
+ * Clobbered: x0
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_total
+mem_total:
+    stp     x29, x30, [sp, #-16]!
+    adrp    x0, mem_free_pages
+    add     x0, x0, #:lo12:mem_free_pages
+    ldr     w0, [x0]
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_used
+ * Description: Get used page count
+ * Input: none
+ * Output: w0 = used pages
+ * Clobbered: x0
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_used
+mem_used:
+    stp     x29, x30, [sp, #-16]!
+    adrp    x0, mem_used_pages
+    add     x0, x0, #:lo12:mem_used_pages
+    ldr     w0, [x0]
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* -----------------------------------------------------------------------------
+ * Function: mem_dump
+ * Description: Get memory info as JSON string in buffer
+ * Input: x0 = output buffer
+ * Output: x0 = buffer pointer
+ * Clobbered: x0-x4
+ * Stack: 16 bytes
+ * ----------------------------------------------------------------------------- */
+.global mem_dump
+mem_dump:
+    stp     x29, x30, [sp, #-16]!
+
+    adrp    x1, msg_mem_info_pre
+    add     x1, x1, #:lo12:msg_mem_info_pre
+1:
+    ldrb    w2, [x1], #1
+    cbz     w2, 2f
+    strb    w2, [x0], #1
+    b       1b
+
+2:
+    /* Print total pages */
+    adrp    x1, mem_total_pages
+    add     x1, x1, #:lo12:mem_total_pages
+    ldr     w1, [x1]
+    adrp    x3, mem_itoa_buf
+    add     x3, x3, #:lo12:mem_itoa_buf
+    mov     x0, x1
+    mov     x1, x3
+    bl      itoa_buf
+    mov     x4, x3
+1:
+    ldrb    w1, [x4], #1
+    cbz     w1, 2f
+    strb    w1, [x0], #1
+    b       1b
+
+2:
+    adrp    x1, msg_mem_info_mid
+    add     x1, x1, #:lo12:msg_mem_info_mid
+3:
+    ldrb    w2, [x1], #1
+    cbz     w2, 4f
+    strb    w2, [x0], #1
+    b       3b
+
+4:
+    /* Print free pages */
+    adrp    x1, mem_free_pages
+    add     x1, x1, #:lo12:mem_free_pages
+    ldr     w1, [x1]
+    adrp    x3, mem_itoa_buf
+    add     x3, x3, #:lo12:mem_itoa_buf
+    mov     x0, x1
+    mov     x1, x3
+    bl      itoa_buf
+    mov     x4, x3
+5:
+    ldrb    w1, [x4], #1
+    cbz     w1, 6f
+    strb    w1, [x0], #1
+    b       5b
+
+6:
+    adrp    x1, msg_mem_info_suf
+    add     x1, x1, #:lo12:msg_mem_info_suf
+7:
+    ldrb    w2, [x1], #1
+    cbz     w2, 8f
+    strb    w2, [x0], #1
+    b       7b
+
+8:
+    strb    wzr, [x0]
+    adrp    x0, mem_itoa_buf
+    add     x0, x0, #:lo12:mem_itoa_buf
+    ldp     x29, x30, [sp], #16
+    ret
+
+/* mem_info is an alias for mem_dump (backward compat) */
+.global mem_info
+mem_info:
+    b       mem_dump
+
+/* ----------------------------------------------------------------------------- */
+/* Memory state (BSS)                                                           */
+/* ----------------------------------------------------------------------------- */
+.bss
+.align 3
+.global mem_total_pages
+mem_total_pages:
+    .quad 0
+.global mem_used_pages
+mem_used_pages:
+    .quad 0
+.global mem_free_pages
+mem_free_pages:
+    .quad 0
+
+.align 4
+page_bitmap:
+    .skip 1024                  /* 8192 pages max (32MB) */
+.align 4
+mem_itoa_buf:
+    .skip 24
+
+/* Kernel heap region */
+.align 4
+heap_next:
+    .skip 8                     /* current bump pointer */
+heap_free_list:
+    .skip 8                     /* free list head (future buddy) */
+
+.section .rodata
+.align 4
+msg_mem_info_pre:
+    .asciz "{\"total_pages\":"
+msg_mem_info_mid:
+    .asciz ",\"free_pages\":"
+msg_mem_info_suf:
+    .asciz "}\n"

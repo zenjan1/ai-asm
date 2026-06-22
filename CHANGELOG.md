@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 718 - v1063.0 (2821 modules)
+- Added: mortonia_admin, mossia_admin, mucuna_admin
+
 ## Phase 717 - v1062.0 (2818 modules)
 - Added: monochoria_admin, monolena_admin, morisonia_admin
 

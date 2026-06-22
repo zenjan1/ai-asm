@@ -1,27 +1,27 @@
-Phase 718: Create 3 plant-themed admin modules (alphabetically after morisonia):
+Phase 719: Create 3 plant-themed admin modules (alphabetically after mucuna):
 
-1. mortonia_admin (prefix: mort_, base offset: 1580, tag: [MORT])
-   - planning: 1580/1569/1549/1531
-   - execution: 1569/1558/1540/1527
-   - evaluation: 1561/1550/1534/1523
-   - accessory: 1553/1544/1530/1520
-   - market: 1547/1538/1525/1517
+1. munkiella_admin (prefix: munk_, base offset: 1583, tag: [MUNK])
+   - planning: 1583/1572/1552/1534
+   - execution: 1572/1561/1543/1530
+   - evaluation: 1564/1553/1537/1526
+   - accessory: 1556/1547/1533/1523
+   - market: 1550/1541/1528/1520
 
-2. mossia_admin (prefix: moss_, base offset: 1581, tag: [MOSS])
-   - planning: 1581/1570/1550/1532
-   - execution: 1570/1559/1541/1528
-   - evaluation: 1562/1551/1535/1524
-   - accessory: 1554/1545/1531/1521
-   - market: 1548/1539/1526/1518
+2. murdania_admin (prefix: murd_, base offset: 1584, tag: [MURD])
+   - planning: 1584/1573/1553/1535
+   - execution: 1573/1562/1544/1531
+   - evaluation: 1565/1554/1538/1527
+   - accessory: 1557/1548/1534/1524
+   - market: 1551/1542/1529/1521
 
-3. mucuna_admin (prefix: mucu_, base offset: 1582, tag: [MUCU])
-   - planning: 1582/1571/1551/1533
-   - execution: 1571/1560/1542/1529
-   - evaluation: 1563/1552/1536/1525
-   - accessory: 1555/1546/1532/1522
-   - market: 1549/1540/1527/1519
+3. nabalia_admin (prefix: naba_, base offset: 1585, tag: [NABA])
+   - planning: 1585/1574/1554/1536
+   - execution: 1574/1563/1545/1532
+   - evaluation: 1566/1555/1539/1528
+   - accessory: 1558/1549/1535/1525
+   - market: 1552/1543/1530/1522
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1062.0->v1063.0, 2818->2821, L3: 2586->2589, 2539->2542),
-add Phase 718 entry to CHANGELOG, find Phase 719 candidates (alphabetically after mucuna),
+Build WASM, update README (v1063.0->v1064.0, 2821->2824, L3: 2589->2592, 2542->2545),
+add Phase 719 entry to CHANGELOG, find Phase 720 candidates (alphabetically after nabalia),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
