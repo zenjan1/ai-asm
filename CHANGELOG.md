@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 610 - Codaecum, Coeloglossus & Colocasia Technologies (v955.0, 2497 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **codaecum_admin** (Codaecum management technology administration system)
+  - Prefix: `odm_`, Type: `odm_t`, Tag: [ODM], Base address: 1240
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **coeloglossus_admin** (Coeloglossus management technology administration system)
+  - Prefix: `ogl_`, Type: `ogl_t`, Tag: [OGL], Base address: 1241
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **colocasia_admin** (Colocasia management technology administration system)
+  - Prefix: `loc_`, Type: `loc_t`, Tag: [LOC], Base address: 1242
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2497 (L1:62 + L2:138 + L3:2265 + L4:19 + L5:13)
+- L3 WASM Apps: 2265 (2218 standalone + 47 libraries)
+
+
 ## Phase 609 - Cicuta, Clinopodium & Clematis Technologies (v954.0, 2494 modules)
 
 *Date: 2026-06-22*
