@@ -1,36 +1,27 @@
-# AI-ASM OS v1031.0 - Phase 687 Chaenomeles、Chamaecyparis与Chelidonium技术研究任务
+Phase 688: Create 3 plant-themed admin modules (alphabetically after chelidonium):
 
-## UPDATE=0 | 2026-06-22
+1. chionanthus_admin (prefix: chio_, base offset: 1474, tag: [CHIO])
+   - planning: 1474/1463/1443/1425
+   - execution: 1463/1452/1434/1421
+   - evaluation: 1455/1444/1428/1417
+   - accessory: 1447/1438/1424/1414
+   - market: 1441/1432/1419/1411
 
-**项目状态**: Phase 686 完成 ✓ 2725模块！开始Phase 687
-**总模块数**: 2728个 (L1:62 + L2:138 + L3:2493 + L4:19 + L5:13)
-**Phase 686完成**: cephalanthus_admin, cerastium_admin, cercis_admin ✓
+2. choerospermum_admin (prefix: choe_, base offset: 1475, tag: [CHOE])
+   - planning: 1475/1464/1444/1426
+   - execution: 1464/1453/1435/1422
+   - evaluation: 1456/1445/1429/1418
+   - accessory: 1448/1439/1425/1415
+   - market: 1442/1433/1420/1412
 
----
+3. cistus_admin (prefix: cist_, base offset: 1476, tag: [CIST])
+   - planning: 1476/1465/1445/1427
+   - execution: 1465/1454/1436/1423
+   - evaluation: 1457/1446/1430/1419
+   - accessory: 1449/1440/1426/1416
+   - market: 1443/1434/1421/1413
 
-## 📋 Phase 687: Chaenomeles、Chamaecyparis与Chelidonium技术
-
-### 新增模块
-
-1. **chaenomeles_admin** (~20K) - Chaenomeles管理技术行政管理系统
-   - prefix: `chae_`, type: `chae_t`, tag: [CHAE], base: 1471
-
-2. **chamaecyparis_admin** (~20K) - Chamaecyparis管理技术行政管理系统
-   - prefix: `cham_`, type: `cham_t`, tag: [CHAM], base: 1472
-
-3. **chelidonium_admin** (~20K) - Chelidonium管理技术行政管理系统
-   - prefix: `chel_`, type: `chel_t`, tag: [CHEL], base: 1473
-
----
-
-## 📈 预期结果
-
-| 层级 | 类型 | 数量 | 状态 |
-|:-----|:----:|:-----:|:------:|
-| L3 | WASM Apps | 2496 (2449 standalone + 47 libraries) | ✓ 100% |
-| **Total** | **Modules** | **2728** | **✓ COMPLETE** |
-
----
-
-**UPDATE=0** ✓
-**Phase 687 READY** ✓
+Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
+Build WASM, update README (v1032.0→v1033.0, 2728→2731, L3: 2496→2499, 2449→2452),
+add Phase 688 entry to CHANGELOG, find Phase 689 candidates (alphabetically after cistus),
+write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
