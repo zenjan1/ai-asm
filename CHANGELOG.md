@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 645 - v990.0 (2602 modules)
+- Added: syringa_admin, taxodium_admin, telekia_admin
+
 ## Phase 644 - v989.0 (2599 modules)
 - Added: stipa_admin, swainsona_admin, symphytum_admin
 
