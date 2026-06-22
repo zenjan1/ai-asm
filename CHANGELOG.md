@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 626 - v971.0 (2545 modules)
+- Added: goniolimon_admin, gunnera_admin, guapira_admin
+
 ## Phase 625 - v970.0 (2542 modules)
 - Added: gastrolobium_admin, gibbaeum_admin, glycyrrhiza_admin
 
