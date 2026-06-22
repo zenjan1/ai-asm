@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 620 - v965.0 (2527 modules)
+- Added: disocactus_admin, ebbingii_admin, echinopsis_admin
+
 ## Phase 619 - v964.0 (2524 modules)
 - Added: diplotaxis_admin, diervilla_admin, dischidia_admin
 
