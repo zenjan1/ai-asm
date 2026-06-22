@@ -1,5 +1,11 @@
 # Changelog
 
+## Phase 630 - v975.0 (2557 modules)
+- Added: isatis_admin, iresine_admin, icica_admin
+
+## Phase 629 - v974.0 (2554 modules)
+- Added: hura_admin, hutchinsonia_admin, idesia_admin
+
 ## Phase 628 - v973.0 (2551 modules)
 - Added: huernia_admin, hunnemannia_admin, homalocladium_admin
 
