@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 671 - v1016.0 (2680 modules)
+- Added: aurinia_admin, avicennia_admin, azolla_admin
+
 ## Phase 670 - v1015.0 (2677 modules)
 - Added: atriplex_admin, aucuba_admin, augouardia_admin
 
