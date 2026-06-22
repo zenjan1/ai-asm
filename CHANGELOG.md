@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 665 - v1010.0 (2662 modules)
+- Added: anaphalis_admin, ananas_admin, anarrhinum_admin
+
 ## Phase 664 - v1009.0 (2659 modules)
 - Added: amelanchier_admin, amorphia_admin, anagyris_admin
 
