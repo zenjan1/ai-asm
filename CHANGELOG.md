@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 767 - v1112.0 (2968 modules)
+- Added: aspen_admin, baobab_admin, dogwood_admin
+
 ## Phase 766 - v1111.0 (2965 modules)
 - Added: sycamore_admin, yew_admin, alder_admin
 
