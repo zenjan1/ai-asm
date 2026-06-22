@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 676 - v1021.0 (2695 modules)
+- Added: blandfordia_admin, bolusanthus_admin, borago_admin
+
 ## Phase 675 - v1020.0 (2692 modules)
 - Added: bergenia_admin, betonica_admin, bidens_admin
 
