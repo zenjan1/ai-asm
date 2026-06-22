@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 593 - Scutellaria, Sessilifolia & Sida Technologies (v938.0, 2446 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **scutellaria_admin** (Scutellaria management technology administration system)
+  - Prefix: `scu_`, Type: `scu_t`, Tag: [SCU], Base address: 1189
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **sessilifolia_admin** (Sessilifolia management technology administration system)
+  - Prefix: `ses_`, Type: `ses_t`, Tag: [SES], Base address: 1190
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **sida_admin** (Sida management technology administration system)
+  - Prefix: `sid_`, Type: `sid_t`, Tag: [SID], Base address: 1191
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2446 (L1:62 + L2:138 + L3:2214 + L4:19 + L5:13)
+- L3 WASM Apps: 2214 (2167 standalone + 47 libraries)
+- Version: v938.0 (Phase + 345)
+
 ## Phase 592 - Sanguinaria, Sarmentosa & Scoparia Technologies (v937.0, 2443 modules)
 
 *Date: 2026-06-22*
