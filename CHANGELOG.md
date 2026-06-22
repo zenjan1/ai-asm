@@ -1,5 +1,10 @@
 # Changelog
 
+## v921.0 - Phase 576: Duchesnea, Eulalia & Eichhornia (2026-06-22)
+- **duchesnea_admin**: Duchesnea planning/execution/evaluation, accessories, marketing
+- **eulalia_admin**: Eulalia planning/execution/evaluation, accessories, marketing
+- **eichhornia_admin**: Eichhornia planning/execution/evaluation, accessories, marketing
+
 ## v920.0 - Phase 575: Cypripedium, Cyssus & Dendranthema (2026-06-22)
 - **cypripedium_admin**: Cypripedium planning/execution/evaluation, accessories, marketing
 - **cyssus_admin**: Cyssus planning/execution/evaluation, accessories, marketing
