@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 624 - v969.0 (2539 modules)
+- Added: euterpe_admin, eurya_admin, euryops_admin
+
 ## Phase 623 - v968.0 (2536 modules)
 - Added: erigeron_admin, ehretia_admin, eugenia_admin
 
