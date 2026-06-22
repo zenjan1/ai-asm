@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 583 - Mertensia, Morina & Myosotis Technologies (v928.0, 2416 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **mertensia_admin** (Mertensia management technology administration system)
+  - Prefix: `mer_`, Type: `mer_t`, Tag: [MER], Base address: 1159
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **morina_admin** (Morina management technology administration system)
+  - Prefix: `mor_`, Type: `mor_t`, Tag: [MOR], Base address: 1160
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **myosotis_admin** (Myosotis management technology administration system)
+  - Prefix: `myo_`, Type: `myo_t`, Tag: [MYO], Base address: 1161
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2416 (L1:62 + L2:138 + L3:2184 + L4:19 + L5:13)
+- L3 WASM Apps: 2184 (2137 standalone + 47 libraries)
+- Version: v928.0 (Phase + 345)
+
 ## Phase 582 - Loropetalum, Madia & Maackia Technologies (v927.0, 2413 modules)
 
 *Date: 2026-06-22*
