@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 660 - v1005.0 (2647 modules)
+- Added: aconiti_admin, acori_admin, actaeae_admin
+
 ## Phase 659 - v1004.0 (2644 modules)
 - Added: acaenae_admin, acanthi_admin, achilleae_admin
 
