@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 768 - v1113.0 (2971 modules)
+- Added: fig_admin, hazel_admin, holly_admin
+
 ## Phase 767 - v1112.0 (2968 modules)
 - Added: aspen_admin, baobab_admin, dogwood_admin
 

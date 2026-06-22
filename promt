@@ -1,27 +1,27 @@
-Phase 768: Create 3 tree-themed admin modules (after dogwood, wrapping alphabet):
+Phase 769: Create 3 tree-themed admin modules (after holly, wrapping alphabet):
 
-1. fig_admin (prefix: fig_, base offset: 1730, tag: [FIG_])
-   - planning: 1730/1719/1699/1681
-   - execution: 1719/1708/1690/1677
-   - evaluation: 1711/1700/1684/1673
-   - accessory: 1703/1694/1680/1670
-   - market: 1697/1688/1675/1667
+1. laurel_admin (prefix: laur_, base offset: 1733, tag: [LAUR])
+   - planning: 1733/1722/1702/1684
+   - execution: 1722/1711/1693/1680
+   - evaluation: 1714/1703/1687/1676
+   - accessory: 1706/1697/1683/1673
+   - market: 1700/1691/1678/1670
 
-2. hazel_admin (prefix: hazl_, base offset: 1731, tag: [HAZL])
-   - planning: 1731/1720/1700/1682
-   - execution: 1720/1709/1691/1678
-   - evaluation: 1712/1701/1685/1674
-   - accessory: 1704/1695/1681/1671
-   - market: 1698/1689/1676/1668
+2. lemon_admin (prefix: lemo_, base offset: 1734, tag: [LEMO])
+   - planning: 1734/1723/1703/1685
+   - execution: 1723/1712/1694/1681
+   - evaluation: 1715/1704/1688/1677
+   - accessory: 1707/1698/1684/1674
+   - market: 1701/1692/1679/1671
 
-3. holly_admin (prefix: holl_, base offset: 1732, tag: [HOLL])
-   - planning: 1732/1721/1701/1683
-   - execution: 1721/1710/1692/1679
-   - evaluation: 1713/1702/1686/1675
-   - accessory: 1705/1696/1682/1672
-   - market: 1699/1690/1677/1669
+3. lime_admin (prefix: lime_, base offset: 1735, tag: [LIME])
+   - planning: 1735/1724/1704/1686
+   - execution: 1724/1713/1695/1682
+   - evaluation: 1716/1705/1689/1678
+   - accessory: 1708/1699/1685/1675
+   - market: 1702/1693/1680/1672
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1112.0->v1113.0, 2968->2971, L3: 2736->2739, 2689->2692, L3 table 2499->2502/2452->2455, L3 WASM Apps 2352->2355),
-add Phase 768 entry to CHANGELOG, find Phase 769 candidates (alphabetically after holly),
+Build WASM, update README (v1113.0->v1114.0, 2971->2974, L3: 2739->2742, 2692->2695, L3 table 2502->2505/2455->2458, L3 WASM Apps 2355->2358),
+add Phase 769 entry to CHANGELOG, find Phase 770 candidates (alphabetically after lime),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
