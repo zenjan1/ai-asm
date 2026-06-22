@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 765 - v1110.0 (2962 modules)
+- Added: palm_admin, pecan_admin, rowan_admin
+
 ## Phase 764 - v1109.0 (2959 modules)
 - Added: larch_admin, myrtle_admin, olive_admin
 

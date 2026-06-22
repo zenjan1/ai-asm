@@ -1,27 +1,27 @@
-Phase 765: Create 3 tree-themed admin modules (after olive, wrapping alphabet):
+Phase 766: Create 3 tree-themed admin modules (after rowan, wrapping alphabet):
 
-1. palm_admin (prefix: palm_, base offset: 1721, tag: [PALM])
-   - planning: 1721/1710/1690/1672
-   - execution: 1710/1699/1681/1668
-   - evaluation: 1702/1691/1675/1664
-   - accessory: 1694/1685/1671/1661
-   - market: 1688/1679/1666/1658
+1. sycamore_admin (prefix: sycm_, base offset: 1724, tag: [SYCM])
+   - planning: 1724/1713/1693/1675
+   - execution: 1713/1702/1684/1671
+   - evaluation: 1705/1694/1678/1667
+   - accessory: 1697/1688/1674/1664
+   - market: 1691/1682/1669/1661
 
-2. pecan_admin (prefix: pecn_, base offset: 1722, tag: [PECN])
-   - planning: 1722/1711/1691/1673
-   - execution: 1711/1700/1682/1669
-   - evaluation: 1703/1692/1676/1665
-   - accessory: 1695/1686/1672/1662
-   - market: 1689/1680/1667/1659
+2. yew_admin (prefix: yew_, base offset: 1725, tag: [YEW_])
+   - planning: 1725/1714/1694/1676
+   - execution: 1714/1703/1685/1672
+   - evaluation: 1706/1695/1679/1668
+   - accessory: 1698/1689/1675/1665
+   - market: 1692/1683/1670/1662
 
-3. rowan_admin (prefix: rown_, base offset: 1723, tag: [ROWN])
-   - planning: 1723/1712/1692/1674
-   - execution: 1712/1701/1683/1670
-   - evaluation: 1704/1693/1677/1666
-   - accessory: 1696/1687/1673/1663
-   - market: 1690/1681/1668/1660
+3. alder_admin (prefix: aldr_, base offset: 1726, tag: [ALDR])
+   - planning: 1726/1715/1695/1677
+   - execution: 1715/1704/1686/1673
+   - evaluation: 1707/1696/1680/1669
+   - accessory: 1699/1690/1676/1666
+   - market: 1693/1684/1671/1663
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1109.0->v1110.0, 2959->2962, L3: 2727->2730, 2680->2683, L3 table 2490->2493/2443->2446, L3 WASM Apps 2343->2346),
-add Phase 765 entry to CHANGELOG, find Phase 766 candidates (alphabetically after rowan),
+Build WASM, update README (v1110.0->v1111.0, 2962->2965, L3: 2730->2733, 2683->2686, L3 table 2493->2496/2446->2449, L3 WASM Apps 2346->2349),
+add Phase 766 entry to CHANGELOG, find Phase 767 candidates (alphabetically after alder),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
