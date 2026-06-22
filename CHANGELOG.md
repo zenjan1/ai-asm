@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 607 - Caryophyllus, Cephalanthus & Chelidonium Technologies (v952.0, 2488 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **caryophyllus_admin** (Caryophyllus management technology administration system)
+  - Prefix: `rph_`, Type: `rph_t`, Tag: [RPH], Base address: 1231
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **cephalanthus_admin** (Cephalanthus management technology administration system)
+  - Prefix: `cph_`, Type: `cph_t`, Tag: [CPH], Base address: 1232
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **chelidonium_admin** (Chelidonium management technology administration system)
+  - Prefix: `lid_`, Type: `lid_t`, Tag: [LID], Base address: 1233
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2488 (L1:62 + L2:138 + L3:2256 + L4:19 + L5:13)
+- L3 WASM Apps: 2256 (2209 standalone + 47 libraries)
+
+
 ## Phase 606 - Carthamus, Camassia & Cannabis Technologies (v951.0, 2485 modules)
 
 *Date: 2026-06-22*
