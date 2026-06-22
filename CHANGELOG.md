@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 641 - v986.0 (2590 modules)
+- Added: pudus_admin, senecio_admin, serrula_admin
+
 ## Phase 640 - v985.0 (2587 modules)
 - Added: polygala_admin, protea_admin, pteridium_admin
 
