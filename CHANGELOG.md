@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 584 - Nostholinia, Odontonema & Onopordium Technologies (v929.0, 2419 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **nostholinia_admin** (Nostholinia management technology administration system)
+  - Prefix: `nos_`, Type: `nos_t`, Tag: [NOS], Base address: 1162
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **odontonema_admin** (Odontonema management technology administration system)
+  - Prefix: `odo_`, Type: `odo_t`, Tag: [ODO], Base address: 1163
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **onopordium_admin** (Onopordium management technology administration system)
+  - Prefix: `oni_`, Type: `oni_t`, Tag: [ONI], Base address: 1164
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2419 (L1:62 + L2:138 + L3:2187 + L4:19 + L5:13)
+- L3 WASM Apps: 2187 (2140 standalone + 47 libraries)
+- Version: v929.0 (Phase + 345)
+
 ## Phase 583 - Mertensia, Morina & Myosotis Technologies (v928.0, 2416 modules)
 
 *Date: 2026-06-22*
