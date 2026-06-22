@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 721 - v1066.0 (2830 modules)
+- Added: napea_admin, napaea_admin, nard_admin
+
 ## Phase 720 - v1065.0 (2827 modules)
 - Added: naeglia_admin, naemannia_admin, nanochilus_admin
 

@@ -1,27 +1,27 @@
-Phase 721: Create 3 plant-themed admin modules (alphabetically after nanochilus):
+Phase 722: Create 3 plant-themed admin modules (alphabetically after nard):
 
-1. napea_admin (prefix: nape_, base offset: 1589, tag: [NAPE])
-   - planning: 1589/1578/1558/1540
-   - execution: 1578/1567/1549/1536
-   - evaluation: 1570/1559/1543/1532
-   - accessory: 1562/1553/1539/1529
-   - market: 1556/1547/1534/1526
+1. narenga_admin (prefix: nare_, base offset: 1592, tag: [NARE])
+   - planning: 1592/1581/1561/1543
+   - execution: 1581/1570/1552/1539
+   - evaluation: 1573/1562/1546/1535
+   - accessory: 1565/1556/1542/1532
+   - market: 1559/1550/1537/1529
 
-2. napaea_admin (prefix: napa_, base offset: 1590, tag: [NAPA])
-   - planning: 1590/1579/1559/1541
-   - execution: 1579/1568/1550/1537
-   - evaluation: 1571/1560/1544/1533
-   - accessory: 1563/1554/1540/1530
-   - market: 1557/1548/1535/1527
+2. nassa_admin (prefix: nass_, base offset: 1593, tag: [NASS])
+   - planning: 1593/1582/1562/1544
+   - execution: 1582/1571/1553/1540
+   - evaluation: 1574/1563/1547/1536
+   - accessory: 1566/1557/1543/1533
+   - market: 1560/1551/1538/1530
 
-3. nard_admin (prefix: nard_, base offset: 1591, tag: [NARD])
-   - planning: 1591/1580/1560/1542
-   - execution: 1580/1569/1551/1538
-   - evaluation: 1572/1561/1545/1534
-   - accessory: 1564/1555/1541/1531
-   - market: 1558/1549/1536/1528
+3. nasturtium_admin (prefix: nast_, base offset: 1594, tag: [NAST])
+   - planning: 1594/1583/1563/1545
+   - execution: 1583/1572/1554/1541
+   - evaluation: 1575/1564/1548/1537
+   - accessory: 1567/1558/1544/1534
+   - market: 1561/1552/1539/1531
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1065.0->v1066.0, 2827->2830, L3: 2595->2598, 2548->2551),
-add Phase 721 entry to CHANGELOG, find Phase 722 candidates (alphabetically after nard),
-write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
+Build WASM, update README (v1066.0->v1067.0, 2830->2833, L3: 2598->2601, 2551->2554),
+add Phase 722 entry to CHANGELOG, find Phase 723 candidates (alphabetically after nasturtium),
+write next prompt, set UPDATE=0, git add (selectively: modules, build/*.wasm, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
