@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 658 - v1003.0 (2641 modules)
+- Added: zygophyllas_admin, abutilae_admin, acaciae_admin
+
 ## Phase 657 - v1002.0 (2638 modules)
 - Added: zornias_admin, zoysias_admin, zucchinias_admin
 
