@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 672 - v1017.0 (2683 modules)
+- Added: babiana_admin, bacharis_admin, bacopa_admin
+
 ## Phase 671 - v1016.0 (2680 modules)
 - Added: aurinia_admin, avicennia_admin, azolla_admin
 
