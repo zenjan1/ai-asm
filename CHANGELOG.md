@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 588 - Psoralea, Pyrola & Raoulia Technologies (v933.0, 2431 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **psoralea_admin** (Psoralea management technology administration system)
+  - Prefix: `pso_`, Type: `pso_t`, Tag: [PSO], Base address: 1174
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **pyrola_admin** (Pyrola management technology administration system)
+  - Prefix: `pyr_`, Type: `pyr_t`, Tag: [PYR], Base address: 1175
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **raoulia_admin** (Raoulia management technology administration system)
+  - Prefix: `rao_`, Type: `rao_t`, Tag: [RAO], Base address: 1176
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2431 (L1:62 + L2:138 + L3:2199 + L4:19 + L5:13)
+- L3 WASM Apps: 2199 (2152 standalone + 47 libraries)
+- Version: v933.0 (Phase + 345)
+
 ## Phase 587 - Pogonia, Potentilla & Prosartes Technologies (v932.0, 2428 modules)
 
 *Date: 2026-06-22*
