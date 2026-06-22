@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 594 - Sinapis, Smilax & Sophora Technologies (v939.0, 2449 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **sinapis_admin** (Sinapis management technology administration system)
+  - Prefix: `sin_`, Type: `sin_t`, Tag: [SIN], Base address: 1192
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **smilax_admin** (Smilax management technology administration system)
+  - Prefix: `smi_`, Type: `smi_t`, Tag: [SMI], Base address: 1193
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **sophora_admin** (Sophora management technology administration system)
+  - Prefix: `sop_`, Type: `sop_t`, Tag: [SOP], Base address: 1194
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2449 (L1:62 + L2:138 + L3:2217 + L4:19 + L5:13)
+- L3 WASM Apps: 2217 (2170 standalone + 47 libraries)
+- Version: v939.0 (Phase + 345)
+
 ## Phase 593 - Scutellaria, Sessilifolia & Sida Technologies (v938.0, 2446 modules)
 
 *Date: 2026-06-22*
