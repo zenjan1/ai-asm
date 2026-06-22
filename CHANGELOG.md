@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 625 - v970.0 (2542 modules)
+- Added: gastrolobium_admin, gibbaeum_admin, glycyrrhiza_admin
+
 ## Phase 624 - v969.0 (2539 modules)
 - Added: euterpe_admin, eurya_admin, euryops_admin
 
