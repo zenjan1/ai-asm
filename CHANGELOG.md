@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 662 - v1007.0 (2653 modules)
+- Added: ajuga_admin, alismat_admin, allium_admin
+
 ## Phase 661 - v1006.0 (2650 modules)
 - Added: adonidi_admin, aegopodi_admin, agrostis_admin
 
