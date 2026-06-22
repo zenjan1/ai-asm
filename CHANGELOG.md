@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 632 - v977.0 (2563 modules)
+- Added: kamassia_admin, kundmannia_admin, kolowisia_admin
+
 ## Phase 631 - v976.0 (2560 modules)
 - Added: jacaranda_admin, juniperus_admin, jujube_admin
 
