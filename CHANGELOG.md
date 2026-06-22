@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 647 - v992.0 (2608 modules)
+- Added: tussilago_admin, umbilicus_admin, unifolium_admin
+
 ## Phase 646 - v991.0 (2605 modules)
 - Added: terminalia_admin, torreya_admin, triticum_admin
 
