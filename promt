@@ -1,27 +1,27 @@
-Phase 728: Create 3 plant-themed admin modules (alphabetically after nomismia):
+Phase 729: Create 3 plant-themed admin modules (alphabetically after noscapium):
 
-1. nopalxochia_admin (prefix: nopa_, base offset: 1610, tag: [NOPA])
-   - planning: 1610/1599/1579/1561
-   - execution: 1599/1588/1570/1557
-   - evaluation: 1591/1580/1564/1553
-   - accessory: 1583/1574/1560/1550
-   - market: 1577/1568/1555/1547
+1. notelaea_admin (prefix: note_, base offset: 1613, tag: [NOTE])
+   - planning: 1613/1602/1582/1564
+   - execution: 1602/1591/1573/1560
+   - evaluation: 1594/1583/1567/1556
+   - accessory: 1586/1577/1563/1553
+   - market: 1580/1571/1558/1550
 
-2. nordmannia_admin (prefix: nord_, base offset: 1611, tag: [NORD])
-   - planning: 1611/1600/1580/1562
-   - execution: 1600/1589/1571/1558
-   - evaluation: 1592/1581/1565/1554
-   - accessory: 1584/1575/1561/1551
-   - market: 1578/1569/1556/1548
+2. notholaena_admin (prefix: noth_, base offset: 1614, tag: [NOTH])
+   - planning: 1614/1603/1583/1565
+   - execution: 1603/1592/1574/1561
+   - evaluation: 1595/1584/1568/1557
+   - accessory: 1587/1578/1564/1554
+   - market: 1581/1572/1559/1551
 
-3. noscapium_admin (prefix: nosc_, base offset: 1612, tag: [NOSC])
-   - planning: 1612/1601/1581/1563
-   - execution: 1601/1590/1572/1559
-   - evaluation: 1593/1582/1566/1555
-   - accessory: 1585/1576/1562/1552
-   - market: 1579/1570/1557/1549
+3. nouna_admin (prefix: noun_, base offset: 1615, tag: [NOUN])
+   - planning: 1615/1604/1584/1566
+   - execution: 1604/1593/1575/1562
+   - evaluation: 1596/1585/1569/1558
+   - accessory: 1588/1579/1565/1555
+   - market: 1582/1573/1560/1552
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1072.0->v1073.0, 2848->2851, L3: 2616->2619, 2569->2572),
-add Phase 728 entry to CHANGELOG, find Phase 729 candidates (alphabetically after noscapium),
+Build WASM, update README (v1073.0->v1074.0, 2851->2854, L3: 2619->2622, 2572->2575),
+add Phase 729 entry to CHANGELOG, find Phase 730 candidates (alphabetically after nouna),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
