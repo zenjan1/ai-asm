@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 758 - v1103.0 (2941 modules)
+- Added: poplar_admin, redwood_admin, sequoia_admin
+
 ## Phase 757 - v1102.0 (2938 modules)
 - Added: oak_admin, maple_admin, pine_admin
 
