@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 697 - v1042.0 (2758 modules)
+- Added: galax_admin, gloriosa_admin, gnaphalium_admin
+
 ## Phase 696 - v1041.0 (2755 modules)
 - Added: ficoidea_admin, flamboya_admin, flaveria_admin
 
