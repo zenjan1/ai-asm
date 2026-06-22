@@ -1,27 +1,27 @@
-Phase 726: Create 3 plant-themed admin modules (alphabetically after nertera):
+Phase 727: Create 3 plant-themed admin modules (alphabetically after nicotiania):
 
-1. neviusia_admin (prefix: nevi_, base offset: 1604, tag: [NEVI])
-   - planning: 1604/1593/1573/1555
-   - execution: 1593/1582/1564/1551
-   - evaluation: 1585/1574/1558/1547
-   - accessory: 1577/1568/1554/1544
-   - market: 1571/1562/1549/1541
+1. nilgirianthus_admin (prefix: nilg_, base offset: 1607, tag: [NILG])
+   - planning: 1607/1596/1576/1558
+   - execution: 1596/1585/1567/1554
+   - evaluation: 1588/1577/1561/1550
+   - accessory: 1580/1571/1557/1547
+   - market: 1574/1565/1552/1544
 
-2. nicandra_admin (prefix: nica_, base offset: 1605, tag: [NICA])
-   - planning: 1605/1594/1574/1556
-   - execution: 1594/1583/1565/1552
-   - evaluation: 1586/1575/1559/1548
-   - accessory: 1578/1569/1555/1545
-   - market: 1572/1563/1550/1542
+2. noma_admin (prefix: noma_, base offset: 1608, tag: [NOMA])
+   - planning: 1608/1597/1577/1559
+   - execution: 1597/1586/1568/1555
+   - evaluation: 1589/1578/1562/1551
+   - accessory: 1581/1572/1558/1548
+   - market: 1575/1566/1553/1545
 
-3. nicotiania_admin (prefix: nico_, base offset: 1606, tag: [NICO])
-   - planning: 1606/1595/1575/1557
-   - execution: 1595/1584/1566/1553
-   - evaluation: 1587/1576/1560/1549
-   - accessory: 1579/1570/1556/1546
-   - market: 1573/1564/1551/1543
+3. nomismia_admin (prefix: nomi_, base offset: 1609, tag: [NOMI])
+   - planning: 1609/1598/1578/1560
+   - execution: 1598/1587/1569/1556
+   - evaluation: 1590/1579/1563/1552
+   - accessory: 1582/1573/1559/1549
+   - market: 1576/1567/1554/1546
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1070.0->v1071.0, 2842->2845, L3: 2610->2613, 2563->2566),
-add Phase 726 entry to CHANGELOG, find Phase 727 candidates (alphabetically after nicotiania),
+Build WASM, update README (v1071.0->v1072.0, 2845->2848, L3: 2613->2616, 2566->2569),
+add Phase 727 entry to CHANGELOG, find Phase 728 candidates (alphabetically after nomismia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

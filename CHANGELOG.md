@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 726 - v1071.0 (2845 modules)
+- Added: neviusia_admin, nicandra_admin, nicotiania_admin
+
 ## Phase 725 - v1070.0 (2842 modules)
 - Added: nephrophyllum_admin, nereia_admin, nertera_admin
 
