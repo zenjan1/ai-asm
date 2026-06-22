@@ -1,5 +1,10 @@
 # Changelog
 
+## v911.0 - Phase 566: Townsendia, Umbellularia & Wedelia (2026-06-22)
+- **townsendia_admin**: Townsendia planning/execution/evaluation, accessories, marketing
+- **umbellularia_admin**: Umbellularia planning/execution/evaluation, accessories, marketing
+- **wedelia_admin**: Wedelia planning/execution/evaluation, accessories, marketing
+
 ## v910.0 - Phase 565: Thymbra, Tithonia & Tofieldia (2026-06-22)
 - **thymbra_admin**: Thymbra planning/execution/evaluation, accessories, marketing
 - **tithonia_admin**: Tithonia planning/execution/evaluation, accessories, marketing
