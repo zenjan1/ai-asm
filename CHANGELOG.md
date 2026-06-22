@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 754 - v1099.0 (2929 modules)
+- Added: trollius_admin, tropaeolum_admin, tsuga_admin
+
 ## Phase 753 - v1098.0 (2926 modules)
 - Added: torenia_admin, townsendia_admin, trillium_admin
 
