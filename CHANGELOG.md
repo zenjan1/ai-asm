@@ -1,5 +1,10 @@
 # Changelog
 
+## v920.0 - Phase 575: Cypripedium, Cyssus & Dendranthema (2026-06-22)
+- **cypripedium_admin**: Cypripedium planning/execution/evaluation, accessories, marketing
+- **cyssus_admin**: Cyssus planning/execution/evaluation, accessories, marketing
+- **dendranthema_admin**: Dendranthema planning/execution/evaluation, accessories, marketing
+
 ## v919.0 - Phase 574: Coix, Crataegus & Cucumis (2026-06-22)
 - **coix_admin**: Coix planning/execution/evaluation, accessories, marketing
 - **crataegus_admin**: Crataegus planning/execution/evaluation, accessories, marketing
