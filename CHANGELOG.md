@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 714 - v1059.0 (2809 modules)
+- Added: medinilla_admin, melanthium_admin, menispermum_admin
+
 ## Phase 713 - v1058.0 (2806 modules)
 - Added: marcetia_admin, marsilea_admin, matricaria_admin
 
