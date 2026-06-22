@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 653 - v998.0 (2626 modules)
+- Added: vogelae_admin, volcanica_admin, volkowia_admin
+
 ## Phase 652 - v997.0 (2623 modules)
 - Added: vitis_admin, vittaria_admin, vivipara_admin
 
