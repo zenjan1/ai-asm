@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 724 - v1069.0 (2839 modules)
+- Added: nelumbo_admin, nemopanthes_admin, neottia_admin
+
 ## Phase 723 - v1068.0 (2836 modules)
 - Added: natabrea_admin, nauchinia_admin, nauenburgia_admin
 

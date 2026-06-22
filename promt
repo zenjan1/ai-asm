@@ -1,27 +1,27 @@
-Phase 724: Create 3 plant-themed admin modules (alphabetically after nauenburgia):
+Phase 725: Create 3 plant-themed admin modules (alphabetically after neottia):
 
-1. nelumbo_admin (prefix: nelu_, base offset: 1598, tag: [NELU])
-   - planning: 1598/1587/1567/1549
-   - execution: 1587/1576/1558/1545
-   - evaluation: 1579/1568/1552/1541
-   - accessory: 1571/1562/1548/1538
-   - market: 1565/1556/1543/1535
+1. nephrophyllum_admin (prefix: neph_, base offset: 1601, tag: [NEPH])
+   - planning: 1601/1590/1570/1552
+   - execution: 1590/1579/1561/1548
+   - evaluation: 1582/1571/1555/1544
+   - accessory: 1574/1565/1551/1541
+   - market: 1568/1559/1546/1538
 
-2. nemopanthes_admin (prefix: nemo_, base offset: 1599, tag: [NEMO])
-   - planning: 1599/1588/1568/1550
-   - execution: 1588/1577/1559/1546
-   - evaluation: 1580/1569/1553/1542
-   - accessory: 1572/1563/1549/1539
-   - market: 1566/1557/1544/1536
+2. nereia_admin (prefix: nere_, base offset: 1602, tag: [NERE])
+   - planning: 1602/1591/1571/1553
+   - execution: 1591/1580/1562/1549
+   - evaluation: 1583/1572/1556/1545
+   - accessory: 1575/1566/1552/1542
+   - market: 1569/1560/1547/1539
 
-3. neottia_admin (prefix: neot_, base offset: 1600, tag: [NEOT])
-   - planning: 1600/1589/1569/1551
-   - execution: 1589/1578/1560/1547
-   - evaluation: 1581/1570/1554/1543
-   - accessory: 1573/1564/1550/1540
-   - market: 1567/1558/1545/1537
+3. nertera_admin (prefix: nert_, base offset: 1603, tag: [NERT])
+   - planning: 1603/1592/1572/1554
+   - execution: 1592/1581/1563/1550
+   - evaluation: 1584/1573/1557/1546
+   - accessory: 1576/1567/1553/1543
+   - market: 1570/1561/1548/1540
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1068.0->v1069.0, 2836->2839, L3: 2604->2607, 2557->2560),
-add Phase 724 entry to CHANGELOG, find Phase 725 candidates (alphabetically after neottia),
+Build WASM, update README (v1069.0->v1070.0, 2839->2842, L3: 2607->2610, 2560->2563),
+add Phase 725 entry to CHANGELOG, find Phase 726 candidates (alphabetically after nertera),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
