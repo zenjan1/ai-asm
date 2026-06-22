@@ -1,5 +1,10 @@
 # Changelog
 
+## v917.0 - Phase 572: Caryopteris, Centaurea & Chrysogonum (2026-06-22)
+- **caryopteris_admin**: Caryopteris planning/execution/evaluation, accessories, marketing
+- **centaurea_admin**: Centaurea planning/execution/evaluation, accessories, marketing
+- **chrysogonum_admin**: Chrysogonum planning/execution/evaluation, accessories, marketing
+
 ## v916.0 - Phase 571: Bulbine, Bocconia & Buxus (2026-06-22)
 - **bulbine_admin**: Bulbine planning/execution/evaluation, accessories, marketing
 - **bocconia_admin**: Bocconia planning/execution/evaluation, accessories, marketing
