@@ -1,27 +1,27 @@
-Phase 751: Create 3 plant-themed admin modules (alphabetically after tiger_lily):
+Phase 752: Create 3 plant-themed admin modules (alphabetically after tithonia):
 
-1. tigridia_admin (prefix: tigr_, base offset: 1679, tag: [TIGR])
-   - planning: 1679/1668/1648/1630
-   - execution: 1668/1657/1639/1626
-   - evaluation: 1660/1649/1633/1622
-   - accessory: 1652/1643/1629/1619
-   - market: 1646/1637/1624/1616
+1. tobacco_admin (prefix: toba_, base offset: 1682, tag: [TOBA])
+   - planning: 1682/1671/1651/1633
+   - execution: 1671/1660/1642/1629
+   - evaluation: 1663/1652/1636/1625
+   - accessory: 1655/1646/1632/1622
+   - market: 1649/1640/1627/1619
 
-2. tilia_admin (prefix: tili_, base offset: 1680, tag: [TILI])
-   - planning: 1680/1669/1649/1631
-   - execution: 1669/1658/1640/1627
-   - evaluation: 1661/1650/1634/1623
-   - accessory: 1653/1644/1630/1620
-   - market: 1647/1638/1625/1617
+2. tofieldia_admin (prefix: tofi_, base offset: 1683, tag: [TOFI])
+   - planning: 1683/1672/1652/1634
+   - execution: 1672/1661/1643/1630
+   - evaluation: 1664/1653/1637/1626
+   - accessory: 1656/1647/1633/1623
+   - market: 1650/1641/1628/1620
 
-3. tithonia_admin (prefix: tith_, base offset: 1681, tag: [TITH])
-   - planning: 1681/1670/1650/1632
-   - execution: 1670/1659/1641/1628
-   - evaluation: 1662/1651/1635/1624
-   - accessory: 1654/1645/1631/1621
-   - market: 1648/1639/1626/1618
+3. tolmiea_admin (prefix: tolm_, base offset: 1684, tag: [TOLM])
+   - planning: 1684/1673/1653/1635
+   - execution: 1673/1662/1644/1631
+   - evaluation: 1665/1654/1638/1627
+   - accessory: 1657/1648/1634/1624
+   - market: 1651/1642/1629/1621
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1095.0->v1096.0, 2917->2920, L3: 2685->2688, 2638->2641, L3 table 2448->2451/2401->2404, L3 WASM Apps 2301->2304),
-add Phase 751 entry to CHANGELOG, find Phase 752 candidates (alphabetically after tithonia),
+Build WASM, update README (v1096.0->v1097.0, 2920->2923, L3: 2688->2691, 2641->2644, L3 table 2451->2454/2404->2407, L3 WASM Apps 2304->2307),
+add Phase 752 entry to CHANGELOG, find Phase 753 candidates (alphabetically after tolmiea),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

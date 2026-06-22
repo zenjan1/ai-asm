@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 751 - v1096.0 (2920 modules)
+- Added: tigridia_admin, tilia_admin, tithonia_admin
+
 ## Phase 750 - v1095.0 (2917 modules)
 - Added: tiarella_admin, tibouchina_admin, tiger_lily_admin
 
