@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 619 - v964.0 (2524 modules)
+- Added: diplotaxis_admin, diervilla_admin, dischidia_admin
+
 ## Phase 618 - v963.0 (2521 modules)
 - Added: dictamnus_admin, dierama_admin, diospyros_admin
 
