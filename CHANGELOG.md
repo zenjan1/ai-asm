@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 744 - v1089.0 (2899 modules)
+- Added: sorbus_admin, spirogyra_admin, stauntonia_admin
+
 ## Phase 743 - v1088.0 (2896 modules)
 - Added: siraitia_admin, silybum_admin, sonchus_admin
 
