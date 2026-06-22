@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 637 - v982.0 (2578 modules)
+- Added: oldenburgia_admin, olivaea_admin, onagra_admin
+
 ## Phase 636 - v981.0 (2575 modules)
 - Added: notonia_admin, nubigena_admin, nudicaulis_admin
 
