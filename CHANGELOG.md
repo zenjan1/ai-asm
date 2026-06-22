@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 737 - v1082.0 (2878 modules)
+- Added: plectronia_admin, plocama_admin, posoqueria_admin
+
 ## Phase 736 - v1081.0 (2875 modules)
 - Added: pilea_admin, pleione_admin, pistia_admin
 

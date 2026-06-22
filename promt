@@ -1,27 +1,27 @@
-Phase 737: Create 3 plant-themed admin modules (alphabetically after pistia):
+Phase 738: Create 3 plant-themed admin modules (alphabetically after posoqueria):
 
-1. plectronia_admin (prefix: plec_, base offset: 1637, tag: [PLEC])
-   - planning: 1637/1626/1606/1588
-   - execution: 1626/1615/1597/1584
-   - evaluation: 1618/1607/1591/1580
-   - accessory: 1610/1601/1587/1577
-   - market: 1604/1595/1582/1574
+1. psoralea_admin (prefix: psor_, base offset: 1640, tag: [PSOR])
+   - planning: 1640/1629/1609/1591
+   - execution: 1629/1618/1600/1587
+   - evaluation: 1621/1610/1594/1583
+   - accessory: 1613/1604/1590/1580
+   - market: 1607/1598/1585/1577
 
-2. plocama_admin (prefix: ploc_, base offset: 1638, tag: [PLOC])
-   - planning: 1638/1627/1607/1589
-   - execution: 1627/1616/1598/1585
-   - evaluation: 1619/1608/1592/1581
-   - accessory: 1611/1602/1588/1578
-   - market: 1605/1596/1583/1575
+2. ptychosperma_admin (prefix: ptyc_, base offset: 1641, tag: [PTYC])
+   - planning: 1641/1630/1610/1592
+   - execution: 1630/1619/1601/1588
+   - evaluation: 1622/1611/1595/1584
+   - accessory: 1614/1605/1591/1581
+   - market: 1608/1599/1586/1578
 
-3. posoqueria_admin (prefix: poso_, base offset: 1639, tag: [POSO])
-   - planning: 1639/1628/1608/1590
-   - execution: 1628/1617/1599/1586
-   - evaluation: 1620/1609/1593/1582
-   - accessory: 1612/1603/1589/1579
-   - market: 1606/1597/1584/1576
+3. rhapis_admin (prefix: rhap_, base offset: 1642, tag: [RHAP])
+   - planning: 1642/1631/1611/1593
+   - execution: 1631/1620/1602/1589
+   - evaluation: 1623/1612/1596/1585
+   - accessory: 1615/1606/1592/1582
+   - market: 1609/1600/1587/1579
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1081.0->v1082.0, 2875->2878, L3: 2643->2646, 2596->2599),
-add Phase 737 entry to CHANGELOG, find Phase 738 candidates (alphabetically after posoqueria),
+Build WASM, update README (v1082.0->v1083.0, 2878->2881, L3: 2646->2649, 2599->2602),
+add Phase 738 entry to CHANGELOG, find Phase 739 candidates (alphabetically after rhapis),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
