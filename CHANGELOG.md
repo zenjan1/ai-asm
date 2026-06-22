@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 587 - Pogonia, Potentilla & Prosartes Technologies (v932.0, 2428 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **pogonia_admin** (Pogonia management technology administration system)
+  - Prefix: `pog_`, Type: `pog_t`, Tag: [POG], Base address: 1171
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **potentilla_admin** (Potentilla management technology administration system)
+  - Prefix: `pot_`, Type: `pot_t`, Tag: [POT], Base address: 1172
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **prosartes_admin** (Prosartes management technology administration system)
+  - Prefix: `pros_`, Type: `pros_t`, Tag: [PROS], Base address: 1173
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2428 (L1:62 + L2:138 + L3:2196 + L4:19 + L5:13)
+- L3 WASM Apps: 2196 (2149 standalone + 47 libraries)
+- Version: v932.0 (Phase + 345)
+
 ## Phase 586 - Phystegia, Picea & Podocarpus Technologies (v931.0, 2425 modules)
 
 *Date: 2026-06-22*

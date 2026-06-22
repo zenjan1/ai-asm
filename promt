@@ -1,25 +1,25 @@
-# AI-ASM OS v932.0 - Phase 587 Pogonia、Potentilla与Prosartes技术研究任务
+# AI-ASM OS v933.0 - Phase 588 Psoralea、Pyrola与Raoulia技术研究任务
 
 ## UPDATE=0 | 2026-06-22
 
-**项目状态**: Phase 586 完成 ✓ 2425模块！开始Phase 587
-**总模块数**: 2428个 (L1:62 + L2:138 + L3:2196 + L4:19 + L5:13)
-**Phase 586完成**: phystegia_admin, picea_admin, podocarpus_admin ✓
+**项目状态**: Phase 587 完成 ✓ 2428模块！开始Phase 588
+**总模块数**: 2431个 (L1:62 + L2:138 + L3:2199 + L4:19 + L5:13)
+**Phase 587完成**: pogonia_admin, potentilla_admin, prosartes_admin ✓
 
 ---
 
-## 📋 Phase 587: Pogonia、Potentilla与Prosartes技术
+## 📋 Phase 588: Psoralea、Pyrola与Raoulia技术
 
 ### 新增模块
 
-1. **pogonia_admin** (~20K) - Pogonia管理技术行政管理系统
-   - prefix: `pog_`, type: `pog_t`, tag: [POG], base: 1171
+1. **psoralea_admin** (~20K) - Psoralea管理技术行政管理系统
+   - prefix: `pso_`, type: `pso_t`, tag: [PSO], base: 1174
 
-2. **potentilla_admin** (~20K) - Potentilla管理技术行政管理系统
-   - prefix: `pot_`, type: `pot_t`, tag: [POT], base: 1172
+2. **pyrola_admin** (~20K) - Pyrola管理技术行政管理系统
+   - prefix: `pyr_`, type: `pyr_t`, tag: [PYR], base: 1175
 
-3. **prosartes_admin** (~20K) - Prosartes管理技术行政管理系统
-   - prefix: `pros_`, type: `pros_t`, tag: [PROS], base: 1173
+3. **raoulia_admin** (~20K) - Raoulia管理技术行政管理系统
+   - prefix: `rao_`, type: `rao_t`, tag: [RAO], base: 1176
 
 ---
 
@@ -27,10 +27,10 @@
 
 | 层级 | 类型 | 数量 | 状态 |
 |:-----|:----:|:-----:|:------:|
-| L3 | WASM Apps | 2196 (2149 standalone + 47 libraries) | ✓ 100% |
-| **Total** | **Modules** | **2428** | **✓ COMPLETE** |
+| L3 | WASM Apps | 2199 (2152 standalone + 47 libraries) | ✓ 100% |
+| **Total** | **Modules** | **2431** | **✓ COMPLETE** |
 
 ---
 
 **UPDATE=0** ✓
-**Phase 587 READY** ✓
+**Phase 588 READY** ✓
