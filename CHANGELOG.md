@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 621 - v966.0 (2530 modules)
+- Added: encephalartos_admin, elaeagnus_admin, embothium_admin
+
+
 ## Phase 620 - v965.0 (2527 modules)
 - Added: disocactus_admin, ebbingii_admin, echinopsis_admin
 
