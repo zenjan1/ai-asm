@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 636 - v981.0 (2575 modules)
+- Added: notonia_admin, nubigena_admin, nudicaulis_admin
+
 ## Phase 635 - v980.0 (2572 modules)
 - Added: microlaena_admin, milkweed_admin, miscanthus_admin
 
