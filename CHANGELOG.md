@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 757 - v1102.0 (2938 modules)
+- Added: oak_admin, maple_admin, pine_admin
+
 ## Phase 756 - v1101.0 (2935 modules)
 - Added: typha_admin, ugni_admin, ulmaria_admin
 

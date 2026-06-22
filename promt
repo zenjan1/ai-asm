@@ -1,27 +1,27 @@
-Phase 757: Create 3 tree-themed admin modules (plant names exhausted, starting tree names):
+Phase 758: Create 3 tree-themed admin modules (alphabetically after pine):
 
-1. oak_admin (prefix: oak_, base offset: 1697, tag: [OAK_])
-   - planning: 1697/1686/1666/1648
-   - execution: 1686/1675/1657/1644
-   - evaluation: 1678/1667/1651/1640
-   - accessory: 1670/1661/1647/1637
-   - market: 1664/1655/1642/1634
+1. poplar_admin (prefix: popl_, base offset: 1700, tag: [POPL])
+   - planning: 1700/1689/1669/1651
+   - execution: 1689/1678/1660/1647
+   - evaluation: 1681/1670/1654/1643
+   - accessory: 1673/1664/1650/1640
+   - market: 1667/1658/1645/1637
 
-2. maple_admin (prefix: mapl_, base offset: 1698, tag: [MAPL])
-   - planning: 1698/1687/1667/1649
-   - execution: 1687/1676/1658/1645
-   - evaluation: 1679/1668/1652/1641
-   - accessory: 1671/1662/1648/1638
-   - market: 1665/1656/1643/1635
+2. redwood_admin (prefix: redw_, base offset: 1701, tag: [REDW])
+   - planning: 1701/1690/1670/1652
+   - execution: 1690/1679/1661/1648
+   - evaluation: 1682/1671/1655/1644
+   - accessory: 1674/1665/1651/1641
+   - market: 1668/1659/1646/1638
 
-3. pine_admin (prefix: pine_, base offset: 1699, tag: [PINE])
-   - planning: 1699/1688/1668/1650
-   - execution: 1688/1677/1659/1646
-   - evaluation: 1680/1669/1653/1642
-   - accessory: 1672/1663/1649/1639
-   - market: 1666/1657/1644/1636
+3. sequoia_admin (prefix: sequ_, base offset: 1702, tag: [SEQU])
+   - planning: 1702/1691/1671/1653
+   - execution: 1691/1680/1662/1649
+   - evaluation: 1683/1672/1656/1645
+   - accessory: 1675/1666/1652/1642
+   - market: 1669/1660/1647/1639
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1101.0->v1102.0, 2935->2938, L3: 2703->2706, 2656->2659, L3 table 2466->2469/2419->2422, L3 WASM Apps 2319->2322),
-add Phase 757 entry to CHANGELOG, find Phase 758 candidates (alphabetically after pine),
+Build WASM, update README (v1102.0->v1103.0, 2938->2941, L3: 2706->2709, 2659->2662, L3 table 2469->2472/2422->2425, L3 WASM Apps 2322->2325),
+add Phase 758 entry to CHANGELOG, find Phase 759 candidates (alphabetically after sequoia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
