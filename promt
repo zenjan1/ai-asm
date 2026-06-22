@@ -1,27 +1,27 @@
-Phase 723: Create 3 plant-themed admin modules (alphabetically after nasturtium):
+Phase 724: Create 3 plant-themed admin modules (alphabetically after nauenburgia):
 
-1. natabrea_admin (prefix: nata_, base offset: 1595, tag: [NATA])
-   - planning: 1595/1584/1564/1546
-   - execution: 1584/1573/1555/1542
-   - evaluation: 1576/1565/1549/1538
-   - accessory: 1568/1559/1545/1535
-   - market: 1562/1553/1540/1532
+1. nelumbo_admin (prefix: nelu_, base offset: 1598, tag: [NELU])
+   - planning: 1598/1587/1567/1549
+   - execution: 1587/1576/1558/1545
+   - evaluation: 1579/1568/1552/1541
+   - accessory: 1571/1562/1548/1538
+   - market: 1565/1556/1543/1535
 
-2. nauchinia_admin (prefix: nauc_, base offset: 1596, tag: [NAUC])
-   - planning: 1596/1585/1565/1547
-   - execution: 1585/1574/1556/1543
-   - evaluation: 1577/1566/1550/1539
-   - accessory: 1569/1560/1546/1536
-   - market: 1563/1554/1541/1533
+2. nemopanthes_admin (prefix: nemo_, base offset: 1599, tag: [NEMO])
+   - planning: 1599/1588/1568/1550
+   - execution: 1588/1577/1559/1546
+   - evaluation: 1580/1569/1553/1542
+   - accessory: 1572/1563/1549/1539
+   - market: 1566/1557/1544/1536
 
-3. nauenburgia_admin (prefix: naue_, base offset: 1597, tag: [NAUE])
-   - planning: 1597/1586/1566/1548
-   - execution: 1586/1575/1557/1544
-   - evaluation: 1578/1567/1551/1540
-   - accessory: 1570/1561/1547/1537
-   - market: 1564/1555/1542/1534
+3. neottia_admin (prefix: neot_, base offset: 1600, tag: [NEOT])
+   - planning: 1600/1589/1569/1551
+   - execution: 1589/1578/1560/1547
+   - evaluation: 1581/1570/1554/1543
+   - accessory: 1573/1564/1550/1540
+   - market: 1567/1558/1545/1537
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1067.0->v1068.0, 2833->2836, L3: 2601->2604, 2554->2557),
-add Phase 723 entry to CHANGELOG, find Phase 724 candidates (alphabetically after nauenburgia),
+Build WASM, update README (v1068.0->v1069.0, 2836->2839, L3: 2604->2607, 2557->2560),
+add Phase 724 entry to CHANGELOG, find Phase 725 candidates (alphabetically after neottia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
