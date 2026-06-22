@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 603 - Balsam, Bowiea & Bloom Technologies (v948.0, 2476 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **balsam_admin** (Balsam management technology administration system)
+  - Prefix: `bal_`, Type: `bal_t`, Tag: [BAL], Base address: 1219
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **bowiea_admin** (Bowiea management technology administration system)
+  - Prefix: `bow_`, Type: `bow_t`, Tag: [BOW], Base address: 1220
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **bloom_admin** (Bloom management technology administration system)
+  - Prefix: `blo_`, Type: `blo_t`, Tag: [BLO], Base address: 1221
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2476 (L1:62 + L2:138 + L3:2244 + L4:19 + L5:13)
+- L3 WASM Apps: 2244 (2197 standalone + 47 libraries)
+
+
 ## Phase 602 - Anagallis, Aponogeton & Avens Technologies (v947.0, 2473 modules)
 
 *Date: 2026-06-22*
