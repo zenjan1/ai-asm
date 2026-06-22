@@ -1,5 +1,10 @@
 # Changelog
 
+## v923.0 - Phase 578: Gaylussacia, Gilias & Globularia (2026-06-22)
+- **gaylussacia_admin**: Gaylussacia planning/execution/evaluation, accessories, marketing
+- **gilias_admin**: Gilias planning/execution/evaluation, accessories, marketing
+- **globularia_admin**: Globularia planning/execution/evaluation, accessories, marketing
+
 ## v922.0 - Phase 577: Eustoma, Exochorda & Funkia (2026-06-22)
 - **eustoma_admin**: Eustoma planning/execution/evaluation, accessories, marketing
 - **exochorda_admin**: Exochorda planning/execution/evaluation, accessories, marketing
