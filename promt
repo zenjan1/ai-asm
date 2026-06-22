@@ -1,27 +1,27 @@
-Phase 727: Create 3 plant-themed admin modules (alphabetically after nicotiania):
+Phase 728: Create 3 plant-themed admin modules (alphabetically after nomismia):
 
-1. nilgirianthus_admin (prefix: nilg_, base offset: 1607, tag: [NILG])
-   - planning: 1607/1596/1576/1558
-   - execution: 1596/1585/1567/1554
-   - evaluation: 1588/1577/1561/1550
-   - accessory: 1580/1571/1557/1547
-   - market: 1574/1565/1552/1544
+1. nopalxochia_admin (prefix: nopa_, base offset: 1610, tag: [NOPA])
+   - planning: 1610/1599/1579/1561
+   - execution: 1599/1588/1570/1557
+   - evaluation: 1591/1580/1564/1553
+   - accessory: 1583/1574/1560/1550
+   - market: 1577/1568/1555/1547
 
-2. noma_admin (prefix: noma_, base offset: 1608, tag: [NOMA])
-   - planning: 1608/1597/1577/1559
-   - execution: 1597/1586/1568/1555
-   - evaluation: 1589/1578/1562/1551
-   - accessory: 1581/1572/1558/1548
-   - market: 1575/1566/1553/1545
+2. nordmannia_admin (prefix: nord_, base offset: 1611, tag: [NORD])
+   - planning: 1611/1600/1580/1562
+   - execution: 1600/1589/1571/1558
+   - evaluation: 1592/1581/1565/1554
+   - accessory: 1584/1575/1561/1551
+   - market: 1578/1569/1556/1548
 
-3. nomismia_admin (prefix: nomi_, base offset: 1609, tag: [NOMI])
-   - planning: 1609/1598/1578/1560
-   - execution: 1598/1587/1569/1556
-   - evaluation: 1590/1579/1563/1552
-   - accessory: 1582/1573/1559/1549
-   - market: 1576/1567/1554/1546
+3. noscapium_admin (prefix: nosc_, base offset: 1612, tag: [NOSC])
+   - planning: 1612/1601/1581/1563
+   - execution: 1601/1590/1572/1559
+   - evaluation: 1593/1582/1566/1555
+   - accessory: 1585/1576/1562/1552
+   - market: 1579/1570/1557/1549
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1071.0->v1072.0, 2845->2848, L3: 2613->2616, 2566->2569),
-add Phase 727 entry to CHANGELOG, find Phase 728 candidates (alphabetically after nomismia),
+Build WASM, update README (v1072.0->v1073.0, 2848->2851, L3: 2616->2619, 2569->2572),
+add Phase 728 entry to CHANGELOG, find Phase 729 candidates (alphabetically after noscapium),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

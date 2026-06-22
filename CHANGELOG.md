@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 727 - v1072.0 (2848 modules)
+- Added: nilgirianthus_admin, noma_admin, nomismia_admin
+
 ## Phase 726 - v1071.0 (2845 modules)
 - Added: neviusia_admin, nicandra_admin, nicotiania_admin
 
