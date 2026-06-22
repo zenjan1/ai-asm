@@ -7,24 +7,24 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} tul_t;
-typedef struct{int n_tp,n_te,n_tv,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} tul_state_t;
-static tul_t tps[N],tes[N-2],tvs[N-4],acs[N-6],mks[N-6]; static tul_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(tul_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;tul_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[TUL] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int tul_init(void){if(init)return -1;st.n_tp=0;st.n_te=0;st.n_tv=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)tps[i].active=0;for(int i=0;i<N-2;i++)tes[i].active=0;for(int i=0;i<N-4;i++)tvs[i].active=0;for(int i=0;i<N-6;i++)acs[i].active=0;for(int i=0;i<N-6;i++)mks[i].active=0;init=1;ps("[TUL] Tulip initialized\n");return 0;}
-int tul_planning(int t,int c,int a,int b,int d,int e,int y){return add(tps,&st.n_tp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int tul_execution(int t,int c,int a,int b,int d,int e,int y){return add(tes,&st.n_te,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int tul_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(tvs,&st.n_tv,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int tul_accessory(int t,int c,int a,int b,int d,int e,int y){return add(acs,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int tul_market(int t,int c,int a,int b,int d,int e,int y){return add(mks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void tul_report(void){ps("[TUL] Tp: ");pi(st.n_tp);ps(" PCS=");pi(st.t_f1);ps("\nTe: ");pi(st.n_te);ps(" PCS=");pi(st.t_f2);ps("\nTv: ");pi(st.n_tv);ps(" PCS=");pi(st.t_f3);ps("\nAc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void tul_state(void){ps("[TUL] Tp=");pi(st.n_tp);ps(" Te=");pi(st.n_te);ps(" Tv=");pi(st.n_tv);ps(" Ac=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} tuli_t;
+typedef struct{int n_planning,n_execution,n_evaluation,n_accessory,n_market,t_f1,t_f2,t_f3,t_f4,t_f5;} tuli_state_t;
+static tuli_t tulip[N],tulix[N-2],tuli2[N-4],tuliac[N-6],tulim[N-6]; static tuli_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
+static int add(tuli_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;tuli_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[TULI] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
+int tuli_init(void){if(init)return -1;st.n_planning=0;st.n_execution=0;st.n_evaluation=0;st.n_accessory=0;st.n_market=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)tulip[i].active=0;for(int i=0;i<N-2;i++)tulix[i].active=0;for(int i=0;i<N-4;i++)tuli2[i].active=0;for(int i=0;i<N-6;i++)tuliac[i].active=0;for(int i=0;i<N-6;i++)tulim[i].active=0;init=1;ps("[TULI] Tulip initialized\n");return 0;}
+int tuli_planning(int t,int c,int a,int b,int d,int e,int y){return add(tulip,&st.n_planning,&st.t_f1,N,t,c,a,b,d,e,y);}
+int tuli_execution(int t,int c,int a,int b,int d,int e,int y){return add(tulix,&st.n_execution,&st.t_f2,N-2,t,c,a,b,d,e,y);}
+int tuli_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(tuli2,&st.n_evaluation,&st.t_f3,N-4,t,c,a,b,d,e,y);}
+int tuli_accessory(int t,int c,int a,int b,int d,int e,int y){return add(tuliac,&st.n_accessory,&st.t_f4,N-6,t,c,a,b,d,e,y);}
+int tuli_market(int t,int c,int a,int b,int d,int e,int y){return add(tulim,&st.n_market,&st.t_f5,N-6,t,c,a,b,d,e,y);}
+void tuli_report(void){ps("[TULI] Planning: ");pi(st.n_planning);ps(" PCS=");pi(st.t_f1);ps("\nExecution: ");pi(st.n_execution);ps(" PCS=");pi(st.t_f2);ps("\nEvaluation: ");pi(st.n_evaluation);ps(" PCS=");pi(st.t_f3);ps("\nAccessory: ");pi(st.n_accessory);ps(" PCS=");pi(st.t_f4);ps("\nMarket: ");pi(st.n_market);ps(" USD=");pi(st.t_f5);ps("\n");}
+void tuli_state(void){ps("[TULI] P=");pi(st.n_planning);ps(" E=");pi(st.n_execution);ps(" V=");pi(st.n_evaluation);ps(" A=");pi(st.n_accessory);ps(" M=");pi(st.n_market);ps("\n");}
 int main(void){
-ps("=== Tulip Admin Demo ===\n\n");tul_init();
-ps("Tulip planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;tul_planning(t,c,541+(i*17),530+(i*14),510+(i*10),492+(i*6),2020+(i%5));}
-ps("\nTulip execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;tul_execution(t,c,530+(i*15),519+(i*12),501+(i*8),488+(i*5),2021+(i%4));}
-ps("\nTulip evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;tul_evaluation(t,c,522+(i*13),511+(i*10),495+(i*7),484+(i*4),2022+(i%3));}
-ps("\nTulip accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;tul_accessory(t,c,514+(i*11),505+(i*9),491+(i*6),481+(i*3),2023+(i%2));}
-ps("\nTulip marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;tul_market(t,c,508+(i*9),499+(i*7),486+(i*5),478+(i*3),2024);}
-ps("\n");tul_report();tul_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Tulip Admin Demo ===\n\n");tuli_init();
+ps("Tulip planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;tuli_planning(t,c,1691+(i*17),1680+(i*14),1660+(i*10),1642+(i*6),2020+(i%5));}
+ps("\nTulip execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;tuli_execution(t,c,1680+(i*15),1669+(i*12),1651+(i*8),1638+(i*5),2021+(i%4));}
+ps("\nTulip evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;tuli_evaluation(t,c,1672+(i*13),1661+(i*10),1645+(i*7),1634+(i*4),2022+(i%3));}
+ps("\nTulip accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;tuli_accessory(t,c,1664+(i*11),1655+(i*9),1641+(i*6),1631+(i*3),2023+(i%2));}
+ps("\nTulip marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;tuli_market(t,c,1658+(i*9),1649+(i*7),1636+(i*5),1628+(i*3),2024);}
+ps("\n");tuli_report();tuli_state();ps("\n=== Demo Complete ===\n");return 0;}

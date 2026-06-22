@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 755 - v1100.0 (2932 modules)
+- Added: tulip_admin, turmeric_admin, tweedia_admin
+
 ## Phase 754 - v1099.0 (2929 modules)
 - Added: trollius_admin, tropaeolum_admin, tsuga_admin
 
