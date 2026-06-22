@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 678 - v1023.0 (2701 modules)
+- Added: brodiaea_admin, broussonetia_admin, buddleja_admin
+
 ## Phase 677 - v1022.0 (2698 modules)
 - Added: bossiaea_admin, bradleya_admin, briza_admin
 
