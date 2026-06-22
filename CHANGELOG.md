@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 694 - v1039.0 (2749 modules)
+- Added: dysoxylon_admin, empetrum_admin, eschscholzia_admin
+
 ## Phase 693 - v1038.0 (2746 modules)
 - Added: draba_admin, dracunculus_admin, dryas_admin
 

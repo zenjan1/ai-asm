@@ -1,27 +1,27 @@
-Phase 695: Create 3 plant-themed admin modules (alphabetically after eschscholzia):
+Phase 696: Create 3 plant-themed admin modules (alphabetically after ficaria):
 
-1. euryale_admin (prefix: eury_, base offset: 1507, tag: [EURY])
-   - planning: 1507/1496/1476/1458
-   - execution: 1496/1485/1467/1454
-   - evaluation: 1488/1477/1461/1450
-   - accessory: 1480/1471/1457/1447
-   - market: 1474/1465/1452/1444
+1. ficoidea_admin (prefix: fico_, base offset: 1513, tag: [FICO])
+   - planning: 1513/1502/1482/1464
+   - execution: 1502/1491/1473/1460
+   - evaluation: 1494/1483/1467/1456
+   - accessory: 1486/1477/1463/1453
+   - market: 1480/1471/1458/1450
 
-2. evenia_admin (prefix: even_, base offset: 1508, tag: [EVEN])
-   - planning: 1508/1497/1477/1459
-   - execution: 1497/1486/1468/1455
-   - evaluation: 1489/1478/1462/1451
-   - accessory: 1481/1472/1458/1448
-   - market: 1475/1466/1453/1445
+2. flamboya_admin (prefix: flam_, base offset: 1514, tag: [FLAM])
+   - planning: 1514/1503/1483/1465
+   - execution: 1503/1492/1474/1461
+   - evaluation: 1495/1484/1468/1457
+   - accessory: 1487/1478/1464/1454
+   - market: 1481/1472/1459/1451
 
-3. exacum_admin (prefix: exac_, base offset: 1509, tag: [EXAC])
-   - planning: 1509/1498/1478/1460
-   - execution: 1498/1487/1469/1456
-   - evaluation: 1490/1479/1463/1452
-   - accessory: 1482/1473/1459/1449
-   - market: 1476/1467/1454/1446
+3. flaveria_admin (prefix: flav_, base offset: 1515, tag: [FLAV])
+   - planning: 1515/1504/1484/1466
+   - execution: 1504/1493/1475/1462
+   - evaluation: 1496/1485/1469/1458
+   - accessory: 1488/1479/1465/1455
+   - market: 1482/1473/1460/1452
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1038.0→v1039.0, 2746→2749, L3: 2514→2517, 2467→2470),
-add Phase 695 entry to CHANGELOG, find Phase 696 candidates (alphabetically after exacum),
+Build WASM, update README (v1039.0→v1040.0, 2749→2752, L3: 2517→2520, 2470→2473),
+add Phase 696 entry to CHANGELOG, find Phase 697 candidates (alphabetically after flaveria),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
