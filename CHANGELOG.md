@@ -1,5 +1,10 @@
 # Changelog
 
+## v914.0 - Phase 569: Aeonium, Anisodontea & Apocynum (2026-06-22)
+- **aeonium_admin**: Aeonium planning/execution/evaluation, accessories, marketing
+- **anisodontea_admin**: Anisodontea planning/execution/evaluation, accessories, marketing
+- **apocynum_admin**: Apocynum planning/execution/evaluation, accessories, marketing
+
 ## v913.0 - Phase 568: Zoysia, Zieria & Zornia (2026-06-22)
 - **zoysia_admin**: Zoysia planning/execution/evaluation, accessories, marketing
 - **zieria_admin**: Zieria planning/execution/evaluation, accessories, marketing
