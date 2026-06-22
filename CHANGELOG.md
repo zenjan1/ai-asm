@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 581 - Kalmia, Leschenaultia & Linum Technologies (v926.0, 2410 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **kalmia_admin** (Kalmia management technology administration system)
+  - Prefix: `kal_`, Type: `kal_t`, Tag: [KAL], Base address: 1153
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **leschenaultia_admin** (Leschenaultia management technology administration system)
+  - Prefix: `les_`, Type: `les_t`, Tag: [LES], Base address: 1154
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **linum_admin** (Linum management technology administration system)
+  - Prefix: `lin_`, Type: `lin_t`, Tag: [LIN], Base address: 1155
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2410 (L1:62 + L2:138 + L3:2178 + L4:19 + L5:13)
+- L3 WASM Apps: 2178 (2131 standalone + 47 libraries)
+- Version: v926.0 (Phase + 345)
+
 ## Phase 580 - Inula, Ixia & Jamesia Technologies (v925.0, 2407 modules)
 
 *Date: 2026-06-22*
