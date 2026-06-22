@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 613 - Cunila, Cyclamen & Cynara Technologies (v958.0, 2506 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **cunila_admin** (Cunila management technology administration system)
+  - Prefix: `nil_`, Type: `nil_t`, Tag: [NIL], Base address: 1249
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **cyclamen_admin** (Cyclamen management technology administration system)
+  - Prefix: `ycl_`, Type: `ycl_t`, Tag: [YCL], Base address: 1250
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **cynara_admin** (Cynara management technology administration system)
+  - Prefix: `nar_`, Type: `nar_t`, Tag: [NAR], Base address: 1251
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2506 (L1:62 + L2:138 + L3:2274 + L4:19 + L5:13)
+- L3 WASM Apps: 2274 (2227 standalone + 47 libraries)
+
+
 ## Phase 612 - Crassula, Croton & Cryptotaenia Technologies (v957.0, 2503 modules)
 
 *Date: 2026-06-22*
