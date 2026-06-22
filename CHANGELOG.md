@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 661 - v1006.0 (2650 modules)
+- Added: adonidi_admin, aegopodi_admin, agrostis_admin
+
 ## Phase 660 - v1005.0 (2647 modules)
 - Added: aconiti_admin, acori_admin, actaeae_admin
 
