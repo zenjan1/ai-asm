@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 739 - v1084.0 (2884 modules)
+- Added: sapium_admin, sativum_admin, schinus_admin
+
 ## Phase 738 - v1083.0 (2881 modules)
 - Added: psoralea_admin, ptychosperma_admin, rhapis_admin
 

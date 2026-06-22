@@ -1,27 +1,27 @@
-Phase 739: Create 3 plant-themed admin modules (alphabetically after rhapis):
+Phase 740: Create 3 plant-themed admin modules (alphabetically after schinus):
 
-1. sapium_admin (prefix: sapi_, base offset: 1643, tag: [SAPI])
-   - planning: 1643/1632/1612/1594
-   - execution: 1632/1621/1603/1590
-   - evaluation: 1624/1613/1597/1586
-   - accessory: 1616/1607/1593/1583
-   - market: 1610/1601/1588/1580
+1. scirpus_admin (prefix: scir_, base offset: 1646, tag: [SCIR])
+   - planning: 1646/1635/1615/1597
+   - execution: 1635/1624/1606/1593
+   - evaluation: 1627/1616/1600/1589
+   - accessory: 1619/1610/1596/1586
+   - market: 1613/1604/1591/1583
 
-2. sativum_admin (prefix: sati_, base offset: 1644, tag: [SATI])
-   - planning: 1644/1633/1613/1595
-   - execution: 1633/1622/1604/1591
-   - evaluation: 1625/1614/1598/1587
-   - accessory: 1617/1608/1594/1584
-   - market: 1611/1602/1589/1581
+2. scolymus_admin (prefix: scol_, base offset: 1647, tag: [SCOL])
+   - planning: 1647/1636/1616/1598
+   - execution: 1636/1625/1607/1594
+   - evaluation: 1628/1617/1601/1590
+   - accessory: 1620/1611/1597/1587
+   - market: 1614/1605/1592/1584
 
-3. schinus_admin (prefix: schi_, base offset: 1645, tag: [SCHI])
-   - planning: 1645/1634/1614/1596
-   - execution: 1634/1623/1605/1592
-   - evaluation: 1626/1615/1599/1588
-   - accessory: 1618/1609/1595/1585
-   - market: 1612/1603/1590/1582
+3. selinum_admin (prefix: seli_, base offset: 1648, tag: [SELI])
+   - planning: 1648/1637/1617/1599
+   - execution: 1637/1626/1608/1595
+   - evaluation: 1629/1618/1602/1591
+   - accessory: 1621/1612/1598/1588
+   - market: 1615/1606/1593/1585
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1083.0->v1084.0, 2881->2884, L3: 2649->2652, 2602->2605),
-add Phase 739 entry to CHANGELOG, find Phase 740 candidates (alphabetically after schinus),
+Build WASM, update README (v1084.0->v1085.0, 2884->2887, L3: 2652->2655, 2605->2608),
+add Phase 740 entry to CHANGELOG, find Phase 741 candidates (alphabetically after selinum),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
