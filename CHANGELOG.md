@@ -1,5 +1,10 @@
 # Changelog
 
+## v913.0 - Phase 568: Zoysia, Zieria & Zornia (2026-06-22)
+- **zoysia_admin**: Zoysia planning/execution/evaluation, accessories, marketing
+- **zieria_admin**: Zieria planning/execution/evaluation, accessories, marketing
+- **zornia_admin**: Zornia planning/execution/evaluation, accessories, marketing
+
 ## v912.0 - Phase 567: Weigela, Wulfenia & Zauschneria (2026-06-22)
 - **weigela_admin**: Weigela planning/execution/evaluation, accessories, marketing
 - **wulfenia_admin**: Wulfenia planning/execution/evaluation, accessories, marketing
