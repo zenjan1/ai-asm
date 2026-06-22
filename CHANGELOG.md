@@ -1,5 +1,10 @@
 # Changelog
 
+## v919.0 - Phase 574: Coix, Crataegus & Cucumis (2026-06-22)
+- **coix_admin**: Coix planning/execution/evaluation, accessories, marketing
+- **crataegus_admin**: Crataegus planning/execution/evaluation, accessories, marketing
+- **cucumis_admin**: Cucumis planning/execution/evaluation, accessories, marketing
+
 ## v918.0 - Phase 573: Cirsium, Clerodendrum & Codonopsis (2026-06-22)
 - **cirsium_admin**: Cirsium planning/execution/evaluation, accessories, marketing
 - **clerodendrum_admin**: Clerodendrum planning/execution/evaluation, accessories, marketing
