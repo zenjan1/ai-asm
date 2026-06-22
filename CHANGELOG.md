@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 746 - v1091.0 (2905 modules)
+- Added: strophanthus_admin, sutherlandia_admin, swertia_admin
+
 ## Phase 745 - v1090.0 (2902 modules)
 - Added: stenanthium_admin, stevia_admin, stigmaphyllon_admin
 
