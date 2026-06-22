@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 633 - v978.0 (2566 modules)
+- Added: loasa_admin, lophospermum_admin, luffa_admin
+
 ## Phase 632 - v977.0 (2563 modules)
 - Added: kamassia_admin, kundmannia_admin, kolowisia_admin
 
