@@ -1,27 +1,27 @@
-Phase 722: Create 3 plant-themed admin modules (alphabetically after nard):
+Phase 723: Create 3 plant-themed admin modules (alphabetically after nasturtium):
 
-1. narenga_admin (prefix: nare_, base offset: 1592, tag: [NARE])
-   - planning: 1592/1581/1561/1543
-   - execution: 1581/1570/1552/1539
-   - evaluation: 1573/1562/1546/1535
-   - accessory: 1565/1556/1542/1532
-   - market: 1559/1550/1537/1529
+1. natabrea_admin (prefix: nata_, base offset: 1595, tag: [NATA])
+   - planning: 1595/1584/1564/1546
+   - execution: 1584/1573/1555/1542
+   - evaluation: 1576/1565/1549/1538
+   - accessory: 1568/1559/1545/1535
+   - market: 1562/1553/1540/1532
 
-2. nassa_admin (prefix: nass_, base offset: 1593, tag: [NASS])
-   - planning: 1593/1582/1562/1544
-   - execution: 1582/1571/1553/1540
-   - evaluation: 1574/1563/1547/1536
-   - accessory: 1566/1557/1543/1533
-   - market: 1560/1551/1538/1530
+2. nauchinia_admin (prefix: nauc_, base offset: 1596, tag: [NAUC])
+   - planning: 1596/1585/1565/1547
+   - execution: 1585/1574/1556/1543
+   - evaluation: 1577/1566/1550/1539
+   - accessory: 1569/1560/1546/1536
+   - market: 1563/1554/1541/1533
 
-3. nasturtium_admin (prefix: nast_, base offset: 1594, tag: [NAST])
-   - planning: 1594/1583/1563/1545
-   - execution: 1583/1572/1554/1541
-   - evaluation: 1575/1564/1548/1537
-   - accessory: 1567/1558/1544/1534
-   - market: 1561/1552/1539/1531
+3. nauenburgia_admin (prefix: naue_, base offset: 1597, tag: [NAUE])
+   - planning: 1597/1586/1566/1548
+   - execution: 1586/1575/1557/1544
+   - evaluation: 1578/1567/1551/1540
+   - accessory: 1570/1561/1547/1537
+   - market: 1564/1555/1542/1534
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1066.0->v1067.0, 2830->2833, L3: 2598->2601, 2551->2554),
-add Phase 722 entry to CHANGELOG, find Phase 723 candidates (alphabetically after nasturtium),
-write next prompt, set UPDATE=0, git add (selectively: modules, build/*.wasm, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
+Build WASM, update README (v1067.0->v1068.0, 2833->2836, L3: 2601->2604, 2554->2557),
+add Phase 723 entry to CHANGELOG, find Phase 724 candidates (alphabetically after nauenburgia),
+write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 722 - v1067.0 (2833 modules)
+- Added: narenga_admin, nassa_admin, nasturtium_admin
+
 ## Phase 721 - v1066.0 (2830 modules)
 - Added: napea_admin, napaea_admin, nard_admin
 
