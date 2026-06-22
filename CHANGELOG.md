@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 604 - Bonariensis, Bugloss & Buphthalmum Technologies (v949.0, 2479 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **bonariensis_admin** (Bonariensis management technology administration system)
+  - Prefix: `bon_`, Type: `bon_t`, Tag: [BON], Base address: 1222
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **bugloss_admin** (Bugloss management technology administration system)
+  - Prefix: `bug_`, Type: `bug_t`, Tag: [BUG], Base address: 1223
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **buphthalmum_admin** (Buphthalmum management technology administration system)
+  - Prefix: `bup_`, Type: `bup_t`, Tag: [BUP], Base address: 1224
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2479 (L1:62 + L2:138 + L3:2247 + L4:19 + L5:13)
+- L3 WASM Apps: 2247 (2200 standalone + 47 libraries)
+
+
 ## Phase 603 - Balsam, Bowiea & Bloom Technologies (v948.0, 2476 modules)
 
 *Date: 2026-06-22*
