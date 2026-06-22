@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 695 - v1040.0 (2752 modules)
+- Added: euryale_admin, evenia_admin, exacum_admin
+
 ## Phase 694 - v1039.0 (2749 modules)
 - Added: dysoxylon_admin, empetrum_admin, eschscholzia_admin
 

@@ -1,27 +1,27 @@
-Phase 696: Create 3 plant-themed admin modules (alphabetically after ficaria):
+Phase 697: Create 3 plant-themed admin modules (alphabetically after galax):
 
-1. ficoidea_admin (prefix: fico_, base offset: 1513, tag: [FICO])
-   - planning: 1513/1502/1482/1464
-   - execution: 1502/1491/1473/1460
-   - evaluation: 1494/1483/1467/1456
-   - accessory: 1486/1477/1463/1453
-   - market: 1480/1471/1458/1450
+1. geum_admin (prefix: geum_, base offset: 1519, tag: [GEUM])
+   - planning: 1519/1508/1488/1470
+   - execution: 1508/1497/1479/1466
+   - evaluation: 1500/1489/1473/1462
+   - accessory: 1492/1483/1469/1459
+   - market: 1486/1477/1464/1456
 
-2. flamboya_admin (prefix: flam_, base offset: 1514, tag: [FLAM])
-   - planning: 1514/1503/1483/1465
-   - execution: 1503/1492/1474/1461
-   - evaluation: 1495/1484/1468/1457
-   - accessory: 1487/1478/1464/1454
-   - market: 1481/1472/1459/1451
+2. gladiolus_admin (prefix: glad_, base offset: 1520, tag: [GLAD])
+   - planning: 1520/1509/1489/1471
+   - execution: 1509/1498/1480/1467
+   - evaluation: 1501/1490/1474/1463
+   - accessory: 1493/1484/1470/1460
+   - market: 1487/1478/1465/1457
 
-3. flaveria_admin (prefix: flav_, base offset: 1515, tag: [FLAV])
-   - planning: 1515/1504/1484/1466
-   - execution: 1504/1493/1475/1462
-   - evaluation: 1496/1485/1469/1458
-   - accessory: 1488/1479/1465/1455
-   - market: 1482/1473/1460/1452
+3. gloxinia_admin (prefix: glox_, base offset: 1521, tag: [GLOX])
+   - planning: 1521/1510/1490/1472
+   - execution: 1510/1499/1481/1468
+   - evaluation: 1502/1491/1475/1464
+   - accessory: 1494/1485/1471/1461
+   - market: 1488/1479/1466/1458
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1039.0→v1040.0, 2749→2752, L3: 2517→2520, 2470→2473),
-add Phase 696 entry to CHANGELOG, find Phase 697 candidates (alphabetically after flaveria),
+Build WASM, update README (v1040.0→v1041.0, 2752→2755, L3: 2520→2523, 2473→2476),
+add Phase 697 entry to CHANGELOG, find Phase 698 candidates (alphabetically after gloxinia),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
