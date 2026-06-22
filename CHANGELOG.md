@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 612 - Crassula, Croton & Cryptotaenia Technologies (v957.0, 2503 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **crassula_admin** (Crassula management technology administration system)
+  - Prefix: `ras_`, Type: `ras_t`, Tag: [RAS], Base address: 1246
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **croton_admin** (Croton management technology administration system)
+  - Prefix: `ton_`, Type: `ton_t`, Tag: [TON], Base address: 1247
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **cryptotaenia_admin** (Cryptotaenia management technology administration system)
+  - Prefix: `ypt_`, Type: `ypt_t`, Tag: [YPT], Base address: 1248
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2503 (L1:62 + L2:138 + L3:2271 + L4:19 + L5:13)
+- L3 WASM Apps: 2271 (2224 standalone + 47 libraries)
+
+
 ## Phase 611 - Colchicum, Collomia & Coronilla Technologies (v956.0, 2500 modules) 🎉
 
 *Date: 2026-06-22*
