@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 648 - v993.0 (2611 modules)
+- Added: vellereophyton_admin, verbesina_admin, vernonia_admin
+
 ## Phase 647 - v992.0 (2608 modules)
 - Added: tussilago_admin, umbilicus_admin, unifolium_admin
 
