@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 679 - v1024.0 (2704 modules)
+- Added: buglossoides_admin, bulbocodium_admin, buphthalmum_admin
+
 ## Phase 678 - v1023.0 (2701 modules)
 - Added: brodiaea_admin, broussonetia_admin, buddleja_admin
 
