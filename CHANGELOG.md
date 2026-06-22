@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 634 - v979.0 (2569 modules)
+- Added: massonia_admin, maurandya_admin, melananthera_admin
+
 ## Phase 633 - v978.0 (2566 modules)
 - Added: loasa_admin, lophospermum_admin, luffa_admin
 
