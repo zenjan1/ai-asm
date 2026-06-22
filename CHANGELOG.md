@@ -1,5 +1,10 @@
 # Changelog
 
+## v918.0 - Phase 573: Cirsium, Clerodendrum & Codonopsis (2026-06-22)
+- **cirsium_admin**: Cirsium planning/execution/evaluation, accessories, marketing
+- **clerodendrum_admin**: Clerodendrum planning/execution/evaluation, accessories, marketing
+- **codonopsis_admin**: Codonopsis planning/execution/evaluation, accessories, marketing
+
 ## v917.0 - Phase 572: Caryopteris, Centaurea & Chrysogonum (2026-06-22)
 - **caryopteris_admin**: Caryopteris planning/execution/evaluation, accessories, marketing
 - **centaurea_admin**: Centaurea planning/execution/evaluation, accessories, marketing
