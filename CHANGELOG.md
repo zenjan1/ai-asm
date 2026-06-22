@@ -1,5 +1,10 @@
 # Changelog
 
+## v922.0 - Phase 577: Eustoma, Exochorda & Funkia (2026-06-22)
+- **eustoma_admin**: Eustoma planning/execution/evaluation, accessories, marketing
+- **exochorda_admin**: Exochorda planning/execution/evaluation, accessories, marketing
+- **funkia_admin**: Funkia planning/execution/evaluation, accessories, marketing
+
 ## v921.0 - Phase 576: Duchesnea, Eulalia & Eichhornia (2026-06-22)
 - **duchesnea_admin**: Duchesnea planning/execution/evaluation, accessories, marketing
 - **eulalia_admin**: Eulalia planning/execution/evaluation, accessories, marketing
