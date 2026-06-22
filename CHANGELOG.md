@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 582 - Loropetalum, Madia & Maackia Technologies (v927.0, 2413 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **loropetalum_admin** (Loropetalum management technology administration system)
+  - Prefix: `lor_`, Type: `lor_t`, Tag: [LOR], Base address: 1156
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **madia_admin** (Madia management technology administration system)
+  - Prefix: `mad_`, Type: `mad_t`, Tag: [MAD], Base address: 1157
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **maackia_admin** (Maackia management technology administration system)
+  - Prefix: `maa_`, Type: `maa_t`, Tag: [MAA], Base address: 1158
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2413 (L1:62 + L2:138 + L3:2181 + L4:19 + L5:13)
+- L3 WASM Apps: 2181 (2134 standalone + 47 libraries)
+- Version: v927.0 (Phase + 345)
+
 ## Phase 581 - Kalmia, Leschenaultia & Linum Technologies (v926.0, 2410 modules)
 
 *Date: 2026-06-22*
