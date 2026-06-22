@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 644 - v989.0 (2599 modules)
+- Added: stipa_admin, swainsona_admin, symphytum_admin
+
 ## Phase 643 - v988.0 (2596 modules)
 - Added: solanum_admin, sparganium_admin, spiraea_admin
 
