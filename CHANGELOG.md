@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 706 - v1051.0 (2785 modules)
+- Added: jaeckia_admin, japonica_admin, jasmium_admin
+
 ## Phase 705 - v1050.0 (2782 modules)
 - Added: hypoxys_admin, hyssopus_admin, jacquemontia_admin
 

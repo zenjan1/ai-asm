@@ -1,27 +1,27 @@
-Phase 706: Create 3 plant-themed admin modules (alphabetically after jacquemontia):
+Phase 707: Create 3 plant-themed admin modules (alphabetically after jasmium):
 
-1. jaeckia_admin (prefix: jaec_, base offset: 1543, tag: [JAEC])
-   - planning: 1543/1532/1512/1494
-   - execution: 1532/1521/1503/1490
-   - evaluation: 1524/1513/1497/1486
-   - accessory: 1516/1507/1493/1483
-   - market: 1510/1501/1488/1480
+1. jatropha_admin (prefix: jatr_, base offset: 1546, tag: [JATR])
+   - planning: 1546/1535/1515/1497
+   - execution: 1535/1524/1506/1493
+   - evaluation: 1527/1516/1500/1489
+   - accessory: 1519/1510/1496/1486
+   - market: 1513/1504/1491/1483
 
-2. japonica_admin (prefix: japo_, base offset: 1544, tag: [JAPO])
-   - planning: 1544/1533/1513/1495
-   - execution: 1533/1522/1504/1491
-   - evaluation: 1525/1514/1498/1487
-   - accessory: 1517/1508/1494/1484
-   - market: 1511/1502/1489/1481
+2. juncus_admin (prefix: junc_, base offset: 1547, tag: [JUNC])
+   - planning: 1547/1536/1516/1498
+   - execution: 1536/1525/1507/1494
+   - evaluation: 1528/1517/1501/1490
+   - accessory: 1520/1511/1497/1487
+   - market: 1514/1505/1492/1484
 
-3. jasmium_admin (prefix: jasm_, base offset: 1545, tag: [JASM])
-   - planning: 1545/1534/1514/1496
-   - execution: 1534/1523/1505/1492
-   - evaluation: 1526/1515/1499/1488
-   - accessory: 1518/1509/1495/1485
-   - market: 1512/1503/1490/1482
+3. justicia_admin (prefix: just_, base offset: 1548, tag: [JUST])
+   - planning: 1548/1537/1517/1499
+   - execution: 1537/1526/1508/1495
+   - evaluation: 1529/1518/1502/1491
+   - accessory: 1521/1512/1498/1488
+   - market: 1515/1506/1493/1485
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1050.0->v1051.0, 2782->2785, L3: 2550->2553, 2503->2506),
-add Phase 706 entry to CHANGELOG, find Phase 707 candidates (alphabetically after jasmium),
+Build WASM, update README (v1051.0->v1052.0, 2785->2788, L3: 2553->2556, 2506->2509),
+add Phase 707 entry to CHANGELOG, find Phase 708 candidates (alphabetically after justicia),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
