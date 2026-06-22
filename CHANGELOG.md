@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 747 - v1092.0 (2908 modules)
+- Added: symplocos_admin, syzygium_admin, tabebuia_admin
+
 ## Phase 746 - v1091.0 (2905 modules)
 - Added: strophanthus_admin, sutherlandia_admin, swertia_admin
 
