@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 699 - v1044.0 (2764 modules)
+- Added: guava_admin, gymnosporia_admin, gynura_admin
+
 ## Phase 698 - v1043.0 (2761 modules)
 - Added: goldenseal_admin, graptopetalum_admin, grevillea_admin
 

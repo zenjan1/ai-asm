@@ -1,27 +1,27 @@
-Phase 699: Create 3 plant-themed admin modules (alphabetically after grevillea):
+Phase 700: Create 3 plant-themed admin modules (alphabetically after gynura):
 
-1. guava_admin (prefix: guav_, base offset: 1522, tag: [GUAV])
-   - planning: 1522/1511/1491/1473
-   - execution: 1511/1500/1482/1469
-   - evaluation: 1503/1492/1476/1465
-   - accessory: 1495/1486/1472/1462
-   - market: 1489/1480/1467/1459
+1. hackelia_admin (prefix: hack_, base offset: 1525, tag: [HACK])
+   - planning: 1525/1514/1494/1476
+   - execution: 1514/1503/1485/1472
+   - evaluation: 1506/1495/1479/1468
+   - accessory: 1498/1489/1475/1465
+   - market: 1492/1483/1470/1462
 
-2. gymnosporia_admin (prefix: gymn_, base offset: 1523, tag: [GYMN])
-   - planning: 1523/1512/1492/1474
-   - execution: 1512/1501/1483/1470
-   - evaluation: 1504/1493/1477/1466
-   - accessory: 1496/1487/1473/1463
-   - market: 1490/1481/1468/1460
+2. heliamphora_admin (prefix: heli_, base offset: 1526, tag: [HELI])
+   - planning: 1526/1515/1495/1477
+   - execution: 1515/1504/1486/1473
+   - evaluation: 1507/1496/1480/1469
+   - accessory: 1499/1490/1476/1466
+   - market: 1493/1484/1471/1463
 
-3. gynura_admin (prefix: gynu_, base offset: 1524, tag: [GYNU])
-   - planning: 1524/1513/1493/1475
-   - execution: 1513/1502/1484/1471
-   - evaluation: 1505/1494/1478/1467
-   - accessory: 1497/1488/1474/1464
-   - market: 1491/1482/1469/1461
+3. helmholtzia_admin (prefix: helm_, base offset: 1527, tag: [HELM])
+   - planning: 1527/1516/1496/1478
+   - execution: 1516/1505/1487/1474
+   - evaluation: 1508/1497/1481/1470
+   - accessory: 1500/1491/1477/1467
+   - market: 1494/1485/1472/1464
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1043.0->v1044.0, 2761->2764, L3: 2529->2532, 2482->2485),
-add Phase 699 entry to CHANGELOG, find Phase 700 candidates (alphabetically after gynura),
+Build WASM, update README (v1044.0->v1045.0, 2764->2767, L3: 2532->2535, 2485->2488),
+add Phase 700 entry to CHANGELOG, find Phase 701 candidates (alphabetically after helmholtzia),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
