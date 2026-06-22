@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 608 - Chloranthus, Choerospondias & Cichorium Technologies (v953.0, 2491 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **chloranthus_admin** (Chloranthus management technology administration system)
+  - Prefix: `chl_`, Type: `chl_t`, Tag: [CHL], Base address: 1234
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **choerospondias_admin** (Choerospondias management technology administration system)
+  - Prefix: `roe_`, Type: `roe_t`, Tag: [ROE], Base address: 1235
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **cichorium_admin** (Cichorium management technology administration system)
+  - Prefix: `cic_`, Type: `cic_t`, Tag: [CIC], Base address: 1236
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2491 (L1:62 + L2:138 + L3:2259 + L4:19 + L5:13)
+- L3 WASM Apps: 2259 (2212 standalone + 47 libraries)
+
+
 ## Phase 607 - Caryophyllus, Cephalanthus & Chelidonium Technologies (v952.0, 2488 modules)
 
 *Date: 2026-06-22*
