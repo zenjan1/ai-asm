@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 689 - v1034.0 (2734 modules)
+- Added: cornus_admin, cortusa_admin, crepis_admin
+
 ## Phase 688 - v1033.0 (2731 modules)
 - Added: chionanthus_admin, choerospermum_admin, cistus_admin
 

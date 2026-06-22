@@ -1,27 +1,27 @@
-Phase 689: Create 3 plant-themed admin modules (alphabetically after corallorhiza):
+Phase 690: Create 3 plant-themed admin modules (alphabetically after cypella):
 
-1. cornus_admin (prefix: corn_, base offset: 1480, tag: [CORN])
-   - planning: 1480/1469/1449/1431
-   - execution: 1469/1458/1440/1427
-   - evaluation: 1461/1450/1434/1423
-   - accessory: 1453/1444/1430/1420
-   - market: 1447/1438/1425/1417
+1. cyananthus_admin (prefix: cyan_, base offset: 1483, tag: [CYAN])
+   - planning: 1483/1472/1452/1434
+   - execution: 1472/1461/1443/1430
+   - evaluation: 1464/1453/1437/1426
+   - accessory: 1456/1447/1433/1423
+   - market: 1450/1441/1428/1420
 
-2. cortusa_admin (prefix: cort_, base offset: 1481, tag: [CORT])
-   - planning: 1481/1470/1450/1432
-   - execution: 1470/1459/1441/1428
-   - evaluation: 1462/1451/1435/1424
-   - accessory: 1454/1445/1431/1421
-   - market: 1448/1439/1426/1418
+2. cycas_admin (prefix: cyca_, base offset: 1484, tag: [CYCA])
+   - planning: 1484/1473/1453/1435
+   - execution: 1473/1462/1444/1431
+   - evaluation: 1465/1454/1438/1427
+   - accessory: 1457/1448/1434/1424
+   - market: 1451/1442/1429/1421
 
-3. crepis_admin (prefix: crep_, base offset: 1482, tag: [CREP])
-   - planning: 1482/1471/1451/1433
-   - execution: 1471/1460/1442/1429
-   - evaluation: 1463/1452/1436/1425
-   - accessory: 1455/1446/1432/1422
-   - market: 1449/1440/1427/1419
+3. cypella_admin (prefix: cype_, base offset: 1485, tag: [CYPE])
+   - planning: 1485/1474/1454/1436
+   - execution: 1474/1463/1445/1432
+   - evaluation: 1466/1455/1439/1428
+   - accessory: 1458/1449/1435/1425
+   - market: 1452/1443/1430/1422
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1033.0→v1034.0, 2731→2734, L3: 2499→2502, 2452→2455),
-add Phase 689 entry to CHANGELOG, find Phase 690 candidates (alphabetically after crepis),
+Build WASM, update README (v1034.0→v1035.0, 2734→2737, L3: 2502→2505, 2455→2458),
+add Phase 690 entry to CHANGELOG, find Phase 691 candidates (alphabetically after cypella),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
