@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 589 - Reaumuria, Rehmannia & Rhexia Technologies (v934.0, 2434 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **reaumuria_admin** (Reaumuria management technology administration system)
+  - Prefix: `rea_`, Type: `rea_t`, Tag: [REA], Base address: 1177
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **rehmannia_admin** (Rehmannia management technology administration system)
+  - Prefix: `reh_`, Type: `reh_t`, Tag: [REH], Base address: 1178
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **rhexia_admin** (Rhexia management technology administration system)
+  - Prefix: `rhe_`, Type: `rhe_t`, Tag: [RHE], Base address: 1179
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2434 (L1:62 + L2:138 + L3:2202 + L4:19 + L5:13)
+- L3 WASM Apps: 2202 (2155 standalone + 47 libraries)
+- Version: v934.0 (Phase + 345)
+
 ## Phase 588 - Psoralea, Pyrola & Raoulia Technologies (v933.0, 2431 modules)
 
 *Date: 2026-06-22*
