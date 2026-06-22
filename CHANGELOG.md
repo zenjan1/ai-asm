@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 643 - v988.0 (2596 modules)
+- Added: solanum_admin, sparganium_admin, spiraea_admin
+
 ## Phase 642 - v987.0 (2593 modules)
 - Added: sideritis_admin, silphium_admin, sisyrinchium_admin
 
