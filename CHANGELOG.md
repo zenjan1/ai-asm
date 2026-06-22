@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 669 - v1014.0 (2674 modules)
+- Added: aronia_admin, arundinaria_admin, atherosperma_admin
+
 ## Phase 668 - v1013.0 (2671 modules)
 - Added: arctostaphylos_admin, armstrongia_admin, arnebia_admin
 
