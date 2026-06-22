@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 730 - v1075.0 (2857 modules)
+- Added: novacula_admin, noxia_admin, nucea_admin
+
 ## Phase 729 - v1074.0 (2854 modules)
 - Added: notelaea_admin, notholaena_admin, nouna_admin
 

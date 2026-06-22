@@ -1,27 +1,27 @@
-Phase 730: Create 3 plant-themed admin modules (alphabetically after nouna):
+Phase 731: Create 3 plant-themed admin modules (alphabetically after nucea):
 
-1. novacula_admin (prefix: nova_, base offset: 1616, tag: [NOVA])
-   - planning: 1616/1605/1585/1567
-   - execution: 1605/1594/1576/1563
-   - evaluation: 1597/1586/1570/1559
-   - accessory: 1589/1580/1566/1556
-   - market: 1583/1574/1561/1553
+1. nyctaginaceae_admin (prefix: nyct_, base offset: 1619, tag: [NYCT])
+   - planning: 1619/1608/1588/1570
+   - execution: 1608/1597/1579/1566
+   - evaluation: 1600/1589/1573/1562
+   - accessory: 1592/1583/1569/1559
+   - market: 1586/1577/1564/1556
 
-2. noxia_admin (prefix: noxi_, base offset: 1617, tag: [NOXI])
-   - planning: 1617/1606/1586/1568
-   - execution: 1606/1595/1577/1564
-   - evaluation: 1598/1587/1571/1560
-   - accessory: 1590/1581/1567/1557
-   - market: 1584/1575/1562/1554
+2. nymphoides_admin (prefix: nymp_, base offset: 1620, tag: [NYMP])
+   - planning: 1620/1609/1589/1571
+   - execution: 1609/1598/1580/1567
+   - evaluation: 1601/1590/1574/1563
+   - accessory: 1593/1584/1570/1560
+   - market: 1587/1578/1565/1557
 
-3. nucea_admin (prefix: nuce_, base offset: 1618, tag: [NUCE])
-   - planning: 1618/1607/1587/1569
-   - execution: 1607/1596/1578/1565
-   - evaluation: 1599/1588/1572/1561
-   - accessory: 1591/1582/1568/1558
-   - market: 1585/1576/1563/1555
+3. oaklandia_admin (prefix: oakl_, base offset: 1621, tag: [OAKL])
+   - planning: 1621/1610/1590/1572
+   - execution: 1610/1599/1581/1568
+   - evaluation: 1602/1591/1575/1564
+   - accessory: 1594/1585/1571/1561
+   - market: 1588/1579/1566/1558
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1074.0->v1075.0, 2854->2857, L3: 2622->2625, 2575->2578),
-add Phase 730 entry to CHANGELOG, find Phase 731 candidates (alphabetically after nucea),
+Build WASM, update README (v1075.0->v1076.0, 2857->2860, L3: 2625->2628, 2578->2581),
+add Phase 731 entry to CHANGELOG, find Phase 732 candidates (alphabetically after oaklandia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
