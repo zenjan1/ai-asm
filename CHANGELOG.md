@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 688 - v1033.0 (2731 modules)
+- Added: chionanthus_admin, choerospermum_admin, cistus_admin
+
 ## Phase 687 - v1032.0 (2728 modules)
 - Added: chaenomeles_admin, chamaecyparis_admin, chelidonium_admin
 

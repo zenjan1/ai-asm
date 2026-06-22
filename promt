@@ -1,27 +1,27 @@
-Phase 688: Create 3 plant-themed admin modules (alphabetically after chelidonium):
+Phase 689: Create 3 plant-themed admin modules (alphabetically after corallorhiza):
 
-1. chionanthus_admin (prefix: chio_, base offset: 1474, tag: [CHIO])
-   - planning: 1474/1463/1443/1425
-   - execution: 1463/1452/1434/1421
-   - evaluation: 1455/1444/1428/1417
-   - accessory: 1447/1438/1424/1414
-   - market: 1441/1432/1419/1411
+1. cornus_admin (prefix: corn_, base offset: 1480, tag: [CORN])
+   - planning: 1480/1469/1449/1431
+   - execution: 1469/1458/1440/1427
+   - evaluation: 1461/1450/1434/1423
+   - accessory: 1453/1444/1430/1420
+   - market: 1447/1438/1425/1417
 
-2. choerospermum_admin (prefix: choe_, base offset: 1475, tag: [CHOE])
-   - planning: 1475/1464/1444/1426
-   - execution: 1464/1453/1435/1422
-   - evaluation: 1456/1445/1429/1418
-   - accessory: 1448/1439/1425/1415
-   - market: 1442/1433/1420/1412
+2. cortusa_admin (prefix: cort_, base offset: 1481, tag: [CORT])
+   - planning: 1481/1470/1450/1432
+   - execution: 1470/1459/1441/1428
+   - evaluation: 1462/1451/1435/1424
+   - accessory: 1454/1445/1431/1421
+   - market: 1448/1439/1426/1418
 
-3. cistus_admin (prefix: cist_, base offset: 1476, tag: [CIST])
-   - planning: 1476/1465/1445/1427
-   - execution: 1465/1454/1436/1423
-   - evaluation: 1457/1446/1430/1419
-   - accessory: 1449/1440/1426/1416
-   - market: 1443/1434/1421/1413
+3. crepis_admin (prefix: crep_, base offset: 1482, tag: [CREP])
+   - planning: 1482/1471/1451/1433
+   - execution: 1471/1460/1442/1429
+   - evaluation: 1463/1452/1436/1425
+   - accessory: 1455/1446/1432/1422
+   - market: 1449/1440/1427/1419
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1032.0→v1033.0, 2728→2731, L3: 2496→2499, 2449→2452),
-add Phase 688 entry to CHANGELOG, find Phase 689 candidates (alphabetically after cistus),
+Build WASM, update README (v1033.0→v1034.0, 2731→2734, L3: 2499→2502, 2452→2455),
+add Phase 689 entry to CHANGELOG, find Phase 690 candidates (alphabetically after crepis),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
