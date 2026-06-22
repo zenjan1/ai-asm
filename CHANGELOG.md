@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 749 - v1094.0 (2914 modules)
+- Added: thelypteris_admin, thespesia_admin, thymus_admin
+
 ## Phase 748 - v1093.0 (2911 modules)
 - Added: tagetes_admin, tephrosia_admin, thapsia_admin
 
