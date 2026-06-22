@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 696 - v1041.0 (2755 modules)
+- Added: ficoidea_admin, flamboya_admin, flaveria_admin
+
 ## Phase 695 - v1040.0 (2752 modules)
 - Added: euryale_admin, evenia_admin, exacum_admin
 
