@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 627 - v972.0 (2548 modules)
+- Added: haworthia_admin, hiptage_admin, hoffmannia_admin
+
 ## Phase 626 - v971.0 (2545 modules)
 - Added: goniolimon_admin, gunnera_admin, guapira_admin
 
