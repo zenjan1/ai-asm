@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 664 - v1009.0 (2659 modules)
+- Added: amelanchier_admin, amorphia_admin, anagyris_admin
+
 ## Phase 663 - v1008.0 (2656 modules)
 - Added: alpae_admin, amaranth_admin, ambrosia_admin
 
