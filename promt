@@ -1,27 +1,27 @@
-Phase 715: Create 3 plant-themed admin modules (alphabetically after menispermum):
+Phase 716: Create 3 plant-themed admin modules (alphabetically after mesua):
 
-1. menziesia_admin (prefix: menz_, base offset: 1570, tag: [MENZ])
-   - planning: 1570/1559/1539/1521
-   - execution: 1559/1548/1530/1517
-   - evaluation: 1551/1540/1524/1513
-   - accessory: 1543/1534/1520/1510
-   - market: 1537/1528/1515/1507
+1. mimosa_admin (prefix: mimi_, base offset: 1573, tag: [MIMI])
+   - planning: 1573/1562/1542/1524
+   - execution: 1562/1551/1533/1520
+   - evaluation: 1554/1543/1527/1516
+   - accessory: 1546/1537/1523/1513
+   - market: 1540/1531/1518/1510
 
-2. mercurialis_admin (prefix: merc_, base offset: 1571, tag: [MERC])
-   - planning: 1571/1560/1540/1522
-   - execution: 1560/1549/1531/1518
-   - evaluation: 1552/1541/1525/1514
-   - accessory: 1544/1535/1521/1511
-   - market: 1538/1529/1516/1508
+2. mirabilis_admin (prefix: mira_, base offset: 1574, tag: [MIRA])
+   - planning: 1574/1563/1543/1525
+   - execution: 1563/1552/1534/1521
+   - evaluation: 1555/1544/1528/1517
+   - accessory: 1547/1538/1524/1514
+   - market: 1541/1532/1519/1511
 
-3. mesua_admin (prefix: mesu_, base offset: 1572, tag: [MESU])
-   - planning: 1572/1561/1541/1523
-   - execution: 1561/1550/1532/1519
-   - evaluation: 1553/1542/1526/1515
-   - accessory: 1545/1536/1522/1512
-   - market: 1539/1530/1517/1509
+3. molinaea_admin (prefix: moli_, base offset: 1575, tag: [MOLI])
+   - planning: 1575/1564/1544/1526
+   - execution: 1564/1553/1535/1522
+   - evaluation: 1556/1545/1529/1518
+   - accessory: 1548/1539/1525/1515
+   - market: 1542/1533/1520/1512
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1059.0->v1060.0, 2809->2812, L3: 2577->2580, 2530->2533),
-add Phase 715 entry to CHANGELOG, find Phase 716 candidates (alphabetically after mesua),
+Build WASM, update README (v1060.0->v1061.0, 2812->2815, L3: 2580->2583, 2533->2536),
+add Phase 716 entry to CHANGELOG, find Phase 717 candidates (alphabetically after molinaea),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
