@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 590 - Rhodotypos, Romneya & Ruellia Technologies (v935.0, 2437 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **rhodotypos_admin** (Rhodotypos management technology administration system)
+  - Prefix: `rho_`, Type: `rho_t`, Tag: [RHO], Base address: 1180
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **romneya_admin** (Romneya management technology administration system)
+  - Prefix: `rom_`, Type: `rom_t`, Tag: [ROM], Base address: 1181
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **ruellia_admin** (Ruellia management technology administration system)
+  - Prefix: `rue_`, Type: `rue_t`, Tag: [RUE], Base address: 1182
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2437 (L1:62 + L2:138 + L3:2205 + L4:19 + L5:13)
+- L3 WASM Apps: 2205 (2158 standalone + 47 libraries)
+- Version: v935.0 (Phase + 345)
+
 ## Phase 589 - Reaumuria, Rehmannia & Rhexia Technologies (v934.0, 2434 modules)
 
 *Date: 2026-06-22*
