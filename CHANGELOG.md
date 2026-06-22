@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 615 - v960.0 (2512 modules)
+- Added: dalea_admin, dasymaschalon_admin, davallia_admin
+
 ## Phase 614 - Cyperus, Cyrilla & Cytisus Technologies (v959.0, 2509 modules)
 
 *Date: 2026-06-22*
