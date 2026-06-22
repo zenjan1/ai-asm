@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 580 - Inula, Ixia & Jamesia Technologies (v925.0, 2407 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **inula_admin** (Inula management technology administration system)
+  - Prefix: `inu_`, Type: `inu_t`, Tag: [INU], Base address: 1150
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **ixia_admin** (Ixia management technology administration system)
+  - Prefix: `ixi_`, Type: `ixi_t`, Tag: [IXI], Base address: 1151
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **jamesia_admin** (Jamesia management technology administration system)
+  - Prefix: `jam_`, Type: `jam_t`, Tag: [JAM], Base address: 1152
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2407 (L1:62 + L2:138 + L3:2175 + L4:19 + L5:13)
+- L3 WASM Apps: 2175 (2128 standalone + 47 libraries)
+- Version: v925.0 (Phase + 345)
+
 ## v924.0 - Phase 579: Gymnocladus, Heliopsis & Hylomecon (2026-06-22)
 - **gymnocladus_admin**: Gymnocladus planning/execution/evaluation, accessories, marketing
 - **heliopsis_admin**: Heliopsis planning/execution/evaluation, accessories, marketing
