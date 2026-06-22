@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 703 - v1048.0 (2776 modules)
+- Added: honckenya_admin, hovenia_admin, hudsonia_admin
+
 ## Phase 702 - v1047.0 (2773 modules)
 - Added: hesperocallis_admin, heteromeles_admin, holodiscus_admin
 

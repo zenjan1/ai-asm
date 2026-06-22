@@ -1,27 +1,27 @@
-Phase 703: Create 3 plant-themed admin modules (alphabetically after holodiscus):
+Phase 704: Create 3 plant-themed admin modules (alphabetically after hudsonia):
 
-1. honckenya_admin (prefix: honc_, base offset: 1534, tag: [HONC])
-   - planning: 1534/1523/1503/1485
-   - execution: 1523/1512/1494/1481
-   - evaluation: 1515/1504/1488/1477
-   - accessory: 1507/1498/1484/1474
-   - market: 1501/1492/1479/1471
+1. hunnemania_admin (prefix: hunn_, base offset: 1537, tag: [HUNN])
+   - planning: 1537/1526/1506/1488
+   - execution: 1526/1515/1497/1484
+   - evaluation: 1518/1507/1491/1480
+   - accessory: 1510/1501/1487/1477
+   - market: 1504/1495/1482/1474
 
-2. hovenia_admin (prefix: hove_, base offset: 1535, tag: [HOVE])
-   - planning: 1535/1524/1504/1486
-   - execution: 1524/1513/1495/1482
-   - evaluation: 1516/1505/1489/1478
-   - accessory: 1508/1499/1485/1475
-   - market: 1502/1493/1480/1472
+2. hydrastis_admin (prefix: hydr_, base offset: 1538, tag: [HYDR])
+   - planning: 1538/1527/1507/1489
+   - execution: 1527/1516/1498/1485
+   - evaluation: 1519/1508/1492/1481
+   - accessory: 1511/1502/1488/1478
+   - market: 1505/1496/1483/1475
 
-3. hudsonia_admin (prefix: huds_, base offset: 1536, tag: [HUDS])
-   - planning: 1536/1525/1505/1487
-   - execution: 1525/1514/1496/1483
-   - evaluation: 1517/1506/1490/1479
-   - accessory: 1509/1500/1486/1476
-   - market: 1503/1494/1481/1473
+3. hylocereus_admin (prefix: hylo_, base offset: 1539, tag: [HYLO])
+   - planning: 1539/1528/1508/1490
+   - execution: 1528/1517/1499/1486
+   - evaluation: 1520/1509/1493/1482
+   - accessory: 1512/1503/1489/1479
+   - market: 1506/1497/1484/1476
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1047.0->v1048.0, 2773->2776, L3: 2541->2544, 2494->2497),
-add Phase 703 entry to CHANGELOG, find Phase 704 candidates (alphabetically after hudsonia),
+Build WASM, update README (v1048.0->v1049.0, 2776->2779, L3: 2544->2547, 2497->2500),
+add Phase 704 entry to CHANGELOG, find Phase 705 candidates (alphabetically after hylocereus),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
