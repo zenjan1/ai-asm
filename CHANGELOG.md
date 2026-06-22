@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 720 - v1065.0 (2827 modules)
+- Added: naeglia_admin, naemannia_admin, nanochilus_admin
+
 ## Phase 719 - v1064.0 (2824 modules)
 - Added: munkiella_admin, murdania_admin, nabalia_admin
 
