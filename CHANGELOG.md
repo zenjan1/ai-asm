@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 764 - v1109.0 (2959 modules)
+- Added: larch_admin, myrtle_admin, olive_admin
+
 ## Phase 763 - v1108.0 (2956 modules)
 - Added: hemlock_admin, hickory_admin, juniper_admin
 
