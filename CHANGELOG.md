@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 774 - v1119.0 (2989 modules)
+- Added: pomegranate_admin, privet_admin, quince_admin
+
 ## Phase 773 - v1118.0 (2986 modules)
 - Added: persimmon_admin, pistachio_admin, plum_admin
 

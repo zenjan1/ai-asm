@@ -1,27 +1,27 @@
-Phase 774: Create 3 tree-themed admin modules (alphabetically after plum):
+Phase 775: Create 3 tree-themed admin modules (alphabetically after quince):
 
-1. pomegranate_admin (prefix: pome_, base offset: 1748, tag: [POME])
-   - planning: 1748/1737/1717/1699
-   - execution: 1737/1726/1708/1695
-   - evaluation: 1729/1718/1702/1691
-   - accessory: 1721/1712/1698/1688
-   - market: 1715/1706/1693/1685
+1. rosewood_admin (prefix: rose_, base offset: 1751, tag: [ROSE])
+   - planning: 1751/1740/1720/1702
+   - execution: 1740/1729/1711/1698
+   - evaluation: 1732/1721/1705/1694
+   - accessory: 1724/1715/1701/1691
+   - market: 1718/1709/1696/1688
 
-2. privet_admin (prefix: priv_, base offset: 1749, tag: [PRIV])
-   - planning: 1749/1738/1718/1700
-   - execution: 1738/1727/1709/1696
-   - evaluation: 1730/1719/1703/1692
-   - accessory: 1722/1713/1699/1689
-   - market: 1716/1707/1694/1686
+2. sandalwood_admin (prefix: sand_, base offset: 1752, tag: [SAND])
+   - planning: 1752/1741/1721/1703
+   - execution: 1741/1730/1712/1699
+   - evaluation: 1733/1722/1706/1695
+   - accessory: 1725/1716/1702/1692
+   - market: 1719/1710/1697/1689
 
-3. quince_admin (prefix: quin_, base offset: 1750, tag: [QUIN])
-   - planning: 1750/1739/1719/1701
-   - execution: 1739/1728/1710/1697
-   - evaluation: 1731/1720/1704/1693
-   - accessory: 1723/1714/1700/1690
-   - market: 1717/1708/1695/1687
+3. tamarind_admin (prefix: tama_, base offset: 1753, tag: [TAMA])
+   - planning: 1753/1742/1722/1704
+   - execution: 1742/1731/1713/1700
+   - evaluation: 1734/1723/1707/1696
+   - accessory: 1726/1717/1703/1693
+   - market: 1720/1711/1698/1690
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1118.0->v1119.0, 2986->2989, L3: 2754->2757, 2707->2710, L3 table 2517->2520/2470->2473, L3 WASM Apps 2370->2373),
-add Phase 774 entry to CHANGELOG, find Phase 775 candidates (alphabetically after quince),
+Build WASM, update README (v1119.0->v1120.0, 2989->2992, L3: 2757->2760, 2710->2713, L3 table 2520->2523/2473->2476, L3 WASM Apps 2373->2376),
+add Phase 775 entry to CHANGELOG, find Phase 776 candidates (alphabetically after tamarind),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
