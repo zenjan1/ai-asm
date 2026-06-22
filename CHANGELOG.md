@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 656 - v1001.0 (2635 modules)
+- Added: zantedeschias_admin, zierias_admin, zizaniopsis_admin
+
 ## Phase 655 - v1000.0 (2632 modules)
 - Added: wullfia_admin, xylosmopsis_admin, zinniaea_admin
 
