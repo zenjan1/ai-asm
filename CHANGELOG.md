@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 609 - Cicuta, Clinopodium & Clematis Technologies (v954.0, 2494 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **cicuta_admin** (Cicuta management technology administration system)
+  - Prefix: `icu_`, Type: `icu_t`, Tag: [ICU], Base address: 1237
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **clinopodium_admin** (Clinopodium management technology administration system)
+  - Prefix: `nod_`, Type: `nod_t`, Tag: [NOD], Base address: 1238
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **clematis_admin** (Clematis management technology administration system)
+  - Prefix: `lmt_`, Type: `lmt_t`, Tag: [LMT], Base address: 1239
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2494 (L1:62 + L2:138 + L3:2262 + L4:19 + L5:13)
+- L3 WASM Apps: 2262 (2215 standalone + 47 libraries)
+
+
 ## Phase 608 - Chloranthus, Choerospondias & Cichorium Technologies (v953.0, 2491 modules)
 
 *Date: 2026-06-22*
