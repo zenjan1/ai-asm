@@ -1,27 +1,27 @@
-Phase 731: Create 3 plant-themed admin modules (alphabetically after nucea):
+Phase 732: Create 3 plant-themed admin modules (alphabetically after oaklandia):
 
-1. nyctaginaceae_admin (prefix: nyct_, base offset: 1619, tag: [NYCT])
-   - planning: 1619/1608/1588/1570
-   - execution: 1608/1597/1579/1566
-   - evaluation: 1600/1589/1573/1562
-   - accessory: 1592/1583/1569/1559
-   - market: 1586/1577/1564/1556
+1. obcaria_admin (prefix: obca_, base offset: 1622, tag: [OBCA])
+   - planning: 1622/1611/1591/1573
+   - execution: 1611/1600/1582/1569
+   - evaluation: 1603/1592/1576/1565
+   - accessory: 1595/1586/1572/1562
+   - market: 1589/1580/1567/1559
 
-2. nymphoides_admin (prefix: nymp_, base offset: 1620, tag: [NYMP])
-   - planning: 1620/1609/1589/1571
-   - execution: 1609/1598/1580/1567
-   - evaluation: 1601/1590/1574/1563
-   - accessory: 1593/1584/1570/1560
-   - market: 1587/1578/1565/1557
+2. obeliscaria_admin (prefix: obel_, base offset: 1623, tag: [OBEL])
+   - planning: 1623/1612/1592/1574
+   - execution: 1612/1601/1583/1570
+   - evaluation: 1604/1593/1577/1566
+   - accessory: 1596/1587/1573/1563
+   - market: 1590/1581/1568/1560
 
-3. oaklandia_admin (prefix: oakl_, base offset: 1621, tag: [OAKL])
-   - planning: 1621/1610/1590/1572
-   - execution: 1610/1599/1581/1568
-   - evaluation: 1602/1591/1575/1564
-   - accessory: 1594/1585/1571/1561
-   - market: 1588/1579/1566/1558
+3. obione_admin (prefix: obio_, base offset: 1624, tag: [OBIO])
+   - planning: 1624/1613/1593/1575
+   - execution: 1613/1602/1584/1571
+   - evaluation: 1605/1594/1578/1567
+   - accessory: 1597/1588/1574/1564
+   - market: 1591/1582/1569/1561
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1075.0->v1076.0, 2857->2860, L3: 2625->2628, 2578->2581),
-add Phase 731 entry to CHANGELOG, find Phase 732 candidates (alphabetically after oaklandia),
+Build WASM, update README (v1076.0->v1077.0, 2860->2863, L3: 2628->2631, 2581->2584),
+add Phase 732 entry to CHANGELOG, find Phase 733 candidates (alphabetically after obione),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
