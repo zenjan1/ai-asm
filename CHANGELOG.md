@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 622 - v967.0 (2533 modules)
+- Added: epacris_admin, ephedra_admin, erica_admin
+
 ## Phase 621 - v966.0 (2530 modules)
 - Added: encephalartos_admin, elaeagnus_admin, embothium_admin
 
