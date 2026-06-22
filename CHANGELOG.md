@@ -1,5 +1,10 @@
 # Changelog
 
+## v924.0 - Phase 579: Gymnocladus, Heliopsis & Hylomecon (2026-06-22)
+- **gymnocladus_admin**: Gymnocladus planning/execution/evaluation, accessories, marketing
+- **heliopsis_admin**: Heliopsis planning/execution/evaluation, accessories, marketing
+- **hylomecon_admin**: Hylomecon planning/execution/evaluation, accessories, marketing
+
 ## v923.0 - Phase 578: Gaylussacia, Gilias & Globularia (2026-06-22)
 - **gaylussacia_admin**: Gaylussacia planning/execution/evaluation, accessories, marketing
 - **gilias_admin**: Gilias planning/execution/evaluation, accessories, marketing
