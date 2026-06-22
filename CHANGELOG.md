@@ -1,5 +1,10 @@
 # Changelog
 
+## v910.0 - Phase 565: Thymbra, Tithonia & Tofieldia (2026-06-22)
+- **thymbra_admin**: Thymbra planning/execution/evaluation, accessories, marketing
+- **tithonia_admin**: Tithonia planning/execution/evaluation, accessories, marketing
+- **tofieldia_admin**: Tofieldia planning/execution/evaluation, accessories, marketing
+
 ## v909.0 - Phase 564: Taxus, Thlaspi & Tolmiea (2026-06-22)
 - **taxus_admin**: Taxus planning/execution/evaluation, accessories, marketing
 - **thlaspi_admin**: Thlaspi planning/execution/evaluation, accessories, marketing
