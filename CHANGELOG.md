@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 685 - v1030.0 (2722 modules)
+- Added: casuarina_admin, cataria_admin, celosia_admin
+
 ## Phase 684 - v1029.0 (2719 modules)
 - Added: carpobrotus_admin, carthamus_admin, castanea_admin
 
