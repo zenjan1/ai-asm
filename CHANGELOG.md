@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 646 - v991.0 (2605 modules)
+- Added: terminalia_admin, torreya_admin, triticum_admin
+
 ## Phase 645 - v990.0 (2602 modules)
 - Added: syringa_admin, taxodium_admin, telekia_admin
 
