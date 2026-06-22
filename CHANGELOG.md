@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 771 - v1116.0 (2980 modules)
+- Added: mangrove_admin, mulberry_admin, neem_admin
+
 ## Phase 770 - v1115.0 (2977 modules)
 - Added: linden_admin, lychee_admin, mahogany_admin
 
