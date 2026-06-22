@@ -1,27 +1,27 @@
-Phase 752: Create 3 plant-themed admin modules (alphabetically after tithonia):
+Phase 753: Create 3 plant-themed admin modules (alphabetically after tolmiea):
 
-1. tobacco_admin (prefix: toba_, base offset: 1682, tag: [TOBA])
-   - planning: 1682/1671/1651/1633
-   - execution: 1671/1660/1642/1629
-   - evaluation: 1663/1652/1636/1625
-   - accessory: 1655/1646/1632/1622
-   - market: 1649/1640/1627/1619
+1. torenia_admin (prefix: tren_, base offset: 1685, tag: [TREN])
+   - planning: 1685/1674/1654/1636
+   - execution: 1674/1663/1645/1632
+   - evaluation: 1666/1655/1639/1628
+   - accessory: 1658/1649/1635/1625
+   - market: 1652/1643/1630/1622
 
-2. tofieldia_admin (prefix: tofi_, base offset: 1683, tag: [TOFI])
-   - planning: 1683/1672/1652/1634
-   - execution: 1672/1661/1643/1630
-   - evaluation: 1664/1653/1637/1626
-   - accessory: 1656/1647/1633/1623
-   - market: 1650/1641/1628/1620
+2. townsendia_admin (prefix: town_, base offset: 1686, tag: [TOWN])
+   - planning: 1686/1675/1655/1637
+   - execution: 1675/1664/1646/1633
+   - evaluation: 1667/1656/1640/1629
+   - accessory: 1659/1650/1636/1626
+   - market: 1653/1644/1631/1623
 
-3. tolmiea_admin (prefix: tolm_, base offset: 1684, tag: [TOLM])
-   - planning: 1684/1673/1653/1635
-   - execution: 1673/1662/1644/1631
-   - evaluation: 1665/1654/1638/1627
-   - accessory: 1657/1648/1634/1624
-   - market: 1651/1642/1629/1621
+3. trillium_admin (prefix: tril_, base offset: 1687, tag: [TRIL])
+   - planning: 1687/1676/1656/1638
+   - execution: 1676/1665/1647/1634
+   - evaluation: 1668/1657/1641/1630
+   - accessory: 1660/1651/1637/1627
+   - market: 1654/1645/1632/1624
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1096.0->v1097.0, 2920->2923, L3: 2688->2691, 2641->2644, L3 table 2451->2454/2404->2407, L3 WASM Apps 2304->2307),
-add Phase 752 entry to CHANGELOG, find Phase 753 candidates (alphabetically after tolmiea),
+Build WASM, update README (v1097.0->v1098.0, 2923->2926, L3: 2691->2694, 2644->2647, L3 table 2454->2457/2407->2410, L3 WASM Apps 2307->2310),
+add Phase 753 entry to CHANGELOG, find Phase 754 candidates (alphabetically after trillium),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
