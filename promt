@@ -1,27 +1,27 @@
-Phase 756: Create 3 plant-themed admin modules (alphabetically after tweedia):
+Phase 757: Create 3 tree-themed admin modules (plant names exhausted, starting tree names):
 
-1. typha_admin (prefix: typh_, base offset: 1694, tag: [TYPH])
-   - planning: 1694/1683/1663/1645
-   - execution: 1683/1672/1654/1641
-   - evaluation: 1675/1664/1648/1637
-   - accessory: 1667/1658/1644/1634
-   - market: 1661/1652/1639/1631
+1. oak_admin (prefix: oak_, base offset: 1697, tag: [OAK_])
+   - planning: 1697/1686/1666/1648
+   - execution: 1686/1675/1657/1644
+   - evaluation: 1678/1667/1651/1640
+   - accessory: 1670/1661/1647/1637
+   - market: 1664/1655/1642/1634
 
-2. ugni_admin (prefix: ugni_, base offset: 1695, tag: [UGNI])
-   - planning: 1695/1684/1664/1646
-   - execution: 1684/1673/1655/1642
-   - evaluation: 1676/1665/1649/1638
-   - accessory: 1668/1659/1645/1635
-   - market: 1662/1653/1640/1632
+2. maple_admin (prefix: mapl_, base offset: 1698, tag: [MAPL])
+   - planning: 1698/1687/1667/1649
+   - execution: 1687/1676/1658/1645
+   - evaluation: 1679/1668/1652/1641
+   - accessory: 1671/1662/1648/1638
+   - market: 1665/1656/1643/1635
 
-3. ulmaria_admin (prefix: ulma_, base offset: 1696, tag: [ULMA])
-   - planning: 1696/1685/1665/1647
-   - execution: 1685/1674/1656/1643
-   - evaluation: 1677/1666/1650/1639
-   - accessory: 1669/1660/1646/1636
-   - market: 1663/1654/1641/1633
+3. pine_admin (prefix: pine_, base offset: 1699, tag: [PINE])
+   - planning: 1699/1688/1668/1650
+   - execution: 1688/1677/1659/1646
+   - evaluation: 1680/1669/1653/1642
+   - accessory: 1672/1663/1649/1639
+   - market: 1666/1657/1644/1636
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1100.0->v1101.0, 2932->2935, L3: 2700->2703, 2653->2656, L3 table 2463->2466/2416->2419, L3 WASM Apps 2316->2319),
-add Phase 756 entry to CHANGELOG, find Phase 757 candidates (alphabetically after ulmaria),
+Build WASM, update README (v1101.0->v1102.0, 2935->2938, L3: 2703->2706, 2656->2659, L3 table 2466->2469/2419->2422, L3 WASM Apps 2319->2322),
+add Phase 757 entry to CHANGELOG, find Phase 758 candidates (alphabetically after pine),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

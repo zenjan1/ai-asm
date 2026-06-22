@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 756 - v1101.0 (2935 modules)
+- Added: typha_admin, ugni_admin, ulmaria_admin
+
 ## Phase 755 - v1100.0 (2932 modules)
 - Added: tulip_admin, turmeric_admin, tweedia_admin
 
