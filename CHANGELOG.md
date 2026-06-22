@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 601 - Adiantum, Adenophora & Arbutus Technologies (v946.0, 2470 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **adiantum_admin** (Adiantum management technology administration system)
+  - Prefix: `adi_`, Type: `adi_t`, Tag: [ADI], Base address: 1213
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **adenophora_admin** (Adenophora management technology administration system)
+  - Prefix: `adn_`, Type: `adn_t`, Tag: [ADN], Base address: 1214
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **arbutus_admin** (Arbutus management technology administration system)
+  - Prefix: `arb_`, Type: `arb_t`, Tag: [ARB], Base address: 1215
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2470 (L1:62 + L2:138 + L3:2238 + L4:19 + L5:13)
+- L3 WASM Apps: 2238 (2191 standalone + 47 libraries)
+
+
 ## Phase 600 - Acalypha, Acanthus & Acer Technologies (v945.0, 2467 modules)
 
 *Date: 2026-06-22*
