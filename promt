@@ -1,27 +1,27 @@
-Phase 711: Create 3 plant-themed admin modules (alphabetically after luzuriopsis):
+Phase 712: Create 3 plant-themed admin modules (alphabetically after malope):
 
-1. machaerina_admin (prefix: mach_, base offset: 1558, tag: [MACH])
-   - planning: 1558/1547/1527/1509
-   - execution: 1547/1536/1518/1505
-   - evaluation: 1539/1528/1512/1501
-   - accessory: 1531/1522/1508/1498
-   - market: 1525/1516/1503/1495
+1. malvaviscus_admin (prefix: malv_, base offset: 1561, tag: [MALV])
+   - planning: 1561/1550/1530/1512
+   - execution: 1550/1539/1521/1508
+   - evaluation: 1542/1531/1515/1504
+   - accessory: 1534/1525/1511/1501
+   - market: 1528/1519/1506/1498
 
-2. mahernia_admin (prefix: mahr_, base offset: 1559, tag: [MAHR])
-   - planning: 1559/1548/1528/1510
-   - execution: 1548/1537/1519/1506
-   - evaluation: 1540/1529/1513/1502
-   - accessory: 1532/1523/1509/1499
-   - market: 1526/1517/1504/1496
+2. manglietia_admin (prefix: mang_, base offset: 1562, tag: [MANG])
+   - planning: 1562/1551/1531/1513
+   - execution: 1551/1540/1522/1509
+   - evaluation: 1543/1532/1516/1505
+   - accessory: 1535/1526/1512/1502
+   - market: 1529/1520/1507/1499
 
-3. malope_admin (prefix: malo_, base offset: 1560, tag: [MALO])
-   - planning: 1560/1549/1529/1511
-   - execution: 1549/1538/1520/1507
-   - evaluation: 1541/1530/1514/1503
-   - accessory: 1533/1524/1510/1500
-   - market: 1527/1518/1505/1497
+3. maoutia_admin (prefix: mao_, base offset: 1563, tag: [MAO])
+   - planning: 1563/1552/1532/1514
+   - execution: 1552/1541/1523/1510
+   - evaluation: 1544/1533/1517/1506
+   - accessory: 1536/1527/1513/1503
+   - market: 1530/1521/1508/1500
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1055.0->v1056.0, 2797->2800, L3: 2565->2568, 2518->2521),
-add Phase 711 entry to CHANGELOG, find Phase 712 candidates (alphabetically after malope),
+Build WASM, update README (v1056.0->v1057.0, 2800->2803, L3: 2568->2571, 2521->2524),
+add Phase 712 entry to CHANGELOG, find Phase 713 candidates (alphabetically after maoutia),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.

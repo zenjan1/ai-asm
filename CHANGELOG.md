@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 711 - v1056.0 (2800 modules)
+- Added: machaerina_admin, mahernia_admin, malope_admin
+
 ## Phase 710 - v1055.0 (2797 modules)
 - Added: leptinella_admin, leucocoryne_admin, luzuriopsis_admin
 
