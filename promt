@@ -1,27 +1,27 @@
-Phase 750: Create 3 plant-themed admin modules (alphabetically after thymus):
+Phase 751: Create 3 plant-themed admin modules (alphabetically after tiger_lily):
 
-1. tiarella_admin (prefix: tiae_, base offset: 1676, tag: [TIAE])
-   - planning: 1676/1665/1645/1627
-   - execution: 1665/1654/1636/1623
-   - evaluation: 1657/1646/1630/1619
-   - accessory: 1649/1640/1626/1616
-   - market: 1643/1634/1621/1613
+1. tigridia_admin (prefix: tigr_, base offset: 1679, tag: [TIGR])
+   - planning: 1679/1668/1648/1630
+   - execution: 1668/1657/1639/1626
+   - evaluation: 1660/1649/1633/1622
+   - accessory: 1652/1643/1629/1619
+   - market: 1646/1637/1624/1616
 
-2. tibouchina_admin (prefix: tibo_, base offset: 1677, tag: [TIBO])
-   - planning: 1677/1666/1646/1628
-   - execution: 1666/1655/1637/1624
-   - evaluation: 1658/1647/1631/1620
-   - accessory: 1650/1641/1627/1617
-   - market: 1644/1635/1622/1614
+2. tilia_admin (prefix: tili_, base offset: 1680, tag: [TILI])
+   - planning: 1680/1669/1649/1631
+   - execution: 1669/1658/1640/1627
+   - evaluation: 1661/1650/1634/1623
+   - accessory: 1653/1644/1630/1620
+   - market: 1647/1638/1625/1617
 
-3. tiger_lily_admin (prefix: tige_, base offset: 1678, tag: [TIGE])
-   - planning: 1678/1667/1647/1629
-   - execution: 1667/1656/1638/1625
-   - evaluation: 1659/1648/1632/1621
-   - accessory: 1651/1642/1628/1618
-   - market: 1645/1636/1623/1615
+3. tithonia_admin (prefix: tith_, base offset: 1681, tag: [TITH])
+   - planning: 1681/1670/1650/1632
+   - execution: 1670/1659/1641/1628
+   - evaluation: 1662/1651/1635/1624
+   - accessory: 1654/1645/1631/1621
+   - market: 1648/1639/1626/1618
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1094.0->v1095.0, 2914->2917, L3: 2682->2685, 2635->2638, L3 table 2445->2448/2398->2401, L3 WASM Apps 2298->2301),
-add Phase 750 entry to CHANGELOG, find Phase 751 candidates (alphabetically after tiger_lily),
+Build WASM, update README (v1095.0->v1096.0, 2917->2920, L3: 2685->2688, 2638->2641, L3 table 2448->2451/2401->2404, L3 WASM Apps 2301->2304),
+add Phase 751 entry to CHANGELOG, find Phase 752 candidates (alphabetically after tithonia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 750 - v1095.0 (2917 modules)
+- Added: tiarella_admin, tibouchina_admin, tiger_lily_admin
+
 ## Phase 749 - v1094.0 (2914 modules)
 - Added: thelypteris_admin, thespesia_admin, thymus_admin
 
