@@ -1,27 +1,27 @@
-Phase 775: Create 3 tree-themed admin modules (alphabetically after quince):
+Phase 776: Create 3 tree-themed admin modules (alphabetically after tamarind):
 
-1. rosewood_admin (prefix: rose_, base offset: 1751, tag: [ROSE])
-   - planning: 1751/1740/1720/1702
-   - execution: 1740/1729/1711/1698
-   - evaluation: 1732/1721/1705/1694
-   - accessory: 1724/1715/1701/1691
-   - market: 1718/1709/1696/1688
+1. thorn_admin (prefix: thor_, base offset: 1754, tag: [THOR])
+   - planning: 1754/1743/1723/1705
+   - execution: 1743/1732/1714/1701
+   - evaluation: 1735/1724/1708/1697
+   - accessory: 1727/1718/1704/1694
+   - market: 1721/1712/1699/1691
 
-2. sandalwood_admin (prefix: sand_, base offset: 1752, tag: [SAND])
-   - planning: 1752/1741/1721/1703
-   - execution: 1741/1730/1712/1699
-   - evaluation: 1733/1722/1706/1695
-   - accessory: 1725/1716/1702/1692
-   - market: 1719/1710/1697/1689
+2. umbrella_vine_admin (prefix: umbr_, base offset: 1755, tag: [UMBR])
+   - planning: 1755/1744/1724/1706
+   - execution: 1744/1733/1715/1702
+   - evaluation: 1736/1725/1709/1698
+   - accessory: 1728/1719/1705/1695
+   - market: 1722/1713/1700/1692
 
-3. tamarind_admin (prefix: tama_, base offset: 1753, tag: [TAMA])
-   - planning: 1753/1742/1722/1704
-   - execution: 1742/1731/1713/1700
-   - evaluation: 1734/1723/1707/1696
-   - accessory: 1726/1717/1703/1693
-   - market: 1720/1711/1698/1690
+3. wax_myrtle_admin (prefix: waxm_, base offset: 1756, tag: [WAXM])
+   - planning: 1756/1745/1725/1707
+   - execution: 1745/1734/1716/1703
+   - evaluation: 1737/1726/1710/1699
+   - accessory: 1729/1720/1706/1696
+   - market: 1723/1714/1701/1693
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1119.0->v1120.0, 2989->2992, L3: 2757->2760, 2710->2713, L3 table 2520->2523/2473->2476, L3 WASM Apps 2373->2376),
-add Phase 775 entry to CHANGELOG, find Phase 776 candidates (alphabetically after tamarind),
+Build WASM, update README (v1120.0->v1121.0, 2992->2995, L3: 2760->2763, 2713->2716, L3 table 2523->2526/2476->2479, L3 WASM Apps 2376->2379),
+add Phase 776 entry to CHANGELOG, find Phase 777 candidates (alphabetically after wax_myrtle),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

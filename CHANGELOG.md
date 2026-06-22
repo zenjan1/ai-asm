@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 775 - v1120.0 (2992 modules)
+- Added: rosewood_admin, sandalwood_admin, tamarind_admin
+
 ## Phase 774 - v1119.0 (2989 modules)
 - Added: pomegranate_admin, privet_admin, quince_admin
 
