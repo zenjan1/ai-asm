@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 733 - v1078.0 (2866 modules)
+- Added: ochrea_admin, odora_admin, oldenlandia_admin
+
 ## Phase 732 - v1077.0 (2863 modules)
 - Added: obcaria_admin, obeliscaria_admin, obione_admin
 

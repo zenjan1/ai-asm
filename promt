@@ -1,27 +1,27 @@
-Phase 733: Create 3 plant-themed admin modules (alphabetically after obione):
+Phase 734: Create 3 plant-themed admin modules (alphabetically after oldenlandia):
 
-1. ochrea_admin (prefix: ochr_, base offset: 1625, tag: [OCHR])
-   - planning: 1625/1614/1594/1576
-   - execution: 1614/1603/1585/1572
-   - evaluation: 1606/1595/1579/1568
-   - accessory: 1598/1589/1575/1565
-   - market: 1592/1583/1570/1562
+1. oligomeris_admin (prefix: olig_, base offset: 1628, tag: [OLIG])
+   - planning: 1628/1617/1597/1579
+   - execution: 1617/1606/1588/1575
+   - evaluation: 1609/1598/1582/1571
+   - accessory: 1601/1592/1578/1568
+   - market: 1595/1586/1573/1565
 
-2. odora_admin (prefix: odor_, base offset: 1626, tag: [ODOR])
-   - planning: 1626/1615/1595/1577
-   - execution: 1615/1604/1586/1573
-   - evaluation: 1607/1596/1580/1569
-   - accessory: 1599/1590/1576/1566
-   - market: 1593/1584/1571/1563
+2. omphalodes_admin (prefix: omph_, base offset: 1629, tag: [OMPH])
+   - planning: 1629/1618/1598/1580
+   - execution: 1618/1607/1589/1576
+   - evaluation: 1610/1599/1583/1572
+   - accessory: 1602/1593/1579/1569
+   - market: 1596/1587/1574/1566
 
-3. oldenlandia_admin (prefix: oldl_, base offset: 1627, tag: [OLDL])
-   - planning: 1627/1616/1596/1578
-   - execution: 1616/1605/1587/1574
-   - evaluation: 1608/1597/1581/1570
-   - accessory: 1600/1591/1577/1567
-   - market: 1594/1585/1572/1564
+3. onopordum_admin (prefix: onop_, base offset: 1630, tag: [ONOP])
+   - planning: 1630/1619/1599/1581
+   - execution: 1619/1608/1590/1577
+   - evaluation: 1611/1600/1584/1573
+   - accessory: 1603/1594/1580/1570
+   - market: 1597/1588/1575/1567
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1077.0->v1078.0, 2863->2866, L3: 2631->2634, 2584->2587),
-add Phase 733 entry to CHANGELOG, find Phase 734 candidates (alphabetically after oldenlandia),
+Build WASM, update README (v1078.0->v1079.0, 2866->2869, L3: 2634->2637, 2587->2590),
+add Phase 734 entry to CHANGELOG, find Phase 735 candidates (alphabetically after onopordum),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
