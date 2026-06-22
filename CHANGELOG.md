@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 682 - v1027.0 (2713 modules)
+- Added: campanula_admin, cannabis_admin, capparis_admin
+
 ## Phase 681 - v1026.0 (2710 modules)
 - Added: calceolaria_admin, calycanthus_admin, camassia_admin
 
