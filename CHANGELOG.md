@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 600 - Acalypha, Acanthus & Acer Technologies (v945.0, 2467 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **acalypha_admin** (Acalypha management technology administration system)
+  - Prefix: `acl_`, Type: `acl_t`, Tag: [ACL], Base address: 1210
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **acanthus_admin** (Acanthus management technology administration system)
+  - Prefix: `acn_`, Type: `acn_t`, Tag: [ACN], Base address: 1211
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **acer_admin** (Acer management technology administration system)
+  - Prefix: `acr_`, Type: `acr_t`, Tag: [ACR], Base address: 1212
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2467 (L1:62 + L2:138 + L3:2235 + L4:19 + L5:13)
+- L3 WASM Apps: 2235 (2188 standalone + 47 libraries)
+
+
 ## Phase 599 - Zucchinia, Zygophyllum & Abies Technologies (v944.0, 2464 modules)
 
 *Date: 2026-06-22*
