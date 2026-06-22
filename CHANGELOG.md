@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 738 - v1083.0 (2881 modules)
+- Added: psoralea_admin, ptychosperma_admin, rhapis_admin
+
 ## Phase 737 - v1082.0 (2878 modules)
 - Added: plectronia_admin, plocama_admin, posoqueria_admin
 
