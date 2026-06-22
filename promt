@@ -1,27 +1,27 @@
-Phase 732: Create 3 plant-themed admin modules (alphabetically after oaklandia):
+Phase 733: Create 3 plant-themed admin modules (alphabetically after obione):
 
-1. obcaria_admin (prefix: obca_, base offset: 1622, tag: [OBCA])
-   - planning: 1622/1611/1591/1573
-   - execution: 1611/1600/1582/1569
-   - evaluation: 1603/1592/1576/1565
-   - accessory: 1595/1586/1572/1562
-   - market: 1589/1580/1567/1559
+1. ochrea_admin (prefix: ochr_, base offset: 1625, tag: [OCHR])
+   - planning: 1625/1614/1594/1576
+   - execution: 1614/1603/1585/1572
+   - evaluation: 1606/1595/1579/1568
+   - accessory: 1598/1589/1575/1565
+   - market: 1592/1583/1570/1562
 
-2. obeliscaria_admin (prefix: obel_, base offset: 1623, tag: [OBEL])
-   - planning: 1623/1612/1592/1574
-   - execution: 1612/1601/1583/1570
-   - evaluation: 1604/1593/1577/1566
-   - accessory: 1596/1587/1573/1563
-   - market: 1590/1581/1568/1560
+2. odora_admin (prefix: odor_, base offset: 1626, tag: [ODOR])
+   - planning: 1626/1615/1595/1577
+   - execution: 1615/1604/1586/1573
+   - evaluation: 1607/1596/1580/1569
+   - accessory: 1599/1590/1576/1566
+   - market: 1593/1584/1571/1563
 
-3. obione_admin (prefix: obio_, base offset: 1624, tag: [OBIO])
-   - planning: 1624/1613/1593/1575
-   - execution: 1613/1602/1584/1571
-   - evaluation: 1605/1594/1578/1567
-   - accessory: 1597/1588/1574/1564
-   - market: 1591/1582/1569/1561
+3. oldenlandia_admin (prefix: oldl_, base offset: 1627, tag: [OLDL])
+   - planning: 1627/1616/1596/1578
+   - execution: 1616/1605/1587/1574
+   - evaluation: 1608/1597/1581/1570
+   - accessory: 1600/1591/1577/1567
+   - market: 1594/1585/1572/1564
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1076.0->v1077.0, 2860->2863, L3: 2628->2631, 2581->2584),
-add Phase 732 entry to CHANGELOG, find Phase 733 candidates (alphabetically after obione),
+Build WASM, update README (v1077.0->v1078.0, 2863->2866, L3: 2631->2634, 2584->2587),
+add Phase 733 entry to CHANGELOG, find Phase 734 candidates (alphabetically after oldenlandia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

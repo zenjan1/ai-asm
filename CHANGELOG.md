@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 732 - v1077.0 (2863 modules)
+- Added: obcaria_admin, obeliscaria_admin, obione_admin
+
 ## Phase 731 - v1076.0 (2860 modules)
 - Added: nyctaginaceae_admin, nymphoides_admin, oaklandia_admin
 
