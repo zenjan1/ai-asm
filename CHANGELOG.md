@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 617 - v962.0 (2518 modules)
+- Added: deutzia_admin, dianella_admin, dichondra_admin
+
 ## Phase 616 - v961.0 (2515 modules)
 - Added: dendrobium_admin, dentaria_admin, desmodium_admin
 
