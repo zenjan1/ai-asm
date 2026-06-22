@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 602 - Anagallis, Aponogeton & Avens Technologies (v947.0, 2473 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **anagallis_admin** (Anagallis management technology administration system)
+  - Prefix: `ang_`, Type: `ang_t`, Tag: [ANG], Base address: 1216
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **aponogeton_admin** (Aponogeton management technology administration system)
+  - Prefix: `apg_`, Type: `apg_t`, Tag: [APG], Base address: 1217
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **avens_admin** (Avens management technology administration system)
+  - Prefix: `ave_`, Type: `ave_t`, Tag: [AVE], Base address: 1218
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2473 (L1:62 + L2:138 + L3:2241 + L4:19 + L5:13)
+- L3 WASM Apps: 2241 (2194 standalone + 47 libraries)
+
+
 ## Phase 601 - Adiantum, Adenophora & Arbutus Technologies (v946.0, 2470 modules)
 
 *Date: 2026-06-22*
