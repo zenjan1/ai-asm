@@ -1,5 +1,10 @@
 # Changelog
 
+## v916.0 - Phase 571: Bulbine, Bocconia & Buxus (2026-06-22)
+- **bulbine_admin**: Bulbine planning/execution/evaluation, accessories, marketing
+- **bocconia_admin**: Bocconia planning/execution/evaluation, accessories, marketing
+- **buxus_admin**: Buxus planning/execution/evaluation, accessories, marketing
+
 ## v915.0 - Phase 570: Arisaema, Aconitum & Asphodeline (2026-06-22)
 - **arisaema_admin**: Arisaema planning/execution/evaluation, accessories, marketing
 - **aconitum_admin**: Aconitum planning/execution/evaluation, accessories, marketing
