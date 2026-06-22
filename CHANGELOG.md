@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 729 - v1074.0 (2854 modules)
+- Added: notelaea_admin, notholaena_admin, nouna_admin
+
 ## Phase 728 - v1073.0 (2851 modules)
 - Added: nopalxochia_admin, nordmannia_admin, noscapium_admin
 

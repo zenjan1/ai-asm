@@ -1,27 +1,27 @@
-Phase 729: Create 3 plant-themed admin modules (alphabetically after noscapium):
+Phase 730: Create 3 plant-themed admin modules (alphabetically after nouna):
 
-1. notelaea_admin (prefix: note_, base offset: 1613, tag: [NOTE])
-   - planning: 1613/1602/1582/1564
-   - execution: 1602/1591/1573/1560
-   - evaluation: 1594/1583/1567/1556
-   - accessory: 1586/1577/1563/1553
-   - market: 1580/1571/1558/1550
+1. novacula_admin (prefix: nova_, base offset: 1616, tag: [NOVA])
+   - planning: 1616/1605/1585/1567
+   - execution: 1605/1594/1576/1563
+   - evaluation: 1597/1586/1570/1559
+   - accessory: 1589/1580/1566/1556
+   - market: 1583/1574/1561/1553
 
-2. notholaena_admin (prefix: noth_, base offset: 1614, tag: [NOTH])
-   - planning: 1614/1603/1583/1565
-   - execution: 1603/1592/1574/1561
-   - evaluation: 1595/1584/1568/1557
-   - accessory: 1587/1578/1564/1554
-   - market: 1581/1572/1559/1551
+2. noxia_admin (prefix: noxi_, base offset: 1617, tag: [NOXI])
+   - planning: 1617/1606/1586/1568
+   - execution: 1606/1595/1577/1564
+   - evaluation: 1598/1587/1571/1560
+   - accessory: 1590/1581/1567/1557
+   - market: 1584/1575/1562/1554
 
-3. nouna_admin (prefix: noun_, base offset: 1615, tag: [NOUN])
-   - planning: 1615/1604/1584/1566
-   - execution: 1604/1593/1575/1562
-   - evaluation: 1596/1585/1569/1558
-   - accessory: 1588/1579/1565/1555
-   - market: 1582/1573/1560/1552
+3. nucea_admin (prefix: nuce_, base offset: 1618, tag: [NUCE])
+   - planning: 1618/1607/1587/1569
+   - execution: 1607/1596/1578/1565
+   - evaluation: 1599/1588/1572/1561
+   - accessory: 1591/1582/1568/1558
+   - market: 1585/1576/1563/1555
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1073.0->v1074.0, 2851->2854, L3: 2619->2622, 2572->2575),
-add Phase 729 entry to CHANGELOG, find Phase 730 candidates (alphabetically after nouna),
+Build WASM, update README (v1074.0->v1075.0, 2854->2857, L3: 2622->2625, 2575->2578),
+add Phase 730 entry to CHANGELOG, find Phase 731 candidates (alphabetically after nucea),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
