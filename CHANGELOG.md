@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 680 - v1025.0 (2707 modules)
+- Added: butomus_admin, cadlina_admin, caladium_admin
+
 ## Phase 679 - v1024.0 (2704 modules)
 - Added: buglossoides_admin, bulbocodium_admin, buphthalmum_admin
 
