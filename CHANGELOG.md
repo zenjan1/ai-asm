@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 675 - v1020.0 (2692 modules)
+- Added: bergenia_admin, betonica_admin, bidens_admin
+
 ## Phase 674 - v1019.0 (2689 modules)
 - Added: behnia_admin, bellis_admin, berberis_admin
 
