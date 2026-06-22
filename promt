@@ -1,27 +1,27 @@
-Phase 691: Create 3 plant-themed admin modules (alphabetically after damasonium):
+Phase 692: Create 3 plant-themed admin modules (alphabetically after dendromecon):
 
-1. darlingtonia_admin (prefix: darl_, base offset: 1489, tag: [DARL])
-   - planning: 1489/1478/1458/1440
-   - execution: 1478/1467/1449/1436
-   - evaluation: 1470/1459/1443/1432
-   - accessory: 1462/1453/1439/1429
-   - market: 1456/1447/1434/1426
+1. dichorisandra_admin (prefix: dich_, base offset: 1495, tag: [DICH])
+   - planning: 1495/1484/1464/1446
+   - execution: 1484/1473/1455/1442
+   - evaluation: 1476/1465/1449/1438
+   - accessory: 1468/1459/1445/1435
+   - market: 1462/1453/1440/1432
 
-2. dasiphora_admin (prefix: dasi_, base offset: 1490, tag: [DASI])
-   - planning: 1490/1479/1459/1441
-   - execution: 1479/1468/1450/1437
-   - evaluation: 1471/1460/1444/1433
-   - accessory: 1463/1454/1440/1430
-   - market: 1457/1448/1435/1427
+2. diosma_admin (prefix: dios_, base offset: 1496, tag: [DIOS])
+   - planning: 1496/1485/1465/1447
+   - execution: 1485/1474/1456/1443
+   - evaluation: 1477/1466/1450/1439
+   - accessory: 1469/1460/1446/1436
+   - market: 1463/1454/1441/1433
 
-3. davidia_admin (prefix: davi_, base offset: 1491, tag: [DAVI])
-   - planning: 1491/1480/1460/1442
-   - execution: 1480/1469/1451/1438
-   - evaluation: 1472/1461/1445/1434
-   - accessory: 1464/1455/1441/1431
-   - market: 1458/1449/1436/1428
+3. disporum_admin (prefix: disp_, base offset: 1497, tag: [DISP])
+   - planning: 1497/1486/1466/1448
+   - execution: 1486/1475/1457/1444
+   - evaluation: 1478/1467/1451/1440
+   - accessory: 1470/1461/1447/1437
+   - market: 1464/1455/1442/1434
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1035.0→v1036.0, 2737→2740, L3: 2505→2508, 2458→2461),
-add Phase 691 entry to CHANGELOG, find Phase 692 candidates (alphabetically after davidia),
+Build WASM, update README (v1036.0→v1037.0, 2740→2743, L3: 2508→2511, 2461→2464),
+add Phase 692 entry to CHANGELOG, find Phase 693 candidates (alphabetically after disporum),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.

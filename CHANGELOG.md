@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 691 - v1036.0 (2740 modules)
+- Added: darlingtonia_admin, dasiphora_admin, davidia_admin
+
 ## Phase 690 - v1035.0 (2737 modules)
 - Added: cyananthus_admin, cycas_admin, cypella_admin
 
