@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 761 - v1106.0 (2950 modules)
+- Added: birch_admin, cedar_admin, chestnut_admin
+
 ## Phase 760 - v1105.0 (2947 modules)
 - Added: willow_admin, ash_admin, beech_admin
 
