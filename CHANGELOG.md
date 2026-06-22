@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 702 - v1047.0 (2773 modules)
+- Added: hesperocallis_admin, heteromeles_admin, holodiscus_admin
+
 ## Phase 701 - v1046.0 (2770 modules)
 - Added: heptacodium_admin, heracleum_admin, hermionera_admin
 

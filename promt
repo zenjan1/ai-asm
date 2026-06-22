@@ -1,27 +1,27 @@
-Phase 702: Create 3 plant-themed admin modules (alphabetically after hermionera):
+Phase 703: Create 3 plant-themed admin modules (alphabetically after holodiscus):
 
-1. hesperocallis_admin (prefix: hesp_, base offset: 1531, tag: [HESP])
-   - planning: 1531/1520/1500/1482
-   - execution: 1520/1509/1491/1478
-   - evaluation: 1512/1501/1485/1474
-   - accessory: 1504/1495/1481/1471
-   - market: 1498/1489/1476/1468
+1. honckenya_admin (prefix: honc_, base offset: 1534, tag: [HONC])
+   - planning: 1534/1523/1503/1485
+   - execution: 1523/1512/1494/1481
+   - evaluation: 1515/1504/1488/1477
+   - accessory: 1507/1498/1484/1474
+   - market: 1501/1492/1479/1471
 
-2. heteromeles_admin (prefix: hete_, base offset: 1532, tag: [HETE])
-   - planning: 1532/1521/1501/1483
-   - execution: 1521/1510/1492/1479
-   - evaluation: 1513/1502/1486/1475
-   - accessory: 1505/1496/1482/1472
-   - market: 1499/1490/1477/1469
+2. hovenia_admin (prefix: hove_, base offset: 1535, tag: [HOVE])
+   - planning: 1535/1524/1504/1486
+   - execution: 1524/1513/1495/1482
+   - evaluation: 1516/1505/1489/1478
+   - accessory: 1508/1499/1485/1475
+   - market: 1502/1493/1480/1472
 
-3. holodiscus_admin (prefix: holo_, base offset: 1533, tag: [HOLO])
-   - planning: 1533/1522/1502/1484
-   - execution: 1522/1511/1493/1480
-   - evaluation: 1514/1503/1487/1476
-   - accessory: 1506/1497/1483/1473
-   - market: 1500/1491/1478/1470
+3. hudsonia_admin (prefix: huds_, base offset: 1536, tag: [HUDS])
+   - planning: 1536/1525/1505/1487
+   - execution: 1525/1514/1496/1483
+   - evaluation: 1517/1506/1490/1479
+   - accessory: 1509/1500/1486/1476
+   - market: 1503/1494/1481/1473
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1046.0->v1047.0, 2770->2773, L3: 2538->2541, 2491->2494),
-add Phase 702 entry to CHANGELOG, find Phase 703 candidates (alphabetically after holodiscus),
+Build WASM, update README (v1047.0->v1048.0, 2773->2776, L3: 2541->2544, 2494->2497),
+add Phase 703 entry to CHANGELOG, find Phase 704 candidates (alphabetically after hudsonia),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
