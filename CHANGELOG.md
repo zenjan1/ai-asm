@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 684 - v1029.0 (2719 modules)
+- Added: carpobrotus_admin, carthamus_admin, castanea_admin
+
 ## Phase 683 - v1028.0 (2716 modules)
 - Added: caragana_admin, cardamine_admin, carlina_admin
 
