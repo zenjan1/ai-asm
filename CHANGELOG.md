@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 667 - v1012.0 (2668 modules)
+- Added: aralia_admin, arctium_admin, ardisia_admin
+
 ## Phase 666 - v1011.0 (2665 modules)
 - Added: anathallis_admin, anredera_admin, arabis_admin
 
