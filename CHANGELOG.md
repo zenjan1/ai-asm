@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 753 - v1098.0 (2926 modules)
+- Added: torenia_admin, townsendia_admin, trillium_admin
+
 ## Phase 752 - v1097.0 (2923 modules)
 - Added: tobacco_admin, tofieldia_admin, tolmiea_admin
 
