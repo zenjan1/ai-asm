@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 683 - v1028.0 (2716 modules)
+- Added: caragana_admin, cardamine_admin, carlina_admin
+
 ## Phase 682 - v1027.0 (2713 modules)
 - Added: campanula_admin, cannabis_admin, capparis_admin
 
