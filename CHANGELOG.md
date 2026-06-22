@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 623 - v968.0 (2536 modules)
+- Added: erigeron_admin, ehretia_admin, eugenia_admin
+
 ## Phase 622 - v967.0 (2533 modules)
 - Added: epacris_admin, ephedra_admin, erica_admin
 
