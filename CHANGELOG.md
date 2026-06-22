@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 708 - v1053.0 (2791 modules)
+- Added: koelreuteria_admin, larkspur_admin, lasiospermum_admin
+
 ## Phase 707 - v1052.0 (2788 modules)
 - Added: jatropha_admin, juncus_admin, justicia_admin
 
