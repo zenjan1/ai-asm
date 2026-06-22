@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 681 - v1026.0 (2710 modules)
+- Added: calceolaria_admin, calycanthus_admin, camassia_admin
+
 ## Phase 680 - v1025.0 (2707 modules)
 - Added: butomus_admin, cadlina_admin, caladium_admin
 
