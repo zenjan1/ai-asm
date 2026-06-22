@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 585 - Oxydendrum, Papaver & Phacelia Technologies (v930.0, 2422 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **oxydendrum_admin** (Oxydendrum management technology administration system)
+  - Prefix: `oxy_`, Type: `oxy_t`, Tag: [OXY], Base address: 1165
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **papaver_admin** (Papaver management technology administration system)
+  - Prefix: `pap_`, Type: `pap_t`, Tag: [PAP], Base address: 1166
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **phacelia_admin** (Phacelia management technology administration system)
+  - Prefix: `phac_`, Type: `phac_t`, Tag: [PHAC], Base address: 1167
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2422 (L1:62 + L2:138 + L3:2190 + L4:19 + L5:13)
+- L3 WASM Apps: 2190 (2143 standalone + 47 libraries)
+- Version: v930.0 (Phase + 345)
+
 ## Phase 584 - Nostholinia, Odontonema & Onopordium Technologies (v929.0, 2419 modules)
 
 *Date: 2026-06-22*
