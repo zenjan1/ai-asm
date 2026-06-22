@@ -1,5 +1,10 @@
 # Changelog
 
+## v912.0 - Phase 567: Weigela, Wulfenia & Zauschneria (2026-06-22)
+- **weigela_admin**: Weigela planning/execution/evaluation, accessories, marketing
+- **wulfenia_admin**: Wulfenia planning/execution/evaluation, accessories, marketing
+- **zauschneria_admin**: Zauschneria planning/execution/evaluation, accessories, marketing
+
 ## v911.0 - Phase 566: Townsendia, Umbellularia & Wedelia (2026-06-22)
 - **townsendia_admin**: Townsendia planning/execution/evaluation, accessories, marketing
 - **umbellularia_admin**: Umbellularia planning/execution/evaluation, accessories, marketing
