@@ -1,5 +1,11 @@
 # Changelog
 
+## Phase 639 - v984.0 (2584 modules)
+- Added: phillyrea_admin, physalis_admin, pittosporum_admin
+
+## Phase 638 - v983.0 (2581 modules)
+- Added: peltaria_admin, peucedanum_admin, phalaris_admin
+
 ## Phase 637 - v982.0 (2578 modules)
 - Added: oldenburgia_admin, olivaea_admin, onagra_admin
 
