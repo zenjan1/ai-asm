@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 591 - Rugosa, Rumex & Ruschia Technologies (v936.0, 2440 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **rugosa_admin** (Rugosa management technology administration system)
+  - Prefix: `rug_`, Type: `rug_t`, Tag: [RUG], Base address: 1183
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **rumex_admin** (Rumex management technology administration system)
+  - Prefix: `rum_`, Type: `rum_t`, Tag: [RUM], Base address: 1184
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **ruschia_admin** (Ruschia management technology administration system)
+  - Prefix: `rus_`, Type: `rus_t`, Tag: [RUS], Base address: 1185
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2440 (L1:62 + L2:138 + L3:2208 + L4:19 + L5:13)
+- L3 WASM Apps: 2208 (2161 standalone + 47 libraries)
+- Version: v936.0 (Phase + 345)
+
 ## Phase 590 - Rhodotypos, Romneya & Ruellia Technologies (v935.0, 2437 modules)
 
 *Date: 2026-06-22*
