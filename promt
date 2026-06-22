@@ -1,27 +1,27 @@
-Phase 740: Create 3 plant-themed admin modules (alphabetically after schinus):
+Phase 741: Create 3 plant-themed admin modules (alphabetically after selinum):
 
-1. scirpus_admin (prefix: scir_, base offset: 1646, tag: [SCIR])
-   - planning: 1646/1635/1615/1597
-   - execution: 1635/1624/1606/1593
-   - evaluation: 1627/1616/1600/1589
-   - accessory: 1619/1610/1596/1586
-   - market: 1613/1604/1591/1583
+1. serenoa_admin (prefix: sere_, base offset: 1649, tag: [SERE])
+   - planning: 1649/1638/1618/1600
+   - execution: 1638/1627/1609/1596
+   - evaluation: 1630/1619/1603/1592
+   - accessory: 1622/1613/1599/1589
+   - market: 1616/1607/1594/1586
 
-2. scolymus_admin (prefix: scol_, base offset: 1647, tag: [SCOL])
-   - planning: 1647/1636/1616/1598
-   - execution: 1636/1625/1607/1594
-   - evaluation: 1628/1617/1601/1590
-   - accessory: 1620/1611/1597/1587
-   - market: 1614/1605/1592/1584
+2. sesbania_admin (prefix: sesb_, base offset: 1650, tag: [SESB])
+   - planning: 1650/1639/1619/1601
+   - execution: 1639/1628/1610/1597
+   - evaluation: 1631/1620/1604/1593
+   - accessory: 1623/1614/1600/1590
+   - market: 1617/1608/1595/1587
 
-3. selinum_admin (prefix: seli_, base offset: 1648, tag: [SELI])
-   - planning: 1648/1637/1617/1599
-   - execution: 1637/1626/1608/1595
-   - evaluation: 1629/1618/1602/1591
-   - accessory: 1621/1612/1598/1588
-   - market: 1615/1606/1593/1585
+3. sesleria_admin (prefix: sesl_, base offset: 1651, tag: [SESL])
+   - planning: 1651/1640/1620/1602
+   - execution: 1640/1629/1611/1598
+   - evaluation: 1632/1621/1605/1594
+   - accessory: 1624/1615/1601/1591
+   - market: 1618/1609/1596/1588
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1084.0->v1085.0, 2884->2887, L3: 2652->2655, 2605->2608),
-add Phase 740 entry to CHANGELOG, find Phase 741 candidates (alphabetically after selinum),
+Build WASM, update README (v1085.0->v1086.0, 2887->2890, L3: 2655->2658, 2608->2611, L3 table 2418->2421/2371->2374, L3 WASM Apps 2271->2274),
+add Phase 741 entry to CHANGELOG, find Phase 742 candidates (alphabetically after sesleria),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

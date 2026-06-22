@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 740 - v1085.0 (2887 modules)
+- Added: scirpus_admin, scolymus_admin, selinum_admin
+
 ## Phase 739 - v1084.0 (2884 modules)
 - Added: sapium_admin, sativum_admin, schinus_admin
 
