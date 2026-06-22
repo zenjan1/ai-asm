@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 770 - v1115.0 (2977 modules)
+- Added: linden_admin, lychee_admin, mahogany_admin
+
 ## Phase 769 - v1114.0 (2974 modules)
 - Added: laurel_admin, lemon_admin, lime_admin
 

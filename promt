@@ -1,27 +1,27 @@
-Phase 770: Create 3 tree-themed admin modules (after lime, wrapping alphabet):
+Phase 771: Create 3 tree-themed admin modules (after mahogany, wrapping alphabet):
 
-1. linden_admin (prefix: lind_, base offset: 1736, tag: [LIND])
-   - planning: 1736/1725/1705/1687
-   - execution: 1725/1714/1696/1683
-   - evaluation: 1717/1706/1690/1679
-   - accessory: 1709/1700/1686/1676
-   - market: 1703/1694/1681/1673
+1. mangrove_admin (prefix: mang_, base offset: 1739, tag: [MANG])
+   - planning: 1739/1728/1708/1690
+   - execution: 1728/1717/1699/1686
+   - evaluation: 1720/1709/1693/1682
+   - accessory: 1712/1703/1689/1679
+   - market: 1706/1697/1684/1676
 
-2. lychee_admin (prefix: lych_, base offset: 1737, tag: [LYCH])
-   - planning: 1737/1726/1706/1688
-   - execution: 1726/1715/1697/1684
-   - evaluation: 1718/1707/1691/1680
-   - accessory: 1710/1701/1687/1677
-   - market: 1704/1695/1682/1674
+2. mulberry_admin (prefix: mulb_, base offset: 1740, tag: [MULB])
+   - planning: 1740/1729/1709/1691
+   - execution: 1729/1718/1700/1687
+   - evaluation: 1721/1710/1694/1683
+   - accessory: 1713/1704/1690/1680
+   - market: 1707/1698/1685/1677
 
-3. mahogany_admin (prefix: maho_, base offset: 1738, tag: [MAHO])
-   - planning: 1738/1727/1707/1689
-   - execution: 1727/1716/1698/1685
-   - evaluation: 1719/1708/1692/1681
-   - accessory: 1711/1702/1688/1678
-   - market: 1705/1696/1683/1675
+3. neem_admin (prefix: neem_, base offset: 1741, tag: [NEEM])
+   - planning: 1741/1730/1710/1692
+   - execution: 1730/1719/1701/1688
+   - evaluation: 1722/1711/1695/1684
+   - accessory: 1714/1705/1691/1681
+   - market: 1708/1699/1686/1678
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1114.0->v1115.0, 2974->2977, L3: 2742->2745, 2695->2698, L3 table 2505->2508/2458->2461, L3 WASM Apps 2358->2361),
-add Phase 770 entry to CHANGELOG, find Phase 771 candidates (alphabetically after mahogany),
+Build WASM, update README (v1115.0->v1116.0, 2977->2980, L3: 2745->2748, 2698->2701, L3 table 2508->2511/2461->2464, L3 WASM Apps 2361->2364),
+add Phase 771 entry to CHANGELOG, find Phase 772 candidates (alphabetically after neem),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
