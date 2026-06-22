@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 700 - v1045.0 (2767 modules)
+- Added: hackelia_admin, heliamphora_admin, helmholtzia_admin
+
 ## Phase 699 - v1044.0 (2764 modules)
 - Added: guava_admin, gymnosporia_admin, gynura_admin
 

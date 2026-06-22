@@ -1,27 +1,27 @@
-Phase 700: Create 3 plant-themed admin modules (alphabetically after gynura):
+Phase 701: Create 3 plant-themed admin modules (alphabetically after helmholtzia):
 
-1. hackelia_admin (prefix: hack_, base offset: 1525, tag: [HACK])
-   - planning: 1525/1514/1494/1476
-   - execution: 1514/1503/1485/1472
-   - evaluation: 1506/1495/1479/1468
-   - accessory: 1498/1489/1475/1465
-   - market: 1492/1483/1470/1462
+1. heptacodium_admin (prefix: hept_, base offset: 1528, tag: [HEPT])
+   - planning: 1528/1517/1497/1479
+   - execution: 1517/1506/1488/1475
+   - evaluation: 1509/1498/1482/1471
+   - accessory: 1501/1492/1478/1468
+   - market: 1495/1486/1473/1465
 
-2. heliamphora_admin (prefix: heli_, base offset: 1526, tag: [HELI])
-   - planning: 1526/1515/1495/1477
-   - execution: 1515/1504/1486/1473
-   - evaluation: 1507/1496/1480/1469
-   - accessory: 1499/1490/1476/1466
-   - market: 1493/1484/1471/1463
+2. heracleum_admin (prefix: hera_, base offset: 1529, tag: [HERA])
+   - planning: 1529/1518/1498/1480
+   - execution: 1518/1507/1489/1476
+   - evaluation: 1510/1499/1483/1472
+   - accessory: 1502/1493/1479/1469
+   - market: 1496/1487/1474/1466
 
-3. helmholtzia_admin (prefix: helm_, base offset: 1527, tag: [HELM])
-   - planning: 1527/1516/1496/1478
-   - execution: 1516/1505/1487/1474
-   - evaluation: 1508/1497/1481/1470
-   - accessory: 1500/1491/1477/1467
-   - market: 1494/1485/1472/1464
+3. hermionera_admin (prefix: herm_, base offset: 1530, tag: [HERM])
+   - planning: 1530/1519/1499/1481
+   - execution: 1519/1508/1490/1477
+   - evaluation: 1511/1500/1484/1473
+   - accessory: 1503/1494/1480/1470
+   - market: 1497/1488/1475/1467
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1044.0->v1045.0, 2764->2767, L3: 2532->2535, 2485->2488),
-add Phase 700 entry to CHANGELOG, find Phase 701 candidates (alphabetically after helmholtzia),
+Build WASM, update README (v1045.0->v1046.0, 2767->2770, L3: 2535->2538, 2488->2491),
+add Phase 701 entry to CHANGELOG, find Phase 702 candidates (alphabetically after hermionera),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
