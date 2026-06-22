@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 635 - v980.0 (2572 modules)
+- Added: microlaena_admin, milkweed_admin, miscanthus_admin
+
 ## Phase 634 - v979.0 (2569 modules)
 - Added: massonia_admin, maurandya_admin, melananthera_admin
 
