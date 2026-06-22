@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 596 - Tylophora, Undulatum & Uvularia Technologies (v941.0, 2455 modules)
+
+*Date: 2026-06-22*
+
+### Added
+- **tylophora_admin** (Tylophora management technology administration system)
+  - Prefix: `tyl_`, Type: `tyl_t`, Tag: [TYL], Base address: 1198
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **undulatum_admin** (Undulatum management technology administration system)
+  - Prefix: `und_`, Type: `und_t`, Tag: [UND], Base address: 1199
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+- **uvularia_admin** (Uvularia management technology administration system)
+  - Prefix: `uva_`, Type: `uva_t`, Tag: [UVA], Base address: 1200
+  - Sub-domains: planning, execution, evaluation, accessories, marketing
+
+### Module Statistics
+- Total modules: 2455 (L1:62 + L2:138 + L3:2223 + L4:19 + L5:13)
+- L3 WASM Apps: 2223 (2176 standalone + 47 libraries)
+- Version: v941.0 (Phase + 345)
+
 ## Phase 595 - Talinum, Tecoma & Telanthophila Technologies (v940.0, 2452 modules)
 
 *Date: 2026-06-22*
