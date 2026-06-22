@@ -1,27 +1,27 @@
-Phase 760: Create 3 tree-themed admin modules (after walnut, wrapping alphabet):
+Phase 761: Create 3 tree-themed admin modules (after beech, wrapping alphabet):
 
-1. willow_admin (prefix: will_, base offset: 1706, tag: [WILL])
-   - planning: 1706/1695/1675/1657
-   - execution: 1695/1684/1666/1653
-   - evaluation: 1687/1676/1660/1649
-   - accessory: 1679/1670/1656/1646
-   - market: 1673/1664/1651/1643
+1. birch_admin (prefix: birc_, base offset: 1709, tag: [BIRC])
+   - planning: 1709/1698/1678/1660
+   - execution: 1698/1687/1669/1656
+   - evaluation: 1690/1679/1663/1652
+   - accessory: 1682/1673/1659/1649
+   - market: 1676/1667/1654/1646
 
-2. ash_admin (prefix: ash_, base offset: 1707, tag: [ASH_])
-   - planning: 1707/1696/1676/1658
-   - execution: 1696/1685/1667/1654
-   - evaluation: 1688/1677/1661/1650
-   - accessory: 1680/1671/1657/1647
-   - market: 1674/1665/1652/1644
+2. cedar_admin (prefix: ceda_, base offset: 1710, tag: [CEDA])
+   - planning: 1710/1699/1679/1661
+   - execution: 1699/1688/1670/1657
+   - evaluation: 1691/1680/1664/1653
+   - accessory: 1683/1674/1660/1650
+   - market: 1677/1668/1655/1647
 
-3. beech_admin (prefix: beec_, base offset: 1708, tag: [BEEC])
-   - planning: 1708/1697/1677/1659
-   - execution: 1697/1686/1668/1655
-   - evaluation: 1689/1678/1662/1651
-   - accessory: 1681/1672/1658/1648
-   - market: 1675/1666/1653/1645
+3. chestnut_admin (prefix: ches_, base offset: 1711, tag: [CHES])
+   - planning: 1711/1700/1680/1662
+   - execution: 1700/1689/1671/1658
+   - evaluation: 1692/1681/1665/1654
+   - accessory: 1684/1675/1661/1651
+   - market: 1678/1669/1656/1648
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1104.0->v1105.0, 2944->2947, L3: 2712->2715, 2665->2668, L3 table 2475->2478/2428->2431, L3 WASM Apps 2328->2331),
-add Phase 760 entry to CHANGELOG, find Phase 761 candidates (alphabetically after beech),
+Build WASM, update README (v1105.0->v1106.0, 2947->2950, L3: 2715->2718, 2668->2671, L3 table 2478->2481/2431->2434, L3 WASM Apps 2331->2334),
+add Phase 761 entry to CHANGELOG, find Phase 762 candidates (alphabetically after chestnut),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
