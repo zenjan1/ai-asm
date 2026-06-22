@@ -1,27 +1,27 @@
-Phase 719: Create 3 plant-themed admin modules (alphabetically after mucuna):
+Phase 720: Create 3 plant-themed admin modules (alphabetically after nabalia):
 
-1. munkiella_admin (prefix: munk_, base offset: 1583, tag: [MUNK])
-   - planning: 1583/1572/1552/1534
-   - execution: 1572/1561/1543/1530
-   - evaluation: 1564/1553/1537/1526
-   - accessory: 1556/1547/1533/1523
-   - market: 1550/1541/1528/1520
+1. naeglia_admin (prefix: naeg_, base offset: 1586, tag: [NAEG])
+   - planning: 1586/1575/1555/1537
+   - execution: 1575/1564/1546/1533
+   - evaluation: 1567/1556/1540/1529
+   - accessory: 1559/1550/1536/1526
+   - market: 1553/1544/1531/1523
 
-2. murdania_admin (prefix: murd_, base offset: 1584, tag: [MURD])
-   - planning: 1584/1573/1553/1535
-   - execution: 1573/1562/1544/1531
-   - evaluation: 1565/1554/1538/1527
-   - accessory: 1557/1548/1534/1524
-   - market: 1551/1542/1529/1521
+2. naemannia_admin (prefix: naem_, base offset: 1587, tag: [NAEM])
+   - planning: 1587/1576/1556/1538
+   - execution: 1576/1565/1547/1534
+   - evaluation: 1568/1557/1541/1530
+   - accessory: 1560/1551/1537/1527
+   - market: 1554/1545/1532/1524
 
-3. nabalia_admin (prefix: naba_, base offset: 1585, tag: [NABA])
-   - planning: 1585/1574/1554/1536
-   - execution: 1574/1563/1545/1532
-   - evaluation: 1566/1555/1539/1528
-   - accessory: 1558/1549/1535/1525
-   - market: 1552/1543/1530/1522
+3. nanochilus_admin (prefix: nano_, base offset: 1588, tag: [NANO])
+   - planning: 1588/1577/1557/1539
+   - execution: 1577/1566/1548/1535
+   - evaluation: 1569/1558/1542/1531
+   - accessory: 1561/1552/1538/1528
+   - market: 1555/1546/1533/1525
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1063.0->v1064.0, 2821->2824, L3: 2589->2592, 2542->2545),
-add Phase 719 entry to CHANGELOG, find Phase 720 candidates (alphabetically after nabalia),
+Build WASM, update README (v1064.0->v1065.0, 2824->2827, L3: 2592->2595, 2545->2548),
+add Phase 720 entry to CHANGELOG, find Phase 721 candidates (alphabetically after nanochilus),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
