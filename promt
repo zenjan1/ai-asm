@@ -1,27 +1,27 @@
-Phase 713: Create 3 plant-themed admin modules (alphabetically after maoutia):
+Phase 714: Create 3 plant-themed admin modules (alphabetically after matricaria):
 
-1. marcetia_admin (prefix: marc_, base offset: 1564, tag: [MARC])
-   - planning: 1564/1553/1533/1515
-   - execution: 1553/1542/1524/1511
-   - evaluation: 1545/1534/1518/1507
-   - accessory: 1537/1528/1514/1504
-   - market: 1531/1522/1509/1501
+1. medinilla_admin (prefix: medi_, base offset: 1567, tag: [MEDI])
+   - planning: 1567/1556/1536/1518
+   - execution: 1556/1545/1527/1514
+   - evaluation: 1548/1537/1521/1510
+   - accessory: 1540/1531/1517/1507
+   - market: 1534/1525/1512/1504
 
-2. marsilea_admin (prefix: mars_, base offset: 1565, tag: [MARS])
-   - planning: 1565/1554/1534/1516
-   - execution: 1554/1543/1525/1512
-   - evaluation: 1546/1535/1519/1508
-   - accessory: 1538/1529/1515/1505
-   - market: 1532/1523/1510/1502
+2. melanthium_admin (prefix: meln_, base offset: 1568, tag: [MELN])
+   - planning: 1568/1557/1537/1519
+   - execution: 1557/1546/1528/1515
+   - evaluation: 1549/1538/1522/1511
+   - accessory: 1541/1532/1518/1508
+   - market: 1535/1526/1513/1505
 
-3. matricaria_admin (prefix: matri_, base offset: 1566, tag: [MATRI])
-   - planning: 1566/1555/1535/1517
-   - execution: 1555/1544/1526/1513
-   - evaluation: 1547/1536/1520/1509
-   - accessory: 1539/1530/1516/1506
-   - market: 1533/1524/1511/1503
+3. menispermum_admin (prefix: meni_, base offset: 1569, tag: [MENI])
+   - planning: 1569/1558/1538/1520
+   - execution: 1558/1547/1529/1516
+   - evaluation: 1550/1539/1523/1512
+   - accessory: 1542/1533/1519/1509
+   - market: 1536/1527/1514/1506
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1057.0->v1058.0, 2803->2806, L3: 2571->2574, 2524->2527),
-add Phase 713 entry to CHANGELOG, find Phase 714 candidates (alphabetically after matricaria),
+Build WASM, update README (v1058.0->v1059.0, 2806->2809, L3: 2574->2577, 2527->2530),
+add Phase 714 entry to CHANGELOG, find Phase 715 candidates (alphabetically after menispermum),
 write next prompt, set UPDATE=0, git add -f all, commit and push to origin arm-v2.
