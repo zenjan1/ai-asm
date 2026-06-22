@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 674 - v1019.0 (2689 modules)
+- Added: behnia_admin, bellis_admin, berberis_admin
+
 ## Phase 673 - v1018.0 (2686 modules)
 - Added: baeckea_admin, baeria_admin, baumea_admin
 
