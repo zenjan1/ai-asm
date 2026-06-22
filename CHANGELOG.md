@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 734 - v1079.0 (2869 modules)
+- Added: oligomeris_admin, omphalodes_admin, onopordum_admin
+
 ## Phase 733 - v1078.0 (2866 modules)
 - Added: ochrea_admin, odora_admin, oldenlandia_admin
 

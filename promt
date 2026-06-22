@@ -1,27 +1,27 @@
-Phase 734: Create 3 plant-themed admin modules (alphabetically after oldenlandia):
+Phase 735: Create 3 plant-themed admin modules (alphabetically after onopordum):
 
-1. oligomeris_admin (prefix: olig_, base offset: 1628, tag: [OLIG])
-   - planning: 1628/1617/1597/1579
-   - execution: 1617/1606/1588/1575
-   - evaluation: 1609/1598/1582/1571
-   - accessory: 1601/1592/1578/1568
-   - market: 1595/1586/1573/1565
+1. ozothamnus_admin (prefix: ozot_, base offset: 1631, tag: [OZOT])
+   - planning: 1631/1620/1600/1582
+   - execution: 1620/1609/1591/1578
+   - evaluation: 1612/1601/1585/1574
+   - accessory: 1604/1595/1581/1571
+   - market: 1598/1589/1576/1568
 
-2. omphalodes_admin (prefix: omph_, base offset: 1629, tag: [OMPH])
-   - planning: 1629/1618/1598/1580
-   - execution: 1618/1607/1589/1576
-   - evaluation: 1610/1599/1583/1572
-   - accessory: 1602/1593/1579/1569
-   - market: 1596/1587/1574/1566
+2. pfeiffera_admin (prefix: pfei_, base offset: 1632, tag: [PFEI])
+   - planning: 1632/1621/1601/1583
+   - execution: 1621/1610/1592/1579
+   - evaluation: 1613/1602/1586/1575
+   - accessory: 1605/1596/1582/1572
+   - market: 1599/1590/1577/1569
 
-3. onopordum_admin (prefix: onop_, base offset: 1630, tag: [ONOP])
-   - planning: 1630/1619/1599/1581
-   - execution: 1619/1608/1590/1577
-   - evaluation: 1611/1600/1584/1573
-   - accessory: 1603/1594/1580/1570
-   - market: 1597/1588/1575/1567
+3. phalaroides_admin (prefix: phar_, base offset: 1633, tag: [PHAR])
+   - planning: 1633/1622/1602/1584
+   - execution: 1622/1611/1593/1580
+   - evaluation: 1614/1603/1587/1576
+   - accessory: 1606/1597/1583/1573
+   - market: 1600/1591/1578/1570
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1078.0->v1079.0, 2866->2869, L3: 2634->2637, 2587->2590),
-add Phase 734 entry to CHANGELOG, find Phase 735 candidates (alphabetically after onopordum),
+Build WASM, update README (v1079.0->v1080.0, 2869->2872, L3: 2637->2640, 2590->2593),
+add Phase 735 entry to CHANGELOG, find Phase 736 candidates (alphabetically after phalaroides),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
