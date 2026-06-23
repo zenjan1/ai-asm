@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 796 - v1141.0 (3055 modules)
+- Added: bugle_admin, butterbur_admin, butterfly_admin
+
 ## Phase 795 - v1140.0 (3052 modules)
 - Added: blueweed_admin, bluewood_admin, boneset_admin
 
