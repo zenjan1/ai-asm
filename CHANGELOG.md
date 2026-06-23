@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 794 - v1139.0 (3049 modules)
+- Added: bluestar_admin, bluestem_admin, bluet_admin
+
 ## Phase 793 - v1138.0 (3046 modules)
 - Added: blueeye_admin, blueflag_admin, bluegum_admin
 
