@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 829 - v1174.0 (3154 modules)
+- Added: maytenus_admin, meconella_admin, medeola_admin
+
 ## Phase 828 - v1173.0 (3151 modules)
 - Added: marginata_admin, mariana_admin, martinella_admin
 
