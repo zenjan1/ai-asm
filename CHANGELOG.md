@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 853 - v1198.0 (3226 modules)
+- Added: cryptomeria_admin, cuphea_admin, diosma_admin
+
 ## Phase 852 - v1197.0 (3223 modules)
 - Added: comandra_admin, coriandrum_admin, cotinus_admin
 

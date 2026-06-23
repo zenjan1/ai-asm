@@ -1,27 +1,27 @@
-Phase 853: Create 3 plant-themed admin modules (alphabetically after cotinus):
+Phase 854: Create 3 plant-themed admin modules (alphabetically after diosma):
 
-1. cryptomeria_admin (prefix: cryp_, base offset: 1985, tag: [CRYP])
-   - planning: 1985/1974/1954/1936
-   - execution: 1974/1963/1945/1932
-   - evaluation: 1966/1955/1939/1928
-   - accessory: 1958/1949/1935/1925
-   - market: 1952/1943/1930/1922
+1. diplacus_admin (prefix: dipl_, base offset: 1988, tag: [DIPL])
+   - planning: 1988/1977/1957/1939
+   - execution: 1977/1966/1948/1935
+   - evaluation: 1969/1958/1942/1931
+   - accessory: 1961/1952/1938/1928
+   - market: 1955/1946/1933/1925
 
-2. cuphea_admin (prefix: cuph_, base offset: 1986, tag: [CUPH])
-   - planning: 1986/1975/1955/1937
-   - execution: 1975/1964/1946/1933
-   - evaluation: 1967/1956/1940/1929
-   - accessory: 1959/1950/1936/1926
-   - market: 1953/1944/1931/1923
+2. diploglottis_admin (prefix: diplo_, base offset: 1989, tag: [DIPL])
+   - planning: 1989/1978/1958/1940
+   - execution: 1978/1967/1949/1936
+   - evaluation: 1970/1959/1943/1932
+   - accessory: 1962/1953/1939/1929
+   - market: 1956/1947/1934/1926
 
-3. diosma_admin (prefix: dios_, base offset: 1987, tag: [DIOS])
-   - planning: 1987/1976/1956/1938
-   - execution: 1976/1965/1947/1934
-   - evaluation: 1968/1957/1941/1930
-   - accessory: 1960/1951/1937/1927
-   - market: 1954/1945/1932/1924
+3. dipteronia_admin (prefix: dipt_, base offset: 1990, tag: [DIPT])
+   - planning: 1990/1979/1959/1941
+   - execution: 1979/1968/1950/1937
+   - evaluation: 1971/1960/1944/1933
+   - accessory: 1963/1954/1940/1930
+   - market: 1957/1948/1935/1927
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1197.0->v1198.0, 3223->3226, L3: 2991->2994, 2944->2947, L3 table 2754->2757/2707->2710, L3 WASM Apps 2607->2610),
-add Phase 853 entry to CHANGELOG, find Phase 854 candidates (alphabetically after diosma),
+Build WASM, update README (v1198.0->v1199.0, 3226->3229, L3: 2994->2997, 2947->2950, L3 table 2757->2760/2710->2713, L3 WASM Apps 2610->2613),
+add Phase 854 entry to CHANGELOG, find Phase 855 candidates (alphabetically after dipteronia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
