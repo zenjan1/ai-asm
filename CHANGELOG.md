@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 819 - v1164.0 (3124 modules)
+- Added: houlletia_admin, housea_admin, houstonia_admin
+
 ## Phase 818 - v1163.0 (3121 modules)
 - Added: hoarea_admin, hoffmannseggia_admin, holmskioldia_admin
 
