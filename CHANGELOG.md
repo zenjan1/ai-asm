@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 828 - v1173.0 (3151 modules)
+- Added: marginata_admin, mariana_admin, martinella_admin
+
 ## Phase 827 - v1172.0 (3148 modules)
 - Added: manfreda_admin, mapania_admin, margaritopsis_admin
 
