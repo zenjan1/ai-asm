@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 838 - v1183.0 (3181 modules)
+- Added: mitchella_admin, mitella_admin, mitellastra_admin
+
 ## Phase 837 - v1182.0 (3178 modules)
 - Added: mirabilis_admin, miscanthus_admin, misopates_admin
 

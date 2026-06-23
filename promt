@@ -1,27 +1,27 @@
-Phase 838: Create 3 plant-themed admin modules (alphabetically after misopates):
+Phase 839: Create 3 plant-themed admin modules (alphabetically after mitellastra):
 
-1. mitchella_admin (prefix: mitc_, base offset: 1940, tag: [MITC])
-   - planning: 1940/1929/1909/1891
-   - execution: 1929/1918/1900/1887
-   - evaluation: 1921/1910/1894/1883
-   - accessory: 1913/1904/1890/1880
-   - market: 1907/1898/1885/1877
+1. mitracarpus_admin (prefix: mitr_, base offset: 1943, tag: [MITR])
+   - planning: 1943/1932/1912/1894
+   - execution: 1932/1921/1903/1890
+   - evaluation: 1924/1913/1897/1886
+   - accessory: 1916/1907/1893/1883
+   - market: 1910/1901/1888/1880
 
-2. mitella_admin (prefix: mitl_, base offset: 1941, tag: [MITL])
-   - planning: 1941/1930/1910/1892
-   - execution: 1930/1919/1901/1888
-   - evaluation: 1922/1911/1895/1884
-   - accessory: 1914/1905/1891/1881
-   - market: 1908/1899/1886/1878
+2. mitreola_admin (prefix: mirt_, base offset: 1944, tag: [MIRT])
+   - planning: 1944/1933/1913/1895
+   - execution: 1933/1922/1904/1891
+   - evaluation: 1925/1914/1898/1887
+   - accessory: 1917/1908/1894/1884
+   - market: 1911/1902/1889/1881
 
-3. mitellastra_admin (prefix: mits_, base offset: 1942, tag: [MITS])
-   - planning: 1942/1931/1911/1893
-   - execution: 1931/1920/1902/1889
-   - evaluation: 1923/1912/1896/1885
-   - accessory: 1915/1906/1892/1882
-   - market: 1909/1900/1887/1879
+3. modiola_admin (prefix: mod_, base offset: 1945, tag: [MODI])
+   - planning: 1945/1934/1914/1896
+   - execution: 1934/1923/1905/1892
+   - evaluation: 1926/1915/1899/1888
+   - accessory: 1918/1909/1895/1885
+   - market: 1912/1903/1890/1882
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1182.0->v1183.0, 3178->3181, L3: 2946->2949, 2899->2902, L3 table 2709->2712/2662->2665, L3 WASM Apps 2562->2565),
-add Phase 838 entry to CHANGELOG, find Phase 839 candidates (alphabetically after mitellastra),
+Build WASM, update README (v1183.0->v1184.0, 3181->3184, L3: 2949->2952, 2902->2905, L3 table 2712->2715/2665->2668, L3 WASM Apps 2565->2568),
+add Phase 839 entry to CHANGELOG, find Phase 840 candidates (alphabetically after modiola),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
