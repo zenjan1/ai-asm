@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 786 - v1131.0 (3025 modules)
+- Added: basilicum_admin, basswood_admin, bayberry_admin
+
 ## Phase 785 - v1130.0 (3022 modules)
 - Added: balsamroot_admin, banana_admin, barberry_admin
 
