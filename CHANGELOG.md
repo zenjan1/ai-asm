@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 836 - v1181.0 (3175 modules)
+- Added: mimulus_admin, mimusops_admin, minuartia_admin
+
 ## Phase 835 - v1180.0 (3172 modules)
 - Added: miersia_admin, mikania_admin, mimosa_admin
 
