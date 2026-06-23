@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 860 - v1205.0 (3247 modules)
+- Added: endopappus_admin, engelmannia_admin, engleria_admin
+
 ## Phase 859 - v1204.0 (3244 modules)
 - Added: encelia_admin, enceliopsis_admin, endocellion_admin
 
