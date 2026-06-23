@@ -1,27 +1,27 @@
-Phase 817: Create 3 plant-themed admin modules (alphabetically after heterotheca):
+Phase 818: Create 3 plant-themed admin modules (alphabetically after hirtella):
 
-1. hillia_admin (prefix: hill_, base offset: 1877, tag: [HILL])
-   - planning: 1877/1866/1846/1828
-   - execution: 1866/1855/1837/1824
-   - evaluation: 1858/1847/1831/1820
-   - accessory: 1850/1841/1827/1817
-   - market: 1844/1835/1822/1814
+1. hoarea_admin (prefix: hoar_, base offset: 1880, tag: [HOAR])
+   - planning: 1880/1869/1849/1831
+   - execution: 1869/1858/1840/1827
+   - evaluation: 1861/1850/1834/1823
+   - accessory: 1853/1844/1830/1820
+   - market: 1847/1838/1825/1817
 
-2. hippobroma_admin (prefix: hipp_, base offset: 1878, tag: [HIPP])
-   - planning: 1878/1867/1847/1829
-   - execution: 1867/1856/1838/1825
-   - evaluation: 1859/1848/1832/1821
-   - accessory: 1851/1842/1828/1818
-   - market: 1845/1836/1823/1815
+2. hoffmannseggia_admin (prefix: hoff_, base offset: 1881, tag: [HOFF])
+   - planning: 1881/1870/1850/1832
+   - execution: 1870/1859/1841/1828
+   - evaluation: 1862/1851/1835/1824
+   - accessory: 1854/1845/1831/1821
+   - market: 1848/1839/1826/1818
 
-3. hirtella_admin (prefix: hirt_, base offset: 1879, tag: [HIRT])
-   - planning: 1879/1868/1848/1830
-   - execution: 1868/1857/1839/1826
-   - evaluation: 1860/1849/1833/1822
-   - accessory: 1852/1843/1829/1819
-   - market: 1846/1837/1824/1816
+3. holmskioldia_admin (prefix: holm_, base offset: 1882, tag: [HOLM])
+   - planning: 1882/1871/1851/1833
+   - execution: 1871/1860/1842/1829
+   - evaluation: 1863/1852/1836/1825
+   - accessory: 1855/1846/1832/1822
+   - market: 1849/1840/1827/1819
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1161.0->v1162.0, 3115->3118, L3: 2883->2886, 2836->2839, L3 table 2646->2649/2599->2602, L3 WASM Apps 2499->2502),
-add Phase 817 entry to CHANGELOG, find Phase 818 candidates (alphabetically after hirtella),
+Build WASM, update README (v1162.0->v1163.0, 3118->3121, L3: 2886->2889, 2839->2842, L3 table 2649->2652/2602->2605, L3 WASM Apps 2502->2505),
+add Phase 818 entry to CHANGELOG, find Phase 819 candidates (alphabetically after holmskioldia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
