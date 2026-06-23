@@ -1,27 +1,27 @@
-Phase 815: Create 3 plant-themed admin modules (alphabetically after helonias):
+Phase 816: Create 3 plant-themed admin modules (alphabetically after heptacarion):
 
-1. hemigraphis_admin (prefix: hemi_, base offset: 1871, tag: [HEMI])
-   - planning: 1871/1860/1840/1822
-   - execution: 1860/1849/1831/1818
-   - evaluation: 1852/1841/1825/1814
-   - accessory: 1844/1835/1821/1811
-   - market: 1838/1829/1816/1808
+1. hermbertia_admin (prefix: hrmb_, base offset: 1874, tag: [HRMB])
+   - planning: 1874/1863/1843/1825
+   - execution: 1863/1852/1834/1821
+   - evaluation: 1855/1844/1828/1817
+   - accessory: 1847/1838/1824/1814
+   - market: 1841/1832/1819/1811
 
-2. henckelia_admin (prefix: henc_, base offset: 1872, tag: [HENC])
-   - planning: 1872/1861/1841/1823
-   - execution: 1861/1850/1832/1819
-   - evaluation: 1853/1842/1826/1815
-   - accessory: 1845/1836/1822/1812
-   - market: 1839/1830/1817/1809
+2. hesperantha_admin (prefix: hspa_, base offset: 1875, tag: [HSPA])
+   - planning: 1875/1864/1844/1826
+   - execution: 1864/1853/1835/1822
+   - evaluation: 1856/1845/1829/1818
+   - accessory: 1848/1839/1825/1815
+   - market: 1842/1833/1820/1812
 
-3. heptacarion_admin (prefix: hepc_, base offset: 1873, tag: [HEPC])
-   - planning: 1873/1862/1842/1824
-   - execution: 1862/1851/1833/1820
-   - evaluation: 1854/1843/1827/1816
-   - accessory: 1846/1837/1823/1813
-   - market: 1840/1831/1818/1810
+3. heterotheca_admin (prefix: htrc_, base offset: 1876, tag: [HTRC])
+   - planning: 1876/1865/1845/1827
+   - execution: 1865/1854/1836/1823
+   - evaluation: 1857/1846/1830/1819
+   - accessory: 1849/1840/1826/1816
+   - market: 1843/1834/1821/1813
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1159.0->v1160.0, 3109->3112, L3: 2877->2880, 2830->2833, L3 table 2640->2643/2593->2596, L3 WASM Apps 2493->2496),
-add Phase 815 entry to CHANGELOG, find Phase 816 candidates (alphabetically after heptacarion),
+Build WASM, update README (v1160.0->v1161.0, 3112->3115, L3: 2880->2883, 2833->2836, L3 table 2643->2646/2596->2599, L3 WASM Apps 2496->2499),
+add Phase 816 entry to CHANGELOG, find Phase 817 candidates (alphabetically after heterotheca),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

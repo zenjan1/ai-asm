@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 815 - v1160.0 (3112 modules)
+- Added: hemigraphis_admin, henckelia_admin, heptacarion_admin
+
 ## Phase 814 - v1159.0 (3109 modules)
 - Added: helianthus_admin, heliophila_admin, helonias_admin
 
