@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 863 - v1208.0 (3256 modules)
+- Added: eriocephalus_admin, eriochlamys_admin, eriophyllum_admin
+
 ## Phase 862 - v1207.0 (3253 modules)
 - Added: epitriche_admin, erato_admin, erectites_admin
 
