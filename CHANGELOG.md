@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 833 - v1178.0 (3166 modules)
+- Added: microtea_admin, microtoena_admin, microtropis_admin
+
 ## Phase 832 - v1177.0 (3163 modules)
 - Added: microstachys_admin, microstigma_admin, microstylis_admin
 

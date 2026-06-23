@@ -1,27 +1,27 @@
-Phase 833: Create 3 plant-themed admin modules (alphabetically after microstylis):
+Phase 834: Create 3 plant-themed admin modules (alphabetically after microtropis):
 
-1. microtea_admin (prefix: mtca_, base offset: 1925, tag: [MTCA])
-   - planning: 1925/1914/1894/1876
-   - execution: 1914/1903/1885/1872
-   - evaluation: 1906/1895/1879/1868
-   - accessory: 1898/1889/1875/1865
-   - market: 1892/1883/1870/1862
+1. microula_admin (prefix: moul_, base offset: 1928, tag: [MOUL])
+   - planning: 1928/1917/1897/1879
+   - execution: 1917/1906/1888/1875
+   - evaluation: 1909/1898/1882/1871
+   - accessory: 1901/1892/1878/1868
+   - market: 1895/1886/1873/1865
 
-2. microtoena_admin (prefix: mtna_, base offset: 1926, tag: [MTNA])
-   - planning: 1926/1915/1895/1877
-   - execution: 1915/1904/1886/1873
-   - evaluation: 1907/1896/1880/1869
-   - accessory: 1899/1890/1876/1866
-   - market: 1893/1884/1871/1863
+2. mida_admin (prefix: mida_, base offset: 1929, tag: [MIDA])
+   - planning: 1929/1918/1898/1880
+   - execution: 1918/1907/1889/1876
+   - evaluation: 1910/1899/1883/1872
+   - accessory: 1902/1893/1879/1869
+   - market: 1896/1887/1874/1866
 
-3. microtropis_admin (prefix: mtrp_, base offset: 1927, tag: [MTRP])
-   - planning: 1927/1916/1896/1878
-   - execution: 1916/1905/1887/1874
-   - evaluation: 1908/1897/1881/1870
-   - accessory: 1900/1891/1877/1867
-   - market: 1894/1885/1872/1864
+3. middendorfia_admin (prefix: midd_, base offset: 1930, tag: [MIDD])
+   - planning: 1930/1919/1899/1881
+   - execution: 1919/1908/1890/1877
+   - evaluation: 1911/1900/1884/1873
+   - accessory: 1903/1894/1880/1870
+   - market: 1897/1888/1875/1867
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1177.0->v1178.0, 3163->3166, L3: 2931->2934, 2884->2887, L3 table 2694->2697/2647->2650, L3 WASM Apps 2547->2550),
-add Phase 833 entry to CHANGELOG, find Phase 834 candidates (alphabetically after microtropis),
+Build WASM, update README (v1178.0->v1179.0, 3166->3169, L3: 2934->2937, 2887->2890, L3 table 2697->2700/2650->2653, L3 WASM Apps 2550->2553),
+add Phase 834 entry to CHANGELOG, find Phase 835 candidates (alphabetically after middendorfia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
