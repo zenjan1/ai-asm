@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 854 - v1199.0 (3229 modules)
+- Added: diplacus_admin, diploglottis_admin, dipteronia_admin
+
 ## Phase 853 - v1198.0 (3226 modules)
 - Added: cryptomeria_admin, cuphea_admin, diosma_admin
 
