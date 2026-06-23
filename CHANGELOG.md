@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 862 - v1207.0 (3253 modules)
+- Added: epitriche_admin, erato_admin, erectites_admin
+
 ## Phase 861 - v1206.0 (3250 modules)
 - Added: enydra_admin, epaltes_admin, epilepis_admin
 
