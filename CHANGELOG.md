@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 799 - v1144.0 (3064 modules)
+- Added: campion_admin, candytuft_admin, cardoon_admin
+
 ## Phase 798 - v1143.0 (3061 modules)
 - Added: caltha_admin, caltrop_admin, camomile_admin
 
