@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 813 - v1158.0 (3106 modules)
+- Added: hedysarum_admin, heimia_admin, heisteria_admin
+
 ## Phase 812 - v1157.0 (3103 modules)
 - Added: hakea_admin, harrisia_admin, hedeoma_admin
 
