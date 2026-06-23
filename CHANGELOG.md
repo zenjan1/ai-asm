@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 824 - v1169.0 (3139 modules)
+- Added: isopyrum_admin, macaranga_admin, macfadyena_admin
+
 ## Phase 823 - v1168.0 (3136 modules)
 - Added: iriomotea_admin, ischaemum_admin, isophysis_admin
 
