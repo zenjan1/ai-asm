@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 844 - v1189.0 (3199 modules)
+- Added: ulex_admin, uncaria_admin, ursinia_admin
+
 ## Phase 843 - v1188.0 (3196 modules)
 - Added: murraya_admin, myrsine_admin, myrtus_admin
 

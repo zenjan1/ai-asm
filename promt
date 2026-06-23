@@ -1,27 +1,27 @@
-Phase 844: Create 3 plant-themed admin modules (alphabetically after myrtus):
+Phase 845: Create 3 plant-themed admin modules (alphabetically after ursinia):
 
-1. ulex_admin (prefix: ulex_, base offset: 1958, tag: [ULEX])
-   - planning: 1958/1947/1927/1909
-   - execution: 1947/1936/1918/1905
-   - evaluation: 1939/1928/1912/1901
-   - accessory: 1931/1922/1908/1898
-   - market: 1925/1916/1903/1895
+1. utricularia_admin (prefix: utr_, base offset: 1961, tag: [UTR_])
+   - planning: 1961/1950/1930/1912
+   - execution: 1950/1939/1921/1908
+   - evaluation: 1942/1931/1915/1904
+   - accessory: 1934/1925/1911/1901
+   - market: 1928/1919/1906/1898
 
-2. uncaria_admin (prefix: unca_, base offset: 1959, tag: [UNCA])
-   - planning: 1959/1948/1928/1910
-   - execution: 1948/1937/1919/1906
-   - evaluation: 1940/1929/1913/1902
-   - accessory: 1932/1923/1909/1899
-   - market: 1926/1917/1904/1896
+2. volkameria_admin (prefix: volk_, base offset: 1962, tag: [VOLK])
+   - planning: 1962/1951/1931/1913
+   - execution: 1951/1940/1922/1909
+   - evaluation: 1943/1932/1916/1905
+   - accessory: 1935/1926/1912/1902
+   - market: 1929/1920/1907/1899
 
-3. ursinia_admin (prefix: ursi_, base offset: 1960, tag: [URSI])
-   - planning: 1960/1949/1929/1911
-   - execution: 1949/1938/1920/1907
-   - evaluation: 1941/1930/1914/1903
-   - accessory: 1933/1924/1910/1900
-   - market: 1927/1918/1905/1897
+3. xanthium_admin (prefix: xant_, base offset: 1963, tag: [XANT])
+   - planning: 1963/1952/1932/1914
+   - execution: 1952/1941/1923/1910
+   - evaluation: 1944/1933/1917/1906
+   - accessory: 1936/1927/1913/1903
+   - market: 1930/1921/1908/1900
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1188.0->v1189.0, 3196->3199, L3: 2964->2967, 2917->2920, L3 table 2727->2730/2680->2683, L3 WASM Apps 2580->2583),
-add Phase 844 entry to CHANGELOG, find Phase 845 candidates (alphabetically after ursinia: utricularia, volkameria, xanthium),
+Build WASM, update README (v1189.0->v1190.0, 3199->3202, L3: 2967->2970, 2920->2923, L3 table 2730->2733/2683->2686, L3 WASM Apps 2583->2586),
+add Phase 845 entry to CHANGELOG, find Phase 846 candidates (alphabetically after xanthium),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
