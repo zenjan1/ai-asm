@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 783 - v1128.0 (3016 modules)
+- Added: arnica_admin, arracacha_admin, artichoke_admin
+
 ## Phase 782 - v1127.0 (3013 modules)
 - Added: apple_admin, apple_mint_admin, arborvitae_admin
 

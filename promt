@@ -1,27 +1,27 @@
-Phase 783: Create 3 plant-themed admin modules (alphabetically after arborvitae):
+Phase 784: Create 3 plant-themed admin modules (alphabetically after artichoke):
 
-1. arnica_admin (prefix: arni_, base offset: 1775, tag: [ARNI])
-   - planning: 1775/1764/1744/1726
-   - execution: 1764/1753/1735/1722
-   - evaluation: 1756/1745/1729/1718
-   - accessory: 1748/1739/1725/1715
-   - market: 1742/1733/1720/1712
+1. asafetida_admin (prefix: asaf_, base offset: 1778, tag: [ASAF])
+   - planning: 1778/1767/1747/1729
+   - execution: 1767/1756/1738/1725
+   - evaluation: 1759/1748/1732/1721
+   - accessory: 1751/1742/1728/1718
+   - market: 1745/1736/1723/1715
 
-2. arracacha_admin (prefix: arra_, base offset: 1776, tag: [ARRA])
-   - planning: 1776/1765/1745/1727
-   - execution: 1765/1754/1736/1723
-   - evaluation: 1757/1746/1730/1719
-   - accessory: 1749/1740/1726/1716
-   - market: 1743/1734/1721/1713
+2. asarabacca_admin (prefix: asar_, base offset: 1779, tag: [ASAR])
+   - planning: 1779/1768/1748/1730
+   - execution: 1768/1757/1739/1726
+   - evaluation: 1760/1749/1733/1722
+   - accessory: 1752/1743/1729/1719
+   - market: 1746/1737/1724/1716
 
-3. artichoke_admin (prefix: arti_, base offset: 1777, tag: [ARTI])
-   - planning: 1777/1766/1746/1728
-   - execution: 1766/1755/1737/1724
-   - evaluation: 1758/1747/1731/1720
-   - accessory: 1750/1741/1727/1717
-   - market: 1744/1735/1722/1714
+3. ballota_admin (prefix: ball_, base offset: 1780, tag: [BALL])
+   - planning: 1780/1769/1749/1731
+   - execution: 1769/1758/1740/1727
+   - evaluation: 1761/1750/1734/1723
+   - accessory: 1753/1744/1730/1720
+   - market: 1747/1738/1725/1717
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1127.0->v1128.0, 3013->3016, L3: 2781->2784, 2734->2737, L3 table 2544->2547/2497->2500, L3 WASM Apps 2397->2400),
-add Phase 783 entry to CHANGELOG, find Phase 784 candidates (alphabetically after artichoke),
+Build WASM, update README (v1128.0->v1129.0, 3016->3019, L3: 2784->2787, 2737->2740, L3 table 2547->2550/2500->2503, L3 WASM Apps 2400->2403),
+add Phase 784 entry to CHANGELOG, find Phase 785 candidates (alphabetically after ballota),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
