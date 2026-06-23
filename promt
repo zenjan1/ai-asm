@@ -1,27 +1,27 @@
-Phase 819: Create 3 plant-themed admin modules (alphabetically after holmskioldia):
+Phase 821: Create 3 plant-themed admin modules (alphabetically after ibicella):
 
-1. houlletia_admin (prefix: houl_, base offset: 1883, tag: [HOUL])
-   - planning: 1883/1872/1852/1834
-   - execution: 1872/1861/1843/1830
-   - evaluation: 1864/1853/1837/1826
-   - accessory: 1856/1847/1833/1823
-   - market: 1850/1841/1828/1820
+1. ilex_admin (prefix: ilex_, base offset: 1889, tag: [ILEX])
+   - planning: 1889/1878/1858/1840
+   - execution: 1878/1867/1849/1836
+   - evaluation: 1870/1859/1843/1832
+   - accessory: 1862/1853/1839/1829
+   - market: 1856/1847/1834/1826
 
-2. housea_admin (prefix: hous_, base offset: 1884, tag: [HOUS])
-   - planning: 1884/1873/1853/1835
-   - execution: 1873/1862/1844/1831
-   - evaluation: 1865/1854/1838/1827
-   - accessory: 1857/1848/1834/1824
-   - market: 1851/1842/1829/1821
+2. illicium_admin (prefix: illi_, base offset: 1890, tag: [ILLI])
+   - planning: 1890/1879/1859/1841
+   - execution: 1879/1868/1850/1837
+   - evaluation: 1871/1860/1844/1833
+   - accessory: 1863/1854/1840/1830
+   - market: 1857/1848/1835/1827
 
-3. houstonia_admin (prefix: houx_, base offset: 1885, tag: [HOUX])
-   - planning: 1885/1874/1854/1836
-   - execution: 1874/1863/1845/1832
-   - evaluation: 1866/1855/1839/1828
-   - accessory: 1858/1849/1835/1825
-   - market: 1852/1843/1830/1822
+3. iochroma_admin (prefix: ioch_, base offset: 1891, tag: [IOCH])
+   - planning: 1891/1880/1860/1842
+   - execution: 1880/1869/1851/1838
+   - evaluation: 1872/1861/1845/1834
+   - accessory: 1864/1855/1841/1831
+   - market: 1858/1849/1836/1828
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1163.0->v1164.0, 3121->3124, L3: 2889->2892, 2842->2845, L3 table 2652->2655/2605->2608, L3 WASM Apps 2505->2508),
-add Phase 819 entry to CHANGELOG, find Phase 820 candidates (alphabetically after houstonia),
+Build WASM, update README (v1165.0->v1166.0, 3127->3130, L3: 2895->2898, 2848->2851, L3 table 2658->2661/2611->2614, L3 WASM Apps 2511->2514),
+add Phase 821 entry to CHANGELOG, find Phase 822 candidates (alphabetically after iochroma),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
