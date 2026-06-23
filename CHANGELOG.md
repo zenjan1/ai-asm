@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 778 - v1123.0 (3001 modules)
+- Added: agrimony_admin, albizia_admin, alecanders_admin
+
 ## Phase 777 - v1122.0 (2998 modules)
 - Added: whitebeam_admin, wild_cherry_admin, zelkova_admin
 
