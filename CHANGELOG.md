@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 830 - v1175.0 (3157 modules)
+- Added: megacaryon_admin, megastachya_admin, melinis_admin
+
 ## Phase 829 - v1174.0 (3154 modules)
 - Added: maytenus_admin, meconella_admin, medeola_admin
 
