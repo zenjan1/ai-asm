@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 788 - v1133.0 (3031 modules)
+- Added: beet_admin, bellflower_admin, bellwort_admin
+
 ## Phase 787 - v1132.0 (3028 modules)
 - Added: bean_admin, beardtongue_admin, bedstraw_admin
 

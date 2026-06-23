@@ -1,27 +1,27 @@
-Phase 788: Create 3 plant-themed admin modules (alphabetically after bedstraw):
+Phase 789: Create 3 plant-themed admin modules (alphabetically after bellwort):
 
-1. beet_admin (prefix: beet_, base offset: 1790, tag: [BEET])
-   - planning: 1790/1779/1759/1741
-   - execution: 1779/1768/1750/1737
-   - evaluation: 1771/1760/1744/1733
-   - accessory: 1763/1754/1740/1730
-   - market: 1757/1748/1735/1727
+1. bergamot_admin (prefix: berm_, base offset: 1793, tag: [BERM])
+   - planning: 1793/1782/1762/1744
+   - execution: 1782/1771/1753/1740
+   - evaluation: 1774/1763/1747/1736
+   - accessory: 1766/1757/1743/1733
+   - market: 1760/1751/1738/1730
 
-2. bellflower_admin (prefix: belf_, base offset: 1791, tag: [BELF])
-   - planning: 1791/1780/1760/1742
-   - execution: 1780/1769/1751/1738
-   - evaluation: 1772/1761/1745/1734
-   - accessory: 1764/1755/1741/1731
-   - market: 1758/1749/1736/1728
+2. berry_admin (prefix: berr_, base offset: 1794, tag: [BERR])
+   - planning: 1794/1783/1763/1745
+   - execution: 1783/1772/1754/1741
+   - evaluation: 1775/1764/1748/1737
+   - accessory: 1767/1758/1744/1734
+   - market: 1761/1752/1739/1731
 
-3. bellwort_admin (prefix: belw_, base offset: 1792, tag: [BELW])
-   - planning: 1792/1781/1761/1743
-   - execution: 1781/1770/1752/1739
-   - evaluation: 1773/1762/1746/1735
-   - accessory: 1765/1756/1742/1732
-   - market: 1759/1750/1737/1729
+3. birthwort_admin (prefix: birt_, base offset: 1795, tag: [BIRT])
+   - planning: 1795/1784/1764/1746
+   - execution: 1784/1773/1755/1742
+   - evaluation: 1776/1765/1749/1738
+   - accessory: 1768/1759/1745/1735
+   - market: 1762/1753/1740/1732
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1132.0->v1133.0, 3028->3031, L3: 2796->2799, 2749->2752, L3 table 2559->2562/2512->2515, L3 WASM Apps 2412->2415),
-add Phase 788 entry to CHANGELOG, find Phase 789 candidates (alphabetically after bellwort),
+Build WASM, update README (v1133.0->v1134.0, 3031->3034, L3: 2799->2802, 2752->2755, L3 table 2562->2565/2515->2518, L3 WASM Apps 2415->2418),
+add Phase 789 entry to CHANGELOG, find Phase 790 candidates (alphabetically after birthwort),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
