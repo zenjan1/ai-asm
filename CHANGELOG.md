@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 803 - v1148.0 (3076 modules)
+- Added: dita_admin, dodecatheon_admin, drummondii_admin
+
 ## Phase 802 - v1147.0 (3073 modules)
 - Added: clintonia_admin, cornflower_admin, dandelion_admin
 
