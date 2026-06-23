@@ -1,27 +1,27 @@
-Phase 809: Create 3 plant-themed admin modules (alphabetically after flora):
+Phase 810: Create 3 plant-themed admin modules (alphabetically after fucales):
 
-1. flox_admin (prefix: flox_, base offset: 1853, tag: [FLOX])
-   - planning: 1853/1842/1822/1804
-   - execution: 1842/1831/1813/1800
-   - evaluation: 1834/1823/1807/1796
-   - accessory: 1826/1817/1803/1793
-   - market: 1820/1811/1798/1790
+1. gerbera_admin (prefix: gerb_, base offset: 1856, tag: [GERB])
+   - planning: 1856/1845/1825/1807
+   - execution: 1845/1834/1816/1803
+   - evaluation: 1837/1826/1810/1799
+   - accessory: 1829/1820/1806/1796
+   - market: 1823/1814/1801/1793
 
-2. flower_admin (prefix: flow_, base offset: 1854, tag: [FLOW])
-   - planning: 1854/1843/1823/1805
-   - execution: 1843/1832/1814/1801
-   - evaluation: 1835/1824/1808/1797
-   - accessory: 1827/1818/1804/1794
-   - market: 1821/1812/1799/1791
+2. goethea_admin (prefix: goet_, base offset: 1857, tag: [GOET])
+   - planning: 1857/1846/1826/1808
+   - execution: 1846/1835/1817/1804
+   - evaluation: 1838/1827/1811/1800
+   - accessory: 1830/1821/1807/1797
+   - market: 1824/1815/1802/1794
 
-3. fucales_admin (prefix: fuca_, base offset: 1855, tag: [FUCA])
-   - planning: 1855/1844/1824/1806
-   - execution: 1844/1833/1815/1802
-   - evaluation: 1836/1825/1809/1798
-   - accessory: 1828/1819/1805/1795
-   - market: 1822/1813/1800/1792
+3. gueldenstaedtia_admin (prefix: guel_, base offset: 1858, tag: [GUEL])
+   - planning: 1858/1847/1827/1809
+   - execution: 1847/1836/1818/1805
+   - evaluation: 1839/1828/1812/1801
+   - accessory: 1831/1822/1808/1798
+   - market: 1825/1816/1803/1795
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1153.0->v1154.0, 3091->3094, L3: 2859->2862, 2812->2815, L3 table 2622->2625/2575->2578, L3 WASM Apps 2475->2478),
-add Phase 809 entry to CHANGELOG, find Phase 810 candidates (alphabetically after fucales),
+Build WASM, update README (v1154.0->v1155.0, 3094->3097, L3: 2862->2865, 2815->2818, L3 table 2625->2628/2578->2581, L3 WASM Apps 2478->2481),
+add Phase 810 entry to CHANGELOG, find Phase 811 candidates (alphabetically after gueldenstaedtia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 809 - v1154.0 (3094 modules)
+- Added: flox_admin, flower_admin, fucales_admin
+
 ## Phase 808 - v1153.0 (3091 modules)
 - Added: flamingo_admin, fleur_admin, flora_admin
 
