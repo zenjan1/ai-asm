@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 857 - v1202.0 (3238 modules)
+- Added: edgeworthia_admin, ehrharta_admin, eleocharis_admin
+
 ## Phase 856 - v1201.0 (3235 modules)
 - Added: drypetes_admin, duvalia_admin, ebenus_admin
 
