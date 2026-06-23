@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 797 - v1142.0 (3058 modules)
+- Added: buttonbush_admin, calamint_admin, calendula_admin
+
 ## Phase 796 - v1141.0 (3055 modules)
 - Added: bugle_admin, butterbur_admin, butterfly_admin
 
