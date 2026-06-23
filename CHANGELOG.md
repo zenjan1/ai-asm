@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 834 - v1179.0 (3169 modules)
+- Added: microula_admin, mida_admin, middendorfia_admin
+
 ## Phase 833 - v1178.0 (3166 modules)
 - Added: microtea_admin, microtoena_admin, microtropis_admin
 
