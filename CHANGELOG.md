@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 856 - v1201.0 (3235 modules)
+- Added: drypetes_admin, duvalia_admin, ebenus_admin
+
 ## Phase 855 - v1200.0 (3232 modules)
 - Added: dirachma_admin, drimia_admin, drymaria_admin
 
