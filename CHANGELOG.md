@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 867 - v1212.0 (3268 modules)
+- Added: eulophia_admin, euodia_admin, euphrosyne_admin
+
 ## Phase 866 - v1211.0 (3265 modules)
 - Added: etlingera_admin, euclea_admin, eucnide_admin
 
