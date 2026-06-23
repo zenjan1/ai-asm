@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 791 - v1136.0 (3040 modules)
+- Added: blazingstar_admin, blueberry_admin, bluebonnet_admin
+
 ## Phase 790 - v1135.0 (3037 modules)
 - Added: bittercress_admin, blackberry_admin, blackthorn_admin
 
