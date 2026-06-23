@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 779 - v1124.0 (3004 modules)
+- Added: alexanders_admin, aliso_admin, alkekengi_admin
+
 ## Phase 778 - v1123.0 (3001 modules)
 - Added: agrimony_admin, albizia_admin, alecanders_admin
 
