@@ -1,27 +1,27 @@
-Phase 790: Create 3 plant-themed admin modules (alphabetically after birthwort):
+Phase 791: Create 3 plant-themed admin modules (alphabetically after blackthorn):
 
-1. bittercress_admin (prefix: bitt_, base offset: 1796, tag: [BITT])
-   - planning: 1796/1785/1765/1747
-   - execution: 1785/1774/1756/1743
-   - evaluation: 1777/1766/1750/1739
-   - accessory: 1769/1760/1746/1736
-   - market: 1763/1754/1741/1733
+1. blazingstar_admin (prefix: blaz_, base offset: 1799, tag: [BLAZ])
+   - planning: 1799/1788/1768/1750
+   - execution: 1788/1777/1759/1746
+   - evaluation: 1780/1769/1753/1742
+   - accessory: 1772/1763/1749/1739
+   - market: 1766/1757/1744/1736
 
-2. blackberry_admin (prefix: blac_, base offset: 1797, tag: [BLAC])
-   - planning: 1797/1786/1766/1748
-   - execution: 1786/1775/1757/1744
-   - evaluation: 1778/1767/1751/1740
-   - accessory: 1770/1761/1747/1737
-   - market: 1764/1755/1742/1734
+2. blueberry_admin (prefix: blue_, base offset: 1800, tag: [BLUE])
+   - planning: 1800/1789/1769/1751
+   - execution: 1789/1778/1760/1747
+   - evaluation: 1781/1770/1754/1743
+   - accessory: 1773/1764/1750/1740
+   - market: 1767/1758/1745/1737
 
-3. blackthorn_admin (prefix: blth_, base offset: 1798, tag: [BLTH])
-   - planning: 1798/1787/1767/1749
-   - execution: 1787/1776/1758/1745
-   - evaluation: 1779/1768/1752/1741
-   - accessory: 1771/1762/1748/1738
-   - market: 1765/1756/1743/1735
+3. bluebonnet_admin (prefix: blub_, base offset: 1801, tag: [BLUB])
+   - planning: 1801/1790/1770/1752
+   - execution: 1790/1779/1761/1748
+   - evaluation: 1782/1771/1755/1744
+   - accessory: 1774/1765/1751/1741
+   - market: 1768/1759/1746/1738
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1134.0->v1135.0, 3034->3037, L3: 2802->2805, 2755->2758, L3 table 2565->2568/2518->2521, L3 WASM Apps 2418->2421),
-add Phase 790 entry to CHANGELOG, find Phase 791 candidates (alphabetically after blackthorn),
+Build WASM, update README (v1135.0->v1136.0, 3037->3040, L3: 2805->2808, 2758->2761, L3 table 2568->2571/2521->2524, L3 WASM Apps 2421->2424),
+add Phase 791 entry to CHANGELOG, find Phase 792 candidates (alphabetically after bluebonnet),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 790 - v1135.0 (3037 modules)
+- Added: bittercress_admin, blackberry_admin, blackthorn_admin
+
 ## Phase 789 - v1134.0 (3034 modules)
 - Added: bergamot_admin, berry_admin, birthwort_admin
 
