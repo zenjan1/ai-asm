@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 781 - v1126.0 (3010 modules)
+- Added: ampelopsis_admin, angelica_admin, annatto_admin
+
 ## Phase 780 - v1125.0 (3007 modules)
 - Added: alpiana_admin, alpimia_admin, amorphophallus_admin
 
