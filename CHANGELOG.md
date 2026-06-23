@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 831 - v1176.0 (3160 modules)
+- Added: merwilla_admin, messerschmidia_admin, microspermum_admin
+
 ## Phase 830 - v1175.0 (3157 modules)
 - Added: megacaryon_admin, megastachya_admin, melinis_admin
 

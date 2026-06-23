@@ -1,27 +1,27 @@
-Phase 831: Create 3 plant-themed admin modules (alphabetically after melinis):
+Phase 832: Create 3 plant-themed admin modules (alphabetically after microspermum):
 
-1. merwilla_admin (prefix: merw_, base offset: 1919, tag: [MERW])
-   - planning: 1919/1908/1888/1870
-   - execution: 1908/1897/1879/1866
-   - evaluation: 1900/1889/1873/1862
-   - accessory: 1892/1883/1869/1859
-   - market: 1886/1877/1864/1856
+1. microstachys_admin (prefix: mstc_, base offset: 1922, tag: [MSTC])
+   - planning: 1922/1911/1891/1873
+   - execution: 1911/1900/1882/1869
+   - evaluation: 1903/1892/1876/1865
+   - accessory: 1895/1886/1872/1862
+   - market: 1889/1880/1867/1859
 
-2. messerschmidia_admin (prefix: mess_, base offset: 1920, tag: [MESS])
-   - planning: 1920/1909/1889/1871
-   - execution: 1909/1898/1880/1867
-   - evaluation: 1901/1890/1874/1863
-   - accessory: 1893/1884/1870/1860
-   - market: 1887/1878/1865/1857
+2. microstigma_admin (prefix: mstg_, base offset: 1923, tag: [MSTG])
+   - planning: 1923/1912/1892/1874
+   - execution: 1912/1901/1883/1870
+   - evaluation: 1904/1893/1877/1866
+   - accessory: 1896/1887/1873/1863
+   - market: 1890/1881/1868/1860
 
-3. microspermum_admin (prefix: micr_, base offset: 1921, tag: [MICR])
-   - planning: 1921/1910/1890/1872
-   - execution: 1910/1899/1881/1868
-   - evaluation: 1902/1891/1875/1864
-   - accessory: 1894/1885/1871/1861
-   - market: 1888/1879/1866/1858
+3. microstylis_admin (prefix: msty_, base offset: 1924, tag: [MSTY])
+   - planning: 1924/1913/1893/1875
+   - execution: 1913/1902/1884/1871
+   - evaluation: 1905/1894/1878/1867
+   - accessory: 1897/1888/1874/1864
+   - market: 1891/1882/1869/1861
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1175.0->v1176.0, 3157->3160, L3: 2925->2928, 2878->2881, L3 table 2688->2691/2641->2644, L3 WASM Apps 2541->2544),
-add Phase 831 entry to CHANGELOG, find Phase 832 candidates (alphabetically after microspermum),
+Build WASM, update README (v1176.0->v1177.0, 3160->3163, L3: 2928->2931, 2881->2884, L3 table 2691->2694/2644->2647, L3 WASM Apps 2544->2547),
+add Phase 832 entry to CHANGELOG, find Phase 833 candidates (alphabetically after microstylis),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
