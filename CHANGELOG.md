@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 841 - v1186.0 (3190 modules)
+- Added: monotropa_admin, monstera_admin, montia_admin
+
 ## Phase 840 - v1185.0 (3187 modules)
 - Added: moehringia_admin, monarda_admin, moneses_admin
 
