@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 777 - v1122.0 (2998 modules)
+- Added: whitebeam_admin, wild_cherry_admin, zelkova_admin
+
 ## Phase 776 - v1121.0 (2995 modules)
 - Added: thorn_admin, umbrella_vine_admin, wax_myrtle_admin
 
