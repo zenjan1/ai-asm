@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 866 - v1211.0 (3265 modules)
+- Added: etlingera_admin, euclea_admin, eucnide_admin
+
 ## Phase 865 - v1210.0 (3262 modules)
 - Added: errazurizia_admin, erodium_admin, eschweilera_admin
 
