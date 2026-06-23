@@ -1,27 +1,27 @@
-Phase 861: Create 3 plant-themed admin modules (alphabetically after engleria):
+Phase 862: Create 3 plant-themed admin modules (alphabetically after epilepis):
 
-1. enydra_admin (prefix: enyd_, base offset: 2009, tag: [ENYD])
-   - planning: 2009/1998/1978/1960
-   - execution: 1998/1987/1969/1956
-   - evaluation: 1990/1979/1963/1952
-   - accessory: 1982/1973/1959/1949
-   - market: 1976/1967/1954/1946
+1. epitriche_admin (prefix: epit_, base offset: 2012, tag: [EPIT])
+   - planning: 2012/2001/1981/1963
+   - execution: 2001/1990/1972/1959
+   - evaluation: 1993/1982/1966/1955
+   - accessory: 1985/1976/1962/1952
+   - market: 1979/1970/1957/1949
 
-2. epaltes_admin (prefix: epal_, base offset: 2010, tag: [EPAL])
-   - planning: 2010/1999/1979/1961
-   - execution: 1999/1988/1970/1957
-   - evaluation: 1991/1980/1964/1953
-   - accessory: 1983/1974/1960/1950
-   - market: 1977/1968/1955/1947
+2. erato_admin (prefix: erat_, base offset: 2013, tag: [ERAT])
+   - planning: 2013/2002/1982/1964
+   - execution: 2002/1991/1973/1960
+   - evaluation: 1994/1983/1967/1956
+   - accessory: 1986/1977/1963/1953
+   - market: 1980/1971/1958/1950
 
-3. epilepis_admin (prefix: epil_, base offset: 2011, tag: [EPIL])
-   - planning: 2011/2000/1980/1962
-   - execution: 2000/1989/1971/1958
-   - evaluation: 1992/1981/1965/1954
-   - accessory: 1984/1975/1961/1951
-   - market: 1978/1969/1956/1948
+3. erectites_admin (prefix: erec_, base offset: 2014, tag: [EREC])
+   - planning: 2014/2003/1983/1965
+   - execution: 2003/1992/1974/1961
+   - evaluation: 1995/1984/1968/1957
+   - accessory: 1987/1978/1964/1954
+   - market: 1981/1972/1959/1951
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1205.0->v1206.0, 3247->3250, L3: 3015->3018, 2968->2971, L3 table 2778->2781/2731->2734, L3 WASM Apps 2631->2634),
-add Phase 861 entry to CHANGELOG, find Phase 862 candidates (alphabetically after epilepis),
+Build WASM, update README (v1206.0->v1207.0, 3250->3253, L3: 3018->3021, 2971->2974, L3 table 2781->2784/2734->2737, L3 WASM Apps 2634->2637),
+add Phase 862 entry to CHANGELOG, find Phase 863 candidates (alphabetically after erectites),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

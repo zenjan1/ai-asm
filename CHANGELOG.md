@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 861 - v1206.0 (3250 modules)
+- Added: enydra_admin, epaltes_admin, epilepis_admin
+
 ## Phase 860 - v1205.0 (3247 modules)
 - Added: endopappus_admin, engelmannia_admin, engleria_admin
 
