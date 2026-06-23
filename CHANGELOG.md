@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 806 - v1151.0 (3085 modules)
+- Added: farfugium_admin, ferula_admin, fescue_admin
+
 ## Phase 805 - v1150.0 (3082 modules)
 - Added: eglesia_admin, elatine_admin, erythrina_admin
 
