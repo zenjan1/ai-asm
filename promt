@@ -1,27 +1,27 @@
-Phase 795: Create 3 plant-themed admin modules (alphabetically after bluet):
+Phase 796: Create 3 plant-themed admin modules (alphabetically after boneset):
 
-1. blueweed_admin (prefix: weed_, base offset: 1811, tag: [WEED])
-   - planning: 1811/1800/1780/1762
-   - execution: 1800/1789/1771/1758
-   - evaluation: 1792/1781/1765/1754
-   - accessory: 1784/1775/1761/1751
-   - market: 1778/1769/1756/1748
+1. bugle_admin (prefix: bgle_, base offset: 1814, tag: [BGLE])
+   - planning: 1814/1803/1783/1765
+   - execution: 1803/1792/1774/1761
+   - evaluation: 1795/1784/1768/1757
+   - accessory: 1787/1778/1764/1754
+   - market: 1781/1772/1759/1751
 
-2. bluewood_admin (prefix: wood_, base offset: 1812, tag: [WOOD])
-   - planning: 1812/1801/1781/1763
-   - execution: 1801/1790/1772/1759
-   - evaluation: 1793/1782/1766/1755
-   - accessory: 1785/1776/1762/1752
-   - market: 1779/1770/1757/1749
+2. butterbur_admin (prefix: butt_, base offset: 1815, tag: [BUTT])
+   - planning: 1815/1804/1784/1766
+   - execution: 1804/1793/1775/1762
+   - evaluation: 1796/1785/1769/1758
+   - accessory: 1788/1779/1765/1755
+   - market: 1782/1773/1760/1752
 
-3. boneset_admin (prefix: bone_, base offset: 1813, tag: [BONE])
-   - planning: 1813/1802/1782/1764
-   - execution: 1802/1791/1773/1760
-   - evaluation: 1794/1783/1767/1756
-   - accessory: 1786/1777/1763/1753
-   - market: 1780/1771/1758/1750
+3. butterfly_admin (prefix: butr_, base offset: 1816, tag: [BUTR])
+   - planning: 1816/1805/1785/1767
+   - execution: 1805/1794/1776/1763
+   - evaluation: 1797/1786/1770/1759
+   - accessory: 1789/1780/1766/1756
+   - market: 1783/1774/1761/1753
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1139.0->v1140.0, 3049->3052, L3: 2817->2820, 2770->2773, L3 table 2580->2583/2533->2536, L3 WASM Apps 2433->2436),
-add Phase 795 entry to CHANGELOG, find Phase 796 candidates (alphabetically after boneset),
+Build WASM, update README (v1140.0->v1141.0, 3052->3055, L3: 2820->2823, 2773->2776, L3 table 2583->2586/2536->2539, L3 WASM Apps 2436->2439),
+add Phase 796 entry to CHANGELOG, find Phase 797 candidates (alphabetically after butterfly),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

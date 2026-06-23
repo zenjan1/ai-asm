@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 795 - v1140.0 (3052 modules)
+- Added: blueweed_admin, bluewood_admin, boneset_admin
+
 ## Phase 794 - v1139.0 (3049 modules)
 - Added: bluestar_admin, bluestem_admin, bluet_admin
 
