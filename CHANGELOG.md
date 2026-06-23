@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 808 - v1153.0 (3091 modules)
+- Added: flamingo_admin, fleur_admin, flora_admin
+
 ## Phase 807 - v1152.0 (3088 modules)
 - Added: fittonia_admin, flabellaria_admin, flacourtia_admin
 
