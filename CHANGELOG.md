@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 846 - v1191.0 (3205 modules)
+- Added: zeltnera_admin, zingiber_admin, ziziphus_admin
+
 ## Phase 845 - v1190.0 (3202 modules)
 - Added: utricularia_admin, volkameria_admin, xanthium_admin
 
