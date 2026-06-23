@@ -1,27 +1,27 @@
-Phase 802: Create 3 plant-themed admin modules (alphabetically after cereus):
+Phase 803: Create 3 plant-themed admin modules (alphabetically after dandelion):
 
-1. clintonia_admin (prefix: clin_, base offset: 1832, tag: [CLIN])
-   - planning: 1832/1821/1801/1783
-   - execution: 1821/1810/1792/1779
-   - evaluation: 1813/1802/1786/1775
-   - accessory: 1805/1796/1782/1772
-   - market: 1799/1790/1777/1769
+1. dita_admin (prefix: dita_, base offset: 1835, tag: [DITA])
+   - planning: 1835/1824/1804/1786
+   - execution: 1824/1813/1795/1782
+   - evaluation: 1816/1805/1789/1778
+   - accessory: 1808/1799/1785/1775
+   - market: 1802/1793/1780/1772
 
-2. cornflower_admin (prefix: cnfl_, base offset: 1833, tag: [CNFL])
-   - planning: 1833/1822/1802/1784
-   - execution: 1822/1811/1793/1780
-   - evaluation: 1814/1803/1787/1776
-   - accessory: 1806/1797/1783/1773
-   - market: 1800/1791/1778/1770
+2. dodecatheon_admin (prefix: dode_, base offset: 1836, tag: [DODE])
+   - planning: 1836/1825/1805/1787
+   - execution: 1825/1814/1796/1783
+   - evaluation: 1817/1806/1790/1779
+   - accessory: 1809/1800/1786/1776
+   - market: 1803/1794/1781/1773
 
-3. dandelion_admin (prefix: dand_, base offset: 1834, tag: [DAND])
-   - planning: 1834/1823/1803/1785
-   - execution: 1823/1812/1794/1781
-   - evaluation: 1815/1804/1788/1777
-   - accessory: 1807/1798/1784/1774
-   - market: 1801/1792/1779/1771
+3. drummondii_admin (prefix: drum_, base offset: 1837, tag: [DRUM])
+   - planning: 1837/1826/1806/1788
+   - execution: 1826/1815/1797/1784
+   - evaluation: 1818/1807/1791/1780
+   - accessory: 1810/1801/1787/1777
+   - market: 1804/1795/1782/1774
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1146.0->v1147.0, 3070->3073, L3: 2838->2841, 2791->2794, L3 table 2601->2604/2554->2557, L3 WASM Apps 2454->2457),
-add Phase 802 entry to CHANGELOG, find Phase 803 candidates (alphabetically after dandelion),
+Build WASM, update README (v1147.0->v1148.0, 3073->3076, L3: 2841->2844, 2794->2797, L3 table 2604->2607/2557->2560, L3 WASM Apps 2457->2460),
+add Phase 803 entry to CHANGELOG, find Phase 804 candidates (alphabetically after drummondii),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
