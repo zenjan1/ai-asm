@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 850 - v1195.0 (3217 modules)
+- Added: bauhinia_admin, ceanothus_admin, chlorophytum_admin
+
 ## Phase 849 - v1194.0 (3214 modules)
 - Added: araucaria_admin, aristolochia_admin, banksia_admin
 
