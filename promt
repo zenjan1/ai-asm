@@ -1,27 +1,27 @@
-Phase 851: Create 3 plant-themed admin modules (alphabetically after chlorophytum):
+Phase 852: Create 3 plant-themed admin modules (alphabetically after coffea):
 
-1. choisia_admin (prefix: choi_, base offset: 1979, tag: [CHOI])
-   - planning: 1979/1968/1948/1930
-   - execution: 1968/1957/1939/1926
-   - evaluation: 1960/1949/1933/1922
-   - accessory: 1952/1943/1929/1919
-   - market: 1946/1937/1924/1916
+1. comandra_admin (prefix: coma_, base offset: 1982, tag: [COMA])
+   - planning: 1982/1971/1951/1933
+   - execution: 1971/1960/1942/1929
+   - evaluation: 1963/1952/1936/1925
+   - accessory: 1955/1946/1932/1922
+   - market: 1949/1940/1927/1919
 
-2. cnidium_admin (prefix: cnid_, base offset: 1980, tag: [CNID])
-   - planning: 1980/1969/1949/1931
-   - execution: 1969/1958/1940/1927
-   - evaluation: 1961/1950/1934/1923
-   - accessory: 1953/1944/1930/1920
-   - market: 1947/1938/1925/1917
+2. coriandrum_admin (prefix: cori_, base offset: 1983, tag: [CORI])
+   - planning: 1983/1972/1952/1934
+   - execution: 1972/1961/1943/1930
+   - evaluation: 1964/1953/1937/1926
+   - accessory: 1956/1947/1933/1923
+   - market: 1950/1941/1928/1920
 
-3. coffea_admin (prefix: coff_, base offset: 1981, tag: [COFF])
-   - planning: 1981/1970/1950/1932
-   - execution: 1970/1959/1941/1928
-   - evaluation: 1962/1951/1935/1924
-   - accessory: 1954/1945/1931/1921
-   - market: 1948/1939/1926/1918
+3. cotinus_admin (prefix: coti_, base offset: 1984, tag: [COTI])
+   - planning: 1984/1973/1953/1935
+   - execution: 1973/1962/1944/1931
+   - evaluation: 1965/1954/1938/1927
+   - accessory: 1957/1948/1934/1924
+   - market: 1951/1942/1929/1921
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1195.0->v1196.0, 3217->3220, L3: 2985->2988, 2938->2941, L3 table 2748->2751/2701->2704, L3 WASM Apps 2601->2604),
-add Phase 851 entry to CHANGELOG, find Phase 852 candidates (alphabetically after coffea),
+Build WASM, update README (v1196.0->v1197.0, 3220->3223, L3: 2988->2991, 2941->2944, L3 table 2751->2754/2704->2707, L3 WASM Apps 2604->2607),
+add Phase 852 entry to CHANGELOG, find Phase 853 candidates (alphabetically after cotinus),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

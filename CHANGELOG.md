@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 851 - v1196.0 (3220 modules)
+- Added: choisia_admin, cnidium_admin, coffea_admin
+
 ## Phase 850 - v1195.0 (3217 modules)
 - Added: bauhinia_admin, ceanothus_admin, chlorophytum_admin
 
