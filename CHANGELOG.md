@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 864 - v1209.0 (3259 modules)
+- Added: eriothrix_admin, erlangea_admin, erodiophyllum_admin
+
 ## Phase 863 - v1208.0 (3256 modules)
 - Added: eriocephalus_admin, eriochlamys_admin, eriophyllum_admin
 
