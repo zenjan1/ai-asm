@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 810 - v1155.0 (3097 modules)
+- Added: gerbera_admin, goethea_admin, gueldenstaedtia_admin
+
 ## Phase 809 - v1154.0 (3094 modules)
 - Added: flox_admin, flower_admin, fucales_admin
 
