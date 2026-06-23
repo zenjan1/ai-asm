@@ -1,27 +1,27 @@
-Phase 805: Create 3 plant-themed admin modules (alphabetically after echinocactus):
+Phase 806: Create 3 plant-themed admin modules (alphabetically after erythrina):
 
-1. eglesia_admin (prefix: egle_, base offset: 1841, tag: [EGLE])
-   - planning: 1841/1830/1810/1792
-   - execution: 1830/1819/1801/1788
-   - evaluation: 1822/1811/1795/1784
-   - accessory: 1814/1805/1791/1781
-   - market: 1808/1799/1786/1778
+1. farfugium_admin (prefix: farf_, base offset: 1844, tag: [FARF])
+   - planning: 1844/1833/1813/1795
+   - execution: 1833/1822/1804/1791
+   - evaluation: 1825/1814/1798/1787
+   - accessory: 1817/1808/1794/1784
+   - market: 1811/1802/1789/1781
 
-2. elatine_admin (prefix: elat_, base offset: 1842, tag: [ELAT])
-   - planning: 1842/1831/1811/1793
-   - execution: 1831/1820/1802/1789
-   - evaluation: 1823/1812/1796/1785
-   - accessory: 1815/1806/1792/1782
-   - market: 1809/1800/1787/1779
+2. ferula_admin (prefix: feru_, base offset: 1845, tag: [FERU])
+   - planning: 1845/1834/1814/1796
+   - execution: 1834/1823/1805/1792
+   - evaluation: 1826/1815/1799/1788
+   - accessory: 1818/1809/1795/1785
+   - market: 1812/1803/1790/1782
 
-3. erythrina_admin (prefix: eryt_, base offset: 1843, tag: [ERYT])
-   - planning: 1843/1832/1812/1794
-   - execution: 1832/1821/1803/1790
-   - evaluation: 1824/1813/1797/1786
-   - accessory: 1816/1807/1793/1783
-   - market: 1810/1801/1788/1780
+3. fescue_admin (prefix: fesc_, base offset: 1846, tag: [FESC])
+   - planning: 1846/1835/1815/1797
+   - execution: 1835/1824/1806/1793
+   - evaluation: 1827/1816/1800/1789
+   - accessory: 1819/1810/1796/1786
+   - market: 1813/1804/1791/1783
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1149.0->v1150.0, 3079->3082, L3: 2847->2850, 2800->2803, L3 table 2610->2613/2563->2566, L3 WASM Apps 2463->2466),
-add Phase 805 entry to CHANGELOG, find Phase 806 candidates (alphabetically after erythrina),
+Build WASM, update README (v1150.0->v1151.0, 3082->3085, L3: 2850->2853, 2803->2806, L3 table 2613->2616/2566->2569, L3 WASM Apps 2466->2469),
+add Phase 806 entry to CHANGELOG, find Phase 807 candidates (alphabetically after fescue),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

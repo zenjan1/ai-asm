@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 805 - v1150.0 (3082 modules)
+- Added: eglesia_admin, elatine_admin, erythrina_admin
+
 ## Phase 804 - v1149.0 (3079 modules)
 - Added: drupa_admin, dyckia_admin, echinocactus_admin
 
