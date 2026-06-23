@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 849 - v1194.0 (3214 modules)
+- Added: araucaria_admin, aristolochia_admin, banksia_admin
+
 ## Phase 848 - v1193.0 (3211 modules)
 - Added: anacamptis_admin, anigozanthos_admin, anthurium_admin
 
