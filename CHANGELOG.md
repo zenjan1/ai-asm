@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 776 - v1121.0 (2995 modules)
+- Added: thorn_admin, umbrella_vine_admin, wax_myrtle_admin
+
 ## Phase 775 - v1120.0 (2992 modules)
 - Added: rosewood_admin, sandalwood_admin, tamarind_admin
 
