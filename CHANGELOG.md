@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 823 - v1168.0 (3136 modules)
+- Added: iriomotea_admin, ischaemum_admin, isophysis_admin
+
 ## Phase 822 - v1167.0 (3133 modules)
 - Added: ionopsis_admin, ipomopsis_admin, iridodictyon_admin
 
