@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 807 - v1152.0 (3088 modules)
+- Added: fittonia_admin, flabellaria_admin, flacourtia_admin
+
 ## Phase 806 - v1151.0 (3085 modules)
 - Added: farfugium_admin, ferula_admin, fescue_admin
 
