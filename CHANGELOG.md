@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 859 - v1204.0 (3244 modules)
+- Added: encelia_admin, enceliopsis_admin, endocellion_admin
+
 ## Phase 858 - v1203.0 (3241 modules)
 - Added: eleutherococcus_admin, ellisia_admin, emilia_admin
 
