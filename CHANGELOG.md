@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 801 - v1146.0 (3070 modules)
+- Added: centaury_admin, ceratonia_admin, cereus_admin
+
 ## Phase 800 - v1145.0 (3067 modules)
 - Added: carex_admin, catmint_admin, celery_admin
 
