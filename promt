@@ -1,27 +1,27 @@
-Phase 845: Create 3 plant-themed admin modules (alphabetically after ursinia):
+Phase 846: Create 3 plant-themed admin modules (alphabetically after xanthium):
 
-1. utricularia_admin (prefix: utr_, base offset: 1961, tag: [UTR_])
-   - planning: 1961/1950/1930/1912
-   - execution: 1950/1939/1921/1908
-   - evaluation: 1942/1931/1915/1904
-   - accessory: 1934/1925/1911/1901
-   - market: 1928/1919/1906/1898
+1. zeltnera_admin (prefix: zelt_, base offset: 1964, tag: [ZELT])
+   - planning: 1964/1953/1933/1915
+   - execution: 1953/1942/1924/1911
+   - evaluation: 1945/1934/1918/1907
+   - accessory: 1937/1928/1914/1904
+   - market: 1931/1922/1909/1901
 
-2. volkameria_admin (prefix: volk_, base offset: 1962, tag: [VOLK])
-   - planning: 1962/1951/1931/1913
-   - execution: 1951/1940/1922/1909
-   - evaluation: 1943/1932/1916/1905
-   - accessory: 1935/1926/1912/1902
-   - market: 1929/1920/1907/1899
+2. zingiber_admin (prefix: zing_, base offset: 1965, tag: [ZING])
+   - planning: 1965/1954/1934/1916
+   - execution: 1954/1943/1925/1912
+   - evaluation: 1946/1935/1919/1908
+   - accessory: 1938/1929/1915/1905
+   - market: 1932/1923/1910/1902
 
-3. xanthium_admin (prefix: xant_, base offset: 1963, tag: [XANT])
-   - planning: 1963/1952/1932/1914
-   - execution: 1952/1941/1923/1910
-   - evaluation: 1944/1933/1917/1906
-   - accessory: 1936/1927/1913/1903
-   - market: 1930/1921/1908/1900
+3. ziziphus_admin (prefix: zizi_, base offset: 1966, tag: [ZIZI])
+   - planning: 1966/1955/1935/1917
+   - execution: 1955/1944/1926/1913
+   - evaluation: 1947/1936/1920/1909
+   - accessory: 1939/1930/1916/1906
+   - market: 1933/1924/1911/1903
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1189.0->v1190.0, 3199->3202, L3: 2967->2970, 2920->2923, L3 table 2730->2733/2683->2686, L3 WASM Apps 2583->2586),
-add Phase 845 entry to CHANGELOG, find Phase 846 candidates (alphabetically after xanthium),
+Build WASM, update README (v1190.0->v1191.0, 3202->3205, L3: 2970->2973, 2923->2926, L3 table 2733->2736/2686->2689, L3 WASM Apps 2586->2589),
+add Phase 846 entry to CHANGELOG, find Phase 847 candidates (alphabetically after ziziphus),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

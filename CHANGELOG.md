@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 845 - v1190.0 (3202 modules)
+- Added: utricularia_admin, volkameria_admin, xanthium_admin
+
 ## Phase 844 - v1189.0 (3199 modules)
 - Added: ulex_admin, uncaria_admin, ursinia_admin
 
