@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 847 - v1192.0 (3208 modules)
+- Added: aleurites_admin, alocasia_admin, alonsoa_admin
+
 ## Phase 846 - v1191.0 (3205 modules)
 - Added: zeltnera_admin, zingiber_admin, ziziphus_admin
 

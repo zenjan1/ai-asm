@@ -1,27 +1,27 @@
-Phase 847: Create 3 plant-themed admin modules (alphabetically after ziziphus, cycling back to start of alphabet):
+Phase 848: Create 3 plant-themed admin modules (alphabetically after alonsoa, cycling through 'a' genera):
 
-1. aleurites_admin (prefix: aleu_, base offset: 1967, tag: [ALEU])
-   - planning: 1967/1956/1936/1918
-   - execution: 1956/1945/1927/1914
-   - evaluation: 1948/1937/1921/1910
-   - accessory: 1940/1931/1917/1907
-   - market: 1934/1925/1912/1904
+1. anacamptis_admin (prefix: anac_, base offset: 1970, tag: [ANAC])
+   - planning: 1970/1959/1939/1921
+   - execution: 1959/1948/1930/1917
+   - evaluation: 1951/1940/1924/1913
+   - accessory: 1943/1934/1920/1910
+   - market: 1937/1928/1915/1907
 
-2. alocasia_admin (prefix: aloc_, base offset: 1968, tag: [ALOC])
-   - planning: 1968/1957/1937/1919
-   - execution: 1957/1946/1928/1915
-   - evaluation: 1949/1938/1922/1911
-   - accessory: 1941/1932/1918/1908
-   - market: 1935/1926/1913/1905
+2. anigozanthos_admin (prefix: anig_, base offset: 1971, tag: [ANIG])
+   - planning: 1971/1960/1940/1922
+   - execution: 1960/1949/1931/1918
+   - evaluation: 1952/1941/1925/1914
+   - accessory: 1944/1935/1921/1911
+   - market: 1938/1929/1916/1908
 
-3. alonsoa_admin (prefix: alon_, base offset: 1969, tag: [ALON])
-   - planning: 1969/1958/1938/1920
-   - execution: 1958/1947/1929/1916
-   - evaluation: 1950/1939/1923/1912
-   - accessory: 1942/1933/1919/1909
-   - market: 1936/1927/1914/1906
+3. anthurium_admin (prefix: anth_, base offset: 1972, tag: [ANTH])
+   - planning: 1972/1961/1941/1923
+   - execution: 1961/1950/1932/1919
+   - evaluation: 1953/1942/1926/1915
+   - accessory: 1945/1936/1922/1912
+   - market: 1939/1930/1917/1909
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1191.0->v1192.0, 3205->3208, L3: 2973->2976, 2926->2929, L3 table 2736->2739/2689->2692, L3 WASM Apps 2589->2592),
-add Phase 847 entry to CHANGELOG, find Phase 848 candidates (alphabetically after alonsoa),
+Build WASM, update README (v1192.0->v1193.0, 3208->3211, L3: 2976->2979, 2929->2932, L3 table 2739->2742/2692->2695, L3 WASM Apps 2592->2595),
+add Phase 848 entry to CHANGELOG, find Phase 849 candidates (alphabetically after anthurium),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
