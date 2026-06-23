@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 789 - v1134.0 (3034 modules)
+- Added: bergamot_admin, berry_admin, birthwort_admin
+
 ## Phase 788 - v1133.0 (3031 modules)
 - Added: beet_admin, bellflower_admin, bellwort_admin
 
