@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 785 - v1130.0 (3022 modules)
+- Added: balsamroot_admin, banana_admin, barberry_admin
+
 ## Phase 784 - v1129.0 (3019 modules)
 - Added: asafetida_admin, asarabacca_admin, ballota_admin
 

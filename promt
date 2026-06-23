@@ -1,27 +1,27 @@
-Phase 785: Create 3 plant-themed admin modules (alphabetically after ballota):
+Phase 786: Create 3 plant-themed admin modules (alphabetically after barberry):
 
-1. balsamroot_admin (prefix: bals_, base offset: 1781, tag: [BALS])
-   - planning: 1781/1770/1750/1732
-   - execution: 1770/1759/1741/1728
-   - evaluation: 1762/1751/1735/1724
-   - accessory: 1754/1745/1731/1721
-   - market: 1748/1739/1726/1718
+1. basilicum_admin (prefix: basi_, base offset: 1784, tag: [BASI])
+   - planning: 1784/1773/1753/1735
+   - execution: 1773/1762/1744/1731
+   - evaluation: 1765/1754/1738/1727
+   - accessory: 1757/1748/1734/1724
+   - market: 1751/1742/1729/1721
 
-2. banana_admin (prefix: bana_, base offset: 1782, tag: [BANA])
-   - planning: 1782/1771/1751/1733
-   - execution: 1771/1760/1742/1729
-   - evaluation: 1763/1752/1736/1725
-   - accessory: 1755/1746/1732/1722
-   - market: 1749/1740/1727/1719
+2. basswood_admin (prefix: bass_, base offset: 1785, tag: [BASS])
+   - planning: 1785/1774/1754/1736
+   - execution: 1774/1763/1745/1732
+   - evaluation: 1766/1755/1739/1728
+   - accessory: 1758/1749/1735/1725
+   - market: 1752/1743/1730/1722
 
-3. barberry_admin (prefix: barb_, base offset: 1783, tag: [BARB])
-   - planning: 1783/1772/1752/1734
-   - execution: 1772/1761/1743/1730
-   - evaluation: 1764/1753/1737/1726
-   - accessory: 1756/1747/1733/1723
-   - market: 1750/1741/1728/1720
+3. bayberry_admin (prefix: bayb_, base offset: 1786, tag: [BAYB])
+   - planning: 1786/1775/1755/1737
+   - execution: 1775/1764/1746/1733
+   - evaluation: 1767/1756/1740/1729
+   - accessory: 1759/1750/1736/1726
+   - market: 1753/1744/1731/1723
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1129.0->v1130.0, 3019->3022, L3: 2787->2790, 2740->2743, L3 table 2550->2553/2503->2506, L3 WASM Apps 2403->2406),
-add Phase 785 entry to CHANGELOG, find Phase 786 candidates (alphabetically after barberry),
+Build WASM, update README (v1130.0->v1131.0, 3022->3025, L3: 2790->2793, 2743->2746, L3 table 2553->2556/2506->2509, L3 WASM Apps 2406->2409),
+add Phase 786 entry to CHANGELOG, find Phase 787 candidates (alphabetically after bayberry),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
