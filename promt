@@ -1,27 +1,27 @@
-Phase 782: Create 3 plant-themed admin modules (alphabetically after annatto):
+Phase 783: Create 3 plant-themed admin modules (alphabetically after arborvitae):
 
-1. apple_admin (prefix: appl_, base offset: 1772, tag: [APPL])
-   - planning: 1772/1761/1741/1723
-   - execution: 1761/1750/1732/1719
-   - evaluation: 1753/1742/1726/1715
-   - accessory: 1745/1736/1722/1712
-   - market: 1739/1730/1717/1709
+1. arnica_admin (prefix: arni_, base offset: 1775, tag: [ARNI])
+   - planning: 1775/1764/1744/1726
+   - execution: 1764/1753/1735/1722
+   - evaluation: 1756/1745/1729/1718
+   - accessory: 1748/1739/1725/1715
+   - market: 1742/1733/1720/1712
 
-2. apple_mint_admin (prefix: apmn_, base offset: 1773, tag: [APMN])
-   - planning: 1773/1762/1742/1724
-   - execution: 1762/1751/1733/1720
-   - evaluation: 1754/1743/1727/1716
-   - accessory: 1746/1737/1723/1713
-   - market: 1740/1731/1718/1710
+2. arracacha_admin (prefix: arra_, base offset: 1776, tag: [ARRA])
+   - planning: 1776/1765/1745/1727
+   - execution: 1765/1754/1736/1723
+   - evaluation: 1757/1746/1730/1719
+   - accessory: 1749/1740/1726/1716
+   - market: 1743/1734/1721/1713
 
-3. arborvitae_admin (prefix: arbo_, base offset: 1774, tag: [ARBO])
-   - planning: 1774/1763/1743/1725
-   - execution: 1763/1752/1734/1721
-   - evaluation: 1755/1744/1728/1717
-   - accessory: 1747/1738/1724/1714
-   - market: 1741/1732/1719/1711
+3. artichoke_admin (prefix: arti_, base offset: 1777, tag: [ARTI])
+   - planning: 1777/1766/1746/1728
+   - execution: 1766/1755/1737/1724
+   - evaluation: 1758/1747/1731/1720
+   - accessory: 1750/1741/1727/1717
+   - market: 1744/1735/1722/1714
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1126.0->v1127.0, 3010->3013, L3: 2778->2781, 2731->2734, L3 table 2541->2544/2494->2497, L3 WASM Apps 2394->2397),
-add Phase 782 entry to CHANGELOG, find Phase 783 candidates (alphabetically after arborvitae),
+Build WASM, update README (v1127.0->v1128.0, 3013->3016, L3: 2781->2784, 2734->2737, L3 table 2544->2547/2497->2500, L3 WASM Apps 2397->2400),
+add Phase 783 entry to CHANGELOG, find Phase 784 candidates (alphabetically after artichoke),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

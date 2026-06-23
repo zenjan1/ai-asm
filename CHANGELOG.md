@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 782 - v1127.0 (3013 modules)
+- Added: apple_admin, apple_mint_admin, arborvitae_admin
+
 ## Phase 781 - v1126.0 (3010 modules)
 - Added: ampelopsis_admin, angelica_admin, annatto_admin
 
