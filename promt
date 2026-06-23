@@ -1,27 +1,27 @@
-Phase 827: Create 3 plant-themed admin modules (alphabetically after manettia):
+Phase 828: Create 3 plant-themed admin modules (alphabetically after margaritopsis):
 
-1. manfreda_admin (prefix: manf_, base offset: 1907, tag: [MANF])
-   - planning: 1907/1896/1876/1858
-   - execution: 1896/1885/1867/1854
-   - evaluation: 1888/1877/1861/1850
-   - accessory: 1880/1871/1857/1847
-   - market: 1874/1865/1852/1844
+1. marginata_admin (prefix: margi_, base offset: 1910, tag: [MARGI])
+   - planning: 1910/1899/1879/1861
+   - execution: 1899/1888/1870/1857
+   - evaluation: 1891/1880/1864/1853
+   - accessory: 1883/1874/1860/1850
+   - market: 1877/1868/1855/1847
 
-2. mapania_admin (prefix: mapa_, base offset: 1908, tag: [MAPA])
-   - planning: 1908/1897/1877/1859
-   - execution: 1897/1886/1868/1855
-   - evaluation: 1889/1878/1862/1851
-   - accessory: 1881/1872/1858/1848
-   - market: 1875/1866/1853/1845
+2. mariana_admin (prefix: mari_, base offset: 1911, tag: [MARI])
+   - planning: 1911/1900/1880/1862
+   - execution: 1900/1889/1871/1858
+   - evaluation: 1892/1881/1865/1854
+   - accessory: 1884/1875/1861/1851
+   - market: 1878/1869/1856/1848
 
-3. margaritopsis_admin (prefix: marg_, base offset: 1909, tag: [MARG])
-   - planning: 1909/1898/1878/1860
-   - execution: 1898/1887/1869/1856
-   - evaluation: 1890/1879/1863/1852
-   - accessory: 1882/1873/1859/1849
-   - market: 1876/1867/1854/1846
+3. martinella_admin (prefix: mart_, base offset: 1912, tag: [MART])
+   - planning: 1912/1901/1881/1863
+   - execution: 1901/1890/1872/1859
+   - evaluation: 1893/1882/1866/1855
+   - accessory: 1885/1876/1862/1852
+   - market: 1879/1870/1857/1849
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1171.0->v1172.0, 3145->3148, L3: 2913->2916, 2866->2869, L3 table 2676->2679/2629->2632, L3 WASM Apps 2529->2532),
-add Phase 827 entry to CHANGELOG, find Phase 828 candidates (alphabetically after margaritopsis),
+Build WASM, update README (v1172.0->v1173.0, 3148->3151, L3: 2916->2919, 2869->2872, L3 table 2679->2682/2632->2635, L3 WASM Apps 2532->2535),
+add Phase 828 entry to CHANGELOG, find Phase 829 candidates (alphabetically after martinella),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

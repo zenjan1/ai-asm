@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 827 - v1172.0 (3148 modules)
+- Added: manfreda_admin, mapania_admin, margaritopsis_admin
+
 ## Phase 826 - v1171.0 (3145 modules)
 - Added: malaxis_admin, malvastrum_admin, manettia_admin
 
