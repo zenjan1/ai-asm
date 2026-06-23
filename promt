@@ -1,27 +1,27 @@
-Phase 800: Create 3 plant-themed admin modules (alphabetically after cardoon):
+Phase 801: Create 3 plant-themed admin modules (alphabetically after celery):
 
-1. carex_admin (prefix: care_, base offset: 1826, tag: [CARE])
-   - planning: 1826/1815/1795/1777
-   - execution: 1815/1804/1786/1773
-   - evaluation: 1807/1796/1780/1769
-   - accessory: 1799/1790/1776/1766
-   - market: 1793/1784/1771/1763
+1. centaury_admin (prefix: cent_, base offset: 1829, tag: [CENT])
+   - planning: 1829/1818/1798/1780
+   - execution: 1818/1807/1789/1776
+   - evaluation: 1810/1799/1783/1772
+   - accessory: 1802/1793/1779/1769
+   - market: 1796/1787/1774/1766
 
-2. catmint_admin (prefix: catm_, base offset: 1827, tag: [CATM])
-   - planning: 1827/1816/1796/1778
-   - execution: 1816/1805/1787/1774
-   - evaluation: 1808/1797/1781/1770
-   - accessory: 1800/1791/1777/1767
-   - market: 1794/1785/1772/1764
+2. ceratonia_admin (prefix: crat_, base offset: 1830, tag: [CRAT])
+   - planning: 1830/1819/1799/1781
+   - execution: 1819/1808/1790/1777
+   - evaluation: 1811/1800/1784/1773
+   - accessory: 1803/1794/1780/1770
+   - market: 1797/1788/1775/1767
 
-3. celery_admin (prefix: cele_, base offset: 1828, tag: [CELE])
-   - planning: 1828/1817/1797/1779
-   - execution: 1817/1806/1788/1775
-   - evaluation: 1809/1798/1782/1771
-   - accessory: 1801/1792/1778/1768
-   - market: 1795/1786/1773/1765
+3. cereus_admin (prefix: cere_, base offset: 1831, tag: [CERE])
+   - planning: 1831/1820/1800/1782
+   - execution: 1820/1809/1791/1778
+   - evaluation: 1812/1801/1785/1774
+   - accessory: 1804/1795/1781/1771
+   - market: 1798/1789/1776/1768
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1144.0->v1145.0, 3064->3067, L3: 2832->2835, 2785->2788, L3 table 2595->2598/2548->2551, L3 WASM Apps 2448->2451),
-add Phase 800 entry to CHANGELOG, find Phase 801 candidates (alphabetically after celery),
+Build WASM, update README (v1145.0->v1146.0, 3067->3070, L3: 2835->2838, 2788->2791, L3 table 2598->2601/2551->2554, L3 WASM Apps 2451->2454),
+add Phase 801 entry to CHANGELOG, find Phase 802 candidates (alphabetically after cereus),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

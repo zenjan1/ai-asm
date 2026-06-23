@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 800 - v1145.0 (3067 modules)
+- Added: carex_admin, catmint_admin, celery_admin
+
 ## Phase 799 - v1144.0 (3064 modules)
 - Added: campion_admin, candytuft_admin, cardoon_admin
 
