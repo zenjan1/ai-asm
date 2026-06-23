@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 784 - v1129.0 (3019 modules)
+- Added: asafetida_admin, asarabacca_admin, ballota_admin
+
 ## Phase 783 - v1128.0 (3016 modules)
 - Added: arnica_admin, arracacha_admin, artichoke_admin
 
