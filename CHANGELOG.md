@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 832 - v1177.0 (3163 modules)
+- Added: microstachys_admin, microstigma_admin, microstylis_admin
+
 ## Phase 831 - v1176.0 (3160 modules)
 - Added: merwilla_admin, messerschmidia_admin, microspermum_admin
 
