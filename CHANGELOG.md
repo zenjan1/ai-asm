@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 816 - v1161.0 (3115 modules)
+- Added: hermbertia_admin, hesperantha_admin, heterotheca_admin
+
 ## Phase 815 - v1160.0 (3112 modules)
 - Added: hemigraphis_admin, henckelia_admin, heptacarion_admin
 
