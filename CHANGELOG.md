@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 842 - v1187.0 (3193 modules)
+- Added: morus_admin, mucuna_admin, muhlenbergia_admin
+
 ## Phase 841 - v1186.0 (3190 modules)
 - Added: monotropa_admin, monstera_admin, montia_admin
 
