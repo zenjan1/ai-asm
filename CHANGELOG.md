@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 780 - v1125.0 (3007 modules)
+- Added: alpiana_admin, alpimia_admin, amorphophallus_admin
+
 ## Phase 779 - v1124.0 (3004 modules)
 - Added: alexanders_admin, aliso_admin, alkekengi_admin
 

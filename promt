@@ -1,27 +1,27 @@
-Phase 780: Create 3 plant-themed admin modules (alphabetically after alkekengi):
+Phase 781: Create 3 plant-themed admin modules (alphabetically after amorphophallus):
 
-1. alpiana_admin (prefix: alpi_, base offset: 1766, tag: [ALPI])
-   - planning: 1766/1755/1735/1717
-   - execution: 1755/1744/1726/1713
-   - evaluation: 1747/1736/1720/1709
-   - accessory: 1739/1730/1716/1706
-   - market: 1733/1724/1711/1703
+1. ampelopsis_admin (prefix: ampe_, base offset: 1769, tag: [AMPE])
+   - planning: 1769/1758/1738/1720
+   - execution: 1758/1747/1729/1716
+   - evaluation: 1750/1739/1723/1712
+   - accessory: 1742/1733/1719/1709
+   - market: 1736/1727/1714/1706
 
-2. alpimia_admin (prefix: alpm_, base offset: 1767, tag: [ALPM])
-   - planning: 1767/1756/1736/1718
-   - execution: 1756/1745/1727/1714
-   - evaluation: 1748/1737/1721/1710
-   - accessory: 1740/1731/1717/1707
-   - market: 1734/1725/1712/1704
+2. angelica_admin (prefix: angi_, base offset: 1770, tag: [ANGI])
+   - planning: 1770/1759/1739/1721
+   - execution: 1759/1748/1730/1717
+   - evaluation: 1751/1740/1724/1713
+   - accessory: 1743/1734/1720/1710
+   - market: 1737/1728/1715/1707
 
-3. amorphophallus_admin (prefix: amph_, base offset: 1768, tag: [AMPH])
-   - planning: 1768/1757/1737/1719
-   - execution: 1757/1746/1728/1715
-   - evaluation: 1749/1738/1722/1711
-   - accessory: 1741/1732/1718/1708
-   - market: 1735/1726/1713/1705
+3. annatto_admin (prefix: anna_, base offset: 1771, tag: [ANNA])
+   - planning: 1771/1760/1740/1722
+   - execution: 1760/1749/1731/1718
+   - evaluation: 1752/1741/1725/1714
+   - accessory: 1744/1735/1721/1711
+   - market: 1738/1729/1716/1708
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1124.0->v1125.0, 3004->3007, L3: 2772->2775, 2725->2728, L3 table 2535->2538/2488->2491, L3 WASM Apps 2388->2391),
-add Phase 780 entry to CHANGELOG, find Phase 781 candidates (alphabetically after amorphophallus),
+Build WASM, update README (v1125.0->v1126.0, 3007->3010, L3: 2775->2778, 2728->2731, L3 table 2538->2541/2491->2494, L3 WASM Apps 2391->2394),
+add Phase 781 entry to CHANGELOG, find Phase 782 candidates (alphabetically after annatto),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
