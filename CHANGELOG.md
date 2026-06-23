@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 843 - v1188.0 (3196 modules)
+- Added: murraya_admin, myrsine_admin, myrtus_admin
+
 ## Phase 842 - v1187.0 (3193 modules)
 - Added: morus_admin, mucuna_admin, muhlenbergia_admin
 
