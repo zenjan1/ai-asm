@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 793 - v1138.0 (3046 modules)
+- Added: blueeye_admin, blueflag_admin, bluegum_admin
+
 ## Phase 792 - v1137.0 (3043 modules)
 - Added: bluebottle_admin, bluebrush_admin, bluecurls_admin
 
