@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 858 - v1203.0 (3241 modules)
+- Added: eleutherococcus_admin, ellisia_admin, emilia_admin
+
 ## Phase 857 - v1202.0 (3238 modules)
 - Added: edgeworthia_admin, ehrharta_admin, eleocharis_admin
 
