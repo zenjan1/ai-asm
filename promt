@@ -1,27 +1,27 @@
-Phase 822: Create 3 plant-themed admin modules (alphabetically after iochroma):
+Phase 823: Create 3 plant-themed admin modules (alphabetically after iridodictyon):
 
-1. ionopsis_admin (prefix: iono_, base offset: 1892, tag: [IONO])
-   - planning: 1892/1881/1861/1843
-   - execution: 1881/1870/1852/1839
-   - evaluation: 1873/1862/1846/1835
-   - accessory: 1865/1856/1842/1832
-   - market: 1859/1850/1837/1829
+1. iriomotea_admin (prefix: irio_, base offset: 1895, tag: [IRIO])
+   - planning: 1895/1884/1864/1846
+   - execution: 1884/1873/1855/1842
+   - evaluation: 1876/1865/1849/1838
+   - accessory: 1868/1859/1845/1835
+   - market: 1862/1853/1840/1832
 
-2. ipomopsis_admin (prefix: ipom_, base offset: 1893, tag: [IPOM])
-   - planning: 1893/1882/1862/1844
-   - execution: 1882/1871/1853/1840
-   - evaluation: 1874/1863/1847/1836
-   - accessory: 1866/1857/1843/1833
-   - market: 1860/1851/1838/1830
+2. ischaemum_admin (prefix: isch_, base offset: 1896, tag: [ISCH])
+   - planning: 1896/1885/1865/1847
+   - execution: 1885/1874/1856/1843
+   - evaluation: 1877/1866/1850/1839
+   - accessory: 1869/1860/1846/1836
+   - market: 1863/1854/1841/1833
 
-3. iridodictyon_admin (prefix: irid_, base offset: 1894, tag: [IRID])
-   - planning: 1894/1883/1863/1845
-   - execution: 1883/1872/1854/1841
-   - evaluation: 1875/1864/1848/1837
-   - accessory: 1867/1858/1844/1834
-   - market: 1861/1852/1839/1831
+3. isophysis_admin (prefix: isop_, base offset: 1897, tag: [ISOP])
+   - planning: 1897/1886/1866/1848
+   - execution: 1886/1875/1857/1844
+   - evaluation: 1878/1867/1851/1840
+   - accessory: 1870/1861/1847/1837
+   - market: 1864/1855/1842/1834
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1166.0->v1167.0, 3130->3133, L3: 2898->2901, 2851->2854, L3 table 2661->2664/2614->2617, L3 WASM Apps 2514->2517),
-add Phase 822 entry to CHANGELOG, find Phase 823 candidates (alphabetically after iridodictyon),
+Build WASM, update README (v1167.0->v1168.0, 3133->3136, L3: 2901->2904, 2854->2857, L3 table 2664->2667/2617->2620, L3 WASM Apps 2517->2520),
+add Phase 823 entry to CHANGELOG, find Phase 824 candidates (alphabetically after isophysis),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 822 - v1167.0 (3133 modules)
+- Added: ionopsis_admin, ipomopsis_admin, iridodictyon_admin
+
 ## Phase 821 - v1166.0 (3130 modules)
 - Added: ilex_admin, illicium_admin, iochroma_admin
 
