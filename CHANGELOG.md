@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 811 - v1156.0 (3100 modules)
+- Added: guizotia_admin, gymnocarpus_admin, habenaria_admin
+
 ## Phase 810 - v1155.0 (3097 modules)
 - Added: gerbera_admin, goethea_admin, gueldenstaedtia_admin
 
