@@ -1,27 +1,27 @@
-Phase 804: Create 3 plant-themed admin modules (alphabetically after drummondii):
+Phase 805: Create 3 plant-themed admin modules (alphabetically after echinocactus):
 
-1. drupa_admin (prefix: drup_, base offset: 1838, tag: [DRUP])
-   - planning: 1838/1827/1807/1789
-   - execution: 1827/1816/1798/1785
-   - evaluation: 1819/1808/1792/1781
-   - accessory: 1811/1802/1788/1778
-   - market: 1805/1796/1783/1775
+1. eglesia_admin (prefix: egle_, base offset: 1841, tag: [EGLE])
+   - planning: 1841/1830/1810/1792
+   - execution: 1830/1819/1801/1788
+   - evaluation: 1822/1811/1795/1784
+   - accessory: 1814/1805/1791/1781
+   - market: 1808/1799/1786/1778
 
-2. dyckia_admin (prefix: dyck_, base offset: 1839, tag: [DYCK])
-   - planning: 1839/1828/1808/1790
-   - execution: 1828/1817/1799/1786
-   - evaluation: 1820/1809/1793/1782
-   - accessory: 1812/1803/1789/1779
-   - market: 1806/1797/1784/1776
+2. elatine_admin (prefix: elat_, base offset: 1842, tag: [ELAT])
+   - planning: 1842/1831/1811/1793
+   - execution: 1831/1820/1802/1789
+   - evaluation: 1823/1812/1796/1785
+   - accessory: 1815/1806/1792/1782
+   - market: 1809/1800/1787/1779
 
-3. echinocactus_admin (prefix: echi_, base offset: 1840, tag: [ECHI])
-   - planning: 1840/1829/1809/1791
-   - execution: 1829/1818/1800/1787
-   - evaluation: 1821/1810/1794/1783
-   - accessory: 1813/1804/1790/1780
-   - market: 1807/1798/1785/1777
+3. erythrina_admin (prefix: eryt_, base offset: 1843, tag: [ERYT])
+   - planning: 1843/1832/1812/1794
+   - execution: 1832/1821/1803/1790
+   - evaluation: 1824/1813/1797/1786
+   - accessory: 1816/1807/1793/1783
+   - market: 1810/1801/1788/1780
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1148.0->v1149.0, 3076->3079, L3: 2844->2847, 2797->2800, L3 table 2607->2610/2560->2563, L3 WASM Apps 2460->2463),
-add Phase 804 entry to CHANGELOG, find Phase 805 candidates (alphabetically after echinocactus),
+Build WASM, update README (v1149.0->v1150.0, 3079->3082, L3: 2847->2850, 2800->2803, L3 table 2610->2613/2563->2566, L3 WASM Apps 2463->2466),
+add Phase 805 entry to CHANGELOG, find Phase 806 candidates (alphabetically after erythrina),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

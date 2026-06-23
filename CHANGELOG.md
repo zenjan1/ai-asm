@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 804 - v1149.0 (3079 modules)
+- Added: drupa_admin, dyckia_admin, echinocactus_admin
+
 ## Phase 803 - v1148.0 (3076 modules)
 - Added: dita_admin, dodecatheon_admin, drummondii_admin
 
