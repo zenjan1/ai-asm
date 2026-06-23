@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 825 - v1170.0 (3142 modules)
+- Added: macradenia_admin, mairia_admin, malachra_admin
+
 ## Phase 824 - v1169.0 (3139 modules)
 - Added: isopyrum_admin, macaranga_admin, macfadyena_admin
 

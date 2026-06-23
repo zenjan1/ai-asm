@@ -1,27 +1,27 @@
-Phase 825: Create 3 plant-themed admin modules (alphabetically after macfadyena):
+Phase 826: Create 3 plant-themed admin modules (alphabetically after malachra):
 
-1. macradenia_admin (prefix: macr_, base offset: 1901, tag: [MACR])
-   - planning: 1901/1890/1870/1852
-   - execution: 1890/1879/1861/1848
-   - evaluation: 1882/1871/1855/1844
-   - accessory: 1874/1865/1851/1841
-   - market: 1868/1859/1846/1838
+1. malaxis_admin (prefix: malx_, base offset: 1904, tag: [MALX])
+   - planning: 1904/1893/1873/1855
+   - execution: 1893/1882/1864/1851
+   - evaluation: 1885/1874/1858/1847
+   - accessory: 1877/1868/1854/1844
+   - market: 1871/1862/1849/1841
 
-2. mairia_admin (prefix: mair_, base offset: 1902, tag: [MAIR])
-   - planning: 1902/1891/1871/1853
-   - execution: 1891/1880/1862/1849
-   - evaluation: 1883/1872/1856/1845
-   - accessory: 1875/1866/1852/1842
-   - market: 1869/1860/1847/1839
+2. malvastrum_admin (prefix: mvas_, base offset: 1905, tag: [MVAS])
+   - planning: 1905/1894/1874/1856
+   - execution: 1894/1883/1865/1852
+   - evaluation: 1886/1875/1859/1848
+   - accessory: 1878/1869/1855/1845
+   - market: 1872/1863/1850/1842
 
-3. malachra_admin (prefix: mala_, base offset: 1903, tag: [MALA])
-   - planning: 1903/1892/1872/1854
-   - execution: 1892/1881/1863/1850
-   - evaluation: 1884/1873/1857/1846
-   - accessory: 1876/1867/1853/1843
-   - market: 1870/1861/1848/1840
+3. manettia_admin (prefix: mane_, base offset: 1906, tag: [MANE])
+   - planning: 1906/1895/1875/1857
+   - execution: 1895/1884/1866/1853
+   - evaluation: 1887/1876/1860/1849
+   - accessory: 1879/1870/1856/1846
+   - market: 1873/1864/1851/1843
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1169.0->v1170.0, 3139->3142, L3: 2907->2910, 2860->2863, L3 table 2670->2673/2623->2626, L3 WASM Apps 2523->2526),
-add Phase 825 entry to CHANGELOG, find Phase 826 candidates (alphabetically after malachra),
+Build WASM, update README (v1170.0->v1171.0, 3142->3145, L3: 2910->2913, 2863->2866, L3 table 2673->2676/2626->2629, L3 WASM Apps 2526->2529),
+add Phase 826 entry to CHANGELOG, find Phase 827 candidates (alphabetically after manettia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
