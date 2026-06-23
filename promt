@@ -1,27 +1,27 @@
-Phase 826: Create 3 plant-themed admin modules (alphabetically after malachra):
+Phase 827: Create 3 plant-themed admin modules (alphabetically after manettia):
 
-1. malaxis_admin (prefix: malx_, base offset: 1904, tag: [MALX])
-   - planning: 1904/1893/1873/1855
-   - execution: 1893/1882/1864/1851
-   - evaluation: 1885/1874/1858/1847
-   - accessory: 1877/1868/1854/1844
-   - market: 1871/1862/1849/1841
+1. manfreda_admin (prefix: manf_, base offset: 1907, tag: [MANF])
+   - planning: 1907/1896/1876/1858
+   - execution: 1896/1885/1867/1854
+   - evaluation: 1888/1877/1861/1850
+   - accessory: 1880/1871/1857/1847
+   - market: 1874/1865/1852/1844
 
-2. malvastrum_admin (prefix: mvas_, base offset: 1905, tag: [MVAS])
-   - planning: 1905/1894/1874/1856
-   - execution: 1894/1883/1865/1852
-   - evaluation: 1886/1875/1859/1848
-   - accessory: 1878/1869/1855/1845
-   - market: 1872/1863/1850/1842
+2. mapania_admin (prefix: mapa_, base offset: 1908, tag: [MAPA])
+   - planning: 1908/1897/1877/1859
+   - execution: 1897/1886/1868/1855
+   - evaluation: 1889/1878/1862/1851
+   - accessory: 1881/1872/1858/1848
+   - market: 1875/1866/1853/1845
 
-3. manettia_admin (prefix: mane_, base offset: 1906, tag: [MANE])
-   - planning: 1906/1895/1875/1857
-   - execution: 1895/1884/1866/1853
-   - evaluation: 1887/1876/1860/1849
-   - accessory: 1879/1870/1856/1846
-   - market: 1873/1864/1851/1843
+3. margaritopsis_admin (prefix: marg_, base offset: 1909, tag: [MARG])
+   - planning: 1909/1898/1878/1860
+   - execution: 1898/1887/1869/1856
+   - evaluation: 1890/1879/1863/1852
+   - accessory: 1882/1873/1859/1849
+   - market: 1876/1867/1854/1846
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1170.0->v1171.0, 3142->3145, L3: 2910->2913, 2863->2866, L3 table 2673->2676/2626->2629, L3 WASM Apps 2526->2529),
-add Phase 826 entry to CHANGELOG, find Phase 827 candidates (alphabetically after manettia),
+Build WASM, update README (v1171.0->v1172.0, 3145->3148, L3: 2913->2916, 2866->2869, L3 table 2676->2679/2629->2632, L3 WASM Apps 2529->2532),
+add Phase 827 entry to CHANGELOG, find Phase 828 candidates (alphabetically after margaritopsis),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

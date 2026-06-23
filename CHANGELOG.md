@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 826 - v1171.0 (3145 modules)
+- Added: malaxis_admin, malvastrum_admin, manettia_admin
+
 ## Phase 825 - v1170.0 (3142 modules)
 - Added: macradenia_admin, mairia_admin, malachra_admin
 
