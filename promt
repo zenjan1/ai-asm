@@ -1,27 +1,27 @@
-Phase 840: Create 3 plant-themed admin modules (alphabetically after modiola):
+Phase 841: Create 3 plant-themed admin modules (alphabetically after moneses):
 
-1. moehringia_admin (prefix: moeh_, base offset: 1946, tag: [MOEH])
-   - planning: 1946/1935/1915/1897
-   - execution: 1935/1924/1906/1893
-   - evaluation: 1927/1916/1900/1889
-   - accessory: 1919/1910/1896/1886
-   - market: 1913/1904/1891/1883
+1. monotropa_admin (prefix: mono_, base offset: 1949, tag: [MONO])
+   - planning: 1949/1938/1918/1900
+   - execution: 1938/1927/1909/1896
+   - evaluation: 1930/1919/1903/1892
+   - accessory: 1922/1913/1899/1889
+   - market: 1916/1907/1894/1886
 
-2. monarda_admin (prefix: mona_, base offset: 1947, tag: [MONA])
-   - planning: 1947/1936/1916/1898
-   - execution: 1936/1925/1907/1894
-   - evaluation: 1928/1917/1901/1890
-   - accessory: 1920/1911/1897/1887
-   - market: 1914/1905/1892/1884
+2. monstera_admin (prefix: mons_, base offset: 1950, tag: [MONS])
+   - planning: 1950/1939/1919/1901
+   - execution: 1939/1928/1910/1897
+   - evaluation: 1931/1920/1904/1893
+   - accessory: 1923/1914/1900/1890
+   - market: 1917/1908/1895/1887
 
-3. moneses_admin (prefix: mone_, base offset: 1948, tag: [MONE])
-   - planning: 1948/1937/1917/1899
-   - execution: 1937/1926/1908/1895
-   - evaluation: 1929/1918/1902/1891
-   - accessory: 1921/1912/1898/1888
-   - market: 1915/1906/1893/1885
+3. montia_admin (prefix: mont_, base offset: 1951, tag: [MONT])
+   - planning: 1951/1940/1920/1902
+   - execution: 1940/1929/1911/1898
+   - evaluation: 1932/1921/1905/1894
+   - accessory: 1924/1915/1901/1891
+   - market: 1918/1909/1896/1888
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1184.0->v1185.0, 3184->3187, L3: 2952->2955, 2905->2908, L3 table 2715->2718/2668->2671, L3 WASM Apps 2568->2571),
-add Phase 840 entry to CHANGELOG, find Phase 841 candidates (alphabetically after moneses),
+Build WASM, update README (v1185.0->v1186.0, 3187->3190, L3: 2955->2958, 2908->2911, L3 table 2718->2721/2671->2674, L3 WASM Apps 2571->2574),
+add Phase 841 entry to CHANGELOG, find Phase 842 candidates (alphabetically after montia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 840 - v1185.0 (3187 modules)
+- Added: moehringia_admin, monarda_admin, moneses_admin
+
 ## Phase 839 - v1184.0 (3184 modules)
 - Added: mitracarpus_admin, mitreola_admin, modiola_admin
 
