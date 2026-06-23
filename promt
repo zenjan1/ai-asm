@@ -1,27 +1,27 @@
-Phase 855: Create 3 plant-themed admin modules (alphabetically after dipteronia):
+Phase 856: Create 3 plant-themed admin modules (alphabetically after drymaria):
 
-1. dirachma_admin (prefix: dira_, base offset: 1991, tag: [DIRA])
-   - planning: 1991/1980/1960/1942
-   - execution: 1980/1969/1951/1938
-   - evaluation: 1972/1961/1945/1934
-   - accessory: 1964/1955/1941/1931
-   - market: 1958/1949/1936/1928
+1. drypetes_admin (prefix: drvp_, base offset: 1994, tag: [DRVP])
+   - planning: 1994/1983/1963/1945
+   - execution: 1983/1972/1954/1941
+   - evaluation: 1975/1964/1948/1937
+   - accessory: 1967/1958/1944/1934
+   - market: 1961/1952/1939/1931
 
-2. drimia_admin (prefix: drim_, base offset: 1992, tag: [DRIM])
-   - planning: 1992/1981/1961/1943
-   - execution: 1981/1970/1952/1939
-   - evaluation: 1973/1962/1946/1935
-   - accessory: 1965/1956/1942/1932
-   - market: 1959/1950/1937/1929
+2. duvalia_admin (prefix: duva_, base offset: 1995, tag: [DUVA])
+   - planning: 1995/1984/1964/1946
+   - execution: 1984/1973/1955/1942
+   - evaluation: 1976/1965/1949/1938
+   - accessory: 1968/1959/1945/1935
+   - market: 1962/1953/1940/1932
 
-3. drymaria_admin (prefix: drym_, base offset: 1993, tag: [DRYM])
-   - planning: 1993/1982/1962/1944
-   - execution: 1982/1971/1953/1940
-   - evaluation: 1974/1963/1947/1936
-   - accessory: 1966/1957/1943/1933
-   - market: 1960/1951/1938/1930
+3. ebenus_admin (prefix: eben_, base offset: 1996, tag: [EBEN])
+   - planning: 1996/1985/1965/1947
+   - execution: 1985/1974/1956/1943
+   - evaluation: 1977/1966/1950/1939
+   - accessory: 1969/1960/1946/1936
+   - market: 1963/1954/1941/1933
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1199.0->v1200.0, 3229->3232, L3: 2997->3000, 2950->2953, L3 table 2760->2763/2713->2716, L3 WASM Apps 2613->2616),
-add Phase 855 entry to CHANGELOG, find Phase 856 candidates (alphabetically after drymaria),
+Build WASM, update README (v1200.0->v1201.0, 3232->3235, L3: 3000->3003, 2953->2956, L3 table 2763->2766/2716->2719, L3 WASM Apps 2616->2619),
+add Phase 856 entry to CHANGELOG, find Phase 857 candidates (alphabetically after ebenus),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 855 - v1200.0 (3232 modules)
+- Added: dirachma_admin, drimia_admin, drymaria_admin
+
 ## Phase 854 - v1199.0 (3229 modules)
 - Added: diplacus_admin, diploglottis_admin, dipteronia_admin
 
