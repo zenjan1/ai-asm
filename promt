@@ -1,27 +1,27 @@
-Phase 798: Create 3 plant-themed admin modules (alphabetically after calendula):
+Phase 799: Create 3 plant-themed admin modules (alphabetically after camomile):
 
-1. caltha_admin (prefix: calt_, base offset: 1820, tag: [CALT])
-   - planning: 1820/1809/1789/1771
-   - execution: 1809/1798/1780/1767
-   - evaluation: 1801/1790/1774/1763
-   - accessory: 1793/1784/1770/1760
-   - market: 1787/1778/1765/1757
+1. campion_admin (prefix: cmpn_, base offset: 1823, tag: [CMPN])
+   - planning: 1823/1812/1792/1774
+   - execution: 1812/1801/1783/1770
+   - evaluation: 1804/1793/1777/1766
+   - accessory: 1796/1787/1773/1763
+   - market: 1790/1781/1768/1760
 
-2. caltrop_admin (prefix: cltr_, base offset: 1821, tag: [CLTR])
-   - planning: 1821/1810/1790/1772
-   - execution: 1810/1799/1781/1768
-   - evaluation: 1802/1791/1775/1764
-   - accessory: 1794/1785/1771/1761
-   - market: 1788/1779/1766/1758
+2. candytuft_admin (prefix: cand_, base offset: 1824, tag: [CAND])
+   - planning: 1824/1813/1793/1775
+   - execution: 1813/1802/1784/1771
+   - evaluation: 1805/1794/1778/1767
+   - accessory: 1797/1788/1774/1764
+   - market: 1791/1782/1769/1761
 
-3. camomile_admin (prefix: cami_, base offset: 1822, tag: [CAMI])
-   - planning: 1822/1811/1791/1773
-   - execution: 1811/1800/1782/1769
-   - evaluation: 1803/1792/1776/1765
-   - accessory: 1795/1786/1772/1762
-   - market: 1789/1780/1767/1759
+3. cardoon_admin (prefix: crdn_, base offset: 1825, tag: [CRDN])
+   - planning: 1825/1814/1794/1776
+   - execution: 1814/1803/1785/1772
+   - evaluation: 1806/1795/1779/1768
+   - accessory: 1798/1789/1775/1765
+   - market: 1792/1783/1770/1762
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM, update README (v1142.0->v1143.0, 3058->3061, L3: 2826->2829, 2779->2782, L3 table 2589->2592/2542->2545, L3 WASM Apps 2442->2445),
-add Phase 798 entry to CHANGELOG, find Phase 799 candidates (alphabetically after camomile),
+Build WASM, update README (v1143.0->v1144.0, 3061->3064, L3: 2829->2832, 2782->2785, L3 table 2592->2595/2545->2548, L3 WASM Apps 2445->2448),
+add Phase 799 entry to CHANGELOG, find Phase 800 candidates (alphabetically after cardoon),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
