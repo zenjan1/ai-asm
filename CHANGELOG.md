@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 821 - v1166.0 (3130 modules)
+- Added: ilex_admin, illicium_admin, iochroma_admin
+
 ## Phase 820 - v1165.0 (3127 modules)
 - Added: hovea_admin, howea_admin, ibicella_admin
 
