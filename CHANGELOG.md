@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 894 - v1258.0 (3344 modules, 124 kernel)
+- Added WASM: tagetes_admin (Tagetes marigold), taraxacum_admin (Taraxacum dandelion), tamarind_admin (Tamarind tropical fruit tree)
+- Total modules: 3341 → 3344 (companion planting marigold, medicinal dandelion, tropical fruit tamarind)
+
 ## Phase 893 - v1257.0 (3341 modules, 124 kernel)
 - Added WASM: salvia_admin (Salvia sage), sambucus_admin (Sambucus elderberry), sanguinaria_admin (Sanguinaria bloodroot)
 - Total modules: 3338 → 3341 (medicinal sage, elderberry orchard, native woodland bloodroot conservation)

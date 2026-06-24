@@ -1,5 +1,6 @@
-/* taraxacum_admin: Taraxacum management technology administration (v1.0)
- * Taraxacum planning, taraxacum execution, taraxacum evaluation, accessories, marketing
+/* taraxacum_admin: Taraxacum (Dandelion) medicinal herb and edible green (v1.0)
+ * Taraxacum planning, execution, evaluation, root harvest, medicinal market
+ * Features: root harvest, leaf rosette count, seed dispersal, lawn management, medicinal grade
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} tdx_t;
-typedef struct{int n_tdp,n_tde,n_tdv,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} tdx_state_t;
-static tdx_t tdxps[N],tdxss[N-2],tdxvss[N-4],tdxas[N-6],tdxmks[N-6]; static tdx_state_t st; static int init;
+typedef struct{int id,loc,root_dp,leaf_ct,seed_hd,harvest_kg,med_gr,season,active;} tar_t;
+typedef struct{int n_plan,n_exec,n_eval,n_root,n_mkt,t_dp,t_leaf,t_seed,t_harv,t_med;} tar_state_t;
+static tar_t tarps[N],tares[N-2],tarvs[N-4],tarrs[N-6],tarms[N-6]; static tar_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(tdx_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;tdx_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[TDX] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int tdx_init(void){if(init)return -1;st.n_tdp=0;st.n_tde=0;st.n_tdv=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)tdxps[i].active=0;for(int i=0;i<N-2;i++)tdxss[i].active=0;for(int i=0;i<N-4;i++)tdxvss[i].active=0;for(int i=0;i<N-6;i++)tdxas[i].active=0;for(int i=0;i<N-6;i++)tdxmks[i].active=0;init=1;ps("[TDX] Taraxacum initialized\n");return 0;}
-int tdx_planning(int t,int c,int a,int b,int d,int e,int y){return add(tdxps,&st.n_tdp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int tdx_execution(int t,int c,int a,int b,int d,int e,int y){return add(tdxss,&st.n_tde,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int tdx_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(tdxvss,&st.n_tdv,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int tdx_accessory(int t,int c,int a,int b,int d,int e,int y){return add(tdxas,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int tdx_market(int t,int c,int a,int b,int d,int e,int y){return add(tdxmks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void tdx_report(void){ps("[TDX] Tdp: ");pi(st.n_tdp);ps(" PCS=");pi(st.t_f1);ps("\nTde: ");pi(st.n_tde);ps(" PCS=");pi(st.t_f2);ps("\nTdv: ");pi(st.n_tdv);ps(" PCS=");pi(st.t_f3);ps("\nTdc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void tdx_state(void){ps("[TDX] Tdp=");pi(st.n_tdp);ps(" Tde=");pi(st.n_tde);ps(" Tdv=");pi(st.n_tdv);ps(" Tdc=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(tar_t*a,int*cnt,int*sum,int mx,int lc,int rd,int lc2,int sh,int hv,int mg,int sn){if(*cnt>=mx)return -1;tar_t*x=&a[*cnt];x->id=*cnt;x->loc=lc;x->root_dp=rd;x->leaf_ct=lc2;x->seed_hd=sh;x->harvest_kg=hv;x->med_gr=mg;x->season=sn;x->active=1;*sum+=rd;(*cnt)++;ps("[TAR] Taraxacum ");pi(*cnt-1);ps(" loc=");pi(lc);ps(" dp=");pi(rd);ps(" lf=");pi(lc2);ps(" sd=");pi(sh);ps(" hv=");pi(hv);ps("\n");return *cnt-1;}
+int tar_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_root=0;st.n_mkt=0;st.t_dp=0;st.t_leaf=0;st.t_seed=0;st.t_harv=0;st.t_med=0;for(int i=0;i<N;i++)tarps[i].active=0;for(int i=0;i<N-2;i++)tares[i].active=0;for(int i=0;i<N-4;i++)tarvs[i].active=0;for(int i=0;i<N-6;i++)tarrs[i].active=0;for(int i=0;i<N-6;i++)tarms[i].active=0;init=1;ps("[TAR] Taraxacum (dandelion) initialized\n");return 0;}
+/* 1=lawn 2=meadow 3=garden 4=wild 5=cultivated */
+int tar_planning(int lc,int rd,int lf,int sh,int hv,int mg,int sn){return add(tarps,&st.n_plan,&st.t_dp,N,lc,rd,lf,sh,hv,mg,sn);}
+int tar_execution(int lc,int rd,int lf,int sh,int hv,int mg,int sn){return add(tares,&st.n_exec,&st.t_leaf,N-2,lc,rd,lf,sh,hv,mg,sn);}
+int tar_evaluation(int lc,int rd,int lf,int sh,int hv,int mg,int sn){return add(tarvs,&st.n_eval,&st.t_seed,N-4,lc,rd,lf,sh,hv,mg,sn);}
+int tar_root(int lc,int rd,int lf,int sh,int hv,int mg,int sn){return add(tarrs,&st.n_root,&st.t_harv,N-6,lc,rd,lf,sh,hv,mg,sn);}
+int tar_market(int lc,int rd,int lf,int sh,int hv,int mg,int sn){return add(tarms,&st.n_mkt,&st.t_med,N-6,lc,rd,lf,sh,hv,mg,sn);}
+void tar_report(void){ps("[TAR] Plan: ");pi(st.n_plan);ps(" dp=");pi(st.t_dp);ps("\nExec: ");pi(st.n_exec);ps(" leaf=");pi(st.t_leaf);ps("\nEval: ");pi(st.n_eval);ps(" seed=");pi(st.t_seed);ps("\nRoot: ");pi(st.n_root);ps(" harv=");pi(st.t_harv);ps("\nMkt: ");pi(st.n_mkt);ps(" med=");pi(st.t_med);ps("\n");}
+void tar_state(void){ps("[TAR] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Root=");pi(st.n_root);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Taraxacum Admin Demo ===\n\n");tdx_init();
-ps("Taraxacum planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;tdx_planning(t,c,866+(i*17),855+(i*14),835+(i*10),817+(i*6),2020+(i%5));}
-ps("\nTaraxacum execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;tdx_execution(t,c,855+(i*15),844+(i*12),826+(i*8),813+(i*5),2021+(i%4));}
-ps("\nTaraxacum evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;tdx_evaluation(t,c,847+(i*13),836+(i*10),820+(i*7),809+(i*4),2022+(i%3));}
-ps("\nTaraxacum accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;tdx_accessory(t,c,839+(i*11),830+(i*9),816+(i*6),806+(i*3),2023+(i%2));}
-ps("\nTaraxacum marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;tdx_market(t,c,833+(i*9),824+(i*7),811+(i*5),803+(i*3),2024);}
-ps("\n");tdx_report();tdx_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Taraxacum (Dandelion) Admin Demo ===\n\n");tar_init();
+ps("Taraxacum planning (site survey)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;tar_planning(lc,15+(i*5),8+(i*3),4+(i%4),2+(i*2),(i%3)+1,(i%4)+1);}
+ps("\nTaraxacum execution (leaf harvest)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;tar_execution(lc,18+(i*4),10+(i*2),5+(i%3),3+(i*2),(i%3)+1,(i%3)+1);}
+ps("\nTaraxacum evaluation (quality check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;tar_evaluation(lc,20+(i*3),12+(i*2),6+(i%3),4+(i*1),(i%2)+2,(i%3)+2);}
+ps("\nTaraxacum root harvest...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;tar_root(lc,25+(i*4),6+(i*3),3+(i%3),1+(i%2),1,(i%4)+1);}
+ps("\nTaraxacum medicinal market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;tar_market(lc,22+(i*3),14+(i*2),7+(i%2),5+(i*1),(i%3)+1,(i%3)+1);}
+ps("\n");tar_report();tar_state();ps("\n=== Demo Complete ===\n");return 0;}
