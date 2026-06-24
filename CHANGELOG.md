@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 940 - v1303.0 (3482 modules, 124 kernel)
+- Added WASM: canna_admin (Canna lily tropical), cantaloupe_admin (Cantaloupe melon), capers_admin (Capers Mediterranean shrub)
+- Total modules: 3479 → 3482 (tropical ornamental, edible melon, culinary shrub)
+
 ## Phase 939 - v1302.0 (3479 modules, 124 kernel)
 - Added WASM: camel_admin (Camel herd), camellia_admin (Camellia tea flower), canary_admin (Canary songbird)
 - Total modules: 3476 → 3479 (desert camelid, ornamental tea plant, songbird)

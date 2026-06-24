@@ -1,36 +1,36 @@
-Phase 940: Cannabis & Crop Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 941: Carnivorous Plant & Reptile Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/canna_admin/src/main.c (Canna Lily Ornamental)
-   - Canna (Canna indica) tropical ornamental plant management
-   - Features: plant_ht_cm, leaf_span_cm, flower_dia_cm, rhizome_count, color_variety, bloom_week
-   - Data: 16 entries with location,plnt_ht,leaf_sp,flr_dia,rhiz_ct,clr_var,bloom_wk
+1. modules/carnivorous_admin/src/main.c (Carnivorous Plant Collection)
+   - Carnivorous plant (Venus flytrap, pitcher, sundew) cultivation
+   - Features: trap_count, leaf_span_cm, prey_gm, humidity_pct, soil_ph, feed_week
+   - Data: 16 entries with location,trap_ct,leaf_sp,prey_gm,humid_pct,soil_ph,feed_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planting, division, bloom, overwintering, market
-   - Prefix: cna
+   - Categories: cultivation, feeding, dormancy, propagation, market
+   - Prefix: carn
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/cantaloupe_admin/src/main.c (Cantaloupe Melon)
-   - Cantaloupe (Cucumis melo) melon cultivation management
-   - Features: vine_length_m, fruit_weight_kg, sugar_brix, rind_thick_mm, seed_count, harvest_week
-   - Data: 16 entries with location,vine_ln,frt_wt,sugar_bx,rind_tk,seed_ct,harv_wk
+2. modules/carrot_admin/src/main.c (Carrot Root Vegetable)
+   - Carrot (Daucus carota) root vegetable cultivation
+   - Features: root_length_cm, root_dia_cm, top_height_cm, sugar_brix, seed_count, harvest_week
+   - Data: 16 entries with location,root_ln,root_dia,top_ht,sugar_bx,seed_ct,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, irrigation, ripening, harvest, market
-   - Prefix: cant
+   - Categories: planting, thinning, weeding, harvest, market
+   - Prefix: carr
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/capers_admin/src/main.c (Capers Shrub)
-   - Capers (Capparis spinosa) Mediterranean shrub management
-   - Features: bush_width_cm, bud_count, berry_kg, thorn_density, soil_ph, pick_week
-   - Data: 16 entries with location,bush_wd,bud_ct,berry_kg,thorn_dn,soil_ph,pick_wk
+3. modules/carpet_admin/src/main.c (Carpet Grass Turf)
+   - Carpet grass (Axonopus) turf and lawn management
+   - Features: coverage_sqm, blade_ht_cm, density_pct, mow_interval, fertilizer_kg, irrig_lpm
+   - Data: 16 entries with location,cov_sqm,blade_ht,dens_pct,mow_int,fert_kg,irrig_lpm
    - Pattern: follow abelia_admin pattern
-   - Categories: cultivation, picking, brining, drying, market
-   - Prefix: cap
+   - Categories: planting, mowing, fertilizing, aeration, market
+   - Prefix: carp
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1302.0 → v1303.0 (all occurrences)
-  - total modules 3479 → 3482 (all occurrences)
-Update CHANGELOG.md: add "## Phase 940 - v1303.0 (3482 modules, 124 kernel)" entry
+  - version v1303.0 → v1304.0 (all occurrences)
+  - total modules 3482 → 3485 (all occurrences)
+Update CHANGELOG.md: add "## Phase 941 - v1304.0 (3485 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/canna_admin/canna_admin.wasm modules/cantaloupe_admin/cantaloupe_admin.wasm modules/capers_admin/capers_admin.wasm modules/canna_admin/src/main.c modules/cantaloupe_admin/src/main.c modules/capers_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/carnivorous_admin/carnivorous_admin.wasm modules/carrot_admin/carrot_admin.wasm modules/carpet_admin/carpet_admin.wasm modules/carnivorous_admin/src/main.c modules/carrot_admin/src/main.c modules/carpet_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
