@@ -1,9 +1,9 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v1244.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v1245.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
 [![Modules](https://img.shields.io/badge/modules-3320-green)]()
-[![Kernel](https://img.shields.io/badge/kernel-106_ASM-orange)]()
+[![Kernel](https://img.shields.io/badge/kernel-109_ASM-orange)]()
 [![AI](https://img.shields.io/badge/AI-11_vendors-purple)]()
 [![Agent](https://img.shields.io/badge/Agent-13_modules-cyan)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
@@ -14,7 +14,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 
 ### Key Innovation
 
-- **Pure AArch64 Assembly Kernel** - 106 modules with zero C code in kernel layer
+- **Pure AArch64 Assembly Kernel** - 109 modules with zero C code in kernel layer
 - **WASM-Native Application Layer** - All apps run as WebAssembly modules
 - **WASM Multi-Threading** - wasm_thread enables concurrent WASM execution on Wasm3
 - **AI Deep Integration** - 8 vendor APIs + local inference engines
@@ -241,7 +241,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║  L2: WASM Runtime - Host Function Bridge (138 functions, 6,021 lines)║
 ║      host_alloc, host_ai_query, host_agent_call, WASI interface      ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L1: Kernel ASM - AArch64 Pure Assembly (106 modules)                  ║
+║  L1: Kernel ASM - AArch64 Pure Assembly (109 modules)                  ║
 ║      memory, process, vfs, net, device, gui, jit, wasi, security     ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║  Hardware Layer - Multi-Platform Support (5 platforms)               ║

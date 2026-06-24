@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-15 - v1245.0 (3320 modules, 109 kernel)
+- Added kernel: mem_paging.asm, mem_swap.asm, mem_cache.asm
+- Kernel modules: 106 → 109 (virtual memory paging with TLB, swap space management, page cache with LRU eviction)
+
 ## Phase 886 - v1244.0 (3320 modules, 106 kernel)
 - Added WASM: jacaranda_admin (Jacaranda flowering tree), justicia_admin (Justicia shrimp plant), kniphofia_admin (Kniphofia red hot poker)
 - Total modules: 3317 → 3320 (ornamental flowering trees, bract plants, perennial pollinator attractors)
