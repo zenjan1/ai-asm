@@ -1,5 +1,10 @@
 # Changelog
 
+## Phase 884 - v1240.0 (3314 modules, 100 kernel)
+- Added WASM: holarrhena_admin (Holarrhena conessi medicinal bark production)
+- Added WASM builds: houstonia_admin (Houstonia bluets conservation), hypericum_admin (St. John's wort medicinal herb)
+- Total modules: 3311 → 3314 (medicinal bark administration, wildflower conservation, pharmaceutical herb cultivation)
+
 ## Phase OS-12 - v1239.0 (3311 modules, 100 kernel)
 - Added kernel: crypto_aes.asm, crypto_sha.asm, crypto_rng.asm
 - Kernel modules: 97 → 100 (AES-128/192/256 with CBC/CTR/GCM modes, SHA-224/256/384/512 with HMAC, CTR-DRBG with TRNG entropy)

@@ -1,40 +1,40 @@
-Phase 884: Plant Ecology & Research Admin Modules - 3 new WASM application modules:
+Phase OS-13: Kernel IPC & Synchronization Subsystem - 3 new AArch64 assembly kernel modules:
 
-1. modules/holarrhena_admin/src/main.c (Holarrhena Connessi Medicinal Administration)
-   - Base ID: 2078
-   - Manages holarrhena (conessi/kurchi) medicinal bark production
-   - Features: tree inventory (16 trees), bark harvest scheduling (rotational), alkaloid profiling (conessine/kurchine), sustainable harvest planning, bark drying/curing records, pharmaceutical grade classification, Ayurvedic formulation tracking, replanting schedule
-   - Domain structs: hola_t (id, tree_id, age_years, bark_kg, alkaloid_ppm, grade, dry_method, cure_week, ayurvedic_use, replant_year, active)
-   - Functions: hola_init, hola_tree_inventory, hola_bark_harvest, hola_alkaloid_profile, hola_drying, hola_grade, hola_ayurvedic_use, hola_replant
-   - Exports: main (demo: tree inventory, bark harvest cycles, alkaloid profiling, drying methods, grading, Ayurvedic use catalog, replanting schedule)
-   - Pattern: follow modules/abelia_admin/src/main.c style
+1. kernel/ipc_msgq.asm (Message Queue IPC)
+   - Base ID: 901
+   - System V-style message queues for inter-process communication
+   - Features: queue creation/destruction, message send/receive with priority, blocking/non-blocking modes, queue limits (max messages, max bytes), message types, queue statistics, permission checking
+   - Data structures: msg_queue_t (id, key, msg_count, byte_count, max_msgs, max_bytes, permissions, owner, first_msg, last_msg, active), msg_t (type, priority, size, data[256], next)
+   - API: ipc_msgq_init, ipc_msgq_create, ipc_msgq_destroy, ipc_msgq_send, ipc_msgq_receive, ipc_msgq_peek, ipc_msgq_stat
+   - Capacity: 32 queues, 256 messages per queue, 256 bytes per message
+   - Pattern: follow kernel/net_tcp.asm style (stp/ldp frame, .global exports, .bss for state)
 
-2. modules/houstonia_admin/src/main.c (Houstonia Bluets Conservation Administration)
-   - Base ID: 2079
-   - Manages houstonia (bluets/quaker ladies) wildflower conservation
-   - Features: population survey (16 sites), habitat mapping (meadow/woodland/wetland/rocky), flower density counts, pollinator observation logs, seed collection records, germination trials, transplant success tracking, threat assessment (invasive competition, habitat loss), conservation priority ranking
-   - Domain structs: hous_t (id, site, habitat, flower_density, pollinator_count, seed_count, germ_rate_pct, transplant_ok, threat_level, priority_rank, active)
-   - Functions: hous_init, hous_site_survey, hous_habitat_map, hous_pollinator_observe, hous_seed_collect, hous_germination_trial, hous_transplant, hous_threat_assess
-   - Exports: main (demo: site surveys, habitat mapping, pollinator counts, seed collection, germination trials, transplants, threat assessment)
-   - Pattern: follow modules/abelia_admin/src/main.c style
+2. kernel/ipc_sem.asm (Semaphore Synchronization)
+   - Base ID: 902
+   - Counting semaphores for process synchronization
+   - Features: semaphore creation/destruction, P (wait/decrement) operation, V (signal/increment) operation, trywait (non-blocking), timedwait with timeout, semaphore value query, ownership tracking
+   - Data structures: sem_t (id, key, value, max_value, wait_queue[16], wait_count, owner, permissions, active)
+   - API: ipc_sem_init, ipc_sem_create, ipc_sem_destroy, ipc_sem_wait, ipc_sem_trywait, ipc_sem_timedwait, ipc_sem_post, ipc_sem_getvalue
+   - Capacity: 64 semaphores, 16 waiters per semaphore
+   - Pattern: follow kernel/net_tcp.asm style
 
-3. modules/hypericum_admin/src/main.c (Hypericum St. John's Wort Administration)
-   - Base ID: 2080
-   - Manages hypericum (St. John's wort) medicinal herb production
-   - Features: field cultivation (16 plots), hypericin/hyperforin content tracking, harvest timing (flowering stage), extract standardization, pharmaceutical grade (antidepressant research), quality control (HPLC fingerprinting), drug interaction documentation, organic certification tracking, clinical trial sample management
-   - Domain structs: hyp_t (id, plot, growth_day, hypericin_ppm, hyperforin_ppm, extract_conc, grade, hplc_ok, drug_interact, organic_cert, clinical_batch, active)
-   - Functions: hyp_init, hyp_plot_establish, hyp_compound_track, hyp_harvest, hyp_extract_standardize, hyp_quality_control, hyp_drug_interact, hyp_organic_cert, hyp_clinical_batch
-   - Exports: main (demo: plot establishment, compound tracking, harvest, extraction, QC, drug interactions, organic cert, clinical batches)
-   - Pattern: follow modules/abelia_admin/src/main.c style
+3. kernel/ipc_shm.asm (Shared Memory IPC)
+   - Base ID: 903
+   - Shared memory segments for high-performance IPC
+   - Features: segment creation/destruction, attach/detach operations, permission control, segment size management, reference counting, segment statistics, lock/unlock for atomic operations
+   - Data structures: shm_seg_t (id, key, size, addr, attach_count, ref_count, permissions, owner, locked, active), shm_attach_t (pid, addr, seg_id, active)
+   - API: ipc_shm_init, ipc_shm_create, ipc_shm_destroy, ipc_shm_attach, ipc_shm_detach, ipc_shm_lock, ipc_shm_unlock, ipc_shm_stat
+   - Capacity: 16 segments, 64KB each, 32 attachments per segment
+   - Pattern: follow kernel/net_tcp.asm style
 
-Build all 3 modules with:
-  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o modules/<name>/<name>.wasm modules/<name>/src/main.c
+Build all 3 kernel modules with:
+  clang --target=aarch64-unknown-linux-gnu -c -O2 -o kernel/<name>.o kernel/<name>.asm
 
-After creating 3 WASM modules, update README:
-  - version v1239.0 → v1240.0 (all occurrences)
-  - modules 3311 → 3314 (all occurrences)
-  - Add the 3 new module names to the L3 WASM Apps architecture list
-Update CHANGELOG.md: add "## Phase 884 - v1240.0 (3314 modules, 100 kernel)" entry
+After creating 3 kernel modules, update README:
+  - version v1240.0 → v1241.0 (all occurrences)
+  - kernel modules 100 → 103 (all occurrences)
+  - Add the 3 new kernel module names to the L1 Kernel ASM architecture list
+Update CHANGELOG.md: add "## Phase OS-13 - v1241.0 (3314 modules, 103 kernel)" entry
 Set UPDATE=0
-git add modules/holarrhena_admin/ modules/houstonia_admin/ modules/hypericum_admin/ README.md CHANGELOG.md promt update-state
+git add kernel/ipc_msgq.asm kernel/ipc_sem.asm kernel/ipc_shm.asm README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
