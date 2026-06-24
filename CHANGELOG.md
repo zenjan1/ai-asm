@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 938 - v1301.0 (3476 modules, 124 kernel)
+- Added WASM: cactus_admin (Cactus desert succulent), calabash_admin (Calabash gourd vine), caladium_admin (Caladium ornamental tuber)
+- Total modules: 3473 → 3476 (desert succulent, edible gourd, foliage tuber)
+
 ## Phase 937 - v1300.0 (3473 modules, 124 kernel)
 - Added WASM: burdock_admin (Burdock root crop), burnet_admin (Burnet medicinal herb), buttercup_admin (Buttercup meadow flower)
 - Total modules: 3470 → 3473 (root vegetable, medicinal herb, wildflower)

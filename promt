@@ -1,36 +1,36 @@
-Phase 938: Cactus & Desert Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 939: Camelid & Livestock Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/cactus_admin/src/main.c (Cactus Desert Plant)
-   - Cactus desert succulent cultivation and management
-   - Features: height_cm, spine_count, flower_dia_cm, water_store_ml, root_depth_cm, bloom_week
-   - Data: 16 entries with location,ht_cm,spine_ct,flr_dia,wtr_ml,root_dp,bloom_wk
+1. modules/camel_admin/src/main.c (Camel Herd Management)
+   - Camel (Camelus) herd and desert livestock management
+   - Features: herd_count, avg_weight_kg, milk_yield_l, wool_kg, distance_km, load_capacity
+   - Data: 16 entries with location,herd_ct,avg_wt,milk_yd,wool_kg,dist_km,load_cap
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: cultivation, propagation, pest_control, exhibition, market
-   - Prefix: cact
+   - Categories: herding, milking, shearing, transport, market
+   - Prefix: cam
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/calabash_admin/src/main.c (Calabash Gourd Vine)
-   - Calabash (Lagenaria) gourd vine cultivation
-   - Features: vine_length_m, fruit_count, fruit_dia_cm, shell_thick_mm, seed_count, cure_weeks
-   - Data: 16 entries with location,vine_ln,frt_ct,frt_dia,shell_tk,seed_ct,cure_wk
+2. modules/camellia_admin/src/main.c (Camellia Tea Flower)
+   - Camellia (Camellia japonica) ornamental tea plant management
+   - Features: bush_ht_cm, bloom_dia_cm, leaf_count, petal_count, seed_oil_ml, bloom_week
+   - Data: 16 entries with location,bush_ht,bloom_dia,leaf_ct,petal_ct,seed_oil,bloom_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, trellis, harvest, curing, market
-   - Prefix: cala
+   - Categories: planting, pruning, bloom, tea_production, market
+   - Prefix: cml
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/caladium_admin/src/main.c (Caladium Ornamental Tuber)
-   - Caladium ornamental foliage tuber management
-   - Features: leaf_span_cm, plant_ht_cm, tuber_dia_cm, color_variety, eye_count, dormancy_week
-   - Data: 16 entries with location,leaf_sp,plnt_ht,tuber_dia,clr_var,eye_ct,dorm_wk
+3. modules/canary_admin/src/main.c (Canary Songbird Aviary)
+   - Canary (Serinus canaria) songbird aviary management
+   - Features: song_length_sec, plumage_color, cage_vol_l, seed_gm, nest_count, molt_week
+   - Data: 16 entries with location,song_len,plum_col,cage_vol,seed_gm,nest_ct,molt_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: propagation, foliage, dormancy, display, market
-   - Prefix: cala2
+   - Categories: breeding, song_training, health, exhibition, market
+   - Prefix: can
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1300.0 → v1301.0 (all occurrences)
-  - total modules 3473 → 3476 (all occurrences)
-Update CHANGELOG.md: add "## Phase 938 - v1301.0 (3476 modules, 124 kernel)" entry
+  - version v1301.0 → v1302.0 (all occurrences)
+  - total modules 3476 → 3479 (all occurrences)
+Update CHANGELOG.md: add "## Phase 939 - v1302.0 (3479 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/cactus_admin/cactus_admin.wasm modules/calabash_admin/calabash_admin.wasm modules/caladium_admin/caladium_admin.wasm modules/cactus_admin/src/main.c modules/calabash_admin/src/main.c modules/caladium_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/camel_admin/camel_admin.wasm modules/camellia_admin/camellia_admin.wasm modules/canary_admin/canary_admin.wasm modules/camel_admin/src/main.c modules/camellia_admin/src/main.c modules/canary_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
