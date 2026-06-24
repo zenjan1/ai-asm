@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 903 - v1267.0 (3371 modules, 124 kernel)
+- Added WASM: adonis_admin (Adonis pheasant's eye), agapanthus_admin (Agapanthus lily of the Nile), ageratum_admin (Ageratum floss flower)
+- Total modules: 3368 → 3371 (bright pheasant's eye annual, ornamental lily of the Nile, soft blue floss flower)
+
 ## Phase 902 - v1266.0 (3368 modules, 124 kernel)
 - Added WASM: zantedeschia_admin (Zantedeschia calla lily), zinnia_admin (Zinnia annual), zelkova_admin (Zelkova shade tree)
 - Total modules: 3365 → 3368 (elegant calla lily, colorful zinnia pollinator, ornamental zelkova shade tree)

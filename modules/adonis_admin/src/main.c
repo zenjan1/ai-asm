@@ -1,5 +1,6 @@
-/* adonis_admin: Adonis management technology administration (v1.0)
- * Adonis planning, adonis execution, adonis evaluation, accessories, marketing
+/* adonis_admin: Adonis (Pheasant's Eye) bright annual flower and woodland plant management (v1.0)
+ * Adonis planning, planting, evaluation, seed collection, market
+ * Features: petal count, flower color, bloom period, seed head formation, height growth, light requirement
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} ado_t;
-typedef struct{int n_adop,n_adoe,n_ado2,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} ado_state_t;
-static ado_t adops[N],adoss[N-2],adovss[N-4],adoas[N-6],adomks[N-6]; static ado_state_t st; static int init;
+typedef struct{int id,location,petal_ct,flower_color,bloom_wk,seed_head,ht_growth,light_req,active;} ado_t;
+typedef struct{int n_plan,n_exec,n_eval,n_seed,n_mkt,t_petal,t_color,t_bloom,t_seed_h,t_height;} ado_state_t;
+static ado_t adops[N],adoes[N-2],adovs[N-4],adosd[N-6],adoms[N-6]; static ado_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(ado_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;ado_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[ADO] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int ado_init(void){if(init)return -1;st.n_adop=0;st.n_adoe=0;st.n_ado2=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)adops[i].active=0;for(int i=0;i<N-2;i++)adoss[i].active=0;for(int i=0;i<N-4;i++)adovss[i].active=0;for(int i=0;i<N-6;i++)adoas[i].active=0;for(int i=0;i<N-6;i++)adomks[i].active=0;init=1;ps("[ADO] Adonis initialized\n");return 0;}
-int ado_planning(int t,int c,int a,int b,int d,int e,int y){return add(adops,&st.n_adop,&st.t_f1,N,t,c,a,b,d,e,y);}
-int ado_execution(int t,int c,int a,int b,int d,int e,int y){return add(adoss,&st.n_adoe,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int ado_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(adovss,&st.n_ado2,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int ado_accessory(int t,int c,int a,int b,int d,int e,int y){return add(adoas,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int ado_market(int t,int c,int a,int b,int d,int e,int y){return add(adomks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void ado_report(void){ps("[ADO] Adop: ");pi(st.n_adop);ps(" PCS=");pi(st.t_f1);ps("\nAdoe: ");pi(st.n_adoe);ps(" PCS=");pi(st.t_f2);ps("\nAdov: ");pi(st.n_ado2);ps(" PCS=");pi(st.t_f3);ps("\nAdoc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void ado_state(void){ps("[ADO] Adop=");pi(st.n_adop);ps(" Adoe=");pi(st.n_adoe);ps(" Adov=");pi(st.n_ado2);ps(" Adoc=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(ado_t*a,int*cnt,int*sum,int mx,int lc,int pc,int fc,int bw,int sh,int hg,int lr){if(*cnt>=mx)return -1;ado_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->petal_ct=pc;x->flower_color=fc;x->bloom_wk=bw;x->seed_head=sh;x->ht_growth=hg;x->light_req=lr;x->active=1;*sum+=pc;(*cnt)++;ps("[ADO] Adonis ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" pc=");pi(pc);ps(" fc=");pi(fc);ps(" bw=");pi(bw);ps(" sh=");pi(sh);ps(" hg=");pi(hg);ps("\n");return *cnt-1;}
+int ado_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_seed=0;st.n_mkt=0;st.t_petal=0;st.t_color=0;st.t_bloom=0;st.t_seed_h=0;st.t_height=0;for(int i=0;i<N;i++)adops[i].active=0;for(int i=0;i<N-2;i++)adoes[i].active=0;for(int i=0;i<N-4;i++)adovs[i].active=0;for(int i=0;i<N-6;i++)adosd[i].active=0;for(int i=0;i<N-6;i++)adoms[i].active=0;init=1;ps("[ADO] Adonis (pheasant's eye) initialized\n");return 0;}
+/* 1=woodland 2=meadow 3=rock_garden 4=cottage_garden 5=wildflower */
+int ado_planning(int lc,int pc,int fc,int bw,int sh,int hg,int lr){return add(adops,&st.n_plan,&st.t_petal,N,lc,pc,fc,bw,sh,hg,lr);}
+int ado_execution(int lc,int pc,int fc,int bw,int sh,int hg,int lr){return add(adoes,&st.n_exec,&st.t_color,N-2,lc,pc,fc,bw,sh,hg,lr);}
+int ado_evaluation(int lc,int pc,int fc,int bw,int sh,int hg,int lr){return add(adovs,&st.n_eval,&st.t_bloom,N-4,lc,pc,fc,bw,sh,hg,lr);}
+int ado_seed_collect(int lc,int pc,int fc,int bw,int sh,int hg,int lr){return add(adosd,&st.n_seed,&st.t_seed_h,N-6,lc,pc,fc,bw,sh,hg,lr);}
+int ado_market(int lc,int pc,int fc,int bw,int sh,int hg,int lr){return add(adoms,&st.n_mkt,&st.t_height,N-6,lc,pc,fc,bw,sh,hg,lr);}
+void ado_report(void){ps("[ADO] Plan: ");pi(st.n_plan);ps(" petal=");pi(st.t_petal);ps("\nExec: ");pi(st.n_exec);ps(" color=");pi(st.t_color);ps("\nEval: ");pi(st.n_eval);ps(" bloom=");pi(st.t_bloom);ps("\nSeed: ");pi(st.n_seed);ps(" seed_h=");pi(st.t_seed_h);ps("\nMkt: ");pi(st.n_mkt);ps(" height=");pi(st.t_height);ps("\n");}
+void ado_state(void){ps("[ADO] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Seed=");pi(st.n_seed);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Adonis Admin Demo ===\n\n");ado_init();
-ps("Adonis planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;ado_planning(t,c,967+(i*17),956+(i*14),936+(i*10),918+(i*6),2020+(i%5));}
-ps("\nAdonis execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;ado_execution(t,c,956+(i*15),945+(i*12),927+(i*8),914+(i*5),2021+(i%4));}
-ps("\nAdonis evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;ado_evaluation(t,c,948+(i*13),937+(i*10),921+(i*7),910+(i*4),2022+(i%3));}
-ps("\nAdonis accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;ado_accessory(t,c,940+(i*11),931+(i*9),917+(i*6),907+(i*3),2023+(i%2));}
-ps("\nAdonis marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;ado_market(t,c,934+(i*9),925+(i*7),912+(i*5),904+(i*3),2024);}
+ps("=== Adonis (Pheasant's Eye) Admin Demo ===\n\n");ado_init();
+ps("Adonis planning (bright layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;ado_planning(lc,8+(i%4),(i%5)+1,12+(i%5),(i*3)+5,15+(i*4),(i%4)+1);}
+ps("\nAdonis execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;ado_execution(lc,9+(i%3),(i%5)+1,13+(i%4),(i*3)+6,18+(i*3),(i%4)+1);}
+ps("\nAdonis evaluation (bloom check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;ado_evaluation(lc,10+(i%3),(i%4)+2,14+(i%3),(i*2)+8,20+(i*3),(i%3)+2);}
+ps("\nAdonis seed collection...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;ado_seed_collect(lc,7+(i%3),(i%4)+1,11+(i%4),(i*2)+4,12+(i*3),(i%4)+1);}
+ps("\nAdonis flower market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;ado_market(lc,11+(i%2),(i%5)+2,15+(i%3),(i*2)+10,22+(i*2),(i%3)+2);}
 ps("\n");ado_report();ado_state();ps("\n=== Demo Complete ===\n");return 0;}

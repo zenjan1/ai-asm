@@ -1,28 +1,28 @@
-Phase 903: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 904: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/adonis_admin/src/main.c (Adonis / Pheasant's Eye)
-   - Adonis pheasant's eye bright annual flower and woodland plant management
-   - Features: petal count, flower color, bloom period, seed head formation, height growth, light requirement
-   - Data: 16 entries with location,petal_ct,flower_color,bloom_wk,seed_head,ht_growth,light_req
+1. modules/ajuga_admin/src/main.c (Ajuga / Bugleweed)
+   - Ajuga reptans groundcover and creeping perennial management
+   - Features: spread rate tracking, leaf color variation, flower spike count, shade tolerance, root depth
+   - Data: 16 entries with location,spread_rt,leaf_color,flower_spikes,shade_tol,root_dep,trim_freq
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/agapanthus_admin/src/main.c (Agapanthus / Lily of the Nile)
-   - Agapanthus africanus ornamental bulb flower and border plant management
-   - Features: flower head count, stem height, bloom color, root clump size, drought tolerance, division freq
-   - Data: 16 entries with location,flower_head,stem_ht,bloom_color,root_clump,drought_tol,division_fr
+2. modules/alchemilla_admin/src/main.c (Alchemilla / Lady's Mantle)
+   - Alchemilla mollis medicinal herb and ornamental foliage plant management
+   - Features: leaf size tracking, water droplet retention, flower cluster, medicinal compound, ground coverage
+   - Data: 16 entries with location,leaf_sz,water_drop,flower_clust,compound_mg,ground_cov,harvest_wk
    - Pattern: follow abelia_admin pattern
 
-3. modules/ageratum_admin/src/main.c (Ageratum / Floss Flower)
-   - Ageratum floss flower soft blue annual and bedding plant management
-   - Features: flower cluster density, bloom duration, plant height, fuzzy texture, pollinator visits, shade tolerance
-   - Data: 16 entries with location,cluster_dens,bloom_dk,plant_ht,fuzzy_tx,pollinator_v,shade_tol
+3. modules/allium_admin/src/main.c (Allium / Ornamental Onion)
+   - Allium ornamental bulb flower and globe-shaped flower management
+   - Features: flower globe diameter, stem height, bloom color, bulb count, pollinator attraction, drought tolerance
+   - Data: 16 entries with location,globe_dia,stem_ht,bloom_color,bulb_ct,pollinator_at,drought_tol
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1266.0 → v1267.0 (all occurrences)
-  - total modules 3368 → 3371 (all occurrences)
-Update CHANGELOG.md: add "## Phase 903 - v1267.0 (3371 modules, 124 kernel)" entry
+  - version v1267.0 → v1268.0 (all occurrences)
+  - total modules 3371 → 3374 (all occurrences)
+Update CHANGELOG.md: add "## Phase 904 - v1268.0 (3374 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/adonis_admin/src/main.c modules/agapanthus_admin/src/main.c modules/ageratum_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/ajuga_admin/src/main.c modules/alchemilla_admin/src/main.c modules/allium_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
