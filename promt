@@ -19,6 +19,6 @@ Phase 881: 3 new plant admin WASM modules (alphabetical G-genera, after gonatopu
    - Same structure, offsets from base 2071
 
 Build each with: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-Update README version v1229.0 → v1230.0, modules 3307 → 3310.
+Update README version v1230.0 → v1231.0, modules 3307 → 3310.
 Update CHANGELOG with Phase 881 entry.
 Set UPDATE=0, git add modules/*/src/main.c + build/*.wasm + README + CHANGELOG, commit and push to origin arm-v2.

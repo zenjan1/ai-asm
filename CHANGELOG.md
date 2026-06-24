@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-6 - v1230.0 (3307 modules, 82 kernel)
+- Added kernel: power_mgr.asm, dma.asm, device_enum.asm
+- Kernel modules: 79 → 82 (power management & DVFS, DMA controller, device enumeration)
+
 ## Phase OS-5 - v1229.0 (3307 modules, 79 kernel)
 - Added kernel: net_tls.asm, sandbox.asm, mac.asm
 - Kernel modules: 76 → 79 (TLS 1.3 secure networking, WASM sandboxing, mandatory access control)
