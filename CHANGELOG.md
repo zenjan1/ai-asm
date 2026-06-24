@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 972 - v1335.0 (3578 modules, 124 kernel)
+- Added WASM: gazelle_admin (Slender antelope ungulate), gecko_admin (Tokay gecko reptile), gerbil_admin (Mongolian gerbil rodent)
+- Total modules: 3575 → 3578 (horned runner, climbing lizard, burrowing rodent)
+
 ## Phase 971 - v1334.0 (3575 modules, 124 kernel)
 - Added WASM: fox_admin (Red fox canid), frog_admin (Common frog amphibian), fowl_admin (Domestic poultry bird)
 - Total modules: 3572 → 3575 (canid predator, amphibian jumper, domestic egg-layer)

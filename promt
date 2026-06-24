@@ -1,36 +1,36 @@
-Phase 972: Gazelle Gecko Gerbil Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 973: Goblin Ginseng Goby Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/gazelle_admin/src/main.c (Gazelle Antelope)
-   - Gazelle (Gazella gazella) slender antelope ungulate management
-   - Features: body_len_cm, body_wt_kg, horn_cm, speed_kmh, coat_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,spd_kh,ct_idx,age_yr
+1. modules/gibbon_admin/src/main.c (Gibbon Primate)
+   - Gibbon (Hylobates lar) lar gibbon primate management
+   - Features: body_len_cm, body_wt_kg, arm_span_cm, swing_idx, call_vol, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,arm_sp,swg_idx,cl_vl,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: habitat, feeding, breeding, health, market
-   - Prefix: gazelle
+   - Categories: habitat, feeding, breeding, grooming, market
+   - Prefix: gibbon
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/gecko_admin/src/main.c (Gecko Lizard)
-   - Gecko (Gekko gecko) tokay gecko reptile management
-   - Features: body_len_cm, body_wt_g, tail_cm, climb_idx, chirp_vol, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,clmb_idx,chrp_vl,age_yr
+2. modules/ginseng_admin/src/main.c (Ginseng Medicinal Root)
+   - Ginseng (Panax ginseng) medicinal root herb management
+   - Features: root_len_cm, root_wt_g, branch_ct, ginsenoside_idx, leaf_ct, age_year
+   - Data: 16 entries with location,rt_ln,rt_wt,br_ct,gn_idx,lf_ct,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: enclosure, feeding, breeding, health, market
-   - Prefix: gecko
+   - Categories: soil, feeding, pruning, health, market
+   - Prefix: ginseng
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/gerbil_admin/src/main.c (Gerbil Rodent)
-   - Gerbil (Meriones unguiculatus) mongolian gerbil rodent management
-   - Features: body_len_cm, body_wt_g, tail_cm, burrow_idx, chirp_vol, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,brw_idx,chrp_vl,age_yr
+3. modules/goby_admin/src/main.c (Goby Small Fish)
+   - Goby (Gobiidae) small gobionid fish management
+   - Features: body_len_cm, body_wt_g, fin_ct, scale_idx, color_phase, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_ct,sc_idx,cl_ph,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, breeding, health, market
-   - Prefix: gerbil
+   - Categories: tank, feeding, breeding, health, market
+   - Prefix: goby
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1334.0 → v1335.0 (all occurrences)
-  - total modules 3575 → 3578 (all occurrences)
-Update CHANGELOG.md: add "## Phase 972 - v1335.0 (3578 modules, 124 kernel)" entry
+  - version v1335.0 → v1336.0 (all occurrences)
+  - total modules 3578 → 3581 (all occurrences)
+Update CHANGELOG.md: add "## Phase 973 - v1336.0 (3581 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/gazelle_admin/gazelle_admin.wasm modules/gecko_admin/gecko_admin.wasm modules/gerbil_admin/gerbil_admin.wasm modules/gazelle_admin/src/main.c modules/gecko_admin/src/main.c modules/gerbil_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/gibbon_admin/gibbon_admin.wasm modules/ginseng_admin/ginseng_admin.wasm modules/goby_admin/goby_admin.wasm modules/gibbon_admin/src/main.c modules/ginseng_admin/src/main.c modules/goby_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
