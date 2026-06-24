@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 899 - v1263.0 (3359 modules, 124 kernel)
+- Added WASM: valeriana_admin (Valeriana valerian), vernonia_admin (Vernonia ironweed), verbena_admin (Verbena tea herb)
+- Total modules: 3356 → 3359 (medicinal valerian root, prairie ironweed pollinator, fragrant verbena tea)
+
 ## Phase 898 - v1262.0 (3356 modules, 124 kernel)
 - Added WASM: typha_admin (Typha cattail), urtica_admin (Urtica stinging nettle), uvularia_admin (Uvularia bellwort)
 - Total modules: 3353 → 3356 (wetland cattail management, medicinal nettle, woodland bellflower)

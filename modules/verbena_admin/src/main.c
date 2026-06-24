@@ -1,5 +1,6 @@
-/* verbena_admin: Verbena management technology administration (v1.0)
- * Verbena planning, verbena execution, verbena evaluation, accessories, marketing
+/* verbena_admin: Verbena flowering herb and medicinal tea plant management (v1.0)
+ * Verbena planning, planting, evaluation, propagation, market
+ * Features: flower cluster count, fragrance level, medicinal compound, bloom duration, propagation rate
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} ver_t;
-typedef struct{int n_vbp,n_vbe,n_vbv,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} ver_state_t;
-static ver_t vbps[N],vbes[N-2],vbvs[N-4],acs[N-6],mks[N-6]; static ver_state_t st; static int init;
+typedef struct{int id,location,flower_ct,fragrance,compound_mg,bloom_dk,prop_rt,harvest_ct,active;} vrb_t;
+typedef struct{int n_plan,n_exec,n_eval,n_prop,n_mkt,t_flower,t_frag,t_compound,t_bloom,t_prop;} vrb_state_t;
+static vrb_t vrbps[N],vrbes[N-2],vrbvs[N-4],vrbpr[N-6],vrbms[N-6]; static vrb_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(ver_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;ver_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[VER] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int ver_init(void){if(init)return -1;st.n_vbp=0;st.n_vbe=0;st.n_vbv=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)vbps[i].active=0;for(int i=0;i<N-2;i++)vbes[i].active=0;for(int i=0;i<N-4;i++)vbvs[i].active=0;for(int i=0;i<N-6;i++)acs[i].active=0;for(int i=0;i<N-6;i++)mks[i].active=0;init=1;ps("[VER] Verbena initialized\n");return 0;}
-int ver_planning(int t,int c,int a,int b,int d,int e,int y){return add(vbps,&st.n_vbp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int ver_execution(int t,int c,int a,int b,int d,int e,int y){return add(vbes,&st.n_vbe,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int ver_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(vbvs,&st.n_vbv,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int ver_accessory(int t,int c,int a,int b,int d,int e,int y){return add(acs,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int ver_market(int t,int c,int a,int b,int d,int e,int y){return add(mks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void ver_report(void){ps("[VER] Vbp: ");pi(st.n_vbp);ps(" PCS=");pi(st.t_f1);ps("\nVbe: ");pi(st.n_vbe);ps(" PCS=");pi(st.t_f2);ps("\nVbv: ");pi(st.n_vbv);ps(" PCS=");pi(st.t_f3);ps("\nAc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void ver_state(void){ps("[VER] Vbp=");pi(st.n_vbp);ps(" Vbe=");pi(st.n_vbe);ps(" Vbv=");pi(st.n_vbv);ps(" Ac=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(vrb_t*a,int*cnt,int*sum,int mx,int lc,int fc,int fg,int cm,int bd,int pr,int hc){if(*cnt>=mx)return -1;vrb_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->flower_ct=fc;x->fragrance=fg;x->compound_mg=cm;x->bloom_dk=bd;x->prop_rt=pr;x->harvest_ct=hc;x->active=1;*sum+=fc;(*cnt)++;ps("[VRB] Verbena ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" fc=");pi(fc);ps(" fg=");pi(fg);ps(" cm=");pi(cm);ps(" bd=");pi(bd);ps(" pr=");pi(pr);ps("\n");return *cnt-1;}
+int vrb_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_prop=0;st.n_mkt=0;st.t_flower=0;st.t_frag=0;st.t_compound=0;st.t_bloom=0;st.t_prop=0;for(int i=0;i<N;i++)vrbps[i].active=0;for(int i=0;i<N-2;i++)vrbes[i].active=0;for(int i=0;i<N-4;i++)vrbvs[i].active=0;for(int i=0;i<N-6;i++)vrbpr[i].active=0;for(int i=0;i<N-6;i++)vrbms[i].active=0;init=1;ps("[VRB] Verbena initialized\n");return 0;}
+/* 1=border 2=container 3=hanging_basket 4=herb_garden 5=wildflower */
+int vrb_planning(int lc,int fc,int fg,int cm,int bd,int pr,int hc){return add(vrbps,&st.n_plan,&st.t_flower,N,lc,fc,fg,cm,bd,pr,hc);}
+int vrb_execution(int lc,int fc,int fg,int cm,int bd,int pr,int hc){return add(vrbes,&st.n_exec,&st.t_frag,N-2,lc,fc,fg,cm,bd,pr,hc);}
+int vrb_evaluation(int lc,int fc,int fg,int cm,int bd,int pr,int hc){return add(vrbvs,&st.n_eval,&st.t_compound,N-4,lc,fc,fg,cm,bd,pr,hc);}
+int vrb_propagation(int lc,int fc,int fg,int cm,int bd,int pr,int hc){return add(vrbpr,&st.n_prop,&st.t_bloom,N-6,lc,fc,fg,cm,bd,pr,hc);}
+int vrb_market(int lc,int fc,int fg,int cm,int bd,int pr,int hc){return add(vrbms,&st.n_mkt,&st.t_prop,N-6,lc,fc,fg,cm,bd,pr,hc);}
+void vrb_report(void){ps("[VRB] Plan: ");pi(st.n_plan);ps(" flower=");pi(st.t_flower);ps("\nExec: ");pi(st.n_exec);ps(" frag=");pi(st.t_frag);ps("\nEval: ");pi(st.n_eval);ps(" comp=");pi(st.t_compound);ps("\nProp: ");pi(st.n_prop);ps(" bloom=");pi(st.t_bloom);ps("\nMkt: ");pi(st.n_mkt);ps(" prop=");pi(st.t_prop);ps("\n");}
+void vrb_state(void){ps("[VRB] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Prop=");pi(st.n_prop);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Verbena Admin Demo ===\n\n");ver_init();
-ps("Verbena planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;ver_planning(t,c,594+(i*17),583+(i*14),563+(i*10),545+(i*6),2020+(i%5));}
-ps("\nVerbena execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;ver_execution(t,c,583+(i*15),572+(i*12),554+(i*8),541+(i*5),2021+(i%4));}
-ps("\nVerbena evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;ver_evaluation(t,c,575+(i*13),564+(i*10),548+(i*7),537+(i*4),2022+(i%3));}
-ps("\nVerbena accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;ver_accessory(t,c,567+(i*11),558+(i*9),544+(i*6),534+(i*3),2023+(i%2));}
-ps("\nVerbena marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;ver_market(t,c,561+(i*9),552+(i*7),539+(i*5),531+(i*3),2024);}
-ps("\n");ver_report();ver_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Verbena Admin Demo ===\n\n");vrb_init();
+ps("Verbena planning (garden layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;vrb_planning(lc,8+(i*3),(i%7)+1,12+(i*4),30+(i*5),(i%4)+1,4+(i*2));}
+ps("\nVerbena execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;vrb_execution(lc,10+(i*2),(i%7)+1,15+(i*3),35+(i*4),(i%4)+1,5+(i*2));}
+ps("\nVerbena evaluation (compound analysis)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;vrb_evaluation(lc,12+(i*2),(i%6)+2,18+(i*3),40+(i*3),(i%3)+2,6+(i*2));}
+ps("\nVerbena propagation (cuttings)...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;vrb_propagation(lc,6+(i*3),(i%5)+1,10+(i*4),25+(i*4),(i%4)+1,3+(i*2));}
+ps("\nVerbena herbal tea market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;vrb_market(lc,14+(i*2),(i%7)+2,20+(i*2),45+(i*3),(i%3)+2,7+(i*2));}
+ps("\n");vrb_report();vrb_state();ps("\n=== Demo Complete ===\n");return 0;}
