@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-4 - v1228.0 (3307 modules, 76 kernel)
+- Added kernel: ai_vector.asm, ai_kv_cache.asm, ai_tensor.asm
+- Kernel modules: 73 → 76 (AI vector ops for embeddings, transformer KV cache, tensor operations)
+
 ## Phase OS-3 - v1227.0 (3307 modules, 73 kernel)
 - Added kernel: wasm_memory.asm, wasm_dispatch.asm, wasm_exception.asm
 - Kernel modules: 70 → 73 (WASM linear memory management, function dispatch & trampolines, exception handling & traps)
