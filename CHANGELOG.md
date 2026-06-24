@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 907 - v1271.0 (3383 modules, 124 kernel)
+- Added WASM: anaphalis_admin (Anaphalis pearl everlasting), anarrhinum_admin (Anarrhinum goosewort), androsace_admin (Androsace rock jasmine)
+- Total modules: 3380 → 3383 (pearl everlasting dried flower, rocky slope goosewort, alpine rock jasmine)
+
 ## Phase 906 - v1270.0 (3380 modules, 124 kernel)
 - Added WASM: anacamptis_admin (Anacamptis swamp orchid), anagallis_admin (Anagallis pimpernel), anagyris_admin (Anagyris bean caper)
 - Total modules: 3377 → 3380 (wetland orchid, small flowering herb, medicinal bean caper shrub)

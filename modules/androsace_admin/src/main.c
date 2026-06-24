@@ -1,5 +1,6 @@
-/* androsace_admin: Androsace management technology administration (v1.0)
- * Androsace planning, androsace execution, androsace evaluation, accessories, marketing
+/* androsace_admin: Androsace (Rock Jasmine) alpine cushion plant management (v1.0)
+ * Androsace planning, planting, evaluation, alpine trial, market
+ * Features: rosette diameter, flower count, petal color, leaf rosette density, altitude range, bloom week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} and_t;
-typedef struct{int n_andp,n_ande,n_and2,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} and_state_t;
-static and_t andps[N],andss[N-2],andvss[N-4],andas[N-6],andmks[N-6]; static and_state_t st; static int init;
+typedef struct{int id,location,rosette_dia,flower_ct,petal_color,leaf_ros,alt_range,bloom_wk,active;} adr_t;
+typedef struct{int n_plan,n_exec,n_eval,n_alp,n_mkt,t_rosette,t_flower,t_petal,t_leaf,t_alt;} adr_state_t;
+static adr_t adrps[N],adres[N-2],adrvs[N-4],adral[N-6],adrms[N-6]; static adr_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(and_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;and_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[AND] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int and_init(void){if(init)return -1;st.n_andp=0;st.n_ande=0;st.n_and2=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)andps[i].active=0;for(int i=0;i<N-2;i++)andss[i].active=0;for(int i=0;i<N-4;i++)andvss[i].active=0;for(int i=0;i<N-6;i++)andas[i].active=0;for(int i=0;i<N-6;i++)andmks[i].active=0;init=1;ps("[AND] Androsace initialized\n");return 0;}
-int and_planning(int t,int c,int a,int b,int d,int e,int y){return add(andps,&st.n_andp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int and_execution(int t,int c,int a,int b,int d,int e,int y){return add(andss,&st.n_ande,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int and_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(andvss,&st.n_and2,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int and_accessory(int t,int c,int a,int b,int d,int e,int y){return add(andas,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int and_market(int t,int c,int a,int b,int d,int e,int y){return add(andmks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void and_report(void){ps("[AND] Andp: ");pi(st.n_andp);ps(" PCS=");pi(st.t_f1);ps("\nAnde: ");pi(st.n_ande);ps(" PCS=");pi(st.t_f2);ps("\nAndv: ");pi(st.n_and2);ps(" PCS=");pi(st.t_f3);ps("\nAndc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void and_state(void){ps("[AND] Andp=");pi(st.n_andp);ps(" Ande=");pi(st.n_ande);ps(" Andv=");pi(st.n_and2);ps(" Andc=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(adr_t*a,int*cnt,int*sum,int mx,int lc,int rd,int fc,int pc,int lr,int ar,int bw){if(*cnt>=mx)return -1;adr_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->rosette_dia=rd;x->flower_ct=fc;x->petal_color=pc;x->leaf_ros=lr;x->alt_range=ar;x->bloom_wk=bw;x->active=1;*sum+=rd;(*cnt)++;ps("[ADR] Androsace ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" rd=");pi(rd);ps(" fc=");pi(fc);ps(" pc=");pi(pc);ps(" lr=");pi(lr);ps(" ar=");pi(ar);ps("\n");return *cnt-1;}
+int adr_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_alp=0;st.n_mkt=0;st.t_rosette=0;st.t_flower=0;st.t_petal=0;st.t_leaf=0;st.t_alt=0;for(int i=0;i<N;i++)adrps[i].active=0;for(int i=0;i<N-2;i++)adres[i].active=0;for(int i=0;i<N-4;i++)adrvs[i].active=0;for(int i=0;i<N-6;i++)adral[i].active=0;for(int i=0;i<N-6;i++)adrms[i].active=0;init=1;ps("[ADR] Androsace initialized\n");return 0;}
+/* 1=alpine 2=rock_garden 3=crevice 4=trough 5=container */
+int adr_planning(int lc,int rd,int fc,int pc,int lr,int ar,int bw){return add(adrps,&st.n_plan,&st.t_rosette,N,lc,rd,fc,pc,lr,ar,bw);}
+int adr_execution(int lc,int rd,int fc,int pc,int lr,int ar,int bw){return add(adres,&st.n_exec,&st.t_flower,N-2,lc,rd,fc,pc,lr,ar,bw);}
+int adr_evaluation(int lc,int rd,int fc,int pc,int lr,int ar,int bw){return add(adrvs,&st.n_eval,&st.t_petal,N-4,lc,rd,fc,pc,lr,ar,bw);}
+int adr_alpine_trial(int lc,int rd,int fc,int pc,int lr,int ar,int bw){return add(adral,&st.n_alp,&st.t_leaf,N-6,lc,rd,fc,pc,lr,ar,bw);}
+int adr_market(int lc,int rd,int fc,int pc,int lr,int ar,int bw){return add(adrms,&st.n_mkt,&st.t_alt,N-6,lc,rd,fc,pc,lr,ar,bw);}
+void adr_report(void){ps("[ADR] Plan: ");pi(st.n_plan);ps(" rosette=");pi(st.t_rosette);ps("\nExec: ");pi(st.n_exec);ps(" flower=");pi(st.t_flower);ps("\nEval: ");pi(st.n_eval);ps(" petal=");pi(st.t_petal);ps("\nAlp: ");pi(st.n_alp);ps(" leaf=");pi(st.t_leaf);ps("\nMkt: ");pi(st.n_mkt);ps(" alt=");pi(st.t_alt);ps("\n");}
+void adr_state(void){ps("[ADR] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Alp=");pi(st.n_alp);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Androsace Admin Demo ===\n\n");and_init();
-ps("Androsace planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;and_planning(t,c,896+(i*17),885+(i*14),865+(i*10),847+(i*6),2020+(i%5));}
-ps("\nAndrosace execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;and_execution(t,c,885+(i*15),874+(i*12),856+(i*8),843+(i*5),2021+(i%4));}
-ps("\nAndrosace evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;and_evaluation(t,c,877+(i*13),866+(i*10),850+(i*7),839+(i*4),2022+(i%3));}
-ps("\nAndrosace accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;and_accessory(t,c,869+(i*11),860+(i*9),846+(i*6),836+(i*3),2023+(i%2));}
-ps("\nAndrosace marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;and_market(t,c,863+(i*9),854+(i*7),841+(i*5),833+(i*3),2024);}
-ps("\n");and_report();and_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Androsace (Rock Jasmine) Admin Demo ===\n\n");adr_init();
+ps("Androsace planning (alpine layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;adr_planning(lc,5+(i*2),8+(i%6),(i%7)+1,4+(i%3),2000+(i*200),16+(i%8));}
+ps("\nAndrosace execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;adr_execution(lc,6+(i*2),10+(i%5),(i%7)+1,5+(i%3),2200+(i*150),18+(i%6));}
+ps("\nAndrosace evaluation (cushion check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;adr_evaluation(lc,7+(i*2),12+(i%4),(i%6)+2,6+(i%2),2500+(i*100),20+(i%5));}
+ps("\nAndrosace alpine trial...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;adr_alpine_trial(lc,4+(i*2),6+(i%4),(i%5)+1,3+(i%3),1800+(i*200),14+(i%7));}
+ps("\nAndrosace alpine plant market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;adr_market(lc,8+(i*2),14+(i%3),(i%6)+2,7+(i%2),2800+(i*100),22+(i%4));}
+ps("\n");adr_report();adr_state();ps("\n=== Demo Complete ===\n");return 0;}
