@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-9 - v1233.0 (3307 modules, 91 kernel)
+- Added kernel: agent_consensus.asm, agent_swarm.asm, agent_reasoning.asm
+- Kernel modules: 88 → 91 (multi-agent consensus Raft/Paxos/PBFT, swarm intelligence ACO/PSO/flocking, distributed reasoning & knowledge graph)
+
 ## Phase OS-8 - v1232.0 (3307 modules, 88 kernel)
 - Added kernel: hypervisor.asm, vm_mgr.asm, container_orch.asm
 - Kernel modules: 85 → 88 (ARMv8 hypervisor at EL2, VM lifecycle manager, container orchestration)
