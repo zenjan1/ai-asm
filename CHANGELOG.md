@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 947 - v1310.0 (3503 modules, 124 kernel)
+- Added WASM: chili_admin (Chili hot pepper), chive_admin (Chive herb), cilantro_admin (Cilantro herb)
+- Total modules: 3500 → 3503 (hot pepper, onion herb, coriander herb)
+
 ## Phase 946 - v1309.0 (3500 modules, 124 kernel) 🎉
 - Added WASM: cherry_admin (Cherry fruit tree), chestnut_admin (Chestnut nut tree), chickpea_admin (Chickpea legume)
 - Total modules: 3497 → 3500 🎯 MILESTONE 3500! (fruit trees, nut tree, protein legume)

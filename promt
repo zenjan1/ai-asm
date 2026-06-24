@@ -1,36 +1,36 @@
-Phase 947: Spice Herb Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 948: Citrus & Seafood Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/chili_admin/src/main.c (Chili Pepper)
-   - Chili (Capsicum annuum) hot pepper crop management
-   - Features: plant_ht_cm, fruit_len_cm, heat_scoville, wall_thick_mm, mature_days, harvest_week
-   - Data: 16 entries with location,plnt_ht,frt_ln,heat_scl,wall_th,mat_dys,harv_wk
+1. modules/cineraria_admin/src/main.c (Cineraria Flower)
+   - Cineraria (Pericallis x hybrida) flowering ornamental plant
+   - Features: plant_ht_cm, flower_dia_cm, petal_count, leaf_span_cm, color_idx, bloom_week
+   - Data: 16 entries with location,plnt_ht,fl_dia,pt_ct,lf_sp,clr_idx,blm_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
+   - Categories: planting, feeding, pinching, flowering, market
+   - Prefix: cnr
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+2. modules/citrus_admin/src/main.c (Citrus Fruit Tree)
+   - Citrus (Citrus sinensis) orange fruit tree management
+   - Features: tree_height_m, fruit_count, fruit_dia_cm, sugar_brix, acid_pct, harvest_month
+   - Data: 16 entries with location,tree_ht,frt_ct,frt_dia,sugar_bx,acid_pct,harv_mo
+   - Pattern: follow abelia_admin pattern
    - Categories: planting, pruning, pollination, harvest, market
-   - Prefix: chli
+   - Prefix: ctr
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/chive_admin/src/main.c (Chive Herb)
-   - Chive (Allium schoenoprasum) herb cluster management
-   - Features: stem_ht_cm, stem_dia_mm, leaf_count, bulb_size_mm, flavor_idx, harvest_week
-   - Data: 16 entries with location,stm_ht,stm_dia,lf_ct,blb_sz,flv_idx,harv_wk
+3. modules/clam_admin/src/main.c (Clam Shellfish)
+   - Clam (Meretrix lusoria) shellfish aquaculture
+   - Features: shell_len_mm, shell_wt_g, meat_pct, depth_cm, water_temp, harvest_week
+   - Data: 16 entries with location,sh_ln,sh_wt,meat_pct,dpth,wt_tmp,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, dividing, flowering, harvest, market
-   - Prefix: chv
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-3. modules/cilantro_admin/src/main.c (Cilantro Herb)
-   - Cilantro (Coriandrum sativum) herb cultivation
-   - Features: plant_ht_cm, leaf_span_cm, stem_count, seed_yield_g, oil_pct, bolt_week
-   - Data: 16 entries with location,plnt_ht,lf_sp,stm_ct,seed_yd,oil_pct,bolt_wk
-   - Pattern: follow abelia_admin pattern
-   - Categories: planting, thinning, bolting, harvest, market
-   - Prefix: chnt
+   - Categories: seeding, feeding, water_mgmt, harvest, market
+   - Prefix: clm
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1309.0 → v1310.0 (all occurrences)
-  - total modules 3500 → 3503 (all occurrences)
-Update CHANGELOG.md: add "## Phase 947 - v1310.0 (3503 modules, 124 kernel)" entry
+  - version v1310.0 → v1311.0 (all occurrences)
+  - total modules 3503 → 3506 (all occurrences)
+Update CHANGELOG.md: add "## Phase 948 - v1311.0 (3506 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/chili_admin/chili_admin.wasm modules/chive_admin/chive_admin.wasm modules/cilantro_admin/cilantro_admin.wasm modules/chili_admin/src/main.c modules/chive_admin/src/main.c modules/cilantro_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cineraria_admin/cineraria_admin.wasm modules/citrus_admin/citrus_admin.wasm modules/clam_admin/clam_admin.wasm modules/cineraria_admin/src/main.c modules/citrus_admin/src/main.c modules/clam_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
