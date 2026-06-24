@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 943 - v1306.0 (3491 modules, 124 kernel)
+- Added WASM: cauliflower_admin (Cauliflower vegetable), celosia_admin (Celosia ornamental flower), celery_admin (Celery stalk vegetable)
+- Total modules: 3488 → 3491 (brassica vegetable, cockscomb flower, stalk celery)
+
 ## Phase 942 - v1305.0 (3488 modules, 124 kernel)
 - Added WASM: catfish_admin (Catfish aquaculture), cassava_admin (Cassava tuber crop), cattle_admin (Cattle ranch)
 - Total modules: 3485 → 3488 (aquaculture fish, tropical tuber crop, ranch livestock)

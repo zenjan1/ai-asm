@@ -1,36 +1,36 @@
-Phase 943: Cauliflower & Celosia Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 944: Centipede & Century Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/cauliflower_admin/src/main.c (Cauliflower Vegetable)
-   - Cauliflower (Brassica oleracea) vegetable cultivation
-   - Features: head_dia_cm, head_weight_kg, leaf_span_cm, curd_whiteness, days_to_mature, seed_count
-   - Data: 16 entries with location,head_dia,head_wt,leaf_sp,curd_wt,days_mat,seed_ct
+1. modules/centipede_admin/src/main.c (Centipede Grass Lawn)
+   - Centipede grass (Eremochloa ophiuroides) lawn management
+   - Features: coverage_sqm, blade_ht_cm, density_pct, thatch_mm, ph_level, mow_interval
+   - Data: 16 entries with location,cov_sqm,blade_ht,dens_pct,thatch_mm,ph_lv,mow_int
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planting, blanching, pest_control, harvest, market
-   - Prefix: caul
+   - Categories: establishment, mowing, fertilizing, thatch_removal, market
+   - Prefix: cent
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/celosia_admin/src/main.c (Celosia Ornamental Flower)
-   - Celosia (Celosia argentea) ornamental cockscomb flower
-   - Features: spike_ht_cm, spike_width_cm, petal_count, color_intensity, stem_count, bloom_week
-   - Data: 16 entries with location,spk_ht,spk_wd,petal_ct,clr_int,stm_ct,bloom_wk
+2. modules/century_admin/src/main.c (Century Plant Agave)
+   - Century plant (Agave americana) succulent management
+   - Features: rosette_dia_cm, leaf_count, leaf_width_cm, flower_spike_m, pup_count, harvest_year
+   - Data: 16 entries with location,ros_dia,leaf_ct,leaf_wd,flr_spk,pup_ct,harv_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: propagation, bloom, drying, exhibition, market
-   - Prefix: cel
+   - Categories: cultivation, offset_division, fiber_harvest, landscape, market
+   - Prefix: centu
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/celery_admin/src/main.c (Celery Stalk Vegetable)
-   - Celery (Apium graveolens) stalk vegetable cultivation
-   - Features: stalk_ht_cm, stalk_width_cm, rib_count, leaf_pct, heart_firmness, harvest_week
-   - Data: 16 entries with location,stk_ht,stk_wd,rib_ct,leaf_pct,heart_fm,harv_wk
+3. modules/cereal_admin/src/main.c (Cereal Grain Crop)
+   - Cereal grain (wheat, rice, barley, oats) crop management
+   - Features: yield_kg_per_ha, plant_ht_cm, head_length_cm, grain_count, protein_pct, harvest_week
+   - Data: 16 entries with location,yield_kg,plnt_ht,head_ln,grain_ct,prot_pct,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: transplanting, hilling, blanching, harvest, market
-   - Prefix: cele
+   - Categories: planting, irrigation, pest_control, harvest, market
+   - Prefix: cers
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1305.0 → v1306.0 (all occurrences)
-  - total modules 3488 → 3491 (all occurrences)
-Update CHANGELOG.md: add "## Phase 943 - v1306.0 (3491 modules, 124 kernel)" entry
+  - version v1306.0 → v1307.0 (all occurrences)
+  - total modules 3491 → 3494 (all occurrences)
+Update CHANGELOG.md: add "## Phase 944 - v1307.0 (3494 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/cauliflower_admin/cauliflower_admin.wasm modules/celosia_admin/celosia_admin.wasm modules/celery_admin/celery_admin.wasm modules/cauliflower_admin/src/main.c modules/celosia_admin/src/main.c modules/celery_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/centipede_admin/centipede_admin.wasm modules/century_admin/century_admin.wasm modules/cereal_admin/cereal_admin.wasm modules/centipede_admin/src/main.c modules/century_admin/src/main.c modules/cereal_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

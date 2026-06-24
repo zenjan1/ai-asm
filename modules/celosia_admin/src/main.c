@@ -1,5 +1,6 @@
-/* celosia_admin: Celosia management technology administration (v1.0)
- * Celosia planning, celosia execution, celosia evaluation, accessories, marketing
+/* celosia_admin: Celosia (Celosia argentea) ornamental cockscomb flower management (v1.0)
+ * Celosia propagation, bloom, drying, exhibition, market
+ * Features: spike height, spike width, petal count, color intensity, stem count, bloom week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,25 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} celo_t;
-typedef struct{int n_celop,n_celo,n_celo2,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} celo_state_t;
-static celo_t celos[N],celoe[N-2],celo2[N-4],celoac[N-6],celoam[N-6]; static celo_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
-static int add(celo_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;celo_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[CELO] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int celo_init(void){if(init)return -1;st.n_celop=0;st.n_celo=0;st.n_celo2=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)celos[i].active=0;for(int i=0;i<N-2;i++)celoe[i].active=0;for(int i=0;i<N-4;i++)celo2[i].active=0;for(int i=0;i<N-6;i++)celoac[i].active=0;for(int i=0;i<N-6;i++)celoam[i].active=0;init=1;ps("[CELO] Celosia initialized\n");return 0;}
-int celo_planning(int t,int c,int a,int b,int d,int e,int y){return add(celos,&st.n_celop,&st.t_f1,N,t,c,a,b,d,e,y);}
-int celo_execution(int t,int c,int a,int b,int d,int e,int y){return add(celoe,&st.n_celo,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int celo_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(celo2,&st.n_celo2,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int celo_accessory(int t,int c,int a,int b,int d,int e,int y){return add(celoac,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int celo_market(int t,int c,int a,int b,int d,int e,int y){return add(celoam,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void celo_report(void){ps("[CELO] Elop: ");pi(st.n_celop);ps(" PCS=");pi(st.t_f1);ps("\nEloe: ");pi(st.n_celo);ps(" PCS=");pi(st.t_f2);ps("\nElo2: ");pi(st.n_celo2);ps(" PCS=");pi(st.t_f3);ps("\nEloac: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void celo_state(void){ps("[CELO] Elop=");pi(st.n_celop);ps(" Elo=");pi(st.n_celo);ps(" Elo2=");pi(st.n_celo2);ps(" Eloac=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+typedef struct{int id,location,spk_ht,spk_wd,petal_ct,clr_int,stm_ct,bloom_wk,active;} cel_t;
+typedef struct{int n_prop,n_bloom,n_dry,n_exhibit,n_mkt,t_spike,t_width,t_petal,t_color,t_stem;} cel_state_t;
+static cel_t celpr[N],celbs[N-2],celdrs[N-4],celex[N-6],celms[N-6]; static cel_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(cel_t*a,int*cnt,int*sum,int mx,int lc,int sh,int sw,int pc,int ci,int sc,int bw){if(*cnt>=mx)return -1;cel_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->spk_ht=sh;x->spk_wd=sw;x->petal_ct=pc;x->clr_int=ci;x->stm_ct=sc;x->bloom_wk=bw;x->active=1;*sum+=sh;(*cnt)++;ps("[CEL] Celosia ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" sh=");pi(sh);ps(" sw=");pi(sw);ps(" pc=");pi(pc);ps(" ci=");pi(ci);ps(" sc=");pi(sc);ps(" bw=");pi(bw);ps("\n");return *cnt-1;}
+int cel_init(void){if(init)return -1;st.n_prop=0;st.n_bloom=0;st.n_dry=0;st.n_exhibit=0;st.n_mkt=0;st.t_spike=0;st.t_width=0;st.t_petal=0;st.t_color=0;st.t_stem=0;for(int i=0;i<N;i++)celpr[i].active=0;for(int i=0;i<N-2;i++)celbs[i].active=0;for(int i=0;i<N-4;i++)celdrs[i].active=0;for(int i=0;i<N-6;i++)celex[i].active=0;for(int i=0;i<N-6;i++)celms[i].active=0;init=1;ps("[CEL] Celosia initialized\n");return 0;}
+int cel_propagation(int lc,int sh,int sw,int pc,int ci,int sc,int bw){return add(celpr,&st.n_prop,&st.t_spike,N,lc,sh,sw,pc,ci,sc,bw);}
+int cel_bloom(int lc,int sh,int sw,int pc,int ci,int sc,int bw){return add(celbs,&st.n_bloom,&st.t_width,N-2,lc,sh,sw,pc,ci,sc,bw);}
+int cel_drying(int lc,int sh,int sw,int pc,int ci,int sc,int bw){return add(celdrs,&st.n_dry,&st.t_petal,N-4,lc,sh,sw,pc,ci,sc,bw);}
+int cel_exhibition(int lc,int sh,int sw,int pc,int ci,int sc,int bw){return add(celex,&st.n_exhibit,&st.t_color,N-6,lc,sh,sw,pc,ci,sc,bw);}
+int cel_market(int lc,int sh,int sw,int pc,int ci,int sc,int bw){return add(celms,&st.n_mkt,&st.t_stem,N-6,lc,sh,sw,pc,ci,sc,bw);}
+void cel_report(void){ps("[CEL] Prop: ");pi(st.n_prop);ps(" Spike=");pi(st.t_spike);ps("\nBloom: ");pi(st.n_bloom);ps(" Width=");pi(st.t_width);ps("\nDry: ");pi(st.n_dry);ps(" Petal=");pi(st.t_petal);ps("\nExhibit: ");pi(st.n_exhibit);ps(" Color=");pi(st.t_color);ps("\nMkt: ");pi(st.n_mkt);ps(" Stem=");pi(st.t_stem);ps("\n");}
+void cel_state(void){ps("[CEL] Prop=");pi(st.n_prop);ps(" Bloom=");pi(st.n_bloom);ps(" Dry=");pi(st.n_dry);ps(" Exhibit=");pi(st.n_exhibit);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Celosia Admin Demo ===\n\n");celo_init();
-ps("Celosia planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;celo_planning(t,c,1467+(i*17),1456+(i*14),1436+(i*10),1418+(i*6),2020+(i%5));}
-ps("\nCelosia execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;celo_execution(t,c,1456+(i*15),1445+(i*12),1427+(i*8),1414+(i*5),2021+(i%4));}
-ps("\nCelosia evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;celo_evaluation(t,c,1448+(i*13),1437+(i*10),1421+(i*7),1410+(i*4),2022+(i%3));}
-ps("\nCelosia accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;celo_accessory(t,c,1440+(i*11),1431+(i*9),1417+(i*6),1407+(i*3),2023+(i%2));}
-ps("\nCelosia marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;celo_market(t,c,1434+(i*9),1425+(i*7),1412+(i*5),1404+(i*3),2024);}
-ps("\n");celo_report();celo_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Celosia Admin Demo ===\n\n");cel_init();
+/* 1=garden 2=border 3=container 4=cut_flower 5=dried_arrangement */
+ps("Celosia propagation...\n");for(int i=0;i<N;i++){int lc=(i%5)+1,sh=15+(i*5),sw=3+(i*2),pc=20+(i*10),ci=5+(i%6),sc=3+(i*2),bw=16+(i%4);cel_propagation(lc,sh,sw,pc,ci,sc,bw);}
+ps("\nCelosia bloom...\n");for(int i=0;i<N-2;i++){int lc=(i%4)+2,sh=18+(i*4),sw=4+(i*2),pc=25+(i*8),ci=6+(i%5),sc=4+(i*2),bw=18+(i%3);cel_bloom(lc,sh,sw,pc,ci,sc,bw);}
+ps("\nCelosia drying...\n");for(int i=0;i<N-4;i++){int lc=(i%3)+1,sh=20+(i*3),sw=5+(i*2),pc=30+(i*6),ci=7+(i%4),sc=5+(i*2),bw=20+(i%3);cel_drying(lc,sh,sw,pc,ci,sc,bw);}
+ps("\nCelosia exhibition...\n");for(int i=0;i<N-6;i++){int lc=(i%5)+1,sh=12+(i*6),sw=2+(i*3),pc=15+(i*12),ci=4+(i%7),sc=2+(i*3),bw=14+(i%5);cel_exhibition(lc,sh,sw,pc,ci,sc,bw);}
+ps("\nCelosia market...\n");for(int i=0;i<N-6;i++){int lc=(i%4)+1,sh=22+(i*3),sw=6+(i*2),pc=35+(i*5),ci=8+(i%3),sc=6+(i*2),bw=22+(i%2);cel_market(lc,sh,sw,pc,ci,sc,bw);}
+ps("\n");cel_report();cel_state();ps("\n=== Demo Complete ===\n");return 0;}
