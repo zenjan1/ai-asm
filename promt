@@ -1,36 +1,36 @@
-Phase 931: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 932: Plant & Technology Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/bluestem_admin/src/main.c (Bluestem / Andropogon)
-   - Bluestem prairie grass and native grassland management
-   - Features: stem_height, leaf_width, seed_head_ln, foliage_color, root_depth, growth_week
-   - Data: 16 entries with location,stem_ht,leaf_wd,seed_ln,foliage_color,root_dp,growth_wk
+1. modules/bluewood_admin/src/main.c (Bluewood / Cordia)
+   - Bluewood tree and shrub management
+   - Features: tree_height, trunk_diameter, leaf_width, bark_color, flower_color, growth_rate
+   - Data: 16 entries with location,tree_ht,trunk_dia,leaf_wd,bark_color,flower_color,growth_rt
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planning, execution, evaluation, harvesting, market
-   - Prefix: bst
+   - Categories: planning, execution, evaluation, pruning, market
+   - Prefix: blwd
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/bluet_admin/src/main.c (Bluet / Houstonia)
-   - Bluet woodland wildflower and spring ephemeral management
-   - Features: flower_diameter, leaf_width, plant_height, flower_color, seed_count, bloom_week
-   - Data: 16 entries with location,flower_dia,leaf_wd,plant_ht,flower_color,seed_ct,bloom_wk
+2. modules/board_jetson_wasm/src/main.c (NVIDIA Jetson Board)
+   - NVIDIA Jetson embedded AI board management
+   - Features: cpu_cores, gpu_cores, ram_gb, top_speed, power_watts, ai_ops
+   - Data: 16 entries with location,cpu_ct,gpu_ct,ram_gb,top_spd,pwr_wt,ai_ops
    - Pattern: follow abelia_admin pattern
-   - Categories: planning, execution, evaluation, seed_collection, market
-   - Prefix: blt
+   - Categories: inference, training, deployment, monitoring, market
+   - Prefix: jet
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/blueweed_admin/src/main.c (Blueweed / Echium vulgare)
-   - Blueweed viper's bugloss and pollinator plant management
-   - Features: spike_height, flower_count, leaf_width, flower_color, stem_ht, bloom_week
-   - Data: 16 entries with location,spike_ht,flower_ct,leaf_wd,flower_color,stem_ht,bloom_wk
+3. modules/board_snapdragon/src/main.c (Qualcomm Snapdragon Board)
+   - Qualcomm Snapdragon mobile platform management
+   - Features: cpu_cores, clock_mhz, ram_gb, modem_speed, gpu_score, battery_life
+   - Data: 16 entries with location,cpu_ct,clk_mhz,ram_gb,modem_sp,gpu_sc,bat_life
    - Pattern: follow abelia_admin pattern
-   - Categories: planning, execution, evaluation, deadheading, market
-   - Prefix: blw
+   - Categories: compute, graphics, connectivity, efficiency, market
+   - Prefix: sd
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1293.0 → v1294.0 (all occurrences)
-  - total modules 3452 → 3455 (all occurrences)
-Update CHANGELOG.md: add "## Phase 931 - v1294.0 (3455 modules, 124 kernel)" entry
+  - version v1294.0 → v1295.0 (all occurrences)
+  - total modules 3455 → 3458 (all occurrences)
+Update CHANGELOG.md: add "## Phase 932 - v1295.0 (3458 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/bluestem_admin/bluestem_admin.wasm modules/bluet_admin/bluet_admin.wasm modules/blueweed_admin/blueweed_admin.wasm modules/blueflag_admin/blueflag_admin.wasm modules/bluegum_admin/bluegum_admin.wasm modules/bluestar_admin/bluestar_admin.wasm modules/blueflag_admin/src/main.c modules/bluegum_admin/src/main.c modules/bluestar_admin/src/main.c modules/bluestem_admin/src/main.c modules/bluet_admin/src/main.c modules/blueweed_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/bluewood_admin/bluewood_admin.wasm modules/board_jetson_wasm/board_jetson_wasm.wasm modules/board_snapdragon/board_snapdragon.wasm modules/bluestem_admin/bluestem_admin.wasm modules/bluet_admin/bluet_admin.wasm modules/blueweed_admin/blueweed_admin.wasm modules/bluestem_admin/src/main.c modules/bluet_admin/src/main.c modules/blueweed_admin/src/main.c modules/bluewood_admin/src/main.c modules/board_jetson_wasm/src/main.c modules/board_snapdragon/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

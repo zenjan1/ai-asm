@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 931 - v1294.0 (3455 modules, 124 kernel)
+- Added WASM: bluestem_admin (Bluestem prairie grass), bluet_admin (Bluet woodland wildflower), blueweed_admin (Blueweed viper's bugloss)
+- Total modules: 3452 → 3455 (native prairie grass, spring ephemeral wildflower, pollinator plant)
+
 ## Phase 930 - v1293.0 (3452 modules, 124 kernel)
 - Added WASM: blueflag_admin (Blueflag water iris), bluegum_admin (Bluegum eucalyptus tree), bluestar_admin (Bluestar amsonia perennial)
 - Total modules: 3449 → 3452 (wetland water iris, eucalyptus timber tree, native wildflower)
