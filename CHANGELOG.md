@@ -1,5 +1,10 @@
 # Changelog
 
+## Phase 882 - v1236.0 (3311 modules, 94 kernel)
+- Added WASM: gyrostachys_admin (jewel orchid research cultivation)
+- Added WASM builds: gymnocarpus_admin, hedysarum_admin (previously source-only)
+- Total modules: 3310 → 3311 (orchid taxonomy, in-vitro culture, mycorrhiza, DNA barcoding)
+
 ## Phase OS-10 - v1235.0 (3310 modules, 94 kernel)
 - Added kernel: net_ip.asm, net_tcp.asm, net_udp.asm
 - Kernel modules: 91 → 94 (IPv4/IPv6 packet processing with ARP/ICMP/routing, TCP connection management with congestion control, UDP datagram service with DNS/multicast)

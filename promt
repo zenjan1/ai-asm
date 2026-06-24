@@ -1,40 +1,40 @@
-Phase 882: Plant Biology Domain Admin Modules - 3 new WASM application modules:
+Phase OS-11: Kernel Network Application Layer - 3 new kernel ASM modules:
 
-1. modules/gymnocarpus_admin/src/main.c (Gymnocarpus Wild Potato Administration)
-   - Base ID: 2072
-   - Manages gymnocarpus (wild potato family) plant research and conservation
-   - Features: specimen catalog (16 entries), habitat tracking (grassland/woodland/wetland), tuber morphology records, phenology monitoring (germination/flowering/fruiting/dormancy), seed bank inventory, herbarium voucher tracking, ethnobotanical uses database, conservation status (IUCN)
-   - Domain structs: gym_t (id, species, habitat, phenology_stage, tuber_count, seed_viability, voucher_id, cons_status, collection_date, active)
-   - Functions: gym_init, gym_specimen_register, gym_habitat_survey, gym_phenology_observe, gym_seed_bank, gym_voucher_catalog
-   - Exports: main (demo: specimen registration, habitat survey, phenology tracking, seed banking, voucher catalog)
-   - Pattern: follow modules/abelia_admin/src/main.c style
+1. kernel/net_dns.asm (DNS Resolver)
+   - AArch64 ASM implementation of DNS client (RFC 1035)
+   - Query construction: standard A (IPv4), AAAA (IPv6), MX, TXT, CNAME, NS, PTR record types
+   - Response parsing: answer section extraction, TTL tracking, authoritative/recursive flags
+   - Cache: 256 entries (name→IP), TTL-based expiration, LRU eviction
+   - Resolver: iterative resolution with up to 3 nameservers (configurable)
+   - Message format: 12-byte header, question/answer/authority/additional sections
+   - Reverse lookup: IP→name via in-addr.arpa / ip6.arpa
+   - Export symbols: net_dns_init, net_dns_resolve, net_dns_reverse, net_dns_cache_add, net_dns_set_server
+   - Integration: uses net_udp.asm port 53 for transport
 
-2. modules/gyrostachys_admin/src/main.c (Gyrostachys Orchid Research Administration)
-   - Base ID: 2073
-   - Manages gyrostachys (orchid genus) research cultivation and taxonomy
-   - Features: taxonomic records (16 taxa), propagation protocols (flask/deflasked/potted), in-vitro culture tracking (media composition, subculture cycles), mycorrhizal symbiosis monitoring, pollination records (hand-pollination success rate), chromosome counting, DNA barcode registry, greenhouse climate logging
-   - Domain structs: gyro_t (id, taxon, prop_stage, culture_week, media_type, myco_colonized, poll_success, chrom_count, barcode_id, active)
-   - Functions: gyro_init, gyro_taxon_register, gyro_propagate, gyro_culture_monitor, gyro_mycorrhiza_check, gyro_pollinate, gyro_barcode
-   - Exports: main (demo: taxon registration, propagation pipeline, culture monitoring, mycorrhiza inoculation, pollination trials, DNA barcoding)
-   - Pattern: follow modules/abelia_admin/src/main.c style
+2. kernel/net_http.asm (HTTP/1.1 Client & Server)
+   - AArch64 ASM implementation of HTTP protocol (RFC 7230-7235)
+   - Client: GET/POST/PUT/DELETE methods, header parsing, chunked transfer encoding
+   - Server: request dispatch, status codes (200/301/400/404/500), response building
+   - Connection management: keep-alive (max 16 persistent connections), timeout
+   - URL parser: scheme/host/port/path/query/fragment extraction
+   - Header table: 64 headers max per request/response, common header name lookup
+   - Content negotiation: Accept, Content-Type (text/html, application/json, text/plain)
+   - Cookie support: Set-Cookie parsing, Cookie header construction (32 cookies)
+   - Export symbols: net_http_init, net_http_get, net_http_post, net_http_listen, net_http_respond
+   - Integration: uses net_tcp.asm for transport, net_tls.asm for HTTPS
 
-3. modules/hedysarum_admin/src/main.c (Hedysarum Sweetvetch Administration)
-   - Base ID: 2074
-   - Manages hedysarum (sweetvetch) forage and medicinal herb production
-   - Features: field plot management (16 plots), nitrogen fixation monitoring, forage yield trials, root harvest records, swainsonine alkaloid testing (toxic vs non-toxic strains), livestock feed formulation, seed production, soil amendment tracking, drought tolerance scoring
-   - Domain structs: hed_t (id, plot, strain, growth_day, n_fix_ppm, forage_kg, root_kg, swainsonine_ppm, seed_kg, drought_score, active)
-   - Functions: hed_init, hed_plot_establish, hed_nitrogen_monitor, hed_forage_harvest, hed_root_process, hed_toxin_screen, hed_seed_collect
-   - Exports: main (demo: plot establishment, N-fixation monitoring, forage harvest, root processing, toxin screening, seed collection)
-   - Pattern: follow modules/abelia_admin/src/main.c style
+3. kernel/net_ws.asm (WebSocket Protocol)
+   - AArch64 ASM implementation of WebSocket (RFC 6455)
+   - Handshake: HTTP upgrade, Sec-WebSocket-Key/Accept (SHA-1 + base64)
+   - Frame parsing: opcode (text/binary/close/ping/pong), mask handling, payload extraction
+   - Frame building: client→server (masked), server→client (unmasked)
+   - Fragmentation: continuation frames, max message size (64KB)
+   - Ping/pong: keepalive with automatic pong response
+   - Connection state: CONNECTING/OPEN/CLOSING/CLOSED (4 states)
+   - Max 32 simultaneous WebSocket connections
+   - Export symbols: net_ws_init, net_ws_connect, net_ws_accept, net_ws_send, net_ws_recv, net_ws_close
+   - Integration: uses net_http.asm for upgrade handshake, net_tcp.asm for transport
 
-Build all 3 modules with:
-  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o modules/<name>/<name>.wasm modules/<name>/src/main.c
-
-After creating 3 WASM modules, update README:
-  - version v1235.0 → v1236.0 (all occurrences)
-  - modules 3310 → 3313 (all occurrences)
-  - Add the 3 new module names to the L3 WASM Apps architecture list
-Update CHANGELOG.md: add "## Phase 882 - v1236.0 (3313 modules, 94 kernel)" entry
-Set UPDATE=0
-git add modules/gymnocarpus_admin/ modules/gyrostachys_admin/ modules/hedysarum_admin/ README.md CHANGELOG.md promt update-state
-Commit and push to origin arm-v2.
+All modules follow existing kernel conventions (.arch armv8-a, .global exports, stp/ldp frame setup).
+After creating 3 ASM modules, update README kernel count from 94 to 97, version from v1236.0 to v1237.0.
+Set UPDATE=0, git add kernel/*.asm + README + CHANGELOG, commit and push to origin arm-v2.
