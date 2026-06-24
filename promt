@@ -1,40 +1,31 @@
-Phase OS-17: Kernel Power Management - 3 new AArch64 assembly kernel modules:
+Phase 889: 3 new WASM plant modules following abelia_admin pattern:
 
-1. kernel/power_cpufreq.asm (CPU Frequency Scaling)
-   - Base ID: 913
-   - Dynamic CPU frequency and voltage scaling for power efficiency
-   - Features: frequency table management, governor selection (performance, powersave, ondemand, conservative), voltage regulation, thermal throttling, transition latency tracking, per-core frequency control
-   - Data structures: cpufreq_policy_t (cpu_id, min_freq, max_freq, cur_freq, governor, voltage), cpufreq_table_t (freq_count, freq_list)
-   - API: power_cpufreq_init, power_cpufreq_set_governor, power_cpufreq_set_freq, power_cpufreq_get_freq, power_cpufreq_get_temp, power_cpufreq_stats, power_cpufreq_throttle, power_cpufreq_restore
-   - Capacity: 8 CPU cores, 16 frequency levels each, 4 governors
-   - Pattern: follow kernel/memory.asm style (stp/ldp frame, .global exports, .bss for state)
+1. modules/monarda_admin/src/main.c (Monarda bee balm)
+   - Monarda didyma (scarlet bee balm) and monarda fistulosa (wild bergamot) cultivation
+   - Features: essential oil thymol extraction, pollinator habitat, medicinal respiratory use, ornamental flowering, mint family aromatic properties
+   - Host imports: ps, pi, pe, pf, pd, gt helpers
+   - 16 monarda entries with Latin names and therapeutic uses
 
-2. kernel/power_sleep.asm (Sleep State Management)
-   - Base ID: 914
-   - System sleep state transitions (suspend, hibernate, standby)
-   - Features: sleep state selection, wakeup alarm setup, device suspend/resume ordering, RTC alarm management, sleep statistics, sleep entry/exit latency tracking
-   - Data structures: sleep_state_t (state_id, entry_time, exit_time, wakeup_source, devices_suspended), sleep_config_t (default_state, wakeup_mask, rtc_alarm)
-   - API: power_sleep_init, power_sleep_enter(state_id), power_sleep_exit, power_sleep_set_wakeup(device_id), power_sleep_rtc_alarm(seconds), power_sleep_stats, power_sleep_get_state, power_sleep_resume_devices
-   - Capacity: 4 sleep states (S1 standby, S2 stop, S3 suspend-to-RAM, S4 hibernate), 32 wakeup sources
-   - Pattern: follow kernel/memory.asm style
+2. modules/myrica_admin/src/main.c (Myrica bayberry)
+   - Myrica cerifera (wax myrtle) and myrica gale (bog myrtle) cultivation
+   - Features: wax extraction for candles, nitrogen fixation, coastal landscape use, aromatic foliage, traditional medicinal applications
+   - Host imports: ps, pi, pe, pf, pd, gt helpers
+   - 16 myrica entries with Latin names and production data
 
-3. kernel/power_thermal.asm (Thermal Management)
-   - Base ID: 915
-   - Thermal zone monitoring and cooling device management
-   - Features: thermal zone tracking, temperature trip points, passive/active cooling policies, CPU throttling coordination, fan speed control, emergency shutdown, thermal statistics
-   - Data structures: thermal_zone_t (zone_id, temperature, trip_hot, trip_crit, cooling_dev, trend), cooling_device_t (dev_id, type, cur_state, max_state)
-   - API: power_thermal_init, power_thermal_register_zone(zone_id, trip_hot, trip_crit), power_thermal_get_temp(zone_id), power_thermal_register_cooling(dev_id, type), power_thermal_set_cooling(dev_id, state), power_thermal_stats, power_thermal_emergency_check
-   - Capacity: 8 thermal zones, 16 cooling devices, 4 trip points per zone
-   - Pattern: follow kernel/memory.asm style
+3. modules/nandina_admin/src/main.c (Nandina heavenly bamboo)
+   - Nandina domestica (heavenly bamboo) cultivation
+   - Features: ornamental red berries, evergreen foliage color change, drought tolerance, compact cultivar breeding, wildlife food source
+   - Host imports: ps, pi, pe, pf, pd, gt helpers
+   - 16 nandina entries with Latin names and landscaping data
 
-Build all 3 kernel modules with:
-  clang --target=aarch64-unknown-linux-gnu -c -O2 -o kernel/<name>.o kernel/<name>.asm
+Build all 3 WASM modules with:
+  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=all -o modules/<name>/<name>.wasm modules/<name>/src/main.c
 
-After creating 3 kernel modules, update README:
-  - version v1248.0 → v1249.0 (all occurrences)
-  - kernel modules 112 → 115 (all occurrences)
-  - Add the 3 new kernel module names to the L1 Kernel ASM architecture list
-Update CHANGELOG.md: add "## Phase OS-17 - v1249.0 (3326 modules, 115 kernel)" entry
+After creating 3 WASM modules, update README:
+  - version v1249.0 → v1250.0 (all occurrences)
+  - total modules 3326 → 3329 (all occurrences)
+  - Add the 3 new module names to the L3 WASM Apps list
+Update CHANGELOG.md: add "## Phase 889 - v1250.0 (3329 modules, 115 kernel)" entry
 Set UPDATE=0
-git add kernel/power_cpufreq.asm kernel/power_sleep.asm kernel/power_thermal.asm README.md CHANGELOG.md promt update-state
+git add modules/monarda_admin modules/myrica_admin modules/nandina_admin README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

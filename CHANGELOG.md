@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-17 - v1249.0 (3326 modules, 115 kernel)
+- Added kernel: power_cpufreq.asm, power_sleep.asm, power_thermal.asm
+- Kernel modules: 112 → 115 (CPU frequency scaling with governors, sleep state management with RTC alarms, thermal zone monitoring with cooling device coordination)
+
 ## Phase 888 - v1248.0 (3326 modules, 112 kernel)
 - Added WASM: melaleuca_admin (Melaleuca tea tree & paperbark), musa_admin (Musa banana cultivation), medicago_admin (Medicago alfalfa & medic forage)
 - Total modules: 3323 → 3326 (essential oil extraction, tropical fruit production, nitrogen-fixing forage crops)
