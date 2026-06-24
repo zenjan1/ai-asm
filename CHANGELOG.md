@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 945 - v1308.0 (3497 modules, 124 kernel)
+- Added WASM: chameleon_admin (Chameleon reptile), chamomile_admin (Chamomile herb), chard_admin (Chard leafy green)
+- Total modules: 3494 → 3497 (color-changing reptile, medicinal herb, leafy vegetable)
+
 ## Phase 944 - v1307.0 (3494 modules, 124 kernel)
 - Added WASM: centipede_admin (Centipede grass lawn), century_admin (Century plant agave), cereal_admin (Cereal grain crop)
 - Total modules: 3491 → 3494 (warm-season turfgrass, succulent agave, grain crops)

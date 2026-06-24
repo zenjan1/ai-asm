@@ -1,36 +1,36 @@
-Phase 945: Chameleon & Chamomile Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 946: Cherry & Chestnut Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/chameleon_admin/src/main.c (Chameleon Reptile)
-   - Chameleon reptile terrarium management
-   - Features: body_length_cm, weight_g, color_change, tongue_len_cm, eye_rotation, shedding_week
-   - Data: 16 entries with location,body_ln,wght_g,clr_chg,tongue_ln,eye_rot,shed_wk
+1. modules/cherry_admin/src/main.c (Cherry Fruit Tree)
+   - Cherry (Prunus avium) fruit tree orchard management
+   - Features: tree_height_m, fruit_yield_kg, bloom_week, sugar_brix, pit_dia_mm, harvest_week
+   - Data: 16 entries with location,tree_ht,frt_yd,bloom_wk,sugar_bx,pit_dia,harv_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: habitat, feeding, health, breeding, market
-   - Prefix: cham
+   - Categories: planting, pruning, pollination, harvest, market
+   - Prefix: chry
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/chamomile_admin/src/main.c (Chamomile Herb)
-   - Chamomile (Matricaria chamomilla) medicinal herb management
-   - Features: flower_dia_cm, plant_ht_cm, oil_yield_ml, bloom_count, drying_temp, harvest_week
-   - Data: 16 entries with location,flr_dia,plnt_ht,oil_yd,bloom_ct,dry_tmp,harv_wk
+2. modules/chestnut_admin/src/main.c (Chestnut Nut Tree)
+   - Chestnut (Castanea sativa) nut tree management
+   - Features: tree_height_m, nut_yield_kg, burr_count, nut_weight_g, starch_pct, harvest_month
+   - Data: 16 entries with location,tree_ht,nut_yd,burr_ct,nut_wt,starch_pct,harv_mo
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, bloom, drying, extraction, market
-   - Prefix: chm
+   - Categories: planting, cultivation, roasting, storage, market
+   - Prefix: chst
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/chard_admin/src/main.c (Chard Leafy Green)
-   - Chard (Beta vulgaris) leafy green vegetable cultivation
-   - Features: leaf_span_cm, stem_ht_cm, leaf_color, rib_width_mm, bolt_week, cutting_count
-   - Data: 16 entries with location,leaf_sp,stm_ht,leaf_clr,rib_wd,bolt_wk,cut_ct
+3. modules/chickpea_admin/src/main.c (Chickpea Legume Crop)
+   - Chickpea (Cicer arietinum) legume crop management
+   - Features: plant_ht_cm, pod_count, seed_weight_g, protein_pct, root_nodule, harvest_week
+   - Data: 16 entries with location,plnt_ht,pod_ct,seed_wt,prot_pct,root_nd,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, cutting, blanching, harvest, market
-   - Prefix: chrd
+   - Categories: planting, inoculation, pest_control, harvest, market
+   - Prefix: chcp
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1307.0 → v1308.0 (all occurrences)
-  - total modules 3494 → 3497 (all occurrences)
-Update CHANGELOG.md: add "## Phase 945 - v1308.0 (3497 modules, 124 kernel)" entry
+  - version v1308.0 → v1309.0 (all occurrences)
+  - total modules 3497 → 3500 (all occurrences)
+Update CHANGELOG.md: add "## Phase 946 - v1309.0 (3500 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/chameleon_admin/chameleon_admin.wasm modules/chamomile_admin/chamomile_admin.wasm modules/chard_admin/chard_admin.wasm modules/chameleon_admin/src/main.c modules/chamomile_admin/src/main.c modules/chard_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cherry_admin/cherry_admin.wasm modules/chestnut_admin/chestnut_admin.wasm modules/chickpea_admin/chickpea_admin.wasm modules/cherry_admin/src/main.c modules/chestnut_admin/src/main.c modules/chickpea_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
