@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 908 - v1272.0 (3386 modules, 124 kernel)
+- Added WASM: angelica_admin (Angelica wild celery), anigozanthos_admin (Anigozanthos kangaroo paw), anise_admin (Anise aniseed spice)
+- Total modules: 3383 → 3386 (medicinal angelica herb, Australian kangaroo paw, aromatic anise spice)
+
 ## Phase 907 - v1271.0 (3383 modules, 124 kernel)
 - Added WASM: anaphalis_admin (Anaphalis pearl everlasting), anarrhinum_admin (Anarrhinum goosewort), androsace_admin (Androsace rock jasmine)
 - Total modules: 3380 → 3383 (pearl everlasting dried flower, rocky slope goosewort, alpine rock jasmine)

@@ -1,28 +1,28 @@
-Phase 908: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 909: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/angelica_admin/src/main.c (Angelica / Wild Celery)
-   - Angelica medicinal herb and aromatic plant management
-   - Features: stem height, leaf spread, root weight, compound content, bloom year, harvest month
-   - Data: 16 entries with location,stem_ht,leaf_sp,root_wt,compound_ct,bloom_yr,harv_mo
+1. modules/anisodontea_admin/src/main.c (Anisodontea / Cape Mallow)
+   - Anisodontea cape mallow and flowering shrub management
+   - Features: flower diameter, petal count, bush height, bloom color, leaf shape, branch_count
+   - Data: 16 entries with location,flower_dia,petal_ct,bush_ht,bloom_color,leaf_shp,branch_ct
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/anigozanthos_admin/src/main.c (Anigozanthos / Kangaroo Paw)
-   - Anigozanthos kangaroo paw and Australian native flower management
-   - Features: flower length, fur coverage, stem height, bloom color, leaf fan, nectar_vol
-   - Data: 16 entries with location,flower_len,fur_cov,stem_ht,bloom_color,leaf_fan,nectar_vl
+2. modules/annatto_admin/src/main.c (Annatto / Achiote)
+   - Annatto achiote dye tree and spice management
+   - Features: seed yield, dye content, tree height, fruit weight, pigment strength, harvest month
+   - Data: 16 entries with location,seed_yield,dye_ct,tree_ht,fruit_wt,pigment_st,harv_mo
    - Pattern: follow abelia_admin pattern
 
-3. modules/anise_admin/src/main.c (Anise / Aniseed)
-   - Anise spice herb and aromatic seed crop management
-   - Features: plant height, seed yield, oil content, bloom cluster, leaf area, harvest week
-   - Data: 16 entries with location,plant_ht,seed_yield,oil_ct,bloom_cl,leaf_ar,harv_wk
+3. modules/anthurium_admin/src/main.c (Anthurium / Flamingo Flower)
+   - Anthurium flamingo flower and tropical indoor plant management
+   - Features: spathe count, spadix length, leaf length, bloom color, humidity need, bloom_cycle
+   - Data: 16 entries with location,spathe_ct,spadix_len,leaf_len,bloom_color,humidity_nd,bloom_cy
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1271.0 → v1272.0 (all occurrences)
-  - total modules 3383 → 3386 (all occurrences)
-Update CHANGELOG.md: add "## Phase 908 - v1272.0 (3386 modules, 124 kernel)" entry
+  - version v1272.0 → v1273.0 (all occurrences)
+  - total modules 3386 → 3389 (all occurrences)
+Update CHANGELOG.md: add "## Phase 909 - v1273.0 (3389 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/angelica_admin/src/main.c modules/anigozanthos_admin/src/main.c modules/anise_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/anisodontea_admin/src/main.c modules/annatto_admin/src/main.c modules/anthurium_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
