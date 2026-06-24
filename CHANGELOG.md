@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 933 - v1296.0 (3461 modules, 124 kernel)
+- Added WASM: bobcat_admin (Bobcat wildlife tracking), bog_admin (Bog wetland ecosystem), bonsai_admin (Bonsai miniature tree cultivation)
+- Total modules: 3458 → 3461 (wildlife predator, wetland biome, cultivated art form)
+
 ## Phase 932 - v1295.0 (3458 modules, 124 kernel)
 - Added WASM: bluewood_admin (Bluewood Cordia tree), board_jetson_wasm (NVIDIA Jetson AI board), board_snapdragon (Qualcomm Snapdragon platform)
 - Total modules: 3455 → 3458 (ornamental tree species, embedded AI board, mobile platform)
