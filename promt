@@ -1,40 +1,40 @@
-Phase 887: Aromatic & Ornamental Plant Administration Modules - 3 new WASM application modules:
+Phase OS-16: Kernel Filesystem Enhancements - 3 new AArch64 assembly kernel modules:
 
-1. modules/lantana_admin/src/main.c (Lantana Shrub Verbena Administration)
-   - Base ID: 2087
-   - Manages lantana (Lantana camara) ornamental shrub cultivation
-   - Features: shrub inventory (16 plants), flower cluster tracking, color variety catalog (multi-color blooms), pruning schedule, invasive species management, pollinator attraction records, landscape use tracking, propagation from cuttings
-   - Domain structs: lantana_t (id, plant_id, age_months, cluster_count, color_variety, prune_month, invasive_risk, pollinator_count, landscape_zone, propagate_type, active)
-   - Functions: lantana_init, lantana_plant_inventory, lantana_cluster_track, lantana_color_catalog, lantana_prune_schedule, lantana_invasive_manage, lantana_pollinator_track, lantana_propagate
-   - Exports: main (demo: plant inventory, cluster tracking, color catalog, pruning, invasive management, pollinator tracking, propagation)
-   - Pattern: follow modules/abelia_admin/src/main.c style (host imports: alloc/print/exit/get_argv, ps/pi helpers, static state, N=16)
+1. kernel/fs_journal.asm (Journaling Filesystem Support)
+   - Base ID: 910
+   - Journaling support for crash-consistent filesystem operations
+   - Features: journal area management, transaction logging, commit/replay operations, checkpoint management, journal recovery after crash, synchronous/asynchronous journaling, journal statistics, multiple journal modes (ordered, writeback, data)
+   - Data structures: journal_t (dev_id, start_block, num_blocks, transaction_id, commit_block, checkpoint, mode, active), journal_transaction_t (id, start_time, block_count, state, checksum)
+   - API: fs_journal_init, fs_journal_create, fs_journal_start_transaction, fs_journal_add_block, fs_journal_commit, fs_journal_checkpoint, fs_journal_replay, fs_journal_stats
+   - Capacity: 8 journals, 1024 transactions per journal, 4KB per block
+   - Pattern: follow kernel/memory.asm style (stp/ldp frame, .global exports, .bss for state)
 
-2. modules/lathyrus_admin/src/main.c (Lathyrus Sweet Pea Administration)
-   - Base ID: 2088
-   - Manages lathyrus (Lathyrus odoratus/sweet pea) ornamental vine cultivation
-   - Features: vine inventory (16 plants), flower count tracking, fragrance intensity measurement, support structure records, deadheading schedule, seed collection, variety catalog (color/scent), cutting propagation records
-   - Domain structs: lathyrus_t (id, plant_id, age_weeks, flower_count, fragrance_level, support_type, deadhead_freq, seed_count, variety_id, propagate_method, active)
-   - Functions: lathyrus_init, lathyrus_plant_inventory, lathyrus_flower_track, lathyrus_fragrance_measure, lathyrus_support_install, lathyrus_deadhead_schedule, lathyrus_seed_collect, lathyrus_variety_catalog
-   - Exports: main (demo: plant inventory, flower tracking, fragrance measurement, support installation, deadheading, seed collection, variety catalog)
-   - Pattern: follow modules/abelia_admin/src/main.c style
+2. kernel/fs_quota.asm (Filesystem Quotas)
+   - Base ID: 911
+   - User and group disk quota management
+   - Features: user quota tracking, group quota tracking, quota limits (soft/hard), grace period management, quota enforcement, quota reporting, quota initialization per filesystem, quota warnings
+   - Data structures: quota_entry_t (uid/gid, blocks_used, blocks_soft, blocks_hard, inodes_used, inodes_soft, inodes_hard, grace_start, warnings), quota_policy_t (fs_id, default_soft, default_hard, grace_period)
+   - API: fs_quota_init, fs_quota_enable, fs_quota_disable, fs_quota_set_limits, fs_quota_update_usage, fs_quota_check, fs_quota_report, fs_quota_grace_check
+   - Capacity: 256 user quotas, 128 group quotas per filesystem, 16 filesystems
+   - Pattern: follow kernel/memory.asm style
 
-3. modules/lavandula_admin/src/main.c (Lavandula Lavender Administration)
-   - Base ID: 2089
-   - Manages lavandula (Lavandula angustifolia/lavender) aromatic herb cultivation
-   - Features: plant inventory (16 plants), flower harvest tracking, essential oil distillation records, oil quality analysis (linalool/linalyl acetate content), drying process monitoring, product formulation (culinary/medicinal/cosmetic), organic certification, market distribution tracking
-   - Domain structs: lavandula_t (id, plant_id, age_years, flower_kg, oil_ml, linalool_pct, dry_method, product_type, organic_cert, market_region, active)
-   - Functions: lavandula_init, lavandula_plant_inventory, lavandula_flower_harvest, lavandula_oil_distill, lavandula_oil_analyze, lavandula_dry_process, lavandula_product_formulate, lavandula_organic_cert
-   - Exports: main (demo: plant inventory, flower harvest, oil distillation, oil analysis, drying process, product formulation, organic cert)
-   - Pattern: follow modules/abelia_admin/src/main.c style
+3. kernel/fs_compress.asm (Filesystem Compression)
+   - Base ID: 912
+   - Transparent filesystem compression for storage efficiency
+   - Features: block-level compression, compression algorithm selection (LZ4, LZO simplified), compression ratio tracking, decompression on read, compression on write, compression statistics, per-file compression flags, compression cache
+   - Data structures: compress_entry_t (block_num, compressed_size, original_size, algorithm, checksum, cached), compress_stats_t (compressed_blocks, total_saved, ratio_avg, algorithm_counts)
+   - API: fs_compress_init, fs_compress_block, fs_decompress_block, fs_compress_set_algo, fs_compress_stats, fs_compress_cache_add, fs_compress_cache_flush, fs_compress_ratio
+   - Capacity: 4096 compressed blocks, 512 cache entries, 4 algorithms
+   - Pattern: follow kernel/memory.asm style
 
-Build all 3 modules with:
-  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o modules/<name>/<name>.wasm modules/<name>/src/main.c
+Build all 3 kernel modules with:
+  clang --target=aarch64-unknown-linux-gnu -c -O2 -o kernel/<name>.o kernel/<name>.asm
 
-After creating 3 WASM modules, update README:
-  - version v1245.0 → v1246.0 (all occurrences)
-  - modules 3320 → 3323 (all occurrences)
-  - Add the 3 new module names to the L3 WASM Apps architecture list
-Update CHANGELOG.md: add "## Phase 887 - v1246.0 (3323 modules, 109 kernel)" entry
+After creating 3 kernel modules, update README:
+  - version v1246.0 → v1247.0 (all occurrences)
+  - kernel modules 109 → 112 (all occurrences)
+  - Add the 3 new kernel module names to the L1 Kernel ASM architecture list
+Update CHANGELOG.md: add "## Phase OS-16 - v1247.0 (3323 modules, 112 kernel)" entry
 Set UPDATE=0
-git add modules/lantana_admin/ modules/lathyrus_admin/ modules/lavandula_admin/ README.md CHANGELOG.md promt update-state
+git add kernel/fs_journal.asm kernel/fs_quota.asm kernel/fs_compress.asm README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

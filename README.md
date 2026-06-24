@@ -1,8 +1,8 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v1245.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v1246.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
-[![Modules](https://img.shields.io/badge/modules-3320-green)]()
+[![Modules](https://img.shields.io/badge/modules-3323-green)]()
 [![Kernel](https://img.shields.io/badge/kernel-109_ASM-orange)]()
 [![AI](https://img.shields.io/badge/AI-11_vendors-purple)]()
 [![Agent](https://img.shields.io/badge/Agent-13_modules-cyan)]()
@@ -236,7 +236,8 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║      gyrostachys_admin, holarrhena_admin, houstonia_admin,               ║
 ║      hypericum_admin, ibota_admin, illicium_admin,                       ║
 ║      indigofera_admin, jacaranda_admin, justicia_admin,                  ║
-║      kniphofia_admin                                                     ║
+║      kniphofia_admin, lantana_admin, lathyrus_admin,                     ║
+║      lavandula_admin                                                     ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║  L2: WASM Runtime - Host Function Bridge (138 functions, 6,021 lines)║
 ║      host_alloc, host_ai_query, host_agent_call, WASI interface      ║

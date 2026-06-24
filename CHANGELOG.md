@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 887 - v1246.0 (3323 modules, 109 kernel)
+- Added WASM: lantana_admin (Lantana shrub verbena), lathyrus_admin (Lathyrus sweet pea), lavandula_admin (Lavandula lavender)
+- Total modules: 3320 → 3323 (aromatic ornamental shrubs, fragrant vines, essential oil herbs)
+
 ## Phase OS-15 - v1245.0 (3320 modules, 109 kernel)
 - Added kernel: mem_paging.asm, mem_swap.asm, mem_cache.asm
 - Kernel modules: 106 → 109 (virtual memory paging with TLB, swap space management, page cache with LRU eviction)
