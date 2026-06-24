@@ -1,36 +1,36 @@
-Phase 974: Goldfish Gorilla Gopher Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 975: Grouse Grub Grunt Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/goldfish_admin/src/main.c (Goldfish Ornamental Fish)
-   - Goldfish (Carassius auratus) ornamental aquarium fish management
-   - Features: body_len_cm, body_wt_g, fin_span_cm, color_idx, scale_ct, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_sp,cl_idx,sc_ct,age_yr
+1. modules/grouse_admin/src/main.c (Grouse Game Bird)
+   - Grouse (Lagopus lagopus) willow grouse game bird management
+   - Features: body_len_cm, body_wt_kg, wing_span_cm, feather_idx, brood_ct, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,fthr_idx,br_ct,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: tank, feeding, breeding, health, market
-   - Prefix: goldfish
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-2. modules/gorilla_admin/src/main.c (Gorilla Great Ape)
-   - Gorilla (Gorilla gorilla) western gorilla great ape management
-   - Features: body_len_cm, body_wt_kg, arm_span_cm, chest_cm, silverback_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,arm_sp,chst_cm,sb_idx,age_yr
-   - Pattern: follow abelia_admin pattern
    - Categories: habitat, feeding, breeding, health, market
-   - Prefix: gorilla
+   - Prefix: grouse
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/gopher_admin/src/main.c (Gopher Burrowing Rodent)
-   - Gopher (Geomys bursarius) plains pocket gopher rodent management
-   - Features: body_len_cm, body_wt_g, tail_cm, burrow_depth_cm, cheek_pouch_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,brw_dp,chk_idx,age_yr
+2. modules/grub_admin/src/main.c (Grub Insect Larva)
+   - Grub (Scarabaeidae larva) beetle larva insect management
+   - Features: body_len_cm, body_wt_g, segment_ct, curl_idx, chitin_phase, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,seg_ct,curl_idx,cht_ph,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: burrow, feeding, breeding, health, market
-   - Prefix: gopher
+   - Categories: soil, feeding, breeding, health, market
+   - Prefix: grub
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/grunt_admin/src/main.c (Grunt Fish)
+   - Grunt (Haemulidae) grunt fish perciform management
+   - Features: body_len_cm, body_wt_g, fin_ct, scale_idx, grunt_vol, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_ct,sc_idx,gr_vl,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: tank, feeding, breeding, health, market
+   - Prefix: grunt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1336.0 → v1337.0 (all occurrences)
-  - total modules 3581 → 3584 (all occurrences)
-Update CHANGELOG.md: add "## Phase 974 - v1337.0 (3584 modules, 124 kernel)" entry
+  - version v1337.0 → v1338.0 (all occurrences)
+  - total modules 3584 → 3587 (all occurrences)
+Update CHANGELOG.md: add "## Phase 975 - v1338.0 (3587 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/goldfish_admin/goldfish_admin.wasm modules/gorilla_admin/gorilla_admin.wasm modules/gopher_admin/gopher_admin.wasm modules/goldfish_admin/src/main.c modules/gorilla_admin/src/main.c modules/gopher_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/grouse_admin/grouse_admin.wasm modules/grub_admin/grub_admin.wasm modules/grunt_admin/grunt_admin.wasm modules/grouse_admin/src/main.c modules/grub_admin/src/main.c modules/grunt_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 974 - v1337.0 (3584 modules, 124 kernel)
+- Added WASM: goldfish_admin (Ornamental aquarium fish), gorilla_admin (Western gorilla great ape), gopher_admin (Plains pocket gopher rodent)
+- Total modules: 3581 → 3584 (golden ornamental fish, largest primate, burrowing rodent)
+
 ## Phase 973 - v1336.0 (3581 modules, 124 kernel)
 - Added WASM: gibbon_admin (Lar gibbon primate), ginseng_admin (Medicinal root herb), goby_admin (Small gobionid fish)
 - Total modules: 3578 → 3581 (brachiating primate, medicinal root, reef-dwelling fish)
