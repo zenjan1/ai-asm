@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 886 - v1244.0 (3320 modules, 106 kernel)
+- Added WASM: jacaranda_admin (Jacaranda flowering tree), justicia_admin (Justicia shrimp plant), kniphofia_admin (Kniphofia red hot poker)
+- Total modules: 3317 → 3320 (ornamental flowering trees, bract plants, perennial pollinator attractors)
+
 ## Phase OS-14 - v1243.0 (3317 modules, 106 kernel)
 - Added kernel: key_store.asm, pki_cert.asm, audit_log.asm
 - Kernel modules: 103 → 106 (secure key storage with generation/import/export, X.509 certificate validation with chain verification, security audit logging with ring buffer)
