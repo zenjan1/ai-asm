@@ -1,5 +1,6 @@
-/* armeria_admin: Armeria management technology administration (v1.0)
- * Armeria planning, armeria execution, armeria evaluation, accessories, marketing
+/* armeria_admin: Armeria (Thrift / Sea Pink) coastal wildflower management (v1.0)
+ * Armeria planning, planting, evaluation, division, market
+ * Features: flower ball diameter, stem height, petal color, leaf length, bloom week, salt tolerance
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} arm_t;
-typedef struct{int n_amp,n_ame,n_amv,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} arm_state_t;
-static arm_t armps[N],armss[N-2],armvss[N-4],armas[N-6],armmks[N-6]; static arm_state_t st; static int init;
+typedef struct{int id,location,ball_dia,stem_ht,petal_color,leaf_len,bloom_wk,salt_tol,active;} arm_t;
+typedef struct{int n_plan,n_exec,n_eval,n_div,n_mkt,t_ball,t_stem,t_petal,t_leaf,t_salt;} arm_state_t;
+static arm_t armps[N],armes[N-2],armvs[N-4],armdv[N-6],armms[N-6]; static arm_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(arm_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;arm_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[ARM] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int arm_init(void){if(init)return -1;st.n_amp=0;st.n_ame=0;st.n_amv=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)armps[i].active=0;for(int i=0;i<N-2;i++)armss[i].active=0;for(int i=0;i<N-4;i++)armvss[i].active=0;for(int i=0;i<N-6;i++)armas[i].active=0;for(int i=0;i<N-6;i++)armmks[i].active=0;init=1;ps("[ARM] Armeria initialized\n");return 0;}
-int arm_planning(int t,int c,int a,int b,int d,int e,int y){return add(armps,&st.n_amp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int arm_execution(int t,int c,int a,int b,int d,int e,int y){return add(armss,&st.n_ame,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int arm_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(armvss,&st.n_amv,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int arm_accessory(int t,int c,int a,int b,int d,int e,int y){return add(armas,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int arm_market(int t,int c,int a,int b,int d,int e,int y){return add(armmks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void arm_report(void){ps("[ARM] Amp: ");pi(st.n_amp);ps(" PCS=");pi(st.t_f1);ps("\nAme: ");pi(st.n_ame);ps(" PCS=");pi(st.t_f2);ps("\nAmv: ");pi(st.n_amv);ps(" PCS=");pi(st.t_f3);ps("\nAmc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void arm_state(void){ps("[ARM] Amp=");pi(st.n_amp);ps(" Ame=");pi(st.n_ame);ps(" Amv=");pi(st.n_amv);ps(" Amc=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(arm_t*a,int*cnt,int*sum,int mx,int lc,int bd,int sh,int pc,int ll,int bw,int slt){if(*cnt>=mx)return -1;arm_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->ball_dia=bd;x->stem_ht=sh;x->petal_color=pc;x->leaf_len=ll;x->bloom_wk=bw;x->salt_tol=slt;x->active=1;*sum+=bd;(*cnt)++;ps("[ARM] Armeria ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" bd=");pi(bd);ps(" sh=");pi(sh);ps(" pc=");pi(pc);ps(" ll=");pi(ll);ps(" bw=");pi(bw);ps("\n");return *cnt-1;}
+int arm_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_div=0;st.n_mkt=0;st.t_ball=0;st.t_stem=0;st.t_petal=0;st.t_leaf=0;st.t_salt=0;for(int i=0;i<N;i++)armps[i].active=0;for(int i=0;i<N-2;i++)armes[i].active=0;for(int i=0;i<N-4;i++)armvs[i].active=0;for(int i=0;i<N-6;i++)armdv[i].active=0;for(int i=0;i<N-6;i++)armms[i].active=0;init=1;ps("[ARM] Armeria initialized\n");return 0;}
+/* 1=coastal 2=rockery 3=border 4=container 5=wildflower */
+int arm_planning(int lc,int bd,int sh,int pc,int ll,int bw,int slt){return add(armps,&st.n_plan,&st.t_ball,N,lc,bd,sh,pc,ll,bw,slt);}
+int arm_execution(int lc,int bd,int sh,int pc,int ll,int bw,int slt){return add(armes,&st.n_exec,&st.t_stem,N-2,lc,bd,sh,pc,ll,bw,slt);}
+int arm_evaluation(int lc,int bd,int sh,int pc,int ll,int bw,int slt){return add(armvs,&st.n_eval,&st.t_petal,N-4,lc,bd,sh,pc,ll,bw,slt);}
+int arm_division(int lc,int bd,int sh,int pc,int ll,int bw,int slt){return add(armdv,&st.n_div,&st.t_leaf,N-6,lc,bd,sh,pc,ll,bw,slt);}
+int arm_market(int lc,int bd,int sh,int pc,int ll,int bw,int slt){return add(armms,&st.n_mkt,&st.t_salt,N-6,lc,bd,sh,pc,ll,bw,slt);}
+void arm_report(void){ps("[ARM] Plan: ");pi(st.n_plan);ps(" ball=");pi(st.t_ball);ps("\nExec: ");pi(st.n_exec);ps(" stem=");pi(st.t_stem);ps("\nEval: ");pi(st.n_eval);ps(" petal=");pi(st.t_petal);ps("\nDiv: ");pi(st.n_div);ps(" leaf=");pi(st.t_leaf);ps("\nMkt: ");pi(st.n_mkt);ps(" salt=");pi(st.t_salt);ps("\n");}
+void arm_state(void){ps("[ARM] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Div=");pi(st.n_div);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Armeria Admin Demo ===\n\n");arm_init();
-ps("Armeria planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;arm_planning(t,c,885+(i*17),874+(i*14),854+(i*10),836+(i*6),2020+(i%5));}
-ps("\nArmeria execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;arm_execution(t,c,874+(i*15),863+(i*12),845+(i*8),832+(i*5),2021+(i%4));}
-ps("\nArmeria evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;arm_evaluation(t,c,866+(i*13),855+(i*10),839+(i*7),828+(i*4),2022+(i%3));}
-ps("\nArmeria accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;arm_accessory(t,c,858+(i*11),849+(i*9),835+(i*6),825+(i*3),2023+(i%2));}
-ps("\nArmeria marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;arm_market(t,c,852+(i*9),843+(i*7),830+(i*5),822+(i*3),2024);}
+ps("=== Armeria (Thrift / Sea Pink) Admin Demo ===\n\n");arm_init();
+ps("Armeria planning (coastal layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;arm_planning(lc,8+(i*2),15+(i*3),(i%6)+1,10+(i*2),18+(i%6),6+(i%4));}
+ps("\nArmeria execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;arm_execution(lc,9+(i*2),18+(i*3),(i%6)+1,12+(i*2),20+(i%5),7+(i%3));}
+ps("\nArmeria evaluation (bloom check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;arm_evaluation(lc,10+(i*2),20+(i*2),(i%5)+2,14+(i*2),22+(i%4),8+(i%3));}
+ps("\nArmeria division...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;arm_division(lc,7+(i*2),12+(i*3),(i%4)+1,8+(i*2),16+(i%5),5+(i%4));}
+ps("\nArmeria coastal flower market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;arm_market(lc,11+(i*2),22+(i*2),(i%5)+2,16+(i*2),24+(i%3),9+(i%3));}
 ps("\n");arm_report();arm_state();ps("\n=== Demo Complete ===\n");return 0;}

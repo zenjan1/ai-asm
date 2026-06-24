@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 911 - v1275.0 (3395 modules, 124 kernel)
+- Added WASM: armeria_admin (Armeria thrift sea pink), arnica_admin (Arnica leopard's bane), aronia_admin (Aronia chokeberry)
+- Total modules: 3392 → 3395 (coastal thrift wildflower, medicinal leopard's bane, antioxidant chokeberry)
+
 ## Phase 910 - v1274.0 (3392 modules, 124 kernel)
 - Added WASM: aquilegia_admin (Aquilegia columbine), arabis_admin (Arabis rock cress), araucaria_admin (Araucaria monkey puzzle tree)
 - Total modules: 3389 → 3392 (woodland columbine, alpine rock cress, ornamental monkey puzzle tree)

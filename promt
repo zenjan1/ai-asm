@@ -1,28 +1,28 @@
-Phase 911: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 912: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/armeria_admin/src/main.c (Armeria / Thrift / Sea Pink)
-   - Armeria thrift and coastal wildflower management
-   - Features: flower ball diameter, stem height, petal color, leaf length, bloom week, salt_tol
-   - Data: 16 entries with location,ball_dia,stem_ht,petal_color,leaf_len,bloom_wk,salt_tol
+1. modules/artemisia_admin/src/main.c (Artemisia / Wormwood)
+   - Artemisia wormwood and aromatic herb management
+   - Features: stem height, leaf silver, compound content, bloom cluster, root depth, drought_tol
+   - Data: 16 entries with location,stem_ht,leaf_sv,compound_ct,bloom_cl,root_dep,drought_tl
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/arnica_admin/src/main.c (Arnica / Leopard's Bane)
-   - Arnica medicinal herb and mountain wildflower management
-   - Features: flower diameter, petal count, stem height, leaf pair, compound mg, altitude
-   - Data: 16 entries with location,flower_dia,petal_ct,stem_ht,leaf_pair,compound_mg,altitude
+2. modules/arum_admin/src/main.c (Arum / Lords and Ladies)
+   - Arum lords-and-ladies and woodland tuber management
+   - Features: spathe height, spadix length, leaf span, bloom color, berry cluster, dormancy_mo
+   - Data: 16 entries with location,spathe_ht,spadix_len,leaf_span,bloom_color,berry_cl,dorm_mo
    - Pattern: follow abelia_admin pattern
 
-3. modules/aronia_admin/src/main.c (Aronia / Chokeberry)
-   - Aronia chokeberry and fruit shrub management
-   - Features: berry cluster, fruit weight, shrub height, leaf color, antioxidant level, harvest month
-   - Data: 16 entries with location,berry_cl,fruit_wt,shrub_ht,leaf_color,antiox_lv,harv_mo
+3. modules/asarina_admin/src/main.c (Asarina / Creeping Snapdragon)
+   - Asarina creeping snapdragon and climbing vine management
+   - Features: vine length, flower count, petal color, leaf shape, climb_ht, bloom_week
+   - Data: 16 entries with location,vine_len,flower_ct,petal_color,leaf_shp,climb_ht,bloom_wk
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1274.0 → v1275.0 (all occurrences)
-  - total modules 3392 → 3395 (all occurrences)
-Update CHANGELOG.md: add "## Phase 911 - v1275.0 (3395 modules, 124 kernel)" entry
+  - version v1275.0 → v1276.0 (all occurrences)
+  - total modules 3395 → 3398 (all occurrences)
+Update CHANGELOG.md: add "## Phase 912 - v1276.0 (3398 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/armeria_admin/src/main.c modules/arnica_admin/src/main.c modules/aronia_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/artemisia_admin/src/main.c modules/arum_admin/src/main.c modules/asarina_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
