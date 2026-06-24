@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 916 - v1280.0 (3410 modules, 124 kernel)
+- Added WASM: aurinia_admin (Aurinia golden alyssum), avens_admin (Avens geum), avicennia_admin (Avicennia mangrove)
+- Total modules: 3407 → 3410 (rock garden groundcover, perennial border flower, coastal wetland mangrove)
+
 ## Phase 915 - v1279.0 (3407 modules, 124 kernel)
 - Added WASM: aucuba_admin (Aucuba Japanese laurel), augouardia_admin (Augouardia tropical legume), auricula_admin (Auricula alpine primrose)
 - Total modules: 3404 → 3407 (shade evergreen shrub, tropical ornamental tree, alpine rock garden primrose)

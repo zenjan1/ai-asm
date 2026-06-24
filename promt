@@ -1,28 +1,28 @@
-Phase 916: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 917: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/aurinia_admin/src/main.c (Aurinia / Golden Alyssum)
-   - Aurinia golden alyssum and rock garden groundcover management
-   - Features: flower cluster, petal color, stem height, leaf coverage, bloom_period, drought_tol
-   - Data: 16 entries with location,flower_cl,petal_color,stem_ht,leaf_cov,bloom_pd,drought_tl
+1. modules/azalea_admin/src/main.c (Azalea / Flowering Shrub)
+   - Azalea flowering shrub and woodland garden management
+   - Features: flower diameter, petal_count, bloom_color, leaf_length, acid_need, bloom_week
+   - Data: 16 entries with location,flower_dia,petal_ct,bloom_color,leaf_len,acid_nd,bloom_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/avens_admin/src/main.c (Avens / Geum)
-   - Avens geum and perennial border management
-   - Features: flower diameter, petal count, stem height, bloom_color, leaf_type, bloom_week
-   - Data: 16 entries with location,flower_dia,petal_ct,stem_ht,bloom_color,leaf_tp,bloom_wk
+2. modules/azolla_admin/src/main.c (Azolla / Water Fern)
+   - Azolla water fern and aquatic surface management
+   - Features: frond_size, thickness, color_green, growth_rate, nitrogen_fix, water_depth
+   - Data: 16 entries with location,frond_sz,thick,color_gr,growth_rt,n_fix,water_dp
    - Pattern: follow abelia_admin pattern
 
-3. modules/avicennia_admin/src/main.c (Avicennia / Mangrove)
-   - Avicennia mangrove and coastal wetland management
-   - Features: tree height, trunk_diameter, leaf_width, salt_tol, root_spread, tide_level
-   - Data: 16 entries with location,tree_ht,trunk_dia,leaf_wd,salt_tl,root_sp,tide_lv
+3. modules/ballota_admin/src/main.c (Ballota / Black Horehound)
+   - Ballota black horehound and herbaceous perennial management
+   - Features: flower_tube, leaf_width, stem_height, scent_str, soil_ph, bloom_week
+   - Data: 16 entries with location,flower_tb,leaf_wd,stem_ht,scent_st,soil_ph,bloom_wk
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1279.0 → v1280.0 (all occurrences)
-  - total modules 3407 → 3410 (all occurrences)
-Update CHANGELOG.md: add "## Phase 916 - v1280.0 (3410 modules, 124 kernel)" entry
+  - version v1280.0 → v1281.0 (all occurrences)
+  - total modules 3410 → 3413 (all occurrences)
+Update CHANGELOG.md: add "## Phase 917 - v1281.0 (3413 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/aurinia_admin/src/main.c modules/avens_admin/src/main.c modules/avicennia_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/azalea_admin/src/main.c modules/azolla_admin/src/main.c modules/ballota_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
