@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 873 - v1218.0 (3286 modules)
+- Added: fiebrigiella_admin, fimbristylis_admin, fischeria_admin
+
 ## Phase 872 - v1217.0 (3283 modules)
 - Added: farsetia_admin, faxonia_admin, fevillea_admin
 
