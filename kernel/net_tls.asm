@@ -111,8 +111,9 @@ net_tls_init:
     cmp     w0, #TLS_MAX_SESSIONS
     b.hs    .Ltls_find_fail
     ldr     x1, =net_tls_sessions
-    mov     x2, #128
-    mul     x2, w0, x2
+    mov     x2, x0
+    mov     x3, #128
+    mul     x2, x2, x3
     add     x1, x1, x2
     ldr     w2, [x1]            /* state */
     cmp     w2, #TLS_STATE_IDLE
@@ -164,7 +165,8 @@ net_tls_handshake_client:
 
     /* Generate client random (simplified: use counter) */
     /* In real impl: use crypto_accel for random generation */
-    mov     w4, #0x01020304
+    movz    w4, #0x0304
+    movk    w4, #0x0102, lsl #16
     str     w4, [x3, #12]
 
     /* TODO: Send ClientHello record via socket */

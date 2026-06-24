@@ -1,9 +1,9 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v1254.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v1255.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
 [![Modules](https://img.shields.io/badge/modules-3335-green)]()
-[![Kernel](https://img.shields.io/badge/kernel-121_ASM-orange)]()
+[![Kernel](https://img.shields.io/badge/kernel-124_ASM-orange)]()
 [![AI](https://img.shields.io/badge/AI-11_vendors-purple)]()
 [![Agent](https://img.shields.io/badge/Agent-13_modules-cyan)]()
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
@@ -14,7 +14,7 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 
 ### Key Innovation
 
-- **Pure AArch64 Assembly Kernel** - 121 modules with zero C code in kernel layer
+- **Pure AArch64 Assembly Kernel** - 124 modules with zero C code in kernel layer
 - **WASM-Native Application Layer** - All apps run as WebAssembly modules
 - **WASM Multi-Threading** - wasm_thread enables concurrent WASM execution on Wasm3
 - **AI Deep Integration** - 8 vendor APIs + local inference engines
@@ -246,13 +246,14 @@ AI-ASM OS is a **DIAMOND-certified** WebAssembly-native operating system written
 ║  L2: WASM Runtime - Host Function Bridge (138 functions, 6,021 lines)║
 ║      host_alloc, host_ai_query, host_agent_call, WASI interface      ║
 ╠═══════════════════════════════════════════════════════════════════════╣
-║  L1: Kernel ASM - Aarch64 Pure Assembly (121 modules)                  ║
+║  L1: Kernel ASM - Aarch64 Pure Assembly (124 modules)                  ║
 ║      memory, process, vfs, net, device, gui, jit, wasi, security     ║
 ║      fs_journal, fs_quota, fs_compress, ipc_msgq, ipc_sem, ipc_shm  ║
 ║      key_store, pki_cert, audit_log, mem_paging, mem_swap, mem_cache║
 ║      power_cpufreq, power_sleep, power_thermal                       ║
 ║      dev_usb, dev_i2c, dev_spi                                        ║
 ║      sched_rt, sched_cgroup, sched_workqueue                         ║
+║      net_ipv6, net_tls, net_quic                                     ║
 ╠═══════════════════════════════════════════════════════════════════════╣
 ║  Hardware Layer - Multi-Platform Support (5 platforms)               ║
 ║      Apple Silicon, NVIDIA Jetson, Raspberry Pi 4, Snapdragon, ARM64 ║

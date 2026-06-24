@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-20 - v1255.0 (3335 modules, 124 kernel)
+- Added kernel: net_ipv6.asm, net_tls.asm, net_quic.asm
+- Kernel modules: 121 → 124 (IPv6 protocol with NDP, TLS 1.3 encryption with session management, QUIC protocol with stream multiplexing)
+
 ## Phase 891 - v1254.0 (3335 modules, 121 kernel)
 - Added WASM: nymphaea_admin (Nymphaea water lily), ophiopogon_admin (Ophiopogon lilyturf), oxalis_admin (Oxalis wood sorrel)
 - Total modules: 3332 → 3335 (aquatic water lilies, shade-tolerant ground cover, ornamental wood sorrel)
