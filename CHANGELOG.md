@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-1 - v1224.0 (3304 modules, 67 kernel)
+- Added kernel: watchdog.asm, thermal.asm, secure_boot.asm, crypto_accel.asm, heap_profiler.asm
+- Kernel modules: 62 → 67 (hardware watchdog, thermal management, secure boot, ARM crypto extension, heap profiler)
+
 ## Phase 879 - v1224.0 (3304 modules)
 - Added: fuertesiella_admin, fumaria_admin, funkiella_admin
 
