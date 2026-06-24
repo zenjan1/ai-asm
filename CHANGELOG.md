@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-5 - v1229.0 (3307 modules, 79 kernel)
+- Added kernel: net_tls.asm, sandbox.asm, mac.asm
+- Kernel modules: 76 → 79 (TLS 1.3 secure networking, WASM sandboxing, mandatory access control)
+
 ## Phase OS-4 - v1228.0 (3307 modules, 76 kernel)
 - Added kernel: ai_vector.asm, ai_kv_cache.asm, ai_tensor.asm
 - Kernel modules: 73 → 76 (AI vector ops for embeddings, transformer KV cache, tensor operations)
