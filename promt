@@ -1,36 +1,36 @@
-Phase 973: Goblin Ginseng Goby Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 974: Goldfish Gorilla Gopher Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/gibbon_admin/src/main.c (Gibbon Primate)
-   - Gibbon (Hylobates lar) lar gibbon primate management
-   - Features: body_len_cm, body_wt_kg, arm_span_cm, swing_idx, call_vol, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,arm_sp,swg_idx,cl_vl,age_yr
+1. modules/goldfish_admin/src/main.c (Goldfish Ornamental Fish)
+   - Goldfish (Carassius auratus) ornamental aquarium fish management
+   - Features: body_len_cm, body_wt_g, fin_span_cm, color_idx, scale_ct, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_sp,cl_idx,sc_ct,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: habitat, feeding, breeding, grooming, market
-   - Prefix: gibbon
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-2. modules/ginseng_admin/src/main.c (Ginseng Medicinal Root)
-   - Ginseng (Panax ginseng) medicinal root herb management
-   - Features: root_len_cm, root_wt_g, branch_ct, ginsenoside_idx, leaf_ct, age_year
-   - Data: 16 entries with location,rt_ln,rt_wt,br_ct,gn_idx,lf_ct,age_yr
-   - Pattern: follow abelia_admin pattern
-   - Categories: soil, feeding, pruning, health, market
-   - Prefix: ginseng
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-3. modules/goby_admin/src/main.c (Goby Small Fish)
-   - Goby (Gobiidae) small gobionid fish management
-   - Features: body_len_cm, body_wt_g, fin_ct, scale_idx, color_phase, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_ct,sc_idx,cl_ph,age_yr
-   - Pattern: follow abelia_admin pattern
    - Categories: tank, feeding, breeding, health, market
-   - Prefix: goby
+   - Prefix: goldfish
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+2. modules/gorilla_admin/src/main.c (Gorilla Great Ape)
+   - Gorilla (Gorilla gorilla) western gorilla great ape management
+   - Features: body_len_cm, body_wt_kg, arm_span_cm, chest_cm, silverback_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,arm_sp,chst_cm,sb_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: habitat, feeding, breeding, health, market
+   - Prefix: gorilla
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/gopher_admin/src/main.c (Gopher Burrowing Rodent)
+   - Gopher (Geomys bursarius) plains pocket gopher rodent management
+   - Features: body_len_cm, body_wt_g, tail_cm, burrow_depth_cm, cheek_pouch_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,brw_dp,chk_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: burrow, feeding, breeding, health, market
+   - Prefix: gopher
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1335.0 → v1336.0 (all occurrences)
-  - total modules 3578 → 3581 (all occurrences)
-Update CHANGELOG.md: add "## Phase 973 - v1336.0 (3581 modules, 124 kernel)" entry
+  - version v1336.0 → v1337.0 (all occurrences)
+  - total modules 3581 → 3584 (all occurrences)
+Update CHANGELOG.md: add "## Phase 974 - v1337.0 (3584 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/gibbon_admin/gibbon_admin.wasm modules/ginseng_admin/ginseng_admin.wasm modules/goby_admin/goby_admin.wasm modules/gibbon_admin/src/main.c modules/ginseng_admin/src/main.c modules/goby_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/goldfish_admin/goldfish_admin.wasm modules/gorilla_admin/gorilla_admin.wasm modules/gopher_admin/gopher_admin.wasm modules/goldfish_admin/src/main.c modules/gorilla_admin/src/main.c modules/gopher_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

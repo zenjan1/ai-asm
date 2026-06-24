@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 973 - v1336.0 (3581 modules, 124 kernel)
+- Added WASM: gibbon_admin (Lar gibbon primate), ginseng_admin (Medicinal root herb), goby_admin (Small gobionid fish)
+- Total modules: 3578 → 3581 (brachiating primate, medicinal root, reef-dwelling fish)
+
 ## Phase 972 - v1335.0 (3578 modules, 124 kernel)
 - Added WASM: gazelle_admin (Slender antelope ungulate), gecko_admin (Tokay gecko reptile), gerbil_admin (Mongolian gerbil rodent)
 - Total modules: 3575 → 3578 (horned runner, climbing lizard, burrowing rodent)
