@@ -1,5 +1,6 @@
-/* viburnum_admin: Viburnum management technology administration (v1.0)
- * Viburnum planning, viburnum execution, viburnum evaluation, accessories, marketing
+/* viburnum_admin: Viburnum flowering shrub and ornamental berry plant management (v1.0)
+ * Viburnum planning, planting, evaluation, pruning, market
+ * Features: berry cluster count, bloom scent, autumn color, shrub height, wildlife attraction
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} vbr_t;
-typedef struct{int n_vbp,n_vbe,n_vbv,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} vbr_state_t;
-static vbr_t vbps[N],vbss[N-2],vbvss[N-4],vbas[N-6],vbmks[N-6]; static vbr_state_t st; static int init;
+typedef struct{int id,location,berry_ct,bloom_scent,autumn_col,shrub_ht,wildlife_at,prune_mo,active;} vbr_t;
+typedef struct{int n_plan,n_exec,n_eval,n_prune,n_mkt,t_berry,t_scent,t_autumn,t_shrub,t_wildlife;} vbr_state_t;
+static vbr_t vbrps[N],vbres[N-2],vbrvs[N-4],vbrpm[N-6],vbrms[N-6]; static vbr_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(vbr_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;vbr_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[VBR] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int vbr_init(void){if(init)return -1;st.n_vbp=0;st.n_vbe=0;st.n_vbv=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)vbps[i].active=0;for(int i=0;i<N-2;i++)vbss[i].active=0;for(int i=0;i<N-4;i++)vbvss[i].active=0;for(int i=0;i<N-6;i++)vbas[i].active=0;for(int i=0;i<N-6;i++)vbmks[i].active=0;init=1;ps("[VBR] Viburnum initialized\n");return 0;}
-int vbr_planning(int t,int c,int a,int b,int d,int e,int y){return add(vbps,&st.n_vbp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int vbr_execution(int t,int c,int a,int b,int d,int e,int y){return add(vbss,&st.n_vbe,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int vbr_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(vbvss,&st.n_vbv,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int vbr_accessory(int t,int c,int a,int b,int d,int e,int y){return add(vbas,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int vbr_market(int t,int c,int a,int b,int d,int e,int y){return add(vbmks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void vbr_report(void){ps("[VBR] Vbp: ");pi(st.n_vbp);ps(" PCS=");pi(st.t_f1);ps("\nVbe: ");pi(st.n_vbe);ps(" PCS=");pi(st.t_f2);ps("\nVbv: ");pi(st.n_vbv);ps(" PCS=");pi(st.t_f3);ps("\nVbc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void vbr_state(void){ps("[VBR] Vbp=");pi(st.n_vbp);ps(" Vbe=");pi(st.n_vbe);ps(" Vbv=");pi(st.n_vbv);ps(" Vbc=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(vbr_t*a,int*cnt,int*sum,int mx,int lc,int bc,int bs,int ac,int sh,int wa,int pm){if(*cnt>=mx)return -1;vbr_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->berry_ct=bc;x->bloom_scent=bs;x->autumn_col=ac;x->shrub_ht=sh;x->wildlife_at=wa;x->prune_mo=pm;x->active=1;*sum+=bc;(*cnt)++;ps("[VBR] Viburnum ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" bc=");pi(bc);ps(" bs=");pi(bs);ps(" ac=");pi(ac);ps(" sh=");pi(sh);ps(" wa=");pi(wa);ps("\n");return *cnt-1;}
+int vbr_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_prune=0;st.n_mkt=0;st.t_berry=0;st.t_scent=0;st.t_autumn=0;st.t_shrub=0;st.t_wildlife=0;for(int i=0;i<N;i++)vbrps[i].active=0;for(int i=0;i<N-2;i++)vbres[i].active=0;for(int i=0;i<N-4;i++)vbrvs[i].active=0;for(int i=0;i<N-6;i++)vbrpm[i].active=0;for(int i=0;i<N-6;i++)vbrms[i].active=0;init=1;ps("[VBR] Viburnum initialized\n");return 0;}
+/* 1=hedge 2=specimen 3=woodland_edge 4=wildlife_garden 5=foundation */
+int vbr_planning(int lc,int bc,int bs,int ac,int sh,int wa,int pm){return add(vbrps,&st.n_plan,&st.t_berry,N,lc,bc,bs,ac,sh,wa,pm);}
+int vbr_execution(int lc,int bc,int bs,int ac,int sh,int wa,int pm){return add(vbres,&st.n_exec,&st.t_scent,N-2,lc,bc,bs,ac,sh,wa,pm);}
+int vbr_evaluation(int lc,int bc,int bs,int ac,int sh,int wa,int pm){return add(vbrvs,&st.n_eval,&st.t_autumn,N-4,lc,bc,bs,ac,sh,wa,pm);}
+int vbr_pruning(int lc,int bc,int bs,int ac,int sh,int wa,int pm){return add(vbrpm,&st.n_prune,&st.t_shrub,N-6,lc,bc,bs,ac,sh,wa,pm);}
+int vbr_market(int lc,int bc,int bs,int ac,int sh,int wa,int pm){return add(vbrms,&st.n_mkt,&st.t_wildlife,N-6,lc,bc,bs,ac,sh,wa,pm);}
+void vbr_report(void){ps("[VBR] Plan: ");pi(st.n_plan);ps(" berry=");pi(st.t_berry);ps("\nExec: ");pi(st.n_exec);ps(" scent=");pi(st.t_scent);ps("\nEval: ");pi(st.n_eval);ps(" autumn=");pi(st.t_autumn);ps("\nPrune: ");pi(st.n_prune);ps(" shrub=");pi(st.t_shrub);ps("\nMkt: ");pi(st.n_mkt);ps(" wildlife=");pi(st.t_wildlife);ps("\n");}
+void vbr_state(void){ps("[VBR] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Prune=");pi(st.n_prune);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
 ps("=== Viburnum Admin Demo ===\n\n");vbr_init();
-ps("Viburnum planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;vbr_planning(t,c,808+(i*17),797+(i*14),777+(i*10),759+(i*6),2020+(i%5));}
-ps("\nViburnum execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;vbr_execution(t,c,797+(i*15),786+(i*12),768+(i*8),755+(i*5),2021+(i%4));}
-ps("\nViburnum evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;vbr_evaluation(t,c,789+(i*13),778+(i*10),764+(i*7),753+(i*4),2022+(i%3));}
-ps("\nViburnum accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;vbr_accessory(t,c,781+(i*11),772+(i*9),758+(i*6),748+(i*3),2023+(i%2));}
-ps("\nViburnum marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;vbr_market(t,c,775+(i*9),766+(i*7),753+(i*5),745+(i*3),2024);}
+ps("Viburnum planning (shrub layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;vbr_planning(lc,15+(i*4),(i%7)+1,(i%6)+1,100+(i*15),(i%5)+1,3+(i%3));}
+ps("\nViburnum execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;vbr_execution(lc,18+(i*3),(i%7)+1,(i%6)+1,110+(i*12),(i%5)+1,3+(i%3));}
+ps("\nViburnum evaluation (autumn color)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;vbr_evaluation(lc,20+(i*3),(i%6)+2,(i%6)+2,120+(i*10),(i%5)+2,4+(i%2));}
+ps("\nViburnum pruning management...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;vbr_pruning(lc,12+(i*3),(i%5)+1,(i%5)+1,90+(i*10),(i%4)+1,3+(i%3));}
+ps("\nViburnum ornamental market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;vbr_market(lc,22+(i*3),(i%7)+2,(i%6)+2,130+(i*8),(i%5)+2,4+(i%2));}
 ps("\n");vbr_report();vbr_state();ps("\n=== Demo Complete ===\n");return 0;}

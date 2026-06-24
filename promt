@@ -1,28 +1,28 @@
-Phase 900: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 901: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/veronica_admin/src/main.c (Veronica / Speedwell)
-   - Veronica speedwell flowering perennial and border plant management
-   - Features: spike height tracking, flower color, bloom duration, leaf pattern, pollinator visits
-   - Data: 16 entries with location,spike_ht,flower_color,bloom_dk,leaf_pat,pollinator_v,spread_rt
+1. modules/viola_admin/src/main.c (Viola / Violet)
+   - Viola violet spring flower and woodland groundcover management
+   - Features: petal count tracking, flower color, bloom period, leaf shape, fragrance level, seed pod count
+   - Data: 16 entries with location,petal_ct,flower_color,bloom_wk,leaf_shp,fragrance,seed_pod
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/viburnum_admin/src/main.c (Viburnum)
-   - Viburnum flowering shrub and ornamental berry plant management
-   - Features: berry cluster count, bloom scent, autumn color intensity, shrub height, wildlife attraction
-   - Data: 16 entries with location,berry_ct,bloom_scent,autumn_col,shrub_ht,wildlife_at,prune_m
+2. modules/wisteria_admin/src/main.c (Wisteria)
+   - Wisteria climbing vine and fragrant flowering creeper management
+   - Features: vine length tracking, flower cluster count, fragrance intensity, support structure, bloom timing
+   - Data: 16 entries with location,vine_len,cluster_ct,fragrance,support_type,bloom_wk,prune_ct
    - Pattern: follow abelia_admin pattern
 
-3. modules/vinca_admin/src/main.c (Vinca / Periwinkle)
-   - Vinca periwinkle groundcover and trailing vine management
-   - Features: vine length tracking, flower count, ground coverage, shade tolerance, spread control
-   - Data: 16 entries with location,vine_len,flower_ct,cover_sc,shade_tol,spread_rt,trim_m
+3. modules/yucca_admin/src/main.c (Yucca)
+   - Yucca desert succulent and architectural plant management
+   - Features: rosette diameter, flower spike height, drought tolerance, offset count, leaf rigidity
+   - Data: 16 entries with location,rosette_dia,spike_ht,drought_tol,offset_ct,leaf_rigid,flower_yr
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1263.0 → v1264.0 (all occurrences)
-  - total modules 3359 → 3362 (all occurrences)
-Update CHANGELOG.md: add "## Phase 900 - v1264.0 (3362 modules, 124 kernel)" entry
+  - version v1264.0 → v1265.0 (all occurrences)
+  - total modules 3362 → 3365 (all occurrences)
+Update CHANGELOG.md: add "## Phase 901 - v1265.0 (3365 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/veronica_admin/src/main.c modules/viburnum_admin/src/main.c modules/vinca_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/viola_admin/src/main.c modules/wisteria_admin/src/main.c modules/yucca_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

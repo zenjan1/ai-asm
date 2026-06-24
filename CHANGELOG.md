@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 900 - v1264.0 (3362 modules, 124 kernel)
+- Added WASM: veronica_admin (Veronica speedwell), viburnum_admin (Viburnum flowering shrub), vinca_admin (Vinca periwinkle)
+- Total modules: 3359 → 3362 (border speedwell perennial, ornamental berry shrub, trailing periwinkle groundcover)
+
 ## Phase 899 - v1263.0 (3359 modules, 124 kernel)
 - Added WASM: valeriana_admin (Valeriana valerian), vernonia_admin (Vernonia ironweed), verbena_admin (Verbena tea herb)
 - Total modules: 3356 → 3359 (medicinal valerian root, prairie ironweed pollinator, fragrant verbena tea)

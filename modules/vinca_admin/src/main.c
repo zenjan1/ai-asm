@@ -1,5 +1,6 @@
-/* vinca_admin: Vinca management technology administration (v1.0)
- * Vinca planning, vinca execution, vinca evaluation, accessories, marketing
+/* vinca_admin: Vinca (Periwinkle) groundcover and trailing vine management (v1.0)
+ * Vinca planning, planting, evaluation, trimming, market
+ * Features: vine length tracking, flower count, ground coverage, shade tolerance, spread control
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} vi_t;
-typedef struct{int n_vip,n_vie,n_viv,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} vi_state_t;
-static vi_t vips[N],vies[N-2],vivs[N-4],viacs[N-6],vmks[N-6]; static vi_state_t st; static int init;
+typedef struct{int id,location,vine_len,flower_ct,cover_sc,shade_tol,spread_rt,trim_mo,active;} vnc_t;
+typedef struct{int n_plan,n_exec,n_eval,n_trim,n_mkt,t_vine,t_flower,t_cover,t_shade,t_spread;} vnc_state_t;
+static vnc_t vncps[N],vnces[N-2],vncvs[N-4],vnctm[N-6],vncms[N-6]; static vnc_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(vi_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;vi_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[VNC] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int vi_init(void){if(init)return -1;st.n_vip=0;st.n_vie=0;st.n_viv=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)vips[i].active=0;for(int i=0;i<N-2;i++)vies[i].active=0;for(int i=0;i<N-4;i++)vivs[i].active=0;for(int i=0;i<N-6;i++)viacs[i].active=0;for(int i=0;i<N-6;i++)vmks[i].active=0;init=1;ps("[VNC] Vinca initialized\n");return 0;}
-int vi_planning(int t,int c,int a,int b,int d,int e,int y){return add(vips,&st.n_vip,&st.t_f1,N,t,c,a,b,d,e,y);}
-int vi_execution(int t,int c,int a,int b,int d,int e,int y){return add(vies,&st.n_vie,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int vi_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(vivs,&st.n_viv,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int vi_accessory(int t,int c,int a,int b,int d,int e,int y){return add(viacs,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int vi_market(int t,int c,int a,int b,int d,int e,int y){return add(vmks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void vi_report(void){ps("[VNC] Vip: ");pi(st.n_vip);ps(" PCS=");pi(st.t_f1);ps("\nVie: ");pi(st.n_vie);ps(" PCS=");pi(st.t_f2);ps("\nViv: ");pi(st.n_viv);ps(" PCS=");pi(st.t_f3);ps("\nVc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void vi_state(void){ps("[VNC] Vip=");pi(st.n_vip);ps(" Vie=");pi(st.n_vie);ps(" Viv=");pi(st.n_viv);ps(" Vc=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(vnc_t*a,int*cnt,int*sum,int mx,int lc,int vl,int fc,int cs,int st_tol,int sr,int tm){if(*cnt>=mx)return -1;vnc_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->vine_len=vl;x->flower_ct=fc;x->cover_sc=cs;x->shade_tol=st_tol;x->spread_rt=sr;x->trim_mo=tm;x->active=1;*sum+=vl;(*cnt)++;ps("[VNC] Vinca ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" vl=");pi(vl);ps(" fc=");pi(fc);ps(" cs=");pi(cs);ps(" st=");pi(st_tol);ps(" sr=");pi(sr);ps("\n");return *cnt-1;}
+int vnc_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_trim=0;st.n_mkt=0;st.t_vine=0;st.t_flower=0;st.t_cover=0;st.t_shade=0;st.t_spread=0;for(int i=0;i<N;i++)vncps[i].active=0;for(int i=0;i<N-2;i++)vnces[i].active=0;for(int i=0;i<N-4;i++)vncvs[i].active=0;for(int i=0;i<N-6;i++)vnctm[i].active=0;for(int i=0;i<N-6;i++)vncms[i].active=0;init=1;ps("[VNC] Vinca (periwinkle) initialized\n");return 0;}
+/* 1=groundcover 2=hanging_basket 3=under_tree 4=slope 5=shade_border */
+int vnc_planning(int lc,int vl,int fc,int cs,int st_tol,int sr,int tm){return add(vncps,&st.n_plan,&st.t_vine,N,lc,vl,fc,cs,st_tol,sr,tm);}
+int vnc_execution(int lc,int vl,int fc,int cs,int st_tol,int sr,int tm){return add(vnces,&st.n_exec,&st.t_flower,N-2,lc,vl,fc,cs,st_tol,sr,tm);}
+int vnc_evaluation(int lc,int vl,int fc,int cs,int st_tol,int sr,int tm){return add(vncvs,&st.n_eval,&st.t_cover,N-4,lc,vl,fc,cs,st_tol,sr,tm);}
+int vnc_trimming(int lc,int vl,int fc,int cs,int st_tol,int sr,int tm){return add(vnctm,&st.n_trim,&st.t_shade,N-6,lc,vl,fc,cs,st_tol,sr,tm);}
+int vnc_market(int lc,int vl,int fc,int cs,int st_tol,int sr,int tm){return add(vncms,&st.n_mkt,&st.t_spread,N-6,lc,vl,fc,cs,st_tol,sr,tm);}
+void vnc_report(void){ps("[VNC] Plan: ");pi(st.n_plan);ps(" vine=");pi(st.t_vine);ps("\nExec: ");pi(st.n_exec);ps(" flower=");pi(st.t_flower);ps("\nEval: ");pi(st.n_eval);ps(" cover=");pi(st.t_cover);ps("\nTrim: ");pi(st.n_trim);ps(" shade=");pi(st.t_shade);ps("\nMkt: ");pi(st.n_mkt);ps(" spread=");pi(st.t_spread);ps("\n");}
+void vnc_state(void){ps("[VNC] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Trim=");pi(st.n_trim);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Vinca Admin Demo ===\n\n");vi_init();
-ps("Vinca planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;vi_planning(t,c,637+(i*17),626+(i*14),606+(i*10),588+(i*6),2020+(i%5));}
-ps("\nVinca execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;vi_execution(t,c,626+(i*15),615+(i*12),597+(i*8),584+(i*5),2021+(i%4));}
-ps("\nVinca evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;vi_evaluation(t,c,618+(i*13),607+(i*10),591+(i*7),580+(i*4),2022+(i%3));}
-ps("\nVinca accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;vi_accessory(t,c,610+(i*11),601+(i*9),587+(i*6),577+(i*3),2023+(i%2));}
-ps("\nVinca marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;vi_market(t,c,604+(i*9),595+(i*7),582+(i*5),574+(i*3),2024);}
-ps("\n");vi_report();vi_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Vinca (Periwinkle) Admin Demo ===\n\n");vnc_init();
+ps("Vinca planning (groundcover layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;vnc_planning(lc,30+(i*10),5+(i*2),(i*8)+10,(i%4)+1,4+(i%3),(i%4)+1);}
+ps("\nVinca execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;vnc_execution(lc,35+(i*8),6+(i*2),(i*8)+12,(i%4)+1,5+(i%2),(i%4)+1);}
+ps("\nVinca evaluation (coverage check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;vnc_evaluation(lc,40+(i*7),7+(i*2),(i*7)+15,(i%3)+2,6+(i%2),(i%3)+2);}
+ps("\nVinca trimming management...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;vnc_trimming(lc,25+(i*8),4+(i*2),(i*6)+8,(i%4)+1,3+(i%3),(i%4)+1);}
+ps("\nVinca groundcover market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;vnc_market(lc,45+(i*6),8+(i*2),(i*8)+18,(i%3)+2,7+(i%2),(i%3)+2);}
+ps("\n");vnc_report();vnc_state();ps("\n=== Demo Complete ===\n");return 0;}

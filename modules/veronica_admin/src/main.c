@@ -1,5 +1,6 @@
-/* veronica_admin: Veronica management technology administration (v1.0)
- * Veronica planning, veronica execution, veronica evaluation, accessories, marketing
+/* veronica_admin: Veronica (Speedwell) flowering perennial and border plant management (v1.0)
+ * Veronica planning, planting, evaluation, propagation, market
+ * Features: spike height, flower color, bloom duration, leaf pattern, pollinator visits
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} vr_t;
-typedef struct{int n_vrp,n_vre,n_vrv,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} vr_state_t;
-static vr_t vrps[N],vrss[N-2],vrvss[N-4],vras[N-6],vrmks[N-6]; static vr_state_t st; static int init;
+typedef struct{int id,location,spike_ht,flower_color,bloom_dk,leaf_pat,pollinator_v,spread_rt,active;} vrn_t;
+typedef struct{int n_plan,n_exec,n_eval,n_prop,n_mkt,t_spike,t_color,t_bloom,t_leaf,t_pollinator;} vrn_state_t;
+static vrn_t vrnps[N],vrnes[N-2],vrnvs[N-4],vrnpr[N-6],vrnms[N-6]; static vrn_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(vr_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;vr_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[VRN] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int vrn_init(void){if(init)return -1;st.n_vrp=0;st.n_vre=0;st.n_vrv=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)vrps[i].active=0;for(int i=0;i<N-2;i++)vrss[i].active=0;for(int i=0;i<N-4;i++)vrvss[i].active=0;for(int i=0;i<N-6;i++)vras[i].active=0;for(int i=0;i<N-6;i++)vrmks[i].active=0;init=1;ps("[VRN] Veronica initialized\n");return 0;}
-int vrn_planning(int t,int c,int a,int b,int d,int e,int y){return add(vrps,&st.n_vrp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int vrn_execution(int t,int c,int a,int b,int d,int e,int y){return add(vrss,&st.n_vre,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int vrn_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(vrvss,&st.n_vrv,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int vrn_accessory(int t,int c,int a,int b,int d,int e,int y){return add(vras,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int vrn_market(int t,int c,int a,int b,int d,int e,int y){return add(vrmks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void vrn_report(void){ps("[VRN] Vrp: ");pi(st.n_vrp);ps(" PCS=");pi(st.t_f1);ps("\nVre: ");pi(st.n_vre);ps(" PCS=");pi(st.t_f2);ps("\nVrv: ");pi(st.n_vrv);ps(" PCS=");pi(st.t_f3);ps("\nVrc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void vrn_state(void){ps("[VRN] Vrp=");pi(st.n_vrp);ps(" Vre=");pi(st.n_vre);ps(" Vrv=");pi(st.n_vrv);ps(" Vrc=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(vrn_t*a,int*cnt,int*sum,int mx,int lc,int sh,int fc,int bd,int lp,int pv,int sr){if(*cnt>=mx)return -1;vrn_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->spike_ht=sh;x->flower_color=fc;x->bloom_dk=bd;x->leaf_pat=lp;x->pollinator_v=pv;x->spread_rt=sr;x->active=1;*sum+=sh;(*cnt)++;ps("[VRN] Veronica ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" sh=");pi(sh);ps(" fc=");pi(fc);ps(" bd=");pi(bd);ps(" lp=");pi(lp);ps(" pv=");pi(pv);ps("\n");return *cnt-1;}
+int vrn_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_prop=0;st.n_mkt=0;st.t_spike=0;st.t_color=0;st.t_bloom=0;st.t_leaf=0;st.t_pollinator=0;for(int i=0;i<N;i++)vrnps[i].active=0;for(int i=0;i<N-2;i++)vrnes[i].active=0;for(int i=0;i<N-4;i++)vrnvs[i].active=0;for(int i=0;i<N-6;i++)vrnpr[i].active=0;for(int i=0;i<N-6;i++)vrnms[i].active=0;init=1;ps("[VRN] Veronica (speedwell) initialized\n");return 0;}
+/* 1=border 2=rockery 3=cottage_garden 4=meadow 5=container */
+int vrn_planning(int lc,int sh,int fc,int bd,int lp,int pv,int sr){return add(vrnps,&st.n_plan,&st.t_spike,N,lc,sh,fc,bd,lp,pv,sr);}
+int vrn_execution(int lc,int sh,int fc,int bd,int lp,int pv,int sr){return add(vrnes,&st.n_exec,&st.t_color,N-2,lc,sh,fc,bd,lp,pv,sr);}
+int vrn_evaluation(int lc,int sh,int fc,int bd,int lp,int pv,int sr){return add(vrnvs,&st.n_eval,&st.t_bloom,N-4,lc,sh,fc,bd,lp,pv,sr);}
+int vrn_propagation(int lc,int sh,int fc,int bd,int lp,int pv,int sr){return add(vrnpr,&st.n_prop,&st.t_leaf,N-6,lc,sh,fc,bd,lp,pv,sr);}
+int vrn_market(int lc,int sh,int fc,int bd,int lp,int pv,int sr){return add(vrnms,&st.n_mkt,&st.t_pollinator,N-6,lc,sh,fc,bd,lp,pv,sr);}
+void vrn_report(void){ps("[VRN] Plan: ");pi(st.n_plan);ps(" spike=");pi(st.t_spike);ps("\nExec: ");pi(st.n_exec);ps(" color=");pi(st.t_color);ps("\nEval: ");pi(st.n_eval);ps(" bloom=");pi(st.t_bloom);ps("\nProp: ");pi(st.n_prop);ps(" leaf=");pi(st.t_leaf);ps("\nMkt: ");pi(st.n_mkt);ps(" poll=");pi(st.t_pollinator);ps("\n");}
+void vrn_state(void){ps("[VRN] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Prop=");pi(st.n_prop);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Veronica Admin Demo ===\n\n");vrn_init();
-ps("Veronica planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;vrn_planning(t,c,732+(i*17),721+(i*14),701+(i*10),683+(i*6),2020+(i%5));}
-ps("\nVeronica execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;vrn_execution(t,c,721+(i*15),710+(i*12),692+(i*8),679+(i*5),2021+(i%4));}
-ps("\nVeronica evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;vrn_evaluation(t,c,713+(i*13),702+(i*10),686+(i*7),675+(i*4),2022+(i%3));}
-ps("\nVeronica accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;vrn_accessory(t,c,705+(i*11),696+(i*9),682+(i*6),672+(i*3),2023+(i%2));}
-ps("\nVeronica marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;vrn_market(t,c,699+(i*9),690+(i*7),677+(i*5),669+(i*3),2024);}
+ps("=== Veronica (Speedwell) Admin Demo ===\n\n");vrn_init();
+ps("Veronica planning (border layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;vrn_planning(lc,30+(i*8),(i%6)+1,20+(i*5),(i%4)+1,10+(i*3),(i%3)+1);}
+ps("\nVeronica execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;vrn_execution(lc,35+(i*7),(i%6)+1,22+(i*4),(i%4)+1,12+(i*2),(i%3)+1);}
+ps("\nVeronica evaluation (bloom check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;vrn_evaluation(lc,40+(i*6),(i%5)+2,25+(i*3),(i%3)+2,14+(i*2),(i%2)+2);}
+ps("\nVeronica propagation (division)...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;vrn_propagation(lc,25+(i*6),(i%4)+1,18+(i*4),(i%4)+1,8+(i*3),(i%3)+1);}
+ps("\nVeronica perennial market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;vrn_market(lc,45+(i*5),(i%6)+2,28+(i*3),(i%3)+2,16+(i*2),(i%3)+2);}
 ps("\n");vrn_report();vrn_state();ps("\n=== Demo Complete ===\n");return 0;}
