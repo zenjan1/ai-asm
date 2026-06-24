@@ -1,31 +1,31 @@
-Phase 880: Create 3 plant-themed admin modules (alphabetically after funkiella):
+Phase 881: Create 3 plant-themed admin modules (alphabetically after gonatopus):
 
-1. fusaea_admin (prefix: fus_, base offset: 2066, tag: [FUSA])
-   - Fusaea (Baill.) Saff., Annonaceae (Kew POWO accepted, S. Tropical America)
-   - planning: 2066/2055/2035/2017
-   - execution: 2055/2044/2026/2013
-   - evaluation: 2047/2036/2020/2009
-   - accessory: 2039/2030/2016/2006
-   - market: 2033/2024/2013/2005
+1. gonocalyx_admin (prefix: gono_, base offset: 2070, tag: [GONO])
+   - Gonocalyx Planch. & Linden, Ericaceae (Kew POWO accepted, Costa Rica to Colombia, Caribbean)
+   - planning: 2070/2059/2039/2021
+   - execution: 2059/2048/2030/2017
+   - evaluation: 2051/2040/2024/2013
+   - accessory: 2043/2034/2020/2010
+   - market: 2037/2028/2017/2009
 
-2. galphimia_admin (prefix: galp_, base offset: 2067, tag: [GALP])
-   - Galphimia Cav., Malpighiaceae (Kew POWO accepted, Texas to Tropical America)
-   - planning: 2067/2056/2036/2018
-   - execution: 2056/2045/2027/2014
-   - evaluation: 2048/2037/2021/2010
-   - accessory: 2040/2031/2017/2007
-   - market: 2034/2025/2014/2006
+2. goodyera_admin (prefix: good_, base offset: 2071, tag: [GOOD])
+   - Goodyera R.Br., Orchidaceae (Kew POWO accepted, cosmopolitan, ~55 species)
+   - planning: 2071/2060/2040/2022
+   - execution: 2060/2049/2031/2018
+   - evaluation: 2052/2041/2025/2014
+   - accessory: 2044/2035/2021/2011
+   - market: 2038/2029/2018/2010
 
-3. gonatopus_admin (prefix: gon_, base offset: 2068, tag: [GON])
-   - Gonatopus Engl., Araceae (Kew POWO accepted, Kenya to S. Africa)
-   - planning: 2068/2057/2037/2019
-   - execution: 2057/2046/2028/2015
-   - evaluation: 2049/2038/2022/2011
-   - accessory: 2041/2032/2018/2008
-   - market: 2035/2026/2015/2007
+3. gratiola_admin (prefix: grat_, base offset: 2072, tag: [GRAT])
+   - Gratiola L., Plantaginaceae (Kew POWO accepted, temperate NH to S. America)
+   - planning: 2072/2061/2041/2023
+   - execution: 2061/2050/2032/2019
+   - evaluation: 2053/2042/2026/2015
+   - accessory: 2045/2036/2022/2012
+   - market: 2039/2030/2019/2011
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
 Build WASM with: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o build/XXX_admin.wasm modules/XXX_admin/src/main.c
-Update README (v1224.0->v1225.0, 3304->3307, L3: 3072->3075, 3025->3028, L3 table 2835->2838/2788->2791, L3 WASM Apps 2688->2691),
-add Phase 880 entry to CHANGELOG, find Phase 881 candidates (alphabetically after gonatopus),
+Update README (v1225.0->v1226.0, 3307->3310, L3: 3075->3078, 3028->3031, L3 table 2838->2841/2791->2794, L3 WASM Apps 2691->2694),
+add Phase 881 entry to CHANGELOG, find Phase 882 candidates (alphabetically after gratiola),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
