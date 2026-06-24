@@ -1,37 +1,40 @@
-Phase OS-10: Kernel TCP/IP Networking Stack - 3 new kernel ASM modules:
+Phase 882: Plant Biology Domain Admin Modules - 3 new WASM application modules:
 
-1. kernel/net_ip.asm (IPv4/IPv6 Packet Processing)
-   - AArch64 ASM implementation of IP layer packet handling
-   - IPv4: header parse/build, checksum, fragmentation/reassembly, routing table lookup
-   - IPv6: header parse, extension headers, flow label processing
-   - ARP: address resolution cache (64 entries), request/reply handling
-   - ICMP: echo request/reply (ping), destination unreachable, TTL exceeded
-   - Route table: 128 entries with metric, gateway, interface binding
-   - Export symbols: net_ip_init, net_ip_send, net_ip_recv, net_ip_route_add, net_ip_arp_resolve
-   - Integration: called from net.asm and net_tls.asm for IP layer services
+1. modules/gymnocarpus_admin/src/main.c (Gymnocarpus Wild Potato Administration)
+   - Base ID: 2072
+   - Manages gymnocarpus (wild potato family) plant research and conservation
+   - Features: specimen catalog (16 entries), habitat tracking (grassland/woodland/wetland), tuber morphology records, phenology monitoring (germination/flowering/fruiting/dormancy), seed bank inventory, herbarium voucher tracking, ethnobotanical uses database, conservation status (IUCN)
+   - Domain structs: gym_t (id, species, habitat, phenology_stage, tuber_count, seed_viability, voucher_id, cons_status, collection_date, active)
+   - Functions: gym_init, gym_specimen_register, gym_habitat_survey, gym_phenology_observe, gym_seed_bank, gym_voucher_catalog
+   - Exports: main (demo: specimen registration, habitat survey, phenology tracking, seed banking, voucher catalog)
+   - Pattern: follow modules/abelia_admin/src/main.c style
 
-2. kernel/net_tcp.asm (TCP Connection Management)
-   - AArch64 ASM implementation of TCP protocol
-   - Connection states: CLOSED/SYN_SENT/SYN_RCVD/ESTABLISHED/FIN_WAIT/CLOSE_WAIT/LAST_ACK/TIME_WAIT
-   - Three-way handshake: SYN, SYN-ACK, ACK processing
-   - Flow control: sliding window (64KB), congestion window (slow start, AIMD)
-   - Retransmission: RTO calculation (Jacobson algorithm), timeout queue (32 slots)
-   - Segment processing: sequence numbers, acknowledgment, checksum verification
-   - Max 64 simultaneous connections, 2048 segment reassembly buffer
-   - Export symbols: net_tcp_init, net_tcp_connect, net_tcp_listen, net_tcp_send, net_tcp_recv, net_tcp_close
-   - Integration: called from net_tls.asm for TCP transport
+2. modules/gyrostachys_admin/src/main.c (Gyrostachys Orchid Research Administration)
+   - Base ID: 2073
+   - Manages gyrostachys (orchid genus) research cultivation and taxonomy
+   - Features: taxonomic records (16 taxa), propagation protocols (flask/deflasked/potted), in-vitro culture tracking (media composition, subculture cycles), mycorrhizal symbiosis monitoring, pollination records (hand-pollination success rate), chromosome counting, DNA barcode registry, greenhouse climate logging
+   - Domain structs: gyro_t (id, taxon, prop_stage, culture_week, media_type, myco_colonized, poll_success, chrom_count, barcode_id, active)
+   - Functions: gyro_init, gyro_taxon_register, gyro_propagate, gyro_culture_monitor, gyro_mycorrhiza_check, gyro_pollinate, gyro_barcode
+   - Exports: main (demo: taxon registration, propagation pipeline, culture monitoring, mycorrhiza inoculation, pollination trials, DNA barcoding)
+   - Pattern: follow modules/abelia_admin/src/main.c style
 
-3. kernel/net_udp.asm (UDP Datagram Service)
-   - AArch64 ASM implementation of UDP protocol
-   - Connectionless datagram send/receive
-   - Port binding: 128 port slots, multicast group support (16 groups)
-   - Checksum computation and verification (with IP pseudo-header)
-   - Receive queue: 256 datagrams max, per-port queue (32 each)
-   - DNS integration: port 53 default handler for net_dns.asm calls
-   - Broadcast/multicast: 255.255.255.255 broadcast, IGMP-lite group join
-   - Export symbols: net_udp_init, net_udp_bind, net_udp_send, net_udp_recv, net_udp_join_multicast
-   - Integration: called by DNS resolver, DHCP client, NTP client
+3. modules/hedysarum_admin/src/main.c (Hedysarum Sweetvetch Administration)
+   - Base ID: 2074
+   - Manages hedysarum (sweetvetch) forage and medicinal herb production
+   - Features: field plot management (16 plots), nitrogen fixation monitoring, forage yield trials, root harvest records, swainsonine alkaloid testing (toxic vs non-toxic strains), livestock feed formulation, seed production, soil amendment tracking, drought tolerance scoring
+   - Domain structs: hed_t (id, plot, strain, growth_day, n_fix_ppm, forage_kg, root_kg, swainsonine_ppm, seed_kg, drought_score, active)
+   - Functions: hed_init, hed_plot_establish, hed_nitrogen_monitor, hed_forage_harvest, hed_root_process, hed_toxin_screen, hed_seed_collect
+   - Exports: main (demo: plot establishment, N-fixation monitoring, forage harvest, root processing, toxin screening, seed collection)
+   - Pattern: follow modules/abelia_admin/src/main.c style
 
-All modules follow existing kernel conventions (.arch armv8-a, .global exports, stp/ldp frame setup).
-After creating 3 ASM modules, update README kernel count from 91 to 94.
-Set UPDATE=0, git add kernel/*.asm + README + CHANGELOG, commit and push to origin arm-v2.
+Build all 3 modules with:
+  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o modules/<name>/<name>.wasm modules/<name>/src/main.c
+
+After creating 3 WASM modules, update README:
+  - version v1235.0 → v1236.0 (all occurrences)
+  - modules 3310 → 3313 (all occurrences)
+  - Add the 3 new module names to the L3 WASM Apps architecture list
+Update CHANGELOG.md: add "## Phase 882 - v1236.0 (3313 modules, 94 kernel)" entry
+Set UPDATE=0
+git add modules/gymnocarpus_admin/ modules/gyrostachys_admin/ modules/hedysarum_admin/ README.md CHANGELOG.md promt update-state
+Commit and push to origin arm-v2.

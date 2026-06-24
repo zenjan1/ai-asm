@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-10 - v1235.0 (3310 modules, 94 kernel)
+- Added kernel: net_ip.asm, net_tcp.asm, net_udp.asm
+- Kernel modules: 91 → 94 (IPv4/IPv6 packet processing with ARP/ICMP/routing, TCP connection management with congestion control, UDP datagram service with DNS/multicast)
+
 ## Phase 881 - v1234.0 (3310 modules, 91 kernel)
 - Added WASM: gonocalyx_admin, goodyera_admin, gratiola_admin
 - Total modules: 3307 → 3310 (ornamental plantation, jewel orchid conservation, medicinal herb administration)
