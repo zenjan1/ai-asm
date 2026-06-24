@@ -1,26 +1,37 @@
-Phase 881: Plant Domain Admin Modules - 3 new WASM application modules:
+Phase OS-10: Kernel TCP/IP Networking Stack - 3 new kernel ASM modules:
 
-1. src/gonocalyx_admin/main.c (Gonocalyx Plantation Administration)
-   - Base module ID: 2069
-   - Manages gonocalyx (ornamental plant) plantation operations
-   - Features: crop inventory tracking, growth stage monitoring, soil/moisture sensor integration, pest detection, harvest scheduling, market pricing
-   - Exports: main, get_module_id, get_module_name
-   - Integration: calls AI inference for disease detection, uses sensor data for irrigation control
+1. kernel/net_ip.asm (IPv4/IPv6 Packet Processing)
+   - AArch64 ASM implementation of IP layer packet handling
+   - IPv4: header parse/build, checksum, fragmentation/reassembly, routing table lookup
+   - IPv6: header parse, extension headers, flow label processing
+   - ARP: address resolution cache (64 entries), request/reply handling
+   - ICMP: echo request/reply (ping), destination unreachable, TTL exceeded
+   - Route table: 128 entries with metric, gateway, interface binding
+   - Export symbols: net_ip_init, net_ip_send, net_ip_recv, net_ip_route_add, net_ip_arp_resolve
+   - Integration: called from net.asm and net_tls.asm for IP layer services
 
-2. src/goodyera_admin/main.c (Goodyera Jewel Orchid Administration)
-   - Base module ID: 2070
-   - Manages goodyera (jewel orchid) cultivation and conservation
-   - Features: species catalog, propagation tracking (seedling/micropropagation), humidity/temperature monitoring, shade management, medicinal compound tracking, export compliance
-   - Exports: main, get_module_id, get_module_name
-   - Integration: calls AI for growth optimization, uses kernel scheduling for monitoring cycles
+2. kernel/net_tcp.asm (TCP Connection Management)
+   - AArch64 ASM implementation of TCP protocol
+   - Connection states: CLOSED/SYN_SENT/SYN_RCVD/ESTABLISHED/FIN_WAIT/CLOSE_WAIT/LAST_ACK/TIME_WAIT
+   - Three-way handshake: SYN, SYN-ACK, ACK processing
+   - Flow control: sliding window (64KB), congestion window (slow start, AIMD)
+   - Retransmission: RTO calculation (Jacobson algorithm), timeout queue (32 slots)
+   - Segment processing: sequence numbers, acknowledgment, checksum verification
+   - Max 64 simultaneous connections, 2048 segment reassembly buffer
+   - Export symbols: net_tcp_init, net_tcp_connect, net_tcp_listen, net_tcp_send, net_tcp_recv, net_tcp_close
+   - Integration: called from net_tls.asm for TCP transport
 
-3. src/gratiola_admin/main.c (Gratiola Medicine Administration)
-   - Base module ID: 2071
-   - Manages gratiola (hedge hyssop) medicinal herb production
-   - Features: batch cultivation records, alkaloid content tracking, harvest timing, drying/curing inventory, pharmaceutical supply chain, regulatory documentation
-   - Exports: main, get_module_id, get_module_name
-   - Integration: calls AI for quality prediction, uses kernel networking for supplier APIs
+3. kernel/net_udp.asm (UDP Datagram Service)
+   - AArch64 ASM implementation of UDP protocol
+   - Connectionless datagram send/receive
+   - Port binding: 128 port slots, multicast group support (16 groups)
+   - Checksum computation and verification (with IP pseudo-header)
+   - Receive queue: 256 datagrams max, per-port queue (32 each)
+   - DNS integration: port 53 default handler for net_dns.asm calls
+   - Broadcast/multicast: 255.255.255.255 broadcast, IGMP-lite group join
+   - Export symbols: net_udp_init, net_udp_bind, net_udp_send, net_udp_recv, net_udp_join_multicast
+   - Integration: called by DNS resolver, DHCP client, NTP client
 
-All modules follow existing WASM conventions (clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main).
-After creating 3 WASM modules, update README module count from 3307 to 3310, version from v1233.0 to v1234.0.
-Set UPDATE=0, git add src/gonocalyx_admin/main.c src/goodyera_admin/main.c src/gratiola_admin/main.c + README + CHANGELOG, commit and push to origin arm-v2.
+All modules follow existing kernel conventions (.arch armv8-a, .global exports, stp/ldp frame setup).
+After creating 3 ASM modules, update README kernel count from 91 to 94.
+Set UPDATE=0, git add kernel/*.asm + README + CHANGELOG, commit and push to origin arm-v2.
