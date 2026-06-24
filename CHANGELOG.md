@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-18 - v1251.0 (3329 modules, 118 kernel)
+- Added kernel: dev_usb.asm, dev_i2c.asm, dev_spi.asm
+- Kernel modules: 115 → 118 (USB device management with enumeration and transfers, I2C bus controller with address scanning, SPI bus master with CPOL/CPHA configuration)
+
 ## Phase 889 - v1250.0 (3329 modules, 115 kernel)
 - Added WASM: monarda_admin (Monarda bee balm), myrica_admin (Myrica bayberry), nandina_admin (Nandina heavenly bamboo)
 - Total modules: 3326 → 3329 (pollinator habitat plants, wax-bearing shrubs, ornamental bamboo)

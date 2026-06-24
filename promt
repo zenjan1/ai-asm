@@ -1,40 +1,31 @@
-Phase OS-18: Kernel Device Driver Enhancements - 3 new AArch64 assembly kernel modules:
+Phase 890: 3 new WASM plant modules following abelia_admin pattern:
 
-1. kernel/dev_usb.asm (USB Device Management)
-   - Base ID: 916
-   - USB device enumeration, configuration, and data transfer management
-   - Features: USB device enumeration, endpoint configuration, bulk/interrupt/control transfers, device descriptor parsing, power management, USB hub support
-   - Data structures: usb_device_t (dev_addr, vendor_id, product_id, num_endpoints, speed, state), usb_endpoint_t (ep_addr, ep_type, max_packet, direction)
-   - API: dev_usb_init, dev_usb_enumerate, dev_usb_get_device(index), dev_usb_config_ep(dev_addr, ep), dev_usb_bulk_transfer(dev_addr, ep, buf, len), dev_usb_control_transfer(dev_addr, request, value, buf, len), dev_usb_disconnect(dev_addr)
-   - Capacity: 32 USB devices, 128 endpoints, 4 transfer types (control, bulk, interrupt, isochronous)
-   - Pattern: follow kernel/memory.asm style (stp/ldp frame, .global exports, .bss for state)
+1. modules/nerium_admin/src/main.c (Nerium oleander)
+   - Nerium oleander (oleander) cultivation
+   - Features: ornamental flowering, drought resistance, toxic compound monitoring, medicinal cardiac glycosides, hedge/landscape use
+   - Host imports: ps, pi, pe, pf, pd, gt helpers
+   - 16 nerium entries with Latin names and cultivation data
 
-2. kernel/dev_i2c.asm (I2C Bus Controller)
-   - Base ID: 917
-   - I2C (Inter-Integrated Circuit) bus master/slave communication
-   - Features: I2C bus initialization, master transmit/receive, clock speed configuration (100kHz/400kHz/3.4MHz), address scanning, multi-byte transfers, ACK/NACK handling
-   - Data structures: i2c_bus_t (bus_id, speed_hz, num_devices, error_count), i2c_transfer_t (addr, buf, len, direction, status)
-   - API: dev_i2c_init(bus_id, speed_hz), dev_i2c_write(bus_id, addr, buf, len), dev_i2c_read(bus_id, addr, buf, len), dev_i2c_write_reg(bus_id, addr, reg, val), dev_i2c_read_reg(bus_id, addr, reg), dev_i2c_scan(bus_id, out_devices), dev_i2c_stats(bus_id, out_stats)
-   - Capacity: 4 I2C buses, 128 devices per bus, 3 speed modes
-   - Pattern: follow kernel/memory.asm style
+2. modules/nigella_admin/src/main.c (Nigella love-in-a-mist)
+   - Nigella sativa (black cumin) and nigella damascena (love-in-a-mist) cultivation
+   - Features: black seed oil extraction, ornamental seed pods, spice production, traditional medicine, pollinator attraction
+   - Host imports: ps, pi, pe, pf, pd, gt helpers
+   - 16 nigella entries with Latin names and seed production data
 
-3. kernel/dev_spi.asm (SPI Bus Controller)
-   - Base ID: 918
-   - SPI (Serial Peripheral Interface) bus master communication
-   - Features: SPI bus initialization, full-duplex transfer, clock polarity/phase (CPOL/CPHA) configuration, chip select management, DMA-ready transfers, multiple slave devices
-   - Data structures: spi_bus_t (bus_id, speed_hz, cpol, cpha, num_slaves), spi_transfer_t (cs_line, tx_buf, rx_buf, len, status)
-   - API: dev_spi_init(bus_id, speed_hz, cpol, cpha), dev_spi_transfer(bus_id, cs, tx_buf, rx_buf, len), dev_spi_write(bus_id, cs, buf, len), dev_spi_read(bus_id, cs, buf, len), dev_spi_set_cs(bus_id, cs, active), dev_spi_stats(bus_id, out_stats)
-   - Capacity: 4 SPI buses, 8 chip select lines per bus, 4 clock modes
-   - Pattern: follow kernel/memory.asm style
+3. modules/nolana_admin/src/main.c (Nolana Chilean bellflower)
+   - Nolana paradoxa (Chilean bellflower) cultivation
+   - Features: coastal garden use, salt tolerance, succulent leaves, bell-shaped flowers, ground cover applications
+   - Host imports: ps, pi, pe, pf, pd, gt helpers
+   - 16 nolana entries with Latin names and landscaping data
 
-Build all 3 kernel modules with:
-  clang --target=aarch64-unknown-linux-gnu -c -O2 -o kernel/<name>.o kernel/<name>.asm
+Build all 3 WASM modules with:
+  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export-all -o modules/<name>/<name>.wasm modules/<name>/src/main.c
 
-After creating 3 kernel modules, update README:
-  - version v1250.0 → v1251.0 (all occurrences)
-  - kernel modules 115 → 118 (all occurrences)
-  - Add the 3 new kernel module names to the L1 Kernel ASM architecture list
-Update CHANGELOG.md: add "## Phase OS-18 - v1251.0 (3329 modules, 118 kernel)" entry
+After creating 3 WASM modules, update README:
+  - version v1251.0 → v1252.0 (all occurrences)
+  - total modules 3329 → 3332 (all occurrences)
+  - Add the 3 new module names to the L3 WASM Apps list
+Update CHANGELOG.md: add "## Phase 890 - v1252.0 (3332 modules, 118 kernel)" entry
 Set UPDATE=0
-git add kernel/dev_usb.asm kernel/dev_i2c.asm kernel/dev_spi.asm README.md CHANGELOG.md promt update-state
+git add modules/nerium_admin modules/nigella_admin modules/nolana_admin README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
