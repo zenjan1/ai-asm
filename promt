@@ -1,36 +1,36 @@
-Phase 935: Marine & Aquatic Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 936: Bird & Avian Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/brackish_admin/src/main.c (Brackish Water Estuary)
-   - Brackish water estuary ecosystem management
-   - Features: salinity_ppt, tide_m, turbidity_ntu, mangrove_pct, fish_species, bird_count
-   - Data: 16 entries with location,sal_ppt,tide_m,turb_ntu,mang_pct,fish_sp,bird_ct
+1. modules/budgie_admin/src/main.c (Budgerigar Aviary Management)
+   - Budgerigar (Melopsittacus undulatus) aviary management
+   - Features: flock_size, cage_vol_l, seed_gm, plumage_color, song_freq_hz, molt_week
+   - Data: 16 entries with location,flock_sz,cage_vol,seed_gm,plum_col,song_hz,molt_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: tidal, estuary, conservation, monitoring, market
-   - Prefix: brack
+   - Categories: breeding, feeding, health, training, market
+   - Prefix: budg
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/brush_admin/src/main.c (Brush LandClearing Management)
-   - Brush and vegetation clearing for land management
-   - Features: density_pct, height_cm, species_type, coverage_acres, moisture_pct, regrowth_rate
-   - Data: 16 entries with location,dens_pct,ht_cm,spc_tp,cov_ac,moist_pct,rgrow_rt
+2. modules/buffalo_admin/src/main.c (Buffalo Herd Management)
+   - Buffalo (Bison bison) herd and ranch management
+   - Features: herd_count, avg_weight_kg, grazing_acres, milk_yield_l, hide_quality, round_season
+   - Data: 16 entries with location,herd_ct,avg_wt,graze_ac,milk_yd,hide_qual,rnd_sn
    - Pattern: follow abelia_admin pattern
-   - Categories: clearing, mulching, herbicide, restoration, market
-   - Prefix: brush
+   - Categories: grazing, breeding, veterinary, roundup, market
+   - Prefix: buff
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/buck_admin/src/main.c (Buck Deer Population Management)
-   - Buck deer population and wildlife habitat management
-   - Features: antler_pts, weight_kg, herd_size, territory_acres, age_yr, rut_season
-   - Data: 16 entries with location,antl_pt,wght_kg,herd_sz,terr_ac,age_yr,rut_sn
+3. modules/bulrush_admin/src/main.c (Bulrush Wetland Plant)
+   - Bulrush (Schoenoplectus) wetland plant management
+   - Features: stem_ht_cm, density_pct, water_depth_cm, flower_head_cm, root_spread, harvest_week
+   - Data: 16 entries with location,stm_ht,dens_pct,wtr_dp,flr_hd,root_sp,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: population, habitat, hunting, census, market
-   - Prefix: buck
+   - Categories: propagation, habitat, weaving, conservation, market
+   - Prefix: bulr
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1297.0 → v1298.0 (all occurrences)
-  - total modules 3464 → 3467 (all occurrences)
-Update CHANGELOG.md: add "## Phase 935 - v1298.0 (3467 modules, 124 kernel)" entry
+  - version v1298.0 → v1299.0 (all occurrences)
+  - total modules 3467 → 3470 (all occurrences)
+Update CHANGELOG.md: add "## Phase 936 - v1299.0 (3470 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/brackish_admin/brackish_admin.wasm modules/brush_admin/brush_admin.wasm modules/buck_admin/buck_admin.wasm modules/brackish_admin/src/main.c modules/brush_admin/src/main.c modules/buck_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/budgie_admin/budgie_admin.wasm modules/buffalo_admin/buffalo_admin.wasm modules/bulrush_admin/bulrush_admin.wasm modules/budgie_admin/src/main.c modules/buffalo_admin/src/main.c modules/bulrush_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

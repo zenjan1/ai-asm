@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 935 - v1298.0 (3467 modules, 124 kernel)
+- Added WASM: brackish_admin (Brackish water estuary), brush_admin (Brush vegetation clearing), buck_admin (Buck deer population)
+- Total modules: 3464 → 3467 (estuary ecosystem, land clearing, wildlife management)
+
 ## Phase 934 - v1297.0 (3464 modules, 124 kernel)
 - Added WASM: borehole_admin (Borehole water well), botanical_admin (Botanical garden collection), boulder_admin (Boulder landscape rock)
 - Total modules: 3461 → 3464 (groundwater well, plant collection exhibit, geological landscape)
