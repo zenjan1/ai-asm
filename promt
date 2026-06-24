@@ -1,28 +1,28 @@
-Phase 897: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 898: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/tulip_admin/src/main.c (Tulip / Tulipa)
-   - Tulip bulb flower cultivation and hybrid development
-   - Features: cultivar tracking, bloom timing, bulb multiplication rate, forcing schedule, color classification
-   - Data: 16 entries with cultivar, bloom_week, bulb_ct, height_cm, color_class, forcing_days
+1. modules/typha_admin/src/main.c (Typha / Cattail)
+   - Typha cattail wetland grass management and riparian zone control
+   - Features: stem density tracking, water depth tolerance, cattail spread rate, rhizome expansion, habitat score
+   - Data: 16 entries with location, stem_den, water_dep, spread_rt, rhizome_len, habitat_sc, control_m
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/turmeric_admin/src/main.c (Turmeric / Curcuma longa)
-   - Turmeric spice and medicinal rhizome management
-   - Features: curcumin content tracking, rhizome yield, harvest timing, processing method, grade classification
-   - Data: 16 entries with variety, curcumin_pct, yield_kg, harvest_month, process_type, grade
+2. modules/urtica_admin/src/main.c (Urtica / Nettle)
+   - Urtica dioica stinging nettle medicinal herb and fiber plant management
+   - Features: sting potency tracking, leaf yield, medicinal compound monitoring, fiber quality, growth density
+   - Data: 16 entries with location, sting_pot, leaf_yield, compound_mg, fiber_q, density, harvest_wk
    - Pattern: follow abelia_admin pattern
 
-3. modules/tussilago_admin/src/main.c (Tussilago / Coltsfoot)
-   - Tussilago farfara coltsfoot medicinal herb and early spring wildflower
-   - Features: flower timing tracking, leaf emergence, medicinal compound monitoring, habitat management, spread control
-   - Data: 16 entries with location, flower_week, leaf_area, compound_mg, habitat_type, spread_rate
+3. modules/uvularia_admin/src/main.c (Uvularia / Bellwort)
+   - Uvularia bellwort spring woodland wildflower and shade garden plant
+   - Features: bloom timing, petal count, shade tolerance, root depth, woodland coverage, pollinator visits
+   - Data: 16 entries with location, bloom_wk, petal_ct, shade_tol, root_dep, cover_sc, pollinator_v
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1260.0 → v1261.0 (all occurrences)
-  - total modules 3350 → 3353 (all occurrences)
-Update CHANGELOG.md: add "## Phase 897 - v1261.0 (3353 modules, 124 kernel)" entry
+  - version v1261.0 → v1262.0 (all occurrences)
+  - total modules 3353 → 3356 (all occurrences)
+Update CHANGELOG.md: add "## Phase 898 - v1262.0 (3356 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/tulip_admin/src/main.c modules/turmeric_admin/src/main.c modules/tussilago_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/typha_admin/src/main.c modules/urtica_admin/src/main.c modules/uvularia_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

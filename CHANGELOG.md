@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 897 - v1261.0 (3353 modules, 124 kernel)
+- Added WASM: tulip_admin (Tulipa bulb flower), turmeric_admin (Curcuma longa spice rhizome), tussilago_admin (Tussilago coltsfoot herb)
+- Total modules: 3350 → 3353 (tulip bulb cultivation, turmeric curcumin tracking, coltsfoot medicinal herb)
+
 ## Phase 896 - v1260.0 (3350 modules, 124 kernel)
 - Added WASM: tilia_admin (Tilia linden tree), trillium_admin (Trillium wake-robin), tropaeolum_admin (Tropaeolum nasturtium)
 - Total modules: 3347 → 3350 (honey-producing linden, woodland wildflower conservation, edible flower nasturtium)

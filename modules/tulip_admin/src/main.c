@@ -1,5 +1,6 @@
-/* tulip_admin: Tulip management technology administration (v1.0)
- * Tulip planning, tulip execution, tulip evaluation, accessories, marketing
+/* tulip_admin: Tulip (Tulipa) bulb flower cultivation and hybrid development (v1.0)
+ * Tulip planning, execution, evaluation, bulb propagation, flower market
+ * Features: cultivar tracking, bloom timing, bulb multiplication, forcing, color classification
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} tuli_t;
-typedef struct{int n_planning,n_execution,n_evaluation,n_accessory,n_market,t_f1,t_f2,t_f3,t_f4,t_f5;} tuli_state_t;
-static tuli_t tulip[N],tulix[N-2],tuli2[N-4],tuliac[N-6],tulim[N-6]; static tuli_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
-static int add(tuli_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;tuli_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[TULI] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int tuli_init(void){if(init)return -1;st.n_planning=0;st.n_execution=0;st.n_evaluation=0;st.n_accessory=0;st.n_market=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)tulip[i].active=0;for(int i=0;i<N-2;i++)tulix[i].active=0;for(int i=0;i<N-4;i++)tuli2[i].active=0;for(int i=0;i<N-6;i++)tuliac[i].active=0;for(int i=0;i<N-6;i++)tulim[i].active=0;init=1;ps("[TULI] Tulip initialized\n");return 0;}
-int tuli_planning(int t,int c,int a,int b,int d,int e,int y){return add(tulip,&st.n_planning,&st.t_f1,N,t,c,a,b,d,e,y);}
-int tuli_execution(int t,int c,int a,int b,int d,int e,int y){return add(tulix,&st.n_execution,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int tuli_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(tuli2,&st.n_evaluation,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int tuli_accessory(int t,int c,int a,int b,int d,int e,int y){return add(tuliac,&st.n_accessory,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int tuli_market(int t,int c,int a,int b,int d,int e,int y){return add(tulim,&st.n_market,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void tuli_report(void){ps("[TULI] Planning: ");pi(st.n_planning);ps(" PCS=");pi(st.t_f1);ps("\nExecution: ");pi(st.n_execution);ps(" PCS=");pi(st.t_f2);ps("\nEvaluation: ");pi(st.n_evaluation);ps(" PCS=");pi(st.t_f3);ps("\nAccessory: ");pi(st.n_accessory);ps(" PCS=");pi(st.t_f4);ps("\nMarket: ");pi(st.n_market);ps(" USD=");pi(st.t_f5);ps("\n");}
-void tuli_state(void){ps("[TULI] P=");pi(st.n_planning);ps(" E=");pi(st.n_execution);ps(" V=");pi(st.n_evaluation);ps(" A=");pi(st.n_accessory);ps(" M=");pi(st.n_market);ps("\n");}
+typedef struct{int id,cultivar,bloom_wk,bulb_ct,ht_cm,color_cl,force_d,grade,active;} tul_t;
+typedef struct{int n_plan,n_exec,n_eval,n_bulb,n_mkt,t_bloom,t_bulb_s,t_ht,t_color,t_force;} tul_state_t;
+static tul_t tulps[N],tules[N-2],tulvs[N-4],tulbs[N-6],tulms[N-6]; static tul_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(tul_t*a,int*cnt,int*sum,int mx,int cv,int bw,int bc,int ht,int cl,int fd,int gr){if(*cnt>=mx)return -1;tul_t*x=&a[*cnt];x->id=*cnt;x->cultivar=cv;x->bloom_wk=bw;x->bulb_ct=bc;x->ht_cm=ht;x->color_cl=cl;x->force_d=fd;x->grade=gr;x->active=1;*sum+=bw;(*cnt)++;ps("[TUL] Tulip ");pi(*cnt-1);ps(" cv=");pi(cv);ps(" bw=");pi(bw);ps(" bc=");pi(bc);ps(" ht=");pi(ht);ps(" cl=");pi(cl);ps("\n");return *cnt-1;}
+int tul_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_bulb=0;st.n_mkt=0;st.t_bloom=0;st.t_bulb_s=0;st.t_ht=0;st.t_color=0;st.t_force=0;for(int i=0;i<N;i++)tulps[i].active=0;for(int i=0;i<N-2;i++)tules[i].active=0;for(int i=0;i<N-4;i++)tulvs[i].active=0;for(int i=0;i<N-6;i++)tulbs[i].active=0;for(int i=0;i<N-6;i++)tulms[i].active=0;init=1;ps("[TUL] Tulip (bulb flower) initialized\n");return 0;}
+/* 1=Single Early 2=Double Early 3=Triumph 4=Darwin 5=Parrot */
+int tul_planning(int cv,int bw,int bc,int ht,int cl,int fd,int gr){return add(tulps,&st.n_plan,&st.t_bloom,N,cv,bw,bc,ht,cl,fd,gr);}
+int tul_execution(int cv,int bw,int bc,int ht,int cl,int fd,int gr){return add(tules,&st.n_exec,&st.t_bulb_s,N-2,cv,bw,bc,ht,cl,fd,gr);}
+int tul_evaluation(int cv,int bw,int bc,int ht,int cl,int fd,int gr){return add(tulvs,&st.n_eval,&st.t_ht,N-4,cv,bw,bc,ht,cl,fd,gr);}
+int tul_bulb(int cv,int bw,int bc,int ht,int cl,int fd,int gr){return add(tulbs,&st.n_bulb,&st.t_color,N-6,cv,bw,bc,ht,cl,fd,gr);}
+int tul_market(int cv,int bw,int bc,int ht,int cl,int fd,int gr){return add(tulms,&st.n_mkt,&st.t_force,N-6,cv,bw,bc,ht,cl,fd,gr);}
+void tul_report(void){ps("[TUL] Plan: ");pi(st.n_plan);ps(" bloom=");pi(st.t_bloom);ps("\nExec: ");pi(st.n_exec);ps(" bulb=");pi(st.t_bulb_s);ps("\nEval: ");pi(st.n_eval);ps(" ht=");pi(st.t_ht);ps("\nBulb: ");pi(st.n_bulb);ps(" color=");pi(st.t_color);ps("\nMkt: ");pi(st.n_mkt);ps(" force=");pi(st.t_force);ps("\n");}
+void tul_state(void){ps("[TUL] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Bulb=");pi(st.n_bulb);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Tulip Admin Demo ===\n\n");tuli_init();
-ps("Tulip planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;tuli_planning(t,c,1691+(i*17),1680+(i*14),1660+(i*10),1642+(i*6),2020+(i%5));}
-ps("\nTulip execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;tuli_execution(t,c,1680+(i*15),1669+(i*12),1651+(i*8),1638+(i*5),2021+(i%4));}
-ps("\nTulip evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;tuli_evaluation(t,c,1672+(i*13),1661+(i*10),1645+(i*7),1634+(i*4),2022+(i%3));}
-ps("\nTulip accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;tuli_accessory(t,c,1664+(i*11),1655+(i*9),1641+(i*6),1631+(i*3),2023+(i%2));}
-ps("\nTulip marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;tuli_market(t,c,1658+(i*9),1649+(i*7),1636+(i*5),1628+(i*3),2024);}
-ps("\n");tuli_report();tuli_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Tulip (Bulb Flower) Admin Demo ===\n\n");tul_init();
+ps("Tulip planning (bed layout)...\n");
+for(int i=0;i<N;i++){int cv=(i%5)+1;tul_planning(cv,10+(i%8),3+(i%4),30+(i*5),(i%7)+1,60+(i*5),(i%3)+1);}
+ps("\nTulip execution (planting)...\n");
+for(int i=0;i<N-2;i++){int cv=(i%4)+2;tul_execution(cv,12+(i%7),4+(i%3),35+(i*4),(i%6)+1,65+(i*4),(i%3)+1);}
+ps("\nTulip evaluation (bloom check)...\n");
+for(int i=0;i<N-4;i++){int cv=(i%3)+1;tul_evaluation(cv,14+(i%6),5+(i%3),40+(i*3),(i%5)+2,70+(i*3),(i%2)+2);}
+ps("\nTulip bulb propagation...\n");
+for(int i=0;i<N-6;i++){int cv=(i%5)+1;tul_bulb(cv,8+(i%5),2+(i%3),25+(i*4),(i%4)+1,50+(i*5),1);}
+ps("\nTulip flower market...\n");
+for(int i=0;i<N-6;i++){int cv=(i%4)+1;tul_market(cv,16+(i%5),6+(i%2),45+(i*3),(i%5)+2,75+(i*3),(i%3)+1);}
+ps("\n");tul_report();tul_state();ps("\n=== Demo Complete ===\n");return 0;}
