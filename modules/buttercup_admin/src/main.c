@@ -1,5 +1,6 @@
-/* buttercup_admin: Buttercup management technology administration (v1.0)
- * Buttercup planning, buttercup execution, buttercup evaluation, accessories, marketing
+/* buttercup_admin: Buttercup (Ranunculus) meadow flower management (v1.0)
+ * Buttercup meadow, propagation, pest control, display, market
+ * Features: petal count, bloom diameter, stem height, tuber count, seed count, bloom week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,25 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} but_t;
-typedef struct{int n_bup,n_bue,n_buv,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} but_state_t;
-static but_t bups[N],bues[N-2],buvs[N-4],acs[N-6],mks[N-6]; static but_state_t st; static int init;
+typedef struct{int id,location,petal_ct,bloom_dia,stm_ht,tuber_ct,seed_ct,bloom_wk,active;} butc_t;
+typedef struct{int n_mead,n_prop,n_pest,n_disp,n_mkt,t_petal,t_bloom,t_stm,t_tuber,t_seed;} butc_state_t;
+static butc_t butcps[N],butcpr[N-2],butcpe[N-4],butcds[N-6],butcms[N-6]; static butc_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(but_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;but_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[BUT] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int but_init(void){if(init)return -1;st.n_bup=0;st.n_bue=0;st.n_buv=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)bups[i].active=0;for(int i=0;i<N-2;i++)bues[i].active=0;for(int i=0;i<N-4;i++)buvs[i].active=0;for(int i=0;i<N-6;i++)acs[i].active=0;for(int i=0;i<N-6;i++)mks[i].active=0;init=1;ps("[BUT] Buttercup initialized\n");return 0;}
-int but_planning(int t,int c,int a,int b,int d,int e,int y){return add(bups,&st.n_bup,&st.t_f1,N,t,c,a,b,d,e,y);}
-int but_execution(int t,int c,int a,int b,int d,int e,int y){return add(bues,&st.n_bue,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int but_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(buvs,&st.n_buv,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int but_accessory(int t,int c,int a,int b,int d,int e,int y){return add(acs,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int but_market(int t,int c,int a,int b,int d,int e,int y){return add(mks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void but_report(void){ps("[BUT] Bup: ");pi(st.n_bup);ps(" PCS=");pi(st.t_f1);ps("\nBue: ");pi(st.n_bue);ps(" PCS=");pi(st.t_f2);ps("\nBuv: ");pi(st.n_buv);ps(" PCS=");pi(st.t_f3);ps("\nAc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void but_state(void){ps("[BUT] Bup=");pi(st.n_bup);ps(" Bue=");pi(st.n_bue);ps(" Buv=");pi(st.n_buv);ps(" Ac=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(butc_t*a,int*cnt,int*sum,int mx,int lc,int pc,int bd,int sh,int tc,int sc,int bw){if(*cnt>=mx)return -1;butc_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->petal_ct=pc;x->bloom_dia=bd;x->stm_ht=sh;x->tuber_ct=tc;x->seed_ct=sc;x->bloom_wk=bw;x->active=1;*sum+=pc;(*cnt)++;ps("[BUTC] Buttercup ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" pc=");pi(pc);ps(" bd=");pi(bd);ps(" sh=");pi(sh);ps(" tc=");pi(tc);ps(" sc=");pi(sc);ps(" bw=");pi(bw);ps("\n");return *cnt-1;}
+int butc_init(void){if(init)return -1;st.n_mead=0;st.n_prop=0;st.n_pest=0;st.n_disp=0;st.n_mkt=0;st.t_petal=0;st.t_bloom=0;st.t_stm=0;st.t_tuber=0;st.t_seed=0;for(int i=0;i<N;i++)butcps[i].active=0;for(int i=0;i<N-2;i++)butcpr[i].active=0;for(int i=0;i<N-4;i++)butcpe[i].active=0;for(int i=0;i<N-6;i++)butcds[i].active=0;for(int i=0;i<N-6;i++)butcms[i].active=0;init=1;ps("[BUTC] Buttercup initialized\n");return 0;}
+int butc_meadow(int lc,int pc,int bd,int sh,int tc,int sc,int bw){return add(butcps,&st.n_mead,&st.t_petal,N,lc,pc,bd,sh,tc,sc,bw);}
+int butc_propagation(int lc,int pc,int bd,int sh,int tc,int sc,int bw){return add(butcpr,&st.n_prop,&st.t_bloom,N-2,lc,pc,bd,sh,tc,sc,bw);}
+int butc_pest_control(int lc,int pc,int bd,int sh,int tc,int sc,int bw){return add(butcpe,&st.n_pest,&st.t_stm,N-4,lc,pc,bd,sh,tc,sc,bw);}
+int butc_display(int lc,int pc,int bd,int sh,int tc,int sc,int bw){return add(butcds,&st.n_disp,&st.t_tuber,N-6,lc,pc,bd,sh,tc,sc,bw);}
+int butc_market(int lc,int pc,int bd,int sh,int tc,int sc,int bw){return add(butcms,&st.n_mkt,&st.t_seed,N-6,lc,pc,bd,sh,tc,sc,bw);}
+void butc_report(void){ps("[BUTC] Meadow: ");pi(st.n_mead);ps(" Petal=");pi(st.t_petal);ps("\nProp: ");pi(st.n_prop);ps(" Bloom=");pi(st.t_bloom);ps("\nPest: ");pi(st.n_pest);ps(" Stem=");pi(st.t_stm);ps("\nDisplay: ");pi(st.n_disp);ps(" Tuber=");pi(st.t_tuber);ps("\nMkt: ");pi(st.n_mkt);ps(" Seed=");pi(st.t_seed);ps("\n");}
+void butc_state(void){ps("[BUTC] Meadow=");pi(st.n_mead);ps(" Prop=");pi(st.n_prop);ps(" Pest=");pi(st.n_pest);ps(" Display=");pi(st.n_disp);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Buttercup Admin Demo ===\n\n");but_init();
-ps("Buttercup planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;but_planning(t,c,583+(i*17),572+(i*14),552+(i*10),534+(i*6),2020+(i%5));}
-ps("\nButtercup execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;but_execution(t,c,572+(i*15),561+(i*12),543+(i*8),530+(i*5),2021+(i%4));}
-ps("\nButtercup evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;but_evaluation(t,c,564+(i*13),553+(i*10),537+(i*7),526+(i*4),2022+(i%3));}
-ps("\nButtercup accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;but_accessory(t,c,556+(i*11),547+(i*9),533+(i*6),523+(i*3),2023+(i%2));}
-ps("\nButtercup marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;but_market(t,c,550+(i*9),541+(i*7),528+(i*5),520+(i*3),2024);}
-ps("\n");but_report();but_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Buttercup Admin Demo ===\n\n");butc_init();
+/* 1=meadow 2=pasture 3=lawn 4=roadside 5=woodland_clearing */
+ps("Buttercup meadow...\n");for(int i=0;i<N;i++){int lc=(i%5)+1,pc=5+(i%8),bd=2+(i%2),sh=15+(i*5),tc=3+(i%5),sc=20+(i*10),bw=16+(i%8);butc_meadow(lc,pc,bd,sh,tc,sc,bw);}
+ps("\nButtercup propagation...\n");for(int i=0;i<N-2;i++){int lc=(i%4)+2,pc=6+(i%6),bd=3+(i%2),sh=18+(i*4),tc=4+(i%4),sc=25+(i*8),bw=18+(i%6);butc_propagation(lc,pc,bd,sh,tc,sc,bw);}
+ps("\nButtercup pest control...\n");for(int i=0;i<N-4;i++){int lc=(i%3)+1,pc=7+(i%5),bd=3+(i%2),sh=20+(i*3),tc=5+(i%3),sc=30+(i*6),bw=20+(i%4);butc_pest_control(lc,pc,bd,sh,tc,sc,bw);}
+ps("\nButtercup display...\n");for(int i=0;i<N-6;i++){int lc=(i%5)+1,pc=8+(i%4),bd=4+(i%2),sh=22+(i*3),tc=2+(i%5),sc=15+(i*12),bw=14+(i%7);butc_display(lc,pc,bd,sh,tc,sc,bw);}
+ps("\nButtercup market...\n");for(int i=0;i<N-6;i++){int lc=(i%4)+1,pc=5+(i%7),bd=2+(i%3),sh=12+(i*6),tc=6+(i%3),sc=35+(i*5),bw=22+(i%3);butc_market(lc,pc,bd,sh,tc,sc,bw);}
+ps("\n");butc_report();butc_state();ps("\n=== Demo Complete ===\n");return 0;}

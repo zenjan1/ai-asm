@@ -1,5 +1,10 @@
 # Changelog
 
+## Phase 937 - v1300.0 (3473 modules, 124 kernel)
+- Added WASM: burdock_admin (Burdock root crop), burnet_admin (Burnet medicinal herb), buttercup_admin (Buttercup meadow flower)
+- Total modules: 3470 → 3473 (root vegetable, medicinal herb, wildflower)
+- **Milestone version v1300.0 reached!**
+
 ## Phase 936 - v1299.0 (3470 modules, 124 kernel)
 - Added WASM: budgie_admin (Budgerigar aviary), buffalo_admin (Buffalo herd), bulrush_admin (Bulrush wetland plant)
 - Total modules: 3467 → 3470 (pet parrot, ranch bison, wetland sedge)

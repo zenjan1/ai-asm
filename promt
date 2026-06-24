@@ -1,36 +1,36 @@
-Phase 937: Agriculture & Crop Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 938: Cactus & Desert Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/burdock_admin/src/main.c (Burdock Root Crop)
-   - Burdock (Arctium lappa) root vegetable cultivation
-   - Features: root_length_cm, root_dia_cm, leaf_area_sqm, seed_yield_kg, growth_days, soil_ph
-   - Data: 16 entries with location,root_ln,root_dia,leaf_ar,seed_yd,grow_dy,soil_ph
+1. modules/cactus_admin/src/main.c (Cactus Desert Plant)
+   - Cactus desert succulent cultivation and management
+   - Features: height_cm, spine_count, flower_dia_cm, water_store_ml, root_depth_cm, bloom_week
+   - Data: 16 entries with location,ht_cm,spine_ct,flr_dia,wtr_ml,root_dp,bloom_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planting, cultivation, harvest, storage, market
-   - Prefix: burd
+   - Categories: cultivation, propagation, pest_control, exhibition, market
+   - Prefix: cact
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/burnet_admin/src/main.c (Burnet Herb Management)
-   - Burnet (Sanguisorba) medicinal herb management
-   - Features: plant_ht_cm, flower_spike_cm, leaf_count, root_mass_g, oil_pct, harvest_week
-   - Data: 16 entries with location,plnt_ht,flr_sp,leaf_ct,root_ms,oil_pct,harv_wk
+2. modules/calabash_admin/src/main.c (Calabash Gourd Vine)
+   - Calabash (Lagenaria) gourd vine cultivation
+   - Features: vine_length_m, fruit_count, fruit_dia_cm, shell_thick_mm, seed_count, cure_weeks
+   - Data: 16 entries with location,vine_ln,frt_ct,frt_dia,shell_tk,seed_ct,cure_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: propagation, drying, extraction, quality, market
-   - Prefix: burn
+   - Categories: planting, trellis, harvest, curing, market
+   - Prefix: cala
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/buttercup_admin/src/main.c (Buttercup Meadow Flower)
-   - Buttercup (Ranunculus) meadow flower management
-   - Features: petal_count, bloom_dia_cm, stem_ht_cm, tuber_count, seed_count, bloom_week
-   - Data: 16 entries with location,petal_ct,bloom_dia,stm_ht,tuber_ct,seed_ct,bloom_wk
+3. modules/caladium_admin/src/main.c (Caladium Ornamental Tuber)
+   - Caladium ornamental foliage tuber management
+   - Features: leaf_span_cm, plant_ht_cm, tuber_dia_cm, color_variety, eye_count, dormancy_week
+   - Data: 16 entries with location,leaf_sp,plnt_ht,tuber_dia,clr_var,eye_ct,dorm_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: meadow, propagation, pest_control, display, market
-   - Prefix: butc
+   - Categories: propagation, foliage, dormancy, display, market
+   - Prefix: cala2
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1299.0 → v1300.0 (all occurrences)
-  - total modules 3470 → 3473 (all occurrences)
-Update CHANGELOG.md: add "## Phase 937 - v1300.0 (3473 modules, 124 kernel)" entry
+  - version v1300.0 → v1301.0 (all occurrences)
+  - total modules 3473 → 3476 (all occurrences)
+Update CHANGELOG.md: add "## Phase 938 - v1301.0 (3476 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/burdock_admin/burdock_admin.wasm modules/burnet_admin/burnet_admin.wasm modules/buttercup_admin/buttercup_admin.wasm modules/burdock_admin/src/main.c modules/burnet_admin/src/main.c modules/buttercup_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cactus_admin/cactus_admin.wasm modules/calabash_admin/calabash_admin.wasm modules/caladium_admin/caladium_admin.wasm modules/cactus_admin/src/main.c modules/calabash_admin/src/main.c modules/caladium_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
