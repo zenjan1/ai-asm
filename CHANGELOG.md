@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 951 - v1314.0 (3515 modules, 124 kernel)
+- Added WASM: coffee_admin (Coffee tree), cod_admin (Atlantic cod), coho_admin (Coho salmon)
+- Total modules: 3512 → 3515 (coffee tree, marine cod, salmon fish)
+
 ## Phase 950 - v1313.0 (3512 modules, 124 kernel)
 - Added WASM: cocoa_admin (Cocoa cacao tree), coconut_admin (Coconut palm), cockatiel_admin (Cockatiel bird)
 - Total modules: 3509 → 3512 (cacao tree, tropical palm, pet bird)

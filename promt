@@ -1,36 +1,36 @@
-Phase 951: Fish & Coffee Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 952: Leafy Green & Seafood Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/coffee_admin/src/main.c (Coffee Tree)
-   - Coffee (Coffea arabica) coffee tree management
-   - Features: tree_height_m, cherry_count, bean_wt_g, caffeine_mg, roast_idx, harvest_month
-   - Data: 16 entries with location,tree_ht,chry_ct,bean_wt,caf_mg,rost_idx,harv_mo
+1. modules/collard_admin/src/main.c (Collard Greens)
+   - Collard (Brassica oleracea) leafy green vegetable cultivation
+   - Features: leaf_span_cm, stem_height_cm, leaf_count, rib_width_mm, bolt_week, cutting_count
+   - Data: 16 entries with location,lf_sp,stm_ht,lf_ct,rib_wd,bolt_wk,cut_ct
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planting, pruning, roasting, harvest, market
-   - Prefix: cfee
+   - Categories: planting, cutting, blanching, harvest, market
+   - Prefix: cold
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/cod_admin/src/main.c (Cod Fish)
-   - Cod (Gadus morhua) Atlantic cod aquaculture
-   - Features: body_len_cm, body_wt_kg, fillet_pct, omega3_ppm, water_temp, harvest_week
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fl_pct,omg3,wtr_tmp,harv_wk
+2. modules/comfrey_admin/src/main.c (Comfrey Herb)
+   - Comfrey (Symphytum officinale) medicinal herb cultivation
+   - Features: plant_ht_cm, leaf_span_cm, root_depth_cm, flower_count, allantoin_pct, harvest_week
+   - Data: 16 entries with location,plnt_ht,lf_sp,root_dp,fl_ct,alnt_pct,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: stocking, feeding, water_mgmt, harvest, market
-   - Prefix: cod
+   - Categories: planting, feeding, cutting, harvest, market
+   - Prefix: cmf
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/coho_admin/src/main.c (Coho Salmon)
-   - Coho (Oncorhynchus kisutch) salmon fish farming
-   - Features: body_len_cm, body_wt_kg, roe_pct, fat_pct, water_temp, harvest_week
-   - Data: 16 entries with location,bdy_ln,bdy_wt,roe_pct,fat_pct,wtr_tmp,harv_wk
+3. modules/conch_admin/src/main.c (Conch Sea Snail)
+   - Conch (Strombus gigas) sea snail aquaculture
+   - Features: shell_len_mm, shell_wt_g, meat_pct, depth_cm, water_temp, harvest_week
+   - Data: 16 entries with location,sh_ln,sh_wt,meat_pct,dpth,wt_tmp,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: stocking, feeding, water_mgmt, harvest, market
-   - Prefix: coh
+   - Categories: seeding, feeding, water_mgmt, harvest, market
+   - Prefix: cnc
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1313.0 → v1314.0 (all occurrences)
-  - total modules 3512 → 3515 (all occurrences)
-Update CHANGELOG.md: add "## Phase 951 - v1314.0 (3515 modules, 124 kernel)" entry
+  - version v1314.0 → v1315.0 (all occurrences)
+  - total modules 3515 → 3518 (all occurrences)
+Update CHANGELOG.md: add "## Phase 952 - v1315.0 (3518 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/coffee_admin/coffee_admin.wasm modules/cod_admin/cod_admin.wasm modules/coho_admin/coho_admin.wasm modules/coffee_admin/src/main.c modules/cod_admin/src/main.c modules/coho_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/collard_admin/collard_admin.wasm modules/comfrey_admin/comfrey_admin.wasm modules/conch_admin/conch_admin.wasm modules/collard_admin/src/main.c modules/comfrey_admin/src/main.c modules/conch_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
