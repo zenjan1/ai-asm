@@ -1,28 +1,28 @@
-Phase 919: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 920: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/baptisia_admin/src/main.c (Baptisia / False Indigo)
-   - Baptisia false indigo and perennial border management
-   - Features: flower_spike, leaflet_count, stem_height, flower_color, taproot_depth, bloom_week
-   - Data: 16 entries with location,flower_sp,leaf_ct,stem_ht,flower_color,taproot_dp,bloom_wk
+1. modules/bauhinia_admin/src/main.c (Bauhinia / Orchid Tree)
+   - Bauhinia orchid tree and tropical ornamental management
+   - Features: flower_diameter, petal_count, vine_length, flower_color, leaf_shape, bloom_week
+   - Data: 16 entries with location,flower_dia,petal_ct,vine_ln,flower_color,leaf_shp,bloom_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/basil_admin/src/main.c (Basil / Sweet Basil)
-   - Basil sweet basil and culinary herb management
-   - Features: leaf_length, leaf_width, plant_height, oil_content, pinch_freq, growth_rate
-   - Data: 16 entries with location,leaf_ln,leaf_wd,plant_ht,oil_ct,pinch_fr,growth_rt
+2. modules/beardtongue_admin/src/main.c (Beardtongue / Penstemon)
+   - Beardtongue penstemon and pollinator garden management
+   - Features: flower_tube, stem_height, flower_color, leaf_width, drought_tol, bloom_week
+   - Data: 16 entries with location,flower_tb,stem_ht,flower_color,leaf_wd,drought_tl,bloom_wk
    - Pattern: follow abelia_admin pattern
 
-3. modules/basilicum_admin/src/main.c (Basilicum / Holy Basil)
-   - Basilicum holy basil and sacred herb management
-   - Features: flower_whorl, leaf_scent, stem_height, eugenol_pct, adaptogen_idx, bloom_week
-   - Data: 16 entries with location,flower_wh,leaf_scent,stem_ht,eugenol_pc,adapt_idx,bloom_wk
+3. modules/beet_admin/src/main.c (Beet / Beta vulgaris)
+   - Beet root vegetable and garden crop management
+   - Features: root_diameter, leaf_length, root_color, sugar_brix, growth_rate, harvest_week
+   - Data: 16 entries with location,root_dia,leaf_ln,root_color,sugar_bx,growth_rt,harvest_wk
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1282.0 → v1283.0 (all occurrences)
-  - total modules 3416 → 3419 (all occurrences)
-Update CHANGELOG.md: add "## Phase 919 - v1283.0 (3419 modules, 124 kernel)" entry
+  - version v1283.0 → v1284.0 (all occurrences)
+  - total modules 3419 → 3422 (all occurrences)
+Update CHANGELOG.md: add "## Phase 920 - v1284.0 (3422 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/baptisia_admin/src/main.c modules/basil_admin/src/main.c modules/basilicum_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/bauhinia_admin/src/main.c modules/beardtongue_admin/src/main.c modules/beet_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

@@ -1,5 +1,6 @@
-/* basilicum_admin: Basilicum management technology administration (v1.0)
- * Basilicum planning, basilicum execution, basilicum evaluation, accessories, marketing
+/* basilicum_admin: Basilicum (Holy Basil / Tulsi) sacred herb management (v1.0)
+ * Basilicum planning, planting, evaluation, cutting, market
+ * Features: flower whorl, leaf scent, stem height, eugenol pct, adaptogen index, bloom week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} basi_t;
-typedef struct{int n_planning,n_execution,n_evaluation,n_accessory,n_market,t_f1,t_f2,t_f3,t_f4,t_f5;} basi_state_t;
-static basi_t basip[N],basix[N-2],basi2[N-4],basiac[N-6],basim[N-6]; static basi_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
-static int add(basi_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;basi_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[BASI] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int basi_init(void){if(init)return -1;st.n_planning=0;st.n_execution=0;st.n_evaluation=0;st.n_accessory=0;st.n_market=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)basip[i].active=0;for(int i=0;i<N-2;i++)basix[i].active=0;for(int i=0;i<N-4;i++)basi2[i].active=0;for(int i=0;i<N-6;i++)basiac[i].active=0;for(int i=0;i<N-6;i++)basim[i].active=0;init=1;ps("[BASI] Basilicum initialized\n");return 0;}
-int basi_planning(int t,int c,int a,int b,int d,int e,int y){return add(basip,&st.n_planning,&st.t_f1,N,t,c,a,b,d,e,y);}
-int basi_execution(int t,int c,int a,int b,int d,int e,int y){return add(basix,&st.n_execution,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int basi_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(basi2,&st.n_evaluation,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int basi_accessory(int t,int c,int a,int b,int d,int e,int y){return add(basiac,&st.n_accessory,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int basi_market(int t,int c,int a,int b,int d,int e,int y){return add(basim,&st.n_market,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void basi_report(void){ps("[BASI] Planning: ");pi(st.n_planning);ps(" PCS=");pi(st.t_f1);ps("\nExecution: ");pi(st.n_execution);ps(" PCS=");pi(st.t_f2);ps("\nEvaluation: ");pi(st.n_evaluation);ps(" PCS=");pi(st.t_f3);ps("\nAccessory: ");pi(st.n_accessory);ps(" PCS=");pi(st.t_f4);ps("\nMarket: ");pi(st.n_market);ps(" USD=");pi(st.t_f5);ps("\n");}
-void basi_state(void){ps("[BASI] P=");pi(st.n_planning);ps(" E=");pi(st.n_execution);ps(" V=");pi(st.n_evaluation);ps(" A=");pi(st.n_accessory);ps(" M=");pi(st.n_market);ps("\n");}
+typedef struct{int id,location,flower_wh,leaf_scent,stem_ht,eugenol_pc,adapt_idx,bloom_wk,active;} basi_t;
+typedef struct{int n_plan,n_exec,n_eval,n_cut,n_mkt,t_flower,t_scent,t_stem,t_eugenol,t_adapt;} basi_state_t;
+static basi_t basips[N],basies[N-2],basivs[N-4],basict[N-6],basims[N-6]; static basi_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(basi_t*a,int*cnt,int*sum,int mx,int lc,int fw,int ls,int sh,int ep,int ai,int bw){if(*cnt>=mx)return -1;basi_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->flower_wh=fw;x->leaf_scent=ls;x->stem_ht=sh;x->eugenol_pc=ep;x->adapt_idx=ai;x->bloom_wk=bw;x->active=1;*sum+=fw;(*cnt)++;ps("[BASI] Basilicum ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" fw=");pi(fw);ps(" ls=");pi(ls);ps(" sh=");pi(sh);ps(" ep=");pi(ep);ps(" ai=");pi(ai);ps("\n");return *cnt-1;}
+int basi_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_cut=0;st.n_mkt=0;st.t_flower=0;st.t_scent=0;st.t_stem=0;st.t_eugenol=0;st.t_adapt=0;for(int i=0;i<N;i++)basips[i].active=0;for(int i=0;i<N-2;i++)basies[i].active=0;for(int i=0;i<N-4;i++)basivs[i].active=0;for(int i=0;i<N-6;i++)basict[i].active=0;for(int i=0;i<N-6;i++)basims[i].active=0;init=1;ps("[BASI] Basilicum initialized\n");return 0;}
+/* 1=sacred_garden 2=ayurvedic 3=container 4=temple 5=medicinal */
+int basi_planning(int lc,int fw,int ls,int sh,int ep,int ai,int bw){return add(basips,&st.n_plan,&st.t_flower,N,lc,fw,ls,sh,ep,ai,bw);}
+int basi_execution(int lc,int fw,int ls,int sh,int ep,int ai,int bw){return add(basies,&st.n_exec,&st.t_scent,N-2,lc,fw,ls,sh,ep,ai,bw);}
+int basi_evaluation(int lc,int fw,int ls,int sh,int ep,int ai,int bw){return add(basivs,&st.n_eval,&st.t_stem,N-4,lc,fw,ls,sh,ep,ai,bw);}
+int basi_cutting(int lc,int fw,int ls,int sh,int ep,int ai,int bw){return add(basict,&st.n_cut,&st.t_eugenol,N-6,lc,fw,ls,sh,ep,ai,bw);}
+int basi_market(int lc,int fw,int ls,int sh,int ep,int ai,int bw){return add(basims,&st.n_mkt,&st.t_adapt,N-6,lc,fw,ls,sh,ep,ai,bw);}
+void basi_report(void){ps("[BASI] Plan: ");pi(st.n_plan);ps(" flower=");pi(st.t_flower);ps("\nExec: ");pi(st.n_exec);ps(" scent=");pi(st.t_scent);ps("\nEval: ");pi(st.n_eval);ps(" stem=");pi(st.t_stem);ps("\nCut: ");pi(st.n_cut);ps(" eugenol=");pi(st.t_eugenol);ps("\nMkt: ");pi(st.n_mkt);ps(" adapt=");pi(st.t_adapt);ps("\n");}
+void basi_state(void){ps("[BASI] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Cut=");pi(st.n_cut);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Basilicum Admin Demo ===\n\n");basi_init();
-ps("Basilicum planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;basi_planning(t,c,1784+(i*17),1773+(i*14),1753+(i*10),1735+(i*6),2020+(i%5));}
-ps("\nBasilicum execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;basi_execution(t,c,1773+(i*15),1762+(i*12),1744+(i*8),1731+(i*5),2021+(i%4));}
-ps("\nBasilicum evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;basi_evaluation(t,c,1765+(i*13),1754+(i*10),1738+(i*7),1727+(i*4),2022+(i%3));}
-ps("\nBasilicum accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;basi_accessory(t,c,1757+(i*11),1748+(i*9),1734+(i*6),1724+(i*3),2023+(i%2));}
-ps("\nBasilicum marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;basi_market(t,c,1751+(i*9),1742+(i*7),1729+(i*5),1721+(i*3),2024);}
+ps("=== Basilicum (Holy Basil / Tulsi) Admin Demo ===\n\n");basi_init();
+ps("Basilicum planning (sacred garden layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;basi_planning(lc,6+(i*3),50+(i*5),25+(i*4),30+(i*4),70+(i*3),24+(i%6));}
+ps("\nBasilicum execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;basi_execution(lc,8+(i*2),55+(i*4),28+(i*3),32+(i*3),72+(i*3),26+(i%5));}
+ps("\nBasilicum evaluation (quality check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;basi_evaluation(lc,10+(i*2),60+(i*3),30+(i*3),35+(i*3),75+(i%3),28+(i%4));}
+ps("\nBasilicum cutting...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;basi_cutting(lc,5+(i*3),45+(i%5),22+(i%4),28+(i%4),65+(i%3),22+(i%5));}
+ps("\nBasilicum sacred herb market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;basi_market(lc,12+(i*2),65+(i%3),(i%6)+2,40+(i%3),80+(i%2),30+(i%3));}
 ps("\n");basi_report();basi_state();ps("\n=== Demo Complete ===\n");return 0;}

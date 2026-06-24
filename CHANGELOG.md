@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 919 - v1283.0 (3419 modules, 124 kernel)
+- Added WASM: baptisia_admin (Baptisia false indigo), basil_admin (Basil sweet basil), basilicum_admin (Basilicum holy basil)
+- Total modules: 3416 → 3419 (perennial false indigo, culinary sweet basil, sacred tulsi herb)
+
 ## Phase 918 - v1282.0 (3416 modules, 124 kernel)
 - Added WASM: balsam_admin (Balsam touch-me-not), balsamroot_admin (Balsamroot wildflower), bamboo_admin (Bamboo running bamboo)
 - Total modules: 3413 → 3416 (annual touch-me-not flower, taproot wildflower, screening bamboo)

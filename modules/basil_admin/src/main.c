@@ -1,5 +1,6 @@
-/* basil_admin: Basil management technology administration (v1.0)
- * Basil planning, basil execution, basil evaluation, accessories, marketing
+/* basil_admin: Basil (Sweet Basil) culinary herb management (v1.0)
+ * Basil planning, planting, evaluation, harvest, market
+ * Features: leaf length, leaf width, plant height, oil content, pinch frequency, growth rate
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} bas_t;
-typedef struct{int n_bp,n_be,n_bv,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} bas_state_t;
-static bas_t bps[N],bes[N-2],bvs[N-4],acs[N-6],mks[N-6]; static bas_state_t st; static int init;
+typedef struct{int id,location,leaf_ln,leaf_wd,plant_ht,oil_ct,pinch_fr,growth_rt,active;} bas_t;
+typedef struct{int n_plan,n_exec,n_eval,n_harv,n_mkt,t_leaf,t_width,t_ht,t_oil,t_pinch;} bas_state_t;
+static bas_t basps[N],bases[N-2],basvs[N-4],bashv[N-6],basms[N-6]; static bas_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(bas_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;bas_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[BAS] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int bas_init(void){if(init)return -1;st.n_bp=0;st.n_be=0;st.n_bv=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)bps[i].active=0;for(int i=0;i<N-2;i++)bes[i].active=0;for(int i=0;i<N-4;i++)bvs[i].active=0;for(int i=0;i<N-6;i++)acs[i].active=0;for(int i=0;i<N-6;i++)mks[i].active=0;init=1;ps("[BAS] Basil initialized\n");return 0;}
-int bas_planning(int t,int c,int a,int b,int d,int e,int y){return add(bps,&st.n_bp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int bas_execution(int t,int c,int a,int b,int d,int e,int y){return add(bes,&st.n_be,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int bas_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(bvs,&st.n_bv,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int bas_accessory(int t,int c,int a,int b,int d,int e,int y){return add(acs,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int bas_market(int t,int c,int a,int b,int d,int e,int y){return add(mks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void bas_report(void){ps("[BAS] Bp: ");pi(st.n_bp);ps(" PCS=");pi(st.t_f1);ps("\nBe: ");pi(st.n_be);ps(" PCS=");pi(st.t_f2);ps("\nBv: ");pi(st.n_bv);ps(" PCS=");pi(st.t_f3);ps("\nAc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void bas_state(void){ps("[BAS] Bp=");pi(st.n_bp);ps(" Be=");pi(st.n_be);ps(" Bv=");pi(st.n_bv);ps(" Ac=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(bas_t*a,int*cnt,int*sum,int mx,int lc,int ll,int lw,int ph,int oc,int pf,int gr){if(*cnt>=mx)return -1;bas_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->leaf_ln=ll;x->leaf_wd=lw;x->plant_ht=ph;x->oil_ct=oc;x->pinch_fr=pf;x->growth_rt=gr;x->active=1;*sum+=ll;(*cnt)++;ps("[BAS] Basil ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" ll=");pi(ll);ps(" lw=");pi(lw);ps(" ph=");pi(ph);ps(" oc=");pi(oc);ps(" pf=");pi(pf);ps("\n");return *cnt-1;}
+int bas_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_harv=0;st.n_mkt=0;st.t_leaf=0;st.t_width=0;st.t_ht=0;st.t_oil=0;st.t_pinch=0;for(int i=0;i<N;i++)basps[i].active=0;for(int i=0;i<N-2;i++)bases[i].active=0;for(int i=0;i<N-4;i++)basvs[i].active=0;for(int i=0;i<N-6;i++)bashv[i].active=0;for(int i=0;i<N-6;i++)basms[i].active=0;init=1;ps("[BAS] Basil initialized\n");return 0;}
+/* 1=herb_garden 2=container 3=kitchen_garden 4=greenhouse 5=raised_bed */
+int bas_planning(int lc,int ll,int lw,int ph,int oc,int pf,int gr){return add(basps,&st.n_plan,&st.t_leaf,N,lc,ll,lw,ph,oc,pf,gr);}
+int bas_execution(int lc,int ll,int lw,int ph,int oc,int pf,int gr){return add(bases,&st.n_exec,&st.t_width,N-2,lc,ll,lw,ph,oc,pf,gr);}
+int bas_evaluation(int lc,int ll,int lw,int ph,int oc,int pf,int gr){return add(basvs,&st.n_eval,&st.t_ht,N-4,lc,ll,lw,ph,oc,pf,gr);}
+int bas_harvest(int lc,int ll,int lw,int ph,int oc,int pf,int gr){return add(bashv,&st.n_harv,&st.t_oil,N-6,lc,ll,lw,ph,oc,pf,gr);}
+int bas_market(int lc,int ll,int lw,int ph,int oc,int pf,int gr){return add(basms,&st.n_mkt,&st.t_pinch,N-6,lc,ll,lw,ph,oc,pf,gr);}
+void bas_report(void){ps("[BAS] Plan: ");pi(st.n_plan);ps(" leaf=");pi(st.t_leaf);ps("\nExec: ");pi(st.n_exec);ps(" width=");pi(st.t_width);ps("\nEval: ");pi(st.n_eval);ps(" ht=");pi(st.t_ht);ps("\nHarv: ");pi(st.n_harv);ps(" oil=");pi(st.t_oil);ps("\nMkt: ");pi(st.n_mkt);ps(" pinch=");pi(st.t_pinch);ps("\n");}
+void bas_state(void){ps("[BAS] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Harv=");pi(st.n_harv);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Basil Admin Demo ===\n\n");bas_init();
-ps("Basil planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;bas_planning(t,c,538+(i*17),527+(i*14),507+(i*10),489+(i*6),2020+(i%5));}
-ps("\nBasil execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;bas_execution(t,c,527+(i*15),516+(i*12),498+(i*8),485+(i*5),2021+(i%4));}
-ps("\nBasil evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;bas_evaluation(t,c,519+(i*13),508+(i*10),492+(i*7),481+(i*4),2022+(i%3));}
-ps("\nBasil accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;bas_accessory(t,c,511+(i*11),502+(i*9),488+(i*6),478+(i*3),2023+(i%2));}
-ps("\nBasil marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;bas_market(t,c,505+(i*9),496+(i*7),483+(i*5),475+(i*3),2024);}
+ps("=== Basil (Sweet Basil) Admin Demo ===\n\n");bas_init();
+ps("Basil planning (herb garden layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;bas_planning(lc,5+(i*2),3+(i%4),20+(i*5),40+(i*5),3+(i%4),5+(i*3));}
+ps("\nBasil execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;bas_execution(lc,6+(i*2),4+(i%3),22+(i*4),42+(i*4),4+(i%3),6+(i*2));}
+ps("\nBasil evaluation (growth check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;bas_evaluation(lc,7+(i*2),4+(i%3),25+(i*3),45+(i*3),4+(i%3),6+(i*2));}
+ps("\nBasil harvest...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;bas_harvest(lc,4+(i*2),2+(i%4),18+(i*5),38+(i*5),3+(i%4),4+(i*3));}
+ps("\nBasil culinary herb market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;bas_market(lc,8+(i*2),5+(i%3),(i%6)+2,50+(i*3),5+(i%3),8+(i%2));}
 ps("\n");bas_report();bas_state();ps("\n=== Demo Complete ===\n");return 0;}
