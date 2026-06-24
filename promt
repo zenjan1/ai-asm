@@ -1,28 +1,28 @@
-Phase 918: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 919: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/balsam_admin/src/main.c (Balsam / Impatiens balsamina)
-   - Balsam touch-me-not and annual flower management
-   - Features: flower_size, petal_count, flower_color, stem_height, seed_pod, bloom_week
-   - Data: 16 entries with location,flower_sz,petal_ct,flower_color,stem_ht,seed_pod,bloom_wk
+1. modules/baptisia_admin/src/main.c (Baptisia / False Indigo)
+   - Baptisia false indigo and perennial border management
+   - Features: flower_spike, leaflet_count, stem_height, flower_color, taproot_depth, bloom_week
+   - Data: 16 entries with location,flower_sp,leaf_ct,stem_ht,flower_color,taproot_dp,bloom_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/balsamroot_admin/src/main.c (Balsamroot / Oreganum lomatium)
-   - Balsamroot taproot perennial and wildflower management
-   - Features: leaf_length, flower_stem, root_depth, flower_color, drought_tol, bloom_week
-   - Data: 16 entries with location,leaf_ln,flower_st,root_dp,flower_color,drought_tl,bloom_wk
+2. modules/basil_admin/src/main.c (Basil / Sweet Basil)
+   - Basil sweet basil and culinary herb management
+   - Features: leaf_length, leaf_width, plant_height, oil_content, pinch_freq, growth_rate
+   - Data: 16 entries with location,leaf_ln,leaf_wd,plant_ht,oil_ct,pinch_fr,growth_rt
    - Pattern: follow abelia_admin pattern
 
-3. modules/bamboo_admin/src/main.c (Bamboo / Running Bamboo)
-   - Bamboo running bamboo and screening management
-   - Features: culm_height, culm_diameter, leaf_length, growth_rate, cold_tol, spread_rate
-   - Data: 16 entries with location,culm_ht,culm_dia,leaf_ln,growth_rt,cold_tl,spread_rt
+3. modules/basilicum_admin/src/main.c (Basilicum / Holy Basil)
+   - Basilicum holy basil and sacred herb management
+   - Features: flower_whorl, leaf_scent, stem_height, eugenol_pct, adaptogen_idx, bloom_week
+   - Data: 16 entries with location,flower_wh,leaf_scent,stem_ht,eugenol_pc,adapt_idx,bloom_wk
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1281.0 → v1282.0 (all occurrences)
-  - total modules 3413 → 3416 (all occurrences)
-Update CHANGELOG.md: add "## Phase 918 - v1282.0 (3416 modules, 124 kernel)" entry
+  - version v1282.0 → v1283.0 (all occurrences)
+  - total modules 3416 → 3419 (all occurrences)
+Update CHANGELOG.md: add "## Phase 919 - v1283.0 (3419 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/balsam_admin/src/main.c modules/balsamroot_admin/src/main.c modules/bamboo_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/baptisia_admin/src/main.c modules/basil_admin/src/main.c modules/basilicum_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

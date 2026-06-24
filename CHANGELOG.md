@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 918 - v1282.0 (3416 modules, 124 kernel)
+- Added WASM: balsam_admin (Balsam touch-me-not), balsamroot_admin (Balsamroot wildflower), bamboo_admin (Bamboo running bamboo)
+- Total modules: 3413 → 3416 (annual touch-me-not flower, taproot wildflower, screening bamboo)
+
 ## Phase 917 - v1281.0 (3413 modules, 124 kernel)
 - Added WASM: azalea_admin (Azalea flowering shrub), azolla_admin (Azolla water fern), ballota_admin (Ballota black horehound)
 - Total modules: 3410 → 3413 (woodland flowering shrub, aquatic nitrogen-fixing fern, aromatic herbaceous perennial)
