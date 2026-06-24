@@ -1,31 +1,31 @@
-Phase 874: Create 3 plant-themed admin modules (alphabetically after fischeria):
+Phase 875: Create 3 plant-themed admin modules (alphabetically after flindersia):
 
-1. fleischmannia_admin (prefix: flei_, base offset: 2048, tag: [FLEI])
-   - Fleischmannia Sch.Bip., Asteraceae (Kew POWO accepted)
-   - planning: 2048/2037/2017/1999
-   - execution: 2037/2026/2008/1995
-   - evaluation: 2029/2018/2002/1991
-   - accessory: 2021/2012/1998/1988
-   - market: 2015/2006/1995/1987
+1. florestina_admin (prefix: flor_, base offset: 2051, tag: [FLOR])
+   - Florestina Cass., Asteraceae (Kew POWO accepted)
+   - planning: 2051/2040/2020/2002
+   - execution: 2040/2029/2011/1998
+   - evaluation: 2032/2021/2005/1994
+   - accessory: 2024/2015/2001/1991
+   - market: 2018/2009/1998/1990
 
-2. floerkea_admin (prefix: floe_, base offset: 2049, tag: [FLOE])
-   - Floerkea Willd., Limnanthaceae (Kew POWO accepted)
-   - planning: 2049/2038/2018/2000
-   - execution: 2038/2027/2009/1996
-   - evaluation: 2030/2019/2003/1992
-   - accessory: 2022/2013/1999/1989
-   - market: 2016/2007/1996/1988
+2. flourensia_admin (prefix: flou_, base offset: 2052, tag: [FLOU])
+   - Flourensia DC., Asteraceae (Kew POWO accepted)
+   - planning: 2052/2041/2021/2003
+   - execution: 2041/2030/2012/1999
+   - evaluation: 2033/2022/2006/1995
+   - accessory: 2025/2016/2002/1992
+   - market: 2019/2010/1999/1991
 
-3. flindersia_admin (prefix: flin_, base offset: 2050, tag: [FLIN])
-   - Flindersia F.L.Bauer, Rutaceae (Kew POWO accepted)
-   - planning: 2050/2039/2019/2001
-   - execution: 2039/2028/2010/1997
-   - evaluation: 2031/2020/2004/1993
-   - accessory: 2023/2014/2000/1990
-   - market: 2017/2008/1997/1989
+3. flosmutisia_admin (prefix: flos_, base offset: 2053, tag: [FLOS])
+   - Flosmutisia Cuatrec., Asteraceae (Kew POWO accepted)
+   - planning: 2053/2042/2022/2004
+   - execution: 2042/2031/2013/2000
+   - evaluation: 2034/2023/2007/1996
+   - accessory: 2026/2017/2003/1993
+   - market: 2020/2011/2000/1992
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
 Build WASM with: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o build/XXX_admin.wasm modules/XXX_admin/src/main.c
-Update README (v1218.0->v1219.0, 3286->3289, L3: 3054->3057, 3007->3010, L3 table 2817->2820/2770->2773, L3 WASM Apps 2670->2673),
-add Phase 874 entry to CHANGELOG, find Phase 875 candidates (alphabetically after flindersia),
+Update README (v1219.0->v1220.0, 3289->3292, L3: 3057->3060, 3010->3013, L3 table 2820->2823/2773->2776, L3 WASM Apps 2673->2676),
+add Phase 875 entry to CHANGELOG, find Phase 876 candidates (alphabetically after flosmutisia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
