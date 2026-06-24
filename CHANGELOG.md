@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-3 - v1227.0 (3307 modules, 73 kernel)
+- Added kernel: wasm_memory.asm, wasm_dispatch.asm, wasm_exception.asm
+- Kernel modules: 70 → 73 (WASM linear memory management, function dispatch & trampolines, exception handling & traps)
+
 ## Phase OS-2 - v1226.0 (3307 modules, 70 kernel)
 - Added kernel: wasm_simd.asm, wasm_bulkmem.asm, wasm_ref.asm
 - Kernel modules: 67 → 70 (WASM SIMD128, bulk memory ops, reference types & table ops)
