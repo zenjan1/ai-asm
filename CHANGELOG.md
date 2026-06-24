@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 925 - v1288.0 (3437 modules, 124 kernel)
+- Added WASM: block_device (Block device storage), blockchain_admin (Blockchain network admin), blockchain_core (Blockchain core protocol)
+- Total modules: 3434 → 3437 (block storage management, blockchain network admin, core protocol engine)
+
 ## Phase 924 - v1287.0 (3434 modules, 124 kernel)
 - Added WASM: bidens_admin (Bidens beggarticks), birch_admin (Birch silver birch), bistort_admin (Bistort persicaria), blandfordia_admin (Blandfordia christmas bells), blankingtech_admin (Blanking cutting technology), blazingstar_admin (Blazingstar liatris)
 - Total modules: 3428 → 3434 (wildflower meadow beggarticks, ornamental silver birch, damp meadow persicaria, bell-flowered christmas bells, industrial cutting technology, prairie flower liatris)

@@ -1,338 +1,37 @@
-/* blockchain_admin: Blockchain administration system (v1.0)
- * Chain infrastructure, consensus mechanisms, smart contracts, digital assets, cross-chain
+/* blockchain_admin: Blockchain network administration (v1.0)
+ * Blockchain planning, deployment, evaluation, validation, market
+ * Features: block height, tx count, hash rate, peer count, gas price, consensus mode
  */
 #include <stddef.h>
-
-__attribute__((import_module("host"), import_name("alloc")))
-extern unsigned int host_alloc(unsigned int size, unsigned int align);
-__attribute__((import_module("host"), import_name("print")))
-extern void host_print(const char *str);
-__attribute__((import_module("host"), import_name("exit")))
-extern void host_exit(int code);
-__attribute__((import_module("host"), import_name("get_argv")))
-extern int host_get_argv(unsigned int buf_off, unsigned int max_len);
-
-#define MAX_INFRA        16
-#define MAX_CONSENSUS    14
-#define MAX_CONTRACT     12
-#define MAX_ASSET        10
-#define MAX_CROSSCHAIN   10
-
-typedef struct {
-    int    infra_id;
-    int    infra_type;
-    int    infra_category;
-    int    public_chain;
-    int    consortium_chain;
-    int    private_chain;
-    int    year;
-    int    active;
-} infra_t;
-
-typedef struct {
-    int    consensus_id;
-    int    consensus_type;
-    int    consensus_category;
-    int    pow;
-    int    pos;
-    int    dpos;
-    int    year;
-    int    active;
-} consensus_t;
-
-typedef struct {
-    int    contract_id;
-    int    contract_type;
-    int    contract_category;
-    int    contract_deploy;
-    int    contract_audit;
-    int    contract_exec;
-    int    year;
-    int    active;
-} contract_t;
-
-typedef struct {
-    int    asset_id;
-    int    asset_type;
-    int    asset_category;
-    int    token;
-    int    nft;
-    int    wallet;
-    int    year;
-    int    active;
-} asset_t;
-
-typedef struct {
-    int    cross_id;
-    int    cross_type;
-    int    cross_category;
-    int    cross_bridge;
-    int    cross_interop;
-    int    cross_settle;
-    int    year;
-    int    active;
-} cross_t;
-
-typedef struct {
-    int    n_infra;
-    int    n_consensus;
-    int    n_contract;
-    int    n_asset;
-    int    n_cross;
-    int    total_public;
-    int    total_pow;
-    int    total_deploy;
-    int    total_token;
-    int    total_bridge;
-} bca_state_t;
-
-static infra_t infras[MAX_INFRA];
-static consensus_t consensuses[MAX_CONSENSUS];
-static contract_t contracts[MAX_CONTRACT];
-static asset_t assets[MAX_ASSET];
-static cross_t crosses[MAX_CROSSCHAIN];
-static bca_state_t bca;
-
-static int initialized = 0;
-
-static void print_str(const char* s) { host_print(s); }
-static void print_int(int val) {
-    char buf[32]; int i = 0;
-    if (val < 0) { buf[i++] = '-'; val = -val; }
-    if (val == 0) { buf[i++] = '0'; }
-    else { int s = i; while (val > 0) { buf[i++] = '0' + (val % 10); val /= 10; }
-           int e = i - 1; while (s < e) { char t = buf[s]; buf[s] = buf[e]; buf[e] = t; s++; e--; } }
-    buf[i] = '\0'; host_print(buf);
-}
-
-int bca_init(void) {
-    if (initialized) return -1;
-    bca.n_infra = 0; bca.n_consensus = 0; bca.n_contract = 0;
-    bca.n_asset = 0; bca.n_cross = 0;
-    bca.total_public = 0; bca.total_pow = 0;
-    bca.total_deploy = 0; bca.total_token = 0;
-    bca.total_bridge = 0;
-    for (int i = 0; i < MAX_INFRA; i++) infras[i].active = 0;
-    for (int i = 0; i < MAX_CONSENSUS; i++) consensuses[i].active = 0;
-    for (int i = 0; i < MAX_CONTRACT; i++) contracts[i].active = 0;
-    for (int i = 0; i < MAX_ASSET; i++) assets[i].active = 0;
-    for (int i = 0; i < MAX_CROSSCHAIN; i++) crosses[i].active = 0;
-    initialized = 1;
-    print_str("[BCA] Blockchain initialized\n");
-    return 0;
-}
-
-int bca_infra(int inf_type, int cat, int pub, int cons, int priv, int year) {
-    if (bca.n_infra >= MAX_INFRA) return -1;
-    infra_t* inf = &infras[bca.n_infra];
-    inf->infra_id = bca.n_infra;
-    inf->infra_type = inf_type;
-    inf->infra_category = cat;
-    inf->public_chain = pub;
-    inf->consortium_chain = cons;
-    inf->private_chain = priv;
-    inf->year = year;
-    inf->active = 1;
-    bca.total_public += pub;
-    bca.n_infra++;
-    print_str("[BCA] Infra "); print_int(bca.n_infra - 1);
-    print_str(" type="); print_int(inf_type);
-    print_str(" cat="); print_int(cat);
-    print_str(" pub="); print_int(pub);
-    print_str(" con="); print_int(cons);
-    print_str(" prv="); print_int(priv); print_str("\n");
-    return bca.n_infra - 1;
-}
-
-int bca_consensus(int cs_type, int cat, int pw, int ps, int dp, int year) {
-    if (bca.n_consensus >= MAX_CONSENSUS) return -1;
-    consensus_t* c = &consensuses[bca.n_consensus];
-    c->consensus_id = bca.n_consensus;
-    c->consensus_type = cs_type;
-    c->consensus_category = cat;
-    c->pow = pw;
-    c->pos = ps;
-    c->dpos = dp;
-    c->year = year;
-    c->active = 1;
-    bca.total_pow += pw;
-    bca.n_consensus++;
-    print_str("[BCA] Consensus "); print_int(bca.n_consensus - 1);
-    print_str(" type="); print_int(cs_type);
-    print_str(" cat="); print_int(cat);
-    print_str(" pow="); print_int(pw);
-    print_str(" pos="); print_int(ps);
-    print_str(" dpo="); print_int(dp); print_str("\n");
-    return bca.n_consensus - 1;
-}
-
-int bca_contract(int ct_type, int cat, int deploy, int audit, int exec, int year) {
-    if (bca.n_contract >= MAX_CONTRACT) return -1;
-    contract_t* c = &contracts[bca.n_contract];
-    c->contract_id = bca.n_contract;
-    c->contract_type = ct_type;
-    c->contract_category = cat;
-    c->contract_deploy = deploy;
-    c->contract_audit = audit;
-    c->contract_exec = exec;
-    c->year = year;
-    c->active = 1;
-    bca.total_deploy += deploy;
-    bca.n_contract++;
-    print_str("[BCA] Contract "); print_int(bca.n_contract - 1);
-    print_str(" type="); print_int(ct_type);
-    print_str(" cat="); print_int(cat);
-    print_str(" dpl="); print_int(deploy);
-    print_str(" aud="); print_int(audit);
-    print_str(" exe="); print_int(exec); print_str("\n");
-    return bca.n_contract - 1;
-}
-
-int bca_asset(int as_type, int cat, int tkn, int nft_cnt, int wlt, int year) {
-    if (bca.n_asset >= MAX_ASSET) return -1;
-    asset_t* a = &assets[bca.n_asset];
-    a->asset_id = bca.n_asset;
-    a->asset_type = as_type;
-    a->asset_category = cat;
-    a->token = tkn;
-    a->nft = nft_cnt;
-    a->wallet = wlt;
-    a->year = year;
-    a->active = 1;
-    bca.total_token += tkn;
-    bca.n_asset++;
-    print_str("[BCA] Asset "); print_int(bca.n_asset - 1);
-    print_str(" type="); print_int(as_type);
-    print_str(" cat="); print_int(cat);
-    print_str(" tkn="); print_int(tkn);
-    print_str(" nft="); print_int(nft_cnt);
-    print_str(" wlt="); print_int(wlt); print_str("\n");
-    return bca.n_asset - 1;
-}
-
-int bca_cross(int cr_type, int cat, int bridge, int interop, int settle, int year) {
-    if (bca.n_cross >= MAX_CROSSCHAIN) return -1;
-    cross_t* c = &crosses[bca.n_cross];
-    c->cross_id = bca.n_cross;
-    c->cross_type = cr_type;
-    c->cross_category = cat;
-    c->cross_bridge = bridge;
-    c->cross_interop = interop;
-    c->cross_settle = settle;
-    c->year = year;
-    c->active = 1;
-    bca.total_bridge += bridge;
-    bca.n_cross++;
-    print_str("[BCA] Cross "); print_int(bca.n_cross - 1);
-    print_str(" type="); print_int(cr_type);
-    print_str(" cat="); print_int(cat);
-    print_str(" brd="); print_int(bridge);
-    print_str(" iop="); print_int(interop);
-    print_str(" stl="); print_int(settle); print_str("\n");
-    return bca.n_cross - 1;
-}
-
-void bca_infra_report(void) {
-    print_str("[BCA] Infra report:\n");
-    print_str("  Chain infrastructure categories: "); print_int(bca.n_infra); print_str("\n");
-    print_str("  Total public chains: "); print_int(bca.total_public); print_str("\n");
-}
-
-void bca_consensus_report(void) {
-    print_str("[BCA] Consensus report:\n");
-    print_str("  Consensus mechanism categories: "); print_int(bca.n_consensus); print_str("\n");
-    print_str("  Total PoW: "); print_int(bca.total_pow); print_str("\n");
-}
-
-void bca_cross_report(void) {
-    print_str("[BCA] Cross-chain report:\n");
-    print_str("  Contract categories: "); print_int(bca.n_contract); print_str("\n");
-    print_str("  Total contract deploy: "); print_int(bca.total_deploy); print_str("\n");
-    print_str("  Asset categories: "); print_int(bca.n_asset); print_str("\n");
-    print_str("  Total tokens: "); print_int(bca.total_token); print_str("\n");
-    print_str("  Cross-chain categories: "); print_int(bca.n_cross); print_str("\n");
-    print_str("  Total cross bridges: "); print_int(bca.total_bridge); print_str("\n");
-}
-
-void bca_print_state(void) {
-    print_str("[BCA] If="); print_int(bca.n_infra);
-    print_str(" Cs="); print_int(bca.n_consensus);
-    print_str(" Ct="); print_int(bca.n_contract);
-    print_str(" As="); print_int(bca.n_asset);
-    print_str(" Cr="); print_int(bca.n_cross);
-    print_str("\n");
-}
-
-int main(void) {
-    print_str("=== Blockchain Admin Demo ===\n\n");
-    bca_init();
-
-    print_str("Chain infrastructure...\n");
-    for (int i = 0; i < 16; i++) {
-        int type = (i % 5) + 1;
-        int cat = (i % 4) + 1;
-        int pub = 45 + (i * 11);
-        int con = 30 + (i * 7);
-        int prv = 20 + (i * 5);
-        int year = 2020 + (i % 5);
-        bca_infra(type, cat, pub, con, prv, year);
-    }
-
-    print_str("\nConsensus mechanisms...\n");
-    for (int i = 0; i < 14; i++) {
-        int type = (i % 4) + 1;
-        int cat = (i % 5) + 1;
-        int pw = 35 + (i * 9);
-        int ps = 25 + (i * 6);
-        int dp = 18 + (i * 4);
-        int year = 2021 + (i % 4);
-        bca_consensus(type, cat, pw, ps, dp, year);
-    }
-
-    print_str("\nSmart contracts...\n");
-    for (int i = 0; i < 12; i++) {
-        int type = (i % 4) + 1;
-        int cat = (i % 5) + 1;
-        int dpl = 40 + (i * 10);
-        int aud = 28 + (i * 7);
-        int exe = 20 + (i * 5);
-        int year = 2022 + (i % 3);
-        bca_contract(type, cat, dpl, aud, exe, year);
-    }
-
-    print_str("\nDigital assets...\n");
-    for (int i = 0; i < 10; i++) {
-        int type = (i % 4) + 1;
-        int cat = (i % 5) + 1;
-        int tkn = 50 + (i * 12);
-        int nft = 35 + (i * 8);
-        int wlt = 25 + (i * 6);
-        int year = 2023 + (i % 2);
-        bca_asset(type, cat, tkn, nft, wlt, year);
-    }
-
-    print_str("\nCross-chain...\n");
-    for (int i = 0; i < 10; i++) {
-        int type = (i % 4) + 1;
-        int cat = (i % 5) + 1;
-        int brd = 30 + (i * 7);
-        int iop = 22 + (i * 5);
-        int stl = 15 + (i * 3);
-        int year = 2024;
-        bca_cross(type, cat, brd, iop, stl, year);
-    }
-
-    print_str("\nInfra report...\n");
-    bca_infra_report();
-
-    print_str("\nConsensus report...\n");
-    bca_consensus_report();
-
-    print_str("\nCross-chain report...\n");
-    bca_cross_report();
-
-    print_str("\nFinal state...\n");
-    bca_print_state();
-    print_str("\n=== Demo Complete ===\n");
-    return 0;
-}
+__attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
+__attribute__((import_module("host"), import_name("print"))) extern void host_print(const char*);
+__attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
+__attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
+#define N 16
+typedef struct{int id,location,blk_ht,tx_ct,hash_rt,peer_ct,gas_pr,cons_md,active;} bca_t;
+typedef struct{int n_plan,n_exec,n_eval,n_val,n_mkt,t_ht,t_tx,t_hash,t_peer,t_gas;} bca_state_t;
+static bca_t bcaps[N],bcaes[N-2],bcavs[N-4],bcavl[N-6],bcams[N-6]; static bca_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(bca_t*a,int*cnt,int*sum,int mx,int lc,int bh,int tc,int hr,int pc,int gp,int cm){if(*cnt>=mx)return -1;bca_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->blk_ht=bh;x->tx_ct=tc;x->hash_rt=hr;x->peer_ct=pc;x->gas_pr=gp;x->cons_md=cm;x->active=1;*sum+=bh;(*cnt)++;ps("[BCA] Blockchain ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" bh=");pi(bh);ps(" tc=");pi(tc);ps(" hr=");pi(hr);ps(" pc=");pi(pc);ps(" gp=");pi(gp);ps("\n");return *cnt-1;}
+int bca_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_val=0;st.n_mkt=0;st.t_ht=0;st.t_tx=0;st.t_hash=0;st.t_peer=0;st.t_gas=0;for(int i=0;i<N;i++)bcaps[i].active=0;for(int i=0;i<N-2;i++)bcaes[i].active=0;for(int i=0;i<N-4;i++)bcavs[i].active=0;for(int i=0;i<N-6;i++)bcavl[i].active=0;for(int i=0;i<N-6;i++)bcams[i].active=0;init=1;ps("[BCA] Blockchain admin initialized\n");return 0;}
+/* 1=mainnet 2=testnet 3=private 4=sidechain 5=layer2 */
+int bca_planning(int lc,int bh,int tc,int hr,int pc,int gp,int cm){return add(bcaps,&st.n_plan,&st.t_ht,N,lc,bh,tc,hr,pc,gp,cm);}
+int bca_execution(int lc,int bh,int tc,int hr,int pc,int gp,int cm){return add(bcaes,&st.n_exec,&st.t_tx,N-2,lc,bh,tc,hr,pc,gp,cm);}
+int bca_evaluation(int lc,int bh,int tc,int hr,int pc,int gp,int cm){return add(bcavs,&st.n_eval,&st.t_hash,N-4,lc,bh,tc,hr,pc,gp,cm);}
+int bca_validation(int lc,int bh,int tc,int hr,int pc,int gp,int cm){return add(bcavl,&st.n_val,&st.t_peer,N-6,lc,bh,tc,hr,pc,gp,cm);}
+int bca_market(int lc,int bh,int tc,int hr,int pc,int gp,int cm){return add(bcams,&st.n_mkt,&st.t_gas,N-6,lc,bh,tc,hr,pc,gp,cm);}
+void bca_report(void){ps("[BCA] Plan: ");pi(st.n_plan);ps(" ht=");pi(st.t_ht);ps("\nExec: ");pi(st.n_exec);ps(" tx=");pi(st.t_tx);ps("\nEval: ");pi(st.n_eval);ps(" hash=");pi(st.t_hash);ps("\nVal: ");pi(st.n_val);ps(" peer=");pi(st.t_peer);ps("\nMkt: ");pi(st.n_mkt);ps(" gas=");pi(st.t_gas);ps("\n");}
+void bca_state(void){ps("[BCA] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Val=");pi(st.n_val);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
+int main(void){
+ps("=== Blockchain Network Admin Demo ===\n\n");bca_init();
+ps("Blockchain planning (network layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;bca_planning(lc,100000+(i*50000),250+(i*80),800+(i*200),40+(i*12),25+(i*8),(i%4)+1);}
+ps("\nBlockchain execution (deployment)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;bca_execution(lc,120000+(i*45000),280+(i*70),850+(i*180),45+(i*10),28+(i*7),(i%4)+1);}
+ps("\nBlockchain evaluation (performance check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;bca_evaluation(lc,140000+(i*40000),310+(i*60),900+(i*160),50+(i*9),31+(i*6),(i%3)+2);}
+ps("\nBlockchain validation...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;bca_validation(lc,160000+(i*35000),340+(i*50),950+(i*140),55+(i*8),34+(i*5),(i%4)+1);}
+ps("\nBlockchain network market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;bca_market(lc,180000+(i*30000),370+(i*40),1000+(i*120),60+(i*7),37+(i*4),(i%3)+3);}
+ps("\n");bca_report();bca_state();ps("\n=== Demo Complete ===\n");return 0;}
