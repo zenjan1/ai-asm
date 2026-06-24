@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 944 - v1307.0 (3494 modules, 124 kernel)
+- Added WASM: centipede_admin (Centipede grass lawn), century_admin (Century plant agave), cereal_admin (Cereal grain crop)
+- Total modules: 3491 → 3494 (warm-season turfgrass, succulent agave, grain crops)
+
 ## Phase 943 - v1306.0 (3491 modules, 124 kernel)
 - Added WASM: cauliflower_admin (Cauliflower vegetable), celosia_admin (Celosia ornamental flower), celery_admin (Celery stalk vegetable)
 - Total modules: 3488 → 3491 (brassica vegetable, cockscomb flower, stalk celery)

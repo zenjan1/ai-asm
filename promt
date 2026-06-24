@@ -1,36 +1,36 @@
-Phase 944: Centipede & Century Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 945: Chameleon & Chamomile Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/centipede_admin/src/main.c (Centipede Grass Lawn)
-   - Centipede grass (Eremochloa ophiuroides) lawn management
-   - Features: coverage_sqm, blade_ht_cm, density_pct, thatch_mm, ph_level, mow_interval
-   - Data: 16 entries with location,cov_sqm,blade_ht,dens_pct,thatch_mm,ph_lv,mow_int
+1. modules/chameleon_admin/src/main.c (Chameleon Reptile)
+   - Chameleon reptile terrarium management
+   - Features: body_length_cm, weight_g, color_change, tongue_len_cm, eye_rotation, shedding_week
+   - Data: 16 entries with location,body_ln,wght_g,clr_chg,tongue_ln,eye_rot,shed_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: establishment, mowing, fertilizing, thatch_removal, market
-   - Prefix: cent
+   - Categories: habitat, feeding, health, breeding, market
+   - Prefix: cham
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/century_admin/src/main.c (Century Plant Agave)
-   - Century plant (Agave americana) succulent management
-   - Features: rosette_dia_cm, leaf_count, leaf_width_cm, flower_spike_m, pup_count, harvest_year
-   - Data: 16 entries with location,ros_dia,leaf_ct,leaf_wd,flr_spk,pup_ct,harv_yr
+2. modules/chamomile_admin/src/main.c (Chamomile Herb)
+   - Chamomile (Matricaria chamomilla) medicinal herb management
+   - Features: flower_dia_cm, plant_ht_cm, oil_yield_ml, bloom_count, drying_temp, harvest_week
+   - Data: 16 entries with location,flr_dia,plnt_ht,oil_yd,bloom_ct,dry_tmp,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: cultivation, offset_division, fiber_harvest, landscape, market
-   - Prefix: centu
+   - Categories: planting, bloom, drying, extraction, market
+   - Prefix: chm
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cereal_admin/src/main.c (Cereal Grain Crop)
-   - Cereal grain (wheat, rice, barley, oats) crop management
-   - Features: yield_kg_per_ha, plant_ht_cm, head_length_cm, grain_count, protein_pct, harvest_week
-   - Data: 16 entries with location,yield_kg,plnt_ht,head_ln,grain_ct,prot_pct,harv_wk
+3. modules/chard_admin/src/main.c (Chard Leafy Green)
+   - Chard (Beta vulgaris) leafy green vegetable cultivation
+   - Features: leaf_span_cm, stem_ht_cm, leaf_color, rib_width_mm, bolt_week, cutting_count
+   - Data: 16 entries with location,leaf_sp,stm_ht,leaf_clr,rib_wd,bolt_wk,cut_ct
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, irrigation, pest_control, harvest, market
-   - Prefix: cers
+   - Categories: planting, cutting, blanching, harvest, market
+   - Prefix: chrd
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1306.0 → v1307.0 (all occurrences)
-  - total modules 3491 → 3494 (all occurrences)
-Update CHANGELOG.md: add "## Phase 944 - v1307.0 (3494 modules, 124 kernel)" entry
+  - version v1307.0 → v1308.0 (all occurrences)
+  - total modules 3494 → 3497 (all occurrences)
+Update CHANGELOG.md: add "## Phase 945 - v1308.0 (3497 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/centipede_admin/centipede_admin.wasm modules/century_admin/century_admin.wasm modules/cereal_admin/cereal_admin.wasm modules/centipede_admin/src/main.c modules/century_admin/src/main.c modules/cereal_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/chameleon_admin/chameleon_admin.wasm modules/chamomile_admin/chamomile_admin.wasm modules/chard_admin/chard_admin.wasm modules/chameleon_admin/src/main.c modules/chamomile_admin/src/main.c modules/chard_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
