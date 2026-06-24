@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 965 - v1328.0 (3557 modules, 124 kernel)
+- Added WASM: duck_admin (Duck waterfowl), dugong_admin (Dugong sea cow), durian_admin (Durian fruit tree)
+- Total modules: 3554 → 3557 (domestic duck, marine mammal, king of fruits)
+
 ## Phase 964 - v1327.0 (3554 modules, 124 kernel)
 - Added WASM: drake_admin (Drake male duck), dragon_admin (Komodo Dragon lizard), drone_admin (Drone male bee)
 - Total modules: 3551 → 3554 (male duck, komodo dragon, male bee)

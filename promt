@@ -1,36 +1,36 @@
-Phase 965: Duck & Dugong Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 966: Eagle & Earthworm Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/duck_admin/src/main.c (Duck Waterfowl)
-   - Duck (Anas platyrhynchos) domestic duck waterfowl husbandry
-   - Features: body_len_cm, body_wt_kg, bill_cm, feather_idx, egg_wt_g, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bill_cm,fthr_idx,egg_wt,age_yr
+1. modules/eagle_admin/src/main.c (Eagle Raptor Bird)
+   - Eagle (Aquila chrysaetos) golden eagle raptor bird management
+   - Features: body_len_cm, body_wt_kg, wing_span_cm, talon_idx, dive_speed, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,tl_idx,dv_spd,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: housing, feeding, breeding, grooming, market
-   - Prefix: duck
+   - Categories: housing, feeding, training, health, market
+   - Prefix: eagl
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/dugong_admin/src/main.c (Dugong Marine Mammal)
-   - Dugong (Dugong dugon) sea cow marine mammal management
-   - Features: body_len_cm, body_wt_kg, flipper_cm, tusk_idx, dive_depth, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,flip_cm,tsk_idx,dv_dp,age_yr
+2. modules/earthworm_admin/src/main.c (Earthworm Soil Invertebrate)
+   - Earthworm (Lumbricus terrestris) soil invertebrate farming
+   - Features: body_len_cm, body_wt_g, segment_ct, skin_idx, cast_wt_g, age_day
+   - Data: 16 entries with location,bdy_ln,bdy_wt,seg_ct,sk_idx,cst_wt,age_dy
    - Pattern: follow abelia_admin pattern
-   - Categories: habitat, feeding, health, breeding, market
-   - Prefix: dugn
+   - Categories: housing, feeding, breeding, harvest, market
+   - Prefix: eart
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/durian_admin/src/main.c (Durian Fruit)
-   - Durian (Durio zibethinus) king of fruits tree management
-   - Features: tree_height_m, fruit_wt_kg, spine_idx, aroma_lv, seed_ct, harvest_week
-   - Data: 16 entries with location,tree_ht,fr_wt,spn_idx,arm_lv,sd_ct,hv_wk
+3. modules/earwig_admin/src/main.c (Earwig Insect)
+   - Earwig (Forficula auricularia) earwig insect management
+   - Features: body_len_mm, body_wt_mg, pincer_mm, wing_idx, molt_stage, age_day
+   - Data: 16 entries with location,bdy_ln,bdy_wt,pncr_mm,wg_idx,mlt_st,age_dy
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, irrigation, flowering, harvest, market
-   - Prefix: dur
+   - Categories: housing, feeding, breeding, molt, market
+   - Prefix: earw
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1327.0 → v1328.0 (all occurrences)
-  - total modules 3554 → 3557 (all occurrences)
-Update CHANGELOG.md: add "## Phase 965 - v1328.0 (3557 modules, 124 kernel)" entry
+  - version v1328.0 → v1329.0 (all occurrences)
+  - total modules 3557 → 3560 (all occurrences)
+Update CHANGELOG.md: add "## Phase 966 - v1329.0 (3560 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/duck_admin/duck_admin.wasm modules/dugong_admin/dugong_admin.wasm modules/durian_admin/durian_admin.wasm modules/duck_admin/src/main.c modules/dugong_admin/src/main.c modules/durian_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/eagle_admin/eagle_admin.wasm modules/earthworm_admin/earthworm_admin.wasm modules/earwig_admin/earwig_admin.wasm modules/eagle_admin/src/main.c modules/earthworm_admin/src/main.c modules/earwig_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
