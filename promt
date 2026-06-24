@@ -1,36 +1,36 @@
-Phase 960: Danio & Daphne Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 961: Date & Deer Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/danio_admin/src/main.c (Danio Zebrafish)
-   - Danio (Danio rerio) zebrafish aquatic management
-   - Features: body_len_cm, body_wt_g, stripe_idx, fin_span, swim_speed, age_week
-   - Data: 16 entries with location,bdy_ln,bdy_wt,strp_idx,fin_sp,swm_spd,age_wk
+1. modules/datura_admin/src/main.c (Datura Trumpet Flower)
+   - Datura (Datura stramonium) trumpet-shaped flowering plant
+   - Features: plant_ht_cm, flower_dia_cm, flower_len_cm, petal_idx, scent_lvl, bloom_week
+   - Data: 16 entries with location,plnt_ht,fl_dia,fl_ln,pt_idx,sct_lv,blm_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: housing, feeding, breeding, health, market
-   - Prefix: dani
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-2. modules/daphne_admin/src/main.c (Daphne Shrub)
-   - Daphne (Daphne odora) evergreen fragrant shrub
-   - Features: plant_ht_cm, spread_cm, flower_dia_cm, leaf_idx, scent_idx, bloom_week
-   - Data: 16 entries with location,plnt_ht,sprd_cm,fl_dia,lf_idx,sct_idx,blm_wk
-   - Pattern: follow abelia_admin pattern
    - Categories: planting, feeding, pruning, flowering, market
-   - Prefix: daph
+   - Prefix: datu
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/darkling_admin/src/main.c (Darkling Beetle)
-   - Darkling (Tenebrio molitor) darkling beetle insect farming
-   - Features: body_len_cm, body_wt_g, leg_count, shell_idx, larva_wt, age_day
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_ct,sh_idx,lv_wt,age_dy
+2. modules/date_admin/src/main.c (Date Palm)
+   - Date (Phoenix dactylifera) date palm tree management
+   - Features: tree_height_m, trunk_dia_cm, frond_count, fruit_wt_kg, yield_idx, harvest_week
+   - Data: 16 entries with location,tree_ht,trk_dia,frnd_ct,fr_wt,yld_idx,hv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, breeding, harvest, market
-   - Prefix: dark
+   - Categories: planting, irrigation, pollination, harvest, market
+   - Prefix: date
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/deer_admin/src/main.c (Deer Cervidae)
+   - Deer (Cervus elaphus) deer farm wildlife management
+   - Features: body_len_cm, body_wt_kg, antler_cm, coat_idx, fawn_count, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,antl_cm,coat_idx,fwn_ct,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: housing, feeding, breeding, veterinary, market
+   - Prefix: deer
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1322.0 → v1323.0 (all occurrences)
-  - total modules 3539 → 3542 (all occurrences)
-Update CHANGELOG.md: add "## Phase 960 - v1323.0 (3542 modules, 124 kernel)" entry
+  - version v1323.0 → v1324.0 (all occurrences)
+  - total modules 3542 → 3545 (all occurrences)
+Update CHANGELOG.md: add "## Phase 961 - v1324.0 (3545 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/danio_admin/danio_admin.wasm modules/daphne_admin/daphne_admin.wasm modules/darkling_admin/darkling_admin.wasm modules/danio_admin/src/main.c modules/daphne_admin/src/main.c modules/darkling_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/datura_admin/datura_admin.wasm modules/date_admin/date_admin.wasm modules/deer_admin/deer_admin.wasm modules/datura_admin/src/main.c modules/date_admin/src/main.c modules/deer_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

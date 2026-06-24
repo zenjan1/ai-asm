@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 960 - v1323.0 (3542 modules, 124 kernel)
+- Added WASM: danio_admin (Danio zebrafish), daphne_admin (Daphne fragrant shrub), darkling_admin (Darkling beetle)
+- Total modules: 3539 → 3542 (zebrafish aquatic, fragrant evergreen shrub, beetle insect farming)
+
 ## Phase 959 - v1322.0 (3539 modules, 124 kernel)
 - Added WASM: daisy_admin (Daisy flower), dahlia_admin (Dahlia tuberous plant), dalmatian_admin (Dalmatian dog)
 - Total modules: 3536 → 3539 (perennial flower, tuberous flower, spotted dog breed)
