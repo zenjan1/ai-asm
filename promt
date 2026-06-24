@@ -1,36 +1,36 @@
-Phase 954: Fiber & Livestock Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 955: Wildlife & Seafood Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/cotton_admin/src/main.c (Cotton Fiber Crop)
-   - Cotton (Gossypium hirsutum) fiber crop management
-   - Features: plant_ht_cm, boll_count, fiber_len_mm, lint_pct, seed_oil_pct, harvest_week
-   - Data: 16 entries with location,plnt_ht,boll_ct,fbr_ln,lnt_pct,seed_oil,harv_wk
+1. modules/coyote_admin/src/main.c (Coyote Wild Dog)
+   - Coyote (Canis latrans) wild canine management
+   - Features: body_len_cm, body_wt_kg, territory_km, prey_idx, pup_count, health_idx
+   - Data: 16 entries with location,bdy_ln,bdy_wt,terr_km,prey_idx,pup_ct,hlth_idx
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planting, irrigation, pest_control, harvest, market
-   - Prefix: cttn
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-2. modules/cougau_admin/src/main.c (Cougar Big Cat)
-   - Cougar (Puma concolor) big cat wildlife management
-   - Features: body_len_cm, body_wt_kg, territory_km, prey_idx, cub_count, health_idx
-   - Data: 16 entries with location,bdy_ln,bdy_wt,terr_km,prey_idx,cub_ct,hlth_idx
-   - Pattern: follow abelia_admin pattern
    - Categories: housing, feeding, breeding, veterinary, market
-   - Prefix: cgr
+   - Prefix: cyt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cow_admin/src/main.c (Cow Cattle Livestock)
-   - Cow (Bos taurus) cattle livestock management
-   - Features: body_wt_kg, milk_yield_l, fat_pct, feed_kg, calf_count, breed_idx
-   - Data: 16 entries with location,bdy_wt,milk_yd,fat_pct,feed_kg,calf_ct,breed_idx
+2. modules/crab_admin/src/main.c (Crab Crustacean)
+   - Crab (Scylla serrata) mud crab aquaculture
+   - Features: shell_width_mm, body_wt_g, claw_size_mm, meat_pct, water_temp, harvest_week
+   - Data: 16 entries with location,sh_wd,bdy_wt,claw_sz,meat_pct,wt_tmp,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: feeding, milking, breeding, veterinary, market
-   - Prefix: cow
+   - Categories: stocking, feeding, water_mgmt, harvest, market
+   - Prefix: crb
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/crane_admin/src/main.c (Crane Wading Bird)
+   - Crane (Grus grus) wading bird husbandry
+   - Features: body_ht_cm, body_wt_g, wing_span_cm, neck_len_cm, egg_count, feather_idx
+   - Data: 16 entries with location,bdy_ht,bdy_wt,wing_sp,neck_ln,eg_ct,fthr_idx
+   - Pattern: follow abelia_admin pattern
+   - Categories: housing, feeding, breeding, grooming, market
+   - Prefix: crn_b
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1316.0 → v1317.0 (all occurrences)
-  - total modules 3521 → 3524 (all occurrences)
-Update CHANGELOG.md: add "## Phase 954 - v1317.0 (3524 modules, 124 kernel)" entry
+  - version v1317.0 → v1318.0 (all occurrences)
+  - total modules 3524 → 3527 (all occurrences)
+Update CHANGELOG.md: add "## Phase 955 - v1318.0 (3527 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/cotton_admin/cotton_admin.wasm modules/cougau_admin/cougau_admin.wasm modules/cow_admin/cow_admin.wasm modules/cotton_admin/src/main.c modules/cougau_admin/src/main.c modules/cow_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/coyote_admin/coyote_admin.wasm modules/crab_admin/crab_admin.wasm modules/crane_admin/crane_admin.wasm modules/coyote_admin/src/main.c modules/crab_admin/src/main.c modules/crane_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

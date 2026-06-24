@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 954 - v1317.0 (3524 modules, 124 kernel)
+- Added WASM: cotton_admin (Cotton fiber crop), cougau_admin (Cougar big cat), cow_admin (Cow cattle)
+- Total modules: 3521 → 3524 (fiber crop, big cat, cattle livestock)
+
 ## Phase 953 - v1316.0 (3521 modules, 124 kernel)
 - Added WASM: coral_admin (Coral reef), cormorant_admin (Cormorant fishing bird), corn_admin (Corn grain crop)
 - Total modules: 3518 → 3521 (reef coral, fishing bird, grain crop)
