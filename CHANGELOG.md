@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 949 - v1312.0 (3509 modules, 124 kernel)
+- Added WASM: clove_admin (Clove spice tree), clover_admin (Clover cover crop), cobra_admin (Cobra venomous snake)
+- Total modules: 3506 → 3509 (spice tree, legume cover crop, venomous snake)
+
 ## Phase 948 - v1311.0 (3506 modules, 124 kernel)
 - Added WASM: cineraria_admin (Cineraria flower), citrus_admin (Citrus orange tree), clam_admin (Clam shellfish)
 - Total modules: 3503 → 3506 (ornamental flower, citrus fruit, aquaculture shellfish)
