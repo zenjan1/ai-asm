@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 898 - v1262.0 (3356 modules, 124 kernel)
+- Added WASM: typha_admin (Typha cattail), urtica_admin (Urtica stinging nettle), uvularia_admin (Uvularia bellwort)
+- Total modules: 3353 → 3356 (wetland cattail management, medicinal nettle, woodland bellflower)
+
 ## Phase 897 - v1261.0 (3353 modules, 124 kernel)
 - Added WASM: tulip_admin (Tulipa bulb flower), turmeric_admin (Curcuma longa spice rhizome), tussilago_admin (Tussilago coltsfoot herb)
 - Total modules: 3350 → 3353 (tulip bulb cultivation, turmeric curcumin tracking, coltsfoot medicinal herb)

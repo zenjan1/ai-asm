@@ -1,28 +1,28 @@
-Phase 898: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 899: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/typha_admin/src/main.c (Typha / Cattail)
-   - Typha cattail wetland grass management and riparian zone control
-   - Features: stem density tracking, water depth tolerance, cattail spread rate, rhizome expansion, habitat score
-   - Data: 16 entries with location, stem_den, water_dep, spread_rt, rhizome_len, habitat_sc, control_m
+1. modules/valeriana_admin/src/main.c (Valeriana / Valerian)
+   - Valeriana officinalis medicinal herb and sedative plant management
+   - Features: root age tracking, valerenic acid content, harvest timing, drying method, potency grade
+   - Data: 16 entries with location, root_age,val_acid,harv_mo,dry_method,potency_gr,storage_mo
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/urtica_admin/src/main.c (Urtica / Nettle)
-   - Urtica dioica stinging nettle medicinal herb and fiber plant management
-   - Features: sting potency tracking, leaf yield, medicinal compound monitoring, fiber quality, growth density
-   - Data: 16 entries with location, sting_pot, leaf_yield, compound_mg, fiber_q, density, harvest_wk
+2. modules/vernonia_admin/src/main.c (Vernonia / Ironweed)
+   - Vernonia ironweed prairie wildflower and pollinator plant management
+   - Features: bloom color intensity, stem height, pollinator attraction, seed set, drought tolerance
+   - Data: 16 entries with location,bloom_ct,stem_ht,color_int,pollinator_at,seed_set,drought_tol
    - Pattern: follow abelia_admin pattern
 
-3. modules/uvularia_admin/src/main.c (Uvularia / Bellwort)
-   - Uvularia bellwort spring woodland wildflower and shade garden plant
-   - Features: bloom timing, petal count, shade tolerance, root depth, woodland coverage, pollinator visits
-   - Data: 16 entries with location, bloom_wk, petal_ct, shade_tol, root_dep, cover_sc, pollinator_v
+3. modules/verbena_admin/src/main.c (Verbena)
+   - Verbena flowering herb and medicinal tea plant management
+   - Features: flower cluster count, fragrance level, medicinal compound, bloom duration, propagation rate
+   - Data: 16 entries with location,flower_ct,fragrance,compound_mg,bloom_dk,prop_rt,harvest_ct
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1261.0 → v1262.0 (all occurrences)
-  - total modules 3353 → 3356 (all occurrences)
-Update CHANGELOG.md: add "## Phase 898 - v1262.0 (3356 modules, 124 kernel)" entry
+  - version v1262.0 → v1263.0 (all occurrences)
+  - total modules 3356 → 3359 (all occurrences)
+Update CHANGELOG.md: add "## Phase 899 - v1263.0 (3359 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/typha_admin/src/main.c modules/urtica_admin/src/main.c modules/uvularia_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/valeriana_admin/src/main.c modules/vernonia_admin/src/main.c modules/verbena_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
