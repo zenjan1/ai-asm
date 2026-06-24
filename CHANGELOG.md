@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 895 - v1259.0 (3347 modules, 124 kernel)
+- Added WASM: thunbergia_admin (Thunbergia black-eyed Susan vine), thyme_admin (Thyme culinary herb), thespesia_admin (Thespesia Pacific rosewood)
+- Total modules: 3344 → 3347 (climbing vine displays, culinary herb garden, coastal timber tree)
+
 ## Phase 894 - v1258.0 (3344 modules, 124 kernel)
 - Added WASM: tagetes_admin (Tagetes marigold), taraxacum_admin (Taraxacum dandelion), tamarind_admin (Tamarind tropical fruit tree)
 - Total modules: 3341 → 3344 (companion planting marigold, medicinal dandelion, tropical fruit tamarind)

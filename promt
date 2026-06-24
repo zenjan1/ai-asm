@@ -1,28 +1,28 @@
-Phase 895: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 896: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/thunbergia_admin/src/main.c (Thunbergia / Black-eyed Susan Vine)
-   - Thunbergia climbing vine cultivation for trellis and hanging basket displays
-   - Features: vine growth tracking, flower color varieties, support structure management, pruning schedule, pest monitoring
-   - Data: 16 entries with cultivar, vine_length, flower_ct, color_type, support_ht, bloom_week
+1. modules/tilia_admin/src/main.c (Tilia / Linden Tree)
+   - Tilia linden/basswood tree management for ornamental and honey production
+   - Features: tree height tracking, flower density for beekeeping, canopy spread, bark quality, urban planting index
+   - Data: 16 entries with species, height_m, flower_d, canopy_m, bark_gr,urban_idx
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/thyme_admin/src/main.c (Thyme / Thymus vulgaris)
-   - Thyme culinary and medicinal herb garden management
-   - Features: variety tracking (common, lemon, creeping), essential oil content, harvest cycles, drought tolerance, ground cover density
-   - Data: 16 entries with cultivar, oil_ml, harvest_kg, cover_pct, drought_idx, age_months
+2. modules/trillium_admin/src/main.c (Trillium / Wake-robin)
+   - Trillium native woodland wildflower conservation and propagation
+   - Features: rhizome age tracking, petal color variants, seed dispersal timing, mycorrhizal dependency, shade tolerance
+   - Data: 16 entries with species, age_yr, petal_color, seed_set, mycorr_idx, canopy_cover
    - Pattern: follow abelia_admin pattern
 
-3. modules/thespesia_admin/src/main.c (Thespesia / Pacific Rosewood)
-   - Thespesia populnea coastal timber and ornamental tree management
-   - Features: timber quality assessment, coastal wind tolerance, flower production, salt spray resistance, canopy density
-   - Data: 16 entries with location, dbh_cm, timber_grade, flower_ct, wind_tol, salt_resist
+3. modules/tropaeolum_admin/src/main.c (Tropaeolum / Nasturtium)
+   - Tropaeolum nasturtium edible flower and companion planting management
+   - Features: variety tracking (trailing/climbing), flower color, edibility rating, pest trap effectiveness, growth habit
+   - Data: 16 entries with cultivar, flower_ct, color, edible_gr, pest_trap, vine_len
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1258.0 → v1259.0 (all occurrences)
-  - total modules 3344 → 3347 (all occurrences)
-Update CHANGELOG.md: add "## Phase 895 - v1259.0 (3347 modules, 124 kernel)" entry
+  - version v1259.0 → v1260.0 (all occurrences)
+  - total modules 3347 → 3350 (all occurrences)
+Update CHANGELOG.md: add "## Phase 896 - v1260.0 (3350 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/thunbergia_admin/src/main.c modules/thyme_admin/src/main.c modules/thespesia_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/tilia_admin/src/main.c modules/trillium_admin/src/main.c modules/tropaeolum_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
