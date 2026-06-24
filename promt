@@ -1,36 +1,36 @@
-Phase 942: Catfish & Cassava Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 943: Cauliflower & Celosia Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/catfish_admin/src/main.c (Catfish Aquaculture)
-   - Catfish (Ictalurus punctatus) aquaculture pond management
-   - Features: pond_vol_l, fish_count, avg_weight_g, feed_kg, water_temp_c, oxygen_ppm
-   - Data: 16 entries with location,pond_vol,fish_ct,avg_wt,feed_kg,wtr_tmp,oxy_ppm
+1. modules/cauliflower_admin/src/main.c (Cauliflower Vegetable)
+   - Cauliflower (Brassica oleracea) vegetable cultivation
+   - Features: head_dia_cm, head_weight_kg, leaf_span_cm, curd_whiteness, days_to_mature, seed_count
+   - Data: 16 entries with location,head_dia,head_wt,leaf_sp,curd_wt,days_mat,seed_ct
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: stocking, feeding, water_quality, harvest, market
-   - Prefix: catf
+   - Categories: planting, blanching, pest_control, harvest, market
+   - Prefix: caul
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/cassava_admin/src/main.c (Cassava Tuber Crop)
-   - Cassava (Manihot esculenta) tuber crop management
-   - Features: root_weight_kg, plant_ht_cm, starch_pct, cyanide_ppm, stem_cuttings, harvest_month
-   - Data: 16 entries with location,root_wt,plnt_ht,starch_pct,cyan_ppm,stm_ct,harv_mo
+2. modules/celosia_admin/src/main.c (Celosia Ornamental Flower)
+   - Celosia (Celosia argentea) ornamental cockscomb flower
+   - Features: spike_ht_cm, spike_width_cm, petal_count, color_intensity, stem_count, bloom_week
+   - Data: 16 entries with location,spk_ht,spk_wd,petal_ct,clr_int,stm_ct,bloom_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, cultivation, processing, storage, market
-   - Prefix: cass
+   - Categories: propagation, bloom, drying, exhibition, market
+   - Prefix: cel
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cattle_admin/src/main.c (Cattle Ranch Management)
-   - Cattle (Bos taurus) ranch and herd management
-   - Features: herd_count, avg_weight_kg, milk_yield_l, calf_count, grazing_acres, vet_cost
-   - Data: 16 entries with location,herd_ct,avg_wt,milk_yd,calf_ct,graze_ac,vet_cost
+3. modules/celery_admin/src/main.c (Celery Stalk Vegetable)
+   - Celery (Apium graveolens) stalk vegetable cultivation
+   - Features: stalk_ht_cm, stalk_width_cm, rib_count, leaf_pct, heart_firmness, harvest_week
+   - Data: 16 entries with location,stk_ht,stk_wd,rib_ct,leaf_pct,heart_fm,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: grazing, breeding, veterinary, milking, market
-   - Prefix: catt
+   - Categories: transplanting, hilling, blanching, harvest, market
+   - Prefix: cele
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1304.0 → v1305.0 (all occurrences)
-  - total modules 3485 → 3488 (all occurrences)
-Update CHANGELOG.md: add "## Phase 942 - v1305.0 (3488 modules, 124 kernel)" entry
+  - version v1305.0 → v1306.0 (all occurrences)
+  - total modules 3488 → 3491 (all occurrences)
+Update CHANGELOG.md: add "## Phase 943 - v1306.0 (3491 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/catfish_admin/catfish_admin.wasm modules/cassava_admin/cassava_admin.wasm modules/cattle_admin/cattle_admin.wasm modules/catfish_admin/src/main.c modules/cassava_admin/src/main.c modules/cattle_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cauliflower_admin/cauliflower_admin.wasm modules/celosia_admin/celosia_admin.wasm modules/celery_admin/celery_admin.wasm modules/cauliflower_admin/src/main.c modules/celosia_admin/src/main.c modules/celery_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

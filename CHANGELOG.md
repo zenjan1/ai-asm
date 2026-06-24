@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 942 - v1305.0 (3488 modules, 124 kernel)
+- Added WASM: catfish_admin (Catfish aquaculture), cassava_admin (Cassava tuber crop), cattle_admin (Cattle ranch)
+- Total modules: 3485 → 3488 (aquaculture fish, tropical tuber crop, ranch livestock)
+
 ## Phase 941 - v1304.0 (3485 modules, 124 kernel)
 - Added WASM: carnivorous_admin (Carnivorous plant collection), carrot_admin (Carrot root vegetable), carpet_admin (Carpet grass turf)
 - Total modules: 3482 → 3485 (insect-eating plant, edible root crop, lawn grass)
