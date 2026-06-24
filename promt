@@ -1,36 +1,36 @@
-Phase 929: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 930: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/bluebrush_admin/src/main.c (Bluebrush / Alyogyne)
-   - Bluebrush hibiscus-like shrub management
-   - Features: flower_diameter, petal_count, bush_height, flower_color, leaf_width, bloom_week
-   - Data: 16 entries with location,flower_dia,petal_ct,bush_ht,flower_color,leaf_wd,bloom_wk
+1. modules/blueflag_admin/src/main.c (Blueflag / Iris versicolor)
+   - Blueflag water iris and wetland perennial management
+   - Features: flower_height, leaf_width, spadix_ln, flower_color, rhizome_sz, bloom_week
+   - Data: 16 entries with location,flower_ht,leaf_wd,spadix_ln,flower_color,rhiz_sz,bloom_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planning, execution, evaluation, pruning, market
-   - Prefix: blbr
+   - Categories: planning, execution, evaluation, division, market
+   - Prefix: blf
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/bluecurls_admin/src/main.c (Bluecurls / Borago)
-   - Bluecurls borage herb and ornamental management
-   - Features: flower_diameter, leaf_length, stem_height, flower_color, hair_density, bloom_week
-   - Data: 16 entries with location,flower_dia,leaf_ln,stem_ht,flower_color,hair_dt,bloom_wk
+2. modules/bluegum_admin/src/main.c (Bluegum / Eucalyptus globulus)
+   - Bluegum eucalyptus tree management
+   - Features: tree_height, trunk_diameter, leaf_length, bark_color, oil_content, growth_rate
+   - Data: 16 entries with location,tree_ht,trunk_dia,leaf_ln,bark_color,oil_ct,growth_rt
    - Pattern: follow abelia_admin pattern
    - Categories: planning, execution, evaluation, harvesting, market
-   - Prefix: blcu
+   - Prefix: bgm
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/blueeye_admin/src/main.c (Blue-eye / Sisyrinchium)
-   - Blue-eye grass-like perennial management
-   - Features: flower_diameter, leaf_width, plant_height, flower_color, corm_size, bloom_week
-   - Data: 16 entries with location,flower_dia,leaf_wd,plant_ht,flower_color,corm_sz,bloom_wk
+3. modules/bluestar_admin/src/main.c (Bluestar / Amsonia)
+   - Bluestar perennial and native wildflower management
+   - Features: flower_diameter, leaf_width, stem_height, flower_color, seed_pod, bloom_week
+   - Data: 16 entries with location,flower_dia,leaf_wd,stem_ht,flower_color,seed_pd,bloom_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: planning, execution, evaluation, division, market
-   - Prefix: ble
+   - Categories: planning, execution, evaluation, seed_collection, market
+   - Prefix: blst
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1291.0 → v1292.0 (all occurrences)
-  - total modules 3446 → 3449 (all occurrences)
-Update CHANGELOG.md: add "## Phase 929 - v1292.0 (3449 modules, 124 kernel)" entry
+  - version v1292.0 → v1293.0 (all occurrences)
+  - total modules 3449 → 3452 (all occurrences)
+Update CHANGELOG.md: add "## Phase 930 - v1293.0 (3452 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/bluebrush_admin/bluebrush_admin.wasm modules/bluecurls_admin/bluecurls_admin.wasm modules/blueeye_admin/blueeye_admin.wasm modules/blueberry_admin/blueberry_admin.wasm modules/bluebonnet_admin/bluebonnet_admin.wasm modules/bluebottle_admin/bluebottle_admin.wasm modules/blueberry_admin/src/main.c modules/bluebonnet_admin/src/main.c modules/bluebottle_admin/src/main.c modules/bluebrush_admin/src/main.c modules/bluecurls_admin/src/main.c modules/blueeye_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/blueflag_admin/blueflag_admin.wasm modules/bluegum_admin/bluegum_admin.wasm modules/bluestar_admin/bluestar_admin.wasm modules/bluebrush_admin/bluebrush_admin.wasm modules/bluecurls_admin/bluecurls_admin.wasm modules/blueeye_admin/blueeye_admin.wasm modules/bluebrush_admin/src/main.c modules/bluecurls_admin/src/main.c modules/blueeye_admin/src/main.c modules/blueflag_admin/src/main.c modules/bluegum_admin/src/main.c modules/bluestar_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

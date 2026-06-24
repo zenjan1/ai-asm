@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 929 - v1292.0 (3449 modules, 124 kernel)
+- Added WASM: bluebrush_admin (Bluebrush alyogyne shrub), bluecurls_admin (Bluecurls borage herb), blueeye_admin (Blue-eye sisyrinchium perennial)
+- Total modules: 3446 → 3449 (hibiscus-like shrub, culinary herb borage, grass-like perennial)
+
 ## Phase 928 - v1291.0 (3446 modules, 124 kernel)
 - Added WASM: blueberry_admin (Blueberry fruit production), bluebonnet_admin (Bluebonnet wildflower), bluebottle_admin (Bluebottle cornflower)
 - Total modules: 3443 → 3446 (berry fruit production, Texas state flower wildflower, cornflower meadow)

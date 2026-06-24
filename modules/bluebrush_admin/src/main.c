@@ -1,5 +1,6 @@
-/* bluebrush_admin: Bluebrush management technology administration (v1.0)
- * Bluebrush planning, bluebrush execution, bluebrush evaluation, accessories, marketing
+/* bluebrush_admin: Bluebrush (Alyogyne) hibiscus shrub management (v1.0)
+ * Bluebrush planning, planting, evaluation, pruning, market
+ * Features: flower diameter, petal count, bush height, flower color, leaf width, bloom week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} brus_t;
-typedef struct{int n_planning,n_execution,n_evaluation,n_accessory,n_market,t_f1,t_f2,t_f3,t_f4,t_f5;} brus_state_t;
-static brus_t brusp[N],brusx[N-2],brus2[N-4],brusac[N-6],brusm[N-6]; static brus_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
-static int add(brus_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;brus_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[BRUS] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int brus_init(void){if(init)return -1;st.n_planning=0;st.n_execution=0;st.n_evaluation=0;st.n_accessory=0;st.n_market=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)brusp[i].active=0;for(int i=0;i<N-2;i++)brusx[i].active=0;for(int i=0;i<N-4;i++)brus2[i].active=0;for(int i=0;i<N-6;i++)brusac[i].active=0;for(int i=0;i<N-6;i++)brusm[i].active=0;init=1;ps("[BRUS] Bluebrush initialized\n");return 0;}
-int brus_planning(int t,int c,int a,int b,int d,int e,int y){return add(brusp,&st.n_planning,&st.t_f1,N,t,c,a,b,d,e,y);}
-int brus_execution(int t,int c,int a,int b,int d,int e,int y){return add(brusx,&st.n_execution,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int brus_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(brus2,&st.n_evaluation,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int brus_accessory(int t,int c,int a,int b,int d,int e,int y){return add(brusac,&st.n_accessory,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int brus_market(int t,int c,int a,int b,int d,int e,int y){return add(brusm,&st.n_market,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void brus_report(void){ps("[BRUS] Planning: ");pi(st.n_planning);ps(" PCS=");pi(st.t_f1);ps("\nExecution: ");pi(st.n_execution);ps(" PCS=");pi(st.t_f2);ps("\nEvaluation: ");pi(st.n_evaluation);ps(" PCS=");pi(st.t_f3);ps("\nAccessory: ");pi(st.n_accessory);ps(" PCS=");pi(st.t_f4);ps("\nMarket: ");pi(st.n_market);ps(" USD=");pi(st.t_f5);ps("\n");}
-void brus_state(void){ps("[BRUS] P=");pi(st.n_planning);ps(" E=");pi(st.n_execution);ps(" V=");pi(st.n_evaluation);ps(" A=");pi(st.n_accessory);ps(" M=");pi(st.n_market);ps("\n");}
+typedef struct{int id,location,flower_dia,petal_ct,bush_ht,flower_color,leaf_wd,bloom_wk,active;} blbr_t;
+typedef struct{int n_plan,n_exec,n_eval,n_prune,n_mkt,t_flower,t_petal,t_bush,t_color,t_leaf;} blbr_state_t;
+static blbr_t blbrps[N],blbres[N-2],blbrvs[N-4],blbrpr[N-6],blbrms[N-6]; static blbr_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(blbr_t*a,int*cnt,int*sum,int mx,int lc,int fd,int pc,int bh,int fc,int lw,int bw){if(*cnt>=mx)return -1;blbr_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->flower_dia=fd;x->petal_ct=pc;x->bush_ht=bh;x->flower_color=fc;x->leaf_wd=lw;x->bloom_wk=bw;x->active=1;*sum+=fd;(*cnt)++;ps("[BLBR] Bluebrush ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" fd=");pi(fd);ps(" pc=");pi(pc);ps(" bh=");pi(bh);ps(" fc=");pi(fc);ps(" lw=");pi(lw);ps("\n");return *cnt-1;}
+int blbr_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_prune=0;st.n_mkt=0;st.t_flower=0;st.t_petal=0;st.t_bush=0;st.t_color=0;st.t_leaf=0;for(int i=0;i<N;i++)blbrps[i].active=0;for(int i=0;i<N-2;i++)blbres[i].active=0;for(int i=0;i<N-4;i++)blbrvs[i].active=0;for(int i=0;i<N-6;i++)blbrpr[i].active=0;for(int i=0;i<N-6;i++)blbrms[i].active=0;init=1;ps("[BLBR] Bluebrush initialized\n");return 0;}
+/* 1=garden 2=hedge 3=container 4=specimen 5=coastal */
+int blbr_planning(int lc,int fd,int pc,int bh,int fc,int lw,int bw){return add(blbrps,&st.n_plan,&st.t_flower,N,lc,fd,pc,bh,fc,lw,bw);}
+int blbr_execution(int lc,int fd,int pc,int bh,int fc,int lw,int bw){return add(blbres,&st.n_exec,&st.t_petal,N-2,lc,fd,pc,bh,fc,lw,bw);}
+int blbr_evaluation(int lc,int fd,int pc,int bh,int fc,int lw,int bw){return add(blbrvs,&st.n_eval,&st.t_bush,N-4,lc,fd,pc,bh,fc,lw,bw);}
+int blbr_pruning(int lc,int fd,int pc,int bh,int fc,int lw,int bw){return add(blbrpr,&st.n_prune,&st.t_color,N-6,lc,fd,pc,bh,fc,lw,bw);}
+int blbr_market(int lc,int fd,int pc,int bh,int fc,int lw,int bw){return add(blbrms,&st.n_mkt,&st.t_leaf,N-6,lc,fd,pc,bh,fc,lw,bw);}
+void blbr_report(void){ps("[BLBR] Plan: ");pi(st.n_plan);ps(" flower=");pi(st.t_flower);ps("\nExec: ");pi(st.n_exec);ps(" petal=");pi(st.t_petal);ps("\nEval: ");pi(st.n_eval);ps(" bush=");pi(st.t_bush);ps("\nPrune: ");pi(st.n_prune);ps(" color=");pi(st.t_color);ps("\nMkt: ");pi(st.n_mkt);ps(" leaf=");pi(st.t_leaf);ps("\n");}
+void blbr_state(void){ps("[BLBR] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Prune=");pi(st.n_prune);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Bluebrush Admin Demo ===\n\n");brus_init();
-ps("Bluebrush planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;brus_planning(t,c,1803+(i*17),1792+(i*14),1772+(i*10),1754+(i*6),2020+(i%5));}
-ps("\nBluebrush execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;brus_execution(t,c,1792+(i*15),1781+(i*12),1763+(i*8),1750+(i*5),2021+(i%4));}
-ps("\nBluebrush evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;brus_evaluation(t,c,1784+(i*13),1773+(i*10),1757+(i*7),1746+(i*4),2022+(i%3));}
-ps("\nBluebrush accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;brus_accessory(t,c,1776+(i*11),1767+(i*9),1753+(i*6),1743+(i*3),2023+(i%2));}
-ps("\nBluebrush marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;brus_market(t,c,1770+(i*9),1761+(i*7),1748+(i*5),1740+(i*3),2024);}
-ps("\n");brus_report();brus_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Bluebrush (Alyogyne) Admin Demo ===\n\n");blbr_init();
+ps("Bluebrush planning (garden layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;blbr_planning(lc,6+(i*2),5+(i%5),80+(i*12),(i%4)+1,8+(i*3),28+(i%6));}
+ps("\nBluebrush execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;blbr_execution(lc,7+(i*2),6+(i%4),90+(i*10),(i%4)+1,9+(i*2),30+(i%5));}
+ps("\nBluebrush evaluation (shrub check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;blbr_evaluation(lc,8+(i*2),7+(i%3),100+(i*8),(i%3)+2,10+(i*2),32+(i%4));}
+ps("\nBluebrush pruning...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;blbr_pruning(lc,5+(i*2),4+(i%4),70+(i*11),(i%4)+1,7+(i*3),26+(i%5));}
+ps("\nBluebrush market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;blbr_market(lc,9+(i*2),8+(i%3),110+(i*6),(i%3)+3,11+(i*2),34+(i%3));}
+ps("\n");blbr_report();blbr_state();ps("\n=== Demo Complete ===\n");return 0;}

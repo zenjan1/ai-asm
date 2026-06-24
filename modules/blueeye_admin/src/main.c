@@ -1,5 +1,6 @@
-/* blueeye_admin: Blueeye management technology administration (v1.0)
- * Blueeye planning, blueeye execution, blueeye evaluation, accessories, marketing
+/* blueeye_admin: Blue-eye (Sisyrinchium) grass-like perennial management (v1.0)
+ * Blueeye planning, planting, evaluation, division, market
+ * Features: flower diameter, leaf width, plant height, flower color, corm size, bloom week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} beye_t;
-typedef struct{int n_planning,n_execution,n_evaluation,n_accessory,n_market,t_f1,t_f2,t_f3,t_f4,t_f5;} beye_state_t;
-static beye_t beyep[N],beyex[N-2],beye2[N-4],beyeac[N-6],beyem[N-6]; static beye_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
-static int add(beye_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;beye_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[BEYE] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int beye_init(void){if(init)return -1;st.n_planning=0;st.n_execution=0;st.n_evaluation=0;st.n_accessory=0;st.n_market=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)beyep[i].active=0;for(int i=0;i<N-2;i++)beyex[i].active=0;for(int i=0;i<N-4;i++)beye2[i].active=0;for(int i=0;i<N-6;i++)beyeac[i].active=0;for(int i=0;i<N-6;i++)beyem[i].active=0;init=1;ps("[BEYE] Blueeye initialized\n");return 0;}
-int beye_planning(int t,int c,int a,int b,int d,int e,int y){return add(beyep,&st.n_planning,&st.t_f1,N,t,c,a,b,d,e,y);}
-int beye_execution(int t,int c,int a,int b,int d,int e,int y){return add(beyex,&st.n_execution,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int beye_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(beye2,&st.n_evaluation,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int beye_accessory(int t,int c,int a,int b,int d,int e,int y){return add(beyeac,&st.n_accessory,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int beye_market(int t,int c,int a,int b,int d,int e,int y){return add(beyem,&st.n_market,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void beye_report(void){ps("[BEYE] Planning: ");pi(st.n_planning);ps(" PCS=");pi(st.t_f1);ps("\nExecution: ");pi(st.n_execution);ps(" PCS=");pi(st.t_f2);ps("\nEvaluation: ");pi(st.n_evaluation);ps(" PCS=");pi(st.t_f3);ps("\nAccessory: ");pi(st.n_accessory);ps(" PCS=");pi(st.t_f4);ps("\nMarket: ");pi(st.n_market);ps(" USD=");pi(st.t_f5);ps("\n");}
-void beye_state(void){ps("[BEYE] P=");pi(st.n_planning);ps(" E=");pi(st.n_execution);ps(" V=");pi(st.n_evaluation);ps(" A=");pi(st.n_accessory);ps(" M=");pi(st.n_market);ps("\n");}
+typedef struct{int id,location,flower_dia,leaf_wd,plant_ht,flower_color,corm_sz,bloom_wk,active;} ble_t;
+typedef struct{int n_plan,n_exec,n_eval,n_div,n_mkt,t_flower,t_leaf,t_plant,t_color,t_corm;} ble_state_t;
+static ble_t bleps[N],bles[N-2],blesv[N-4],bledv[N-6],blems[N-6]; static ble_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(ble_t*a,int*cnt,int*sum,int mx,int lc,int fd,int lw,int ph,int fc,int cs,int bw){if(*cnt>=mx)return -1;ble_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->flower_dia=fd;x->leaf_wd=lw;x->plant_ht=ph;x->flower_color=fc;x->corm_sz=cs;x->bloom_wk=bw;x->active=1;*sum+=fd;(*cnt)++;ps("[BLE] Blueeye ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" fd=");pi(fd);ps(" lw=");pi(lw);ps(" ph=");pi(ph);ps(" fc=");pi(fc);ps(" cs=");pi(cs);ps("\n");return *cnt-1;}
+int ble_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_div=0;st.n_mkt=0;st.t_flower=0;st.t_leaf=0;st.t_plant=0;st.t_color=0;st.t_corm=0;for(int i=0;i<N;i++)bleps[i].active=0;for(int i=0;i<N-2;i++)bles[i].active=0;for(int i=0;i<N-4;i++)blesv[i].active=0;for(int i=0;i<N-6;i++)bledv[i].active=0;for(int i=0;i<N-6;i++)blems[i].active=0;init=1;ps("[BLE] Blueeye initialized\n");return 0;}
+/* 1=rockery 2=alpine 3=moist_border 4=woodland 5=container */
+int ble_planning(int lc,int fd,int lw,int ph,int fc,int cs,int bw){return add(bleps,&st.n_plan,&st.t_flower,N,lc,fd,lw,ph,fc,cs,bw);}
+int ble_execution(int lc,int fd,int lw,int ph,int fc,int cs,int bw){return add(bles,&st.n_exec,&st.t_leaf,N-2,lc,fd,lw,ph,fc,cs,bw);}
+int ble_evaluation(int lc,int fd,int lw,int ph,int fc,int cs,int bw){return add(blesv,&st.n_eval,&st.t_plant,N-4,lc,fd,lw,ph,fc,cs,bw);}
+int ble_division(int lc,int fd,int lw,int ph,int fc,int cs,int bw){return add(bledv,&st.n_div,&st.t_color,N-6,lc,fd,lw,ph,fc,cs,bw);}
+int ble_market(int lc,int fd,int lw,int ph,int fc,int cs,int bw){return add(blems,&st.n_mkt,&st.t_corm,N-6,lc,fd,lw,ph,fc,cs,bw);}
+void ble_report(void){ps("[BLE] Plan: ");pi(st.n_plan);ps(" flower=");pi(st.t_flower);ps("\nExec: ");pi(st.n_exec);ps(" leaf=");pi(st.t_leaf);ps("\nEval: ");pi(st.n_eval);ps(" plant=");pi(st.t_plant);ps("\nDiv: ");pi(st.n_div);ps(" color=");pi(st.t_color);ps("\nMkt: ");pi(st.n_mkt);ps(" corm=");pi(st.t_corm);ps("\n");}
+void ble_state(void){ps("[BLE] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Div=");pi(st.n_div);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Blueeye Admin Demo ===\n\n");beye_init();
-ps("Blueeye planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;beye_planning(t,c,1805+(i*17),1794+(i*14),1774+(i*10),1756+(i*6),2020+(i%5));}
-ps("\nBlueeye execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;beye_execution(t,c,1794+(i*15),1783+(i*12),1765+(i*8),1752+(i*5),2021+(i%4));}
-ps("\nBlueeye evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;beye_evaluation(t,c,1786+(i*13),1775+(i*10),1759+(i*7),1748+(i*4),2022+(i%3));}
-ps("\nBlueeye accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;beye_accessory(t,c,1778+(i*11),1769+(i*9),1755+(i*6),1745+(i*3),2023+(i%2));}
-ps("\nBlueeye marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;beye_market(t,c,1772+(i*9),1763+(i*7),1750+(i*5),1742+(i*3),2024);}
-ps("\n");beye_report();beye_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Blue-eye (Sisyrinchium) Admin Demo ===\n\n");ble_init();
+ps("Blueeye planning (rockery layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;ble_planning(lc,1+(i*1),2+(i*1),12+(i*3),(i%4)+1,2+(i*1),18+(i%6));}
+ps("\nBlueeye execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;ble_execution(lc,2+(i*1),3+(i*1),14+(i*2),(i%4)+1,3+(i*1),20+(i%5));}
+ps("\nBlueeye evaluation (growth check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;ble_evaluation(lc,3+(i*1),4+(i*1),16+(i*2),(i%3)+2,4+(i*1),22+(i%4));}
+ps("\nBlueeye division...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;ble_division(lc,1+(i*1),2+(i*1),10+(i*3),(i%4)+1,2+(i*1),16+(i%5));}
+ps("\nBlueeye market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;ble_market(lc,4+(i*1),5+(i*1),18+(i*2),(i%3)+3,5+(i*1),24+(i%3));}
+ps("\n");ble_report();ble_state();ps("\n=== Demo Complete ===\n");return 0;}
