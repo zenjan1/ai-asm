@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 970 - v1333.0 (3572 modules, 124 kernel)
+- Added WASM: firefly_admin (Bioluminescent beetle), flamingo_admin (Greater flamingo), flounder_admin (Flatfish)
+- Total modules: 3569 → 3572 (glowing insect, pink wading bird, camouflaged flatfish)
+
 ## Phase 969 - v1332.0 (3569 modules, 124 kernel)
 - Added WASM: falcon_admin (Peregrine falcon), ferret_admin (Domesticated polecat), finch_admin (Common finch)
 - Total modules: 3566 → 3569 (fastest bird raptor, domesticated mustelid, small songbird)
