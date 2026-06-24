@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 936 - v1299.0 (3470 modules, 124 kernel)
+- Added WASM: budgie_admin (Budgerigar aviary), buffalo_admin (Buffalo herd), bulrush_admin (Bulrush wetland plant)
+- Total modules: 3467 → 3470 (pet parrot, ranch bison, wetland sedge)
+
 ## Phase 935 - v1298.0 (3467 modules, 124 kernel)
 - Added WASM: brackish_admin (Brackish water estuary), brush_admin (Brush vegetation clearing), buck_admin (Buck deer population)
 - Total modules: 3464 → 3467 (estuary ecosystem, land clearing, wildlife management)

@@ -1,36 +1,36 @@
-Phase 936: Bird & Avian Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 937: Agriculture & Crop Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/budgie_admin/src/main.c (Budgerigar Aviary Management)
-   - Budgerigar (Melopsittacus undulatus) aviary management
-   - Features: flock_size, cage_vol_l, seed_gm, plumage_color, song_freq_hz, molt_week
-   - Data: 16 entries with location,flock_sz,cage_vol,seed_gm,plum_col,song_hz,molt_wk
+1. modules/burdock_admin/src/main.c (Burdock Root Crop)
+   - Burdock (Arctium lappa) root vegetable cultivation
+   - Features: root_length_cm, root_dia_cm, leaf_area_sqm, seed_yield_kg, growth_days, soil_ph
+   - Data: 16 entries with location,root_ln,root_dia,leaf_ar,seed_yd,grow_dy,soil_ph
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: breeding, feeding, health, training, market
-   - Prefix: budg
+   - Categories: planting, cultivation, harvest, storage, market
+   - Prefix: burd
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/buffalo_admin/src/main.c (Buffalo Herd Management)
-   - Buffalo (Bison bison) herd and ranch management
-   - Features: herd_count, avg_weight_kg, grazing_acres, milk_yield_l, hide_quality, round_season
-   - Data: 16 entries with location,herd_ct,avg_wt,graze_ac,milk_yd,hide_qual,rnd_sn
+2. modules/burnet_admin/src/main.c (Burnet Herb Management)
+   - Burnet (Sanguisorba) medicinal herb management
+   - Features: plant_ht_cm, flower_spike_cm, leaf_count, root_mass_g, oil_pct, harvest_week
+   - Data: 16 entries with location,plnt_ht,flr_sp,leaf_ct,root_ms,oil_pct,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: grazing, breeding, veterinary, roundup, market
-   - Prefix: buff
+   - Categories: propagation, drying, extraction, quality, market
+   - Prefix: burn
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/bulrush_admin/src/main.c (Bulrush Wetland Plant)
-   - Bulrush (Schoenoplectus) wetland plant management
-   - Features: stem_ht_cm, density_pct, water_depth_cm, flower_head_cm, root_spread, harvest_week
-   - Data: 16 entries with location,stm_ht,dens_pct,wtr_dp,flr_hd,root_sp,harv_wk
+3. modules/buttercup_admin/src/main.c (Buttercup Meadow Flower)
+   - Buttercup (Ranunculus) meadow flower management
+   - Features: petal_count, bloom_dia_cm, stem_ht_cm, tuber_count, seed_count, bloom_week
+   - Data: 16 entries with location,petal_ct,bloom_dia,stm_ht,tuber_ct,seed_ct,bloom_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: propagation, habitat, weaving, conservation, market
-   - Prefix: bulr
+   - Categories: meadow, propagation, pest_control, display, market
+   - Prefix: butc
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1298.0 → v1299.0 (all occurrences)
-  - total modules 3467 → 3470 (all occurrences)
-Update CHANGELOG.md: add "## Phase 936 - v1299.0 (3470 modules, 124 kernel)" entry
+  - version v1299.0 → v1300.0 (all occurrences)
+  - total modules 3470 → 3473 (all occurrences)
+Update CHANGELOG.md: add "## Phase 937 - v1300.0 (3473 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/budgie_admin/budgie_admin.wasm modules/buffalo_admin/buffalo_admin.wasm modules/bulrush_admin/bulrush_admin.wasm modules/budgie_admin/src/main.c modules/buffalo_admin/src/main.c modules/bulrush_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/burdock_admin/burdock_admin.wasm modules/burnet_admin/burnet_admin.wasm modules/buttercup_admin/buttercup_admin.wasm modules/burdock_admin/src/main.c modules/burnet_admin/src/main.c modules/buttercup_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
