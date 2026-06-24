@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 870 - v1215.0 (3277 modules)
+- Added: exochogyne_admin, exomiocarpon_admin, exostigma_admin
+
 ## Phase 869 - v1214.0 (3274 modules)
 - Added: exallage_admin, exbucklandia_admin, exocarya_admin
 
