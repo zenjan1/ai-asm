@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 962 - v1325.0 (3548 modules, 124 kernel)
+- Added WASM: dill_admin (Dill herb), dingo_admin (Dingo wild dog), diatom_admin (Diatom microalgae)
+- Total modules: 3545 → 3548 (aromatic herb, wild canid, microalgae)
+
 ## Phase 961 - v1324.0 (3545 modules, 124 kernel)
 - Added WASM: datura_admin (Datura trumpet flower), date_admin (Date palm tree), deer_admin (Deer cervidae)
 - Total modules: 3542 → 3545 (trumpet flower, date palm tree, cervidae deer farm)

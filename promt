@@ -1,36 +1,36 @@
-Phase 962: Dill & Dingo Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 963: Dolphin & Dove Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/dill_admin/src/main.c (Dill Herb)
-   - Dill (Anethum graveolens) aromatic herb management
-   - Features: plant_ht_cm, stem_dia_mm, leaf_idx, flower_dia_cm, seed_wt_g, harvest_week
-   - Data: 16 entries with location,plnt_ht,stm_dia,lf_idx,fl_dia,sd_wt,hv_wk
+1. modules/dodo_admin/src/main.c (Dodo Extinct Bird)
+   - Dodo (Raphus cucullatus) extinct bird de-extinction research
+   - Features: body_len_cm, body_wt_kg, beak_cm, feather_idx, egg_wt_g, gene_idx
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bk_cm,fthr_idx,egg_wt,gene_idx
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planting, feeding, flowering, harvest, market
-   - Prefix: dill
+   - Categories: research, habitat, breeding, health, museum
+   - Prefix: dodo
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/dingo_admin/src/main.c (Dingo Wild Dog)
-   - Dingo (Canis dingo) wild canid husbandry management
-   - Features: body_len_cm, body_wt_kg, ear_ht_cm, coat_idx, hunt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_ht,coat_idx,hnt_idx,age_yr
+2. modules/dolphin_admin/src/main.c (Dolphin Marine Mammal)
+   - Dolphin (Tursiops truncatus) bottlenose dolphin marine management
+   - Features: body_len_cm, body_wt_kg, fin_ht_cm, echo_idx, swim_speed, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_ht,echo_idx,swm_spd,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, training, grooming, market
-   - Prefix: ding
+   - Categories: housing, feeding, training, health, market
+   - Prefix: dolf
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/diatom_admin/src/main.c (Diatom Microalgae)
-   - Diatom (Bacillariophyta) microalgae cultivation management
-   - Features: cell_um, shell_dia_nm, silica_idx, chloro_lvl, oil_pct, colony_ct
-   - Data: 16 entries with location,cell_um,sh_dia,sl_idx,chl_lv,oil_pct,cl_ct
+3. modules/dove_admin/src/main.c (Dove Pigeon)
+   - Dove (Columba livia) dove pigeon bird husbandry
+   - Features: body_len_cm, body_wt_g, wing_span_cm, plumage_idx, coo_vol, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,plm_idx,coo_vl,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: cultivation, feeding, harvest, processing, market
-   - Prefix: diat
+   - Categories: housing, feeding, breeding, grooming, market
+   - Prefix: dove
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1324.0 → v1325.0 (all occurrences)
-  - total modules 3545 → 3548 (all occurrences)
-Update CHANGELOG.md: add "## Phase 962 - v1325.0 (3548 modules, 124 kernel)" entry
+  - version v1325.0 → v1326.0 (all occurrences)
+  - total modules 3548 → 3551 (all occurrences)
+Update CHANGELOG.md: add "## Phase 963 - v1326.0 (3551 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/dill_admin/dill_admin.wasm modules/dingo_admin/dingo_admin.wasm modules/diatom_admin/diatom_admin.wasm modules/dill_admin/src/main.c modules/dingo_admin/src/main.c modules/diatom_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/dodo_admin/dodo_admin.wasm modules/dolphin_admin/dolphin_admin.wasm modules/dove_admin/dove_admin.wasm modules/dodo_admin/src/main.c modules/dolphin_admin/src/main.c modules/dove_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
