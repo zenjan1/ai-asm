@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 924 - v1287.0 (3434 modules, 124 kernel)
+- Added WASM: bidens_admin (Bidens beggarticks), birch_admin (Birch silver birch), bistort_admin (Bistort persicaria), blandfordia_admin (Blandfordia christmas bells), blankingtech_admin (Blanking cutting technology), blazingstar_admin (Blazingstar liatris)
+- Total modules: 3428 → 3434 (wildflower meadow beggarticks, ornamental silver birch, damp meadow persicaria, bell-flowered christmas bells, industrial cutting technology, prairie flower liatris)
+
 ## Phase 922 - v1286.0 (3428 modules, 124 kernel)
 - Added WASM: berry_admin (Berry mixed berry), betonica_admin (Betonica wood betony), betony_admin (Betony common betony)
 - Total modules: 3425 → 3428 (mixed berry fruit production, medicinal wood betony, aromatic perennial betony)

@@ -1,5 +1,6 @@
-/* blandfordia_admin: Blandfordia management technology administration (v1.0)
- * Blandfordia planning, blandfordia execution, blandfordia evaluation, accessories, marketing
+/* blandfordia_admin: Blandfordia (Christmas Bells) ornamental perennial management (v1.0)
+ * Blandfordia planning, planting, evaluation, seed collection, market
+ * Features: flower length, leaf width, stem height, flower color, seed count, bloom week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} blan_t;
-typedef struct{int n_blanp,n_blan,n_blan2,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} blan_state_t;
-static blan_t blans[N],blane[N-2],blan2[N-4],blanac[N-6],blanam[N-6]; static blan_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
-static int add(blan_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;blan_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[BLAN] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int blan_init(void){if(init)return -1;st.n_blanp=0;st.n_blan=0;st.n_blan2=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)blans[i].active=0;for(int i=0;i<N-2;i++)blane[i].active=0;for(int i=0;i<N-4;i++)blan2[i].active=0;for(int i=0;i<N-6;i++)blanac[i].active=0;for(int i=0;i<N-6;i++)blanam[i].active=0;init=1;ps("[BLAN] Blandfordia initialized\n");return 0;}
-int blan_planning(int t,int c,int a,int b,int d,int e,int y){return add(blans,&st.n_blanp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int blan_execution(int t,int c,int a,int b,int d,int e,int y){return add(blane,&st.n_blan,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int blan_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(blan2,&st.n_blan2,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int blan_accessory(int t,int c,int a,int b,int d,int e,int y){return add(blanac,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int blan_market(int t,int c,int a,int b,int d,int e,int y){return add(blanam,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void blan_report(void){ps("[BLAN] Blap: ");pi(st.n_blanp);ps(" PCS=");pi(st.t_f1);ps("\nBlane: ");pi(st.n_blan);ps(" PCS=");pi(st.t_f2);ps("\nBlan2: ");pi(st.n_blan2);ps(" PCS=");pi(st.t_f3);ps("\nBlac: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void blan_state(void){ps("[BLAN] Blap=");pi(st.n_blanp);ps(" Blan=");pi(st.n_blan);ps(" Blan2=");pi(st.n_blan2);ps(" Blac=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+typedef struct{int id,location,flower_ln,leaf_wd,stem_ht,flower_color,seed_ct,bloom_wk,active;} blan_t;
+typedef struct{int n_plan,n_exec,n_eval,n_seed,n_mkt,t_flower,t_leaf,t_stem,t_color,t_seed;} blan_state_t;
+static blan_t blanps[N],blanes[N-2],blanvs[N-4],blansd[N-6],blanms[N-6]; static blan_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(blan_t*a,int*cnt,int*sum,int mx,int lc,int fl,int lw,int sh,int fc,int sc,int bw){if(*cnt>=mx)return -1;blan_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->flower_ln=fl;x->leaf_wd=lw;x->stem_ht=sh;x->flower_color=fc;x->seed_ct=sc;x->bloom_wk=bw;x->active=1;*sum+=fl;(*cnt)++;ps("[BLAN] Blandfordia ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" fl=");pi(fl);ps(" lw=");pi(lw);ps(" sh=");pi(sh);ps(" fc=");pi(fc);ps(" sc=");pi(sc);ps("\n");return *cnt-1;}
+int blan_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_seed=0;st.n_mkt=0;st.t_flower=0;st.t_leaf=0;st.t_stem=0;st.t_color=0;st.t_seed=0;for(int i=0;i<N;i++)blanps[i].active=0;for(int i=0;i<N-2;i++)blanes[i].active=0;for(int i=0;i<N-4;i++)blanvs[i].active=0;for(int i=0;i<N-6;i++)blansd[i].active=0;for(int i=0;i<N-6;i++)blanms[i].active=0;init=1;ps("[BLAN] Blandfordia initialized\n");return 0;}
+/* 1=garden_bed 2=rockery 3=greenhouse 4=border 5=container */
+int blan_planning(int lc,int fl,int lw,int sh,int fc,int sc,int bw){return add(blanps,&st.n_plan,&st.t_flower,N,lc,fl,lw,sh,fc,sc,bw);}
+int blan_execution(int lc,int fl,int lw,int sh,int fc,int sc,int bw){return add(blanes,&st.n_exec,&st.t_leaf,N-2,lc,fl,lw,sh,fc,sc,bw);}
+int blan_evaluation(int lc,int fl,int lw,int sh,int fc,int sc,int bw){return add(blanvs,&st.n_eval,&st.t_stem,N-4,lc,fl,lw,sh,fc,sc,bw);}
+int blan_seed_collection(int lc,int fl,int lw,int sh,int fc,int sc,int bw){return add(blansd,&st.n_seed,&st.t_color,N-6,lc,fl,lw,sh,fc,sc,bw);}
+int blan_market(int lc,int fl,int lw,int sh,int fc,int sc,int bw){return add(blanms,&st.n_mkt,&st.t_seed,N-6,lc,fl,lw,sh,fc,sc,bw);}
+void blan_report(void){ps("[BLAN] Plan: ");pi(st.n_plan);ps(" flower=");pi(st.t_flower);ps("\nExec: ");pi(st.n_exec);ps(" leaf=");pi(st.t_leaf);ps("\nEval: ");pi(st.n_eval);ps(" stem=");pi(st.t_stem);ps("\nSeed: ");pi(st.n_seed);ps(" color=");pi(st.t_color);ps("\nMkt: ");pi(st.n_mkt);ps(" seed=");pi(st.t_seed);ps("\n");}
+void blan_state(void){ps("[BLAN] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Seed=");pi(st.n_seed);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Blandfordia Admin Demo ===\n\n");blan_init();
-ps("Blandfordia planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;blan_planning(t,c,1438+(i*17),1427+(i*14),1407+(i*10),1389+(i*6),2020+(i%5));}
-ps("\nBlandfordia execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;blan_execution(t,c,1427+(i*15),1416+(i*12),1398+(i*8),1385+(i*5),2021+(i%4));}
-ps("\nBlandfordia evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;blan_evaluation(t,c,1419+(i*13),1408+(i*10),1392+(i*7),1381+(i*4),2022+(i%3));}
-ps("\nBlandfordia accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;blan_accessory(t,c,1411+(i*11),1402+(i*9),1388+(i*6),1378+(i*3),2023+(i%2));}
-ps("\nBlandfordia marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;blan_market(t,c,1405+(i*9),1396+(i*7),1383+(i*5),1375+(i*3),2024);}
+ps("=== Blandfordia (Christmas Bells) Admin Demo ===\n\n");blan_init();
+ps("Blandfordia planning (garden layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;blan_planning(lc,40+(i*5),12+(i*3),50+(i*8),(i%4)+1,80+(i*15),26+(i%6));}
+ps("\nBlandfordia execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;blan_execution(lc,45+(i*4),14+(i*2),55+(i*7),(i%4)+1,90+(i*12),28+(i%5));}
+ps("\nBlandfordia evaluation (bloom check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;blan_evaluation(lc,50+(i*3),16+(i*2),60+(i*6),(i%3)+2,100+(i*10),30+(i%4));}
+ps("\nBlandfordia seed collection...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;blan_seed_collection(lc,35+(i*4),10+(i*3),45+(i*7),(i%4)+1,70+(i*12),24+(i%5));}
+ps("\nBlandfordia ornamental market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;blan_market(lc,55+(i*3),18+(i*2),65+(i*5),(i%3)+3,110+(i*8),32+(i%3));}
 ps("\n");blan_report();blan_state();ps("\n=== Demo Complete ===\n");return 0;}

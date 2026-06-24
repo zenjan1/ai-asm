@@ -1,5 +1,6 @@
-/* blazingstar_admin: Blazingstar management technology administration (v1.0)
- * Blazingstar planning, blazingstar execution, blazingstar evaluation, accessories, marketing
+/* blazingstar_admin: Blazingstar (Liatris) prairie flower management (v1.0)
+ * Blazingstar planning, planting, evaluation, corm division, market
+ * Features: spike height, flower count, leaf width, flower color, corm size, bloom week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} blaz_t;
-typedef struct{int n_planning,n_execution,n_evaluation,n_accessory,n_market,t_f1,t_f2,t_f3,t_f4,t_f5;} blaz_state_t;
-static blaz_t blazp[N],blazx[N-2],blaz2[N-4],blazac[N-6],blazm[N-6]; static blaz_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
-static int add(blaz_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;blaz_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[BLAZ] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int blaz_init(void){if(init)return -1;st.n_planning=0;st.n_execution=0;st.n_evaluation=0;st.n_accessory=0;st.n_market=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)blazp[i].active=0;for(int i=0;i<N-2;i++)blazx[i].active=0;for(int i=0;i<N-4;i++)blaz2[i].active=0;for(int i=0;i<N-6;i++)blazac[i].active=0;for(int i=0;i<N-6;i++)blazm[i].active=0;init=1;ps("[BLAZ] Blazingstar initialized\n");return 0;}
-int blaz_planning(int t,int c,int a,int b,int d,int e,int y){return add(blazp,&st.n_planning,&st.t_f1,N,t,c,a,b,d,e,y);}
-int blaz_execution(int t,int c,int a,int b,int d,int e,int y){return add(blazx,&st.n_execution,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int blaz_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(blaz2,&st.n_evaluation,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int blaz_accessory(int t,int c,int a,int b,int d,int e,int y){return add(blazac,&st.n_accessory,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int blaz_market(int t,int c,int a,int b,int d,int e,int y){return add(blazm,&st.n_market,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void blaz_report(void){ps("[BLAZ] Planning: ");pi(st.n_planning);ps(" PCS=");pi(st.t_f1);ps("\nExecution: ");pi(st.n_execution);ps(" PCS=");pi(st.t_f2);ps("\nEvaluation: ");pi(st.n_evaluation);ps(" PCS=");pi(st.t_f3);ps("\nAccessory: ");pi(st.n_accessory);ps(" PCS=");pi(st.t_f4);ps("\nMarket: ");pi(st.n_market);ps(" USD=");pi(st.t_f5);ps("\n");}
-void blaz_state(void){ps("[BLAZ] P=");pi(st.n_planning);ps(" E=");pi(st.n_execution);ps(" V=");pi(st.n_evaluation);ps(" A=");pi(st.n_accessory);ps(" M=");pi(st.n_market);ps("\n");}
+typedef struct{int id,location,spike_ht,flower_ct,leaf_wd,flower_color,corm_sz,bloom_wk,active;} blaz_t;
+typedef struct{int n_plan,n_exec,n_eval,n_div,n_mkt,t_spike,t_flower,t_leaf,t_color,t_corm;} blaz_state_t;
+static blaz_t blazps[N],blazes[N-2],blazvs[N-4],blazdv[N-6],blazms[N-6]; static blaz_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(blaz_t*a,int*cnt,int*sum,int mx,int lc,int sh,int fc,int lw,int flc,int cs,int bw){if(*cnt>=mx)return -1;blaz_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->spike_ht=sh;x->flower_ct=fc;x->leaf_wd=lw;x->flower_color=flc;x->corm_sz=cs;x->bloom_wk=bw;x->active=1;*sum+=sh;(*cnt)++;ps("[BLAZ] Blazingstar ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" sh=");pi(sh);ps(" fc=");pi(fc);ps(" lw=");pi(lw);ps(" flc=");pi(flc);ps(" cs=");pi(cs);ps("\n");return *cnt-1;}
+int blaz_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_div=0;st.n_mkt=0;st.t_spike=0;st.t_flower=0;st.t_leaf=0;st.t_color=0;st.t_corm=0;for(int i=0;i<N;i++)blazps[i].active=0;for(int i=0;i<N-2;i++)blazes[i].active=0;for(int i=0;i<N-4;i++)blazvs[i].active=0;for(int i=0;i<N-6;i++)blazdv[i].active=0;for(int i=0;i<N-6;i++)blazms[i].active=0;init=1;ps("[BLAZ] Blazingstar initialized\n");return 0;}
+/* 1=prairie 2=meadow 3=border 4=wildflower_garden 5=naturalized */
+int blaz_planning(int lc,int sh,int fc,int lw,int flc,int cs,int bw){return add(blazps,&st.n_plan,&st.t_spike,N,lc,sh,fc,lw,flc,cs,bw);}
+int blaz_execution(int lc,int sh,int fc,int lw,int flc,int cs,int bw){return add(blazes,&st.n_exec,&st.t_flower,N-2,lc,sh,fc,lw,flc,cs,bw);}
+int blaz_evaluation(int lc,int sh,int fc,int lw,int flc,int cs,int bw){return add(blazvs,&st.n_eval,&st.t_leaf,N-4,lc,sh,fc,lw,flc,cs,bw);}
+int blaz_corm_division(int lc,int sh,int fc,int lw,int flc,int cs,int bw){return add(blazdv,&st.n_div,&st.t_color,N-6,lc,sh,fc,lw,flc,cs,bw);}
+int blaz_market(int lc,int sh,int fc,int lw,int flc,int cs,int bw){return add(blazms,&st.n_mkt,&st.t_corm,N-6,lc,sh,fc,lw,flc,cs,bw);}
+void blaz_report(void){ps("[BLAZ] Plan: ");pi(st.n_plan);ps(" spike=");pi(st.t_spike);ps("\nExec: ");pi(st.n_exec);ps(" flower=");pi(st.t_flower);ps("\nEval: ");pi(st.n_eval);ps(" leaf=");pi(st.t_leaf);ps("\nDiv: ");pi(st.n_div);ps(" color=");pi(st.t_color);ps("\nMkt: ");pi(st.n_mkt);ps(" corm=");pi(st.t_corm);ps("\n");}
+void blaz_state(void){ps("[BLAZ] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Div=");pi(st.n_div);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Blazingstar Admin Demo ===\n\n");blaz_init();
-ps("Blazingstar planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;blaz_planning(t,c,1799+(i*17),1788+(i*14),1768+(i*10),1750+(i*6),2020+(i%5));}
-ps("\nBlazingstar execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;blaz_execution(t,c,1788+(i*15),1777+(i*12),1759+(i*8),1746+(i*5),2021+(i%4));}
-ps("\nBlazingstar evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;blaz_evaluation(t,c,1780+(i*13),1769+(i*10),1753+(i*7),1742+(i*4),2022+(i%3));}
-ps("\nBlazingstar accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;blaz_accessory(t,c,1772+(i*11),1763+(i*9),1749+(i*6),1739+(i*3),2023+(i%2));}
-ps("\nBlazingstar marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;blaz_market(t,c,1766+(i*9),1757+(i*7),1744+(i*5),1736+(i*3),2024);}
+ps("=== Blazingstar (Liatris) Admin Demo ===\n\n");blaz_init();
+ps("Blazingstar planning (prairie layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;blaz_planning(lc,60+(i*10),12+(i*4),3+(i*2),(i%5)+1,4+(i*3),30+(i%6));}
+ps("\nBlazingstar execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;blaz_execution(lc,65+(i*8),14+(i*3),4+(i*2),(i%5)+1,5+(i*2),32+(i%5));}
+ps("\nBlazingstar evaluation (bloom check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;blaz_evaluation(lc,70+(i*7),16+(i*3),5+(i*2),(i%4)+2,6+(i%2),34+(i%4));}
+ps("\nBlazingstar corm division...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;blaz_corm_division(lc,50+(i*9),10+(i*4),3+(i*2),(i%5)+1,3+(i*3),28+(i%5));}
+ps("\nBlazingstar prairie flower market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;blaz_market(lc,75+(i*6),18+(i*3),6+(i*2),(i%3)+3,7+(i%2),36+(i%3));}
 ps("\n");blaz_report();blaz_state();ps("\n=== Demo Complete ===\n");return 0;}

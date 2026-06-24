@@ -1,28 +1,36 @@
-Phase 923: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 925: Infrastructure & Storage Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/bidens_admin/src/main.c (Bidens / Beggarticks)
-   - Bidens beggarticks and wildflower meadow management
-   - Features: flower_diameter, petal_count, stem_height, flower_color, seed_spine, bloom_week
-   - Data: 16 entries with location,flower_dia,petal_ct,stem_ht,flower_color,seed_sp,bloom_wk
+1. modules/block_device/src/main.c (Block Device Storage)
+   - Block device storage management technology
+   - Features: block_size, queue_depth, throughput, latency, io_ops, wear_level
+   - Data: 16 entries with location,blk_sz,q_dep,thru_pt,lat_ms,io_ops,wear_lv
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
+   - Categories: read_ops, write_ops, flush_ops, trim_ops, market
+   - Prefix: bdev
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/birch_admin/src/main.c (Birch / Silver Birch)
-   - Birch silver birch and ornamental tree management
-   - Features: tree_height, trunk_diameter, leaf_width, bark_color, catkin_length, growth_rate
-   - Data: 16 entries with location,tree_ht,trunk_dia,leaf_wd,bark_color,catkin_ln,growth_rt
+2. modules/blockchain_admin/src/main.c (Blockchain Network Administration)
+   - Blockchain network node administration
+   - Features: block_height, tx_count, hash_rate, peer_count, gas_price, consensus
+   - Data: 16 entries with location,blk_ht,tx_ct,hash_rt,peer_ct,gas_pr,cons_ns
    - Pattern: follow abelia_admin pattern
+   - Categories: planning, execution, evaluation, validation, market
+   - Prefix: bca
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/bistort_admin/src/main.c (Bistort / Persicaria bistorta)
-   - Bistort persicaria and damp meadow management
-   - Features: flower_spike, leaf_length, stem_height, flower_color, moisture_need, bloom_week
-   - Data: 16 entries with location,flower_sp,leaf_ln,stem_ht,flower_color,moist_nd,bloom_wk
+3. modules/blockchain_core/src/main.c (Blockchain Core Protocol)
+   - Blockchain core protocol engine management
+   - Features: chain_id, difficulty, nonce, merkle_root, state_hash, epoch
+   - Data: 16 entries with location,chain_id,diff_ct,nonce,mk_root,st_hash,ep_num
    - Pattern: follow abelia_admin pattern
+   - Categories: mining, staking, relay, finality, market
+   - Prefix: bcc
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1286.0 → v1287.0 (all occurrences)
-  - total modules 3428 → 3431 (all occurrences)
-Update CHANGELOG.md: add "## Phase 923 - v1287.0 (3431 modules, 124 kernel)" entry
+  - version v1287.0 → v1288.0 (all occurrences)
+  - total modules 3434 → 3437 (all occurrences)
+Update CHANGELOG.md: add "## Phase 925 - v1288.0 (3437 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/bidens_admin/src/main.c modules/birch_admin/src/main.c modules/bistort_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/block_device/block_device.wasm modules/blockchain_admin/blockchain_admin.wasm modules/blockchain_core/blockchain_core.wasm modules/block_device/src/main.c modules/blockchain_admin/src/main.c modules/blockchain_core/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
