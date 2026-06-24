@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 912 - v1276.0 (3398 modules, 124 kernel)
+- Added WASM: artemisia_admin (Artemisia wormwood), arum_admin (Arum lords and ladies), asarina_admin (Asarina creeping snapdragon)
+- Total modules: 3395 → 3398 (aromatic wormwood herb, woodland lords-and-ladies, climbing snapdragon vine)
+
 ## Phase 911 - v1275.0 (3395 modules, 124 kernel)
 - Added WASM: armeria_admin (Armeria thrift sea pink), arnica_admin (Arnica leopard's bane), aronia_admin (Aronia chokeberry)
 - Total modules: 3392 → 3395 (coastal thrift wildflower, medicinal leopard's bane, antioxidant chokeberry)

@@ -1,28 +1,28 @@
-Phase 912: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 913: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/artemisia_admin/src/main.c (Artemisia / Wormwood)
-   - Artemisia wormwood and aromatic herb management
-   - Features: stem height, leaf silver, compound content, bloom cluster, root depth, drought_tol
-   - Data: 16 entries with location,stem_ht,leaf_sv,compound_ct,bloom_cl,root_dep,drought_tl
+1. modules/asarum_admin/src/main.c (Asarum / Wild Ginger)
+   - Asarum wild ginger and shade groundcover management
+   - Features: leaf span, root spread, flower_type, leaf_vein, ground_cov, shade_tol
+   - Data: 16 entries with location,leaf_sp,root_sp,flower_tp,leaf_vn,ground_cv,shade_tl
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/arum_admin/src/main.c (Arum / Lords and Ladies)
-   - Arum lords-and-ladies and woodland tuber management
-   - Features: spathe height, spadix length, leaf span, bloom color, berry cluster, dormancy_mo
-   - Data: 16 entries with location,spathe_ht,spadix_len,leaf_span,bloom_color,berry_cl,dorm_mo
+2. modules/asclepias_admin/src/main.c (Asclepias / Milkweed)
+   - Asclepias milkweed and monarch butterfly habitat management
+   - Features: stem height, flower cluster, petal color, seed pod, plant spread, bloom week
+   - Data: 16 entries with location,stem_ht,flower_cl,petal_color,seed_pod,plant_sp,bloom_wk
    - Pattern: follow abelia_admin pattern
 
-3. modules/asarina_admin/src/main.c (Asarina / Creeping Snapdragon)
-   - Asarina creeping snapdragon and climbing vine management
-   - Features: vine length, flower count, petal color, leaf shape, climb_ht, bloom_week
-   - Data: 16 entries with location,vine_len,flower_ct,petal_color,leaf_shp,climb_ht,bloom_wk
+3. modules/asparagus_admin/src/main.c (Asparagus / Fern)
+   - Asparagus fern and ornamental spear crop management
+   - Features: spear length, fern frond, stalk_count, root_age, harvest_wk, grade
+   - Data: 16 entries with location,spear_len,fern_fr,stalk_ct,root_age,harv_wk,grade
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1275.0 → v1276.0 (all occurrences)
-  - total modules 3395 → 3398 (all occurrences)
-Update CHANGELOG.md: add "## Phase 912 - v1276.0 (3398 modules, 124 kernel)" entry
+  - version v1276.0 → v1277.0 (all occurrences)
+  - total modules 3398 → 3401 (all occurrences)
+Update CHANGELOG.md: add "## Phase 913 - v1277.0 (3401 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/artemisia_admin/src/main.c modules/arum_admin/src/main.c modules/asarina_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/asarum_admin/src/main.c modules/asclepias_admin/src/main.c modules/asparagus_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
