@@ -1,28 +1,28 @@
-Phase 904: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 905: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/ajuga_admin/src/main.c (Ajuga / Bugleweed)
-   - Ajuga reptans groundcover and creeping perennial management
-   - Features: spread rate tracking, leaf color variation, flower spike count, shade tolerance, root depth
-   - Data: 16 entries with location,spread_rt,leaf_color,flower_spikes,shade_tol,root_dep,trim_freq
+1. modules/aloe_admin/src/main.c (Aloe)
+   - Aloe succulent plant and medicinal gel source management
+   - Features: leaf length tracking, gel content, offset count, drought tolerance, sun exposure
+   - Data: 16 entries with location,leaf_len,gel_content,offset_ct,drought_tol,sun_exp,harvest_mo
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/alchemilla_admin/src/main.c (Alchemilla / Lady's Mantle)
-   - Alchemilla mollis medicinal herb and ornamental foliage plant management
-   - Features: leaf size tracking, water droplet retention, flower cluster, medicinal compound, ground coverage
-   - Data: 16 entries with location,leaf_sz,water_drop,flower_clust,compound_mg,ground_cov,harvest_wk
+2. modules/amaranthus_admin/src/main.c (Amaranthus / Amaranth)
+   - Amaranthus ornamental grain and colorful foliage plant management
+   - Features: flower spike length, seed yield, leaf color intensity, plant height, protein content
+   - Data: 16 entries with location,spike_len,seed_yield,leaf_color,plant_ht,protein_ct,harvest_mo
    - Pattern: follow abelia_admin pattern
 
-3. modules/allium_admin/src/main.c (Allium / Ornamental Onion)
-   - Allium ornamental bulb flower and globe-shaped flower management
-   - Features: flower globe diameter, stem height, bloom color, bulb count, pollinator attraction, drought tolerance
-   - Data: 16 entries with location,globe_dia,stem_ht,bloom_color,bulb_ct,pollinator_at,drought_tol
+3. modules/amaryllis_admin/src/main.c (Amaryllis / Hippeastrum)
+   - Amaryllis bulb flower and indoor flowering plant management
+   - Features: flower count per stem, petal width, bloom color, bulb size, stem height, forcing time
+   - Data: 16 entries with location,flower_ct,petal_wd,bloom_color,bulb_sz,stem_ht,forcing_wk
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1267.0 → v1268.0 (all occurrences)
-  - total modules 3371 → 3374 (all occurrences)
-Update CHANGELOG.md: add "## Phase 904 - v1268.0 (3374 modules, 124 kernel)" entry
+  - version v1268.0 → v1269.0 (all occurrences)
+  - total modules 3374 → 3377 (all occurrences)
+Update CHANGELOG.md: add "## Phase 905 - v1269.0 (3377 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/ajuga_admin/src/main.c modules/alchemilla_admin/src/main.c modules/allium_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/aloe_admin/src/main.c modules/amaranthus_admin/src/main.c modules/amaryllis_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

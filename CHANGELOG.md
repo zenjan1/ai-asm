@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 904 - v1268.0 (3374 modules, 124 kernel)
+- Added WASM: ajuga_admin (Ajuga bugleweed), alchemilla_admin (Alchemilla lady's mantle), allium_admin (Allium ornamental onion)
+- Total modules: 3371 → 3374 (creeping bugleweed groundcover, medicinal lady's mantle, globe-shaped ornamental onion)
+
 ## Phase 903 - v1267.0 (3371 modules, 124 kernel)
 - Added WASM: adonis_admin (Adonis pheasant's eye), agapanthus_admin (Agapanthus lily of the Nile), ageratum_admin (Ageratum floss flower)
 - Total modules: 3368 → 3371 (bright pheasant's eye annual, ornamental lily of the Nile, soft blue floss flower)
