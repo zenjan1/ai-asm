@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-13 - v1241.0 (3314 modules, 103 kernel)
+- Added kernel: ipc_msgq.asm, ipc_sem.asm, ipc_shm.asm
+- Kernel modules: 100 → 103 (System V message queues with priority, counting semaphores with wait queues, shared memory segments with attach/detach)
+
 ## Phase 884 - v1240.0 (3314 modules, 100 kernel)
 - Added WASM: holarrhena_admin (Holarrhena conessi medicinal bark production)
 - Added WASM builds: houstonia_admin (Houstonia bluets conservation), hypericum_admin (St. John's wort medicinal herb)
