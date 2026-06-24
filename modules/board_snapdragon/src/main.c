@@ -1,190 +1,32 @@
-/* board_snapdragon: Qualcomm Snapdragon interface (v20.0) */
-
+/* board_snapdragon: Qualcomm Snapdragon mobile platform management (v1.0)
+ * SD compute, graphics, connectivity, efficiency, market
+ * Features: cpu_cores, clock_mhz, ram_gb, modem_speed, gpu_score, battery_life
+ */
 #include <stddef.h>
-
-/* Host functions */
-extern unsigned int host_alloc(unsigned int size, unsigned int align);
-extern void host_print(const char *str);
-extern void host_exit(int code);
-extern int host_get_argv(unsigned int buf_off, unsigned int max_len);
-
-/* Snapdragon models */
-#define SD_8CX_GEN1  0
-#define SD_8CX_GEN2  1
-#define SD_8CX_GEN3  2
-#define SD_X_ELITE   3
-
-/* Limits */
-#define NAME_LEN    32
-#define FEATURES_LEN 512
-
-/* Board info */
-typedef struct {
-    int   model;
-    char  name[NAME_LEN];
-    int   kryo_cores;
-    int   hexagon_units;
-    int   adreno_cores;
-    int   qnn_units;
-    int   memory_gb;
-    int   npu_tops;
-    char  features[FEATURES_LEN];
-} sd_board_t;
-
-static sd_board_t board;
-
-/* String utilities */
-static int my_strlen(const char *s) { int l = 0; while (s[l]) l++; return l; }
-static int my_strcmp(const char *a, const char *b) {
-    while (*a && *b) { if (*a != *b) return *a - *b; a++; b++; } return *a - *b;
-}
-static void my_strcpy(char *dst, const char *src) { while (*src) *dst++ = *src++; *dst = '\0'; }
-static void my_strncpy(char *dst, const char *src, int n) {
-    int i = 0; while (i < n - 1 && src[i]) { dst[i] = src[i]; i++; } dst[i] = '\0';
-}
-
-/* Print utilities */
-static void print_str(const char *str) { host_print(str); }
-static void print_int(int val) {
-    char buf[32]; int pos = 0;
-    if (val < 0) { buf[pos++] = '-'; val = -val; }
-    if (val == 0) buf[pos++] = '0';
-    else { int d = 0, t = val; while (t > 0) { d++; t /= 10; } pos += d; buf[pos] = '\0'; pos--;
-        while (val > 0) { buf[pos--] = '0' + (val % 10); val /= 10; } }
-    host_print(buf);
-}
-
-/* Detect Snapdragon model */
-static void detect_snapdragon(int model) {
-    board.model = model;
-    switch (model) {
-    case SD_8CX_GEN1:
-        my_strcpy(board.name, "SD 8cx Gen1");
-        board.kryo_cores = 8; board.hexagon_units = 1;
-        board.adreno_cores = 1; board.qnn_units = 1;
-        board.memory_gb = 8; board.npu_tops = 2;
-        my_strcpy(board.features, "Kryo,Hexagon,Adreno,QNN");
-        break;
-    case SD_8CX_GEN2:
-        my_strcpy(board.name, "SD 8cx Gen2");
-        board.kryo_cores = 8; board.hexagon_units = 1;
-        board.adreno_cores = 1; board.qnn_units = 2;
-        board.memory_gb = 16; board.npu_tops = 4;
-        my_strcpy(board.features, "Kryo,Hexagon,Adreno,QNN");
-        break;
-    case SD_8CX_GEN3:
-        my_strcpy(board.name, "SD 8cx Gen3");
-        board.kryo_cores = 8; board.hexagon_units = 2;
-        board.adreno_cores = 2; board.qnn_units = 4;
-        board.memory_gb = 16; board.npu_tops = 11;
-        my_strcpy(board.features, "Kryo,Hexagon,Adreno,QNN,5G");
-        break;
-    case SD_X_ELITE:
-        my_strcpy(board.name, "SD X Elite");
-        board.kryo_cores = 12; board.hexagon_units = 4;
-        board.adreno_cores = 4; board.qnn_units = 8;
-        board.memory_gb = 32; board.npu_tops = 45;
-        my_strcpy(board.features, "Kryo,Hexagon,Adreno,QNN,5G,LTE");
-        break;
-    default:
-        my_strcpy(board.name, "Unknown Snapdragon");
-        board.kryo_cores = 0; board.hexagon_units = 0;
-        board.adreno_cores = 0; board.qnn_units = 0;
-        board.memory_gb = 0; board.npu_tops = 0;
-        my_strcpy(board.features, "none");
-        break;
-    }
-}
-
-/* Get board info */
-int sd_get_info(void) {
-    print_str("=== Snapdragon Board Info ===\n");
-    print_str("  Model: ");
-    print_str(board.name);
-    print_str("\n");
-    print_str("  Kryo cores: ");
-    print_int(board.kryo_cores);
-    print_str("\n");
-    print_str("  Hexagon DSP units: ");
-    print_int(board.hexagon_units);
-    print_str("\n");
-    print_str("  Adreno GPU cores: ");
-    print_int(board.adreno_cores);
-    print_str("\n");
-    print_str("  QNN units: ");
-    print_int(board.qnn_units);
-    print_str("\n");
-    print_str("  Memory: ");
-    print_int(board.memory_gb);
-    print_str(" GB\n");
-    print_str("  NPU TOPS: ");
-    print_int(board.npu_tops);
-    print_str("\n");
-    print_str("  Features: ");
-    print_str(board.features);
-    print_str("\n");
-    return 0;
-}
-
-/* Hexagon DSP processing */
-int sd_hexagon_process(const char *task) {
-    if (!task) return -1;
-    print_str("=== Hexagon DSP Processing ===\n");
-    print_str("  Task: ");
-    print_str(task);
-    print_str("\n");
-    print_str("  DSP units: ");
-    print_int(board.hexagon_units);
-    print_str("\n");
-    print_str("  Status: DSP ready\n");
-    return 0;
-}
-
-/* QNN inference */
-int sd_qnn_infer(const char *model) {
-    if (!model) return -1;
-    print_str("=== QNN Inference ===\n");
-    print_str("  Model: ");
-    print_str(model);
-    print_str("\n");
-    print_str("  NPU TOPS: ");
-    print_int(board.npu_tops);
-    print_str("\n");
-    print_str("  Status: QNN ready\n");
-    return 0;
-}
-
-/* ===== CLI entry ===== */
-void _start(void) {
-    unsigned int buf = host_alloc(512, 16);
-    host_get_argv(buf, 512);
-    int help = 0, test = 0;
-    unsigned int pos = 0;
-    char *argv_ptr = (char *)buf;
-    while (pos < 512 && argv_ptr[pos]) pos++; pos++;
-    while (pos < 512 && argv_ptr[pos]) {
-        char *arg = &argv_ptr[pos];
-        if (my_strcmp(arg, "-h") == 0 || my_strcmp(arg, "--help") == 0) help = 1;
-        else if (my_strcmp(arg, "-t") == 0 || my_strcmp(arg, "--test") == 0) test = 1;
-        while (pos < 512 && argv_ptr[pos]) pos++; pos++;
-    }
-    print_str("Snapdragon v20.0 - Qualcomm Snapdragon Interface\n");
-    if (help) {
-        print_str("Usage: board_snapdragon [options]\n");
-        print_str("  -h, --help    Show this help\n");
-        print_str("  -t, --test    Run hardware test\n");
-        return;
-    }
-    detect_snapdragon(SD_X_ELITE);
-    if (test) {
-        print_str("=== Snapdragon Test ===\n\n");
-        sd_get_info();
-        print_str("\n");
-        sd_hexagon_process("audio_processing");
-        print_str("\n");
-        sd_qnn_infer("mobilenet");
-        print_str("\n=== Snapdragon Complete ===\n");
-        return;
-    }
-    print_str("Use -h for help, -t for test\n");
-}
+__attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
+__attribute__((import_module("host"), import_name("print"))) extern void host_print(const char*);
+__attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
+__attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
+#define N 16
+typedef struct{int id,location,cpu_ct,clk_mhz,ram_gb,modem_sp,gpu_sc,bat_life,active;} sd_t;
+typedef struct{int n_plan,n_exec,n_eval,n_efficiency,n_mkt,t_cpu,t_clk,t_ram,t_modem,t_gpu;} sd_state_t;
+static sd_t sdps[N],sdes[N-2],sdvs[N-4],sdef[N-6],sdms[N-6]; static sd_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(sd_t*a,int*cnt,int*sum,int mx,int lc,int cc,int cm,int rg,int ms,int gs,int bl){if(*cnt>=mx)return -1;sd_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->cpu_ct=cc;x->clk_mhz=cm;x->ram_gb=rg;x->modem_sp=ms;x->gpu_sc=gs;x->bat_life=bl;x->active=1;*sum+=cc;(*cnt)++;ps("[SD] Snapdragon ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" cc=");pi(cc);ps(" cm=");pi(cm);ps(" rg=");pi(rg);ps(" ms=");pi(ms);ps(" gs=");pi(gs);ps(" bl=");pi(bl);ps("\n");return *cnt-1;}
+int sd_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_efficiency=0;st.n_mkt=0;st.t_cpu=0;st.t_clk=0;st.t_ram=0;st.t_modem=0;st.t_gpu=0;for(int i=0;i<N;i++)sdps[i].active=0;for(int i=0;i<N-2;i++)sdes[i].active=0;for(int i=0;i<N-4;i++)sdvs[i].active=0;for(int i=0;i<N-6;i++)sdef[i].active=0;for(int i=0;i<N-6;i++)sdms[i].active=0;init=1;ps("[SD] Snapdragon initialized\n");return 0;}
+int sd_compute(int lc,int cc,int cm,int rg,int ms,int gs,int bl){return add(sdps,&st.n_plan,&st.t_cpu,N,lc,cc,cm,rg,ms,gs,bl);}
+int sd_graphics(int lc,int cc,int cm,int rg,int ms,int gs,int bl){return add(sdes,&st.n_exec,&st.t_clk,N-2,lc,cc,cm,rg,ms,gs,bl);}
+int sd_connectivity(int lc,int cc,int cm,int rg,int ms,int gs,int bl){return add(sdvs,&st.n_eval,&st.t_ram,N-4,lc,cc,cm,rg,ms,gs,bl);}
+int sd_efficiency(int lc,int cc,int cm,int rg,int ms,int gs,int bl){return add(sdef,&st.n_efficiency,&st.t_modem,N-6,lc,cc,cm,rg,ms,gs,bl);}
+int sd_market(int lc,int cc,int cm,int rg,int ms,int gs,int bl){return add(sdms,&st.n_mkt,&st.t_gpu,N-6,lc,cc,cm,rg,ms,gs,bl);}
+void sd_report(void){ps("[SD] Plan: ");pi(st.n_plan);ps(" CPU=");pi(st.t_cpu);ps("\nGraphics: ");pi(st.n_exec);ps(" Clock=");pi(st.t_clk);ps("\nConnect: ");pi(st.n_eval);ps(" RAM=");pi(st.t_ram);ps("\nEfficiency: ");pi(st.n_efficiency);ps(" Modem=");pi(st.t_modem);ps("\nMkt: ");pi(st.n_mkt);ps(" GPU=");pi(st.t_gpu);ps("\n");}
+void sd_state(void){ps("[SD] Compute=");pi(st.n_plan);ps(" Graphics=");pi(st.n_exec);ps(" Connect=");pi(st.n_eval);ps(" Efficiency=");pi(st.n_efficiency);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
+int main(void){
+ps("=== Snapdragon Admin Demo ===\n\n");sd_init();
+/* 1=smartphone 2=tablet 3=laptop 4=automotive 5=iot_device */
+ps("Snapdragon compute...\n");for(int i=0;i<N;i++){int lc=(i%5)+1,cc=4+(i*2),cm=1800+(i*200),rg=4+(i%5),ms=100+(i*50),gs=200+(i*100),bl=8+(i%8);sd_compute(lc,cc,cm,rg,ms,gs,bl);}
+ps("\nSnapdragon graphics...\n");for(int i=0;i<N-2;i++){int lc=(i%4)+2,cc=6+(i*2),cm=2000+(i*200),rg=6+(i%4),ms=150+(i*40),gs=300+(i*100),bl=10+(i%6);sd_graphics(lc,cc,cm,rg,ms,gs,bl);}
+ps("\nSnapdragon connectivity...\n");for(int i=0;i<N-4;i++){int lc=(i%3)+1,cc=4+(i*2),cm=2200+(i*100),rg=8+(i%8),ms=200+(i*50),gs=400+(i*80),bl=12+(i%8);sd_connectivity(lc,cc,cm,rg,ms,gs,bl);}
+ps("\nSnapdragon efficiency...\n");for(int i=0;i<N-6;i++){int lc=(i%5)+1,cc=2+(i*2),cm=1600+(i*100),rg=3+(i%4),ms=80+(i*30),gs=150+(i*50),bl=14+(i%6);sd_efficiency(lc,cc,cm,rg,ms,gs,bl);}
+ps("\nSnapdragon market...\n");for(int i=0;i<N-6;i++){int lc=(i%4)+1,cc=8+(i*2),cm=2400+(i*200),rg=12+(i%4),ms=300+(i*100),gs=500+(i*100),bl=6+(i%10);sd_market(lc,cc,cm,rg,ms,gs,bl);}
+ps("\n");sd_report();sd_state();ps("\n=== Demo Complete ===\n");return 0;}

@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 932 - v1295.0 (3458 modules, 124 kernel)
+- Added WASM: bluewood_admin (Bluewood Cordia tree), board_jetson_wasm (NVIDIA Jetson AI board), board_snapdragon (Qualcomm Snapdragon platform)
+- Total modules: 3455 → 3458 (ornamental tree species, embedded AI board, mobile platform)
+
 ## Phase 931 - v1294.0 (3455 modules, 124 kernel)
 - Added WASM: bluestem_admin (Bluestem prairie grass), bluet_admin (Bluet woodland wildflower), blueweed_admin (Blueweed viper's bugloss)
 - Total modules: 3452 → 3455 (native prairie grass, spring ephemeral wildflower, pollinator plant)

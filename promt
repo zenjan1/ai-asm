@@ -1,36 +1,36 @@
-Phase 932: Plant & Technology Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 933: Wildlife & Ecosystem Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/bluewood_admin/src/main.c (Bluewood / Cordia)
-   - Bluewood tree and shrub management
-   - Features: tree_height, trunk_diameter, leaf_width, bark_color, flower_color, growth_rate
-   - Data: 16 entries with location,tree_ht,trunk_dia,leaf_wd,bark_color,flower_color,growth_rt
+1. modules/bobcat_admin/src/main.c (Bobcat Wildlife Tracking)
+   - Bobcat (Lynx rufus) wildlife monitoring and tracking
+   - Features: weight_kg, territory_km, prey_count, sightings, den_depth, activity_hr
+   - Data: 16 entries with location,wght_kg,territ_km,prey_ct,sight,den_dp,activ_hr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planning, execution, evaluation, pruning, market
-   - Prefix: blwd
+   - Categories: tracking, habitat, hunting, breeding, market
+   - Prefix: bob
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/board_jetson_wasm/src/main.c (NVIDIA Jetson Board)
-   - NVIDIA Jetson embedded AI board management
-   - Features: cpu_cores, gpu_cores, ram_gb, top_speed, power_watts, ai_ops
-   - Data: 16 entries with location,cpu_ct,gpu_ct,ram_gb,top_spd,pwr_wt,ai_ops
+2. modules/bog_admin/src/main.c (Bog Wetland Ecosystem)
+   - Bog wetland ecosystem management and conservation
+   - Features: water_ph, depth_cm, sphagnum_pct, flora_count, fauna_count, carbon_stored
+   - Data: 16 entries with location,wtr_ph,dpth_cm,sphgm_pct,flora_ct,fauna_ct,crbn_st
    - Pattern: follow abelia_admin pattern
-   - Categories: inference, training, deployment, monitoring, market
-   - Prefix: jet
+   - Categories: hydrology, vegetation, conservation, monitoring, market
+   - Prefix: bog
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/board_snapdragon/src/main.c (Qualcomm Snapdragon Board)
-   - Qualcomm Snapdragon mobile platform management
-   - Features: cpu_cores, clock_mhz, ram_gb, modem_speed, gpu_score, battery_life
-   - Data: 16 entries with location,cpu_ct,clk_mhz,ram_gb,modem_sp,gpu_sc,bat_life
+3. modules/bonsai_admin/src/main.c (Bonsai Miniature Tree Cultivation)
+   - Bonsai art and miniature tree cultivation management
+   - Features: age_years, height_cm, trunk_mm, leaf_scale, style_type, pot_size
+   - Data: 16 entries with location,age_yr,ht_cm,trunk_mm,leaf_sc,style, pot_sz
    - Pattern: follow abelia_admin pattern
-   - Categories: compute, graphics, connectivity, efficiency, market
-   - Prefix: sd
+   - Categories: cultivation, styling, watering, exhibition, market
+   - Prefix: bons
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1294.0 → v1295.0 (all occurrences)
-  - total modules 3455 → 3458 (all occurrences)
-Update CHANGELOG.md: add "## Phase 932 - v1295.0 (3458 modules, 124 kernel)" entry
+  - version v1295.0 → v1296.0 (all occurrences)
+  - total modules 3458 → 3461 (all occurrences)
+Update CHANGELOG.md: add "## Phase 933 - v1296.0 (3461 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/bluewood_admin/bluewood_admin.wasm modules/board_jetson_wasm/board_jetson_wasm.wasm modules/board_snapdragon/board_snapdragon.wasm modules/bluestem_admin/bluestem_admin.wasm modules/bluet_admin/bluet_admin.wasm modules/blueweed_admin/blueweed_admin.wasm modules/bluestem_admin/src/main.c modules/bluet_admin/src/main.c modules/blueweed_admin/src/main.c modules/bluewood_admin/src/main.c modules/board_jetson_wasm/src/main.c modules/board_snapdragon/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/bobcat_admin/bobcat_admin.wasm modules/bog_admin/bog_admin.wasm modules/bonsai_admin/bonsai_admin.wasm modules/bobcat_admin/src/main.c modules/bog_admin/src/main.c modules/bonsai_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
