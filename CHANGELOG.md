@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 892 - v1256.0 (3338 modules, 124 kernel)
+- Added WASM: ranunculus_admin (Ranunculus buttercup), romneya_admin (Romneya California tree poppy), rudbeckia_admin (Rudbeckia black-eyed Susan)
+- Total modules: 3335 → 3338 (ornamental buttercups, native California poppy, wildflower meadow black-eyed Susan)
+
 ## Phase OS-20 - v1255.0 (3335 modules, 124 kernel)
 - Added kernel: net_ipv6.asm, net_tls.asm, net_quic.asm
 - Kernel modules: 121 → 124 (IPv6 protocol with NDP, TLS 1.3 encryption with session management, QUIC protocol with stream multiplexing)

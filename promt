@@ -1,28 +1,28 @@
-Phase 892: Plant Domain WASM Modules - 3 new AArch64 WASM application modules:
+Phase 893: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/paulownia_admin/src/main.c (Paulownia Tree / Phoenix Tree)
-   - Paulownia fast-growing ornamental and timber tree management
-   - Features: growth tracking, timber quality assessment, pruning scheduling, coppicing management, leaf area index monitoring
-   - Data: 16 entries with species (P. tomentosa, P. fortunei, P. elongata), DBH, height, age, timber_grade, growth_rate
+1. modules/salvia_admin/src/main.c (Salvia / Sage)
+   - Salvia sage cultivation with medicinal, ornamental, and culinary uses
+   - Features: variety tracking (S. officinalis, S. splendens, S. nemorosa), essential oil yield, bloom cycles, drought tolerance, pruning schedule
+   - Data: 16 entries with cultivar, oil_yield_ml, bloom_duration, height_cm, leaf_area, hardiness_zone
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/persimmon_admin/src/main.c (Persimmon / Diospyros)
-   - Persimmon fruit tree cultivation and harvest management
-   - Features: variety tracking (astringent/non-astringent), fruit yield monitoring, ripeness staging, grafting records, chill hours tracking
-   - Data: 16 entries with cultivar (Fuyu, Hachiya, Jiro, etc.), fruit_count, brix_level, harvest_week, tree_age, pollinator
+2. modules/sambucus_admin/src/main.c (Sambucus / Elderberry)
+   - Sambucus elderberry orchard management for fruit and medicinal production
+   - Features: cultivar selection (black/blue/red elderberry), berry yield tracking, flower harvest timing, cane pruning, disease monitoring
+   - Data: 16 entries with cultivar, berry_kg, flower_clusters, cane_count, anthocyanin_mg, pruning_year
    - Pattern: follow abelia_admin pattern
 
-3. modules/pistacia_admin/src/main.c (Pistachio / Pistacia vera)
-   - Pistachio orchard management and nut production tracking
-   - Features: male/female ratio management, alternate bearing tracking, hull split monitoring, water use efficiency, salinity tolerance
-   - Data: 16 entries with cultivar (Kerman, Golden Hills, Lost Hills, etc.), yield_kg, nut_size, shell_split_pct, irrigation_mm
+3. modules/sanguinaria_admin/src/main.c (Sanguinaria / Bloodroot)
+   - Sanguinaria canadensis bloodroot native woodland wildflower conservation
+   - Features: rhizome propagation tracking, alkaloid content monitoring, shade management, mycorrhizal association, seed dispersal timing
+   - Data: 16 entries with location, rhizome_count, alkaloid_pct, canopy_cover, bloom_week, seed_set_rate
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1255.0 → v1256.0 (all occurrences)
-  - total modules 3335 → 3338 (all occurrences)
-Update CHANGELOG.md: add "## Phase 892 - v1256.0 (3338 modules, 124 kernel)" entry
+  - version v1256.0 → v1257.0 (all occurrences)
+  - total modules 3338 → 3341 (all occurrences)
+Update CHANGELOG.md: add "## Phase 893 - v1257.0 (3341 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/paulownia_admin/src/main.c modules/persimmon_admin/src/main.c modules/pistacia_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/salvia_admin/src/main.c modules/sambucus_admin/src/main.c modules/sanguinaria_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
