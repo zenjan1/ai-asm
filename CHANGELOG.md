@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 920 - v1284.0 (3422 modules, 124 kernel)
+- Added WASM: bauhinia_admin (Bauhinia orchid tree), beardtongue_admin (Beardtongue penstemon), beet_admin (Beet root vegetable)
+- Total modules: 3419 → 3422 (tropical orchid tree vine, pollinator garden penstemon, root vegetable crop)
+
 ## Phase 919 - v1283.0 (3419 modules, 124 kernel)
 - Added WASM: baptisia_admin (Baptisia false indigo), basil_admin (Basil sweet basil), basilicum_admin (Basilicum holy basil)
 - Total modules: 3416 → 3419 (perennial false indigo, culinary sweet basil, sacred tulsi herb)
