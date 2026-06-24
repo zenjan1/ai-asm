@@ -1,36 +1,36 @@
-Phase 955: Wildlife & Seafood Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 956: Insect & Reptile Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/coyote_admin/src/main.c (Coyote Wild Dog)
-   - Coyote (Canis latrans) wild canine management
-   - Features: body_len_cm, body_wt_kg, territory_km, prey_idx, pup_count, health_idx
-   - Data: 16 entries with location,bdy_ln,bdy_wt,terr_km,prey_idx,pup_ct,hlth_idx
+1. modules/cricket_admin/src/main.c (Cricket Insect)
+   - Cricket (Gryllus assimilis) insect farming
+   - Features: body_len_mm, body_wt_mg, leg_len_mm, chirp_rate, protein_pct, harvest_week
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_ln,chirp_rt,prot_pct,harv_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
+   - Categories: breeding, feeding, housing, harvest, market
+   - Prefix: crkt
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+2. modules/crocodile_admin/src/main.c (Crocodile Reptile)
+   - Crocodile (Crocodylus niloticus) reptile farming
+   - Features: body_len_cm, body_wt_kg, tail_len_cm, tooth_count, hide_quality, health_idx
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,tooth_ct,hide_ql,hlth_idx
+   - Pattern: follow abelia_admin pattern
    - Categories: housing, feeding, breeding, veterinary, market
-   - Prefix: cyt
+   - Prefix: crco
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/crab_admin/src/main.c (Crab Crustacean)
-   - Crab (Scylla serrata) mud crab aquaculture
-   - Features: shell_width_mm, body_wt_g, claw_size_mm, meat_pct, water_temp, harvest_week
-   - Data: 16 entries with location,sh_wd,bdy_wt,claw_sz,meat_pct,wt_tmp,harv_wk
+3. modules/crow_admin/src/main.c (Crow Corvid Bird)
+   - Crow (Corvus corax) corvid bird husbandry
+   - Features: body_len_cm, body_wt_g, wing_span_cm, vocal_idx, food_cache, feather_idx
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,vocal_idx,food_cc,fthr_idx
    - Pattern: follow abelia_admin pattern
-   - Categories: stocking, feeding, water_mgmt, harvest, market
-   - Prefix: crb
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-3. modules/crane_admin/src/main.c (Crane Wading Bird)
-   - Crane (Grus grus) wading bird husbandry
-   - Features: body_ht_cm, body_wt_g, wing_span_cm, neck_len_cm, egg_count, feather_idx
-   - Data: 16 entries with location,bdy_ht,bdy_wt,wing_sp,neck_ln,eg_ct,fthr_idx
-   - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, breeding, grooming, market
-   - Prefix: crn_b
+   - Categories: housing, feeding, training, grooming, market
+   - Prefix: crw
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1317.0 → v1318.0 (all occurrences)
-  - total modules 3524 → 3527 (all occurrences)
-Update CHANGELOG.md: add "## Phase 955 - v1318.0 (3527 modules, 124 kernel)" entry
+  - version v1318.0 → v1319.0 (all occurrences)
+  - total modules 3527 → 3530 (all occurrences)
+Update CHANGELOG.md: add "## Phase 956 - v1319.0 (3530 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/coyote_admin/coyote_admin.wasm modules/crab_admin/crab_admin.wasm modules/crane_admin/crane_admin.wasm modules/coyote_admin/src/main.c modules/crab_admin/src/main.c modules/crane_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cricket_admin/cricket_admin.wasm modules/crocodile_admin/crocodile_admin.wasm modules/crow_admin/crow_admin.wasm modules/cricket_admin/src/main.c modules/crocodile_admin/src/main.c modules/crow_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

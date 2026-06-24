@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 955 - v1318.0 (3527 modules, 124 kernel)
+- Added WASM: coyote_admin (Coyote wild dog), crab_admin (Mud crab), crane_admin (Crane wading bird)
+- Total modules: 3524 → 3527 (wild canine, aquaculture crab, wading bird)
+
 ## Phase 954 - v1317.0 (3524 modules, 124 kernel)
 - Added WASM: cotton_admin (Cotton fiber crop), cougau_admin (Cougar big cat), cow_admin (Cow cattle)
 - Total modules: 3521 → 3524 (fiber crop, big cat, cattle livestock)
