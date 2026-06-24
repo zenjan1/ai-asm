@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-8 - v1232.0 (3307 modules, 88 kernel)
+- Added kernel: hypervisor.asm, vm_mgr.asm, container_orch.asm
+- Kernel modules: 85 → 88 (ARMv8 hypervisor at EL2, VM lifecycle manager, container orchestration)
+
 ## Phase OS-7 - v1231.0 (3307 modules, 85 kernel)
 - Added kernel: nvme.asm, ext4_fs.asm, raid.asm
 - Kernel modules: 82 → 85 (NVMe SSD driver, ext4 filesystem with journaling/extents, RAID 0/1/5)
