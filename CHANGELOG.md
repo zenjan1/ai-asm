@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 913 - v1277.0 (3401 modules, 124 kernel)
+- Added WASM: asarum_admin (Asarum wild ginger), asclepias_admin (Asclepias milkweed), asparagus_admin (Asparagus fern spear)
+- Total modules: 3398 → 3401 (shade groundcover wild ginger, monarch butterfly milkweed, ornamental asparagus)
+
 ## Phase 912 - v1276.0 (3398 modules, 124 kernel)
 - Added WASM: artemisia_admin (Artemisia wormwood), arum_admin (Arum lords and ladies), asarina_admin (Asarina creeping snapdragon)
 - Total modules: 3395 → 3398 (aromatic wormwood herb, woodland lords-and-ladies, climbing snapdragon vine)

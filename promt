@@ -1,28 +1,28 @@
-Phase 913: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 914: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/asarum_admin/src/main.c (Asarum / Wild Ginger)
-   - Asarum wild ginger and shade groundcover management
-   - Features: leaf span, root spread, flower_type, leaf_vein, ground_cov, shade_tol
-   - Data: 16 entries with location,leaf_sp,root_sp,flower_tp,leaf_vn,ground_cv,shade_tl
+1. modules/aster_admin/src/main.c (Aster / Michaelmas Daisy)
+   - Aster michaelmas daisy and autumn perennial management
+   - Features: flower diameter, petal count, stem height, bloom color, leaf shape, bloom week
+   - Data: 16 entries with location,flower_dia,petal_ct,stem_ht,bloom_color,leaf_shp,bloom_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/asclepias_admin/src/main.c (Asclepias / Milkweed)
-   - Asclepias milkweed and monarch butterfly habitat management
-   - Features: stem height, flower cluster, petal color, seed pod, plant spread, bloom week
-   - Data: 16 entries with location,stem_ht,flower_cl,petal_color,seed_pod,plant_sp,bloom_wk
+2. modules/astilbe_admin/src/main.c (Astilbe / False Spirea)
+   - Astilbe false spirea and shade perennial management
+   - Features: plume height, plume width, flower color, leaf type, moisture need, bloom week
+   - Data: 16 entries with location,plume_ht,plume_wd,flower_color,leaf_tp,moisture_nd,bloom_wk
    - Pattern: follow abelia_admin pattern
 
-3. modules/asparagus_admin/src/main.c (Asparagus / Fern)
-   - Asparagus fern and ornamental spear crop management
-   - Features: spear length, fern frond, stalk_count, root_age, harvest_wk, grade
-   - Data: 16 entries with location,spear_len,fern_fr,stalk_ct,root_age,harv_wk,grade
+3. modules/aubrieta_admin/src/main.c (Aubrieta / Rock Cress)
+   - Aubrieta rock cress and cascading groundcover management
+   - Features: flower carpet, petal color, stem length, leaf coverage, bloom period, spread rate
+   - Data: 16 entries with location,carpet_sz,petal_color,stem_len,leaf_cov,bloom_pd,spread_rt
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1276.0 → v1277.0 (all occurrences)
-  - total modules 3398 → 3401 (all occurrences)
-Update CHANGELOG.md: add "## Phase 913 - v1277.0 (3401 modules, 124 kernel)" entry
+  - version v1277.0 → v1278.0 (all occurrences)
+  - total modules 3401 → 3404 (all occurrences)
+Update CHANGELOG.md: add "## Phase 914 - v1278.0 (3404 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/asarum_admin/src/main.c modules/asclepias_admin/src/main.c modules/asparagus_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/aster_admin/src/main.c modules/astilbe_admin/src/main.c modules/aubrieta_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
