@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 879 - v1224.0 (3304 modules)
+- Added: fuertesiella_admin, fumaria_admin, funkiella_admin
+
 ## Phase 878 - v1223.0 (3301 modules)
 - Added: fremontodendron_admin, frullania_admin, fuerstia_admin
 
