@@ -1,5 +1,10 @@
 # Changelog
 
+## Phase OS-12 - v1239.0 (3311 modules, 100 kernel)
+- Added kernel: crypto_aes.asm, crypto_sha.asm, crypto_rng.asm
+- Kernel modules: 97 → 100 (AES-128/192/256 with CBC/CTR/GCM modes, SHA-224/256/384/512 with HMAC, CTR-DRBG with TRNG entropy)
+- Milestone: 100 kernel ASM modules achieved
+
 ## Phase 883 - v1238.0 (3311 modules, 97 kernel)
 - Added WASM builds: heimia_admin (bush violet medicinal), heisteria_admin (sandalwood family)
 - Previously committed: hieracium_admin (hawkweed invasive)

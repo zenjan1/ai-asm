@@ -1,39 +1,40 @@
-Phase OS-12: Kernel Cryptographic Subsystem - 3 new kernel ASM modules:
+Phase 884: Plant Ecology & Research Admin Modules - 3 new WASM application modules:
 
-1. kernel/crypto_aes.asm (AES Block Cipher)
-   - AArch64 ASM implementation of AES (FIPS 197)
-   - AES-128/192/256 key sizes (10/12/14 rounds)
-   - Key expansion: round key generation with Rcon, RotWord, SubWord
-   - Core operations: SubBytes (S-box lookup), ShiftRows, MixColumns, AddRoundKey
-   - Modes of operation: ECB, CBC (with IV), CTR (counter mode), GCM (authenticated)
-   - AES-NI / ARM CE acceleration: use AESE/AESMC instructions if available
-   - Padding: PKCS#7 for block cipher modes
-   - Export symbols: crypto_aes_init, crypto_aes_set_key, crypto_aes_encrypt, crypto_aes_decrypt, crypto_aes_cbc_encrypt, crypto_aes_gcm_encrypt
-   - Integration: called by net_tls.asm for record encryption, by filesystem for at-rest encryption
+1. modules/holarrhena_admin/src/main.c (Holarrhena Connessi Medicinal Administration)
+   - Base ID: 2078
+   - Manages holarrhena (conessi/kurchi) medicinal bark production
+   - Features: tree inventory (16 trees), bark harvest scheduling (rotational), alkaloid profiling (conessine/kurchine), sustainable harvest planning, bark drying/curing records, pharmaceutical grade classification, Ayurvedic formulation tracking, replanting schedule
+   - Domain structs: hola_t (id, tree_id, age_years, bark_kg, alkaloid_ppm, grade, dry_method, cure_week, ayurvedic_use, replant_year, active)
+   - Functions: hola_init, hola_tree_inventory, hola_bark_harvest, hola_alkaloid_profile, hola_drying, hola_grade, hola_ayurvedic_use, hola_replant
+   - Exports: main (demo: tree inventory, bark harvest cycles, alkaloid profiling, drying methods, grading, Ayurvedic use catalog, replanting schedule)
+   - Pattern: follow modules/abelia_admin/src/main.c style
 
-2. kernel/crypto_sha.asm (SHA-2 Hash Functions)
-   - AArch64 ASM implementation of SHA-2 family (FIPS 180-4)
-   - SHA-224: 224-bit digest, 64 rounds
-   - SHA-256: 256-bit digest, 64 rounds (most common)
-   - SHA-384: 384-bit digest, 80 rounds
-   - SHA-512: 512-bit digest, 80 rounds
-   - HMAC: keyed-hash message authentication (RFC 2104)
-   - ARM SHA-2 acceleration: use SHA256H/SHA256H2/SHA256SU0/SHA256SU1 instructions
-   - Streaming: init/update/final API for incremental hashing
-   - Export symbols: crypto_sha_init, crypto_sha256_update, crypto_sha256_final, crypto_sha512_update, crypto_hmac_sha256
-   - Integration: called by net_tls.asm for PRF/handshake hashes, by secure_boot.asm for image verification
+2. modules/houstonia_admin/src/main.c (Houstonia Bluets Conservation Administration)
+   - Base ID: 2079
+   - Manages houstonia (bluets/quaker ladies) wildflower conservation
+   - Features: population survey (16 sites), habitat mapping (meadow/woodland/wetland/rocky), flower density counts, pollinator observation logs, seed collection records, germination trials, transplant success tracking, threat assessment (invasive competition, habitat loss), conservation priority ranking
+   - Domain structs: hous_t (id, site, habitat, flower_density, pollinator_count, seed_count, germ_rate_pct, transplant_ok, threat_level, priority_rank, active)
+   - Functions: hous_init, hous_site_survey, hous_habitat_map, hous_pollinator_observe, hous_seed_collect, hous_germination_trial, hous_transplant, hous_threat_assess
+   - Exports: main (demo: site surveys, habitat mapping, pollinator counts, seed collection, germination trials, transplants, threat assessment)
+   - Pattern: follow modules/abelia_admin/src/main.c style
 
-3. kernel/crypto_rng.asm (Cryptographic Random Number Generation)
-   - AArch64 ASM implementation of secure random number generation
-   - Entropy source: ARM RNDR/RNDRRS instructions (TRNG hardware), cycle counter fallback
-   - CSPRNG: CTR-DRBG (NIST SP 800-90A) with AES-256 core
-   - Entropy pool: 256-byte pool, continuous health testing
-   - Seeding: automatic reseed every 2^20 requests, manual reseed support
-   - Output: random bytes, random integers (uniform), random UUIDs (v4)
-   - Prediction resistance: reseed before each generate if flag set
-   - Export symbols: crypto_rng_init, crypto_rng_seed, crypto_rng_bytes, crypto_rng_int, crypto_rng_uuid
-   - Integration: called by net_tls.asm for nonces, by crypto_aes.asm for IV generation
+3. modules/hypericum_admin/src/main.c (Hypericum St. John's Wort Administration)
+   - Base ID: 2080
+   - Manages hypericum (St. John's wort) medicinal herb production
+   - Features: field cultivation (16 plots), hypericin/hyperforin content tracking, harvest timing (flowering stage), extract standardization, pharmaceutical grade (antidepressant research), quality control (HPLC fingerprinting), drug interaction documentation, organic certification tracking, clinical trial sample management
+   - Domain structs: hyp_t (id, plot, growth_day, hypericin_ppm, hyperforin_ppm, extract_conc, grade, hplc_ok, drug_interact, organic_cert, clinical_batch, active)
+   - Functions: hyp_init, hyp_plot_establish, hyp_compound_track, hyp_harvest, hyp_extract_standardize, hyp_quality_control, hyp_drug_interact, hyp_organic_cert, hyp_clinical_batch
+   - Exports: main (demo: plot establishment, compound tracking, harvest, extraction, QC, drug interactions, organic cert, clinical batches)
+   - Pattern: follow modules/abelia_admin/src/main.c style
 
-All modules follow existing kernel conventions (.arch armv8-a, .global exports, stp/ldp frame setup).
-After creating 3 ASM modules, update README kernel count from 97 to 100, version from v1238.0 to v1239.0.
-Set UPDATE=0, git add kernel/*.asm + README + CHANGELOG, commit and push to origin arm-v2.
+Build all 3 modules with:
+  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o modules/<name>/<name>.wasm modules/<name>/src/main.c
+
+After creating 3 WASM modules, update README:
+  - version v1239.0 → v1240.0 (all occurrences)
+  - modules 3311 → 3314 (all occurrences)
+  - Add the 3 new module names to the L3 WASM Apps architecture list
+Update CHANGELOG.md: add "## Phase 884 - v1240.0 (3314 modules, 100 kernel)" entry
+Set UPDATE=0
+git add modules/holarrhena_admin/ modules/houstonia_admin/ modules/hypericum_admin/ README.md CHANGELOG.md promt update-state
+Commit and push to origin arm-v2.
