@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 909 - v1273.0 (3389 modules, 124 kernel)
+- Added WASM: anisodontea_admin (Anisodontea cape mallow), annatto_admin (Annatto achiote dye tree), anthurium_admin (Anthurium flamingo flower)
+- Total modules: 3386 → 3389 (flowering cape mallow shrub, achiote dye tree, tropical flamingo flower)
+
 ## Phase 908 - v1272.0 (3386 modules, 124 kernel)
 - Added WASM: angelica_admin (Angelica wild celery), anigozanthos_admin (Anigozanthos kangaroo paw), anise_admin (Anise aniseed spice)
 - Total modules: 3383 → 3386 (medicinal angelica herb, Australian kangaroo paw, aromatic anise spice)

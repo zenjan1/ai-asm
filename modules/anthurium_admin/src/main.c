@@ -1,5 +1,6 @@
-/* anthurium_admin: Anthurium management technology administration (v1.0)
- * Anthurium planning, anthurium execution, anthurium evaluation, accessories, marketing
+/* anthurium_admin: Anthurium (Flamingo Flower) tropical indoor plant management (v1.0)
+ * Anthurium planning, planting, evaluation, bloom forcing, market
+ * Features: spathe count, spadix length, leaf length, bloom color, humidity need, bloom cycle
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} anth_t;
-typedef struct{int n_planning,n_execution,n_evaluation,n_accessory,n_market,t_f1,t_f2,t_f3,t_f4,t_f5;} anth_state_t;
-static anth_t anthp[N],anthx[N-2],anth2[N-4],anthac[N-6],anthm[N-6]; static anth_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
-static int add(anth_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;anth_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[ANTH] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int anth_init(void){if(init)return -1;st.n_planning=0;st.n_execution=0;st.n_evaluation=0;st.n_accessory=0;st.n_market=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)anthp[i].active=0;for(int i=0;i<N-2;i++)anthx[i].active=0;for(int i=0;i<N-4;i++)anth2[i].active=0;for(int i=0;i<N-6;i++)anthac[i].active=0;for(int i=0;i<N-6;i++)anthm[i].active=0;init=1;ps("[ANTH] Anthurium initialized\n");return 0;}
-int anth_planning(int t,int c,int a,int b,int d,int e,int y){return add(anthp,&st.n_planning,&st.t_f1,N,t,c,a,b,d,e,y);}
-int anth_execution(int t,int c,int a,int b,int d,int e,int y){return add(anthx,&st.n_execution,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int anth_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(anth2,&st.n_evaluation,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int anth_accessory(int t,int c,int a,int b,int d,int e,int y){return add(anthac,&st.n_accessory,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int anth_market(int t,int c,int a,int b,int d,int e,int y){return add(anthm,&st.n_market,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void anth_report(void){ps("[ANTH] Planning: ");pi(st.n_planning);ps(" PCS=");pi(st.t_f1);ps("\nExecution: ");pi(st.n_execution);ps(" PCS=");pi(st.t_f2);ps("\nEvaluation: ");pi(st.n_evaluation);ps(" PCS=");pi(st.t_f3);ps("\nAccessory: ");pi(st.n_accessory);ps(" PCS=");pi(st.t_f4);ps("\nMarket: ");pi(st.n_market);ps(" USD=");pi(st.t_f5);ps("\n");}
-void anth_state(void){ps("[ANTH] P=");pi(st.n_planning);ps(" E=");pi(st.n_execution);ps(" V=");pi(st.n_evaluation);ps(" A=");pi(st.n_accessory);ps(" M=");pi(st.n_market);ps("\n");}
+typedef struct{int id,location,spathe_ct,spadix_len,leaf_len,bloom_color,humidity_nd,bloom_cy,active;} atm_t;
+typedef struct{int n_plan,n_exec,n_eval,n_force,n_mkt,t_spathe,t_spadix,t_leaf,t_bloom,t_humid;} atm_state_t;
+static atm_t atmps[N],atmes[N-2],atmvs[N-4],atmfr[N-6],atmms[N-6]; static atm_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(atm_t*a,int*cnt,int*sum,int mx,int lc,int sc,int sl,int ll,int bc,int hn,int bc_cy){if(*cnt>=mx)return -1;atm_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->spathe_ct=sc;x->spadix_len=sl;x->leaf_len=ll;x->bloom_color=bc;x->humidity_nd=hn;x->bloom_cy=bc_cy;x->active=1;*sum+=sc;(*cnt)++;ps("[ATM] Anthurium ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" sc=");pi(sc);ps(" sl=");pi(sl);ps(" ll=");pi(ll);ps(" bc=");pi(bc);ps(" hn=");pi(hn);ps("\n");return *cnt-1;}
+int atm_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_force=0;st.n_mkt=0;st.t_spathe=0;st.t_spadix=0;st.t_leaf=0;st.t_bloom=0;st.t_humid=0;for(int i=0;i<N;i++)atmps[i].active=0;for(int i=0;i<N-2;i++)atmes[i].active=0;for(int i=0;i<N-4;i++)atmvs[i].active=0;for(int i=0;i<N-6;i++)atmfr[i].active=0;for(int i=0;i<N-6;i++)atmms[i].active=0;init=1;ps("[ATM] Anthurium initialized\n");return 0;}
+/* 1=indoor 2=greenhouse 3=tropical 4=container 5=shade_garden */
+int atm_planning(int lc,int sc,int sl,int ll,int bc,int hn,int bc_cy){return add(atmps,&st.n_plan,&st.t_spathe,N,lc,sc,sl,ll,bc,hn,bc_cy);}
+int atm_execution(int lc,int sc,int sl,int ll,int bc,int hn,int bc_cy){return add(atmes,&st.n_exec,&st.t_spadix,N-2,lc,sc,sl,ll,bc,hn,bc_cy);}
+int atm_evaluation(int lc,int sc,int sl,int ll,int bc,int hn,int bc_cy){return add(atmvs,&st.n_eval,&st.t_leaf,N-4,lc,sc,sl,ll,bc,hn,bc_cy);}
+int atm_bloom_forcing(int lc,int sc,int sl,int ll,int bc,int hn,int bc_cy){return add(atmfr,&st.n_force,&st.t_bloom,N-6,lc,sc,sl,ll,bc,hn,bc_cy);}
+int atm_market(int lc,int sc,int sl,int ll,int bc,int hn,int bc_cy){return add(atmms,&st.n_mkt,&st.t_humid,N-6,lc,sc,sl,ll,bc,hn,bc_cy);}
+void atm_report(void){ps("[ATM] Plan: ");pi(st.n_plan);ps(" spathe=");pi(st.t_spathe);ps("\nExec: ");pi(st.n_exec);ps(" spadix=");pi(st.t_spadix);ps("\nEval: ");pi(st.n_eval);ps(" leaf=");pi(st.t_leaf);ps("\nForce: ");pi(st.n_force);ps(" bloom=");pi(st.t_bloom);ps("\nMkt: ");pi(st.n_mkt);ps(" humid=");pi(st.t_humid);ps("\n");}
+void atm_state(void){ps("[ATM] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Force=");pi(st.n_force);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Anthurium Admin Demo ===\n\n");anth_init();
-ps("Anthurium planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;anth_planning(t,c,1972+(i*17),1961+(i*14),1941+(i*10),1923+(i*6),2020+(i%5));}
-ps("\nAnthurium execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;anth_execution(t,c,1961+(i*15),1950+(i*12),1932+(i*8),1919+(i*5),2021+(i%4));}
-ps("\nAnthurium evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;anth_evaluation(t,c,1953+(i*13),1942+(i*10),1926+(i*7),1915+(i*4),2022+(i%3));}
-ps("\nAnthurium accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;anth_accessory(t,c,1945+(i*11),1936+(i*9),1922+(i*6),1912+(i*3),2023+(i%2));}
-ps("\nAnthurium marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;anth_market(t,c,1939+(i*9),1930+(i*7),1917+(i*5),1909+(i*3),2024);}
-ps("\n");anth_report();anth_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Anthurium (Flamingo Flower) Admin Demo ===\n\n");atm_init();
+ps("Anthurium planning (indoor layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;atm_planning(lc,4+(i%5),10+(i*3),20+(i*5),(i%7)+1,60+(i*4),30+(i*3));}
+ps("\nAnthurium execution (potting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;atm_execution(lc,5+(i%4),12+(i*2),22+(i*4),(i%7)+1,65+(i*3),32+(i*2));}
+ps("\nAnthurium evaluation (leaf check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;atm_evaluation(lc,6+(i%3),14+(i*2),25+(i*3),(i%6)+2,70+(i*3),35+(i*2));}
+ps("\nAnthurium bloom forcing...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;atm_bloom_forcing(lc,3+(i%4),8+(i*2),18+(i*4),(i%5)+1,55+(i*4),28+(i*3));}
+ps("\nAnthurium tropical market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;atm_market(lc,7+(i%3),16+(i*2),28+(i*3),(i%6)+2,75+(i*3),38+(i*2));}
+ps("\n");atm_report();atm_state();ps("\n=== Demo Complete ===\n");return 0;}
