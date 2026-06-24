@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 952 - v1315.0 (3518 modules, 124 kernel)
+- Added WASM: collard_admin (Collard greens), comfrey_admin (Comfrey medicinal herb), conch_admin (Conch sea snail)
+- Total modules: 3515 → 3518 (leafy green, medicinal herb, sea snail)
+
 ## Phase 951 - v1314.0 (3515 modules, 124 kernel)
 - Added WASM: coffee_admin (Coffee tree), cod_admin (Atlantic cod), coho_admin (Coho salmon)
 - Total modules: 3512 → 3515 (coffee tree, marine cod, salmon fish)

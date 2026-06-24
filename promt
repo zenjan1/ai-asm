@@ -1,36 +1,36 @@
-Phase 952: Leafy Green & Seafood Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 953: Grain & Marine Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/collard_admin/src/main.c (Collard Greens)
-   - Collard (Brassica oleracea) leafy green vegetable cultivation
-   - Features: leaf_span_cm, stem_height_cm, leaf_count, rib_width_mm, bolt_week, cutting_count
-   - Data: 16 entries with location,lf_sp,stm_ht,lf_ct,rib_wd,bolt_wk,cut_ct
+1. modules/coral_admin/src/main.c (Coral Reef)
+   - Coral (Acropora millepora) reef ecosystem management
+   - Features: colony_dia_cm, height_cm, polyp_count, color_idx, water_temp, growth_rate
+   - Data: 16 entries with location,clny_dia,ht_cm,polp_ct,clr_idx,wt_tmp,gr_rate
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planting, cutting, blanching, harvest, market
-   - Prefix: cold
+   - Categories: planting, feeding, water_mgmt, harvest, market
+   - Prefix: crl
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/comfrey_admin/src/main.c (Comfrey Herb)
-   - Comfrey (Symphytum officinale) medicinal herb cultivation
-   - Features: plant_ht_cm, leaf_span_cm, root_depth_cm, flower_count, allantoin_pct, harvest_week
-   - Data: 16 entries with location,plnt_ht,lf_sp,root_dp,fl_ct,alnt_pct,harv_wk
+2. modules/cormorant_admin/src/main.c (Cormorant Bird)
+   - Cormorant (Phalacrocorax carbo) fishing bird husbandry
+   - Features: body_len_cm, body_wt_g, wing_span_cm, dive_depth_m, fish_caught, feather_idx
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,dive_dp,fish_ct,fthr_idx
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, feeding, cutting, harvest, market
-   - Prefix: cmf
+   - Categories: housing, feeding, training, fishing, market
+   - Prefix: crmt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/conch_admin/src/main.c (Conch Sea Snail)
-   - Conch (Strombus gigas) sea snail aquaculture
-   - Features: shell_len_mm, shell_wt_g, meat_pct, depth_cm, water_temp, harvest_week
-   - Data: 16 entries with location,sh_ln,sh_wt,meat_pct,dpth,wt_tmp,harv_wk
+3. modules/corn_admin/src/main.c (Corn Grain Crop)
+   - Corn (Zea mays) grain crop management
+   - Features: plant_ht_cm, ear_count, kernel_row, cob_len_cm, starch_pct, harvest_week
+   - Data: 16 entries with location,plnt_ht,ear_ct,kr_row,cob_ln,strch_pct,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: seeding, feeding, water_mgmt, harvest, market
-   - Prefix: cnc
+   - Categories: planting, pollination, pest_control, harvest, market
+   - Prefix: crn
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1314.0 → v1315.0 (all occurrences)
-  - total modules 3515 → 3518 (all occurrences)
-Update CHANGELOG.md: add "## Phase 952 - v1315.0 (3518 modules, 124 kernel)" entry
+  - version v1315.0 → v1316.0 (all occurrences)
+  - total modules 3518 → 3521 (all occurrences)
+Update CHANGELOG.md: add "## Phase 953 - v1316.0 (3521 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/collard_admin/collard_admin.wasm modules/comfrey_admin/comfrey_admin.wasm modules/conch_admin/conch_admin.wasm modules/collard_admin/src/main.c modules/comfrey_admin/src/main.c modules/conch_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/coral_admin/coral_admin.wasm modules/cormorant_admin/cormorant_admin.wasm modules/corn_admin/corn_admin.wasm modules/coral_admin/src/main.c modules/cormorant_admin/src/main.c modules/corn_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
