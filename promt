@@ -1,31 +1,31 @@
-Phase 872: Create 3 plant-themed admin modules (alphabetically after faramea):
+Phase 873: Create 3 plant-themed admin modules (alphabetically after fevillea):
 
-1. farsetia_admin (prefix: far_, base offset: 2042, tag: [FARS])
-   - Farsetia Turra, Brassicaceae (Kew POWO accepted)
-   - planning: 2042/2031/2011/1993
-   - execution: 2031/2020/2002/1989
-   - evaluation: 2023/2012/1996/1985
-   - accessory: 2015/2006/1992/1982
-   - market: 2009/2000/1989/1981
+1. fiebrigiella_admin (prefix: fieb_, base offset: 2045, tag: [FIEB])
+   - Fiebrigiella Harms, Fabaceae (Kew POWO accepted, monotypic)
+   - planning: 2045/2034/2014/1996
+   - execution: 2034/2023/2005/1992
+   - evaluation: 2026/2015/1999/1988
+   - accessory: 2018/2009/1995/1985
+   - market: 2012/2003/1992/1984
 
-2. faxonia_admin (prefix: faxo_, base offset: 2043, tag: [FAXO])
-   - Faxonia Brandegee, Asteraceae (Kew POWO accepted, monotypic)
-   - planning: 2043/2032/2012/1994
-   - execution: 2032/2021/2003/1990
-   - evaluation: 2024/2013/1997/1986
-   - accessory: 2016/2007/1993/1983
-   - market: 2010/2001/1990/1982
+2. fimbristylis_admin (prefix: fimb_, base offset: 2046, tag: [FIMB])
+   - Fimbristylis Vahl, Cyperaceae (Kew POWO accepted)
+   - planning: 2046/2035/2015/1997
+   - execution: 2035/2024/2006/1993
+   - evaluation: 2027/2016/2000/1989
+   - accessory: 2019/2010/1996/1986
+   - market: 2013/2004/1993/1985
 
-3. fevillea_admin (prefix: fevi_, base offset: 2044, tag: [FEVI])
-   - Fevillea L., Cucurbitaceae (Kew POWO accepted)
-   - planning: 2044/2033/2013/1995
-   - execution: 2033/2022/2004/1991
-   - evaluation: 2025/2014/1998/1987
-   - accessory: 2017/2008/1994/1984
-   - market: 2011/2002/1991/1983
+3. fischeria_admin (prefix: fisc_, base offset: 2047, tag: [FISC])
+   - Fischeria DC., Apocynaceae (Kew POWO accepted)
+   - planning: 2047/2036/2016/1998
+   - execution: 2036/2025/2007/1994
+   - evaluation: 2028/2017/2001/1990
+   - accessory: 2020/2011/1997/1987
+   - market: 2014/2005/1994/1986
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
 Build WASM with: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o build/XXX_admin.wasm modules/XXX_admin/src/main.c
-Update README (v1216.0->v1217.0, 3280->3283, L3: 3048->3051, 3001->3004, L3 table 2811->2814/2764->2767, L3 WASM Apps 2664->2667),
-add Phase 872 entry to CHANGELOG, find Phase 873 candidates (alphabetically after fevillea),
+Update README (v1217.0->v1218.0, 3283->3286, L3: 3051->3054, 3004->3007, L3 table 2814->2817/2767->2770, L3 WASM Apps 2667->2670),
+add Phase 873 entry to CHANGELOG, find Phase 874 candidates (alphabetically after fischeria),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 872 - v1217.0 (3283 modules)
+- Added: farsetia_admin, faxonia_admin, fevillea_admin
+
 ## Phase 871 - v1216.0 (3280 modules)
 - Added: fagopyrum_admin, falkia_admin, faramea_admin
 
