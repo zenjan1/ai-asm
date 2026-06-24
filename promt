@@ -1,40 +1,31 @@
-Phase OS-16: Kernel Filesystem Enhancements - 3 new AArch64 assembly kernel modules:
+Phase 888: 3 new WASM plant modules following abelia_admin pattern:
 
-1. kernel/fs_journal.asm (Journaling Filesystem Support)
-   - Base ID: 910
-   - Journaling support for crash-consistent filesystem operations
-   - Features: journal area management, transaction logging, commit/replay operations, checkpoint management, journal recovery after crash, synchronous/asynchronous journaling, journal statistics, multiple journal modes (ordered, writeback, data)
-   - Data structures: journal_t (dev_id, start_block, num_blocks, transaction_id, commit_block, checkpoint, mode, active), journal_transaction_t (id, start_time, block_count, state, checksum)
-   - API: fs_journal_init, fs_journal_create, fs_journal_start_transaction, fs_journal_add_block, fs_journal_commit, fs_journal_checkpoint, fs_journal_replay, fs_journal_stats
-   - Capacity: 8 journals, 1024 transactions per journal, 4KB per block
-   - Pattern: follow kernel/memory.asm style (stp/ldp frame, .global exports, .bss for state)
+1. modules/magnolia_admin/src/main.c (Magnolia flowering trees)
+   - Magnolia grandiflora and magnolia stellata cultivation
+   - Features: flowering management, fragrance oil extraction, timber quality, evergreen/deciduous varieties, pollination support
+   - Host imports: ps, pi, pe, pf, pd, gt helpers
+   - 16 magnolia species entries with Latin names
 
-2. kernel/fs_quota.asm (Filesystem Quotas)
-   - Base ID: 911
-   - User and group disk quota management
-   - Features: user quota tracking, group quota tracking, quota limits (soft/hard), grace period management, quota enforcement, quota reporting, quota initialization per filesystem, quota warnings
-   - Data structures: quota_entry_t (uid/gid, blocks_used, blocks_soft, blocks_hard, inodes_used, inodes_soft, inodes_hard, grace_start, warnings), quota_policy_t (fs_id, default_soft, default_hard, grace_period)
-   - API: fs_quota_init, fs_quota_enable, fs_quota_disable, fs_quota_set_limits, fs_quota_update_usage, fs_quota_check, fs_quota_report, fs_quota_grace_check
-   - Capacity: 256 user quotas, 128 group quotas per filesystem, 16 filesystems
-   - Pattern: follow kernel/memory.asm style
+2. modules/mahonia_admin/src/main.c (Mahonia holly grape)
+   - Mahonia aquifolium and mahonia japonica cultivation
+   - Features: berry production, medicinal bark alkaloids, shade tolerance, winter flowering, landscaping use
+   - Host imports: ps, pi, pe, pf, pd, gt helpers
+   - 16 mahonia species entries with Latin names
 
-3. kernel/fs_compress.asm (Filesystem Compression)
-   - Base ID: 912
-   - Transparent filesystem compression for storage efficiency
-   - Features: block-level compression, compression algorithm selection (LZ4, LZO simplified), compression ratio tracking, decompression on read, compression on write, compression statistics, per-file compression flags, compression cache
-   - Data structures: compress_entry_t (block_num, compressed_size, original_size, algorithm, checksum, cached), compress_stats_t (compressed_blocks, total_saved, ratio_avg, algorithm_counts)
-   - API: fs_compress_init, fs_compress_block, fs_decompress_block, fs_compress_set_algo, fs_compress_stats, fs_compress_cache_add, fs_compress_cache_flush, fs_compress_ratio
-   - Capacity: 4096 compressed blocks, 512 cache entries, 4 algorithms
-   - Pattern: follow kernel/memory.asm style
+3. modules/malva_admin/src/main.c (Malva mallow)
+   - Malva sylvestris and malva moschata cultivation
+   - Features: medicinal mucilage extraction, edible flowers, textile fiber, pollinator habitat, soil remediation
+   - Host imports: ps, pi, pe, pf, pd, gt helpers
+   - 16 malva species entries with Latin names
 
-Build all 3 kernel modules with:
-  clang --target=aarch64-unknown-linux-gnu -c -O2 -o kernel/<name>.o kernel/<name>.asm
+Build all 3 WASM modules with:
+  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=all -o modules/<name>/<name>.wasm modules/<name>/src/main.c
 
-After creating 3 kernel modules, update README:
-  - version v1246.0 → v1247.0 (all occurrences)
-  - kernel modules 109 → 112 (all occurrences)
-  - Add the 3 new kernel module names to the L1 Kernel ASM architecture list
-Update CHANGELOG.md: add "## Phase OS-16 - v1247.0 (3323 modules, 112 kernel)" entry
+After creating 3 WASM modules, update README:
+  - version v1247.0 → v1248.0 (all occurrences)
+  - total modules 3323 → 3326 (all occurrences)
+  - Add the 3 new module names to the L3 WASM Apps list
+Update CHANGELOG.md: add "## Phase 888 - v1248.0 (3326 modules, 112 kernel)" entry
 Set UPDATE=0
-git add kernel/fs_journal.asm kernel/fs_quota.asm kernel/fs_compress.asm README.md CHANGELOG.md promt update-state
+git add modules/magnolia_admin modules/mahonia_admin modules/malva_admin README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

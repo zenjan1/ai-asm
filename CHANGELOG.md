@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-16 - v1247.0 (3323 modules, 112 kernel)
+- Added kernel: fs_journal.asm, fs_quota.asm, fs_compress.asm
+- Kernel modules: 109 → 112 (journaling filesystem with transaction logging and crash recovery, user/group disk quotas with soft/hard limits and grace periods, transparent filesystem compression with LZ4/LZO/GZIP/ZSTD algorithms)
+
 ## Phase 887 - v1246.0 (3323 modules, 109 kernel)
 - Added WASM: lantana_admin (Lantana shrub verbena), lathyrus_admin (Lathyrus sweet pea), lavandula_admin (Lavandula lavender)
 - Total modules: 3320 → 3323 (aromatic ornamental shrubs, fragrant vines, essential oil herbs)
