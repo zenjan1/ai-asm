@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 922 - v1286.0 (3428 modules, 124 kernel)
+- Added WASM: berry_admin (Berry mixed berry), betonica_admin (Betonica wood betony), betony_admin (Betony common betony)
+- Total modules: 3425 → 3428 (mixed berry fruit production, medicinal wood betony, aromatic perennial betony)
+
 ## Phase 921 - v1285.0 (3425 modules, 124 kernel)
 - Added WASM: begonia_admin (Begonia wax begonia), bellis_admin (Bellis English daisy), bergenia_admin (Bergenia elephant ears)
 - Total modules: 3422 → 3425 (shade bedding begonia, spring lawn daisy, evergreen groundcover)

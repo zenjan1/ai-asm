@@ -1,28 +1,28 @@
-Phase 922: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 923: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/berry_admin/src/main.c (Berry / Mixed Berry)
-   - Berry mixed berry and fruit production management
-   - Features: fruit_diameter, fruit_count, bush_height, berry_color, sugar_brix, harvest_week
-   - Data: 16 entries with location,fruit_dia,fruit_ct,bush_ht,berry_color,sugar_bx,harvest_wk
+1. modules/bidens_admin/src/main.c (Bidens / Beggarticks)
+   - Bidens beggarticks and wildflower meadow management
+   - Features: flower_diameter, petal_count, stem_height, flower_color, seed_spine, bloom_week
+   - Data: 16 entries with location,flower_dia,petal_ct,stem_ht,flower_color,seed_sp,bloom_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/betonica_admin/src/main.c (Betonica / Wood Betony)
-   - Betonica wood betony and medicinal herb management
-   - Features: flower_spike, leaf_width, stem_height, flower_color, medicinal_idx, bloom_week
-   - Data: 16 entries with location,flower_sp,leaf_wd,stem_ht,flower_color,med_idx,bloom_wk
+2. modules/birch_admin/src/main.c (Birch / Silver Birch)
+   - Birch silver birch and ornamental tree management
+   - Features: tree_height, trunk_diameter, leaf_width, bark_color, catkin_length, growth_rate
+   - Data: 16 entries with location,tree_ht,trunk_dia,leaf_wd,bark_color,catkin_ln,growth_rt
    - Pattern: follow abelia_admin pattern
 
-3. modules/betony_admin/src/main.c (Betony / Common Betony)
-   - Betony common betony and perennial herb management
-   - Features: flower_tube, leaf_shape, stem_height, flower_color, scent_strength, bloom_week
-   - Data: 16 entries with location,flower_tb,leaf_shp,stem_ht,flower_color,scent_st,bloom_wk
+3. modules/bistort_admin/src/main.c (Bistort / Persicaria bistorta)
+   - Bistort persicaria and damp meadow management
+   - Features: flower_spike, leaf_length, stem_height, flower_color, moisture_need, bloom_week
+   - Data: 16 entries with location,flower_sp,leaf_ln,stem_ht,flower_color,moist_nd,bloom_wk
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1285.0 → v1286.0 (all occurrences)
-  - total modules 3425 → 3428 (all occurrences)
-Update CHANGELOG.md: add "## Phase 922 - v1286.0 (3428 modules, 124 kernel)" entry
+  - version v1286.0 → v1287.0 (all occurrences)
+  - total modules 3428 → 3431 (all occurrences)
+Update CHANGELOG.md: add "## Phase 923 - v1287.0 (3431 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/berry_admin/src/main.c modules/betonica_admin/src/main.c modules/betony_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/bidens_admin/src/main.c modules/birch_admin/src/main.c modules/bistort_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
