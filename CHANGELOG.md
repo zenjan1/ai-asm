@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 971 - v1334.0 (3575 modules, 124 kernel)
+- Added WASM: fox_admin (Red fox canid), frog_admin (Common frog amphibian), fowl_admin (Domestic poultry bird)
+- Total modules: 3572 → 3575 (canid predator, amphibian jumper, domestic egg-layer)
+
 ## Phase 970 - v1333.0 (3572 modules, 124 kernel)
 - Added WASM: firefly_admin (Bioluminescent beetle), flamingo_admin (Greater flamingo), flounder_admin (Flatfish)
 - Total modules: 3569 → 3572 (glowing insect, pink wading bird, camouflaged flatfish)

@@ -1,36 +1,36 @@
-Phase 971: Fox & Frog Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 972: Gazelle Gecko Gerbil Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/fox_admin/src/main.c (Fox Canid)
-   - Fox (Vulpes vulpes) red fox canid management
-   - Features: body_len_cm, body_wt_kg, tail_len_cm, fur_idx, hunt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,fur_idx,hnt_idx,age_yr
+1. modules/gazelle_admin/src/main.c (Gazelle Antelope)
+   - Gazelle (Gazella gazella) slender antelope ungulate management
+   - Features: body_len_cm, body_wt_kg, horn_cm, speed_kmh, coat_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,spd_kh,ct_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: housing, feeding, breeding, grooming, market
-   - Prefix: fox
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-2. modules/frog_admin/src/main.c (Frog Amphibian)
-   - Frog (Rana temporaria) common frog amphibian management
-   - Features: body_len_cm, body_wt_g, jump_cm, skin_idx, croak_vol, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,jmp_cm,sk_idx,crk_vl,age_yr
-   - Pattern: follow abelia_admin pattern
    - Categories: habitat, feeding, breeding, health, market
-   - Prefix: frog
+   - Prefix: gazelle
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/fowl_admin/src/main.c (Fowl Poultry Bird)
-   - Fowl (Gallus gallus domesticus) domestic poultry bird husbandry
-   - Features: body_len_cm, body_wt_kg, comb_cm, feather_idx, egg_wt_g, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,comb_cm,fthr_idx,egg_wt,age_yr
+2. modules/gecko_admin/src/main.c (Gecko Lizard)
+   - Gecko (Gekko gecko) tokay gecko reptile management
+   - Features: body_len_cm, body_wt_g, tail_cm, climb_idx, chirp_vol, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,clmb_idx,chrp_vl,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: enclosure, feeding, breeding, health, market
+   - Prefix: gecko
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/gerbil_admin/src/main.c (Gerbil Rodent)
+   - Gerbil (Meriones unguiculatus) mongolian gerbil rodent management
+   - Features: body_len_cm, body_wt_g, tail_cm, burrow_idx, chirp_vol, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,brw_idx,chrp_vl,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: housing, feeding, breeding, health, market
-   - Prefix: fowl
+   - Prefix: gerbil
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1333.0 → v1334.0 (all occurrences)
-  - total modules 3572 → 3575 (all occurrences)
-Update CHANGELOG.md: add "## Phase 971 - v1334.0 (3575 modules, 124 kernel)" entry
+  - version v1334.0 → v1335.0 (all occurrences)
+  - total modules 3575 → 3578 (all occurrences)
+Update CHANGELOG.md: add "## Phase 972 - v1335.0 (3578 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/fox_admin/fox_admin.wasm modules/frog_admin/frog_admin.wasm modules/fowl_admin/fowl_admin.wasm modules/fox_admin/src/main.c modules/frog_admin/src/main.c modules/fowl_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/gazelle_admin/gazelle_admin.wasm modules/gecko_admin/gecko_admin.wasm modules/gerbil_admin/gerbil_admin.wasm modules/gazelle_admin/src/main.c modules/gecko_admin/src/main.c modules/gerbil_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
