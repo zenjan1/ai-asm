@@ -1,36 +1,36 @@
-Phase 946: Cherry & Chestnut Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 947: Spice Herb Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/cherry_admin/src/main.c (Cherry Fruit Tree)
-   - Cherry (Prunus avium) fruit tree orchard management
-   - Features: tree_height_m, fruit_yield_kg, bloom_week, sugar_brix, pit_dia_mm, harvest_week
-   - Data: 16 entries with location,tree_ht,frt_yd,bloom_wk,sugar_bx,pit_dia,harv_wk
+1. modules/chili_admin/src/main.c (Chili Pepper)
+   - Chili (Capsicum annuum) hot pepper crop management
+   - Features: plant_ht_cm, fruit_len_cm, heat_scoville, wall_thick_mm, mature_days, harvest_week
+   - Data: 16 entries with location,plnt_ht,frt_ln,heat_scl,wall_th,mat_dys,harv_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: planting, pruning, pollination, harvest, market
-   - Prefix: chry
+   - Prefix: chli
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/chestnut_admin/src/main.c (Chestnut Nut Tree)
-   - Chestnut (Castanea sativa) nut tree management
-   - Features: tree_height_m, nut_yield_kg, burr_count, nut_weight_g, starch_pct, harvest_month
-   - Data: 16 entries with location,tree_ht,nut_yd,burr_ct,nut_wt,starch_pct,harv_mo
+2. modules/chive_admin/src/main.c (Chive Herb)
+   - Chive (Allium schoenoprasum) herb cluster management
+   - Features: stem_ht_cm, stem_dia_mm, leaf_count, bulb_size_mm, flavor_idx, harvest_week
+   - Data: 16 entries with location,stm_ht,stm_dia,lf_ct,blb_sz,flv_idx,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, cultivation, roasting, storage, market
-   - Prefix: chst
+   - Categories: planting, dividing, flowering, harvest, market
+   - Prefix: chv
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/chickpea_admin/src/main.c (Chickpea Legume Crop)
-   - Chickpea (Cicer arietinum) legume crop management
-   - Features: plant_ht_cm, pod_count, seed_weight_g, protein_pct, root_nodule, harvest_week
-   - Data: 16 entries with location,plnt_ht,pod_ct,seed_wt,prot_pct,root_nd,harv_wk
+3. modules/cilantro_admin/src/main.c (Cilantro Herb)
+   - Cilantro (Coriandrum sativum) herb cultivation
+   - Features: plant_ht_cm, leaf_span_cm, stem_count, seed_yield_g, oil_pct, bolt_week
+   - Data: 16 entries with location,plnt_ht,lf_sp,stm_ct,seed_yd,oil_pct,bolt_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, inoculation, pest_control, harvest, market
-   - Prefix: chcp
+   - Categories: planting, thinning, bolting, harvest, market
+   - Prefix: chnt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1308.0 → v1309.0 (all occurrences)
-  - total modules 3497 → 3500 (all occurrences)
-Update CHANGELOG.md: add "## Phase 946 - v1309.0 (3500 modules, 124 kernel)" entry
+  - version v1309.0 → v1310.0 (all occurrences)
+  - total modules 3500 → 3503 (all occurrences)
+Update CHANGELOG.md: add "## Phase 947 - v1310.0 (3503 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/cherry_admin/cherry_admin.wasm modules/chestnut_admin/chestnut_admin.wasm modules/chickpea_admin/chickpea_admin.wasm modules/cherry_admin/src/main.c modules/chestnut_admin/src/main.c modules/chickpea_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/chili_admin/chili_admin.wasm modules/chive_admin/chive_admin.wasm modules/cilantro_admin/cilantro_admin.wasm modules/chili_admin/src/main.c modules/chive_admin/src/main.c modules/cilantro_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
