@@ -1,36 +1,36 @@
-Phase 959: Daisy & Dahlia Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 960: Danio & Daphne Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/daisy_admin/src/main.c (Daisy Flower)
-   - Daisy (Bellis perennis) perennial flowering plant management
-   - Features: plant_ht_cm, flower_dia_cm, petal_count, leaf_idx, bloom_week, seed_ct
-   - Data: 16 entries with location,plnt_ht,fl_dia,pt_ct,lf_idx,blm_wk,sd_ct
+1. modules/danio_admin/src/main.c (Danio Zebrafish)
+   - Danio (Danio rerio) zebrafish aquatic management
+   - Features: body_len_cm, body_wt_g, stripe_idx, fin_span, swim_speed, age_week
+   - Data: 16 entries with location,bdy_ln,bdy_wt,strp_idx,fin_sp,swm_spd,age_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planting, feeding, flowering, pruning, market
-   - Prefix: dais
+   - Categories: housing, feeding, breeding, health, market
+   - Prefix: dani
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/dahlia_admin/src/main.c (Dahlia Flower)
-   - Dahlia (Dahlia pinnata) tuberous flowering plant
-   - Features: plant_ht_cm, flower_dia_cm, petal_count, tuber_wt_g, color_idx, bloom_week
-   - Data: 16 entries with location,plnt_ht,fl_dia,pt_ct,tubr_wt,clr_idx,blm_wk
+2. modules/daphne_admin/src/main.c (Daphne Shrub)
+   - Daphne (Daphne odora) evergreen fragrant shrub
+   - Features: plant_ht_cm, spread_cm, flower_dia_cm, leaf_idx, scent_idx, bloom_week
+   - Data: 16 entries with location,plnt_ht,sprd_cm,fl_dia,lf_idx,sct_idx,blm_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, feeding, dormancy, flowering, market
-   - Prefix: dahl
+   - Categories: planting, feeding, pruning, flowering, market
+   - Prefix: daph
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/dalmatian_admin/src/main.c (Dalmatian Dog)
-   - Dalmatian (Canis familiaris) spotted breed dog husbandry
-   - Features: body_len_cm, body_wt_kg, spot_count, coat_idx, run_speed, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,spot_ct,coat_idx,run_spd,age_yr
+3. modules/darkling_admin/src/main.c (Darkling Beetle)
+   - Darkling (Tenebrio molitor) darkling beetle insect farming
+   - Features: body_len_cm, body_wt_g, leg_count, shell_idx, larva_wt, age_day
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_ct,sh_idx,lv_wt,age_dy
    - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, training, grooming, market
-   - Prefix: dalm
+   - Categories: housing, feeding, breeding, harvest, market
+   - Prefix: dark
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1321.0 → v1322.0 (all occurrences)
-  - total modules 3536 → 3539 (all occurrences)
-Update CHANGELOG.md: add "## Phase 959 - v1322.0 (3539 modules, 124 kernel)" entry
+  - version v1322.0 → v1323.0 (all occurrences)
+  - total modules 3539 → 3542 (all occurrences)
+Update CHANGELOG.md: add "## Phase 960 - v1323.0 (3542 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/daisy_admin/daisy_admin.wasm modules/dahlia_admin/dahlia_admin.wasm modules/dalmatian_admin/dalmatian_admin.wasm modules/daisy_admin/src/main.c modules/dahlia_admin/src/main.c modules/dalmatian_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/danio_admin/danio_admin.wasm modules/daphne_admin/daphne_admin.wasm modules/darkling_admin/darkling_admin.wasm modules/danio_admin/src/main.c modules/daphne_admin/src/main.c modules/darkling_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
