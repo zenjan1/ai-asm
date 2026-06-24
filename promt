@@ -1,40 +1,40 @@
-Phase 885: Medicinal Plant & Dye Administration Modules - 3 new WASM application modules:
+Phase OS-14: Kernel Security & Key Management Subsystem - 3 new AArch64 assembly kernel modules:
 
-1. modules/ibota_admin/src/main.c (Ibota Wax Privet Administration)
-   - Base ID: 2081
-   - Manages ibota (Ligustrum ibota/wax privet) ornamental and medicinal cultivation
-   - Features: shrub inventory (16 plants), leaf harvest tracking, wax production monitoring, medicinal extract preparation, pruning schedule, pest management, propagation records, landscape use catalog
-   - Domain structs: ibota_t (id, plant_id, age_years, leaf_kg, wax_kg, extract_conc, prune_month, pest_level, propagate_type, landscape_use, active)
-   - Functions: ibota_init, ibota_plant_inventory, ibota_leaf_harvest, ibota_wax_extract, ibota_medicinal_prep, ibota_prune_schedule, ibota_pest_manage, ibota_propagate
-   - Exports: main (demo: plant inventory, leaf harvest, wax extraction, medicinal prep, pruning, pest management, propagation)
-   - Pattern: follow modules/abelia_admin/src/main.c style (host imports: alloc/print/exit/get_argv, ps/pi helpers, static state, N=16)
+1. kernel/key_store.asm (Secure Key Storage)
+   - Base ID: 904
+   - Secure storage and management of cryptographic keys
+   - Features: key generation (AES-128/192/256, RSA-2048/4096), key import/export (encrypted), key derivation (PBKDF2, HKDF), key wrapping/unwrapping, key rotation policies, access control, key usage tracking, secure deletion
+   - Data structures: key_entry_t (id, type, size, flags, created, expires, usage_count, permissions, owner, wrapped_key[256], active), key_policy_t (rotation_days, max_usage, allowed_ops)
+   - API: key_store_init, key_store_generate, key_store_import, key_store_export, key_store_derive, key_store_wrap, key_store_unwrap, key_store_delete, key_store_rotate
+   - Capacity: 64 keys, 256 bytes per key, 8 key types
+   - Pattern: follow kernel/crypto_aes.asm style (stp/ldp frame, .global exports, .bss for state)
 
-2. modules/illicium_admin/src/main.c (Illicium Star Anise Administration)
-   - Base ID: 2082
-   - Manages illicium (star anise) spice and medicinal production
-   - Features: tree inventory (16 trees), fruit harvest tracking, shikimic acid content analysis, essential oil distillation records, spice grading (culinary/medicinal/pharmaceutical), quality control (GC-MS), organic certification, market distribution tracking
-   - Domain structs: illicium_t (id, tree_id, age_years, fruit_kg, shikimic_ppm, oil_ml, grade, gcms_ok, organic_cert, market_region, active)
-   - Functions: illicium_init, illicium_tree_inventory, illicium_fruit_harvest, illicium_shikimic_analyze, illicium_oil_distill, illicium_grade, illicium_quality_control, illicium_organic_cert
-   - Exports: main (demo: tree inventory, fruit harvest, shikimic acid analysis, oil distillation, grading, QC, organic cert)
-   - Pattern: follow modules/abelia_admin/src/main.c style
+2. kernel/pki_cert.asm (X.509 Certificate Management)
+   - Base ID: 905
+   - X.509 certificate validation and certificate chain management
+   - Features: certificate parsing (DER/PEM), signature verification, certificate chain validation, CRL checking, OCSP client, certificate revocation tracking, trust store management, certificate expiration monitoring
+   - Data structures: cert_t (id, version, serial, issuer, subject, not_before, not_after, pubkey, signature, chain_depth, revoked, trusted), trust_anchor_t (id, cert_id, constraints, active)
+   - API: pki_cert_init, pki_cert_parse, pki_cert_verify, pki_cert_chain_validate, pki_cert_check_revocation, pki_cert_add_trust_anchor, pki_cert_revoke, pki_cert_check_expiry
+   - Capacity: 32 certificates, 16 trust anchors, chain depth 8
+   - Pattern: follow kernel/crypto_sha.asm style
 
-3. modules/indigofera_admin/src/main.c (Indigofera Dye Plant Administration)
-   - Base ID: 2083
-   - Manages indigofera (indigo plant) dye production
-   - Features: field cultivation (16 plots), leaf harvest cycles, indigo precursor (indican) content tracking, fermentation process records, dye cake production, color intensity measurement (spectrophotometry), textile application tracking, historical dye recipe catalog
-   - Domain structs: indigo_t (id, plot_id, growth_day, leaf_kg, indican_ppm, ferment_day, dye_cake_g, color_intensity, textile_type, recipe_id, active)
-   - Functions: indigo_init, indigo_plot_establish, indigo_leaf_harvest, indigo_indican_track, indigo_ferment, indigo_dye_cake_produce, indigo_color_measure, indigo_textile_apply
-   - Exports: main (demo: plot establishment, leaf harvest, indican tracking, fermentation, dye cake production, color measurement, textile application)
-   - Pattern: follow modules/abelia_admin/src/main.c style
+3. kernel/audit_log.asm (Security Audit Logging)
+   - Base ID: 906
+   - Comprehensive security audit logging for compliance and forensics
+   - Features: event logging (auth, file access, network, process), log levels (info, warning, error, critical), log rotation, log filtering by type/severity, log search/query, log integrity (HMAC), log export, real-time alerting hooks
+   - Data structures: audit_event_t (id, timestamp, event_type, severity, pid, uid, resource, action, result, details[128]), audit_policy_t (event_mask, severity_filter, alert_threshold)
+   - API: audit_log_init, audit_log_event, audit_log_query, audit_log_rotate, audit_log_set_policy, audit_log_integrity_check, audit_log_export, audit_log_alert
+   - Capacity: 256 events in ring buffer, 16 event types, 4 severity levels
+   - Pattern: follow kernel/net_tcp.asm style
 
-Build all 3 modules with:
-  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o modules/<name>/<name>.wasm modules/<name>/src/main.c
+Build all 3 kernel modules with:
+  clang --target=aarch64-unknown-linux-gnu -c -O2 -o kernel/<name>.o kernel/<name>.asm
 
-After creating 3 WASM modules, update README:
-  - version v1241.0 → v1242.0 (all occurrences)
-  - modules 3314 → 3317 (all occurrences)
-  - Add the 3 new module names to the L3 WASM Apps architecture list
-Update CHANGELOG.md: add "## Phase 885 - v1242.0 (3317 modules, 103 kernel)" entry
+After creating 3 kernel modules, update README:
+  - version v1242.0 → v1243.0 (all occurrences)
+  - kernel modules 103 → 106 (all occurrences)
+  - Add the 3 new kernel module names to the L1 Kernel ASM architecture list
+Update CHANGELOG.md: add "## Phase OS-14 - v1243.0 (3317 modules, 106 kernel)" entry
 Set UPDATE=0
-git add modules/ibota_admin/ modules/illicium_admin/ modules/indigofera_admin/ README.md CHANGELOG.md promt update-state
+git add kernel/key_store.asm kernel/pki_cert.asm kernel/audit_log.asm README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

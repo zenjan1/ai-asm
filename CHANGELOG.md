@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 885 - v1242.0 (3317 modules, 103 kernel)
+- Added WASM: ibota_admin (Ibota wax privet ornamental & medicinal), illicium_admin (Star anise spice & medicinal), indigofera_admin (Indigo dye plant)
+- Total modules: 3314 → 3317 (wax privet cultivation, star anise production, indigo dye processing)
+
 ## Phase OS-13 - v1241.0 (3314 modules, 103 kernel)
 - Added kernel: ipc_msgq.asm, ipc_sem.asm, ipc_shm.asm
 - Kernel modules: 100 → 103 (System V message queues with priority, counting semaphores with wait queues, shared memory segments with attach/detach)
