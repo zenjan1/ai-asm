@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 966 - v1329.0 (3560 modules, 124 kernel)
+- Added WASM: eagle_admin (Eagle raptor bird), earthworm_admin (Earthworm soil invertebrate), earwig_admin (Earwig insect)
+- Total modules: 3557 → 3560 (golden eagle, soil invertebrate, pincer insect)
+
 ## Phase 965 - v1328.0 (3557 modules, 124 kernel)
 - Added WASM: duck_admin (Duck waterfowl), dugong_admin (Dugong sea cow), durian_admin (Durian fruit tree)
 - Total modules: 3554 → 3557 (domestic duck, marine mammal, king of fruits)
