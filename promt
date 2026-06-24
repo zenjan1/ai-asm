@@ -1,40 +1,40 @@
-Phase OS-11: Kernel Network Application Layer - 3 new kernel ASM modules:
+Phase 883: Plant Conservation Domain Admin Modules - 3 new WASM application modules:
 
-1. kernel/net_dns.asm (DNS Resolver)
-   - AArch64 ASM implementation of DNS client (RFC 1035)
-   - Query construction: standard A (IPv4), AAAA (IPv6), MX, TXT, CNAME, NS, PTR record types
-   - Response parsing: answer section extraction, TTL tracking, authoritative/recursive flags
-   - Cache: 256 entries (name→IP), TTL-based expiration, LRU eviction
-   - Resolver: iterative resolution with up to 3 nameservers (configurable)
-   - Message format: 12-byte header, question/answer/authority/additional sections
-   - Reverse lookup: IP→name via in-addr.arpa / ip6.arpa
-   - Export symbols: net_dns_init, net_dns_resolve, net_dns_reverse, net_dns_cache_add, net_dns_set_server
-   - Integration: uses net_udp.asm port 53 for transport
+1. modules/hieracium_admin/src/main.c (Hieracium Hawkweed Administration)
+   - Base ID: 2075
+   - Manages hieracium (hawkweed) invasive species monitoring and control
+   - Features: infestation mapping (16 sites), spread rate tracking, control method records (mechanical/chemical/biological), effectiveness scoring, native species recovery monitoring, seed bank viability testing, herbicide resistance tracking, management cost accounting
+   - Domain structs: hier_t (id, site, infest_area, spread_rate, control_method, efficacy_pct, native_count, seed_viability, resistance_idx, cost_usd, active)
+   - Functions: hier_init, hier_site_map, hier_spread_monitor, hier_control_apply, hier_efficacy_assess, hier_native_recovery, hier_cost_report
+   - Exports: main (demo: site mapping, spread monitoring, control application, efficacy assessment, native recovery tracking, cost report)
+   - Pattern: follow modules/abelia_admin/src/main.c style
 
-2. kernel/net_http.asm (HTTP/1.1 Client & Server)
-   - AArch64 ASM implementation of HTTP protocol (RFC 7230-7235)
-   - Client: GET/POST/PUT/DELETE methods, header parsing, chunked transfer encoding
-   - Server: request dispatch, status codes (200/301/400/404/500), response building
-   - Connection management: keep-alive (max 16 persistent connections), timeout
-   - URL parser: scheme/host/port/path/query/fragment extraction
-   - Header table: 64 headers max per request/response, common header name lookup
-   - Content negotiation: Accept, Content-Type (text/html, application/json, text/plain)
-   - Cookie support: Set-Cookie parsing, Cookie header construction (32 cookies)
-   - Export symbols: net_http_init, net_http_get, net_http_post, net_http_listen, net_http_respond
-   - Integration: uses net_tcp.asm for transport, net_tls.asm for HTTPS
+2. modules/heimia_admin/src/main.c (Heimia Bush Violet Medicinal Administration)
+   - Base ID: 2076
+   - Manages heimia (bush violet/lythraceae) medicinal plant cultivation
+   - Features: cultivation plot records (16 plots), alkaloid extraction tracking (lythrine/decinine), growth stage monitoring, harvest optimization, extract concentration records, quality control (HPLC profiles), pharmacological testing (anti-inflammatory/analgesic scoring), traditional use documentation
+   - Domain structs: heim_t (id, plot, growth_stage, alkaloid_ppm, extract_conc, quality_score, anti_inflam, analgesic, harvest_kg, use_traditional, active)
+   - Functions: heim_init, heim_plot_establish, heim_alkaloid_extract, heim_quality_control, heim_pharmacology_test, heim_harvest, heim_traditional_use
+   - Exports: main (demo: plot establishment, alkaloid extraction tracking, quality control, pharmacology testing, harvest records, traditional use catalog)
+   - Pattern: follow modules/abelia_admin/src/main.c style
 
-3. kernel/net_ws.asm (WebSocket Protocol)
-   - AArch64 ASM implementation of WebSocket (RFC 6455)
-   - Handshake: HTTP upgrade, Sec-WebSocket-Key/Accept (SHA-1 + base64)
-   - Frame parsing: opcode (text/binary/close/ping/pong), mask handling, payload extraction
-   - Frame building: client→server (masked), server→client (unmasked)
-   - Fragmentation: continuation frames, max message size (64KB)
-   - Ping/pong: keepalive with automatic pong response
-   - Connection state: CONNECTING/OPEN/CLOSING/CLOSED (4 states)
-   - Max 32 simultaneous WebSocket connections
-   - Export symbols: net_ws_init, net_ws_connect, net_ws_accept, net_ws_send, net_ws_recv, net_ws_close
-   - Integration: uses net_http.asm for upgrade handshake, net_tcp.asm for transport
+3. modules/heisteria_admin/src/main.c (Heisteria Sandalwood Family Administration)
+   - Base ID: 2077
+   - Manages heisteria (sandalwood family) conservation and sustainable harvest
+   - Features: tree inventory (16 trees), age/size class distribution, heartwood oil content estimation, sustainable harvest planning, CITES compliance tracking, seedling propagation, mycoparasite host monitoring, essential oil yield records, carbon sequestration estimates
+   - Domain structs: heist_t (id, tree_id, age_class, dbh_cm, height_m, oil_content_pct, harvest_ok, cites_permit, seedling_count, host_health, carbon_kg, active)
+   - Functions: heist_init, heist_tree_inventory, heist_oil_estimate, heist_harvest_plan, heist_cites_compliance, heist_propagate, heist_carbon_estimate
+   - Exports: main (demo: tree inventory, oil estimation, harvest planning, CITES compliance, propagation, carbon accounting)
+   - Pattern: follow modules/abelia_admin/src/main.c style
 
-All modules follow existing kernel conventions (.arch armv8-a, .global exports, stp/ldp frame setup).
-After creating 3 ASM modules, update README kernel count from 94 to 97, version from v1236.0 to v1237.0.
-Set UPDATE=0, git add kernel/*.asm + README + CHANGELOG, commit and push to origin arm-v2.
+Build all 3 modules with:
+  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o modules/<name>/<name>.wasm modules/<name>/src/main.c
+
+After creating 3 WASM modules, update README:
+  - version v1237.0 → v1238.0 (all occurrences)
+  - modules 3311 → 3314 (all occurrences)
+  - Add the 3 new module names to the L3 WASM Apps architecture list
+Update CHANGELOG.md: add "## Phase 883 - v1238.0 (3314 modules, 97 kernel)" entry
+Set UPDATE=0
+git add modules/hieracium_admin/ modules/heimia_admin/ modules/heisteria_admin/ README.md CHANGELOG.md promt update-state
+Commit and push to origin arm-v2.

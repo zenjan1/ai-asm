@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-11 - v1237.0 (3311 modules, 97 kernel)
+- Added kernel: net_dns.asm, net_http.asm, net_ws.asm
+- Kernel modules: 94 → 97 (DNS resolver with cache, HTTP/1.1 client/server, WebSocket full-duplex protocol)
+
 ## Phase 882 - v1236.0 (3311 modules, 94 kernel)
 - Added WASM: gyrostachys_admin (jewel orchid research cultivation)
 - Added WASM builds: gymnocarpus_admin, hedysarum_admin (previously source-only)
