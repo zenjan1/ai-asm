@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 975 - v1338.0 (3587 modules, 124 kernel)
+- Added WASM: grouse_admin (Willow grouse game bird), grub_admin (Beetle larva insect), grunt_admin (Grunt fish perciform)
+- Total modules: 3584 → 3587 (cold-adapted bird, soil-dwelling larva, vocal reef fish)
+
 ## Phase 974 - v1337.0 (3584 modules, 124 kernel)
 - Added WASM: goldfish_admin (Ornamental aquarium fish), gorilla_admin (Western gorilla great ape), gopher_admin (Plains pocket gopher rodent)
 - Total modules: 3581 → 3584 (golden ornamental fish, largest primate, burrowing rodent)
