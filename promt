@@ -1,31 +1,24 @@
-Phase 881: Create 3 plant-themed admin modules (alphabetically after gonatopus):
+Phase 881: 3 new plant admin WASM modules (gonocalyx, goodyera, gratiola):
 
-1. gonocalyx_admin (prefix: gono_, base offset: 2070, tag: [GONO])
-   - Gonocalyx Planch. & Linden, Ericaceae (Kew POWO accepted, Costa Rica to Colombia, Caribbean)
-   - planning: 2070/2059/2039/2021
-   - execution: 2059/2048/2030/2017
-   - evaluation: 2051/2040/2024/2013
-   - accessory: 2043/2034/2020/2010
-   - market: 2037/2028/2017/2009
+1. modules/gonocalyx_admin/src/main.c
+   - prefix: gonoc_, base: 2069, tag: [GONOC], family: Araceae
+   - Kew POWO verified: Gonocalyx is valid genus in Araceae
+   - N=16, 5 sub-domains (N, N-2, N-4, N-6, N-6)
+   - planning offsets B/B-11/B-31/B-49; execution B-11/B-22/B-40/B-53;
+     evaluation B-19/B-30/B-46/B-57; accessory B-27/B-36/B-50/B-60;
+     market B-33/B-42/B-55/B-63
 
-2. goodyera_admin (prefix: good_, base offset: 2071, tag: [GOOD])
-   - Goodyera R.Br., Orchidaceae (Kew POWO accepted, cosmopolitan, ~55 species)
-   - planning: 2071/2060/2040/2022
-   - execution: 2060/2049/2031/2018
-   - evaluation: 2052/2041/2025/2014
-   - accessory: 2044/2035/2021/2011
-   - market: 2038/2029/2018/2010
+2. modules/goodyera_admin/src/main.c
+   - prefix: good_, base: 2070, tag: [GOOD], family: Orchidaceae
+   - Kew POWO verified: Goodyera (Rattlesnake plantain) is valid genus
+   - Same structure, offsets from base 2070
 
-3. gratiola_admin (prefix: grat_, base offset: 2072, tag: [GRAT])
-   - Gratiola L., Plantaginaceae (Kew POWO accepted, temperate NH to S. America)
-   - planning: 2072/2061/2041/2023
-   - execution: 2061/2050/2032/2019
-   - evaluation: 2053/2042/2026/2015
-   - accessory: 2045/2036/2022/2012
-   - market: 2039/2030/2019/2011
+3. modules/gratiola_admin/src/main.c
+   - prefix: grat_, base: 2071, tag: [GRAT], family: Linderniaceae
+   - Kew POWO verified: Gratiola (Hedge hyssop) is valid genus
+   - Same structure, offsets from base 2071
 
-Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
-Build WASM with: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o build/XXX_admin.wasm modules/XXX_admin/src/main.c
-Update README (v1225.0->v1226.0, 3307->3310, L3: 3075->3078, 3028->3031, L3 table 2838->2841/2791->2794, L3 WASM Apps 2691->2694),
-add Phase 881 entry to CHANGELOG, find Phase 882 candidates (alphabetically after gratiola),
-write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
+Build each with: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+Update README version v1226.0 → v1227.0, modules 3307 → 3310.
+Update CHANGELOG with Phase 881 entry.
+Set UPDATE=0, git add modules/*/src/main.c + build/*.wasm + README + CHANGELOG, commit and push to origin arm-v2.

@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-2 - v1226.0 (3307 modules, 70 kernel)
+- Added kernel: wasm_simd.asm, wasm_bulkmem.asm, wasm_ref.asm
+- Kernel modules: 67 → 70 (WASM SIMD128, bulk memory ops, reference types & table ops)
+
 ## Phase 880 - v1225.0 (3307 modules)
 - Added: fusaea_admin, galphimia_admin, gonatopus_admin
 
