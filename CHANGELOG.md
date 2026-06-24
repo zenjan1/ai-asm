@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-7 - v1231.0 (3307 modules, 85 kernel)
+- Added kernel: nvme.asm, ext4_fs.asm, raid.asm
+- Kernel modules: 82 → 85 (NVMe SSD driver, ext4 filesystem with journaling/extents, RAID 0/1/5)
+
 ## Phase OS-6 - v1230.0 (3307 modules, 82 kernel)
 - Added kernel: power_mgr.asm, dma.asm, device_enum.asm
 - Kernel modules: 79 → 82 (power management & DVFS, DMA controller, device enumeration)
