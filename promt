@@ -1,31 +1,31 @@
-Phase 877: Create 3 plant-themed admin modules (alphabetically after foetidia):
+Phase 878: Create 3 plant-themed admin modules (alphabetically after fothergilla):
 
-1. forsythia_admin (prefix: fors_, base offset: 2057, tag: [FORS])
-   - Forsythia Vahl, Oleaceae (Kew POWO accepted)
-   - planning: 2057/2046/2026/2008
-   - execution: 2046/2035/2017/2004
-   - evaluation: 2038/2027/2011/2000
-   - accessory: 2030/2021/2007/1997
-   - market: 2024/2015/2004/1996
+1. fremontodendron_admin (prefix: frem_, base offset: 2060, tag: [FREM])
+   - Fremontodendron Coville, Malvaceae (Kew POWO accepted)
+   - planning: 2060/2049/2029/2011
+   - execution: 2049/2038/2020/2007
+   - evaluation: 2041/2030/2014/2003
+   - accessory: 2033/2024/2010/2000
+   - market: 2027/2018/2007/1999
 
-2. fortunearia_admin (prefix: fort_, base offset: 2058, tag: [FORT])
-   - Fortunearia Rehder & E.H.Wilson, Hamamelidaceae (Kew POWO accepted, monotypic)
-   - planning: 2058/2047/2027/2009
-   - execution: 2047/2036/2018/2005
-   - evaluation: 2039/2028/2012/2001
-   - accessory: 2031/2022/2008/1998
-   - market: 2025/2016/2005/1997
+2. frullania_admin (prefix: frul_, base offset: 2061, tag: [FRUL])
+   - Frullania Raddi, Frullaniaceae (Kew POWO accepted, liverwort, ~300-375 species)
+   - planning: 2061/2050/2030/2012
+   - execution: 2050/2039/2021/2008
+   - evaluation: 2042/2031/2015/2004
+   - accessory: 2034/2025/2011/2001
+   - market: 2028/2019/2008/2000
 
-3. fothergilla_admin (prefix: foth_, base offset: 2059, tag: [FOTH])
-   - Fothergilla L., Hamamelidaceae (Kew POWO accepted)
-   - planning: 2059/2048/2028/2010
-   - execution: 2048/2037/2019/2006
-   - evaluation: 2040/2029/2013/2002
-   - accessory: 2032/2023/2009/1999
-   - market: 2026/2017/2006/1998
+3. fuerstia_admin (prefix: fuer_, base offset: 2062, tag: [FUER])
+   - Fuerstia T.C.E.Fr., Lamiaceae (Kew POWO accepted, Tropical Africa)
+   - planning: 2062/2051/2031/2013
+   - execution: 2051/2040/2022/2009
+   - evaluation: 2043/2032/2016/2005
+   - accessory: 2035/2026/2012/2002
+   - market: 2029/2020/2009/2001
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
 Build WASM with: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o build/XXX_admin.wasm modules/XXX_admin/src/main.c
-Update README (v1221.0->v1222.0, 3295->3298, L3: 3063->3066, 3016->3019, L3 table 2826->2829/2779->2782, L3 WASM Apps 2679->2682),
-add Phase 877 entry to CHANGELOG, find Phase 878 candidates (alphabetically after fothergilla),
+Update README (v1222.0->v1223.0, 3298->3301, L3: 3066->3069, 3019->3022, L3 table 2829->2832/2782->2785, L3 WASM Apps 2682->2685),
+add Phase 878 entry to CHANGELOG, find Phase 879 candidates (alphabetically after fuerstia),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

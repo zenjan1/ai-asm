@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 877 - v1222.0 (3298 modules)
+- Added: forsythia_admin, fortunearia_admin, fothergilla_admin
+
 ## Phase 876 - v1221.0 (3295 modules)
 - Added: flyriella_admin, fockea_admin, foetidia_admin
 
