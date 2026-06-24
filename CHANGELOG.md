@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-14 - v1243.0 (3317 modules, 106 kernel)
+- Added kernel: key_store.asm, pki_cert.asm, audit_log.asm
+- Kernel modules: 103 → 106 (secure key storage with generation/import/export, X.509 certificate validation with chain verification, security audit logging with ring buffer)
+
 ## Phase 885 - v1242.0 (3317 modules, 103 kernel)
 - Added WASM: ibota_admin (Ibota wax privet ornamental & medicinal), illicium_admin (Star anise spice & medicinal), indigofera_admin (Indigo dye plant)
 - Total modules: 3314 → 3317 (wax privet cultivation, star anise production, indigo dye processing)
