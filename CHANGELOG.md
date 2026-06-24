@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 871 - v1216.0 (3280 modules)
+- Added: fagopyrum_admin, falkia_admin, faramea_admin
+
 ## Phase 870 - v1215.0 (3277 modules)
 - Added: exochogyne_admin, exomiocarpon_admin, exostigma_admin
 
