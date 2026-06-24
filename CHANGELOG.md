@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 953 - v1316.0 (3521 modules, 124 kernel)
+- Added WASM: coral_admin (Coral reef), cormorant_admin (Cormorant fishing bird), corn_admin (Corn grain crop)
+- Total modules: 3518 → 3521 (reef coral, fishing bird, grain crop)
+
 ## Phase 952 - v1315.0 (3518 modules, 124 kernel)
 - Added WASM: collard_admin (Collard greens), comfrey_admin (Comfrey medicinal herb), conch_admin (Conch sea snail)
 - Total modules: 3515 → 3518 (leafy green, medicinal herb, sea snail)

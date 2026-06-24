@@ -1,36 +1,36 @@
-Phase 953: Grain & Marine Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 954: Fiber & Livestock Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/coral_admin/src/main.c (Coral Reef)
-   - Coral (Acropora millepora) reef ecosystem management
-   - Features: colony_dia_cm, height_cm, polyp_count, color_idx, water_temp, growth_rate
-   - Data: 16 entries with location,clny_dia,ht_cm,polp_ct,clr_idx,wt_tmp,gr_rate
+1. modules/cotton_admin/src/main.c (Cotton Fiber Crop)
+   - Cotton (Gossypium hirsutum) fiber crop management
+   - Features: plant_ht_cm, boll_count, fiber_len_mm, lint_pct, seed_oil_pct, harvest_week
+   - Data: 16 entries with location,plnt_ht,boll_ct,fbr_ln,lnt_pct,seed_oil,harv_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planting, feeding, water_mgmt, harvest, market
-   - Prefix: crl
+   - Categories: planting, irrigation, pest_control, harvest, market
+   - Prefix: cttn
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/cormorant_admin/src/main.c (Cormorant Bird)
-   - Cormorant (Phalacrocorax carbo) fishing bird husbandry
-   - Features: body_len_cm, body_wt_g, wing_span_cm, dive_depth_m, fish_caught, feather_idx
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,dive_dp,fish_ct,fthr_idx
+2. modules/cougau_admin/src/main.c (Cougar Big Cat)
+   - Cougar (Puma concolor) big cat wildlife management
+   - Features: body_len_cm, body_wt_kg, territory_km, prey_idx, cub_count, health_idx
+   - Data: 16 entries with location,bdy_ln,bdy_wt,terr_km,prey_idx,cub_ct,hlth_idx
    - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, training, fishing, market
-   - Prefix: crmt
+   - Categories: housing, feeding, breeding, veterinary, market
+   - Prefix: cgr
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/corn_admin/src/main.c (Corn Grain Crop)
-   - Corn (Zea mays) grain crop management
-   - Features: plant_ht_cm, ear_count, kernel_row, cob_len_cm, starch_pct, harvest_week
-   - Data: 16 entries with location,plnt_ht,ear_ct,kr_row,cob_ln,strch_pct,harv_wk
+3. modules/cow_admin/src/main.c (Cow Cattle Livestock)
+   - Cow (Bos taurus) cattle livestock management
+   - Features: body_wt_kg, milk_yield_l, fat_pct, feed_kg, calf_count, breed_idx
+   - Data: 16 entries with location,bdy_wt,milk_yd,fat_pct,feed_kg,calf_ct,breed_idx
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, pollination, pest_control, harvest, market
-   - Prefix: crn
+   - Categories: feeding, milking, breeding, veterinary, market
+   - Prefix: cow
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1315.0 → v1316.0 (all occurrences)
-  - total modules 3518 → 3521 (all occurrences)
-Update CHANGELOG.md: add "## Phase 953 - v1316.0 (3521 modules, 124 kernel)" entry
+  - version v1316.0 → v1317.0 (all occurrences)
+  - total modules 3521 → 3524 (all occurrences)
+Update CHANGELOG.md: add "## Phase 954 - v1317.0 (3524 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/coral_admin/coral_admin.wasm modules/cormorant_admin/cormorant_admin.wasm modules/corn_admin/corn_admin.wasm modules/coral_admin/src/main.c modules/cormorant_admin/src/main.c modules/corn_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cotton_admin/cotton_admin.wasm modules/cougau_admin/cougau_admin.wasm modules/cow_admin/cow_admin.wasm modules/cotton_admin/src/main.c modules/cougau_admin/src/main.c modules/cow_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
