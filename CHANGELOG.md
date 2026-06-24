@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 890 - v1252.0 (3332 modules, 118 kernel)
+- Added WASM: nerium_admin (Nerium oleander), nigella_admin (Nigella love-in-a-mist), nolana_admin (Nolana Chilean bellflower)
+- Total modules: 3329 → 3332 (medicinal oleander, black seed oil plants, coastal bellflowers)
+
 ## Phase OS-18 - v1251.0 (3329 modules, 118 kernel)
 - Added kernel: dev_usb.asm, dev_i2c.asm, dev_spi.asm
 - Kernel modules: 115 → 118 (USB device management with enumeration and transfers, I2C bus controller with address scanning, SPI bus master with CPOL/CPHA configuration)

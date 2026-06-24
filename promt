@@ -1,31 +1,40 @@
-Phase 890: 3 new WASM plant modules following abelia_admin pattern:
+Phase OS-19: Kernel Scheduler Enhancements - 3 new AArch64 assembly kernel modules:
 
-1. modules/nerium_admin/src/main.c (Nerium oleander)
-   - Nerium oleander (oleander) cultivation
-   - Features: ornamental flowering, drought resistance, toxic compound monitoring, medicinal cardiac glycosides, hedge/landscape use
-   - Host imports: ps, pi, pe, pf, pd, gt helpers
-   - 16 nerium entries with Latin names and cultivation data
+1. kernel/sched_rt.asm (Real-Time Scheduling)
+   - Base ID: 919
+   - Real-time task scheduling with priority-based policies
+   - Features: SCHED_FIFO and SCHED_RR policies, priority inheritance, deadline scheduling, real-time bandwidth control, priority boosting, RT throttling prevention
+   - Data structures: rt_task_t (task_id, rt_priority, policy, runtime, deadline, period), rt_queue_t (priority_level, task_count, head, tail)
+   - API: sched_rt_init, sched_rt_register(task_id, priority, policy), sched_rt_unregister(task_id), sched_rt_set_priority(task_id, priority), sched_rt_set_deadline(task_id, runtime, deadline, period), sched_rt_next_task() => task_id, sched_rt_stats(out_stats)
+   - Capacity: 64 RT tasks, 100 priority levels (0-99), 2 policies (FIFO, RR)
+   - Pattern: follow kernel/memory.asm style (stp/ldp frame, .global exports, .bss for state)
 
-2. modules/nigella_admin/src/main.c (Nigella love-in-a-mist)
-   - Nigella sativa (black cumin) and nigella damascena (love-in-a-mist) cultivation
-   - Features: black seed oil extraction, ornamental seed pods, spice production, traditional medicine, pollinator attraction
-   - Host imports: ps, pi, pe, pf, pd, gt helpers
-   - 16 nigella entries with Latin names and seed production data
+2. kernel/sched_cgroup.asm (Control Groups)
+   - Base ID: 920
+   - Control group management for resource allocation and isolation
+   - Features: cgroup hierarchy, CPU/memory/IO resource limits, task assignment, usage tracking, cgroup creation/deletion, resource statistics
+   - Data structures: cgroup_t (group_id, parent_id, name, cpu_shares, mem_limit, io_limit, task_count), cgroup_stats_t (cpu_usage, mem_usage, io_usage)
+   - API: sched_cgroup_init, sched_cgroup_create(name, parent_id) => group_id, sched_cgroup_delete(group_id), sched_cgroup_add_task(group_id, task_id), sched_cgroup_remove_task(group_id, task_id), sched_cgroup_set_limits(group_id, cpu, mem, io), sched_cgroup_stats(group_id, out_stats)
+   - Capacity: 32 cgroups, 1024 task assignments, hierarchical depth 8
+   - Pattern: follow kernel/memory.asm style
 
-3. modules/nolana_admin/src/main.c (Nolana Chilean bellflower)
-   - Nolana paradoxa (Chilean bellflower) cultivation
-   - Features: coastal garden use, salt tolerance, succulent leaves, bell-shaped flowers, ground cover applications
-   - Host imports: ps, pi, pe, pf, pd, gt helpers
-   - 16 nolana entries with Latin names and landscaping data
+3. kernel/sched_workqueue.asm (Work Queue Management)
+   - Base ID: 921
+   - Deferred work execution via work queues
+   - Features: work queue creation, work item scheduling, delayed work execution, work cancellation, flush operations, worker thread management, work statistics
+   - Data structures: workqueue_t (queue_id, name, max_workers, pending_count, active_count), work_item_t (work_id, func_ptr, data, delay_ms, state, queue_id)
+   - API: sched_workqueue_init, sched_workqueue_create(name, max_workers) => queue_id, sched_workqueue_submit(queue_id, func, data) => work_id, sched_workqueue_submit_delayed(queue_id, func, data, delay_ms) => work_id, sched_workqueue_cancel(work_id), sched_workqueue_flush(queue_id), sched_workqueue_destroy(queue_id), sched_workqueue_stats(queue_id, out_stats)
+   - Capacity: 16 work queues, 256 pending work items, 64 worker threads
+   - Pattern: follow kernel/memory.asm style
 
-Build all 3 WASM modules with:
-  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export-all -o modules/<name>/<name>.wasm modules/<name>/src/main.c
+Build all 3 kernel modules with:
+  clang --target=aarch64-unknown-linux-gnu -c -O2 -o kernel/<name>.o kernel/<name>.asm
 
-After creating 3 WASM modules, update README:
-  - version v1251.0 → v1252.0 (all occurrences)
-  - total modules 3329 → 3332 (all occurrences)
-  - Add the 3 new module names to the L3 WASM Apps list
-Update CHANGELOG.md: add "## Phase 890 - v1252.0 (3332 modules, 118 kernel)" entry
+After creating 3 kernel modules, update README:
+  - version v1252.0 → v1253.0 (all occurrences)
+  - kernel modules 118 → 121 (all occurrences)
+  - Add the 3 new kernel module names to the L1 Kernel ASM architecture list
+Update CHANGELOG.md: add "## Phase OS-19 - v1253.0 (3332 modules, 121 kernel)" entry
 Set UPDATE=0
-git add modules/nerium_admin modules/nigella_admin modules/nolana_admin README.md CHANGELOG.md promt update-state
+git add kernel/sched_rt.asm kernel/sched_cgroup.asm kernel/sched_workqueue.asm README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
