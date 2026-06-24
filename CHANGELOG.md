@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 930 - v1293.0 (3452 modules, 124 kernel)
+- Added WASM: blueflag_admin (Blueflag water iris), bluegum_admin (Bluegum eucalyptus tree), bluestar_admin (Bluestar amsonia perennial)
+- Total modules: 3449 → 3452 (wetland water iris, eucalyptus timber tree, native wildflower)
+
 ## Phase 929 - v1292.0 (3449 modules, 124 kernel)
 - Added WASM: bluebrush_admin (Bluebrush alyogyne shrub), bluecurls_admin (Bluecurls borage herb), blueeye_admin (Blue-eye sisyrinchium perennial)
 - Total modules: 3446 → 3449 (hibiscus-like shrub, culinary herb borage, grass-like perennial)

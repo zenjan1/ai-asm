@@ -1,5 +1,6 @@
-/* blueflag_admin: Blueflag management technology administration (v1.0)
- * Blueflag planning, blueflag execution, blueflag evaluation, accessories, marketing
+/* blueflag_admin: Blueflag (Iris versicolor) water iris management (v1.0)
+ * Blueflag planning, planting, evaluation, division, market
+ * Features: flower height, leaf width, spadix length, flower color, rhizome size, bloom week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} flag_t;
-typedef struct{int n_planning,n_execution,n_evaluation,n_accessory,n_market,t_f1,t_f2,t_f3,t_f4,t_f5;} flag_state_t;
-static flag_t flagp[N],flagx[N-2],flag2[N-4],flagac[N-6],flagm[N-6]; static flag_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
-static int add(flag_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;flag_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[FLAG] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int flag_init(void){if(init)return -1;st.n_planning=0;st.n_execution=0;st.n_evaluation=0;st.n_accessory=0;st.n_market=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)flagp[i].active=0;for(int i=0;i<N-2;i++)flagx[i].active=0;for(int i=0;i<N-4;i++)flag2[i].active=0;for(int i=0;i<N-6;i++)flagac[i].active=0;for(int i=0;i<N-6;i++)flagm[i].active=0;init=1;ps("[FLAG] Blueflag initialized\n");return 0;}
-int flag_planning(int t,int c,int a,int b,int d,int e,int y){return add(flagp,&st.n_planning,&st.t_f1,N,t,c,a,b,d,e,y);}
-int flag_execution(int t,int c,int a,int b,int d,int e,int y){return add(flagx,&st.n_execution,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int flag_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(flag2,&st.n_evaluation,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int flag_accessory(int t,int c,int a,int b,int d,int e,int y){return add(flagac,&st.n_accessory,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int flag_market(int t,int c,int a,int b,int d,int e,int y){return add(flagm,&st.n_market,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void flag_report(void){ps("[FLAG] Planning: ");pi(st.n_planning);ps(" PCS=");pi(st.t_f1);ps("\nExecution: ");pi(st.n_execution);ps(" PCS=");pi(st.t_f2);ps("\nEvaluation: ");pi(st.n_evaluation);ps(" PCS=");pi(st.t_f3);ps("\nAccessory: ");pi(st.n_accessory);ps(" PCS=");pi(st.t_f4);ps("\nMarket: ");pi(st.n_market);ps(" USD=");pi(st.t_f5);ps("\n");}
-void flag_state(void){ps("[FLAG] P=");pi(st.n_planning);ps(" E=");pi(st.n_execution);ps(" V=");pi(st.n_evaluation);ps(" A=");pi(st.n_accessory);ps(" M=");pi(st.n_market);ps("\n");}
+typedef struct{int id,location,flower_ht,leaf_wd,spadix_ln,flower_color,rhiz_sz,bloom_wk,active;} blf_t;
+typedef struct{int n_plan,n_exec,n_eval,n_div,n_mkt,t_flower,t_leaf,t_spadix,t_color,t_rhiz;} blf_state_t;
+static blf_t blfps[N],blfes[N-2],blfvs[N-4],blfdv[N-6],blfms[N-6]; static blf_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(blf_t*a,int*cnt,int*sum,int mx,int lc,int fh,int lw,int sl,int fc,int rs,int bw){if(*cnt>=mx)return -1;blf_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->flower_ht=fh;x->leaf_wd=lw;x->spadix_ln=sl;x->flower_color=fc;x->rhiz_sz=rs;x->bloom_wk=bw;x->active=1;*sum+=fh;(*cnt)++;ps("[BLF] Blueflag ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" fh=");pi(fh);ps(" lw=");pi(lw);ps(" sl=");pi(sl);ps(" fc=");pi(fc);ps(" rs=");pi(rs);ps("\n");return *cnt-1;}
+int blf_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_div=0;st.n_mkt=0;st.t_flower=0;st.t_leaf=0;st.t_spadix=0;st.t_color=0;st.t_rhiz=0;for(int i=0;i<N;i++)blfps[i].active=0;for(int i=0;i<N-2;i++)blfes[i].active=0;for(int i=0;i<N-4;i++)blfvs[i].active=0;for(int i=0;i<N-6;i++)blfdv[i].active=0;for(int i=0;i<N-6;i++)blfms[i].active=0;init=1;ps("[BLF] Blueflag initialized\n");return 0;}
+/* 1=wetland 2=pond_edge 3=rain_garden 4=bog 5=streamside */
+int blf_planning(int lc,int fh,int lw,int sl,int fc,int rs,int bw){return add(blfps,&st.n_plan,&st.t_flower,N,lc,fh,lw,sl,fc,rs,bw);}
+int blf_execution(int lc,int fh,int lw,int sl,int fc,int rs,int bw){return add(blfes,&st.n_exec,&st.t_leaf,N-2,lc,fh,lw,sl,fc,rs,bw);}
+int blf_evaluation(int lc,int fh,int lw,int sl,int fc,int rs,int bw){return add(blfvs,&st.n_eval,&st.t_spadix,N-4,lc,fh,lw,sl,fc,rs,bw);}
+int blf_division(int lc,int fh,int lw,int sl,int fc,int rs,int bw){return add(blfdv,&st.n_div,&st.t_color,N-6,lc,fh,lw,sl,fc,rs,bw);}
+int blf_market(int lc,int fh,int lw,int sl,int fc,int rs,int bw){return add(blfms,&st.n_mkt,&st.t_rhiz,N-6,lc,fh,lw,sl,fc,rs,bw);}
+void blf_report(void){ps("[BLF] Plan: ");pi(st.n_plan);ps(" flower=");pi(st.t_flower);ps("\nExec: ");pi(st.n_exec);ps(" leaf=");pi(st.t_leaf);ps("\nEval: ");pi(st.n_eval);ps(" spadix=");pi(st.t_spadix);ps("\nDiv: ");pi(st.n_div);ps(" color=");pi(st.t_color);ps("\nMkt: ");pi(st.n_mkt);ps(" rhiz=");pi(st.t_rhiz);ps("\n");}
+void blf_state(void){ps("[BLF] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Div=");pi(st.n_div);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Blueflag Admin Demo ===\n\n");flag_init();
-ps("Blueflag planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;flag_planning(t,c,1806+(i*17),1795+(i*14),1775+(i*10),1757+(i*6),2020+(i%5));}
-ps("\nBlueflag execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;flag_execution(t,c,1795+(i*15),1784+(i*12),1766+(i*8),1753+(i*5),2021+(i%4));}
-ps("\nBlueflag evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;flag_evaluation(t,c,1787+(i*13),1776+(i*10),1760+(i*7),1749+(i*4),2022+(i%3));}
-ps("\nBlueflag accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;flag_accessory(t,c,1779+(i*11),1770+(i*9),1756+(i*6),1746+(i*3),2023+(i%2));}
-ps("\nBlueflag marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;flag_market(t,c,1773+(i*9),1764+(i*7),1751+(i*5),1743+(i*3),2024);}
-ps("\n");flag_report();flag_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Blueflag (Iris versicolor) Admin Demo ===\n\n");blf_init();
+ps("Blueflag planning (wetland layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;blf_planning(lc,25+(i*5),3+(i*2),20+(i*4),(i%4)+1,4+(i*2),22+(i%6));}
+ps("\nBlueflag execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;blf_execution(lc,28+(i*4),4+(i*2),22+(i*3),(i%4)+1,5+(i*2),24+(i%5));}
+ps("\nBlueflag evaluation (bloom check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;blf_evaluation(lc,30+(i*3),5+(i*2),24+(i*3),(i%3)+2,6+(i*2),26+(i%4));}
+ps("\nBlueflag division...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;blf_division(lc,22+(i*5),2+(i*2),18+(i*4),(i%4)+1,3+(i*2),20+(i%5));}
+ps("\nBlueflag market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;blf_market(lc,32+(i*3),6+(i*2),26+(i*3),(i%3)+3,7+(i*2),28+(i%3));}
+ps("\n");blf_report();blf_state();ps("\n=== Demo Complete ===\n");return 0;}
