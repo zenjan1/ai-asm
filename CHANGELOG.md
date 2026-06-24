@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 939 - v1302.0 (3479 modules, 124 kernel)
+- Added WASM: camel_admin (Camel herd), camellia_admin (Camellia tea flower), canary_admin (Canary songbird)
+- Total modules: 3476 → 3479 (desert camelid, ornamental tea plant, songbird)
+
 ## Phase 938 - v1301.0 (3476 modules, 124 kernel)
 - Added WASM: cactus_admin (Cactus desert succulent), calabash_admin (Calabash gourd vine), caladium_admin (Caladium ornamental tuber)
 - Total modules: 3473 → 3476 (desert succulent, edible gourd, foliage tuber)
