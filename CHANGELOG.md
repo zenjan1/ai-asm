@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 906 - v1270.0 (3380 modules, 124 kernel)
+- Added WASM: anacamptis_admin (Anacamptis swamp orchid), anagallis_admin (Anagallis pimpernel), anagyris_admin (Anagyris bean caper)
+- Total modules: 3377 → 3380 (wetland orchid, small flowering herb, medicinal bean caper shrub)
+
 ## Phase 905 - v1269.0 (3377 modules, 124 kernel)
 - Added WASM: aloe_admin (Aloe succulent), amaranthus_admin (Amaranthus ornamental grain), amaryllis_admin (Amaryllis hippeastrum bulb)
 - Total modules: 3374 → 3377 (medicinal aloe succulent, colorful amaranthus grain, indoor amaryllis bulb flower)

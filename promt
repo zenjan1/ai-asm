@@ -1,28 +1,28 @@
-Phase 906: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 907: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/anacamptis_admin/src/main.c (Anacamptis / Swamp Orchid)
-   - Anacamptis orchid and wetland flowering plant management
-   - Features: spike height, flower count, labellum width, bloom color, tuber size, habitat moisture
-   - Data: 16 entries with location,spike_ht,flower_ct,labellum_wd,bloom_color,tuber_sz,habitat_mo
+1. modules/anaphalis_admin/src/main.c (Anaphalis / Pearl Everlasting)
+   - Anaphalis pearl everlasting and dried flower plant management
+   - Features: flower head diameter, petal layers, stem height, bloom duration, leaf texture, dry_quality
+   - Data: 16 entries with location,head_dia,petal_layers,stem_ht,bloom_dk,leaf_tx,dry_qual
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/anagallis_admin/src/main.c (Anagallis / Pimpernel)
-   - Anagallis pimpernel and small flowering herb management
-   - Features: petal count, flower color, leaf size, stem spread, bloom week, seed capsule
-   - Data: 16 entries with location,petal_ct,flower_color,leaf_sz,stem_spread,bloom_wk,seed_cap
+2. modules/anarrhinum_admin/src/main.c (Anarrhinum / Goosewort)
+   - Anarrhinum goosewort and rocky slope groundcover management
+   - Features: stem length, flower count, leaf width, bloom color, root depth, spread rate
+   - Data: 16 entries with location,stem_len,flower_ct,leaf_wd,bloom_color,root_dep,spread_rt
    - Pattern: follow abelia_admin pattern
 
-3. modules/anagyris_admin/src/main.c (Anagyris / Bean Caper)
-   - Anagyris bean caper and medicinal shrub management
-   - Features: leaf length, seed pod, bark texture, root depth, compound mg, drought tolerance
-   - Data: 16 entries with location,leaf_len,seed_pod,bark_tx,root_dep,compound_mg,drought_tol
+3. modules/androsace_admin/src/main.c (Androsace / Rock Jasmine)
+   - Androsace rock jasmine and alpine cushion plant management
+   - Features: rosette diameter, flower count, petal color, leaf rosette, altitude range, bloom week
+   - Data: 16 entries with location,rosette_dia,flower_ct,petal_color,leaf_ros,alt_range,bloom_wk
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1269.0 → v1270.0 (all occurrences)
-  - total modules 3377 → 3380 (all occurrences)
-Update CHANGELOG.md: add "## Phase 906 - v1270.0 (3380 modules, 124 kernel)" entry
+  - version v1270.0 → v1271.0 (all occurrences)
+  - total modules 3380 → 3383 (all occurrences)
+Update CHANGELOG.md: add "## Phase 907 - v1271.0 (3383 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/anacamptis_admin/src/main.c modules/anagallis_admin/src/main.c modules/anagyris_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/anaphalis_admin/src/main.c modules/anarrhinum_admin/src/main.c modules/androsace_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
