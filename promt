@@ -1,31 +1,31 @@
-Phase 878: Create 3 plant-themed admin modules (alphabetically after fothergilla):
+Phase 879: Create 3 plant-themed admin modules (alphabetically after fuerstia):
 
-1. fremontodendron_admin (prefix: frem_, base offset: 2060, tag: [FREM])
-   - Fremontodendron Coville, Malvaceae (Kew POWO accepted)
-   - planning: 2060/2049/2029/2011
-   - execution: 2049/2038/2020/2007
-   - evaluation: 2041/2030/2014/2003
-   - accessory: 2033/2024/2010/2000
-   - market: 2027/2018/2007/1999
+1. fuertesiella_admin (prefix: fuee_, base offset: 2063, tag: [FUEE])
+   - Fuertesiella Schltr., Orchidaceae (Kew POWO accepted, monotypic, Caribbean)
+   - planning: 2063/2052/2032/2014
+   - execution: 2052/2041/2023/2010
+   - evaluation: 2044/2033/2017/2006
+   - accessory: 2036/2027/2013/2003
+   - market: 2030/2021/2010/2002
 
-2. frullania_admin (prefix: frul_, base offset: 2061, tag: [FRUL])
-   - Frullania Raddi, Frullaniaceae (Kew POWO accepted, liverwort, ~300-375 species)
-   - planning: 2061/2050/2030/2012
-   - execution: 2050/2039/2021/2008
-   - evaluation: 2042/2031/2015/2004
-   - accessory: 2034/2025/2011/2001
-   - market: 2028/2019/2008/2000
+2. fumaria_admin (prefix: fuma_, base offset: 2064, tag: [FUMA])
+   - Fumaria Tourn. ex L., Papaveraceae (Kew POWO accepted)
+   - planning: 2064/2053/2033/2015
+   - execution: 2053/2042/2024/2011
+   - evaluation: 2045/2034/2018/2007
+   - accessory: 2037/2028/2014/2004
+   - market: 2031/2022/2011/2003
 
-3. fuerstia_admin (prefix: fuer_, base offset: 2062, tag: [FUER])
-   - Fuerstia T.C.E.Fr., Lamiaceae (Kew POWO accepted, Tropical Africa)
-   - planning: 2062/2051/2031/2013
-   - execution: 2051/2040/2022/2009
-   - evaluation: 2043/2032/2016/2005
-   - accessory: 2035/2026/2012/2002
-   - market: 2029/2020/2009/2001
+3. funkiella_admin (prefix: funki_, base offset: 2065, tag: [FUNK])
+   - Funkiella Schltr., Orchidaceae (Kew POWO accepted)
+   - planning: 2065/2054/2034/2016
+   - execution: 2054/2043/2025/2012
+   - evaluation: 2046/2035/2019/2008
+   - accessory: 2038/2029/2015/2005
+   - market: 2032/2023/2012/2004
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
 Build WASM with: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o build/XXX_admin.wasm modules/XXX_admin/src/main.c
-Update README (v1222.0->v1223.0, 3298->3301, L3: 3066->3069, 3019->3022, L3 table 2829->2832/2782->2785, L3 WASM Apps 2682->2685),
-add Phase 878 entry to CHANGELOG, find Phase 879 candidates (alphabetically after fuerstia),
+Update README (v1223.0->v1224.0, 3301->3304, L3: 3069->3072, 3022->3025, L3 table 2832->2835/2785->2788, L3 WASM Apps 2685->2688),
+add Phase 879 entry to CHANGELOG, find Phase 880 candidates (alphabetically after funkiella),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.

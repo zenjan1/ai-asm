@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 878 - v1223.0 (3301 modules)
+- Added: fremontodendron_admin, frullania_admin, fuerstia_admin
+
 ## Phase 877 - v1222.0 (3298 modules)
 - Added: forsythia_admin, fortunearia_admin, fothergilla_admin
 
