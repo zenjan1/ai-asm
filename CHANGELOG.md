@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 893 - v1257.0 (3341 modules, 124 kernel)
+- Added WASM: salvia_admin (Salvia sage), sambucus_admin (Sambucus elderberry), sanguinaria_admin (Sanguinaria bloodroot)
+- Total modules: 3338 → 3341 (medicinal sage, elderberry orchard, native woodland bloodroot conservation)
+
 ## Phase 892 - v1256.0 (3338 modules, 124 kernel)
 - Added WASM: ranunculus_admin (Ranunculus buttercup), romneya_admin (Romneya California tree poppy), rudbeckia_admin (Rudbeckia black-eyed Susan)
 - Total modules: 3335 → 3338 (ornamental buttercups, native California poppy, wildflower meadow black-eyed Susan)

@@ -1,5 +1,6 @@
-/* salvia_admin: Salvia management technology administration (v1.0)
- * Salvia planning, salvia execution, salvia evaluation, accessories, marketing
+/* salvia_admin: Salvia (Sage) medicinal and ornamental cultivation (v1.0)
+ * Salvia planning, execution, evaluation, essential oil extraction, market
+ * Features: variety tracking, essential oil yield, bloom cycles, drought tolerance, pruning
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} sl_t;
-typedef struct{int n_slp,n_sle,n_slv,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} sl_state_t;
-static sl_t slps[N],slss[N-2],slvss[N-4],slas[N-6],slmks[N-6]; static sl_state_t st; static int init;
+typedef struct{int id,cultivar,oil_ml,bloom_d,ht_cm,leaf_a,zone,hardiness,active;} sal_t;
+typedef struct{int n_plan,n_exec,n_eval,n_oil,n_mkt,t_oil,t_bloom,t_ht,t_leaf,t_zone;} sal_state_t;
+static sal_t salps[N],sales[N-2],salvs[N-4],salos[N-6],salms[N-6]; static sal_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(sl_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;sl_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[SLV] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int sl_init(void){if(init)return -1;st.n_slp=0;st.n_sle=0;st.n_slv=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)slps[i].active=0;for(int i=0;i<N-2;i++)slss[i].active=0;for(int i=0;i<N-4;i++)slvss[i].active=0;for(int i=0;i<N-6;i++)slas[i].active=0;for(int i=0;i<N-6;i++)slmks[i].active=0;init=1;ps("[SLV] Salvia initialized\n");return 0;}
-int sl_planning(int t,int c,int a,int b,int d,int e,int y){return add(slps,&st.n_slp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int sl_execution(int t,int c,int a,int b,int d,int e,int y){return add(slss,&st.n_sle,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int sl_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(slvss,&st.n_slv,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int sl_accessory(int t,int c,int a,int b,int d,int e,int y){return add(slas,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int sl_market(int t,int c,int a,int b,int d,int e,int y){return add(slmks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void sl_report(void){ps("[SLV] Slp: ");pi(st.n_slp);ps(" PCS=");pi(st.t_f1);ps("\nSle: ");pi(st.n_sle);ps(" PCS=");pi(st.t_f2);ps("\nSlv: ");pi(st.n_slv);ps(" PCS=");pi(st.t_f3);ps("\nSlc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void sl_state(void){ps("[SLV] Slp=");pi(st.n_slp);ps(" Sle=");pi(st.n_sle);ps(" Slv=");pi(st.n_slv);ps(" Slc=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(sal_t*a,int*cnt,int*sum,int mx,int cv,int ol,int bd,int ht,int la,int zn,int hr){if(*cnt>=mx)return -1;sal_t*x=&a[*cnt];x->id=*cnt;x->cultivar=cv;x->oil_ml=ol;x->bloom_d=bd;x->ht_cm=ht;x->leaf_a=la;x->zone=zn;x->hardiness=hr;x->active=1;*sum+=ol;(*cnt)++;ps("[SAL] Salvia ");pi(*cnt-1);ps(" cv=");pi(cv);ps(" oil=");pi(ol);ps(" bl=");pi(bd);ps(" ht=");pi(ht);ps(" la=");pi(la);ps("\n");return *cnt-1;}
+int sal_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_oil=0;st.n_mkt=0;st.t_oil=0;st.t_bloom=0;st.t_ht=0;st.t_leaf=0;st.t_zone=0;for(int i=0;i<N;i++)salps[i].active=0;for(int i=0;i<N-2;i++)sales[i].active=0;for(int i=0;i<N-4;i++)salvs[i].active=0;for(int i=0;i<N-6;i++)salos[i].active=0;for(int i=0;i<N-6;i++)salms[i].active=0;init=1;ps("[SAL] Salvia (sage) initialized\n");return 0;}
+/* 1=officinalis 2=splendens 3=nemorosa 4=guaranitica 5=pratensis */
+int sal_planning(int cv,int ol,int bd,int ht,int la,int zn,int hr){return add(salps,&st.n_plan,&st.t_oil,N,cv,ol,bd,ht,la,zn,hr);}
+int sal_execution(int cv,int ol,int bd,int ht,int la,int zn,int hr){return add(sales,&st.n_exec,&st.t_bloom,N-2,cv,ol,bd,ht,la,zn,hr);}
+int sal_evaluation(int cv,int ol,int bd,int ht,int la,int zn,int hr){return add(salvs,&st.n_eval,&st.t_ht,N-4,cv,ol,bd,ht,la,zn,hr);}
+int sal_oil(int cv,int ol,int bd,int ht,int la,int zn,int hr){return add(salos,&st.n_oil,&st.t_leaf,N-6,cv,ol,bd,ht,la,zn,hr);}
+int sal_market(int cv,int ol,int bd,int ht,int la,int zn,int hr){return add(salms,&st.n_mkt,&st.t_zone,N-6,cv,ol,bd,ht,la,zn,hr);}
+void sal_report(void){ps("[SAL] Plan: ");pi(st.n_plan);ps(" oil=");pi(st.t_oil);ps("\nExec: ");pi(st.n_exec);ps(" bloom=");pi(st.t_bloom);ps("\nEval: ");pi(st.n_eval);ps(" ht=");pi(st.t_ht);ps("\nOil: ");pi(st.n_oil);ps(" leaf=");pi(st.t_leaf);ps("\nMkt: ");pi(st.n_mkt);ps(" zone=");pi(st.t_zone);ps("\n");}
+void sal_state(void){ps("[SAL] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Oil=");pi(st.n_oil);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Salvia Admin Demo ===\n\n");sl_init();
-ps("Salvia planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;sl_planning(t,c,650+(i*17),639+(i*14),619+(i*10),601+(i*6),2020+(i%5));}
-ps("\nSalvia execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;sl_execution(t,c,639+(i*15),628+(i*12),610+(i*8),597+(i*5),2021+(i%4));}
-ps("\nSalvia evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;sl_evaluation(t,c,631+(i*13),620+(i*10),604+(i*7),593+(i*4),2022+(i%3));}
-ps("\nSalvia accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;sl_accessory(t,c,623+(i*11),614+(i*9),600+(i*6),590+(i*3),2023+(i%2));}
-ps("\nSalvia marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;sl_market(t,c,617+(i*9),608+(i*7),595+(i*5),587+(i*3),2024);}
-ps("\n");sl_report();sl_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Salvia (Sage) Admin Demo ===\n\n");sal_init();
+ps("Salvia planning (cultivar selection)...\n");
+for(int i=0;i<N;i++){int cv=(i%5)+1;sal_planning(cv,12+(i*3),28+(i%7),45+(i*8),320+(i*40),(i%9)+1,(i%5)+1);}
+ps("\nSalvia execution (planting)...\n");
+for(int i=0;i<N-2;i++){int cv=(i%4)+2;sal_execution(cv,15+(i*2),30+(i%6),50+(i*7),340+(i*35),(i%8)+2,(i%4)+1);}
+ps("\nSalvia evaluation (harvest quality)...\n");
+for(int i=0;i<N-4;i++){int cv=(i%3)+1;sal_evaluation(cv,18+(i*3),32+(i%5),55+(i*6),360+(i*30),(i%7)+2,(i%3)+2);}
+ps("\nSalvia essential oil extraction...\n");
+for(int i=0;i<N-6;i++){int cv=(i%5)+1;sal_oil(cv,10+(i*2),25+(i%6),40+(i*7),300+(i*35),(i%6)+1,1);}
+ps("\nSalvia market (herbal products)...\n");
+for(int i=0;i<N-6;i++){int cv=(i%4)+1;sal_market(cv,20+(i*3),35+(i%5),60+(i*5),380+(i*25),(i%7)+2,(i%3)+1);}
+ps("\n");sal_report();sal_state();ps("\n=== Demo Complete ===\n");return 0;}

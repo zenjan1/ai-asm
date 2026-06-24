@@ -1,28 +1,28 @@
-Phase 893: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 894: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/salvia_admin/src/main.c (Salvia / Sage)
-   - Salvia sage cultivation with medicinal, ornamental, and culinary uses
-   - Features: variety tracking (S. officinalis, S. splendens, S. nemorosa), essential oil yield, bloom cycles, drought tolerance, pruning schedule
-   - Data: 16 entries with cultivar, oil_yield_ml, bloom_duration, height_cm, leaf_area, hardiness_zone
+1. modules/tagetes_admin/src/main.c (Tagetes / Marigold)
+   - Tagetes marigold cultivation for ornamental, companion planting, and pest management
+   - Features: variety tracking (African, French, Signet), bloom density, pest repellent score, deadheading schedule, companion planting index
+   - Data: 16 entries with cultivar, bloom_ct, height_cm, pest_score, companion_idx, days_to_bloom
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/sambucus_admin/src/main.c (Sambucus / Elderberry)
-   - Sambucus elderberry orchard management for fruit and medicinal production
-   - Features: cultivar selection (black/blue/red elderberry), berry yield tracking, flower harvest timing, cane pruning, disease monitoring
-   - Data: 16 entries with cultivar, berry_kg, flower_clusters, cane_count, anthocyanin_mg, pruning_year
+2. modules/taraxacum_admin/src/main.c (Taraxacum / Dandelion)
+   - Taraxacum dandelion management as medicinal herb and edible green
+   - Features: root harvest tracking, leaf rosette count, seed dispersal monitoring, lawn management, medicinal use tracking
+   - Data: 16 entries with location, root_depth, leaf_count, seed_heads, harvest_kg, medicinal_grade
    - Pattern: follow abelia_admin pattern
 
-3. modules/sanguinaria_admin/src/main.c (Sanguinaria / Bloodroot)
-   - Sanguinaria canadensis bloodroot native woodland wildflower conservation
-   - Features: rhizome propagation tracking, alkaloid content monitoring, shade management, mycorrhizal association, seed dispersal timing
-   - Data: 16 entries with location, rhizome_count, alkaloid_pct, canopy_cover, bloom_week, seed_set_rate
+3. modules/tamarind_admin/src/main.c (Tamarind / Tamarindus indica)
+   - Tamarind tropical fruit tree management and pulp production
+   - Features: pod yield tracking, pulp quality assessment, canopy management, irrigation scheduling, shade tolerance
+   - Data: 16 entries with cultivar, pod_kg, pulp_pct, tree_height, canopy_m, irrigation_mm
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1256.0 → v1257.0 (all occurrences)
-  - total modules 3338 → 3341 (all occurrences)
-Update CHANGELOG.md: add "## Phase 893 - v1257.0 (3341 modules, 124 kernel)" entry
+  - version v1257.0 → v1258.0 (all occurrences)
+  - total modules 3341 → 3344 (all occurrences)
+Update CHANGELOG.md: add "## Phase 894 - v1258.0 (3344 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/salvia_admin/src/main.c modules/sambucus_admin/src/main.c modules/sanguinaria_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/tagetes_admin/src/main.c modules/taraxacum_admin/src/main.c modules/tamarind_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
