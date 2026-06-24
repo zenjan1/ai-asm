@@ -1,5 +1,6 @@
-/* blueberry_admin: Blueberry management technology administration (v1.0)
- * Blueberry planning, blueberry execution, blueberry evaluation, accessories, marketing
+/* blueberry_admin: Blueberry (Vaccinium) fruit production management (v1.0)
+ * Blueberry planning, planting, evaluation, harvesting, market
+ * Features: berry diameter, leaf width, bush height, berry color, sugar brix, harvest week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} blue_t;
-typedef struct{int n_planning,n_execution,n_evaluation,n_accessory,n_market,t_f1,t_f2,t_f3,t_f4,t_f5;} blue_state_t;
-static blue_t bluep[N],bluex[N-2],blue2[N-4],blueac[N-6],bluem[N-6]; static blue_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
-static int add(blue_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;blue_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[BLUE] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int blue_init(void){if(init)return -1;st.n_planning=0;st.n_execution=0;st.n_evaluation=0;st.n_accessory=0;st.n_market=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)bluep[i].active=0;for(int i=0;i<N-2;i++)bluex[i].active=0;for(int i=0;i<N-4;i++)blue2[i].active=0;for(int i=0;i<N-6;i++)blueac[i].active=0;for(int i=0;i<N-6;i++)bluem[i].active=0;init=1;ps("[BLUE] Blueberry initialized\n");return 0;}
-int blue_planning(int t,int c,int a,int b,int d,int e,int y){return add(bluep,&st.n_planning,&st.t_f1,N,t,c,a,b,d,e,y);}
-int blue_execution(int t,int c,int a,int b,int d,int e,int y){return add(bluex,&st.n_execution,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int blue_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(blue2,&st.n_evaluation,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int blue_accessory(int t,int c,int a,int b,int d,int e,int y){return add(blueac,&st.n_accessory,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int blue_market(int t,int c,int a,int b,int d,int e,int y){return add(bluem,&st.n_market,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void blue_report(void){ps("[BLUE] Planning: ");pi(st.n_planning);ps(" PCS=");pi(st.t_f1);ps("\nExecution: ");pi(st.n_execution);ps(" PCS=");pi(st.t_f2);ps("\nEvaluation: ");pi(st.n_evaluation);ps(" PCS=");pi(st.t_f3);ps("\nAccessory: ");pi(st.n_accessory);ps(" PCS=");pi(st.t_f4);ps("\nMarket: ");pi(st.n_market);ps(" USD=");pi(st.t_f5);ps("\n");}
-void blue_state(void){ps("[BLUE] P=");pi(st.n_planning);ps(" E=");pi(st.n_execution);ps(" V=");pi(st.n_evaluation);ps(" A=");pi(st.n_accessory);ps(" M=");pi(st.n_market);ps("\n");}
+typedef struct{int id,location,berry_dia,leaf_wd,bush_ht,berry_color,sugar_bx,harv_wk,active;} blub_t;
+typedef struct{int n_plan,n_exec,n_eval,n_harv,n_mkt,t_berry,t_leaf,t_bush,t_color,t_sugar;} blub_state_t;
+static blub_t blubps[N],blubes[N-2],blubvs[N-4],blubhr[N-6],blubms[N-6]; static blub_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(blub_t*a,int*cnt,int*sum,int mx,int lc,int bd,int lw,int bh,int bc,int sb,int hw){if(*cnt>=mx)return -1;blub_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->berry_dia=bd;x->leaf_wd=lw;x->bush_ht=bh;x->berry_color=bc;x->sugar_bx=sb;x->harv_wk=hw;x->active=1;*sum+=bd;(*cnt)++;ps("[BLUB] Blueberry ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" bd=");pi(bd);ps(" lw=");pi(lw);ps(" bh=");pi(bh);ps(" bc=");pi(bc);ps(" sb=");pi(sb);ps("\n");return *cnt-1;}
+int blub_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_harv=0;st.n_mkt=0;st.t_berry=0;st.t_leaf=0;st.t_bush=0;st.t_color=0;st.t_sugar=0;for(int i=0;i<N;i++)blubps[i].active=0;for(int i=0;i<N-2;i++)blubes[i].active=0;for(int i=0;i<N-4;i++)blubvs[i].active=0;for(int i=0;i<N-6;i++)blubhr[i].active=0;for(int i=0;i<N-6;i++)blubms[i].active=0;init=1;ps("[BLUB] Blueberry initialized\n");return 0;}
+/* 1=highbush 2=lowbush 3=halfhigh 4=rabbiteye 5=southern */
+int blub_planning(int lc,int bd,int lw,int bh,int bc,int sb,int hw){return add(blubps,&st.n_plan,&st.t_berry,N,lc,bd,lw,bh,bc,sb,hw);}
+int blub_execution(int lc,int bd,int lw,int bh,int bc,int sb,int hw){return add(blubes,&st.n_exec,&st.t_leaf,N-2,lc,bd,lw,bh,bc,sb,hw);}
+int blub_evaluation(int lc,int bd,int lw,int bh,int bc,int sb,int hw){return add(blubvs,&st.n_eval,&st.t_bush,N-4,lc,bd,lw,bh,bc,sb,hw);}
+int blub_harvesting(int lc,int bd,int lw,int bh,int bc,int sb,int hw){return add(blubhr,&st.n_harv,&st.t_color,N-6,lc,bd,lw,bh,bc,sb,hw);}
+int blub_market(int lc,int bd,int lw,int bh,int bc,int sb,int hw){return add(blubms,&st.n_mkt,&st.t_sugar,N-6,lc,bd,lw,bh,bc,sb,hw);}
+void blub_report(void){ps("[BLUB] Plan: ");pi(st.n_plan);ps(" berry=");pi(st.t_berry);ps("\nExec: ");pi(st.n_exec);ps(" leaf=");pi(st.t_leaf);ps("\nEval: ");pi(st.n_eval);ps(" bush=");pi(st.t_bush);ps("\nHarv: ");pi(st.n_harv);ps(" color=");pi(st.t_color);ps("\nMkt: ");pi(st.n_mkt);ps(" sugar=");pi(st.t_sugar);ps("\n");}
+void blub_state(void){ps("[BLUB] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Harv=");pi(st.n_harv);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Blueberry Admin Demo ===\n\n");blue_init();
-ps("Blueberry planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;blue_planning(t,c,1800+(i*17),1789+(i*14),1769+(i*10),1751+(i*6),2020+(i%5));}
-ps("\nBlueberry execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;blue_execution(t,c,1789+(i*15),1778+(i*12),1760+(i*8),1747+(i*5),2021+(i%4));}
-ps("\nBlueberry evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;blue_evaluation(t,c,1781+(i*13),1770+(i*10),1754+(i*7),1743+(i*4),2022+(i%3));}
-ps("\nBlueberry accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;blue_accessory(t,c,1773+(i*11),1764+(i*9),1750+(i*6),1740+(i*3),2023+(i%2));}
-ps("\nBlueberry marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;blue_market(t,c,1767+(i*9),1758+(i*7),1745+(i*5),1737+(i*3),2024);}
-ps("\n");blue_report();blue_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Blueberry (Vaccinium) Admin Demo ===\n\n");blub_init();
+ps("Blueberry planning (variety layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;blub_planning(lc,8+(i*2),4+(i*2),60+(i*10),(i%4)+1,10+(i*2),32+(i%6));}
+ps("\nBlueberry execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;blub_execution(lc,9+(i*2),5+(i*2),65+(i*8),(i%4)+1,11+(i*2),34+(i%5));}
+ps("\nBlueberry evaluation (fruit check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;blub_evaluation(lc,10+(i*2),6+(i*2),70+(i*6),(i%3)+2,12+(i*2),36+(i%4));}
+ps("\nBlueberry harvesting...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;blub_harvesting(lc,7+(i*2),3+(i*2),55+(i*9),(i%4)+1,9+(i*2),30+(i%5));}
+ps("\nBlueberry market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;blub_market(lc,11+(i*2),7+(i*2),75+(i*5),(i%3)+3,13+(i*2),38+(i%3));}
+ps("\n");blub_report();blub_state();ps("\n=== Demo Complete ===\n");return 0;}

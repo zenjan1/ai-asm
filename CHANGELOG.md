@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 928 - v1291.0 (3446 modules, 124 kernel)
+- Added WASM: blueberry_admin (Blueberry fruit production), bluebonnet_admin (Bluebonnet wildflower), bluebottle_admin (Bluebottle cornflower)
+- Total modules: 3443 → 3446 (berry fruit production, Texas state flower wildflower, cornflower meadow)
+
 ## Phase 927 - v1290.0 (3443 modules, 124 kernel)
 - Added WASM: bloom_admin (Bloom flowering plant), blower_admin (Blower air movement), bluebell_admin (Bluebell hyacinthoides)
 - Total modules: 3440 → 3443 (ornamental flowering plant, industrial air movement, woodland spring flower)
