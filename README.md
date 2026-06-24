@@ -1,6 +1,6 @@
 # AI-ASM OS - AArch64 WebAssembly-Native Operating System
 
-[![Version](https://img.shields.io/badge/version-v1237.0-blue)](https://github.com/zenjan1/ai-asm/releases)
+[![Version](https://img.shields.io/badge/version-v1238.0-blue)](https://github.com/zenjan1/ai-asm/releases)
 [![Certification](https://img.shields.io/badge/certification-DIAMOND-gold)]()
 [![Modules](https://img.shields.io/badge/modules-3311-green)]()
 [![Kernel](https://img.shields.io/badge/kernel-97_ASM-orange)]()

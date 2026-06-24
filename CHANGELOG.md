@@ -1,5 +1,10 @@
 # Changelog
 
+## Phase 883 - v1238.0 (3311 modules, 97 kernel)
+- Added WASM builds: heimia_admin (bush violet medicinal), heisteria_admin (sandalwood family)
+- Previously committed: hieracium_admin (hawkweed invasive)
+- Plant conservation admin domain (3 modules now complete with WASM binaries)
+
 ## Phase OS-11 - v1237.0 (3311 modules, 97 kernel)
 - Added kernel: net_dns.asm, net_http.asm, net_ws.asm
 - Kernel modules: 94 → 97 (DNS resolver with cache, HTTP/1.1 client/server, WebSocket full-duplex protocol)
