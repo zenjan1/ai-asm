@@ -1,36 +1,36 @@
-Phase 934: Infrastructure & Environment Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 935: Marine & Aquatic Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/borehole_admin/src/main.c (Borehole Water Well Management)
-   - Borehole drilling and groundwater well management
-   - Features: depth_m, yield_lph, water_quality, casing_mm, pump_type, recharge_rate
-   - Data: 16 entries with location,dpth_m,yield_lph,wtr_qual,casing_mm,pump_ty,rchrg_rt
+1. modules/brackish_admin/src/main.c (Brackish Water Estuary)
+   - Brackish water estuary ecosystem management
+   - Features: salinity_ppt, tide_m, turbidity_ntu, mangrove_pct, fish_species, bird_count
+   - Data: 16 entries with location,sal_ppt,tide_m,turb_ntu,mang_pct,fish_sp,bird_ct
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: drilling, testing, maintenance, monitoring, market
-   - Prefix: bore
+   - Categories: tidal, estuary, conservation, monitoring, market
+   - Prefix: brack
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/botanical_admin/src/main.c (Botanical Garden Collection)
-   - Botanical garden plant collection and exhibit management
-   - Features: species_count, area_sqm, climate_zone, rare_species, visitor_count, irrigation_level
-   - Data: 16 entries with location,spc_ct,area_sqm,clim_zn,rare_spc,visitor_ct,irrig_lv
+2. modules/brush_admin/src/main.c (Brush LandClearing Management)
+   - Brush and vegetation clearing for land management
+   - Features: density_pct, height_cm, species_type, coverage_acres, moisture_pct, regrowth_rate
+   - Data: 16 entries with location,dens_pct,ht_cm,spc_tp,cov_ac,moist_pct,rgrow_rt
    - Pattern: follow abelia_admin pattern
-   - Categories: collection, research, education, conservation, market
-   - Prefix: btnc
+   - Categories: clearing, mulching, herbicide, restoration, market
+   - Prefix: brush
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/boulder_admin/src/main.c (Boulder Landscape Rock)
-   - Boulder and landscape rock management for geology and landscaping
-   - Features: weight_kg, diameter_cm, rock_type, surface_tex, origin_quarry, stability_idx
-   - Data: 16 entries with location,wght_kg,dia_cm,rock_tp,surf_tx,origin_q,stab_idx
+3. modules/buck_admin/src/main.c (Buck Deer Population Management)
+   - Buck deer population and wildlife habitat management
+   - Features: antler_pts, weight_kg, herd_size, territory_acres, age_yr, rut_season
+   - Data: 16 entries with location,antl_pt,wght_kg,herd_sz,terr_ac,age_yr,rut_sn
    - Pattern: follow abelia_admin pattern
-   - Categories: quarry, transport, placement, inspection, market
-   - Prefix: bldr
+   - Categories: population, habitat, hunting, census, market
+   - Prefix: buck
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1296.0 → v1297.0 (all occurrences)
-  - total modules 3461 → 3464 (all occurrences)
-Update CHANGELOG.md: add "## Phase 934 - v1297.0 (3464 modules, 124 kernel)" entry
+  - version v1297.0 → v1298.0 (all occurrences)
+  - total modules 3464 → 3467 (all occurrences)
+Update CHANGELOG.md: add "## Phase 935 - v1298.0 (3467 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/borehole_admin/borehole_admin.wasm modules/botanical_admin/botanical_admin.wasm modules/boulder_admin/boulder_admin.wasm modules/borehole_admin/src/main.c modules/botanical_admin/src/main.c modules/boulder_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/brackish_admin/brackish_admin.wasm modules/brush_admin/brush_admin.wasm modules/buck_admin/buck_admin.wasm modules/brackish_admin/src/main.c modules/brush_admin/src/main.c modules/buck_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

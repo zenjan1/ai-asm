@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 934 - v1297.0 (3464 modules, 124 kernel)
+- Added WASM: borehole_admin (Borehole water well), botanical_admin (Botanical garden collection), boulder_admin (Boulder landscape rock)
+- Total modules: 3461 → 3464 (groundwater well, plant collection exhibit, geological landscape)
+
 ## Phase 933 - v1296.0 (3461 modules, 124 kernel)
 - Added WASM: bobcat_admin (Bobcat wildlife tracking), bog_admin (Bog wetland ecosystem), bonsai_admin (Bonsai miniature tree cultivation)
 - Total modules: 3458 → 3461 (wildlife predator, wetland biome, cultivated art form)
