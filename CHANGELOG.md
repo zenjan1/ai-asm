@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase OS-19 - v1253.0 (3332 modules, 121 kernel)
+- Added kernel: sched_rt.asm, sched_cgroup.asm, sched_workqueue.asm
+- Kernel modules: 118 → 121 (real-time scheduling with FIFO/RR policies, control groups for resource isolation, deferred work queue execution)
+
 ## Phase 890 - v1252.0 (3332 modules, 118 kernel)
 - Added WASM: nerium_admin (Nerium oleander), nigella_admin (Nigella love-in-a-mist), nolana_admin (Nolana Chilean bellflower)
 - Total modules: 3329 → 3332 (medicinal oleander, black seed oil plants, coastal bellflowers)
