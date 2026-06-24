@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 969 - v1332.0 (3569 modules, 124 kernel)
+- Added WASM: falcon_admin (Peregrine falcon), ferret_admin (Domesticated polecat), finch_admin (Common finch)
+- Total modules: 3566 → 3569 (fastest bird raptor, domesticated mustelid, small songbird)
+
 ## Phase 968 - v1331.0 (3566 modules, 124 kernel)
 - Added WASM: elephant_admin (African elephant), elk_admin (Elk deer), emu_admin (Emu flightless bird)
 - Total modules: 3563 → 3566 (largest land mammal, wapiti deer, ratite bird)
