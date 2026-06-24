@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 869 - v1214.0 (3274 modules)
+- Added: exallage_admin, exbucklandia_admin, exocarya_admin
+
 ## Phase 868 - v1213.0 (3271 modules)
 - Added: euploca_admin, eustigma_admin, evandra_admin
 

@@ -1,31 +1,31 @@
-Phase 869: Create 3 plant-themed admin modules (alphabetically after exochorda):
+Phase 870: Create 3 plant-themed admin modules (alphabetically after exocarya):
 
-1. exallage_admin (prefix: exal_, base offset: 2033, tag: [EXAL])
-   - Exallage Bremek., Rubiaceae (Kew POWO accepted)
-   - planning: 2033/2022/2002/1984
-   - execution: 2022/2011/1993/1980
-   - evaluation: 2014/2003/1987/1976
-   - accessory: 2006/1997/1983/1973
-   - market: 2000/1991/1978/1970
+1. exochogyne_admin (prefix: exch_, base offset: 2036, tag: [EXCH])
+   - Exochogyne C.B.Clarke, Cyperaceae (Kew POWO accepted)
+   - planning: 2036/2025/2005/1987
+   - execution: 2025/2014/1996/1983
+   - evaluation: 2017/2006/1990/1979
+   - accessory: 2009/2000/1986/1976
+   - market: 2003/1994/1981/1973
 
-2. exbucklandia_admin (prefix: exbu_, base offset: 2034, tag: [EXBU])
-   - Exbucklandia R.W.Br., Hamamelidaceae (Kew POWO accepted)
-   - planning: 2034/2023/2003/1985
-   - execution: 2023/2012/1994/1981
-   - evaluation: 2015/2004/1988/1977
-   - accessory: 2007/1998/1984/1974
-   - market: 2001/1992/1979/1971
+2. exomiocarpon_admin (prefix: exom_, base offset: 2037, tag: [EXOM])
+   - Exomiocarpon Lawalrée, Asteraceae (Kew POWO accepted)
+   - planning: 2037/2026/2006/1988
+   - execution: 2026/2015/1997/1984
+   - evaluation: 2018/2007/1991/1980
+   - accessory: 2010/2001/1987/1977
+   - market: 2004/1995/1982/1974
 
-3. exocarya_admin (prefix: exoc_, base offset: 2035, tag: [EXOC])
-   - Exocarya Benth., Cyperaceae (Kew POWO accepted)
-   - planning: 2035/2024/2004/1986
-   - execution: 2024/2013/1995/1982
-   - evaluation: 2016/2005/1989/1978
-   - accessory: 2008/1999/1985/1975
-   - market: 2002/1993/1980/1972
+3. exostigma_admin (prefix: exst_, base offset: 2038, tag: [EXST])
+   - Exostigma G.Sancho, Asteraceae (Kew POWO accepted)
+   - planning: 2038/2027/2007/1989
+   - execution: 2027/2016/1998/1985
+   - evaluation: 2019/2008/1992/1981
+   - accessory: 2011/2002/1988/1978
+   - market: 2005/1996/1983/1975
 
 Follow the standard template pattern (N=16, 5 sub-domains sized N, N-2, N-4, N-6, N-6).
 Build WASM with: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main -o build/XXX_admin.wasm modules/XXX_admin/src/main.c
-Update README (v1213.0->v1214.0, 3271->3274, L3: 3039->3042, 2992->2995, L3 table 2802->2805/2755->2758, L3 WASM Apps 2655->2658),
-add Phase 869 entry to CHANGELOG, find Phase 870 candidates (alphabetically after exocarya),
+Update README (v1214.0->v1215.0, 3274->3277, L3: 3042->3045, 2995->2998, L3 table 2805->2808/2758->2761, L3 WASM Apps 2658->2661),
+add Phase 870 entry to CHANGELOG, find Phase 871 candidates (alphabetically after exostigma),
 write next prompt, set UPDATE=0, git add (selectively: -f build/*.wasm + modules, README, CHANGELOG, promt, update-state) and commit and push to origin arm-v2.
