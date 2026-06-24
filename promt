@@ -1,36 +1,36 @@
-Phase 964: Drake & Dragon Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 965: Duck & Dugong Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/drake_admin/src/main.c (Drake Male Duck)
-   - Drake (Anas platyrhynchos) male duck waterfowl husbandry
-   - Features: body_len_cm, body_wt_kg, bill_cm, plumage_idx, quack_vol, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bill_cm,plm_idx,qk_vl,age_yr
+1. modules/duck_admin/src/main.c (Duck Waterfowl)
+   - Duck (Anas platyrhynchos) domestic duck waterfowl husbandry
+   - Features: body_len_cm, body_wt_kg, bill_cm, feather_idx, egg_wt_g, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bill_cm,fthr_idx,egg_wt,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: housing, feeding, breeding, grooming, market
-   - Prefix: drak
+   - Prefix: duck
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/dragon_admin/src/main.c (Komodo Dragon)
-   - Komodo Dragon (Varanus komodoensis) largest living lizard
-   - Features: body_len_cm, body_wt_kg, tail_len_cm, claw_idx, venom_lvl, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,clw_idx,vnm_lv,age_yr
+2. modules/dugong_admin/src/main.c (Dugong Marine Mammal)
+   - Dugong (Dugong dugon) sea cow marine mammal management
+   - Features: body_len_cm, body_wt_kg, flipper_cm, tusk_idx, dive_depth, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,flip_cm,tsk_idx,dv_dp,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, health, shedding, market
-   - Prefix: drag
+   - Categories: habitat, feeding, health, breeding, market
+   - Prefix: dugn
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/drone_admin/src/main.c (Drone Male Bee)
-   - Drone (Apis mellifera) male bee apiculture management
-   - Features: body_len_mm, body_wt_mg, wing_mm, eye_idx, flight_spd, age_day
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wng_mm,eye_idx,fly_sp,age_dy
+3. modules/durian_admin/src/main.c (Durian Fruit)
+   - Durian (Durio zibethinus) king of fruits tree management
+   - Features: tree_height_m, fruit_wt_kg, spine_idx, aroma_lv, seed_ct, harvest_week
+   - Data: 16 entries with location,tree_ht,fr_wt,spn_idx,arm_lv,sd_ct,hv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, mating, health, market
-   - Prefix: dron
+   - Categories: planting, irrigation, flowering, harvest, market
+   - Prefix: dur
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1326.0 → v1327.0 (all occurrences)
-  - total modules 3551 → 3554 (all occurrences)
-Update CHANGELOG.md: add "## Phase 964 - v1327.0 (3554 modules, 124 kernel)" entry
+  - version v1327.0 → v1328.0 (all occurrences)
+  - total modules 3554 → 3557 (all occurrences)
+Update CHANGELOG.md: add "## Phase 965 - v1328.0 (3557 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/drake_admin/drake_admin.wasm modules/dragon_admin/dragon_admin.wasm modules/drone_admin/drone_admin.wasm modules/drake_admin/src/main.c modules/dragon_admin/src/main.c modules/drone_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/duck_admin/duck_admin.wasm modules/dugong_admin/dugong_admin.wasm modules/durian_admin/durian_admin.wasm modules/duck_admin/src/main.c modules/dugong_admin/src/main.c modules/durian_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

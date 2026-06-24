@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 964 - v1327.0 (3554 modules, 124 kernel)
+- Added WASM: drake_admin (Drake male duck), dragon_admin (Komodo Dragon lizard), drone_admin (Drone male bee)
+- Total modules: 3551 → 3554 (male duck, komodo dragon, male bee)
+
 ## Phase 963 - v1326.0 (3551 modules, 124 kernel)
 - Added WASM: dodo_admin (Dodo extinct bird), dolphin_admin (Dolphin marine mammal), dove_admin (Dove pigeon)
 - Total modules: 3548 → 3551 (de-extinction bird, bottlenose dolphin, pigeon bird)
