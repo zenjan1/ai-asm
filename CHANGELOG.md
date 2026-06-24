@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 948 - v1311.0 (3506 modules, 124 kernel)
+- Added WASM: cineraria_admin (Cineraria flower), citrus_admin (Citrus orange tree), clam_admin (Clam shellfish)
+- Total modules: 3503 → 3506 (ornamental flower, citrus fruit, aquaculture shellfish)
+
 ## Phase 947 - v1310.0 (3503 modules, 124 kernel)
 - Added WASM: chili_admin (Chili hot pepper), chive_admin (Chive herb), cilantro_admin (Cilantro herb)
 - Total modules: 3500 → 3503 (hot pepper, onion herb, coriander herb)
