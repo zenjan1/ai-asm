@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 901 - v1265.0 (3365 modules, 124 kernel)
+- Added WASM: viola_admin (Viola violet), wisteria_admin (Wisteria climbing vine), yucca_admin (Yucca desert succulent)
+- Total modules: 3362 → 3365 (spring violet flower, fragrant wisteria creeper, architectural yucca)
+
 ## Phase 900 - v1264.0 (3362 modules, 124 kernel)
 - Added WASM: veronica_admin (Veronica speedwell), viburnum_admin (Viburnum flowering shrub), vinca_admin (Vinca periwinkle)
 - Total modules: 3359 → 3362 (border speedwell perennial, ornamental berry shrub, trailing periwinkle groundcover)
