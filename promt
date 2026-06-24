@@ -1,36 +1,36 @@
-Phase 961: Date & Deer Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 962: Dill & Dingo Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/datura_admin/src/main.c (Datura Trumpet Flower)
-   - Datura (Datura stramonium) trumpet-shaped flowering plant
-   - Features: plant_ht_cm, flower_dia_cm, flower_len_cm, petal_idx, scent_lvl, bloom_week
-   - Data: 16 entries with location,plnt_ht,fl_dia,fl_ln,pt_idx,sct_lv,blm_wk
+1. modules/dill_admin/src/main.c (Dill Herb)
+   - Dill (Anethum graveolens) aromatic herb management
+   - Features: plant_ht_cm, stem_dia_mm, leaf_idx, flower_dia_cm, seed_wt_g, harvest_week
+   - Data: 16 entries with location,plnt_ht,stm_dia,lf_idx,fl_dia,sd_wt,hv_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planting, feeding, pruning, flowering, market
-   - Prefix: datu
+   - Categories: planting, feeding, flowering, harvest, market
+   - Prefix: dill
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/date_admin/src/main.c (Date Palm)
-   - Date (Phoenix dactylifera) date palm tree management
-   - Features: tree_height_m, trunk_dia_cm, frond_count, fruit_wt_kg, yield_idx, harvest_week
-   - Data: 16 entries with location,tree_ht,trk_dia,frnd_ct,fr_wt,yld_idx,hv_wk
+2. modules/dingo_admin/src/main.c (Dingo Wild Dog)
+   - Dingo (Canis dingo) wild canid husbandry management
+   - Features: body_len_cm, body_wt_kg, ear_ht_cm, coat_idx, hunt_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_ht,coat_idx,hnt_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, irrigation, pollination, harvest, market
-   - Prefix: date
+   - Categories: housing, feeding, training, grooming, market
+   - Prefix: ding
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/deer_admin/src/main.c (Deer Cervidae)
-   - Deer (Cervus elaphus) deer farm wildlife management
-   - Features: body_len_cm, body_wt_kg, antler_cm, coat_idx, fawn_count, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,antl_cm,coat_idx,fwn_ct,age_yr
+3. modules/diatom_admin/src/main.c (Diatom Microalgae)
+   - Diatom (Bacillariophyta) microalgae cultivation management
+   - Features: cell_um, shell_dia_nm, silica_idx, chloro_lvl, oil_pct, colony_ct
+   - Data: 16 entries with location,cell_um,sh_dia,sl_idx,chl_lv,oil_pct,cl_ct
    - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, breeding, veterinary, market
-   - Prefix: deer
+   - Categories: cultivation, feeding, harvest, processing, market
+   - Prefix: diat
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1323.0 → v1324.0 (all occurrences)
-  - total modules 3542 → 3545 (all occurrences)
-Update CHANGELOG.md: add "## Phase 961 - v1324.0 (3545 modules, 124 kernel)" entry
+  - version v1324.0 → v1325.0 (all occurrences)
+  - total modules 3545 → 3548 (all occurrences)
+Update CHANGELOG.md: add "## Phase 962 - v1325.0 (3548 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/datura_admin/datura_admin.wasm modules/date_admin/date_admin.wasm modules/deer_admin/deer_admin.wasm modules/datura_admin/src/main.c modules/date_admin/src/main.c modules/deer_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/dill_admin/dill_admin.wasm modules/dingo_admin/dingo_admin.wasm modules/diatom_admin/diatom_admin.wasm modules/dill_admin/src/main.c modules/dingo_admin/src/main.c modules/diatom_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

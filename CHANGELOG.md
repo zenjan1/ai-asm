@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 961 - v1324.0 (3545 modules, 124 kernel)
+- Added WASM: datura_admin (Datura trumpet flower), date_admin (Date palm tree), deer_admin (Deer cervidae)
+- Total modules: 3542 → 3545 (trumpet flower, date palm tree, cervidae deer farm)
+
 ## Phase 960 - v1323.0 (3542 modules, 124 kernel)
 - Added WASM: danio_admin (Danio zebrafish), daphne_admin (Daphne fragrant shrub), darkling_admin (Darkling beetle)
 - Total modules: 3539 → 3542 (zebrafish aquatic, fragrant evergreen shrub, beetle insect farming)
