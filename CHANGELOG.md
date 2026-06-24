@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 889 - v1250.0 (3329 modules, 115 kernel)
+- Added WASM: monarda_admin (Monarda bee balm), myrica_admin (Myrica bayberry), nandina_admin (Nandina heavenly bamboo)
+- Total modules: 3326 → 3329 (pollinator habitat plants, wax-bearing shrubs, ornamental bamboo)
+
 ## Phase OS-17 - v1249.0 (3326 modules, 115 kernel)
 - Added kernel: power_cpufreq.asm, power_sleep.asm, power_thermal.asm
 - Kernel modules: 112 → 115 (CPU frequency scaling with governors, sleep state management with RTC alarms, thermal zone monitoring with cooling device coordination)
