@@ -1,5 +1,8 @@
 # Changelog
 
+## Phase 875 - v1220.0 (3292 modules)
+- Added: florestina_admin, flourensia_admin, flosmutisia_admin
+
 ## Phase 874 - v1219.0 (3289 modules)
 - Added: fleischmannia_admin, floerkea_admin, flindersia_admin
 
