@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 896 - v1260.0 (3350 modules, 124 kernel)
+- Added WASM: tilia_admin (Tilia linden tree), trillium_admin (Trillium wake-robin), tropaeolum_admin (Tropaeolum nasturtium)
+- Total modules: 3347 → 3350 (honey-producing linden, woodland wildflower conservation, edible flower nasturtium)
+
 ## Phase 895 - v1259.0 (3347 modules, 124 kernel)
 - Added WASM: thunbergia_admin (Thunbergia black-eyed Susan vine), thyme_admin (Thyme culinary herb), thespesia_admin (Thespesia Pacific rosewood)
 - Total modules: 3344 → 3347 (climbing vine displays, culinary herb garden, coastal timber tree)
