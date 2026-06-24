@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 917 - v1281.0 (3413 modules, 124 kernel)
+- Added WASM: azalea_admin (Azalea flowering shrub), azolla_admin (Azolla water fern), ballota_admin (Ballota black horehound)
+- Total modules: 3410 → 3413 (woodland flowering shrub, aquatic nitrogen-fixing fern, aromatic herbaceous perennial)
+
 ## Phase 916 - v1280.0 (3410 modules, 124 kernel)
 - Added WASM: aurinia_admin (Aurinia golden alyssum), avens_admin (Avens geum), avicennia_admin (Avicennia mangrove)
 - Total modules: 3407 → 3410 (rock garden groundcover, perennial border flower, coastal wetland mangrove)
