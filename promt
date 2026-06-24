@@ -1,36 +1,36 @@
-Phase 941: Carnivorous Plant & Reptile Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 942: Catfish & Cassava Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/carnivorous_admin/src/main.c (Carnivorous Plant Collection)
-   - Carnivorous plant (Venus flytrap, pitcher, sundew) cultivation
-   - Features: trap_count, leaf_span_cm, prey_gm, humidity_pct, soil_ph, feed_week
-   - Data: 16 entries with location,trap_ct,leaf_sp,prey_gm,humid_pct,soil_ph,feed_wk
+1. modules/catfish_admin/src/main.c (Catfish Aquaculture)
+   - Catfish (Ictalurus punctatus) aquaculture pond management
+   - Features: pond_vol_l, fish_count, avg_weight_g, feed_kg, water_temp_c, oxygen_ppm
+   - Data: 16 entries with location,pond_vol,fish_ct,avg_wt,feed_kg,wtr_tmp,oxy_ppm
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: cultivation, feeding, dormancy, propagation, market
-   - Prefix: carn
+   - Categories: stocking, feeding, water_quality, harvest, market
+   - Prefix: catf
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/carrot_admin/src/main.c (Carrot Root Vegetable)
-   - Carrot (Daucus carota) root vegetable cultivation
-   - Features: root_length_cm, root_dia_cm, top_height_cm, sugar_brix, seed_count, harvest_week
-   - Data: 16 entries with location,root_ln,root_dia,top_ht,sugar_bx,seed_ct,harv_wk
+2. modules/cassava_admin/src/main.c (Cassava Tuber Crop)
+   - Cassava (Manihot esculenta) tuber crop management
+   - Features: root_weight_kg, plant_ht_cm, starch_pct, cyanide_ppm, stem_cuttings, harvest_month
+   - Data: 16 entries with location,root_wt,plnt_ht,starch_pct,cyan_ppm,stm_ct,harv_mo
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, thinning, weeding, harvest, market
-   - Prefix: carr
+   - Categories: planting, cultivation, processing, storage, market
+   - Prefix: cass
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/carpet_admin/src/main.c (Carpet Grass Turf)
-   - Carpet grass (Axonopus) turf and lawn management
-   - Features: coverage_sqm, blade_ht_cm, density_pct, mow_interval, fertilizer_kg, irrig_lpm
-   - Data: 16 entries with location,cov_sqm,blade_ht,dens_pct,mow_int,fert_kg,irrig_lpm
+3. modules/cattle_admin/src/main.c (Cattle Ranch Management)
+   - Cattle (Bos taurus) ranch and herd management
+   - Features: herd_count, avg_weight_kg, milk_yield_l, calf_count, grazing_acres, vet_cost
+   - Data: 16 entries with location,herd_ct,avg_wt,milk_yd,calf_ct,graze_ac,vet_cost
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, mowing, fertilizing, aeration, market
-   - Prefix: carp
+   - Categories: grazing, breeding, veterinary, milking, market
+   - Prefix: catt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1303.0 → v1304.0 (all occurrences)
-  - total modules 3482 → 3485 (all occurrences)
-Update CHANGELOG.md: add "## Phase 941 - v1304.0 (3485 modules, 124 kernel)" entry
+  - version v1304.0 → v1305.0 (all occurrences)
+  - total modules 3485 → 3488 (all occurrences)
+Update CHANGELOG.md: add "## Phase 942 - v1305.0 (3488 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/carnivorous_admin/carnivorous_admin.wasm modules/carrot_admin/carrot_admin.wasm modules/carpet_admin/carpet_admin.wasm modules/carnivorous_admin/src/main.c modules/carrot_admin/src/main.c modules/carpet_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/catfish_admin/catfish_admin.wasm modules/cassava_admin/cassava_admin.wasm modules/cattle_admin/cattle_admin.wasm modules/catfish_admin/src/main.c modules/cassava_admin/src/main.c modules/cattle_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

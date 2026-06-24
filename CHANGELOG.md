@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 941 - v1304.0 (3485 modules, 124 kernel)
+- Added WASM: carnivorous_admin (Carnivorous plant collection), carrot_admin (Carrot root vegetable), carpet_admin (Carpet grass turf)
+- Total modules: 3482 → 3485 (insect-eating plant, edible root crop, lawn grass)
+
 ## Phase 940 - v1303.0 (3482 modules, 124 kernel)
 - Added WASM: canna_admin (Canna lily tropical), cantaloupe_admin (Cantaloupe melon), capers_admin (Capers Mediterranean shrub)
 - Total modules: 3479 → 3482 (tropical ornamental, edible melon, culinary shrub)
