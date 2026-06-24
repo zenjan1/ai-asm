@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 956 - v1319.0 (3530 modules, 124 kernel)
+- Added WASM: cricket_admin (Cricket insect), crocodile_admin (Crocodile reptile), crow_admin (Crow corvid)
+- Total modules: 3527 → 3530 (protein insect, farmed reptile, intelligent bird)
+
 ## Phase 955 - v1318.0 (3527 modules, 124 kernel)
 - Added WASM: coyote_admin (Coyote wild dog), crab_admin (Mud crab), crane_admin (Crane wading bird)
 - Total modules: 3524 → 3527 (wild canine, aquaculture crab, wading bird)
