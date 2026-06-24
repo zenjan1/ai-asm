@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 921 - v1285.0 (3425 modules, 124 kernel)
+- Added WASM: begonia_admin (Begonia wax begonia), bellis_admin (Bellis English daisy), bergenia_admin (Bergenia elephant ears)
+- Total modules: 3422 → 3425 (shade bedding begonia, spring lawn daisy, evergreen groundcover)
+
 ## Phase 920 - v1284.0 (3422 modules, 124 kernel)
 - Added WASM: bauhinia_admin (Bauhinia orchid tree), beardtongue_admin (Beardtongue penstemon), beet_admin (Beet root vegetable)
 - Total modules: 3419 → 3422 (tropical orchid tree vine, pollinator garden penstemon, root vegetable crop)

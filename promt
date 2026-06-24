@@ -1,28 +1,28 @@
-Phase 921: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 922: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/begonia_admin/src/main.c (Begonia / Wax Begonia)
-   - Begonia wax begonia and shade bedding management
-   - Features: flower_size, leaf_width, flower_color, leaf_color, plant_height, bloom_period
-   - Data: 16 entries with location,flower_sz,leaf_wd,flower_color,leaf_color,plant_ht,bloom_pd
+1. modules/berry_admin/src/main.c (Berry / Mixed Berry)
+   - Berry mixed berry and fruit production management
+   - Features: fruit_diameter, fruit_count, bush_height, berry_color, sugar_brix, harvest_week
+   - Data: 16 entries with location,fruit_dia,fruit_ct,bush_ht,berry_color,sugar_bx,harvest_wk
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/bellis_admin/src/main.c (Bellis / English Daisy)
-   - Bellis english daisy and spring lawn management
-   - Features: flower_diameter, petal_count, flower_color, stem_height, leaf_rosette, bloom_week
-   - Data: 16 entries with location,flower_dia,petal_ct,flower_color,stem_ht,leaf_ros,bloom_wk
+2. modules/betonica_admin/src/main.c (Betonica / Wood Betony)
+   - Betonica wood betony and medicinal herb management
+   - Features: flower_spike, leaf_width, stem_height, flower_color, medicinal_idx, bloom_week
+   - Data: 16 entries with location,flower_sp,leaf_wd,stem_ht,flower_color,med_idx,bloom_wk
    - Pattern: follow abelia_admin pattern
 
-3. modules/bergenia_admin/src/main.c (Bergenia / Elephant Ears)
-   - Bergenia elephant ears and evergreen groundcover management
-   - Features: leaf_length, leaf_width, flower_cluster, flower_color, winter_color, bloom_week
-   - Data: 16 entries with location,leaf_ln,leaf_wd,flower_cl,flower_color,winter_cl,bloom_wk
+3. modules/betony_admin/src/main.c (Betony / Common Betony)
+   - Betony common betony and perennial herb management
+   - Features: flower_tube, leaf_shape, stem_height, flower_color, scent_strength, bloom_week
+   - Data: 16 entries with location,flower_tb,leaf_shp,stem_ht,flower_color,scent_st,bloom_wk
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1284.0 → v1285.0 (all occurrences)
-  - total modules 3422 → 3425 (all occurrences)
-Update CHANGELOG.md: add "## Phase 921 - v1285.0 (3425 modules, 124 kernel)" entry
+  - version v1285.0 → v1286.0 (all occurrences)
+  - total modules 3425 → 3428 (all occurrences)
+Update CHANGELOG.md: add "## Phase 922 - v1286.0 (3428 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/begonia_admin/src/main.c modules/bellis_admin/src/main.c modules/bergenia_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/berry_admin/src/main.c modules/betonica_admin/src/main.c modules/betony_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

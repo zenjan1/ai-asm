@@ -1,5 +1,6 @@
-/* bergenia_admin: Bergenia management technology administration (v1.0)
- * Bergenia planning, bergenia execution, bergenia evaluation, accessories, marketing
+/* bergenia_admin: Bergenia (Elephant Ears) evergreen groundcover management (v1.0)
+ * Bergenia planning, planting, evaluation, division, market
+ * Features: leaf length, leaf width, flower cluster, flower color, winter color, bloom week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} berg_t;
-typedef struct{int n_bergp,n_berg,n_berg2,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} berg_state_t;
-static berg_t bergs[N],berge[N-2],berg2[N-4],bergac[N-6],bergam[N-6]; static berg_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
-static int add(berg_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;berg_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[BERG] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int berg_init(void){if(init)return -1;st.n_bergp=0;st.n_berg=0;st.n_berg2=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)bergs[i].active=0;for(int i=0;i<N-2;i++)berge[i].active=0;for(int i=0;i<N-4;i++)berg2[i].active=0;for(int i=0;i<N-6;i++)bergac[i].active=0;for(int i=0;i<N-6;i++)bergam[i].active=0;init=1;ps("[BERG] Bergenia initialized\n");return 0;}
-int berg_planning(int t,int c,int a,int b,int d,int e,int y){return add(bergs,&st.n_bergp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int berg_execution(int t,int c,int a,int b,int d,int e,int y){return add(berge,&st.n_berg,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int berg_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(berg2,&st.n_berg2,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int berg_accessory(int t,int c,int a,int b,int d,int e,int y){return add(bergac,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int berg_market(int t,int c,int a,int b,int d,int e,int y){return add(bergam,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void berg_report(void){ps("[BERG] Bergp: ");pi(st.n_bergp);ps(" PCS=");pi(st.t_f1);ps("\nBerge: ");pi(st.n_berg);ps(" PCS=");pi(st.t_f2);ps("\nBerg2: ");pi(st.n_berg2);ps(" PCS=");pi(st.t_f3);ps("\nBergac: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void berg_state(void){ps("[BERG] Bergp=");pi(st.n_bergp);ps(" Berg=");pi(st.n_berg);ps(" Berg2=");pi(st.n_berg2);ps(" Bergac=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+typedef struct{int id,location,leaf_ln,leaf_wd,flower_cl,flower_color,winter_cl,bloom_wk,active;} berg_t;
+typedef struct{int n_plan,n_exec,n_eval,n_div,n_mkt,t_leaf,t_width,t_flower,t_color,t_winter;} berg_state_t;
+static berg_t bergps[N],berges[N-2],bergvs[N-4],bergdv[N-6],bergms[N-6]; static berg_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(berg_t*a,int*cnt,int*sum,int mx,int lc,int ll,int lw,int fc,int fcc,int wc,int bw){if(*cnt>=mx)return -1;berg_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->leaf_ln=ll;x->leaf_wd=lw;x->flower_cl=fc;x->flower_color=fcc;x->winter_cl=wc;x->bloom_wk=bw;x->active=1;*sum+=ll;(*cnt)++;ps("[BERG] Bergenia ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" ll=");pi(ll);ps(" lw=");pi(lw);ps(" fc=");pi(fc);ps(" fcc=");pi(fcc);ps(" wc=");pi(wc);ps("\n");return *cnt-1;}
+int berg_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_div=0;st.n_mkt=0;st.t_leaf=0;st.t_width=0;st.t_flower=0;st.t_color=0;st.t_winter=0;for(int i=0;i<N;i++)bergps[i].active=0;for(int i=0;i<N-2;i++)berges[i].active=0;for(int i=0;i<N-4;i++)bergvs[i].active=0;for(int i=0;i<N-6;i++)bergdv[i].active=0;for(int i=0;i<N-6;i++)bergms[i].active=0;init=1;ps("[BERG] Bergenia initialized\n");return 0;}
+/* 1=shade_border 2=woodland 3=rock_garden 4=container 5=evergreen_bed */
+int berg_planning(int lc,int ll,int lw,int fc,int fcc,int wc,int bw){return add(bergps,&st.n_plan,&st.t_leaf,N,lc,ll,lw,fc,fcc,wc,bw);}
+int berg_execution(int lc,int ll,int lw,int fc,int fcc,int wc,int bw){return add(berges,&st.n_exec,&st.t_width,N-2,lc,ll,lw,fc,fcc,wc,bw);}
+int berg_evaluation(int lc,int ll,int lw,int fc,int fcc,int wc,int bw){return add(bergvs,&st.n_eval,&st.t_flower,N-4,lc,ll,lw,fc,fcc,wc,bw);}
+int berg_division(int lc,int ll,int lw,int fc,int fcc,int wc,int bw){return add(bergdv,&st.n_div,&st.t_color,N-6,lc,ll,lw,fc,fcc,wc,bw);}
+int berg_market(int lc,int ll,int lw,int fc,int fcc,int wc,int bw){return add(bergms,&st.n_mkt,&st.t_winter,N-6,lc,ll,lw,fc,fcc,wc,bw);}
+void berg_report(void){ps("[BERG] Plan: ");pi(st.n_plan);ps(" leaf=");pi(st.t_leaf);ps("\nExec: ");pi(st.n_exec);ps(" width=");pi(st.t_width);ps("\nEval: ");pi(st.n_eval);ps(" flower=");pi(st.t_flower);ps("\nDiv: ");pi(st.n_div);ps(" color=");pi(st.t_color);ps("\nMkt: ");pi(st.n_mkt);ps(" winter=");pi(st.t_winter);ps("\n");}
+void berg_state(void){ps("[BERG] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Div=");pi(st.n_div);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Bergenia Admin Demo ===\n\n");berg_init();
-ps("Bergenia planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;berg_planning(t,c,1435+(i*17),1424+(i*14),1404+(i*10),1386+(i*6),2020+(i%5));}
-ps("\nBergenia execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;berg_execution(t,c,1424+(i*15),1413+(i*12),1395+(i*8),1382+(i*5),2021+(i%4));}
-ps("\nBergenia evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;berg_evaluation(t,c,1416+(i*13),1405+(i*10),1389+(i*7),1378+(i*4),2022+(i%3));}
-ps("\nBergenia accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;berg_accessory(t,c,1408+(i*11),1399+(i*9),1385+(i*6),1375+(i*3),2023+(i%2));}
-ps("\nBergenia marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;berg_market(t,c,1402+(i*9),1393+(i*7),1380+(i*5),1372+(i*3),2024);}
+ps("=== Bergenia (Elephant Ears) Admin Demo ===\n\n");berg_init();
+ps("Bergenia planning (shade border layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;berg_planning(lc,15+(i*4),10+(i%5),5+(i*3),(i%5)+1,40+(i*5),14+(i%6));}
+ps("\nBergenia execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;berg_execution(lc,18+(i*3),12+(i%4),6+(i*2),(i%5)+1,45+(i*4),16+(i%5));}
+ps("\nBergenia evaluation (flower check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;berg_evaluation(lc,20+(i*3),14+(i%3),7+(i*2),(i%4)+2,50+(i%3),18+(i%4));}
+ps("\nBergenia division...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;berg_division(lc,12+(i*4),8+(i%5),4+(i*3),(i%5)+1,35+(i%5),12+(i%5));}
+ps("\nBergenia evergreen groundcover market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;berg_market(lc,22+(i*3),16+(i%2),8+(i%2),(i%4)+2,55+(i%3),20+(i%3));}
 ps("\n");berg_report();berg_state();ps("\n=== Demo Complete ===\n");return 0;}
