@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 967 - v1330.0 (3563 modules, 124 kernel)
+- Added WASM: echidna_admin (Echidna spiny anteater), eel_admin (Eel freshwater fish), egret_admin (Egret wading bird)
+- Total modules: 3560 → 3563 (monotreme mammal, anguillid eel, great white egret) 🎉 MILESTONE v1330!
+
 ## Phase 966 - v1329.0 (3560 modules, 124 kernel)
 - Added WASM: eagle_admin (Eagle raptor bird), earthworm_admin (Earthworm soil invertebrate), earwig_admin (Earwig insect)
 - Total modules: 3557 → 3560 (golden eagle, soil invertebrate, pincer insect)
