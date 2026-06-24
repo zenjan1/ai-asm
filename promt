@@ -1,36 +1,36 @@
-Phase 950: Avian & Cocoa Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 951: Fish & Coffee Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/cocoa_admin/src/main.c (Cocoa Tree)
-   - Cocoa (Theobroma cacao) cacao tree management
-   - Features: tree_height_m, pod_count, bean_wt_g, butter_pct, ferment_days, harvest_month
-   - Data: 16 entries with location,tree_ht,pod_ct,bean_wt,butter_pct,ferm_dys,harv_mo
+1. modules/coffee_admin/src/main.c (Coffee Tree)
+   - Coffee (Coffea arabica) coffee tree management
+   - Features: tree_height_m, cherry_count, bean_wt_g, caffeine_mg, roast_idx, harvest_month
+   - Data: 16 entries with location,tree_ht,chry_ct,bean_wt,caf_mg,rost_idx,harv_mo
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planting, fermentation, drying, harvest, market
-   - Prefix: ccoa
+   - Categories: planting, pruning, roasting, harvest, market
+   - Prefix: cfee
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/coconut_admin/src/main.c (Coconut Palm)
-   - Coconut (Cocos nucifera) palm tree management
-   - Features: tree_height_m, nut_count, nut_wt_kg, water_ml, oil_pct, harvest_month
-   - Data: 16 entries with location,tree_ht,nut_ct,nut_wt,water_ml,oil_pct,harv_mo
+2. modules/cod_admin/src/main.c (Cod Fish)
+   - Cod (Gadus morhua) Atlantic cod aquaculture
+   - Features: body_len_cm, body_wt_kg, fillet_pct, omega3_ppm, water_temp, harvest_week
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fl_pct,omg3,wtr_tmp,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: planting, irrigation, husking, harvest, market
-   - Prefix: ccnt
+   - Categories: stocking, feeding, water_mgmt, harvest, market
+   - Prefix: cod
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cockatiel_admin/src/main.c (Cockatiel Bird)
-   - Cockatiel (Nymphicus hollandicus) pet bird husbandry
-   - Features: body_len_cm, body_wt_g, wing_span_cm, feather_idx, feed_g, vocal_lvl
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,fthr_idx,feed_g,vocal_lvl
+3. modules/coho_admin/src/main.c (Coho Salmon)
+   - Coho (Oncorhynchus kisutch) salmon fish farming
+   - Features: body_len_cm, body_wt_kg, roe_pct, fat_pct, water_temp, harvest_week
+   - Data: 16 entries with location,bdy_ln,bdy_wt,roe_pct,fat_pct,wtr_tmp,harv_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, breeding, grooming, market
-   - Prefix: ckta
+   - Categories: stocking, feeding, water_mgmt, harvest, market
+   - Prefix: coh
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1312.0 → v1313.0 (all occurrences)
-  - total modules 3509 → 3512 (all occurrences)
-Update CHANGELOG.md: add "## Phase 950 - v1313.0 (3512 modules, 124 kernel)" entry
+  - version v1313.0 → v1314.0 (all occurrences)
+  - total modules 3512 → 3515 (all occurrences)
+Update CHANGELOG.md: add "## Phase 951 - v1314.0 (3515 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/cocoa_admin/cocoa_admin.wasm modules/coconut_admin/coconut_admin.wasm modules/cockatiel_admin/cockatiel_admin.wasm modules/cocoa_admin/src/main.c modules/coconut_admin/src/main.c modules/cockatiel_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/coffee_admin/coffee_admin.wasm modules/cod_admin/cod_admin.wasm modules/coho_admin/coho_admin.wasm modules/coffee_admin/src/main.c modules/cod_admin/src/main.c modules/coho_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 950 - v1313.0 (3512 modules, 124 kernel)
+- Added WASM: cocoa_admin (Cocoa cacao tree), coconut_admin (Coconut palm), cockatiel_admin (Cockatiel bird)
+- Total modules: 3509 → 3512 (cacao tree, tropical palm, pet bird)
+
 ## Phase 949 - v1312.0 (3509 modules, 124 kernel)
 - Added WASM: clove_admin (Clove spice tree), clover_admin (Clover cover crop), cobra_admin (Cobra venomous snake)
 - Total modules: 3506 → 3509 (spice tree, legume cover crop, venomous snake)
