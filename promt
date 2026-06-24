@@ -1,36 +1,36 @@
-Phase 958: Flower & Tree Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 959: Daisy & Dahlia Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/cypress_admin/src/main.c (Cypress Conifer Tree)
-   - Cypress (Cupressus sempervirens) conifer tree management
-   - Features: tree_height_m, trunk_dia_cm, cone_count, foliage_idx, growth_rate, prune_year
-   - Data: 16 entries with location,tree_ht,trk_dia,cn_ct,fol_idx,gr_rate,prn_yr
+1. modules/daisy_admin/src/main.c (Daisy Flower)
+   - Daisy (Bellis perennis) perennial flowering plant management
+   - Features: plant_ht_cm, flower_dia_cm, petal_count, leaf_idx, bloom_week, seed_ct
+   - Data: 16 entries with location,plnt_ht,fl_dia,pt_ct,lf_idx,blm_wk,sd_ct
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: planting, pruning, shaping, harvest, market
-   - Prefix: cypr
+   - Categories: planting, feeding, flowering, pruning, market
+   - Prefix: dais
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/cyprus_admin/src/main.c (Cyprus Flower - Cyclamen)
-   - Cyclamen (Cyclamen persicum) tuberous flowering plant
+2. modules/dahlia_admin/src/main.c (Dahlia Flower)
+   - Dahlia (Dahlia pinnata) tuberous flowering plant
    - Features: plant_ht_cm, flower_dia_cm, petal_count, tuber_wt_g, color_idx, bloom_week
    - Data: 16 entries with location,plnt_ht,fl_dia,pt_ct,tubr_wt,clr_idx,blm_wk
    - Pattern: follow abelia_admin pattern
    - Categories: planting, feeding, dormancy, flowering, market
-   - Prefix: cycl
+   - Prefix: dahl
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cygnet_admin/src/main.c (Cygnet Young Swan)
-   - Cygnet (Cygnus olor) young swan waterfowl husbandry
-   - Features: body_len_cm, body_wt_g, neck_len_cm, feather_idx, swim_speed, age_week
-   - Data: 16 entries with location,bdy_ln,bdy_wt,neck_ln,fthr_idx,swm_spd,age_wk
+3. modules/dalmatian_admin/src/main.c (Dalmatian Dog)
+   - Dalmatian (Canis familiaris) spotted breed dog husbandry
+   - Features: body_len_cm, body_wt_kg, spot_count, coat_idx, run_speed, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,spot_ct,coat_idx,run_spd,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, swimming, grooming, market
-   - Prefix: cygn
+   - Categories: housing, feeding, training, grooming, market
+   - Prefix: dalm
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1320.0 → v1321.0 (all occurrences)
-  - total modules 3533 → 3536 (all occurrences)
-Update CHANGELOG.md: add "## Phase 958 - v1321.0 (3536 modules, 124 kernel)" entry
+  - version v1321.0 → v1322.0 (all occurrences)
+  - total modules 3536 → 3539 (all occurrences)
+Update CHANGELOG.md: add "## Phase 959 - v1322.0 (3539 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/cypress_admin/cypress_admin.wasm modules/cyprus_admin/cyprus_admin.wasm modules/cygnet_admin/cygnet_admin.wasm modules/cypress_admin/src/main.c modules/cyprus_admin/src/main.c modules/cygnet_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/daisy_admin/daisy_admin.wasm modules/dahlia_admin/dahlia_admin.wasm modules/dalmatian_admin/dalmatian_admin.wasm modules/daisy_admin/src/main.c modules/dahlia_admin/src/main.c modules/dalmatian_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

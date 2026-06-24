@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 958 - v1321.0 (3536 modules, 124 kernel)
+- Added WASM: cypress_admin (Cypress conifer tree), cyprus_admin (Cyclamen flower), cygnet_admin (Cygnet young swan)
+- Total modules: 3533 → 3536 (conifer tree, tuberous flower, young swan waterfowl)
+
 ## Phase 957 - v1320.0 (3533 modules, 124 kernel) 🎉
 - Added WASM: cucumber_admin (Cucumber vine), cumin_admin (Cumin spice), currant_admin (Currant berry)
 - Total modules: 3530 → 3533 🎯 MILESTONE v1320! (vine vegetable, spice seed, berry bush)
