@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 914 - v1278.0 (3404 modules, 124 kernel)
+- Added WASM: aster_admin (Aster michaelmas daisy), astilbe_admin (Astilbe false spirea), aubrieta_admin (Aubrieta rock cress)
+- Total modules: 3401 → 3404 (autumn perennial daisy, shade plume flower, cascading groundcover)
+
 ## Phase 913 - v1277.0 (3401 modules, 124 kernel)
 - Added WASM: asarum_admin (Asarum wild ginger), asclepias_admin (Asclepias milkweed), asparagus_admin (Asparagus fern spear)
 - Total modules: 3398 → 3401 (shade groundcover wild ginger, monarch butterfly milkweed, ornamental asparagus)
