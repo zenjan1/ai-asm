@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 968 - v1331.0 (3566 modules, 124 kernel)
+- Added WASM: elephant_admin (African elephant), elk_admin (Elk deer), emu_admin (Emu flightless bird)
+- Total modules: 3563 → 3566 (largest land mammal, wapiti deer, ratite bird)
+
 ## Phase 967 - v1330.0 (3563 modules, 124 kernel)
 - Added WASM: echidna_admin (Echidna spiny anteater), eel_admin (Eel freshwater fish), egret_admin (Egret wading bird)
 - Total modules: 3560 → 3563 (monotreme mammal, anguillid eel, great white egret) 🎉 MILESTONE v1330!

@@ -1,36 +1,36 @@
-Phase 968: Elephant & Emu Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 969: Falcon & Ferret Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/elephant_admin/src/main.c (Elephant)
-   - Elephant (Loxodonta africana) African elephant management
-   - Features: body_len_cm, body_wt_kg, trunk_len_cm, tusk_cm, ear_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,trnk_ln,tsk_cm,ear_idx,age_yr
+1. modules/falcon_admin/src/main.c (Falcon Raptor)
+   - Falcon (Falco peregrinus) peregrine falcon raptor management
+   - Features: body_len_cm, body_wt_kg, wing_span_cm, talon_idx, dive_speed, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,tl_idx,dv_spd,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: housing, feeding, training, health, market
-   - Prefix:elep
+   - Prefix: falc
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/elk_admin/src/main.c (Elk Deer)
-   - Elk (Cervus canadensis) elk deer wildlife management
-   - Features: body_len_cm, body_wt_kg, antler_cm, coat_idx, fawn_count, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,antl_cm,coat_idx,fwn_ct,age_yr
+2. modules/ferret_admin/src/main.c (Ferret Domesticated Polecat)
+   - Ferret (Mustela furo) domesticated polecat small mammal
+   - Features: body_len_cm, body_wt_g, tail_len_cm, fur_idx, play_lvl, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,fur_idx,ply_lv,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: habitat, feeding, breeding, veterinary, market
-   - Prefix: elk
+   - Categories: housing, feeding, breeding, grooming, market
+   - Prefix: ferr
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/emu_admin/src/main.c (Emu Flightless Bird)
-   - Emu (Dromaius novaehollandiae) emu flightless bird farming
-   - Features: body_len_cm, body_wt_kg, leg_len_cm, feather_idx, egg_wt_g, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_ln,fthr_idx,egg_wt,age_yr
+3. modules/finch_admin/src/main.c (Finch Small Bird)
+   - Finch (Fringilla coelebs) common finch small songbird
+   - Features: body_len_cm, body_wt_g, wing_span_cm, plumage_idx, song_vol, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,plm_idx,sng_vl,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, breeding, harvest, market
-   - Prefix: emu
+   - Categories: housing, feeding, breeding, grooming, market
+   - Prefix: finc
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1330.0 → v1331.0 (all occurrences)
-  - total modules 3563 → 3566 (all occurrences)
-Update CHANGELOG.md: add "## Phase 968 - v1331.0 (3566 modules, 124 kernel)" entry
+  - version v1331.0 → v1332.0 (all occurrences)
+  - total modules 3566 → 3569 (all occurrences)
+Update CHANGELOG.md: add "## Phase 969 - v1332.0 (3569 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/elephant_admin/elephant_admin.wasm modules/elk_admin/elk_admin.wasm modules/emu_admin/emu_admin.wasm modules/elephant_admin/src/main.c modules/elk_admin/src/main.c modules/emu_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/falcon_admin/falcon_admin.wasm modules/ferret_admin/ferret_admin.wasm modules/finch_admin/finch_admin.wasm modules/falcon_admin/src/main.c modules/ferret_admin/src/main.c modules/finch_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
