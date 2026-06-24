@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 927 - v1290.0 (3443 modules, 124 kernel)
+- Added WASM: bloom_admin (Bloom flowering plant), blower_admin (Blower air movement), bluebell_admin (Bluebell hyacinthoides)
+- Total modules: 3440 → 3443 (ornamental flowering plant, industrial air movement, woodland spring flower)
+
 ## Phase 926 - v1289.0 (3440 modules, 124 kernel)
 - Added WASM: blockchain_finance (DeFi protocols), blockchain_integration (Cross-chain bridges), blockchain_node (Blockchain infrastructure nodes)
 - Total modules: 3437 → 3440 (decentralized finance, cross-chain integration, node infrastructure)
