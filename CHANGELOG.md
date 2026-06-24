@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 963 - v1326.0 (3551 modules, 124 kernel)
+- Added WASM: dodo_admin (Dodo extinct bird), dolphin_admin (Dolphin marine mammal), dove_admin (Dove pigeon)
+- Total modules: 3548 → 3551 (de-extinction bird, bottlenose dolphin, pigeon bird)
+
 ## Phase 962 - v1325.0 (3548 modules, 124 kernel)
 - Added WASM: dill_admin (Dill herb), dingo_admin (Dingo wild dog), diatom_admin (Diatom microalgae)
 - Total modules: 3545 → 3548 (aromatic herb, wild canid, microalgae)

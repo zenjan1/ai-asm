@@ -1,36 +1,36 @@
-Phase 963: Dolphin & Dove Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 964: Drake & Dragon Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/dodo_admin/src/main.c (Dodo Extinct Bird)
-   - Dodo (Raphus cucullatus) extinct bird de-extinction research
-   - Features: body_len_cm, body_wt_kg, beak_cm, feather_idx, egg_wt_g, gene_idx
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bk_cm,fthr_idx,egg_wt,gene_idx
+1. modules/drake_admin/src/main.c (Drake Male Duck)
+   - Drake (Anas platyrhynchos) male duck waterfowl husbandry
+   - Features: body_len_cm, body_wt_kg, bill_cm, plumage_idx, quack_vol, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bill_cm,plm_idx,qk_vl,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: research, habitat, breeding, health, museum
-   - Prefix: dodo
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-2. modules/dolphin_admin/src/main.c (Dolphin Marine Mammal)
-   - Dolphin (Tursiops truncatus) bottlenose dolphin marine management
-   - Features: body_len_cm, body_wt_kg, fin_ht_cm, echo_idx, swim_speed, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_ht,echo_idx,swm_spd,age_yr
-   - Pattern: follow abelia_admin pattern
-   - Categories: housing, feeding, training, health, market
-   - Prefix: dolf
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-3. modules/dove_admin/src/main.c (Dove Pigeon)
-   - Dove (Columba livia) dove pigeon bird husbandry
-   - Features: body_len_cm, body_wt_g, wing_span_cm, plumage_idx, coo_vol, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,plm_idx,coo_vl,age_yr
-   - Pattern: follow abelia_admin pattern
    - Categories: housing, feeding, breeding, grooming, market
-   - Prefix: dove
+   - Prefix: drak
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+2. modules/dragon_admin/src/main.c (Komodo Dragon)
+   - Komodo Dragon (Varanus komodoensis) largest living lizard
+   - Features: body_len_cm, body_wt_kg, tail_len_cm, claw_idx, venom_lvl, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,clw_idx,vnm_lv,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: housing, feeding, health, shedding, market
+   - Prefix: drag
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/drone_admin/src/main.c (Drone Male Bee)
+   - Drone (Apis mellifera) male bee apiculture management
+   - Features: body_len_mm, body_wt_mg, wing_mm, eye_idx, flight_spd, age_day
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wng_mm,eye_idx,fly_sp,age_dy
+   - Pattern: follow abelia_admin pattern
+   - Categories: housing, feeding, mating, health, market
+   - Prefix: dron
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1325.0 → v1326.0 (all occurrences)
-  - total modules 3548 → 3551 (all occurrences)
-Update CHANGELOG.md: add "## Phase 963 - v1326.0 (3551 modules, 124 kernel)" entry
+  - version v1326.0 → v1327.0 (all occurrences)
+  - total modules 3551 → 3554 (all occurrences)
+Update CHANGELOG.md: add "## Phase 964 - v1327.0 (3554 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/dodo_admin/dodo_admin.wasm modules/dolphin_admin/dolphin_admin.wasm modules/dove_admin/dove_admin.wasm modules/dodo_admin/src/main.c modules/dolphin_admin/src/main.c modules/dove_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/drake_admin/drake_admin.wasm modules/dragon_admin/dragon_admin.wasm modules/drone_admin/drone_admin.wasm modules/drake_admin/src/main.c modules/dragon_admin/src/main.c modules/drone_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
