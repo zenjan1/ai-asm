@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 910 - v1274.0 (3392 modules, 124 kernel)
+- Added WASM: aquilegia_admin (Aquilegia columbine), arabis_admin (Arabis rock cress), araucaria_admin (Araucaria monkey puzzle tree)
+- Total modules: 3389 → 3392 (woodland columbine, alpine rock cress, ornamental monkey puzzle tree)
+
 ## Phase 909 - v1273.0 (3389 modules, 124 kernel)
 - Added WASM: anisodontea_admin (Anisodontea cape mallow), annatto_admin (Annatto achiote dye tree), anthurium_admin (Anthurium flamingo flower)
 - Total modules: 3386 → 3389 (flowering cape mallow shrub, achiote dye tree, tropical flamingo flower)

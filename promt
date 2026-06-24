@@ -1,28 +1,28 @@
-Phase 910: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 911: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/aquilegia_admin/src/main.c (Aquilegia / Columbine)
-   - Aquilegia columbine and woodland perennial management
-   - Features: spur length, petal count, flower color, leaf shape, stem height, bloom week
-   - Data: 16 entries with location,spur_len,petal_ct,flower_color,leaf_shp,stem_ht,bloom_wk
+1. modules/armeria_admin/src/main.c (Armeria / Thrift / Sea Pink)
+   - Armeria thrift and coastal wildflower management
+   - Features: flower ball diameter, stem height, petal color, leaf length, bloom week, salt_tol
+   - Data: 16 entries with location,ball_dia,stem_ht,petal_color,leaf_len,bloom_wk,salt_tol
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/arabis_admin/src/main.c (Arabis / Rock Cress)
-   - Arabis rock cress and alpine groundcover management
-   - Features: flower cluster, petal count, leaf rosette, stem height, bloom color, spread rate
-   - Data: 16 entries with location,cluster_ct,petal_ct,leaf_ros,stem_ht,bloom_color,spread_rt
+2. modules/arnica_admin/src/main.c (Arnica / Leopard's Bane)
+   - Arnica medicinal herb and mountain wildflower management
+   - Features: flower diameter, petal count, stem height, leaf pair, compound mg, altitude
+   - Data: 16 entries with location,flower_dia,petal_ct,stem_ht,leaf_pair,compound_mg,altitude
    - Pattern: follow abelia_admin pattern
 
-3. modules/araucaria_admin/src/main.c (Araucaria / Monkey Puzzle Tree)
-   - Araucaria monkey puzzle tree and ornamental conifer management
-   - Features: trunk diameter, branch tiers, leaf scale, tree height, cone count, growth rate
-   - Data: 16 entries with location,trunk_dia,branch_tiers,leaf_sc,tree_ht,cone_ct,growth_rt
+3. modules/aronia_admin/src/main.c (Aronia / Chokeberry)
+   - Aronia chokeberry and fruit shrub management
+   - Features: berry cluster, fruit weight, shrub height, leaf color, antioxidant level, harvest month
+   - Data: 16 entries with location,berry_cl,fruit_wt,shrub_ht,leaf_color,antiox_lv,harv_mo
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1273.0 → v1274.0 (all occurrences)
-  - total modules 3389 → 3392 (all occurrences)
-Update CHANGELOG.md: add "## Phase 910 - v1274.0 (3392 modules, 124 kernel)" entry
+  - version v1274.0 → v1275.0 (all occurrences)
+  - total modules 3392 → 3395 (all occurrences)
+Update CHANGELOG.md: add "## Phase 911 - v1275.0 (3395 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/aquilegia_admin/src/main.c modules/arabis_admin/src/main.c modules/araucaria_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/armeria_admin/src/main.c modules/arnica_admin/src/main.c modules/aronia_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

@@ -1,5 +1,6 @@
-/* araucaria_admin: Araucaria management technology administration (v1.0)
- * Araucaria planning, araucaria execution, araucaria evaluation, accessories, marketing
+/* araucaria_admin: Araucaria (Monkey Puzzle Tree) ornamental conifer management (v1.0)
+ * Araucaria planning, planting, evaluation, cone harvest, market
+ * Features: trunk diameter, branch tiers, leaf scale, tree height, cone count, growth rate
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} arau_t;
-typedef struct{int n_planning,n_execution,n_evaluation,n_accessory,n_market,t_f1,t_f2,t_f3,t_f4,t_f5;} arau_state_t;
-static arau_t araup[N],araux[N-2],arau2[N-4],arauac[N-6],arauj[N-6]; static arau_state_t st; static int init;
-static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]=45;v=-v;}if(v==0){b[i++]=48;}else{int s=i;while(v>0){b[i++]=48+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]=0;host_print(b);}
-static int add(arau_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;arau_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[ARAU] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int arau_init(void){if(init)return -1;st.n_planning=0;st.n_execution=0;st.n_evaluation=0;st.n_accessory=0;st.n_market=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)araup[i].active=0;for(int i=0;i<N-2;i++)araux[i].active=0;for(int i=0;i<N-4;i++)arau2[i].active=0;for(int i=0;i<N-6;i++)arauac[i].active=0;for(int i=0;i<N-6;i++)arauj[i].active=0;init=1;ps("[ARAU] Araucaria initialized\n");return 0;}
-int arau_planning(int t,int c,int a,int b,int d,int e,int y){return add(araup,&st.n_planning,&st.t_f1,N,t,c,a,b,d,e,y);}
-int arau_execution(int t,int c,int a,int b,int d,int e,int y){return add(araux,&st.n_execution,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int arau_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(arau2,&st.n_evaluation,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int arau_accessory(int t,int c,int a,int b,int d,int e,int y){return add(arauac,&st.n_accessory,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int arau_market(int t,int c,int a,int b,int d,int e,int y){return add(arauj,&st.n_market,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void arau_report(void){ps("[ARAU] Planning: ");pi(st.n_planning);ps(" PCS=");pi(st.t_f1);ps("\nExecution: ");pi(st.n_execution);ps(" PCS=");pi(st.t_f2);ps("\nEvaluation: ");pi(st.n_evaluation);ps(" PCS=");pi(st.t_f3);ps("\nAccessory: ");pi(st.n_accessory);ps(" PCS=");pi(st.t_f4);ps("\nMarket: ");pi(st.n_market);ps(" USD=");pi(st.t_f5);ps("\n");}
-void arau_state(void){ps("[ARAU] P=");pi(st.n_planning);ps(" E=");pi(st.n_execution);ps(" V=");pi(st.n_evaluation);ps(" A=");pi(st.n_accessory);ps(" M=");pi(st.n_market);ps("\n");}
+typedef struct{int id,location,trunk_dia,branch_tiers,leaf_sc,tree_ht,cone_ct,growth_rt,active;} ara_t;
+typedef struct{int n_plan,n_exec,n_eval,n_cone,n_mkt,t_trunk,t_branch,t_leaf,t_tree,t_cone_c;} ara_state_t;
+static ara_t araps[N],araes[N-2],aravs[N-4],aracn[N-6],arams[N-6]; static ara_state_t st; static int init;
+static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
+static int add(ara_t*a,int*cnt,int*sum,int mx,int lc,int td,int bt,int ls,int th,int cc,int gr){if(*cnt>=mx)return -1;ara_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->trunk_dia=td;x->branch_tiers=bt;x->leaf_sc=ls;x->tree_ht=th;x->cone_ct=cc;x->growth_rt=gr;x->active=1;*sum+=td;(*cnt)++;ps("[ARA] Araucaria ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" td=");pi(td);ps(" bt=");pi(bt);ps(" ls=");pi(ls);ps(" th=");pi(th);ps(" cc=");pi(cc);ps("\n");return *cnt-1;}
+int ara_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_cone=0;st.n_mkt=0;st.t_trunk=0;st.t_branch=0;st.t_leaf=0;st.t_tree=0;st.t_cone_c=0;for(int i=0;i<N;i++)araps[i].active=0;for(int i=0;i<N-2;i++)araes[i].active=0;for(int i=0;i<N-4;i++)aravs[i].active=0;for(int i=0;i<N-6;i++)aracn[i].active=0;for(int i=0;i<N-6;i++)arams[i].active=0;init=1;ps("[ARA] Araucaria initialized\n");return 0;}
+/* 1=ornamental 2=park 3=botanical 4=container 5=estate */
+int ara_planning(int lc,int td,int bt,int ls,int th,int cc,int gr){return add(araps,&st.n_plan,&st.t_trunk,N,lc,td,bt,ls,th,cc,gr);}
+int ara_execution(int lc,int td,int bt,int ls,int th,int cc,int gr){return add(araes,&st.n_exec,&st.t_branch,N-2,lc,td,bt,ls,th,cc,gr);}
+int ara_evaluation(int lc,int td,int bt,int ls,int th,int cc,int gr){return add(aravs,&st.n_eval,&st.t_leaf,N-4,lc,td,bt,ls,th,cc,gr);}
+int ara_cone_harvest(int lc,int td,int bt,int ls,int th,int cc,int gr){return add(aracn,&st.n_cone,&st.t_tree,N-6,lc,td,bt,ls,th,cc,gr);}
+int ara_market(int lc,int td,int bt,int ls,int th,int cc,int gr){return add(arams,&st.n_mkt,&st.t_cone_c,N-6,lc,td,bt,ls,th,cc,gr);}
+void ara_report(void){ps("[ARA] Plan: ");pi(st.n_plan);ps(" trunk=");pi(st.t_trunk);ps("\nExec: ");pi(st.n_exec);ps(" branch=");pi(st.t_branch);ps("\nEval: ");pi(st.n_eval);ps(" leaf=");pi(st.t_leaf);ps("\nCone: ");pi(st.n_cone);ps(" tree=");pi(st.t_tree);ps("\nMkt: ");pi(st.n_mkt);ps(" cone=");pi(st.t_cone_c);ps("\n");}
+void ara_state(void){ps("[ARA] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Cone=");pi(st.n_cone);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Araucaria Admin Demo ===\n\n");arau_init();
-ps("Araucaria planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;arau_planning(t,c,1973+(i*17),1962+(i*14),1942+(i*10),1924+(i*6),2020+(i%5));}
-ps("\nAraucaria execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;arau_execution(t,c,1962+(i*15),1951+(i*12),1933+(i*8),1920+(i*5),2021+(i%4));}
-ps("\nAraucaria evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;arau_evaluation(t,c,1954+(i*13),1943+(i*10),1927+(i*7),1916+(i*4),2022+(i%3));}
-ps("\nAraucaria accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;arau_accessory(t,c,1946+(i*11),1937+(i*9),1923+(i*6),1913+(i*3),2023+(i%2));}
-ps("\nAraucaria marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;arau_market(t,c,1940+(i*9),1931+(i*7),1918+(i*5),1910+(i*3),2024);}
-ps("\n");arau_report();arau_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Araucaria (Monkey Puzzle Tree) Admin Demo ===\n\n");ara_init();
+ps("Araucaria planning (conifer layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;ara_planning(lc,15+(i*5),4+(i%4),3+(i%3),100+(i*20),2+(i%5),5+(i*2));}
+ps("\nAraucaria execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;ara_execution(lc,18+(i*4),5+(i%3),4+(i%3),120+(i*15),3+(i%4),6+(i*2));}
+ps("\nAraucaria evaluation (growth check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;ara_evaluation(lc,20+(i*3),6+(i%3),5+(i%2),140+(i*12),4+(i%3),7+(i*2));}
+ps("\nAraucaria cone harvest...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;ara_cone_harvest(lc,12+(i*4),3+(i%3),2+(i%3),80+(i*15),1+(i%4),4+(i*2));}
+ps("\nAraucaria ornamental market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;ara_market(lc,25+(i*3),7+(i%2),6+(i%2),160+(i*10),5+(i%3),8+(i*2));}
+ps("\n");ara_report();ara_state();ps("\n=== Demo Complete ===\n");return 0;}

@@ -1,5 +1,6 @@
-/* aquilegia_admin: Aquilegia management technology administration (v1.0)
- * Aquilegia planning, aquilegia execution, aquilegia evaluation, accessories, marketing
+/* aquilegia_admin: Aquilegia (Columbine) woodland perennial management (v1.0)
+ * Aquilegia planning, planting, evaluation, seed collection, market
+ * Features: spur length, petal count, flower color, leaf shape, stem height, bloom week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} aq_t;
-typedef struct{int n_aqp,n_aqe,n_aqv,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} aq_state_t;
-static aq_t aqps[N],aqss[N-2],aqvss[N-4],aqas[N-6],aqmks[N-6]; static aq_state_t st; static int init;
+typedef struct{int id,location,spur_len,petal_ct,flower_color,leaf_shp,stem_ht,bloom_wk,active;} aql_t;
+typedef struct{int n_plan,n_exec,n_eval,n_seed,n_mkt,t_spur,t_petal,t_color,t_leaf,t_stem;} aql_state_t;
+static aql_t aqlps[N],aqles[N-2],aqlvs[N-4],aqlsd[N-6],aqlms[N-6]; static aql_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(aq_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;aq_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[AQL] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int aql_init(void){if(init)return -1;st.n_aqp=0;st.n_aqe=0;st.n_aqv=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)aqps[i].active=0;for(int i=0;i<N-2;i++)aqss[i].active=0;for(int i=0;i<N-4;i++)aqvss[i].active=0;for(int i=0;i<N-6;i++)aqas[i].active=0;for(int i=0;i<N-6;i++)aqmks[i].active=0;init=1;ps("[AQL] Aquilegia initialized\n");return 0;}
-int aql_planning(int t,int c,int a,int b,int d,int e,int y){return add(aqps,&st.n_aqp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int aql_execution(int t,int c,int a,int b,int d,int e,int y){return add(aqss,&st.n_aqe,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int aql_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(aqvss,&st.n_aqv,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int aql_accessory(int t,int c,int a,int b,int d,int e,int y){return add(aqas,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int aql_market(int t,int c,int a,int b,int d,int e,int y){return add(aqmks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void aql_report(void){ps("[AQL] Aqp: ");pi(st.n_aqp);ps(" PCS=");pi(st.t_f1);ps("\nAqe: ");pi(st.n_aqe);ps(" PCS=");pi(st.t_f2);ps("\nAqv: ");pi(st.n_aqv);ps(" PCS=");pi(st.t_f3);ps("\nAqc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void aql_state(void){ps("[AQL] Aqp=");pi(st.n_aqp);ps(" Aqe=");pi(st.n_aqe);ps(" Aqv=");pi(st.n_aqv);ps(" Aqc=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(aql_t*a,int*cnt,int*sum,int mx,int lc,int sl,int pc,int fc,int ls,int sh,int bw){if(*cnt>=mx)return -1;aql_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->spur_len=sl;x->petal_ct=pc;x->flower_color=fc;x->leaf_shp=ls;x->stem_ht=sh;x->bloom_wk=bw;x->active=1;*sum+=sl;(*cnt)++;ps("[AQL] Aquilegia ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" sl=");pi(sl);ps(" pc=");pi(pc);ps(" fc=");pi(fc);ps(" ls=");pi(ls);ps(" sh=");pi(sh);ps("\n");return *cnt-1;}
+int aql_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_seed=0;st.n_mkt=0;st.t_spur=0;st.t_petal=0;st.t_color=0;st.t_leaf=0;st.t_stem=0;for(int i=0;i<N;i++)aqlps[i].active=0;for(int i=0;i<N-2;i++)aqles[i].active=0;for(int i=0;i<N-4;i++)aqlvs[i].active=0;for(int i=0;i<N-6;i++)aqlsd[i].active=0;for(int i=0;i<N-6;i++)aqlms[i].active=0;init=1;ps("[AQL] Aquilegia initialized\n");return 0;}
+/* 1=woodland 2=shade_garden 3=rockery 4=border 5=container */
+int aql_planning(int lc,int sl,int pc,int fc,int ls,int sh,int bw){return add(aqlps,&st.n_plan,&st.t_spur,N,lc,sl,pc,fc,ls,sh,bw);}
+int aql_execution(int lc,int sl,int pc,int fc,int ls,int sh,int bw){return add(aqles,&st.n_exec,&st.t_petal,N-2,lc,sl,pc,fc,ls,sh,bw);}
+int aql_evaluation(int lc,int sl,int pc,int fc,int ls,int sh,int bw){return add(aqlvs,&st.n_eval,&st.t_color,N-4,lc,sl,pc,fc,ls,sh,bw);}
+int aql_seed_collection(int lc,int sl,int pc,int fc,int ls,int sh,int bw){return add(aqlsd,&st.n_seed,&st.t_leaf,N-6,lc,sl,pc,fc,ls,sh,bw);}
+int aql_market(int lc,int sl,int pc,int fc,int ls,int sh,int bw){return add(aqlms,&st.n_mkt,&st.t_stem,N-6,lc,sl,pc,fc,ls,sh,bw);}
+void aql_report(void){ps("[AQL] Plan: ");pi(st.n_plan);ps(" spur=");pi(st.t_spur);ps("\nExec: ");pi(st.n_exec);ps(" petal=");pi(st.t_petal);ps("\nEval: ");pi(st.n_eval);ps(" color=");pi(st.t_color);ps("\nSeed: ");pi(st.n_seed);ps(" leaf=");pi(st.t_leaf);ps("\nMkt: ");pi(st.n_mkt);ps(" stem=");pi(st.t_stem);ps("\n");}
+void aql_state(void){ps("[AQL] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Seed=");pi(st.n_seed);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Aquilegia Admin Demo ===\n\n");aql_init();
-ps("Aquilegia planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;aql_planning(t,c,758+(i*17),747+(i*14),727+(i*10),709+(i*6),2020+(i%5));}
-ps("\nAquilegia execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;aql_execution(t,c,747+(i*15),736+(i*12),718+(i*8),705+(i*5),2021+(i%4));}
-ps("\nAquilegia evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;aql_evaluation(t,c,739+(i*13),728+(i*10),714+(i*7),703+(i*4),2022+(i%3));}
-ps("\nAquilegia accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;aql_accessory(t,c,731+(i*11),722+(i*9),708+(i*6),698+(i*3),2023+(i%2));}
-ps("\nAquilegia marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;aql_market(t,c,725+(i*9),716+(i*7),703+(i*5),695+(i*3),2024);}
+ps("=== Aquilegia (Columbine) Admin Demo ===\n\n");aql_init();
+ps("Aquilegia planning (woodland layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;aql_planning(lc,20+(i*5),5+(i%4),(i%7)+1,3+(i%3),30+(i*6),18+(i%6));}
+ps("\nAquilegia execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;aql_execution(lc,22+(i*4),6+(i%3),(i%7)+1,4+(i%3),35+(i*5),20+(i%5));}
+ps("\nAquilegia evaluation (bloom check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;aql_evaluation(lc,25+(i*3),7+(i%3),(i%6)+2,5+(i%2),40+(i*4),22+(i%4));}
+ps("\nAquilegia seed collection...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;aql_seed_collection(lc,18+(i*4),4+(i%3),(i%5)+1,3+(i%3),25+(i*5),16+(i%5));}
+ps("\nAquilegia perennial market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;aql_market(lc,28+(i*3),8+(i%2),(i%6)+2,6+(i%2),45+(i*3),24+(i%3));}
 ps("\n");aql_report();aql_state();ps("\n=== Demo Complete ===\n");return 0;}
