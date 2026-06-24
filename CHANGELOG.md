@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 891 - v1254.0 (3335 modules, 121 kernel)
+- Added WASM: nymphaea_admin (Nymphaea water lily), ophiopogon_admin (Ophiopogon lilyturf), oxalis_admin (Oxalis wood sorrel)
+- Total modules: 3332 → 3335 (aquatic water lilies, shade-tolerant ground cover, ornamental wood sorrel)
+
 ## Phase OS-19 - v1253.0 (3332 modules, 121 kernel)
 - Added kernel: sched_rt.asm, sched_cgroup.asm, sched_workqueue.asm
 - Kernel modules: 118 → 121 (real-time scheduling with FIFO/RR policies, control groups for resource isolation, deferred work queue execution)

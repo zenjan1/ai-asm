@@ -1,31 +1,40 @@
-Phase 891: 3 new WASM plant modules following abelia_admin pattern:
+Phase OS-20: Kernel Network Protocol Enhancements - 3 new AArch64 assembly kernel modules:
 
-1. modules/nymphaea_admin/src/main.c (Nymphaea water lily)
-   - Nymphaea alba (white water lily) and nymphaea caerulea (blue lotus) cultivation
-   - Features: aquatic flower management, rhizome propagation, pond ecosystem support, ornamental water gardens, traditional medicinal uses
-   - Host imports: ps, pi, pe, pf, pd, gt helpers
-   - 16 nymphaea entries with Latin names and aquatic data
+1. kernel/net_ipv6.asm (IPv6 Protocol Support)
+   - Base ID: 922
+   - IPv6 packet handling and address management
+   - Features: IPv6 address configuration (stateless/stateful), packet header parsing, neighbor discovery (NDP), fragmentation/reassembly, extension headers, flow labeling
+   - Data structures: ipv6_addr_t (128-bit address, prefix_len, scope, state), ipv6_packet_t (version, flow_label, payload_len, next_header, hop_limit, src_addr, dst_addr)
+   - API: net_ipv6_init, net_ipv6_add_addr(if_id, addr, prefix_len), net_ipv6_remove_addr(if_id, addr), net_ipv6_send_packet(if_id, src, dst, payload, len), net_ipv6_recv_packet(if_id, out_packet) => len/-1, net_ipv6_neighbor_discover(if_id, target_addr), net_ipv6_stats(if_id, out_stats)
+   - Capacity: 64 IPv6 addresses, 128 neighbor entries, 4 interfaces
+   - Pattern: follow kernel/memory.asm style (stp/ldp frame, .global exports, .bss for state)
 
-2. modules/ophiopogon_admin/src/main.c (Ophiopogon lilyturf)
-   - Ophiopogon japonicus (monkey grass/lilyturf) cultivation
-   - Features: shade tolerance, ground cover use, ornamental berries, medicinal tuber production, erosion control
-   - Host imports: ps, pi, pe, pf, pd, gt helpers
-   - 16 ophiopogon entries with Latin names and landscaping data
+2. kernel/net_tls.asm (TLS/SSL Encryption)
+   - Base ID: 923
+   - Transport Layer Security for encrypted communications
+   - Features: TLS handshake (simplified), cipher suite selection, record layer encryption/decryption, session management, certificate validation hooks, PRNG integration
+   - Data structures: tls_session_t (session_id, cipher_suite, state, master_secret), tls_record_t (type, version, length, fragment)
+   - API: net_tls_init, net_tls_create_session() => session_id, net_tls_handshake(session_id, role) => 0/-1, net_tls_encrypt(session_id, plain, len, out_cipher) => cipher_len/-1, net_tls_decrypt(session_id, cipher, len, out_plain) => plain_len/-1, net_tls_close_session(session_id), net_tls_stats(out_stats)
+   - Capacity: 32 TLS sessions, 8 cipher suites, 16 handshake states
+   - Pattern: follow kernel/memory.asm style
 
-3. modules/oxalis_admin/src/main.c (Oxalis wood sorrel)
-   - Oxalis triangularis (purple shamrock) and oxalis corniculata (creeping wood sorrel) cultivation
-   - Features: ornamental foliage, edible leaves/flowers, nitrogen fixation, shade garden use, seasonal dormancy
-   - Host imports: ps, pi, pe, pf, pd, gt helpers
-   - 16 oxalis entries with Latin names and culinary data
+3. kernel/net_quic.asm (QUIC Protocol)
+   - Base ID: 924
+   - QUIC (Quick UDP Internet Connections) protocol support
+   - Features: QUIC connection management, stream multiplexing, 0-RTT connection resumption, congestion control, packet number space, frame parsing
+   - Data structures: quic_conn_t (conn_id, state, stream_count, next_pkt_num), quic_stream_t (stream_id, conn_id, offset, fin_sent, fin_recv)
+   - API: net_quic_init, net_quic_connect(addr, port) => conn_id/-1, net_quic_accept() => conn_id/-1, net_quic_open_stream(conn_id) => stream_id/-1, net_quic_send(conn_id, stream_id, data, len) => sent_len/-1, net_quic_recv(conn_id, stream_id, buf, len) => recv_len/-1, net_quic_close(conn_id), net_quic_stats(out_stats)
+   - Capacity: 64 QUIC connections, 256 streams, 8 packet number spaces
+   - Pattern: follow kernel/memory.asm style
 
-Build all 3 WASM modules with:
-  clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=all -o modules/<name>/<name>.wasm modules/<name>/src/main.c
+Build all 3 kernel modules with:
+  clang --target=aarch64-unknown-linux-gnu -c -O2 -o kernel/<name>.o kernel/<name>.asm
 
-After creating 3 WASM modules, update README:
-  - version v1253.0 → v1254.0 (all occurrences)
-  - total modules 3332 → 3335 (all occurrences)
-  - Add the 3 new module names to the L3 WASM Apps list
-Update CHANGELOG.md: add "## Phase 891 - v1254.0 (3335 modules, 121 kernel)" entry
+After creating 3 kernel modules, update README:
+  - version v1254.0 → v1255.0 (all occurrences)
+  - kernel modules 121 → 124 (all occurrences)
+  - Add the 3 new kernel module names to the L1 Kernel ASM architecture list
+Update CHANGELOG.md: add "## Phase OS-20 - v1255.0 (3335 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/nymphaea_admin modules/ophiopogon_admin modules/oxalis_admin README.md CHANGELOG.md promt update-state
+git add kernel/net_ipv6.asm kernel/net_tls.asm kernel/net_quic.asm README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
