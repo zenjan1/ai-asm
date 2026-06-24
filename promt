@@ -1,28 +1,28 @@
-Phase 905: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 906: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/aloe_admin/src/main.c (Aloe)
-   - Aloe succulent plant and medicinal gel source management
-   - Features: leaf length tracking, gel content, offset count, drought tolerance, sun exposure
-   - Data: 16 entries with location,leaf_len,gel_content,offset_ct,drought_tol,sun_exp,harvest_mo
+1. modules/anacamptis_admin/src/main.c (Anacamptis / Swamp Orchid)
+   - Anacamptis orchid and wetland flowering plant management
+   - Features: spike height, flower count, labellum width, bloom color, tuber size, habitat moisture
+   - Data: 16 entries with location,spike_ht,flower_ct,labellum_wd,bloom_color,tuber_sz,habitat_mo
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/amaranthus_admin/src/main.c (Amaranthus / Amaranth)
-   - Amaranthus ornamental grain and colorful foliage plant management
-   - Features: flower spike length, seed yield, leaf color intensity, plant height, protein content
-   - Data: 16 entries with location,spike_len,seed_yield,leaf_color,plant_ht,protein_ct,harvest_mo
+2. modules/anagallis_admin/src/main.c (Anagallis / Pimpernel)
+   - Anagallis pimpernel and small flowering herb management
+   - Features: petal count, flower color, leaf size, stem spread, bloom week, seed capsule
+   - Data: 16 entries with location,petal_ct,flower_color,leaf_sz,stem_spread,bloom_wk,seed_cap
    - Pattern: follow abelia_admin pattern
 
-3. modules/amaryllis_admin/src/main.c (Amaryllis / Hippeastrum)
-   - Amaryllis bulb flower and indoor flowering plant management
-   - Features: flower count per stem, petal width, bloom color, bulb size, stem height, forcing time
-   - Data: 16 entries with location,flower_ct,petal_wd,bloom_color,bulb_sz,stem_ht,forcing_wk
+3. modules/anagyris_admin/src/main.c (Anagyris / Bean Caper)
+   - Anagyris bean caper and medicinal shrub management
+   - Features: leaf length, seed pod, bark texture, root depth, compound mg, drought tolerance
+   - Data: 16 entries with location,leaf_len,seed_pod,bark_tx,root_dep,compound_mg,drought_tol
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1268.0 → v1269.0 (all occurrences)
-  - total modules 3374 → 3377 (all occurrences)
-Update CHANGELOG.md: add "## Phase 905 - v1269.0 (3377 modules, 124 kernel)" entry
+  - version v1269.0 → v1270.0 (all occurrences)
+  - total modules 3377 → 3380 (all occurrences)
+Update CHANGELOG.md: add "## Phase 906 - v1270.0 (3380 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/aloe_admin/src/main.c modules/amaranthus_admin/src/main.c modules/amaryllis_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/anacamptis_admin/src/main.c modules/anagallis_admin/src/main.c modules/anagyris_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

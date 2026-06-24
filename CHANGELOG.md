@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 905 - v1269.0 (3377 modules, 124 kernel)
+- Added WASM: aloe_admin (Aloe succulent), amaranthus_admin (Amaranthus ornamental grain), amaryllis_admin (Amaryllis hippeastrum bulb)
+- Total modules: 3374 → 3377 (medicinal aloe succulent, colorful amaranthus grain, indoor amaryllis bulb flower)
+
 ## Phase 904 - v1268.0 (3374 modules, 124 kernel)
 - Added WASM: ajuga_admin (Ajuga bugleweed), alchemilla_admin (Alchemilla lady's mantle), allium_admin (Allium ornamental onion)
 - Total modules: 3371 → 3374 (creeping bugleweed groundcover, medicinal lady's mantle, globe-shaped ornamental onion)
