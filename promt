@@ -1,28 +1,28 @@
-Phase 915: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 916: Plant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/aucuba_admin/src/main.c (Aucuba / Japanese Laurel)
-   - Aucuba japanese laurel and shade evergreen shrub management
-   - Features: leaf length, leaf width, berry color, plant height, shade_tol, growth_rate
-   - Data: 16 entries with location,leaf_len,leaf_wd,berry_color,plant_ht,shade_tol,growth_rt
+1. modules/aurinia_admin/src/main.c (Aurinia / Golden Alyssum)
+   - Aurinia golden alyssum and rock garden groundcover management
+   - Features: flower cluster, petal color, stem height, leaf coverage, bloom_period, drought_tol
+   - Data: 16 entries with location,flower_cl,petal_color,stem_ht,leaf_cov,bloom_pd,drought_tl
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/augouardia_admin/src/main.c (Augouardia / Tropical Legume)
-   - Augouardia tropical legume and ornamental tree management
-   - Features: pod length, seed count, flower_color, bark_type, rain_need, flower_week
-   - Data: 16 entries with location,pod_len,seed_ct,flower_color,bark_tp,rain_nd,flower_wk
+2. modules/avens_admin/src/main.c (Avens / Geum)
+   - Avens geum and perennial border management
+   - Features: flower diameter, petal count, stem height, bloom_color, leaf_type, bloom_week
+   - Data: 16 entries with location,flower_dia,petal_ct,stem_ht,bloom_color,leaf_tp,bloom_wk
    - Pattern: follow abelia_admin pattern
 
-3. modules/auricula_admin/src/main.c (Auricula / Alpine Primrose)
-   - Auricula alpine primrose and rock garden management
-   - Features: flower diameter, petal layers, stem height, flower_color, leaf_shape, bloom_week
-   - Data: 16 entries with location,flower_dia,petal_lyr,stem_ht,flower_color,leaf_shp,bloom_wk
+3. modules/avicennia_admin/src/main.c (Avicennia / Mangrove)
+   - Avicennia mangrove and coastal wetland management
+   - Features: tree height, trunk_diameter, leaf_width, salt_tol, root_spread, tide_level
+   - Data: 16 entries with location,tree_ht,trunk_dia,leaf_wd,salt_tl,root_sp,tide_lv
    - Pattern: follow abelia_admin pattern
 
 Build all 3 WASM modules. Update README:
-  - version v1278.0 → v1279.0 (all occurrences)
-  - total modules 3404 → 3407 (all occurrences)
-Update CHANGELOG.md: add "## Phase 915 - v1279.0 (3407 modules, 124 kernel)" entry
+  - version v1279.0 → v1280.0 (all occurrences)
+  - total modules 3407 → 3410 (all occurrences)
+Update CHANGELOG.md: add "## Phase 916 - v1280.0 (3410 modules, 124 kernel)" entry
 Set UPDATE=0
-git add modules/aucuba_admin/src/main.c modules/augouardia_admin/src/main.c modules/auricula_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add modules/aurinia_admin/src/main.c modules/avens_admin/src/main.c modules/avicennia_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

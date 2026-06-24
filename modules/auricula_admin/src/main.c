@@ -1,5 +1,6 @@
-/* auricula_admin: Auricula management technology administration (v1.0)
- * Auricula planning, auricula execution, auricula evaluation, accessories, marketing
+/* auricula_admin: Auricula (Alpine Primrose) rock garden management (v1.0)
+ * Auricula planning, planting, evaluation, division, market
+ * Features: flower diameter, petal layers, stem height, flower color, leaf shape, bloom week
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -7,24 +8,30 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,type,cat,f1,f2,f3,f4,year,active;} aur_t;
-typedef struct{int n_aurp,n_aure,n_aur2,n_ac,n_mk,t_f1,t_f2,t_f3,t_f4,t_f5;} aur_state_t;
-static aur_t aurps[N],aurss[N-2],aurvss[N-4],auras[N-6],aurmks[N-6]; static aur_state_t st; static int init;
+typedef struct{int id,location,flower_dia,petal_lyr,stem_ht,flower_color,leaf_shp,bloom_wk,active;} aur_t;
+typedef struct{int n_plan,n_exec,n_eval,n_div,n_mkt,t_flower,t_petal,t_stem,t_color,t_leaf;} aur_state_t;
+static aur_t aurps[N],aures[N-2],aurvs[N-4],aurdv[N-6],aurms[N-6]; static aur_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(aur_t*a,int*cnt,int*sum,int mx,int t,int c,int a1,int a2,int a3,int a4,int y){if(*cnt>=mx)return -1;aur_t*x=&a[*cnt];x->id=*cnt;x->type=t;x->cat=c;x->f1=a1;x->f2=a2;x->f3=a3;x->f4=a4;x->year=y;x->active=1;*sum+=a1;(*cnt)++;ps("[AUR] Sub ");pi(*cnt-1);ps(" t=");pi(t);ps(" c=");pi(c);ps(" a=");pi(a1);ps(" b=");pi(a2);ps(" d=");pi(a3);ps(" e=");pi(a4);ps("\n");return *cnt-1;}
-int aur_init(void){if(init)return -1;st.n_aurp=0;st.n_aure=0;st.n_aur2=0;st.n_ac=0;st.n_mk=0;st.t_f1=0;st.t_f2=0;st.t_f3=0;st.t_f4=0;st.t_f5=0;for(int i=0;i<N;i++)aurps[i].active=0;for(int i=0;i<N-2;i++)aurss[i].active=0;for(int i=0;i<N-4;i++)aurvss[i].active=0;for(int i=0;i<N-6;i++)auras[i].active=0;for(int i=0;i<N-6;i++)aurmks[i].active=0;init=1;ps("[AUR] Auricula initialized\n");return 0;}
-int aur_planning(int t,int c,int a,int b,int d,int e,int y){return add(aurps,&st.n_aurp,&st.t_f1,N,t,c,a,b,d,e,y);}
-int aur_execution(int t,int c,int a,int b,int d,int e,int y){return add(aurss,&st.n_aure,&st.t_f2,N-2,t,c,a,b,d,e,y);}
-int aur_evaluation(int t,int c,int a,int b,int d,int e,int y){return add(aurvss,&st.n_aur2,&st.t_f3,N-4,t,c,a,b,d,e,y);}
-int aur_accessory(int t,int c,int a,int b,int d,int e,int y){return add(auras,&st.n_ac,&st.t_f4,N-6,t,c,a,b,d,e,y);}
-int aur_market(int t,int c,int a,int b,int d,int e,int y){return add(aurmks,&st.n_mk,&st.t_f5,N-6,t,c,a,b,d,e,y);}
-void aur_report(void){ps("[AUR] Aurp: ");pi(st.n_aurp);ps(" PCS=");pi(st.t_f1);ps("\nAure: ");pi(st.n_aure);ps(" PCS=");pi(st.t_f2);ps("\nAurv: ");pi(st.n_aur2);ps(" PCS=");pi(st.t_f3);ps("\nAurc: ");pi(st.n_ac);ps(" PCS=");pi(st.t_f4);ps("\nMk: ");pi(st.n_mk);ps(" USD=");pi(st.t_f5);ps("\n");}
-void aur_state(void){ps("[AUR] Aurp=");pi(st.n_aurp);ps(" Aure=");pi(st.n_aure);ps(" Aurv=");pi(st.n_aur2);ps(" Aurc=");pi(st.n_ac);ps(" Mk=");pi(st.n_mk);ps("\n");}
+static int add(aur_t*a,int*cnt,int*sum,int mx,int lc,int fd,int pl,int sh,int fc,int ls,int bw){if(*cnt>=mx)return -1;aur_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->flower_dia=fd;x->petal_lyr=pl;x->stem_ht=sh;x->flower_color=fc;x->leaf_shp=ls;x->bloom_wk=bw;x->active=1;*sum+=fd;(*cnt)++;ps("[AUR] Auricula ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" fd=");pi(fd);ps(" pl=");pi(pl);ps(" sh=");pi(sh);ps(" fc=");pi(fc);ps(" ls=");pi(ls);ps("\n");return *cnt-1;}
+int aur_init(void){if(init)return -1;st.n_plan=0;st.n_exec=0;st.n_eval=0;st.n_div=0;st.n_mkt=0;st.t_flower=0;st.t_petal=0;st.t_stem=0;st.t_color=0;st.t_leaf=0;for(int i=0;i<N;i++)aurps[i].active=0;for(int i=0;i<N-2;i++)aures[i].active=0;for(int i=0;i<N-4;i++)aurvs[i].active=0;for(int i=0;i<N-6;i++)aurdv[i].active=0;for(int i=0;i<N-6;i++)aurms[i].active=0;init=1;ps("[AUR] Auricula initialized\n");return 0;}
+/* 1=rock_garden 2=alpine_house 3=container 4=crevice 5=trough */
+int aur_planning(int lc,int fd,int pl,int sh,int fc,int ls,int bw){return add(aurps,&st.n_plan,&st.t_flower,N,lc,fd,pl,sh,fc,ls,bw);}
+int aur_execution(int lc,int fd,int pl,int sh,int fc,int ls,int bw){return add(aures,&st.n_exec,&st.t_petal,N-2,lc,fd,pl,sh,fc,ls,bw);}
+int aur_evaluation(int lc,int fd,int pl,int sh,int fc,int ls,int bw){return add(aurvs,&st.n_eval,&st.t_stem,N-4,lc,fd,pl,sh,fc,ls,bw);}
+int aur_division(int lc,int fd,int pl,int sh,int fc,int ls,int bw){return add(aurdv,&st.n_div,&st.t_color,N-6,lc,fd,pl,sh,fc,ls,bw);}
+int aur_market(int lc,int fd,int pl,int sh,int fc,int ls,int bw){return add(aurms,&st.n_mkt,&st.t_leaf,N-6,lc,fd,pl,sh,fc,ls,bw);}
+void aur_report(void){ps("[AUR] Plan: ");pi(st.n_plan);ps(" flower=");pi(st.t_flower);ps("\nExec: ");pi(st.n_exec);ps(" petal=");pi(st.t_petal);ps("\nEval: ");pi(st.n_eval);ps(" stem=");pi(st.t_stem);ps("\nDiv: ");pi(st.n_div);ps(" color=");pi(st.t_color);ps("\nMkt: ");pi(st.n_mkt);ps(" leaf=");pi(st.t_leaf);ps("\n");}
+void aur_state(void){ps("[AUR] Plan=");pi(st.n_plan);ps(" Exec=");pi(st.n_exec);ps(" Eval=");pi(st.n_eval);ps(" Div=");pi(st.n_div);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Auricula Admin Demo ===\n\n");aur_init();
-ps("Auricula planning...\n");for(int i=0;i<N;i++){int t=(i%5)+1,c=(i%4)+1;aur_planning(t,c,977+(i*17),966+(i*14),946+(i*10),928+(i*6),2020+(i%5));}
-ps("\nAuricula execution...\n");for(int i=0;i<N-2;i++){int t=(i%4)+1,c=(i%5)+1;aur_execution(t,c,966+(i*15),955+(i*12),937+(i*8),924+(i*5),2021+(i%4));}
-ps("\nAuricula evaluation...\n");for(int i=0;i<N-4;i++){int t=(i%4)+1,c=(i%5)+1;aur_evaluation(t,c,958+(i*13),947+(i*10),931+(i*7),920+(i*4),2022+(i%3));}
-ps("\nAuricula accessories...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;aur_accessory(t,c,950+(i*11),941+(i*9),927+(i*6),917+(i*3),2023+(i%2));}
-ps("\nAuricula marketing...\n");for(int i=0;i<N-6;i++){int t=(i%4)+1,c=(i%5)+1;aur_market(t,c,944+(i*9),935+(i*7),922+(i*5),914+(i*3),2024);}
+ps("=== Auricula (Alpine Primrose) Admin Demo ===\n\n");aur_init();
+ps("Auricula planning (rock garden layout)...\n");
+for(int i=0;i<N;i++){int lc=(i%5)+1;aur_planning(lc,3+(i*2),2+(i%4),8+(i*3),(i%7)+1,3+(i%3),14+(i%6));}
+ps("\nAuricula execution (planting)...\n");
+for(int i=0;i<N-2;i++){int lc=(i%4)+2;aur_execution(lc,4+(i*2),3+(i%3),10+(i*3),(i%7)+1,4+(i%2),16+(i%5));}
+ps("\nAuricula evaluation (bloom check)...\n");
+for(int i=0;i<N-4;i++){int lc=(i%3)+1;aur_evaluation(lc,5+(i*2),3+(i%3),12+(i*2),(i%6)+2,5+(i%2),18+(i%4));}
+ps("\nAuricula division...\n");
+for(int i=0;i<N-6;i++){int lc=(i%5)+1;aur_division(lc,2+(i*2),2+(i%4),7+(i*3),(i%5)+1,3+(i%3),12+(i%5));}
+ps("\nAuricula alpine flower market...\n");
+for(int i=0;i<N-6;i++){int lc=(i%4)+1;aur_market(lc,6+(i*2),4+(i%2),(i%6)+2,6+(i%2),55+(i*4),20+(i%3));}
 ps("\n");aur_report();aur_state();ps("\n=== Demo Complete ===\n");return 0;}
