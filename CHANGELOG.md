@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1084 - v1447.0 (3914 modules, 124 kernel)
+- Added WASM: setifer_admin (Setifer tenrec-like mammals), tenrec_admin (Tenrec insectivorous mammals), rufous_admin (Rufous rufous bettongs)
+- Total modules: 3911 → 3914 (setifer, tenrec, rufous)
+
 ## Phase 1083 - v1446.0 (3911 modules, 124 kernel)
 - Added WASM: rock_wallabies_admin (Rock Wallabies small wallabies), peragales_admin (Peragales striped bandicoots), isoodon_admin (Isoodon short-nosed bandicoots)
 - Total modules: 3908 → 3911 (rock_wallabies, peragales, isoodon)
