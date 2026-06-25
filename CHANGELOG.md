@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1056 - v1419.0 (3830 modules, 124 kernel)
+- Added WASM: puku_admin (Puku floodplain antelope), blesbok_admin (Blesbok white-fronted antelope), steenbok_admin (Steenbok tiny bush antelope)
+- Total modules: 3827 → 3830 (puku, blesbok, steenbok)
+
 ## Phase 1055 - v1418.0 (3827 modules, 124 kernel)
 - Added WASM: nyala_admin (Nyala bushveld antelope), oribi_admin (Oribi small antelope), suni_admin (Suni tiny antelope)
 - Total modules: 3824 → 3827 (nyala, oribi, suni)
