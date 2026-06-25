@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1023 - v1386.0 (3731 modules, 124 kernel)
+- Added WASM: deer_admin (Red deer forest ungulate), dingo_admin (Australian wild canine), dog_admin (Domestic canine)
+- Total modules: 3728 → 3731 (antlered forest ungulate, wild Australian pack canine, domesticated loyal canine)
+
 ## Phase 1022 - v1385.0 (3728 modules, 124 kernel)
 - Added WASM: crocodile_admin (Nile large reptile), crow_admin (Common raven intelligent bird), cuckoo_admin (Common brood parasite bird)
 - Total modules: 3725 → 3728 (ambush-hunting river reptile, tool-using black bird, nest-parasitizing songbird)
