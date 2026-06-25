@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1059 - v1422.0 (3839 modules, 124 kernel)
+- Added WASM: oryx_admin (Oryx desert antelope), sable_admin (Sable horned antelope), roan_admin (Roan horse-like antelope)
+- Total modules: 3836 → 3839 (gemsbok oryx, sable antelope, roan antelope)
+
 ## Phase 1058 - v1421.0 (3836 modules, 124 kernel)
 - Added WASM: reedbuck_admin (Reedbuck grassland antelope), bushbuck_admin (Bushbuck forest antelope), waterbuck_admin (Waterbuck aquatic antelope)
 - Total modules: 3833 → 3836 (reedbuck, bushbuck, waterbuck)
