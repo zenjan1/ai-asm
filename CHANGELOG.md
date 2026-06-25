@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1009 - v1372.0 (3689 modules, 124 kernel)
+- Added WASM: wolf_admin (Gray wolf pack predator), wombat_admin (Common wombat burrowing marsupial), woodpecker_admin (Black woodpecker tree bird)
+- Total modules: 3686 → 3689 (alpha pack canid, cube-dropping Australian marsupial, drumming forest bird)
+
 ## Phase 1008 - v1371.0 (3686 modules, 124 kernel)
 - Added WASM: walrus_admin (Atlantic walrus arctic marine mammal), weasel_admin (Least weasel small predator), whale_admin (Blue whale large marine mammal)
 - Total modules: 3683 → 3686 (tusked arctic pinniped, swift small mustelid, largest animal on Earth)

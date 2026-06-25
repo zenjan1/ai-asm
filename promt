@@ -1,36 +1,36 @@
-Phase 1009: Wolf Wombat Woodpecker Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1010: Worm Wren Yak Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/wolf_admin/src/main.c (Wolf Pack Predator)
-   - Wolf (Canis lupus) gray wolf pack predator management
-   - Features: body_len_cm, body_wt_kg, tail_cm, run_speed, fur_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,run_sp,fr_idx,age_yr
+1. modules/worm_admin/src/main.c (Worm Invertebrate)
+   - Worm (Lumbricus terrestris) common earthworm invertebrate management
+   - Features: body_len_cm, body_wt_g, segment_ct, burrow_speed, ring_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,seg_ct,br_sp,rg_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: forest, feeding, breeding, health, market
-   - Prefix: wolf
+   - Categories: soil, feeding, breeding, health, market
+   - Prefix: worm
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/wombat_admin/src/main.c (Wombat Burrowing Marsupial)
-   - Wombat (Vombatus ursinus) common wombat burrowing marsupial management
-   - Features: body_len_cm, body_wt_kg, claw_cm, dig_speed, pouch_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_cm,dg_sp,po_idx,age_yr
+2. modules/wren_admin/src/main.c (Wren Small Songbird)
+   - Wren (Troglodytes troglodytes) Eurasian wren small songbird management
+   - Features: body_len_cm, body_wt_g, wing_cm, song_vol, plum_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,sg_vl,pl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: burrow, feeding, breeding, health, market
-   - Prefix: wombat
+   - Categories: hedgerow, feeding, breeding, health, market
+   - Prefix: wren
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/woodpecker_admin/src/main.c (Woodpecker Tree Bird)
-   - Woodpecker (Dryocopus martius) black woodpecker tree bird management
-   - Features: body_len_cm, body_wt_g, beak_cm, peck_speed, crest_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,pk_sp,cr_idx,age_yr
+3. modules/yak_admin/src/main.c (Yak High Altitude Bovine)
+   - Yak (Bos grunniens) domestic yak high altitude bovine management
+   - Features: body_len_cm, body_wt_kg, horn_cm, walk_speed, wool_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,wk_sp,wl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: woodland, feeding, breeding, health, market
-   - Prefix: woodpecker
+   - Categories: plateau, feeding, breeding, health, market
+   - Prefix: yak
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1371.0 → v1372.0 (all occurrences)
-  - total modules 3686 → 3689 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1009 - v1372.0 (3689 modules, 124 kernel)" entry
+  - version v1372.0 → v1373.0 (all occurrences)
+  - total modules 3689 → 3692 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1010 - v1373.0 (3692 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/wolf_admin/wolf_admin.wasm modules/wombat_admin/wombat_admin.wasm modules/woodpecker_admin/woodpecker_admin.wasm modules/wolf_admin/src/main.c modules/wombat_admin/src/main.c modules/woodpecker_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/worm_admin/worm_admin.wasm modules/wren_admin/wren_admin.wasm modules/yak_admin/yak_admin.wasm modules/worm_admin/src/main.c modules/wren_admin/src/main.c modules/yak_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
