@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 990 - v1353.0 (3632 modules, 124 kernel)
+- Added WASM: narwhal_admin (Narwhal Arctic tusked whale), newt_admin (Crested newt salamander amphibian), nightingale_admin (Common nightingale songbird)
+- Total modules: 3629 → 3632 (tusked Arctic whale, aquatic salamander, melodious nocturnal songbird)
+
 ## Phase 989 - v1352.0 (3629 modules, 124 kernel)
 - Added WASM: mosquito_admin (Yellow fever mosquito disease vector), moth_admin (Domestic silk moth nocturnal insect), mouse_admin (House mouse small rodent)
 - Total modules: 3626 → 3629 (disease-carrying vector, silk-producing moth, ubiquitous small rodent)
