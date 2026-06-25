@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1075 - v1438.0 (3887 modules, 124 kernel)
+- Added WASM: kangaroos_admin (Kangaroos large macropods), possums_admin (Possums arboreal marsupials), gliders_admin (Gliders flying marsupials)
+- Total modules: 3884 → 3887 (kangaroos, possums, gliders)
+
 ## Phase 1074 - v1437.0 (3884 modules, 124 kernel)
 - Added WASM: bilbies_admin (Bilbies rabbit-eared bandicoots), quolls_admin (Quolls spotted carnivorous marsupials), dunnarts_admin (Dunnarts small marsupial mice)
 - Total modules: 3881 → 3884 (bilbies, quolls, dunnarts)
