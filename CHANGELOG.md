@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1073 - v1436.0 (3881 modules, 124 kernel)
+- Added WASM: potoroos_admin (Potoroos rat-kangaroos), cuscuses_admin (Cuscuses arboreal marsupials), pademelons_admin (Pademelons small wallabies)
+- Total modules: 3878 → 3881 (potoroos, cuscuses, pademelons)
+
 ## Phase 1072 - v1435.0 (3878 modules, 124 kernel)
 - Added WASM: dasyure_admin (Dasyure carnivorous marsupial), koalas_admin (Koalas tree-dwelling marsupials), wombats_admin (Wombats burrowing marsupials)
 - Total modules: 3875 → 3878 (dasyure, koalas, wombats)
