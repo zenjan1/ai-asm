@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1036 - v1399.0 (3770 modules, 124 kernel)
+- Added WASM: kangaroo_admin (Red kangaroo marsupial jumper), koala_admin (Koala tree-dwelling marsupial), kiwi_admin (North Island kiwi flightless bird)
+- Total modules: 3767 → 3770 (outback-leaping marsupial, eucalyptus-dwelling marsupial, forest nocturnal flightless bird)
+
 ## Phase 1035 - v1398.0 (3767 modules, 124 kernel)
 - Added WASM: jackal_admin (Golden jackal wild canid mammal), jaguar_admin (Jaguar big cat predator), jellyfish_admin (Jellyfish marine invertebrate)
 - Total modules: 3764 → 3767 (scrub-dwelling wild canid, spotted jungle big cat, drifting ocean invertebrate)
