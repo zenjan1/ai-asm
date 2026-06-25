@@ -1,36 +1,36 @@
-Phase 1031: Goat Goose Gorilla Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1032: Hamster Hawk Hedgehog Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/goat_admin/src/main.c (Goat Domesticated Horned Mammal)
-   - Goat (Capra aegagrus hircus) domesticated goat horned mammal management
-   - Features: body_len_cm, body_wt_kg, horn_cm, climb_speed, beard_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,cl_sp,bd_idx,age_yr
+1. modules/hamster_admin/src/main.c (Hamster Small Rodent Pet)
+   - Hamster (Mesocricetus auratus) golden hamster small rodent management
+   - Features: body_len_cm, body_wt_g, tail_cm, run_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,rn_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: mountain, feeding, breeding, health, market
-   - Prefix: goat
+   - Categories: cage, feeding, breeding, health, market
+   - Prefix: hmst
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/goose_admin/src/main.c (Goose Waterfowl Bird)
-   - Goose (Anser anser) greylag goose waterfowl bird management
-   - Features: body_len_cm, body_wt_g, beak_cm, fly_speed, plm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,fl_sp,pm_idx,age_yr
+2. modules/hawk_admin/src/main.c (Hawk Medium Raptor Bird)
+   - Hawk (Buteo buteo) common hawk medium raptor bird management
+   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, fth_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wng_cm,fl_sp,fth_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: lake, feeding, breeding, health, market
-   - Prefix: gse
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: hwk
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/gorilla_admin/src/main.c (Gorilla Great Ape)
-   - Gorilla (Gorilla gorilla) western gorilla great ape management
-   - Features: body_len_cm, body_wt_kg, arm_cm, walk_speed, chest_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,arm_cm,wk_sp,ch_idx,age_yr
+3. modules/hedgehog_admin/src/main.c (Hedgehog Spiny Mammal)
+   - Hedgehog (Erinaceus europaeus) European hedgehog spiny mammal management
+   - Features: body_len_cm, body_wt_g, spine_cm, walk_speed, spn_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,spn_cm,wk_sp,sn_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: jungle, feeding, breeding, health, market
-   - Prefix: grl
+   - Categories: garden, feeding, breeding, health, market
+   - Prefix: hdg
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1393.0 → v1394.0 (all occurrences)
-  - total modules 3752 → 3755 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1031 - v1394.0 (3755 modules, 124 kernel)" entry
+  - version v1394.0 → v1395.0 (all occurrences)
+  - total modules 3755 → 3758 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1032 - v1395.0 (3758 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/goat_admin/goat_admin.wasm modules/goose_admin/goose_admin.wasm modules/gorilla_admin/gorilla_admin.wasm modules/goat_admin/src/main.c modules/goose_admin/src/main.c modules/gorilla_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/hamster_admin/hamster_admin.wasm modules/hawk_admin/hawk_admin.wasm modules/hedgehog_admin/hedgehog_admin.wasm modules/hamster_admin/src/main.c modules/hawk_admin/src/main.c modules/hedgehog_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

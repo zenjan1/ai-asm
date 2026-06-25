@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1031 - v1394.0 (3755 modules, 124 kernel)
+- Added WASM: goat_admin (Domesticated goat horned mammal), goose_admin (Greylag goose waterfowl bird), gorilla_admin (Western gorilla great ape)
+- Total modules: 3752 → 3755 (horned mountain climber, lake waterfowl bird, jungle great ape)
+
 ## Phase 1030 - v1393.0 (3752 modules, 124 kernel)
 - Added WASM: frog_admin (Common frog amphibian jumper), gazelle_admin (Mountain gazelle swift antelope), giraffe_admin (Giraffe tallest mammal)
 - Total modules: 3749 → 3752 (pond-jumping amphibian, swift steppe antelope, tall savanna mammal)
