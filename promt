@@ -1,36 +1,36 @@
-Phase 1015: Beaver Bee Beetle Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1016: Bison Boar Buffalo Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/beaver_admin/src/main.c (Beaver Semi-Aquatic Rodent)
-   - Beaver (Castor fiber) Eurasian beaver semi-aquatic rodent management
-   - Features: body_len_cm, body_wt_kg, tail_cm, swim_speed, fur_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sw_sp,fr_idx,age_yr
+1. modules/bison_admin/src/main.c (Bison Large Bovine)
+   - Bison (Bison bison) American bison large bovine management
+   - Features: body_len_cm, body_wt_kg, horn_cm, walk_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,wk_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: dam, feeding, breeding, health, market
-   - Prefix: beaver
+   - Categories: prairie, feeding, breeding, health, market
+   - Prefix: bison
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/bee_admin/src/main.c (Bee Pollinating Insect)
-   - Bee (Apis mellifera) western honeybee pollinating insect management
-   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, stripe_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,st_idx,age_yr
+2. modules/boar_admin/src/main.c (Boar Wild Swine)
+   - Boar (Sus scrofa) wild boar swine management
+   - Features: body_len_cm, body_wt_kg, tusk_cm, run_speed, bristle_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tusk_cm,run_sp,br_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: hive, feeding, breeding, health, market
-   - Prefix: bee
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: boar
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/beetle_admin/src/main.c (Beaver Scarab Beetle)
-   - Beetle (Scarabaeus sacer) sacred scarab beetle insect management
-   - Features: body_len_cm, body_wt_g, leg_cm, crawl_speed, shell_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,cr_sp,sh_idx,age_yr
+3. modules/buffalo_admin/src/main.c (Buffalo Large Bovine)
+   - Buffalo (Syncerus caffer) African Cape buffalo large bovine management
+   - Features: body_len_cm, body_wt_kg, horn_cm, walk_speed, hide_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,wk_sp,hd_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: dung, feeding, breeding, health, market
-   - Prefix: beetle
+   - Categories: savanna, feeding, breeding, health, market
+   - Prefix: buffalo
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1377.0 → v1378.0 (all occurrences)
-  - total modules 3704 → 3707 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1015 - v1378.0 (3707 modules, 124 kernel)" entry
+  - version v1378.0 → v1379.0 (all occurrences)
+  - total modules 3707 → 3710 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1016 - v1379.0 (3710 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/beaver_admin/beaver_admin.wasm modules/bee_admin/bee_admin.wasm modules/beetle_admin/beetle_admin.wasm modules/beaver_admin/src/main.c modules/bee_admin/src/main.c modules/beetle_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/bison_admin/bison_admin.wasm modules/boar_admin/boar_admin.wasm modules/buffalo_admin/buffalo_admin.wasm modules/bison_admin/src/main.c modules/boar_admin/src/main.c modules/buffalo_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

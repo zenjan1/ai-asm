@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1015 - v1378.0 (3707 modules, 124 kernel)
+- Added WASM: beaver_admin (Eurasian semi-aquatic rodent), bee_admin (Western honeybee pollinator), beetle_admin (Sacred scarab beetle)
+- Total modules: 3704 → 3707 (dam-building aquatic rodent, striped pollen-collecting insect, dung-rolling scarab beetle)
+
 ## Phase 1014 - v1377.0 (3704 modules, 124 kernel)
 - Added WASM: badger_admin (European burrowing mustelid), barracuda_admin (Great predatory fish), bat_admin (Greater mouse-eared echolocating mammal)
 - Total modules: 3701 → 3704 (nocturnal burrowing mustelid, fast torpedo-shaped predator, cave-dwelling echolocating mammal)
