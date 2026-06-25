@@ -1,36 +1,36 @@
-Phase 995: Platypus Porcupine Python Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 996: Quail Quetzal Quokka Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/platypus_admin/src/main.c (Platypus Egg-Laying Mammal)
-   - Platypus (Ornithorhynchus anatinus) duck-billed platypus management
-   - Features: body_len_cm, body_wt_kg, bill_cm, dive_sec, venom_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bill_cm,dv_sc,vm_idx,age_yr
+1. modules/quail_admin/src/main.c (Quail Small Game Bird)
+   - Quail (Coturnix coturnix) common quail small game bird management
+   - Features: body_len_cm, body_wt_g, wing_cm, call_vol, plumage_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,cl_vl,pl_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: burrow, feeding, breeding, health, market
-   - Prefix: platypus
+   - Categories: field, feeding, breeding, health, market
+   - Prefix: quail
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/porcupine_admin/src/main.c (Porcupine Spiny Rodent)
-   - Porcupine (Erethizon dorsatum) North American porcupine management
-   - Features: body_len_cm, body_wt_kg, quill_ct, tail_len, climb_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,qu_ct,tail_ln,cl_idx,age_yr
+2. modules/quetzal_admin/src/main.c (Quetzal Tropical Bird)
+   - Quetzal (Pharomachrus mocinno) resplendent quetzal tropical bird management
+   - Features: body_len_cm, body_wt_g, tail_len_cm, color_idx, fruit_ct, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,cl_idx,fr_ct,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: forest, feeding, breeding, health, market
-   - Prefix: porcupine
+   - Categories: canopy, feeding, breeding, health, market
+   - Prefix: quetzal
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/python_admin/src/main.c (Python Large Constrictor)
-   - Python (Python regius) ball python large constrictor management
-   - Features: body_len_cm, body_wt_kg, coil_str, strike_speed, scale_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,coil_st,sk_sp,sc_idx,age_yr
+3. modules/quokka_admin/src/main.c (Quokka Small Marsupial)
+   - Quokka (Setonix brachyurus) quokka small marsupial management
+   - Features: body_len_cm, body_wt_kg, tail_len_cm, smile_idx, hop_dist, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,sm_idx,hp_dst,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: terrarium, feeding, breeding, health, market
-   - Prefix: python
+   - Categories: island, feeding, breeding, health, market
+   - Prefix: quokka
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1357.0 → v1358.0 (all occurrences)
-  - total modules 3644 → 3647 (all occurrences)
-Update CHANGELOG.md: add "## Phase 995 - v1358.0 (3647 modules, 124 kernel)" entry
+  - version v1358.0 → v1359.0 (all occurrences)
+  - total modules 3647 → 3650 (all occurrences)
+Update CHANGELOG.md: add "## Phase 996 - v1359.0 (3650 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/platypus_admin/platypus_admin.wasm modules/porcupine_admin/porcupine_admin.wasm modules/python_admin/python_admin.wasm modules/platypus_admin/src/main.c modules/porcupine_admin/src/main.c modules/python_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/quail_admin/quail_admin.wasm modules/quetzal_admin/quetzal_admin.wasm modules/quokka_admin/quokka_admin.wasm modules/quail_admin/src/main.c modules/quetzal_admin/src/main.c modules/quokka_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

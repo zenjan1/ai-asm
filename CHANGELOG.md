@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 995 - v1358.0 (3647 modules, 124 kernel)
+- Added WASM: platypus_admin (Duck-billed platypus egg-laying mammal), porcupine_admin (North American porcupine spiny rodent), python_admin (Ball python large constrictor)
+- Total modules: 3644 → 3647 (venomous aquatic mammal, quill-covered rodent, coiling constrictor snake)
+
 ## Phase 994 - v1357.0 (3644 modules, 124 kernel)
 - Added WASM: pelican_admin (Brown pelican large waterbird), penguin_admin (Emperor penguin flightless seabird), pheasant_admin (Ring-necked pheasant game bird)
 - Total modules: 3641 → 3644 (pouch-billed coastal diver, Antarctic tuxedo bird, colorful game bird)
