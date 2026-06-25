@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 985 - v1348.0 (3617 modules, 124 kernel)
+- Added WASM: lobster_admin (American lobster crustacean), locust_admin (Migratory locust insect), loon_admin (Common loon diving bird)
+- Total modules: 3614 → 3617 (hard-shell crustacean, swarming migratory insect, deep-diving waterbird)
+
 ## Phase 984 - v1347.0 (3614 modules, 124 kernel)
 - Added WASM: lemur_admin (Ring-tailed lemur primate), leopard_admin (Leopard big cat), llama_admin (Domestic llama camelid)
 - Total modules: 3611 → 3614 (vocal primate, stealthy spotted cat, wool-pack camelid)
