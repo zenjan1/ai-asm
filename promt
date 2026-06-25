@@ -1,36 +1,36 @@
-Phase 980: Hippo Hornet Horse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 981: Hyena Ibex Iguana Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/hippo_admin/src/main.c (Hippo Aquatic Mammal)
-   - Hippo (Hippopotamus amphibius) common hippopotamus aquatic mammal management
-   - Features: body_len_cm, body_wt_kg, tusk_cm, bite_kgf, submerge_min, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tusk_cm,bt_kgf,sub_mn,age_yr
+1. modules/hyena_admin/src/main.c (Hyena Scavenger Mammal)
+   - Hyena (Crocuta crocuta) spotted hyena scavenger mammal management
+   - Features: body_len_cm, body_wt_kg, jaw_kgf, laugh_vol, pack_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,jaw_kgf,lf_vl,pk_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: habitat, feeding, breeding, health, market
-   - Prefix: hippo
+   - Prefix: hyena
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/hornet_admin/src/main.c (Hornet Large Insect)
-   - Hornet (Vespa crabro) European hornet large insect management
-   - Features: body_len_cm, body_wt_g, wing_span_cm, sting_idx, nest_ct, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,st_idx,n_ct,age_yr
+2. modules/ibex_admin/src/main.c (Ibex Mountain Goat)
+   - Ibex (Capra ibex) Alpine ibex mountain goat management
+   - Features: body_len_cm, body_wt_kg, horn_cm, climb_idx, hoof_grip, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,cl_idx,hf_gr,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: nest, feeding, breeding, health, market
-   - Prefix: hornet
+   - Categories: habitat, feeding, breeding, health, market
+   - Prefix: ibex
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/horse_admin/src/main.c (Horse Equine Mammal)
-   - Horse (Equus caballus) domestic horse equine mammal management
-   - Features: body_len_cm, body_wt_kg, height_cm, gallop_kmh, hoof_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ht_cm,gl_kh,hf_idx,age_yr
+3. modules/iguana_admin/src/main.c (Iguana Large Lizard)
+   - Iguana (Iguana iguana) green iguana large lizard management
+   - Features: body_len_cm, body_wt_kg, tail_cm, crest_cm, dewlap_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,cr_cm,dw_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: stable, feeding, breeding, health, market
-   - Prefix: horse
+   - Categories: enclosure, feeding, breeding, health, market
+   - Prefix: iguana
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1342.0 → v1343.0 (all occurrences)
-  - total modules 3599 → 3602 (all occurrences)
-Update CHANGELOG.md: add "## Phase 980 - v1343.0 (3602 modules, 124 kernel)" entry
+  - version v1343.0 → v1344.0 (all occurrences)
+  - total modules 3602 → 3605 (all occurrences)
+Update CHANGELOG.md: add "## Phase 981 - v1344.0 (3605 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/hippo_admin/hippo_admin.wasm modules/hornet_admin/hornet_admin.wasm modules/horse_admin/horse_admin.wasm modules/hippo_admin/src/main.c modules/hornet_admin/src/main.c modules/horse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/hyena_admin/hyena_admin.wasm modules/ibex_admin/ibex_admin.wasm modules/iguana_admin/iguana_admin.wasm modules/hyena_admin/src/main.c modules/ibex_admin/src/main.c modules/iguana_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

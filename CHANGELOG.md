@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 980 - v1343.0 (3602 modules, 124 kernel)
+- Added WASM: hippo_admin (Common hippopotamus aquatic mammal), hornet_admin (European hornet large insect), horse_admin (Domestic horse equine mammal)
+- Total modules: 3599 → 3602 (massive semi-aquatic herbivore, largest European wasp, domestic equine)
+
 ## Phase 979 - v1342.0 (3599 modules, 124 kernel)
 - Added WASM: hedgehog_admin (European hedgehog spiny mammal), heron_admin (Grey heron wading bird), herring_admin (Atlantic herring forage fish)
 - Total modules: 3596 → 3599 (spiny insectivore, fish-catching wader, schooling forage fish)
