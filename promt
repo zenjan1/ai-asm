@@ -1,36 +1,36 @@
-Phase 1008: Walrus Weasel Whale Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1009: Wolf Wombat Woodpecker Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/walrus_admin/src/main.c (Walrus Arctic Marine Mammal)
-   - Walrus (Odobenus rosmarus) Atlantic walrus arctic marine mammal management
-   - Features: body_len_cm, body_wt_kg, tusk_cm, swim_speed, whisker_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tusk_cm,sw_sp,wh_idx,age_yr
-   - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: arctic, feeding, breeding, health, market
-   - Prefix: walrus
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-2. modules/weasel_admin/src/main.c (Weasel Small Predator)
-   - Weasel (Mustela nivalis) least weasel small predator management
-   - Features: body_len_cm, body_wt_g, tail_cm, run_speed, fur_idx, age_year
+1. modules/wolf_admin/src/main.c (Wolf Pack Predator)
+   - Wolf (Canis lupus) gray wolf pack predator management
+   - Features: body_len_cm, body_wt_kg, tail_cm, run_speed, fur_idx, age_year
    - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,run_sp,fr_idx,age_yr
-   - Pattern: follow abelia_admin pattern
-   - Categories: meadow, feeding, breeding, health, market
-   - Prefix: weasel
+   - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: wolf
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/whale_admin/src/main.c (Whale Large Marine Mammal)
-   - Whale (Balaenoptera musculus) blue whale large marine mammal management
-   - Features: body_len_cm, body_wt_kg, fin_cm, swim_speed, blow_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,bl_idx,age_yr
+2. modules/wombat_admin/src/main.c (Wombat Burrowing Marsupial)
+   - Wombat (Vombatus ursinus) common wombat burrowing marsupial management
+   - Features: body_len_cm, body_wt_kg, claw_cm, dig_speed, pouch_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_cm,dg_sp,po_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: pelagic, feeding, breeding, health, market
-   - Prefix: whale
+   - Categories: burrow, feeding, breeding, health, market
+   - Prefix: wombat
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/woodpecker_admin/src/main.c (Woodpecker Tree Bird)
+   - Woodpecker (Dryocopus martius) black woodpecker tree bird management
+   - Features: body_len_cm, body_wt_g, beak_cm, peck_speed, crest_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,pk_sp,cr_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: woodland, feeding, breeding, health, market
+   - Prefix: woodpecker
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1370.0 → v1371.0 (all occurrences)
-  - total modules 3683 → 3686 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1008 - v1371.0 (3686 modules, 124 kernel)" entry
+  - version v1371.0 → v1372.0 (all occurrences)
+  - total modules 3686 → 3689 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1009 - v1372.0 (3689 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/walrus_admin/walrus_admin.wasm modules/weasel_admin/weasel_admin.wasm modules/whale_admin/whale_admin.wasm modules/walrus_admin/src/main.c modules/weasel_admin/src/main.c modules/whale_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/wolf_admin/wolf_admin.wasm modules/wombat_admin/wombat_admin.wasm modules/woodpecker_admin/woodpecker_admin.wasm modules/wolf_admin/src/main.c modules/wombat_admin/src/main.c modules/woodpecker_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

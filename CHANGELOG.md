@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1008 - v1371.0 (3686 modules, 124 kernel)
+- Added WASM: walrus_admin (Atlantic walrus arctic marine mammal), weasel_admin (Least weasel small predator), whale_admin (Blue whale large marine mammal)
+- Total modules: 3683 → 3686 (tusked arctic pinniped, swift small mustelid, largest animal on Earth)
+
 ## Phase 1007 - v1370.0 (3683 modules, 124 kernel)
 - Added WASM: turtle_admin (Green sea turtle shelled reptile), viper_admin (European adder venomous snake), vulture_admin (Griffon vulture scavenger bird)
 - Total modules: 3680 → 3683 (ocean-dwelling armored reptile, venomous heathland snake, large soaring scavenger bird)
