@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1007 - v1370.0 (3683 modules, 124 kernel)
+- Added WASM: turtle_admin (Green sea turtle shelled reptile), viper_admin (European adder venomous snake), vulture_admin (Griffon vulture scavenger bird)
+- Total modules: 3680 → 3683 (ocean-dwelling armored reptile, venomous heathland snake, large soaring scavenger bird)
+
 ## Phase 1006 - v1369.0 (3680 modules, 124 kernel)
 - Added WASM: toad_admin (Common toad amphibian), toucan_admin (Toco toucan tropical bird), turkey_admin (Wild turkey poultry bird)
 - Total modules: 3677 → 3680 (warty pond-dwelling amphibian, large-billed colorful bird, fan-tailed farm bird)

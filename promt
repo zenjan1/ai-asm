@@ -1,36 +1,36 @@
-Phase 1007: Turtle Viper Vulture Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1008: Walrus Weasel Whale Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/turtle_admin/src/main.c (Turtle Shelled Reptile)
-   - Turtle (Chelonia mydas) green sea turtle shelled reptile management
-   - Features: shell_cm, body_wt_kg, flipper_cm, swim_speed, scute_idx, age_year
-   - Data: 16 entries with location,shl_cm,bdy_wt,flpr_cm,sw_sp,sc_idx,age_yr
+1. modules/walrus_admin/src/main.c (Walrus Arctic Marine Mammal)
+   - Walrus (Odobenus rosmarus) Atlantic walrus arctic marine mammal management
+   - Features: body_len_cm, body_wt_kg, tusk_cm, swim_speed, whisker_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tusk_cm,sw_sp,wh_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: ocean, feeding, breeding, health, market
-   - Prefix: turtle
+   - Categories: arctic, feeding, breeding, health, market
+   - Prefix: walrus
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/viper_admin/src/main.c (Viper Venomous Snake)
-   - Viper (Vipera berus) European adder venomous snake management
-   - Features: body_len_cm, body_wt_kg, fang_cm, strike_speed, scale_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fang_cm,st_sp,sc_idx,age_yr
+2. modules/weasel_admin/src/main.c (Weasel Small Predator)
+   - Weasel (Mustela nivalis) least weasel small predator management
+   - Features: body_len_cm, body_wt_g, tail_cm, run_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,run_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: heathland, feeding, breeding, health, market
-   - Prefix: viper
+   - Categories: meadow, feeding, breeding, health, market
+   - Prefix: weasel
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/vulture_admin/src/main.c (Vulture Scavenger Bird)
-   - Vulture (Gyps fulvus) griffon vulture scavenger bird management
-   - Features: body_len_cm, body_wt_kg, wing_cm, soar_speed, plum_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,sr_sp,pl_idx,age_yr
+3. modules/whale_admin/src/main.c (Whale Large Marine Mammal)
+   - Whale (Balaenoptera musculus) blue whale large marine mammal management
+   - Features: body_len_cm, body_wt_kg, fin_cm, swim_speed, blow_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,bl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: savanna, feeding, breeding, health, market
-   - Prefix: vulture
+   - Categories: pelagic, feeding, breeding, health, market
+   - Prefix: whale
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1369.0 → v1370.0 (all occurrences)
-  - total modules 3680 → 3683 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1007 - v1370.0 (3683 modules, 124 kernel)" entry
+  - version v1370.0 → v1371.0 (all occurrences)
+  - total modules 3683 → 3686 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1008 - v1371.0 (3686 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/turtle_admin/turtle_admin.wasm modules/viper_admin/viper_admin.wasm modules/vulture_admin/vulture_admin.wasm modules/turtle_admin/src/main.c modules/viper_admin/src/main.c modules/vulture_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/walrus_admin/walrus_admin.wasm modules/weasel_admin/weasel_admin.wasm modules/whale_admin/whale_admin.wasm modules/walrus_admin/src/main.c modules/weasel_admin/src/main.c modules/whale_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
