@@ -1,36 +1,36 @@
-Phase 1016: Bison Boar Buffalo Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1017: Camel Canary Cat Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/bison_admin/src/main.c (Bison Large Bovine)
-   - Bison (Bison bison) American bison large bovine management
-   - Features: body_len_cm, body_wt_kg, horn_cm, walk_speed, fur_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,wk_sp,fr_idx,age_yr
+1. modules/camel_admin/src/main.c (Camel Desert Bovine)
+   - Camel (Camelus dromedarius) dromedary camel desert ungulate management
+   - Features: body_len_cm, body_wt_kg, hump_cm, walk_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hump_cm,wk_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: prairie, feeding, breeding, health, market
-   - Prefix: bison
+   - Categories: desert, feeding, breeding, health, market
+   - Prefix: camel
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/boar_admin/src/main.c (Boar Wild Swine)
-   - Boar (Sus scrofa) wild boar swine management
-   - Features: body_len_cm, body_wt_kg, tusk_cm, run_speed, bristle_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tusk_cm,run_sp,br_idx,age_yr
+2. modules/canary_admin/src/main.c (Canary Songbird)
+   - Canary (Serinus canaria) domestic canary songbird management
+   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, plum_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,pm_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: forest, feeding, breeding, health, market
-   - Prefix: boar
+   - Categories: cage, feeding, breeding, health, market
+   - Prefix: canary
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/buffalo_admin/src/main.c (Buffalo Large Bovine)
-   - Buffalo (Syncerus caffer) African Cape buffalo large bovine management
-   - Features: body_len_cm, body_wt_kg, horn_cm, walk_speed, hide_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,wk_sp,hd_idx,age_yr
+3. modules/cat_admin/src/main.c (Cat Feline Predator)
+   - Cat (Felis catus) domestic cat feline predator management
+   - Features: body_len_cm, body_wt_kg, claw_cm, run_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_cm,run_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: savanna, feeding, breeding, health, market
-   - Prefix: buffalo
+   - Categories: household, feeding, breeding, health, market
+   - Prefix: cat
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1378.0 → v1379.0 (all occurrences)
-  - total modules 3707 → 3710 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1016 - v1379.0 (3710 modules, 124 kernel)" entry
+  - version v1379.0 → v1380.0 (all occurrences)
+  - total modules 3710 → 3713 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1017 - v1380.0 (3713 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/bison_admin/bison_admin.wasm modules/boar_admin/boar_admin.wasm modules/buffalo_admin/buffalo_admin.wasm modules/bison_admin/src/main.c modules/boar_admin/src/main.c modules/buffalo_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/camel_admin/camel_admin.wasm modules/canary_admin/canary_admin.wasm modules/cat_admin/cat_admin.wasm modules/camel_admin/src/main.c modules/canary_admin/src/main.c modules/cat_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1016 - v1379.0 (3710 modules, 124 kernel)
+- Added WASM: bison_admin (American large bovine), boar_admin (Wild boar swine), buffalo_admin (African Cape bovine)
+- Total modules: 3707 → 3710 (massive prairie-dwelling bovine, tusked forest omnivore, large-horned African bovine)
+
 ## Phase 1015 - v1378.0 (3707 modules, 124 kernel)
 - Added WASM: beaver_admin (Eurasian semi-aquatic rodent), bee_admin (Western honeybee pollinator), beetle_admin (Sacred scarab beetle)
 - Total modules: 3704 → 3707 (dam-building aquatic rodent, striped pollen-collecting insect, dung-rolling scarab beetle)
