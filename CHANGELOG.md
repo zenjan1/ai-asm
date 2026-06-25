@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1061 - v1424.0 (3845 modules, 124 kernel)
+- Added WASM: gerenuk_admin (Gerenuk long-necked antelope), addax_admin (Addax desert antelope), bongo_admin (Bongo forest antelope)
+- Total modules: 3842 → 3845 (gerenuk, addax, bongo)
+
 ## Phase 1060 - v1423.0 (3842 modules, 124 kernel)
 - Added WASM: gnu_admin (Gnu blue wildebeest), hartebeest_admin (Hartebeest large antelope), topi_admin (Topi fast antelope)
 - Total modules: 3839 → 3842 (blue wildebeest, Coke hartebeest, topi)
