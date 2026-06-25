@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1029 - v1392.0 (3749 modules, 124 kernel)
+- Added WASM: ferret_admin (Domesticated ferret small predator), flamingo_admin (Greater flamingo pink wading bird), fox_admin (Red fox cunning canid mammal)
+- Total modules: 3746 → 3749 (small burrowing predator, pink lagoon wader, cunning red canid)
+
 ## Phase 1028 - v1391.0 (3746 modules, 124 kernel)
 - Added WASM: elk_admin (North American elk large antlered mammal), emu_admin (Australian emu large flightless bird), falcon_admin (Peregrine falcon fast diving raptor)
 - Total modules: 3743 → 3746 (large antlered forest mammal, Australian outback flightless bird, fast diving cliff raptor)
