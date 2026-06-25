@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 978 - v1341.0 (3596 modules, 124 kernel)
+- Added WASM: hare_admin (European hare lagomorph), harpy_admin (Harpy eagle raptor), hawk_admin (Common buzzard hawk raptor)
+- Total modules: 3593 → 3596 (fast leaping lagomorph, powerful forest eagle, soaring buzzard)
+
 ## Phase 977 - v1340.0 (3593 modules, 124 kernel)
 - Added WASM: hagfish_admin (Atlantic hagfish jawless fish), halibut_admin (Atlantic halibut flatfish), hamster_admin (Golden hamster rodent)
 - Total modules: 3590 → 3593 (slime-producing jawless fish, largest flatfish, popular pet rodent)
