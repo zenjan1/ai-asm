@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1013 - v1376.0 (3701 modules, 124 kernel)
+- Added WASM: ape_admin (Western gorilla great ape), armadillo_admin (Nine-banded armored mammal), avocet_admin (Pied wading shorebird)
+- Total modules: 3698 → 3701 (large forest-dwelling primate, burrowing armored mammal, curved-bill wading bird)
+
 ## Phase 1012 - v1375.0 (3698 modules, 124 kernel)
 - Added WASM: adder_admin (Venomous viper snake), albatross_admin (Wandering oceanic seabird), antelope_admin (Blackbuck swift ungulate)
 - Total modules: 3695 → 3698 (venomous heathland viper, large-winged oceanic seabird, swift horned ungulate)
