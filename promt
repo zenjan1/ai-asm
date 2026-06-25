@@ -1,36 +1,36 @@
-Phase 1004: Stork Swan Swift Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1005: Swordfish Tetra Tiger Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/stork_admin/src/main.c (Stork Large Wading Bird)
-   - Stork (Ciconia ciconia) white stork large wading bird management
-   - Features: body_len_cm, body_wt_kg, wing_cm, fly_speed, bill_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,bl_idx,age_yr
+1. modules/swordfish_admin/src/main.c (Swordfish Billfish)
+   - Swordfish (Xiphias gladius) swordfish billfish management
+   - Features: body_len_cm, body_wt_kg, sword_cm, swim_speed, fin_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,sword_cm,sw_sp,fn_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: wetland, feeding, breeding, health, market
-   - Prefix: stork
+   - Categories: ocean, feeding, breeding, health, market
+   - Prefix: swordfish
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/swan_admin/src/main.c (Swan Large Waterfowl)
-   - Swan (Cygnus olor) mute swan large waterfowl management
-   - Features: body_len_cm, body_wt_kg, wing_cm, swim_speed, neck_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,sw_sp,nk_idx,age_yr
+2. modules/tetra_admin/src/main.c (Tetra Freshwater Fish)
+   - Tetra (Tetraodon tetra) freshwater tetra fish management
+   - Features: body_len_cm, body_wt_g, fin_cm, swim_speed, color_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,cl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: lake, feeding, breeding, health, market
-   - Prefix: swan
+   - Categories: aquarium, feeding, breeding, health, market
+   - Prefix: tetra
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/swift_admin/src/main.c (Swift Fast Flying Bird)
-   - Swift (Apus apus) common swift fast flying bird management
-   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, plg_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,pg_idx,age_yr
+3. modules/tiger_admin/src/main.c (Tiger Big Cat Predator)
+   - Tiger (Panthera tigris) Bengal tiger big cat predator management
+   - Features: body_len_cm, body_wt_kg, claw_cm, run_speed, stripe_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_cm,run_sp,st_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: skyline, feeding, breeding, health, market
-   - Prefix: swift
+   - Categories: jungle, feeding, breeding, health, market
+   - Prefix: tiger
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1366.0 → v1367.0 (all occurrences)
-  - total modules 3671 → 3674 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1004 - v1367.0 (3674 modules, 124 kernel)" entry
+  - version v1367.0 → v1368.0 (all occurrences)
+  - total modules 3674 → 3677 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1005 - v1368.0 (3677 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/stork_admin/stork_admin.wasm modules/swan_admin/swan_admin.wasm modules/swift_admin/swift_admin.wasm modules/stork_admin/src/main.c modules/swan_admin/src/main.c modules/swift_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/swordfish_admin/swordfish_admin.wasm modules/tetra_admin/tetra_admin.wasm modules/tiger_admin/tiger_admin.wasm modules/swordfish_admin/src/main.c modules/tetra_admin/src/main.c modules/tiger_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

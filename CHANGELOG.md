@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1004 - v1367.0 (3674 modules, 124 kernel)
+- Added WASM: stork_admin (White stork large wading bird), swan_admin (Mute swan large waterfowl), swift_admin (Common swift fast flying bird)
+- Total modules: 3671 → 3674 (long-legged wetland wader, elegant white waterfowl, ultra-fast aerial insectivore)
+
 ## Phase 1003 - v1366.0 (3671 modules, 124 kernel)
 - Added WASM: squid_admin (Humboldt squid cephalopod), squirrel_admin (Eastern gray squirrel rodent), starfish_admin (Common starfish echinoderm)
 - Total modules: 3668 → 3671 (deep-sea jet-propelled cephalopod, bushy-tailed park rodent, five-armed tidepool echinoderm)
