@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1033 - v1396.0 (3761 modules, 124 kernel)
+- Added WASM: hippo_admin (Common hippopotamus large semi-aquatic mammal), horse_admin (Domesticated horse equine mammal), hyena_admin (Spotted hyena scavenger canid)
+- Total modules: 3758 → 3761 (river-dwelling aquatic mammal, domesticated riding equine, spotted scavenging canid)
+
 ## Phase 1032 - v1395.0 (3758 modules, 124 kernel)
 - Added WASM: hamster_admin (Golden hamster small rodent), hawk_admin (Common hawk medium raptor), hedgehog_admin (European hedgehog spiny mammal)
 - Total modules: 3755 → 3758 (small caged rodent pet, forest soaring raptor, garden spiny mammal)

@@ -1,36 +1,36 @@
-Phase 1033: Hippo Horse Hyena Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1034: Iguana Impala Insect Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/hippo_admin/src/main.c (Hippo Large Semi-Aquatic Mammal)
-   - Hippo (Hippopotamus amphibius) common hippopotamus large semi-aquatic mammal management
-   - Features: body_len_cm, body_wt_kg, tusk_cm, swim_speed, hide_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tusk_cm,sw_sp,hd_idx,age_yr
+1. modules/iguana_admin/src/main.c (Iguana Large Tree Reptile)
+   - Iguana (Iguana iguana) green iguana large tree reptile management
+   - Features: body_len_cm, body_wt_kg, tail_cm, climb_speed, scale_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,cl_sp,sc_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: river, feeding, breeding, health, market
-   - Prefix: hippo
+   - Categories: tree, feeding, breeding, health, market
+   - Prefix: igua
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/horse_admin/src/main.c (Horse Domesticated Equine Mammal)
-   - Horse (Equus caballus) domesticated horse equine mammal management
-   - Features: body_len_cm, body_wt_kg, leg_cm, run_speed, mane_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,rn_sp,mn_idx,age_yr
-   - Pattern: follow abelia_admin pattern
-   - Categories: stable, feeding, breeding, health, market
-   - Prefix: horse
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-3. modules/hyena_admin/src/main.c (Hyena Scavenger Canid Mammal)
-   - Hyena (Crocuta crocuta) spotted hyena scavenger canid mammal management
-   - Features: body_len_cm, body_wt_kg, jaw_cm, run_speed, spot_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,jaw_cm,rn_sp,sp_idx,age_yr
+2. modules/impala_admin/src/main.c (Impala Graceful Antelope)
+   - Impala (Aepyceros melampus) impala graceful antelope management
+   - Features: body_len_cm, body_wt_kg, horn_cm, jump_ht, coat_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,jp_ht,ct_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: savanna, feeding, breeding, health, market
-   - Prefix: hyen
+   - Prefix: imp
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/insect_admin/src/main.c (Insect Common Arthropod)
+   - Insect (Insecta) common insect arthropod management
+   - Features: body_len_mm, body_wt_mg, wing_mm, fly_speed, seg_idx, age_week
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wng_mm,fl_sp,sg_idx,age_wk
+   - Pattern: follow abelia_admin pattern
+   - Categories: field, feeding, breeding, health, market
+   - Prefix: ins
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1395.0 → v1396.0 (all occurrences)
-  - total modules 3758 → 3761 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1033 - v1396.0 (3761 modules, 124 kernel)" entry
+  - version v1396.0 → v1397.0 (all occurrences)
+  - total modules 3761 → 3764 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1034 - v1397.0 (3764 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/hippo_admin/hippo_admin.wasm modules/horse_admin/horse_admin.wasm modules/hyena_admin/hyena_admin.wasm modules/hippo_admin/src/main.c modules/horse_admin/src/main.c modules/hyena_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/iguana_admin/iguana_admin.wasm modules/impala_admin/impala_admin.wasm modules/insect_admin/insect_admin.wasm modules/iguana_admin/src/main.c modules/impala_admin/src/main.c modules/insect_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
