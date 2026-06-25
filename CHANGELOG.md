@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1083 - v1446.0 (3911 modules, 124 kernel)
+- Added WASM: rock_wallabies_admin (Rock Wallabies small wallabies), peragales_admin (Peragales striped bandicoots), isoodon_admin (Isoodon short-nosed bandicoots)
+- Total modules: 3908 → 3911 (rock_wallabies, peragales, isoodon)
+
 ## Phase 1082 - v1445.0 (3908 modules, 124 kernel)
 - Added WASM: rock_wallaby_admin (Rock Wallaby small wallabies), peragale_admin (Peragale striped bandicoots), perameles_admin (Perameles bandicoots)
 - Total modules: 3905 → 3908 (rock_wallaby, peragale, perameles)
