@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 991 - v1354.0 (3635 modules, 124 kernel)
+- Added WASM: ocelot_admin (Ocelot spotted wildcat), octopus_admin (Common octopus cephalopod), oriole_admin (Baltimore oriole songbird)
+- Total modules: 3632 → 3635 (rosette-spotted wildcat, eight-armed cephalopod, orange-black songbird)
+
 ## Phase 990 - v1353.0 (3632 modules, 124 kernel)
 - Added WASM: narwhal_admin (Narwhal Arctic tusked whale), newt_admin (Crested newt salamander amphibian), nightingale_admin (Common nightingale songbird)
 - Total modules: 3629 → 3632 (tusked Arctic whale, aquatic salamander, melodious nocturnal songbird)
