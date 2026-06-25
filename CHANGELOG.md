@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 999 - v1362.0 (3659 modules, 124 kernel)
+- Added WASM: salmon_admin (Atlantic salmon migratory fish), sardine_admin (European sardine small fish), scallop_admin (Great scallop bivalve mollusk)
+- Total modules: 3656 → 3659 (anadromous scaled fish, small silver schooling fish, fan-shaped bivalve shellfish)
+
 ## Phase 998 - v1361.0 (3656 modules, 124 kernel)
 - Added WASM: reindeer_admin (Reindeer Arctic deer), rhino_admin (Indian rhinoceros large herbivore), robin_admin (European robin songbird)
 - Total modules: 3653 → 3656 (Arctic antlered deer, large horned herbivore, red-breasted songbird)

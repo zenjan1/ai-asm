@@ -1,36 +1,36 @@
-Phase 999: Salmon Sardine Scallop Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1000: Seahorse Shark Sheep Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/salmon_admin/src/main.c (Salmon Migratory Fish)
-   - Salmon (Salmo salar) Atlantic salmon migratory fish management
-   - Features: body_len_cm, body_wt_kg, fin_cm, swim_speed, scale_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,sc_idx,age_yr
+1. modules/seahorse_admin/src/main.c (Seahorse Marine Fish)
+   - Seahorse (Hippocampus abdominalis) giant seahorse marine fish management
+   - Features: body_len_cm, body_wt_g, tail_cm, swim_speed, ridge_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sw_sp,rg_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: river, feeding, breeding, health, market
-   - Prefix: salmon
+   - Categories: reef, feeding, breeding, health, market
+   - Prefix: seahorse
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/sardine_admin/src/main.c (Sardine Small Fish)
-   - Sardine (Sardina pilchardus) European sardine small fish management
-   - Features: body_len_cm, body_wt_g, fin_cm, swim_speed, silver_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,sv_idx,age_yr
+2. modules/shark_admin/src/main.c (Shark Apex Predator)
+   - Shark (Carcharodon carcharias) great white shark apex predator management
+   - Features: body_len_cm, body_wt_kg, tooth_cm, swim_speed, fin_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tooth_cm,sw_sp,fn_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: ocean, feeding, breeding, health, market
-   - Prefix: sardine
+   - Categories: pelagic, feeding, breeding, health, market
+   - Prefix: shark
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/scallop_admin/src/main.c (Scallop Bivalve Mollusk)
-   - Scallop (Pecten maximus) Great scallop bivalve mollusk management
-   - Features: shell_cm, body_wt_g, adductor_cm, swim_speed, shell_idx, age_year
-   - Data: 16 entries with location,shl_cm,bdy_wt,add_cm,sw_sp,sh_idx,age_yr
+3. modules/sheep_admin/src/main.c (Sheep Woolly Livestock)
+   - Sheep (Ovis aries) domestic sheep woolly livestock management
+   - Features: body_len_cm, body_wt_kg, wool_cm, walk_speed, fleece_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wool_cm,wk_sp,fl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: seabed, feeding, breeding, health, market
-   - Prefix: scallop
+   - Categories: pasture, feeding, breeding, health, market
+   - Prefix: sheep
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1361.0 → v1362.0 (all occurrences)
-  - total modules 3656 → 3659 (all occurrences)
-Update CHANGELOG.md: add "## Phase 999 - v1362.0 (3659 modules, 124 kernel)" entry
+  - version v1362.0 → v1363.0 (all occurrences)
+  - total modules 3659 → 3662 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1000 - v1363.0 (3662 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/salmon_admin/salmon_admin.wasm modules/sardine_admin/sardine_admin.wasm modules/scallop_admin/scallop_admin.wasm modules/salmon_admin/src/main.c modules/sardine_admin/src/main.c modules/scallop_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/seahorse_admin/seahorse_admin.wasm modules/shark_admin/shark_admin.wasm modules/sheep_admin/sheep_admin.wasm modules/seahorse_admin/src/main.c modules/shark_admin/src/main.c modules/sheep_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
