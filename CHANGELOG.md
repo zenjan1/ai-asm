@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1071 - v1434.0 (3875 modules, 124 kernel)
+- Added WASM: quoll_admin (Quoll spotted carnivorous marsupial), planigale_admin (Planigale tiny marsupial), antechinus_admin (Antechinus marsupial mouse)
+- Total modules: 3872 → 3875 (quoll, planigale, antechinus)
+
 ## Phase 1070 - v1433.0 (3872 modules, 124 kernel)
 - Added WASM: woylie_admin (Woylie brush-tailed bettong), numbats_admin (Numbats striped anteaters), wallabies_admin (Wallabies small macropods)
 - Total modules: 3869 → 3872 (woylie, numbats, wallabies)
