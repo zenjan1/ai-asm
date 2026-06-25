@@ -1,36 +1,36 @@
-Phase 1011: Yellowjacket Zebra Zebu Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1012: Adder Albatross Antelope Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/yellowjacket_admin/src/main.c (Yellowjacket Social Wasp)
-   - Yellowjacket (Vespula vulgaris) common yellowjacket social wasp management
-   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, stripe_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,st_idx,age_yr
+1. modules/adder_admin/src/main.c (Adder Viper Snake)
+   - Adder (Vipera berus) venomous viper snake management
+   - Features: body_len_cm, body_wt_g, fang_cm, strike_speed, scale_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fang_cm,stk_sp,sc_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: nest, feeding, breeding, health, market
-   - Prefix: yellowjacket
+   - Categories: heathland, feeding, breeding, health, market
+   - Prefix: adder
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/zebra_admin/src/main.c (Zebra Striped Equine)
-   - Zebra (Equus quagga) plains zebra striped equine management
-   - Features: body_len_cm, body_wt_kg, hoof_cm, run_speed, stripe_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hoof_cm,run_sp,st_idx,age_yr
+2. modules/albatross_admin/src/main.c (Albatross Oceanic Seabird)
+   - Albatross (Diomedea exulans) wandering albatross oceanic seabird management
+   - Features: body_len_cm, body_wt_kg, wing_cm, fly_speed, feather_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,ft_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: ocean, feeding, breeding, health, market
+   - Prefix: albatross
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/antelope_admin/src/main.c (Antelope Swift Ungulate)
+   - Antelope (Antilope cervicapra) blackbuck swift ungulate management
+   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, hair_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,run_sp,hr_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: savanna, feeding, breeding, health, market
-   - Prefix: zebra
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-3. modules/zebu_admin/src/main.c (Zebu Humped Cattle)
-   - Zebu (Bos indicus) humped zebu cattle management
-   - Features: body_len_cm, body_wt_kg, horn_cm, walk_speed, hump_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,wk_sp,hm_idx,age_yr
-   - Pattern: follow abelia_admin pattern
-   - Categories: grassland, feeding, breeding, health, market
-   - Prefix: zebu
+   - Prefix: antelope
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1373.0 → v1374.0 (all occurrences)
-  - total modules 3692 → 3695 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1011 - v1374.0 (3695 modules, 124 kernel)" entry
+  - version v1374.0 → v1375.0 (all occurrences)
+  - total modules 3695 → 3698 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1012 - v1375.0 (3698 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/yellowjacket_admin/yellowjacket_admin.wasm modules/zebra_admin/zebra_admin.wasm modules/zebu_admin/zebu_admin.wasm modules/yellowjacket_admin/src/main.c modules/zebra_admin/src/main.c modules/zebu_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/adder_admin/adder_admin.wasm modules/albatross_admin/albatross_admin.wasm modules/antelope_admin/antelope_admin.wasm modules/adder_admin/src/main.c modules/albatross_admin/src/main.c modules/antelope_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

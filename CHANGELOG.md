@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1011 - v1374.0 (3695 modules, 124 kernel)
+- Added WASM: yellowjacket_admin (Common yellowjacket social wasp), zebra_admin (Plains zebra striped equine), zebu_admin (Humped zebu cattle)
+- Total modules: 3692 → 3695 (stinging yellow social wasp, striped African equine, humped South Asian cattle)
+
 ## Phase 1010 - v1373.0 (3692 modules, 124 kernel)
 - Added WASM: worm_admin (Common earthworm invertebrate), wren_admin (Eurasian wren small songbird), yak_admin (Domestic yak high altitude bovine)
 - Total modules: 3689 → 3692 (segmented soil decomposer, tiny loud hedgerow bird, shaggy high-altitude bovid)
