@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1010 - v1373.0 (3692 modules, 124 kernel)
+- Added WASM: worm_admin (Common earthworm invertebrate), wren_admin (Eurasian wren small songbird), yak_admin (Domestic yak high altitude bovine)
+- Total modules: 3689 → 3692 (segmented soil decomposer, tiny loud hedgerow bird, shaggy high-altitude bovid)
+
 ## Phase 1009 - v1372.0 (3689 modules, 124 kernel)
 - Added WASM: wolf_admin (Gray wolf pack predator), wombat_admin (Common wombat burrowing marsupial), woodpecker_admin (Black woodpecker tree bird)
 - Total modules: 3686 → 3689 (alpha pack canid, cube-dropping Australian marsupial, drumming forest bird)
