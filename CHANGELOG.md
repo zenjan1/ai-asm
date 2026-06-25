@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1017 - v1380.0 (3713 modules, 124 kernel)
+- Added WASM: camel_admin (Dromedary desert ungulate), canary_admin (Domestic songbird), cat_admin (Domestic feline predator)
+- Total modules: 3710 → 3713 (single-humped desert ungulate, colorful singing songbird, domestic feline predator)
+
 ## Phase 1016 - v1379.0 (3710 modules, 124 kernel)
 - Added WASM: bison_admin (American large bovine), boar_admin (Wild boar swine), buffalo_admin (African Cape bovine)
 - Total modules: 3707 → 3710 (massive prairie-dwelling bovine, tusked forest omnivore, large-horned African bovine)

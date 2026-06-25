@@ -1,6 +1,6 @@
-/* canary_admin: Canary (Serinus canaria) songbird aviary management (v1.0)
- * Canary breeding, song training, health, exhibition, market
- * Features: song length, plumage color, cage volume, seed gram, nest count, molt week
+/* canary_admin: Canary (Serinus canaria) domestic songbird (v1.0)
+ * Canary cage, feeding, breeding, health, market
+ * Features: body_len_cm, body_wt_g, wing_cm, fly_speed, plum_idx, age_year
  */
 #include <stddef.h>
 __attribute__((import_module("host"), import_name("alloc"))) extern unsigned int host_alloc(unsigned int, unsigned int);
@@ -8,25 +8,24 @@ __attribute__((import_module("host"), import_name("print"))) extern void host_pr
 __attribute__((import_module("host"), import_name("exit"))) extern void host_exit(int);
 __attribute__((import_module("host"), import_name("get_argv"))) extern int host_get_argv(unsigned int, unsigned int);
 #define N 16
-typedef struct{int id,location,song_len,plum_col,cage_vol,seed_gm,nest_ct,molt_wk,active;} can_t;
-typedef struct{int n_breed,n_song,n_health,n_exhibit,n_mkt,t_song,t_plum,t_cage,t_seed,t_nest;} can_state_t;
-static can_t canps[N],canst[N-2],canhs[N-4],canex[N-6],canms[N-6]; static can_state_t st; static int init;
+typedef struct{int id,location,bdy_ln,bdy_wt,wing_cm,fl_sp,pm_idx,age_yr,active;} cnry_t;
+typedef struct{int n_cage,n_feed,n_breed,n_health,n_mkt,t_ln,t_wt,t_wing,t_fl,t_pm;} cnry_state_t;
+static cnry_t cgl[N],cgf[N-2],cgb[N-4],cgh[N-6],cgm[N-6]; static cnry_state_t st; static int init;
 static void ps(const char*s){host_print(s);} static void pi(int v){char b[32];int i=0;if(v<0){b[i++]='-';v=-v;}if(v==0){b[i++]='0';}else{int s=i;while(v>0){b[i++]='0'+(v%10);v/=10;}int e=i-1;while(s<e){char t=b[s];b[s]=b[e];b[e]=t;s++;e--;}}b[i]='\0';host_print(b);}
-static int add(can_t*a,int*cnt,int*sum,int mx,int lc,int sl,int pc,int cv,int sg,int nc,int mw){if(*cnt>=mx)return -1;can_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->song_len=sl;x->plum_col=pc;x->cage_vol=cv;x->seed_gm=sg;x->nest_ct=nc;x->molt_wk=mw;x->active=1;*sum+=sl;(*cnt)++;ps("[CAN] Canary ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" sl=");pi(sl);ps(" pc=");pi(pc);ps(" cv=");pi(cv);ps(" sg=");pi(sg);ps(" nc=");pi(nc);ps(" mw=");pi(mw);ps("\n");return *cnt-1;}
-int can_init(void){if(init)return -1;st.n_breed=0;st.n_song=0;st.n_health=0;st.n_exhibit=0;st.n_mkt=0;st.t_song=0;st.t_plum=0;st.t_cage=0;st.t_seed=0;st.t_nest=0;for(int i=0;i<N;i++)canps[i].active=0;for(int i=0;i<N-2;i++)canst[i].active=0;for(int i=0;i<N-4;i++)canhs[i].active=0;for(int i=0;i<N-6;i++)canex[i].active=0;for(int i=0;i<N-6;i++)canms[i].active=0;init=1;ps("[CAN] Canary initialized\n");return 0;}
-int can_breeding(int lc,int sl,int pc,int cv,int sg,int nc,int mw){return add(canps,&st.n_breed,&st.t_song,N,lc,sl,pc,cv,sg,nc,mw);}
-int can_song_training(int lc,int sl,int pc,int cv,int sg,int nc,int mw){return add(canst,&st.n_song,&st.t_plum,N-2,lc,sl,pc,cv,sg,nc,mw);}
-int can_health(int lc,int sl,int pc,int cv,int sg,int nc,int mw){return add(canhs,&st.n_health,&st.t_cage,N-4,lc,sl,pc,cv,sg,nc,mw);}
-int can_exhibition(int lc,int sl,int pc,int cv,int sg,int nc,int mw){return add(canex,&st.n_exhibit,&st.t_seed,N-6,lc,sl,pc,cv,sg,nc,mw);}
-int can_market(int lc,int sl,int pc,int cv,int sg,int nc,int mw){return add(canms,&st.n_mkt,&st.t_nest,N-6,lc,sl,pc,cv,sg,nc,mw);}
-void can_report(void){ps("[CAN] Breed: ");pi(st.n_breed);ps(" Song=");pi(st.t_song);ps("\nSong: ");pi(st.n_song);ps(" Plum=");pi(st.t_plum);ps("\nHealth: ");pi(st.n_health);ps(" Cage=");pi(st.t_cage);ps("\nExhibit: ");pi(st.n_exhibit);ps(" Seed=");pi(st.t_seed);ps("\nMkt: ");pi(st.n_mkt);ps(" Nest=");pi(st.t_nest);ps("\n");}
-void can_state(void){ps("[CAN] Breed=");pi(st.n_breed);ps(" Song=");pi(st.n_song);ps(" Health=");pi(st.n_health);ps(" Exhibit=");pi(st.n_exhibit);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
+static int add(cnry_t*a,int*cnt,int*sum,int mx,int lc,int bl,int bw,int wc,int fs,int pi2,int ay){if(*cnt>=mx)return -1;cnry_t*x=&a[*cnt];x->id=*cnt;x->location=lc;x->bdy_ln=bl;x->bdy_wt=bw;x->wing_cm=wc;x->fl_sp=fs;x->pm_idx=pi2;x->age_yr=ay;x->active=1;*sum+=bl;(*cnt)++;ps("[CNRY] Canary ");pi(*cnt-1);ps(" lc=");pi(lc);ps(" bl=");pi(bl);ps(" bw=");pi(bw);ps(" wc=");pi(wc);ps(" fs=");pi(fs);ps(" pi=");pi(pi2);ps(" ay=");pi(ay);ps("\n");return *cnt-1;}
+int canary_init(void){if(init)return -1;st.n_cage=0;st.n_feed=0;st.n_breed=0;st.n_health=0;st.n_mkt=0;st.t_ln=0;st.t_wt=0;st.t_wing=0;st.t_fl=0;st.t_pm=0;for(int i=0;i<N;i++)cgl[i].active=0;for(int i=0;i<N-2;i++)cgf[i].active=0;for(int i=0;i<N-4;i++)cgb[i].active=0;for(int i=0;i<N-6;i++)cgh[i].active=0;for(int i=0;i<N-6;i++)cgm[i].active=0;init=1;ps("[CNRY] Canary initialized\n");return 0;}
+int canary_cage(int lc,int bl,int bw,int wc,int fs,int pi2,int ay){return add(cgl,&st.n_cage,&st.t_ln,N,lc,bl,bw,wc,fs,pi2,ay);}
+int canary_feeding(int lc,int bl,int bw,int wc,int fs,int pi2,int ay){return add(cgf,&st.n_feed,&st.t_wt,N-2,lc,bl,bw,wc,fs,pi2,ay);}
+int canary_breeding(int lc,int bl,int bw,int wc,int fs,int pi2,int ay){return add(cgb,&st.n_breed,&st.t_wing,N-4,lc,bl,bw,wc,fs,pi2,ay);}
+int canary_health(int lc,int bl,int bw,int wc,int fs,int pi2,int ay){return add(cgh,&st.n_health,&st.t_fl,N-6,lc,bl,bw,wc,fs,pi2,ay);}
+int canary_market(int lc,int bl,int bw,int wc,int fs,int pi2,int ay){return add(cgm,&st.n_mkt,&st.t_pm,N-6,lc,bl,bw,wc,fs,pi2,ay);}
+void canary_report(void){ps("[CNRY] Cage: ");pi(st.n_cage);ps(" Ln=");pi(st.t_ln);ps("\nFeed: ");pi(st.n_feed);ps(" Wt=");pi(st.t_wt);ps("\nBreed: ");pi(st.n_breed);ps(" Wing=");pi(st.t_wing);ps("\nHealth: ");pi(st.n_health);ps(" Fl=");pi(st.t_fl);ps("\nMkt: ");pi(st.n_mkt);ps(" Pm=");pi(st.t_pm);ps("\n");}
+void canary_state(void){ps("[CNRY] Cage=");pi(st.n_cage);ps(" Feed=");pi(st.n_feed);ps(" Breed=");pi(st.n_breed);ps(" Health=");pi(st.n_health);ps(" Mkt=");pi(st.n_mkt);ps("\n");}
 int main(void){
-ps("=== Canary Admin Demo ===\n\n");can_init();
-/* 1=aviary 2=indoor 3=show_room 4=breeding 5=home */
-ps("Canary breeding...\n");for(int i=0;i<N;i++){int lc=(i%5)+1,sl=30+(i*10),pc=(i%6)+1,cv=20+(i*5),sg=10+(i*3),nc=1+(i%4),mw=6+(i%8);can_breeding(lc,sl,pc,cv,sg,nc,mw);}
-ps("\nCanary song training...\n");for(int i=0;i<N-2;i++){int lc=(i%4)+2,sl=35+(i*8),pc=(i%5)+1,cv=25+(i*4),sg=12+(i*2),nc=2+(i%3),mw=8+(i%6);can_song_training(lc,sl,pc,cv,sg,nc,mw);}
-ps("\nCanary health...\n");for(int i=0;i<N-4;i++){int lc=(i%3)+1,sl=40+(i*6),pc=(i%4)+1,cv=30+(i*3),sg=15+(i*2),nc=3+(i%2),mw=10+(i%4);can_health(lc,sl,pc,cv,sg,nc,mw);}
-ps("\nCanary exhibition...\n");for(int i=0;i<N-6;i++){int lc=(i%5)+1,sl=25+(i*12),pc=(i%6)+1,cv=18+(i*6),sg=8+(i*4),nc=1+(i%4),mw=4+(i%9);can_exhibition(lc,sl,pc,cv,sg,nc,mw);}
-ps("\nCanary market...\n");for(int i=0;i<N-6;i++){int lc=(i%4)+1,sl=45+(i*5),pc=(i%3)+4,cv=35+(i*3),sg=18+(i*2),nc=4+(i%2),mw=12+(i%3);can_market(lc,sl,pc,cv,sg,nc,mw);}
-ps("\n");can_report();can_state();ps("\n=== Demo Complete ===\n");return 0;}
+ps("=== Canary Admin Demo ===\n\n");canary_init();
+ps("Canary cage...\n");for(int i=0;i<N;i++){int lc=(i%5)+1,bl=10+(i*1),bw=15+(i*3),wc=5+(i%3),fs=8+(i*2),pi2=(i%6)+1,ay=(i%8)+1;canary_cage(lc,bl,bw,wc,fs,pi2,ay);}
+ps("\nCanary feeding...\n");for(int i=0;i<N-2;i++){int lc=(i%4)+2,bl=11+(i*1),bw=17+(i*2),wc=6+(i%2),fs=9+(i*1),pi2=(i%5)+1,ay=(i%7)+1;canary_feeding(lc,bl,bw,wc,fs,pi2,ay);}
+ps("\nCanary breeding...\n");for(int i=0;i<N-4;i++){int lc=(i%3)+1,bl=12+(i*1),bw=19+(i*2),wc=5+(i%3),fs=7+(i*3),pi2=(i%4)+1,ay=(i%6)+1;canary_breeding(lc,bl,bw,wc,fs,pi2,ay);}
+ps("\nCanary health...\n");for(int i=0;i<N-6;i++){int lc=(i%5)+1,bl=9+(i*2),bw=14+(i*4),wc=4+(i%4),fs=6+(i*4),pi2=(i%8)+1,ay=(i%5)+1;canary_health(lc,bl,bw,wc,fs,pi2,ay);}
+ps("\nCanary market...\n");for(int i=0;i<N-6;i++){int lc=(i%4)+1,bl=13+(i*1),bw=20+(i*2),wc=7+(i%2),fs=10+(i*2),pi2=(i%3)+1,ay=(i%4)+1;canary_market(lc,bl,bw,wc,fs,pi2,ay);}
+ps("\n");canary_report();canary_state();ps("\n=== Demo Complete ===\n");return 0;}

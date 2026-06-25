@@ -1,36 +1,36 @@
-Phase 1017: Camel Canary Cat Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1018: Cheetah Chicken Chimpanzee Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/camel_admin/src/main.c (Camel Desert Bovine)
-   - Camel (Camelus dromedarius) dromedary camel desert ungulate management
-   - Features: body_len_cm, body_wt_kg, hump_cm, walk_speed, fur_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hump_cm,wk_sp,fr_idx,age_yr
+1. modules/cheetah_admin/src/main.c (Cheetah Fast Feline)
+   - Cheetah (Acinonyx jubatus) cheetah fast feline predator management
+   - Features: body_len_cm, body_wt_kg, claw_cm, run_speed, spot_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_cm,run_sp,sp_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: desert, feeding, breeding, health, market
-   - Prefix: camel
+   - Categories: savanna, feeding, breeding, health, market
+   - Prefix: cheetah
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/canary_admin/src/main.c (Canary Songbird)
-   - Canary (Serinus canaria) domestic canary songbird management
-   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, plum_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,pm_idx,age_yr
+2. modules/chicken_admin/src/main.c (Chicken Domestic Poultry)
+   - Chicken (Gallus gallus domesticus) domestic chicken poultry management
+   - Features: body_len_cm, body_wt_kg, beak_cm, walk_speed, feather_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,wk_sp,ft_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: cage, feeding, breeding, health, market
-   - Prefix: canary
+   - Categories: coop, feeding, breeding, health, market
+   - Prefix: chicken
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cat_admin/src/main.c (Cat Feline Predator)
-   - Cat (Felis catus) domestic cat feline predator management
-   - Features: body_len_cm, body_wt_kg, claw_cm, run_speed, fur_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_cm,run_sp,fr_idx,age_yr
+3. modules/chimpanzee_admin/src/main.c (Chimpanzee Great Ape)
+   - Chimpanzee (Pan troglodytes) common chimpanzee great ape management
+   - Features: body_len_cm, body_wt_kg, arm_cm, climb_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,arm_cm,cl_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: household, feeding, breeding, health, market
-   - Prefix: cat
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: chimp
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1379.0 → v1380.0 (all occurrences)
-  - total modules 3710 → 3713 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1017 - v1380.0 (3713 modules, 124 kernel)" entry
+  - version v1380.0 → v1381.0 (all occurrences)
+  - total modules 3713 → 3716 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1018 - v1381.0 (3716 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/camel_admin/camel_admin.wasm modules/canary_admin/canary_admin.wasm modules/cat_admin/cat_admin.wasm modules/camel_admin/src/main.c modules/canary_admin/src/main.c modules/cat_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cheetah_admin/cheetah_admin.wasm modules/chicken_admin/chicken_admin.wasm modules/chimpanzee_admin/chimpanzee_admin.wasm modules/cheetah_admin/src/main.c modules/chicken_admin/src/main.c modules/chimpanzee_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
