@@ -1,36 +1,36 @@
-Phase 1014: Badger Barracuda Bat Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1015: Beaver Bee Beetle Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/badger_admin/src/main.c (Badger Burrowing Mustelid)
-   - Badger (Meles meles) European badger burrowing mustelid management
-   - Features: body_len_cm, body_wt_kg, claw_cm, dig_speed, fur_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_cm,dg_sp,fr_idx,age_yr
+1. modules/beaver_admin/src/main.c (Beaver Semi-Aquatic Rodent)
+   - Beaver (Castor fiber) Eurasian beaver semi-aquatic rodent management
+   - Features: body_len_cm, body_wt_kg, tail_cm, swim_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sw_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: setts, feeding, breeding, health, market
-   - Prefix: badger
+   - Categories: dam, feeding, breeding, health, market
+   - Prefix: beaver
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/barracuda_admin/src/main.c (Barracuda Predatory Fish)
-   - Barracuda (Sphyraena barracuda) great barracuda predatory fish management
-   - Features: body_len_cm, body_wt_kg, fin_cm, swim_speed, tooth_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,tt_idx,age_yr
+2. modules/bee_admin/src/main.c (Bee Pollinating Insect)
+   - Bee (Apis mellifera) western honeybee pollinating insect management
+   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, stripe_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,st_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: reef, feeding, breeding, health, market
-   - Prefix: barracuda
+   - Categories: hive, feeding, breeding, health, market
+   - Prefix: bee
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/bat_admin/src/main.c (Bat Echolocating Mammal)
-   - Bat (Myotis myotis) greater mouse-eared bat echolocating mammal management
-   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, ear_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,er_idx,age_yr
+3. modules/beetle_admin/src/main.c (Beaver Scarab Beetle)
+   - Beetle (Scarabaeus sacer) sacred scarab beetle insect management
+   - Features: body_len_cm, body_wt_g, leg_cm, crawl_speed, shell_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,cr_sp,sh_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: cave, feeding, breeding, health, market
-   - Prefix: bat
+   - Categories: dung, feeding, breeding, health, market
+   - Prefix: beetle
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1376.0 → v1377.0 (all occurrences)
-  - total modules 3701 → 3704 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1014 - v1377.0 (3704 modules, 124 kernel)" entry
+  - version v1377.0 → v1378.0 (all occurrences)
+  - total modules 3704 → 3707 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1015 - v1378.0 (3707 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/badger_admin/badger_admin.wasm modules/barracuda_admin/barracuda_admin.wasm modules/bat_admin/bat_admin.wasm modules/badger_admin/src/main.c modules/barracuda_admin/src/main.c modules/bat_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/beaver_admin/beaver_admin.wasm modules/bee_admin/bee_admin.wasm modules/beetle_admin/beetle_admin.wasm modules/beaver_admin/src/main.c modules/bee_admin/src/main.c modules/beetle_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

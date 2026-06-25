@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1014 - v1377.0 (3704 modules, 124 kernel)
+- Added WASM: badger_admin (European burrowing mustelid), barracuda_admin (Great predatory fish), bat_admin (Greater mouse-eared echolocating mammal)
+- Total modules: 3701 → 3704 (nocturnal burrowing mustelid, fast torpedo-shaped predator, cave-dwelling echolocating mammal)
+
 ## Phase 1013 - v1376.0 (3701 modules, 124 kernel)
 - Added WASM: ape_admin (Western gorilla great ape), armadillo_admin (Nine-banded armored mammal), avocet_admin (Pied wading shorebird)
 - Total modules: 3698 → 3701 (large forest-dwelling primate, burrowing armored mammal, curved-bill wading bird)
