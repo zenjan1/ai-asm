@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1069 - v1432.0 (3869 modules, 124 kernel)
+- Added WASM: bandicoot_admin (Bandicoot omnivorous marsupial), glider_admin (Glider flying marsupial), kaluta_admin (Kaluta small carnivorous marsupial)
+- Total modules: 3866 → 3869 (bandicoot, glider, kaluta)
+
 ## Phase 1068 - v1431.0 (3866 modules, 124 kernel)
 - Added WASM: cuscus_admin (Cuscus arboreal marsupial), pademelon_admin (Pademelon small wallaby), bettong_admin (Bettong rat-kangaroo)
 - Total modules: 3863 → 3866 (cuscus, pademelon, bettong)
