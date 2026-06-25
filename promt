@@ -1,36 +1,36 @@
-Phase 1049: Ox Rat Chinchilla Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1050: Ibis Possum Chipmunk Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/ox_admin/src/main.c (Ox Draft Animal)
-   - Ox (Bos taurus) domestic ox draft animal management
-   - Features: body_len_cm, body_wt_kg, horn_cm, walk_speed, hr_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,wk_sp,hr_idx,age_yr
+1. modules/ibis_admin/src/main.c (Ibis Wading Bird)
+   - Ibis (Eudocimus albus) white ibis wading bird management
+   - Features: body_len_cm, body_wt_g, beak_cm, walk_speed, pl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,wk_sp,pl_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: pasture, feeding, breeding, health, market
-   - Prefix: ox
+   - Categories: wetland, feeding, breeding, health, market
+   - Prefix: ibis
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/rat_admin/src/main.c (Rat Small Rodent)
-   - Rat (Rattus norvegicus) brown rat small rodent management
-   - Features: body_len_cm, body_wt_g, tail_cm, run_speed, wh_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,rn_sp,wh_idx,age_yr
+2. modules/possum_admin/src/main.c (Possum Marsupial)
+   - Possum (Trichosurus vulpecula) common brushtail possum marsupial management
+   - Features: body_len_cm, body_wt_kg, tail_cm, climb_speed, fr_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,cl_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: urban, feeding, breeding, health, market
-   - Prefix: rat
+   - Categories: woodland, feeding, breeding, health, market
+   - Prefix: poss
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/chinchilla_admin/src/main.c (Chinchilla Small Rodent)
-   - Chinchilla (Chinchilla lanigera) long-tailed chinchilla small rodent management
-   - Features: body_len_cm, body_wt_g, ear_cm, jump_cm, fr_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,jp_cm,fr_idx,age_yr
+3. modules/chipmunk_admin/src/main.c (Chipmunk Small Squirrel)
+   - Chipmunk (Tamias striatus) eastern chipmunk small squirrel management
+   - Features: body_len_cm, body_wt_g, tail_cm, run_speed, ch_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,rn_sp,ch_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: burrow, feeding, breeding, health, market
-   - Prefix: chch
+   - Prefix: chip
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1411.0 → v1412.0 (all occurrences)
-  - total modules 3806 → 3809 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1049 - v1412.0 (3809 modules, 124 kernel)" entry
+  - version v1412.0 → v1413.0 (all occurrences)
+  - total modules 3809 → 3812 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1050 - v1413.0 (3812 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/ox_admin/ox_admin.wasm modules/rat_admin/rat_admin.wasm modules/chinchilla_admin/chinchilla_admin.wasm modules/ox_admin/src/main.c modules/rat_admin/src/main.c modules/chinchilla_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/ibis_admin/ibis_admin.wasm modules/possum_admin/possum_admin.wasm modules/chipmunk_admin/chipmunk_admin.wasm modules/ibis_admin/src/main.c modules/possum_admin/src/main.c modules/chipmunk_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1049 - v1412.0 (3809 modules, 124 kernel)
+- Added WASM: ox_admin (Ox draft animal), rat_admin (Rat small rodent), chinchilla_admin (Chinchilla small rodent)
+- Total modules: 3806 → 3809 (domestic ox, brown rat, long-tailed chinchilla)
+
 ## Phase 1048 - v1411.0 (3806 modules, 124 kernel)
 - Added WASM: ant_admin (Ant social insect), bear_admin (Bear large mammal), mule_admin (Mule pack animal)
 - Total modules: 3803 → 3806 (red wood ant, brown bear, domestic mule)
