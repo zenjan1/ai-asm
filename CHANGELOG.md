@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1032 - v1395.0 (3758 modules, 124 kernel)
+- Added WASM: hamster_admin (Golden hamster small rodent), hawk_admin (Common hawk medium raptor), hedgehog_admin (European hedgehog spiny mammal)
+- Total modules: 3755 → 3758 (small caged rodent pet, forest soaring raptor, garden spiny mammal)
+
 ## Phase 1031 - v1394.0 (3755 modules, 124 kernel)
 - Added WASM: goat_admin (Domesticated goat horned mammal), goose_admin (Greylag goose waterfowl bird), gorilla_admin (Western gorilla great ape)
 - Total modules: 3752 → 3755 (horned mountain climber, lake waterfowl bird, jungle great ape)
