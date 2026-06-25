@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1074 - v1437.0 (3884 modules, 124 kernel)
+- Added WASM: bilbies_admin (Bilbies rabbit-eared bandicoots), quolls_admin (Quolls spotted carnivorous marsupials), dunnarts_admin (Dunnarts small marsupial mice)
+- Total modules: 3881 → 3884 (bilbies, quolls, dunnarts)
+
 ## Phase 1073 - v1436.0 (3881 modules, 124 kernel)
 - Added WASM: potoroos_admin (Potoroos rat-kangaroos), cuscuses_admin (Cuscuses arboreal marsupials), pademelons_admin (Pademelons small wallabies)
 - Total modules: 3878 → 3881 (potoroos, cuscuses, pademelons)

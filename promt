@@ -1,36 +1,36 @@
-Phase 1074: Bilbies Quolls Dunnarts Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1075: Kangaroos Possums Gliders Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/bilbies_admin/src/main.c (Bilbies rabbit-eared bandicoots)
-   - Bilbies (Macrotis) rabbit-eared bandicoot marsupials management
-   - Features: body_len_cm, body_wt_kg, ear_cm, dig_speed, bl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,dg_sp,bl_idx,age_yr
+1. modules/kangaroos_admin/src/main.c (Kangaroos large macropods)
+   - Kangaroos (Macropus) large macropod marsupials management
+   - Features: body_len_cm, body_wt_kg, hop_m, speed_kmh, kg_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hop_m,spd_kmh,kg_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: desert, feeding, breeding, health, market
-   - Prefix: blbs
+   - Categories: plains, feeding, breeding, health, market
+   - Prefix: kgrs
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/quolls_admin/src/main.c (Quolls spotted carnivorous marsupials)
-   - Quolls (Dasyurus) spotted carnivorous marsupials management
-   - Features: body_len_cm, body_wt_kg, jaw_mm, tooth_cm, ql_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,jaw_mm,tooth_cm,ql_idx,age_yr
+2. modules/possums_admin/src/main.c (Possums arboreal marsupials)
+   - Possums (Trichosurus) arboreal marsupials management
+   - Features: body_len_cm, body_wt_kg, tail_cm, grip_kg, ps_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,grip_kg,ps_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: forest, feeding, breeding, health, market
-   - Prefix: qlbs
+   - Categories: canopy, feeding, breeding, health, market
+   - Prefix: psss
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/dunnarts_admin/src/main.c (Dunnarts small marsupial mice)
-   - Dunnarts (Sminthopsis) small marsupial mouse management
-   - Features: body_len_cm, body_wt_g, tail_cm, ear_cm, dn_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,ear_cm,dn_idx,age_yr
+3. modules/gliders_admin/src/main.c (Gliders flying marsupials)
+   - Gliders (Petaurus) flying marsupials management
+   - Features: body_len_cm, body_wt_g, wing_cm, glide_m, gl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,glide_m,gl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: desert, feeding, breeding, health, market
-   - Prefix: dnbs
+   - Categories: glide, feeding, breeding, health, market
+   - Prefix: glds
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1436.0 → v1437.0 (all occurrences)
-  - total modules 3881 → 3884 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1074 - v1437.0 (3884 modules, 124 kernel)" entry
+  - version v1437.0 → v1438.0 (all occurrences)
+  - total modules 3884 → 3887 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1075 - v1438.0 (3887 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/bilbies_admin/bilbies_admin.wasm modules/quolls_admin/quolls_admin.wasm modules/dunnarts_admin/dunnarts_admin.wasm modules/bilbies_admin/src/main.c modules/quolls_admin/src/main.c modules/dunnarts_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/kangaroos_admin/kangaroos_admin.wasm modules/possums_admin/possums_admin.wasm modules/gliders_admin/gliders_admin.wasm modules/kangaroos_admin/src/main.c modules/possums_admin/src/main.c modules/gliders_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
