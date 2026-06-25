@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 984 - v1347.0 (3614 modules, 124 kernel)
+- Added WASM: lemur_admin (Ring-tailed lemur primate), leopard_admin (Leopard big cat), llama_admin (Domestic llama camelid)
+- Total modules: 3611 → 3614 (vocal primate, stealthy spotted cat, wool-pack camelid)
+
 ## Phase 983 - v1346.0 (3611 modules, 124 kernel)
 - Added WASM: jellyfish_admin (Moon jellyfish marine invertebrate), kangaroo_admin (Red kangaroo marsupial), koala_admin (Koala arboreal marsupial)
 - Total modules: 3608 → 3611 (translucent drifter, leaping marsupial, eucalyptus-eating marsupial)

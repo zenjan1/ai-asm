@@ -1,36 +1,36 @@
-Phase 984: Lemur Leopard Llama Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 985: Lobster Locust Loon Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/lemur_admin/src/main.c (Lemur Primate)
-   - Lemur (Lemur catta) ring-tailed lemur primate management
-   - Features: body_len_cm, body_wt_kg, tail_cm, leap_m, vocal_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,lp_m,v_idx,age_yr
+1. modules/lobster_admin/src/main.c (Lobster Crustacean)
+   - Lobster (Homarus americanus) American lobster crustacean management
+   - Features: body_len_cm, body_wt_kg, claw_cm, shell_hardness, color_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,cl_cm,sh_hd,cl_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: habitat, feeding, breeding, health, market
-   - Prefix: lemur
+   - Categories: tank, feeding, breeding, health, market
+   - Prefix: lobster
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/leopard_admin/src/main.c (Leopard Big Cat)
-   - Leopard (Panthera pardus) leopard big cat management
-   - Features: body_len_cm, body_wt_kg, tail_cm, sprint_kmh, climb_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sp_kh,cl_idx,age_yr
+2. modules/locust_admin/src/main.c (Locust Migratory Insect)
+   - Locust (Locusta migratoria) migratory locust insect management
+   - Features: body_len_cm, body_wt_g, wing_span_cm, swarm_idx, chirp_vol, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,sw_idx,cr_vl,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: habitat, feeding, breeding, health, market
-   - Prefix: leopard
+   - Categories: field, feeding, breeding, health, market
+   - Prefix: locust
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/llama_admin/src/main.c (Llama Camelid)
-   - Llama (Lama glama) domestic llama camelid management
-   - Features: body_len_cm, body_wt_kg, neck_cm, wool_g, spit_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,neck_cm,wl_g,sp_idx,age_yr
+3. modules/loon_admin/src/main.c (Loon Diving Bird)
+   - Loon (Gavia immer) common loon diving bird management
+   - Features: body_len_cm, body_wt_kg, dive_m, call_vol, plumage_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,dv_m,cl_vl,pl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: pasture, feeding, breeding, health, market
-   - Prefix: llama
+   - Categories: habitat, feeding, breeding, health, market
+   - Prefix: loon
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1346.0 → v1347.0 (all occurrences)
-  - total modules 3611 → 3614 (all occurrences)
-Update CHANGELOG.md: add "## Phase 984 - v1347.0 (3614 modules, 124 kernel)" entry
+  - version v1347.0 → v1348.0 (all occurrences)
+  - total modules 3614 → 3617 (all occurrences)
+Update CHANGELOG.md: add "## Phase 985 - v1348.0 (3617 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/lemur_admin/lemur_admin.wasm modules/leopard_admin/leopard_admin.wasm modules/llama_admin/llama_admin.wasm modules/lemur_admin/src/main.c modules/leopard_admin/src/main.c modules/llama_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/lobster_admin/lobster_admin.wasm modules/locust_admin/locust_admin.wasm modules/loon_admin/loon_admin.wasm modules/lobster_admin/src/main.c modules/locust_admin/src/main.c modules/loon_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
