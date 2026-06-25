@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1092 - v1455.0 (3938 modules, 124 kernel)
+- Added WASM: dasykaluta_admin (Dasykaluta small carnivorous marsupials), rock-wallabies_admin (Rock-wallabies rock-dwelling marsupials), potoroins_admin (Potoroins rat-kangaroo species)
+- Total modules: 3935 → 3938 (dasykaluta, rock-wallabies, potoroins)
+
 ## Phase 1091 - v1454.0 (3935 modules, 124 kernel)
 - Added WASM: xantus_admin (Xantus small exotic mammals), dibbler_admin (Dibbler small marsupials), ningaui_admin (Ningaui tiny dasyurid marsupials)
 - Total modules: 3932 → 3935 (xantus, dibbler, ningaui)

@@ -1,36 +1,36 @@
-Phase 1092: Dasykaluta Rock-Wallabies Potoroins Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1093: Dunnart-Mouse Rock-Wallaby Bilbie Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/dasykaluta_admin/src/main.c (Dasykaluta small carnivorous marsupials)
-   - Dasykaluta (Dasykaluta) small carnivorous marsupials management
-   - Features: body_len_cm, body_wt_g, claw_len, tail_cm, dk_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_len,tail_cm,dk_idx,age_yr
+1. modules/dunnart-mouse_admin/src/main.c (Dunnart-mouse tiny dasyurid marsupials)
+   - Dunnart-mouse (Sminthopsis) tiny dasyurid marsupials management
+   - Features: body_len_cm, body_wt_g, ear_len, tail_cm, dm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_len,tail_cm,dm_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: dasy
+   - Prefix: dmou
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/rock-wallabies_admin/src/main.c (Rock-wallabies Petrogale rock-dwelling marsupials)
-   - Rock-wallabies (Petrogale) rock-dwelling marsupials management
-   - Features: body_len_cm, body_wt_g, grip_ct, tail_cm, rw_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,grip_ct,tail_cm,rw_idx,age_yr
+2. modules/rock-wallaby_admin/src/main.c (Rock-wallaby Petrogale single species)
+   - Rock-wallaby (Petrogale) single rock-wallaby species management
+   - Features: body_len_cm, body_wt_g, jump_ht, tail_cm, rwb_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,jump_ht,tail_cm,rwb_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rklb
+   - Prefix: rklw
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/potoroins_admin/src/main.c (Potoroins rat-kangaroo species)
-   - Potoroins small rat-kangaroo species management
-   - Features: body_len_cm, body_wt_g, hop_dist, tail_cm, pt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hop_dist,tail_cm,pt_idx,age_yr
+3. modules/bilbie_admin/src/main.c (Bilbie (Macrotis) greater bilby species)
+   - Bilbie (Macrotis) greater bilby species management
+   - Features: body_len_cm, body_wt_g, claw_len, tail_cm, bb_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_len,tail_cm,bb_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: ptin
+   - Prefix: bilb
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1454.0 → v1455.0 (all occurrences)
-  - total modules 3935 → 3938 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1092 - v1455.0 (3938 modules, 124 kernel)" entry
+  - version v1455.0 → v1456.0 (all occurrences)
+  - total modules 3938 → 3941 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1093 - v1456.0 (3941 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/dasykaluta_admin/dasykaluta_admin.wasm modules/rock-wallabies_admin/rock-wallabies_admin.wasm modules/potoroins_admin/potoroins_admin.wasm modules/dasykaluta_admin/src/main.c modules/rock-wallabies_admin/src/main.c modules/potoroins_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/dunnart-mouse_admin/dunnart-mouse_admin.wasm modules/rock-wallaby_admin/rock-wallaby_admin.wasm modules/bilbie_admin/bilbie_admin.wasm modules/dunnart-mouse_admin/src/main.c modules/rock-wallaby_admin/src/main.c modules/bilbie_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
