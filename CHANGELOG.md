@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1087 - v1450.0 (3923 modules, 124 kernel)
+- Added WASM: planigales_admin (Planigales tiny marsupials), antechinuses_admin (Antechinuses marsupial mice), kalutas_admin (Kalutas small carnivorous marsupials)
+- Total modules: 3920 → 3923 (planigales, antechinuses, kalutas)
+
 ## Phase 1086 - v1449.0 (3920 modules, 124 kernel)
 - Added WASM: potoroin_admin (Potoroin rat-kangaroos), echymiperas_admin (Echymiperas echidna bandicoots), isoodons_admin (Isoodons short-nosed bandicoots)
 - Total modules: 3917 → 3920 (potoroin, echymiperas, isoodons)
