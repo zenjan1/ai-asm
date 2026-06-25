@@ -1,36 +1,36 @@
-Phase 1058: Reedbuck Bushbuck Waterbuck Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1059: Oryx Sable Roan Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/reedbuck_admin/src/main.c (Reedbuck Grassland Antelope)
-   - Reedbuck (Redunca redunca) floodplain grassland antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, rd_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,rn_sp,rd_idx,age_yr
+1. modules/oryx_admin/src/main.c (Oryx Large Desert Antelope)
+   - Oryx (Oryx gazella) gemsbok large desert antelope management
+   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, or_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,rn_sp,or_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: reedbed, feeding, breeding, health, market
-   - Prefix: reed
+   - Categories: desert, feeding, breeding, health, market
+   - Prefix: oryx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/bushbuck_admin/src/main.c (Bushbuck Forest Antelope)
-   - Bushbuck (Tragelaphus sylvaticus) solitary forest antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, jump_cm, bb_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,jp_cm,bb_idx,age_yr
+2. modules/sable_admin/src/main.c (Sable Horned Antelope)
+   - Sable (Hippotragus niger) majestic horned antelope management
+   - Features: body_len_cm, body_wt_kg, horn_cm, sprint_speed, sa_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,sp_sp,sa_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: forest, feeding, breeding, health, market
-   - Prefix: bush
+   - Categories: savanna, feeding, breeding, health, market
+   - Prefix: sabl
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/waterbuck_admin/src/main.c (Waterbuck Aquatic Antelope)
-   - Waterbuck (Kobus ellipsiprymnus) large aquatic antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, swim_speed, wb_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,sw_sp,wb_idx,age_yr
+3. modules/roan_admin/src/main.c (Roan Large Antelope)
+   - Roan (Hippotragus equinus) large horse-like antelope management
+   - Features: body_len_cm, body_wt_kg, horn_cm, gallop_speed, ro_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,gl_sp,ro_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: wetland, feeding, breeding, health, market
-   - Prefix: wtrb
+   - Categories: grassland, feeding, breeding, health, market
+   - Prefix: roan
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1420.0 → v1421.0 (all occurrences)
-  - total modules 3833 → 3836 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1058 - v1421.0 (3836 modules, 124 kernel)" entry
+  - version v1421.0 → v1422.0 (all occurrences)
+  - total modules 3836 → 3839 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1059 - v1422.0 (3839 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/reedbuck_admin/reedbuck_admin.wasm modules/bushbuck_admin/bushbuck_admin.wasm modules/waterbuck_admin/waterbuck_admin.wasm modules/reedbuck_admin/src/main.c modules/bushbuck_admin/src/main.c modules/waterbuck_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/oryx_admin/oryx_admin.wasm modules/sable_admin/sable_admin.wasm modules/roan_admin/roan_admin.wasm modules/oryx_admin/src/main.c modules/sable_admin/src/main.c modules/roan_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

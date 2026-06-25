@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1058 - v1421.0 (3836 modules, 124 kernel)
+- Added WASM: reedbuck_admin (Reedbuck grassland antelope), bushbuck_admin (Bushbuck forest antelope), waterbuck_admin (Waterbuck aquatic antelope)
+- Total modules: 3833 → 3836 (reedbuck, bushbuck, waterbuck)
+
 ## Phase 1057 - v1420.0 (3833 modules, 124 kernel)
 - Added WASM: grysbok_admin (Grysbok small antelope), duiker_admin (Duiker forest antelope), klipspringer_admin (Klipspringer rock antelope)
 - Total modules: 3830 → 3833 (sharpe grysbok, common duiker, klipspringer)
