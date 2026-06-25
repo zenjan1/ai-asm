@@ -1,36 +1,36 @@
-Phase 1039: Narwhal Newt Nightingale Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1040: Octopus Ostrich Otter Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/narwhal_admin/src/main.c (Narwhal Arctic Tusked Whale)
-   - Narwhal (Monodon monoceros) narwhal arctic tusked whale management
-   - Features: body_len_cm, body_wt_kg, tusk_cm, swim_speed, tsk_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tusk_cm,sw_sp,ts_idx,age_yr
+1. modules/octopus_admin/src/main.c (Octopus Marine Cephalopod)
+   - Octopus (Octopus vulgaris) common octopus marine cephalopod management
+   - Features: body_len_cm, body_wt_g, arm_cm, swim_speed, sk_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,arm_cm,sw_sp,sk_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: arctic, feeding, breeding, health, market
-   - Prefix: narw
+   - Categories: reef, feeding, breeding, health, market
+   - Prefix: octp
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/newt_admin/src/main.c (Newt Small Amphibian)
-   - Newt (Triturus vulgaris) smooth newt small amphibian management
-   - Features: body_len_cm, body_wt_g, tail_cm, swim_speed, skin_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sw_sp,sk_idx,age_yr
+2. modules/ostrich_admin/src/main.c (Ostrich Large Flightless Bird)
+   - Ostrich (Struthio camelus) common ostrich large flightless bird management
+   - Features: body_len_cm, body_wt_kg, leg_cm, run_speed, ft_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,rn_sp,ft_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: pond, feeding, breeding, health, market
-   - Prefix: newt
+   - Categories: savanna, feeding, breeding, health, market
+   - Prefix: ostr
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/nightingale_admin/src/main.c (Nightingale Songbird)
-   - Nightingale (Luscinia megarhynchos) common nightingale songbird management
-   - Features: body_len_cm, body_wt_g, beak_cm, fly_speed, plm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,fl_sp,pm_idx,age_yr
+3. modules/otter_admin/src/main.c (Otter Semi-aquatic Mammal)
+   - Otter (Lutra lutra) Eurasian otter semi-aquatic mammal management
+   - Features: body_len_cm, body_wt_kg, tail_cm, swim_speed, fr_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sw_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: thicket, feeding, breeding, health, market
-   - Prefix: ntgl
+   - Categories: river, feeding, breeding, health, market
+   - Prefix: ottr
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1401.0 → v1402.0 (all occurrences)
-  - total modules 3776 → 3779 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1039 - v1402.0 (3779 modules, 124 kernel)" entry
+  - version v1402.0 → v1403.0 (all occurrences)
+  - total modules 3779 → 3782 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1040 - v1403.0 (3782 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/narwhal_admin/narwhal_admin.wasm modules/newt_admin/newt_admin.wasm modules/nightingale_admin/nightingale_admin.wasm modules/narwhal_admin/src/main.c modules/newt_admin/src/main.c modules/nightingale_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/octopus_admin/octopus_admin.wasm modules/ostrich_admin/ostrich_admin.wasm modules/otter_admin/otter_admin.wasm modules/octopus_admin/src/main.c modules/ostrich_admin/src/main.c modules/otter_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

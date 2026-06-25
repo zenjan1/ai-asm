@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1039 - v1402.0 (3779 modules, 124 kernel)
+- Added WASM: narwhal_admin (Narwhal arctic tusked whale), newt_admin (Newt small amphibian), nightingale_admin (Nightingale songbird)
+- Total modules: 3776 → 3779 (arctic tusked whale, smooth newt amphibian, common nightingale songbird)
+
 ## Phase 1038 - v1401.0 (3776 modules, 124 kernel)
 - Added WASM: moose_admin (Moose large forest deer), monkey_admin (Crab-eating monkey agile primate), mouse_admin (House mouse small rodent)
 - Total modules: 3773 → 3776 (boreal forest deer with palmate antlers, agile jungle primate, small house-dwelling rodent)
