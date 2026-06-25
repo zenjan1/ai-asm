@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1024 - v1387.0 (3734 modules, 124 kernel)
+- Added WASM: dolphin_admin (Common marine mammal), donkey_admin (Domestic equine), dove_admin (Eurasian collared dove)
+- Total modules: 3731 → 3734 (intelligent social cetacean, long-eared pack animal, cooing garden bird)
+
 ## Phase 1023 - v1386.0 (3731 modules, 124 kernel)
 - Added WASM: deer_admin (Red deer forest ungulate), dingo_admin (Australian wild canine), dog_admin (Domestic canine)
 - Total modules: 3728 → 3731 (antlered forest ungulate, wild Australian pack canine, domesticated loyal canine)

@@ -1,36 +1,36 @@
-Phase 1024: Dolphin Donkey Dove Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1025: Dragonfly Duck Dugong Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/dolphin_admin/src/main.c (Dolphin Marine Mammal)
-   - Dolphin (Delphinus delphis) common dolphin marine mammal management
-   - Features: body_len_cm, body_wt_kg, fin_cm, swim_speed, skin_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,sk_idx,age_yr
+1. modules/dragonfly_admin/src/main.c (Dragonfly Flying Insect)
+   - Dragonfly (Anax imperator) emperor dragonfly flying insect management
+   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, eye_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,ey_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: ocean, feeding, breeding, health, market
-   - Prefix: dolphin
+   - Categories: pond, feeding, breeding, health, market
+   - Prefix: dragonfly
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/donkey_admin/src/main.c (Donkey Equine)
-   - Donkey (Equus asinus) domestic donkey equine management
-   - Features: body_len_cm, body_wt_kg, ear_cm, walk_speed, hide_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,wk_sp,hd_idx,age_yr
+2. modules/duck_admin/src/main.c (Duck Waterfowl)
+   - Duck (Anas platyrhynchos) mallard duck waterfowl management
+   - Features: body_len_cm, body_wt_kg, bill_cm, swim_speed, plum_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bill_cm,sw_sp,pm_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: farm, feeding, breeding, health, market
-   - Prefix: donkey
+   - Categories: pond, feeding, breeding, health, market
+   - Prefix: duck
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/dove_admin/src/main.c (Dove Peace Bird)
-   - Dove (Streptopelia decaocto) Eurasian collared dove bird management
-   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, plum_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,pm_idx,age_yr
+3. modules/dugong_admin/src/main.c (Dugong Marine Mammal)
+   - Dugong (Dugong dugon) dugong marine herbivorous mammal management
+   - Features: body_len_cm, body_wt_kg, flipper_cm, swim_speed, skin_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,flip_cm,sw_sp,sk_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: garden, feeding, breeding, health, market
-   - Prefix: dove
+   - Categories: coast, feeding, breeding, health, market
+   - Prefix: dugong
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1386.0 → v1387.0 (all occurrences)
-  - total modules 3731 → 3734 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1024 - v1387.0 (3734 modules, 124 kernel)" entry
+  - version v1387.0 → v1388.0 (all occurrences)
+  - total modules 3734 → 3737 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1025 - v1388.0 (3737 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/dolphin_admin/dolphin_admin.wasm modules/donkey_admin/donkey_admin.wasm modules/dove_admin/dove_admin.wasm modules/dolphin_admin/src/main.c modules/donkey_admin/src/main.c modules/dove_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/dragonfly_admin/dragonfly_admin.wasm modules/duck_admin/duck_admin.wasm modules/dugong_admin/dugong_admin.wasm modules/dragonfly_admin/src/main.c modules/duck_admin/src/main.c modules/dugong_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
