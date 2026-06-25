@@ -1,36 +1,37 @@
-Phase 1072: Dasyure Koalas Wombats Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1073: Potoroos Cuscuses Pademelons Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/dasyure_admin/src/main.c (Dasyure carnivorous marsupial)
-   - Dasyure (Dasyurus) carnivorous marsupial management
-   - Features: body_len_cm, body_wt_kg, claw_mm, snout_cm, ds_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_mm,snout_cm,ds_idx,age_yr
+1. modules/potoroos_admin/src/main.c (Potoroos rat-kangaroos)
+   - Potoroos (Potorous) rat-kangaroo marsupials management
+   - Features: body_len_cm, body_wt_kg, foot_cm, jump_cm, pt_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,foot_cm,jmp_cm,pt_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: forest, feeding, breeding, health, market
-   - Prefix: dsyr
+   - Categories: scrub, feeding, breeding, health, market
+   - Prefix: ptos
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/koalas_admin/src/main.c (Koalas tree-dwelling marsupials)
-   - Koalas (Phascolarctos) tree-dwelling marsupials management
-   - Features: body_len_cm, body_wt_kg, ear_cm, grip_kg, ko_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,grip_kg,ko_idx,age_yr
+2. modules/cuscuses_admin/src/main.c (Cuscuses arboreal marsupials)
+   - Cuscuses (Phalanger) arboreal marsupials management
+   - Features: body_len_cm, body_wt_kg, tail_cm, grip_kg, cs_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,grip_kg,cs_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: canopy, feeding, breeding, health, market
-   - Prefix: kols
+   - Prefix: cscs
+   - Note: cuscus_admin already exists, use prefix "cses" and tag [CSES] to differentiate
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/wombats_admin/src/main.c (Wombats burrowing marsupials)
-   - Wombats (Vombatus) burrowing marsupials management
-   - Features: body_len_cm, body_wt_kg, claw_mm, dig_sp, wm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_mm,dig_sp,wm_idx,age_yr
+3. modules/pademelons_admin/src/main.c (Pademelons small wallabies)
+   - Pademelons (Thylogale) small wallaby marsupials management
+   - Features: body_len_cm, body_wt_kg, ear_cm, hop_cm, pm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,hop_cm,pm_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: burrow, feeding, breeding, health, market
-   - Prefix: wmbs
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: pdms
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1434.0 → v1435.0 (all occurrences)
-  - total modules 3875 → 3878 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1072 - v1435.0 (3878 modules, 124 kernel)" entry
+  - version v1435.0 → v1436.0 (all occurrences)
+  - total modules 3878 → 3881 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1073 - v1436.0 (3881 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/dasyure_admin/dasyure_admin.wasm modules/koalas_admin/koalas_admin.wasm modules/wombats_admin/wombats_admin.wasm modules/dasyure_admin/src/main.c modules/koalas_admin/src/main.c modules/wombats_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/potoroos_admin/potoroos_admin.wasm modules/cuscuses_admin/cuscuses_admin.wasm modules/pademelons_admin/pademelons_admin.wasm modules/potoroos_admin/src/main.c modules/cuscuses_admin/src/main.c modules/pademelons_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

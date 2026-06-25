@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1072 - v1435.0 (3878 modules, 124 kernel)
+- Added WASM: dasyure_admin (Dasyure carnivorous marsupial), koalas_admin (Koalas tree-dwelling marsupials), wombats_admin (Wombats burrowing marsupials)
+- Total modules: 3875 → 3878 (dasyure, koalas, wombats)
+
 ## Phase 1071 - v1434.0 (3875 modules, 124 kernel)
 - Added WASM: quoll_admin (Quoll spotted carnivorous marsupial), planigale_admin (Planigale tiny marsupial), antechinus_admin (Antechinus marsupial mouse)
 - Total modules: 3872 → 3875 (quoll, planigale, antechinus)
