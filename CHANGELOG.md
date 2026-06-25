@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1070 - v1433.0 (3872 modules, 124 kernel)
+- Added WASM: woylie_admin (Woylie brush-tailed bettong), numbats_admin (Numbats striped anteaters), wallabies_admin (Wallabies small macropods)
+- Total modules: 3869 → 3872 (woylie, numbats, wallabies)
+
 ## Phase 1069 - v1432.0 (3869 modules, 124 kernel)
 - Added WASM: bandicoot_admin (Bandicoot omnivorous marsupial), glider_admin (Glider flying marsupial), kaluta_admin (Kaluta small carnivorous marsupial)
 - Total modules: 3866 → 3869 (bandicoot, glider, kaluta)
