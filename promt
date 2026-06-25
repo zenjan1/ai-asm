@@ -1,36 +1,36 @@
-Phase 993: Panda Panther Parrot Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 994: Pelican Penguin Pheasant Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/panda_admin/src/main.c (Panda Giant Bear)
-   - Panda (Ailuropoda melanoleuca) giant panda bear management
-   - Features: body_len_cm, body_wt_kg, paw_cm, bamboo_kg, patch_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,paw_cm,bm_kg,pt_idx,age_yr
+1. modules/pelican_admin/src/main.c (Pelican Large Waterbird)
+   - Pelican (Pelecanus occidentalis) brown pelican large waterbird management
+   - Features: body_len_cm, body_wt_kg, wing_span_cm, beak_cm, pouch_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,bk_cm,ph_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: bamboo, feeding, breeding, health, market
-   - Prefix: panda
+   - Categories: coast, feeding, breeding, health, market
+   - Prefix: pelican
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/panther_admin/src/main.c (Panther Big Cat)
-   - Panther (Panthera pardus) black panther big cat management
-   - Features: body_len_cm, body_wt_kg, tail_len_cm, roar_vol, stripe_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,rr_vl,st_idx,age_yr
+2. modules/penguin_admin/src/main.c (Penguin Flightless Seabird)
+   - Penguin (Aptenodytes forsteri) emperor penguin flightless seabird management
+   - Features: body_len_cm, body_wt_kg, flipper_cm, dive_m, colony_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,flip_cm,dv_m,cl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: jungle, feeding, breeding, health, market
-   - Prefix: panther
+   - Categories: ice, feeding, breeding, health, market
+   - Prefix: penguin
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/parrot_admin/src/main.c (Parrot Tropical Bird)
-   - Parrot (Amazona aestiva) turquoise-fronted parrot management
-   - Features: body_len_cm, body_wt_g, wing_cm, talk_vol, color_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,tk_vl,cl_idx,age_yr
+3. modules/pheasant_admin/src/main.c (Pheasant Game Bird)
+   - Pheasant (Phasianus colchicus) ring-necked pheasant game bird management
+   - Features: body_len_cm, body_wt_kg, tail_len_cm, call_vol, plumage_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,cl_vl,pl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: aviary, feeding, breeding, health, market
-   - Prefix: parrot
+   - Categories: field, feeding, breeding, health, market
+   - Prefix: pheasant
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1355.0 → v1356.0 (all occurrences)
-  - total modules 3638 → 3641 (all occurrences)
-Update CHANGELOG.md: add "## Phase 993 - v1356.0 (3641 modules, 124 kernel)" entry
+  - version v1356.0 → v1357.0 (all occurrences)
+  - total modules 3641 → 3644 (all occurrences)
+Update CHANGELOG.md: add "## Phase 994 - v1357.0 (3644 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/panda_admin/panda_admin.wasm modules/panther_admin/panther_admin.wasm modules/parrot_admin/parrot_admin.wasm modules/panda_admin/src/main.c modules/panther_admin/src/main.c modules/parrot_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/pelican_admin/pelican_admin.wasm modules/penguin_admin/penguin_admin.wasm modules/pheasant_admin/pheasant_admin.wasm modules/pelican_admin/src/main.c modules/penguin_admin/src/main.c modules/pheasant_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

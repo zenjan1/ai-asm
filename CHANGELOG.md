@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 993 - v1356.0 (3641 modules, 124 kernel)
+- Added WASM: panda_admin (Giant panda bear), panther_admin (Black panther big cat), parrot_admin (Turquoise-fronted parrot)
+- Total modules: 3638 → 3641 (bamboo-eating black-white bear, stealthy black cat, talking tropical bird)
+
 ## Phase 992 - v1355.0 (3638 modules, 124 kernel)
 - Added WASM: osprey_admin (Osprey fish hawk), ostrich_admin (Common ostrich flightless bird), otter_admin (North American river otter)
 - Total modules: 3635 → 3638 (fish-diving raptor, largest flightless bird, playful semi-aquatic mammal)
