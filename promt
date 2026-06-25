@@ -1,36 +1,36 @@
-Phase 1085: Setifers Tenrecs Rufouses Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1086: Potoroin Echymiperas Isoodons Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/setifers_admin/src/main.c (Setifers tenrec-like mammals)
-   - Setifers (Setifer) tenrec-like mammals management
-   - Features: body_len_cm, body_wt_g, quill_cm, tail_cm, sf_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,quill_cm,tail_cm,sf_idx,age_yr
+1. modules/potoroin_admin/src/main.c (Potoroin rat-kangaroos)
+   - Potoroin (Potoroin) rat-kangaroos management
+   - Features: body_len_cm, body_wt_g, nose_cm, tail_cm, pt_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,nose_cm,tail_cm,pt_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: stfr
+   - Prefix: ptro
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/tenrecs_admin/src/main.c (Tenrecs insectivorous mammals)
-   - Tenrecs (Tenrec) insectivorous mammals management
-   - Features: body_len_cm, body_wt_g, claw_cm, tail_cm, tr_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_cm,tail_cm,tr_idx,age_yr
+2. modules/echymiperas_admin/src/main.c (Echymiperas echidna bandicoots)
+   - Echymiperas (Echymipera) echidna bandicoots management
+   - Features: body_len_cm, body_wt_kg, snout_cm, tail_cm, ec_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,snout_cm,tail_cm,ec_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tnrc
+   - Prefix: ecmp
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/rufouses_admin/src/main.c (Rufouses rufous bettongs)
-   - Rufouses (Aepyprymnus) rufous bettongs management
-   - Features: body_len_cm, body_wt_kg, fur_cm, tail_cm, rf_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fur_cm,tail_cm,rf_idx,age_yr
+3. modules/isoodons_admin/src/main.c (Isoodons short-nosed bandicoots)
+   - Isoodons (Isoodon) short-nosed bandicoots management
+   - Features: body_len_cm, body_wt_kg, ear_cm, tail_cm, is_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,tail_cm,is_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rufs
+   - Prefix: isod
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1447.0 → v1448.0 (all occurrences)
-  - total modules 3914 → 3917 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1085 - v1448.0 (3917 modules, 124 kernel)" entry
+  - version v1448.0 → v1449.0 (all occurrences)
+  - total modules 3917 → 3920 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1086 - v1449.0 (3920 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/setifers_admin/setifers_admin.wasm modules/tenrecs_admin/tenrecs_admin.wasm modules/rufouses_admin/rufouses_admin.wasm modules/setifers_admin/src/main.c modules/tenrecs_admin/src/main.c modules/rufouses_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/potoroin_admin/potoroin_admin.wasm modules/echymiperas_admin/echymiperas_admin.wasm modules/isoodons_admin/isoodons_admin.wasm modules/potoroin_admin/src/main.c modules/echymiperas_admin/src/main.c modules/isoodons_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
