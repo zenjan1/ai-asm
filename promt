@@ -1,36 +1,36 @@
-Phase 1063: Saiga Chiru Takhi Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1064: Quagga Onager Kiang Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/saiga_admin/src/main.c (Saiga Antelope)
-   - Saiga (Saiga tatarica) critically endangered steppe antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, sg_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,rn_sp,sg_idx,age_yr
+1. modules/quagga_admin/src/main.c (Quagga Extinct Zebra)
+   - Quagga (Equus quagga quagga) extinct plains zebra subspecies management
+   - Features: body_len_cm, body_wt_kg, mane_cm, run_speed, qu_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,mn_cm,rn_sp,qu_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: steppe, feeding, breeding, health, market
-   - Prefix: saig
+   - Categories: plains, feeding, breeding, health, market
+   - Prefix: quag
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/chiru_admin/src/main.c (Chiru Tibetan Antelope)
-   - Chiru (Pantholops hodgsonii) Tibetan plateau antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, gallop_speed, ch_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,gl_sp,ch_idx,age_yr
+2. modules/onager_admin/src/main.c (Onager Asian Wild Ass)
+   - Onager (Equus hemionus) Central Asian wild ass management
+   - Features: body_len_cm, body_wt_kg, ear_cm, gallop_speed, on_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,gl_sp,on_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: desert, feeding, breeding, health, market
+   - Prefix: onag
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/kiang_admin/src/main.c (Kiang Tibetan Wild Ass)
+   - Kiang (Equus kiang) Tibetan plateau wild ass management
+   - Features: body_len_cm, body_wt_kg, ear_cm, run_speed, ki_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,rn_sp,ki_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: plateau, feeding, breeding, health, market
-   - Prefix: chir
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-3. modules/takhi_admin/src/main.c (Takhi Przewalski Horse)
-   - Takhi (Equus ferus przewalskii) wild horse species management
-   - Features: body_len_cm, body_wt_kg, mane_cm, gallop_speed, tk_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,mn_cm,gl_sp,tk_idx,age_yr
-   - Pattern: follow abelia_admin pattern
-   - Categories: grassland, feeding, breeding, health, market
-   - Prefix: takh
+   - Prefix: kiang
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1425.0 → v1426.0 (all occurrences)
-  - total modules 3848 → 3851 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1063 - v1426.0 (3851 modules, 124 kernel)" entry
+  - version v1426.0 → v1427.0 (all occurrences)
+  - total modules 3851 → 3854 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1064 - v1427.0 (3854 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/saiga_admin/saiga_admin.wasm modules/chiru_admin/chiru_admin.wasm modules/takhi_admin/takhi_admin.wasm modules/saiga_admin/src/main.c modules/chiru_admin/src/main.c modules/takhi_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/quagga_admin/quagga_admin.wasm modules/onager_admin/onager_admin.wasm modules/kiang_admin/kiang_admin.wasm modules/quagga_admin/src/main.c modules/onager_admin/src/main.c modules/kiang_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
