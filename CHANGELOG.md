@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1002 - v1365.0 (3668 modules, 124 kernel)
+- Added WASM: snail_admin (Brown garden snail mollusk), snake_admin (Reticulated python reptile), sparrow_admin (House sparrow common bird)
+- Total modules: 3665 → 3668 (spiraled garden snail, large constrictor python, small urban songbird)
+
 ## Phase 1001 - v1364.0 (3665 modules, 124 kernel)
 - Added WASM: shrimp_admin (Giant tiger prawn crustacean), skunk_admin (Striped skunk small mammal), sloth_admin (Three-toed sloth arboreal mammal)
 - Total modules: 3662 → 3665 (farmed prawn crustacean, black-white striped mammal, slow tree-dwelling mammal)

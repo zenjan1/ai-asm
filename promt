@@ -1,36 +1,36 @@
-Phase 1002: Snail Snake Sparrow Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1003: Squid Squirrel Starfish Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/snail_admin/src/main.c (Snail Garden Mollusk)
-   - Snail (Helix aspersa) brown garden snail mollusk management
-   - Features: shell_cm, body_wt_g, body_cm, crawl_speed, spiral_idx, age_year
-   - Data: 16 entries with location,shl_cm,bdy_wt,bdy_cm,cr_sp,sp_idx,age_yr
+1. modules/squid_admin/src/main.c (Squid Cephalopod)
+   - Squid (Dosidicus gigas) Humboldt squid cephalopod management
+   - Features: mantle_cm, body_wt_kg, tentacle_cm, swim_speed, spot_idx, age_year
+   - Data: 16 entries with location,mntl_cm,bdy_wt,tnt_cm,sw_sp,sp_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: garden, feeding, breeding, health, market
-   - Prefix: snail
+   - Categories: deep_sea, feeding, breeding, health, market
+   - Prefix: squid
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/snake_admin/src/main.c (Snake Reptile)
-   - Snake (Python reticulatus) reticulated python reptile management
-   - Features: body_len_cm, body_wt_kg, fang_cm, strike_speed, scale_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fang_cm,st_sp,sc_idx,age_yr
+2. modules/squirrel_admin/src/main.c (Squirrel Rodent)
+   - Squirrel (Sciurus carolinensis) eastern gray squirrel rodent management
+   - Features: body_len_cm, body_wt_kg, tail_cm, run_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,run_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: jungle, feeding, breeding, health, market
-   - Prefix: snake
+   - Categories: park, feeding, breeding, health, market
+   - Prefix: squirrel
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/sparrow_admin/src/main.c (Sparrow Common Bird)
-   - Sparrow (Passer domesticus) house sparrow common bird management
-   - Features: body_len_cm, body_wt_g, wing_cm, song_vol, plum_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,sg_vl,pl_idx,age_yr
+3. modules/starfish_admin/src/main.c (Starfish Echinoderm)
+   - Starfish (Asterias rubens) common starfish echinoderm management
+   - Features: arm_span_cm, body_wt_g, arm_ct, move_speed, color_idx, age_year
+   - Data: 16 entries with location,arm_sp,bdy_wt,arm_ct,mv_sp,cl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: urban, feeding, breeding, health, market
-   - Prefix: sparrow
+   - Categories: tidepool, feeding, breeding, health, market
+   - Prefix: starfish
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1364.0 → v1365.0 (all occurrences)
-  - total modules 3665 → 3668 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1002 - v1365.0 (3668 modules, 124 kernel)" entry
+  - version v1365.0 → v1366.0 (all occurrences)
+  - total modules 3668 → 3671 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1003 - v1366.0 (3671 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/snail_admin/snail_admin.wasm modules/snake_admin/snake_admin.wasm modules/sparrow_admin/sparrow_admin.wasm modules/snail_admin/src/main.c modules/snake_admin/src/main.c modules/sparrow_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/squid_admin/squid_admin.wasm modules/squirrel_admin/squirrel_admin.wasm modules/starfish_admin/starfish_admin.wasm modules/squid_admin/src/main.c modules/squirrel_admin/src/main.c modules/starfish_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
