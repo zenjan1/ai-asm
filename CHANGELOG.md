@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1030 - v1393.0 (3752 modules, 124 kernel)
+- Added WASM: frog_admin (Common frog amphibian jumper), gazelle_admin (Mountain gazelle swift antelope), giraffe_admin (Giraffe tallest mammal)
+- Total modules: 3749 → 3752 (pond-jumping amphibian, swift steppe antelope, tall savanna mammal)
+
 ## Phase 1029 - v1392.0 (3749 modules, 124 kernel)
 - Added WASM: ferret_admin (Domesticated ferret small predator), flamingo_admin (Greater flamingo pink wading bird), fox_admin (Red fox cunning canid mammal)
 - Total modules: 3746 → 3749 (small burrowing predator, pink lagoon wader, cunning red canid)
