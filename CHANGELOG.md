@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1053 - v1416.0 (3821 modules, 124 kernel)
+- Added WASM: xerus_admin (Xerus ground squirrel), zorilla_admin (Zorilla striped polecat), dikdik_admin (Dikdik small antelope)
+- Total modules: 3818 → 3821 (Cape ground squirrel, striped polecat, Kirk dikdik)
+
 ## Phase 1052 - v1415.0 (3818 modules, 124 kernel)
 - Added WASM: uakari_admin (Uakari red-faced monkey), vicuna_admin (Vicuna Andean camelid), wallaby_admin (Wallaby small macropod)
 - Total modules: 3815 → 3818 (Amazonian uakari, Andean vicuna, red-necked wallaby)
