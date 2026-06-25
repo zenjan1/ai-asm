@@ -1,36 +1,36 @@
-Phase 1066: Capybara Bilby Numbat Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1067: Dunnart Phascogale Potoroo Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/capybara_admin/src/main.c (Capybara Largest Rodent)
-   - Capybara (Hydrochoerus hydrochaeris) semi-aquatic largest rodent management
-   - Features: body_len_cm, body_wt_kg, ear_cm, swim_speed, cp_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,sw_sp,cp_idx,age_yr
+1. modules/dunnart_admin/src/main.c (Dunnart small marsupial mouse)
+   - Dunnart (Sminthopsis) small insectivorous marsupial management
+   - Features: body_len_cm, body_wt_g, tail_cm, ear_cm, dn_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,ear_cm,dn_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: wetland, feeding, breeding, health, market
-   - Prefix: capy
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-2. modules/bilby_admin/src/main.c (Bilby Bandicoot)
-   - Bilby (Macrotis lagotis) rabbit-eared bandicoot marsupial management
-   - Features: body_len_cm, body_wt_kg, ear_cm, dig_speed, bl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,dg_sp,bl_idx,age_yr
-   - Pattern: follow abelia_admin pattern
    - Categories: desert, feeding, breeding, health, market
-   - Prefix: bilb
+   - Prefix: dnrt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/numbat_admin/src/main.c (Numbat Termite-eater)
-   - Numbat (Myrmecobius fasciatus) striped termite-eating marsupial management
-   - Features: body_len_cm, body_wt_g, tail_cm, tongue_cm, nm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,tg_cm,nm_idx,age_yr
+2. modules/phascogale_admin/src/main.c (Phascogale small carnivorous marsupial)
+   - Phascogale (Phascogale) small carnivorous marsupial management
+   - Features: body_len_cm, body_wt_g, tail_cm, claw_mm, pg_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,claw_mm,pg_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: numb
+   - Prefix: phsc
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/potoroo_admin/src/main.c (Potoroo small rat-kangaroo)
+   - Potoroo (Potorous) small rat-kangaroo marsupial management
+   - Features: body_len_cm, body_wt_kg, foot_cm, jump_cm, pt_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,foot_cm,jmp_cm,pt_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: scrub, feeding, breeding, health, market
+   - Prefix: ptro
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1428.0 → v1429.0 (all occurrences)
-  - total modules 3857 → 3860 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1066 - v1429.0 (3860 modules, 124 kernel)" entry
+  - version v1429.0 → v1430.0 (all occurrences)
+  - total modules 3860 → 3863 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1067 - v1430.0 (3863 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/capybara_admin/capybara_admin.wasm modules/bilby_admin/bilby_admin.wasm modules/numbat_admin/numbat_admin.wasm modules/capybara_admin/src/main.c modules/bilby_admin/src/main.c modules/numbat_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/dunnart_admin/dunnart_admin.wasm modules/phascogale_admin/phascogale_admin.wasm modules/potoroo_admin/potoroo_admin.wasm modules/dunnart_admin/src/main.c modules/phascogale_admin/src/main.c modules/potoroo_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

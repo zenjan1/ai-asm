@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1066 - v1429.0 (3860 modules, 124 kernel)
+- Added WASM: capybara_admin (Capybara largest rodent), bilby_admin (Bilby rabbit-eared bandicoot), numbat_admin (Numbat striped termite-eater)
+- Total modules: 3857 → 3860 (capybara, bilby, numbat)
+
 ## Phase 1065 - v1428.0 (3857 modules, 124 kernel)
 - Added WASM: tapir_admin (Tapir browsing mammal), peccary_admin (Peccary wild pig), bongu_admin (Bongu tree hyrax)
 - Total modules: 3854 → 3857 (South American tapir, collared peccary, tree hyrax)
