@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1077 - v1440.0 (3893 modules, 124 kernel)
+- Added WASM: wallaroo_admin (Wallaroo large rock-wallabies), monjon_admin (Monjon small rock-wallabies), tammar_admin (Tammar wallabies)
+- Total modules: 3890 → 3893 (wallaroo, monjon, tammar)
+
 ## Phase 1076 - v1439.0 (3890 modules, 124 kernel)
 - Added WASM: dasyures_admin (Dasyures carnivorous marsupials), phascogales_admin (Phascogales small carnivorous marsupials), bandicoots_admin (Bandicoots omnivorous marsupials)
 - Total modules: 3887 → 3890 (dasyures, phascogales, bandicoots)

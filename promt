@@ -1,36 +1,36 @@
-Phase 1077: Wallaroo Monjon Tammar Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1078: Thylacine Tasmanian Devil Macropod Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/wallaroo_admin/src/main.c (Wallaroo large macropods)
-   - Wallaroo (Macropus) large rock-wallabies management
-   - Features: body_len_cm, body_wt_kg, ear_cm, tail_cm, wl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,tail_cm,wl_idx,age_yr
+1. modules/thylacine_admin/src/main.c (Thylacine extinct marsupial wolf)
+   - Thylacine (Thylacinus) extinct marsupial wolf management
+   - Features: body_len_cm, body_wt_kg, jaw_mm, tail_cm, th_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,jaw_mm,tail_cm,th_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: wllr
+   - Prefix: thyl
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/monjon_admin/src/main.c (Monjon small rock-wallabies)
-   - Monjon (Petrogale) small rock-wallabies management
-   - Features: body_len_cm, body_wt_g, foot_cm, tail_cm, mj_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,foot_cm,tail_cm,mj_idx,age_yr
+2. modules/tasmanian_devil_admin/src/main.c (Tasmanian Devil carnivorous marsupial)
+   - Tasmanian Devil (Sarcophilus) carnivorous marsupial management
+   - Features: body_len_cm, body_wt_kg, bite_kg, tail_cm, td_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bite_kg,tail_cm,td_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: mjon
+   - Prefix: tdvl
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/tammar_admin/src/main.c (Tammar wallaby)
-   - Tammar (Notamacropus) tammar wallabies management
-   - Features: body_len_cm, body_wt_kg, pouch_cm, tail_cm, tm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,pouch_cm,tail_cm,tm_idx,age_yr
+3. modules/macropod_admin/src/main.c (Macropod large marsupeds)
+   - Macropod (Macropodidae) large marsupeds management
+   - Features: body_len_cm, body_wt_kg, leap_cm, tail_cm, mp_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leap_cm,tail_cm,mp_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tmmr
+   - Prefix: mcpd
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1439.0 → v1440.0 (all occurrences)
-  - total modules 3890 → 3893 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1077 - v1440.0 (3893 modules, 124 kernel)" entry
+  - version v1440.0 → v1441.0 (all occurrences)
+  - total modules 3893 → 3896 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1078 - v1441.0 (3896 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/wallaroo_admin/wallaroo_admin.wasm modules/monjon_admin/monjon_admin.wasm modules/tammar_admin/tammar_admin.wasm modules/wallaroo_admin/src/main.c modules/monjon_admin/src/main.c modules/tammar_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/thylacine_admin/thylacine_admin.wasm modules/tasmanian_devil_admin/tasmanian_devil_admin.wasm modules/macropod_admin/macropod_admin.wasm modules/thylacine_admin/src/main.c modules/tasmanian_devil_admin/src/main.c modules/macropod_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
