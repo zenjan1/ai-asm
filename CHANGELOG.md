@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1028 - v1391.0 (3746 modules, 124 kernel)
+- Added WASM: elk_admin (North American elk large antlered mammal), emu_admin (Australian emu large flightless bird), falcon_admin (Peregrine falcon fast diving raptor)
+- Total modules: 3743 → 3746 (large antlered forest mammal, Australian outback flightless bird, fast diving cliff raptor)
+
 ## Phase 1027 - v1390.0 (3743 modules, 124 kernel)
 - Added WASM: eel_admin (European eel elongated fish), egret_admin (Great egret white wading bird), elephant_admin (African elephant large mammal)
 - Total modules: 3740 → 3743 (elongated river fish, white marsh wading bird, large savanna mammal)
