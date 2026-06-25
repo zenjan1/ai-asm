@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 988 - v1351.0 (3626 modules, 124 kernel)
+- Added WASM: mink_admin (American mink semi-aquatic mustelid), monkey_admin (Rhesus macaque monkey primate), moose_admin (Eurasian moose large deer)
+- Total modules: 3623 → 3626 (slick-furred mustelid, intelligent primate, antlered forest deer)
+
 ## Phase 987 - v1350.0 (3623 modules, 124 kernel)
 - Added WASM: mallard_admin (Mallard dabbling duck), manatee_admin (West Indian manatee sea cow), meerkat_admin (Meerkat sentinel mongoose)
 - Total modules: 3620 → 3623 (dabbling river duck, gentle sea cow, sentinel desert mongoose)

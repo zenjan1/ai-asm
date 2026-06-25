@@ -1,36 +1,36 @@
-Phase 988: Mink Monkey Moose Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 989: Mosquito Moth Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/mink_admin/src/main.c (Mink Semi-Aquatic Mustelid)
-   - Mink (Neovison vison) American mink semi-aquatic mustelid management
-   - Features: body_len_cm, body_wt_kg, tail_len_cm, dive_sec, fur_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,dv_sc,fr_idx,age_yr
+1. modules/mosquito_admin/src/main.c (Mosquito Disease Vector Insect)
+   - Mosquito (Aedes aegypti) yellow fever mosquito disease vector management
+   - Features: body_len_mm, body_wt_mg, wing_hz, bite_force, resist_idx, age_day
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_hz,bt_fc,rs_idx,age_dy
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: den, feeding, breeding, health, market
-   - Prefix: mink
+   - Categories: swamp, feeding, breeding, health, market
+   - Prefix: mosquito
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/monkey_admin/src/main.c (Monkey Primate)
-   - Monkey (Macaca mulatta) rhesus macaque monkey primate management
-   - Features: body_len_cm, body_wt_kg, tail_len_cm, call_vol, troop_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,cl_vl,tr_idx,age_yr
+2. modules/moth_admin/src/main.c (Moth Nocturnal Insect)
+   - Moth (Bombyx mori) domestic silk moth nocturnal insect management
+   - Features: wing_span_cm, body_wt_g, antenna_cm, pheromone_idx, silk_yield, age_day
+   - Data: 16 entries with location,wing_sp,bdy_wt,ant_cm,ph_idx,sl_yd,age_dy
    - Pattern: follow abelia_admin pattern
-   - Categories: troop, feeding, breeding, health, market
-   - Prefix: monkey
+   - Categories: cocoon, feeding, breeding, health, market
+   - Prefix: moth
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/moose_admin/src/main.c (Moose Large Deer)
-   - Moose (Alces alces) Eurasian moose large deer management
-   - Features: body_len_cm, body_wt_kg, antler_cm, bite_force, coat_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,antl_cm,bt_fc,ct_idx,age_yr
+3. modules/mouse_admin/src/main.c (Mouse Small Rodent)
+   - Mouse (Mus musculus) house mouse small rodent management
+   - Features: body_len_cm, body_wt_g, tail_len_cm, whisker_idx, nest_size, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,wh_idx,ns_sz,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: forest, feeding, breeding, health, market
-   - Prefix: moose
+   - Categories: nest, feeding, breeding, health, market
+   - Prefix: mouse
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1350.0 → v1351.0 (all occurrences)
-  - total modules 3623 → 3626 (all occurrences)
-Update CHANGELOG.md: add "## Phase 988 - v1351.0 (3626 modules, 124 kernel)" entry
+  - version v1351.0 → v1352.0 (all occurrences)
+  - total modules 3626 → 3629 (all occurrences)
+Update CHANGELOG.md: add "## Phase 989 - v1352.0 (3629 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/mink_admin/mink_admin.wasm modules/monkey_admin/monkey_admin.wasm modules/moose_admin/moose_admin.wasm modules/mink_admin/src/main.c modules/monkey_admin/src/main.c modules/moose_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/mosquito_admin/mosquito_admin.wasm modules/moth_admin/moth_admin.wasm modules/mouse_admin/mouse_admin.wasm modules/mosquito_admin/src/main.c modules/moth_admin/src/main.c modules/mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
