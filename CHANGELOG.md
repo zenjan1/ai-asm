@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1096 - v1459.0 (3950 modules, 124 kernel)
+- Added WASM: long-tailed-mouse_admin (Long-tailed-mouse small rodents), short-tailed-mouse_admin (Short-tailed-mouse small rodents), desert-mouse_admin (Desert-mouse arid-region rodents)
+- Total modules: 3947 → 3950 (long-tailed-mouse, short-tailed-mouse, desert-mouse)
+
 ## Phase 1095 - v1458.0 (3947 modules, 124 kernel)
 - Added WASM: mouse-marsupial_admin (Mouse-marsupial tiny mammals), stripe-faced-mouse_admin (Stripe-faced-mouse small rodents), planigale-mouse_admin (Planigale-mouse flat-headed mammals)
 - Total modules: 3944 → 3947 (mouse-marsupial, stripe-faced-mouse, planigale-mouse)

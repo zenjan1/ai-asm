@@ -1,36 +1,36 @@
-Phase 1096: Long-Tailed-Mouse Short-Tailed-Mouse Desert-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1097: Spinifex-Mouse Grassland-Mouse Bush-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/long-tailed-mouse_admin/src/main.c (Long-tailed-mouse small rodents)
-   - Long-tailed-mouse small rodents management
-   - Features: body_len_cm, body_wt_g, tail_ratio, tail_cm, ltm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ratio,tail_cm,ltm_idx,age_yr
+1. modules/spinifex-mouse_admin/src/main.c (Spinifex-mouse desert-dwelling rodents)
+   - Spinifex-mouse desert-dwelling rodents management
+   - Features: body_len_cm, body_wt_g, claw_ct, tail_cm, spm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_ct,tail_cm,spm_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: ltmx
+   - Prefix: spmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/short-tailed-mouse_admin/src/main.c (Short-tailed-mouse small rodents)
-   - Short-tailed-mouse small rodents management
-   - Features: body_len_cm, body_wt_g, ear_ratio, tail_cm, stm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_ratio,tail_cm,stm_idx,age_yr
+2. modules/grassland-mouse_admin/src/main.c (Grassland-mouse meadow rodents)
+   - Grassland-mouse meadow rodents management
+   - Features: body_len_cm, body_wt_g, whisker_ct, tail_cm, gmm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,whisker_ct,tail_cm,gmm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: stmx
+   - Prefix: gmmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/desert-mouse_admin/src/main.c (Desert-mouse arid-region rodents)
-   - Desert-mouse arid-region rodents management
-   - Features: body_len_cm, body_wt_g, sand_tol, tail_cm, dmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,sand_tol,tail_cm,dmx_idx,age_yr
+3. modules/bush-mouse_admin/src/main.c (Bush-mouse shrub-dwelling rodents)
+   - Bush-mouse shrub-dwelling rodents management
+   - Features: body_len_cm, body_wt_g, fur_thick, tail_cm, bmm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fur_thick,tail_cm,bmm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: dmxx
+   - Prefix: bmmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1458.0 → v1459.0 (all occurrences)
-  - total modules 3947 → 3950 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1096 - v1459.0 (3950 modules, 124 kernel)" entry
+  - version v1459.0 → v1460.0 (all occurrences)
+  - total modules 3950 → 3953 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1097 - v1460.0 (3953 modules, 124 kernel)" entry
 Set UPDATE=0
 git add -f modules/long-tailed-mouse_admin/long-tailed-mouse_admin.wasm modules/short-tailed-mouse_admin/short-tailed-mouse_admin.wasm modules/desert-mouse_admin/desert-mouse_admin.wasm modules/long-tailed-mouse_admin/src/main.c modules/short-tailed-mouse_admin/src/main.c modules/desert-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
