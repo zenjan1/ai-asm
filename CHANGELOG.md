@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 976 - v1339.0 (3590 modules, 124 kernel)
+- Added WASM: guinea_admin (Domestic guinea pig rodent), gull_admin (Common gull seabird), guppy_admin (Common guppy tropical fish)
+- Total modules: 3587 → 3590 (domestic rodent pet, coastal scavenger bird, colorful aquarium fish)
+
 ## Phase 975 - v1338.0 (3587 modules, 124 kernel)
 - Added WASM: grouse_admin (Willow grouse game bird), grub_admin (Beetle larva insect), grunt_admin (Grunt fish perciform)
 - Total modules: 3584 → 3587 (cold-adapted bird, soil-dwelling larva, vocal reef fish)

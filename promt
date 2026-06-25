@@ -1,36 +1,36 @@
-Phase 976: Guinea Gull Guppy Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 977: Hagfish Halibut Hamster Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/guinea_admin/src/main.c (Guinea Pig Rodent)
-   - Guinea Pig (Cavia porcellus) domestic guinea pig rodent management
-   - Features: body_len_cm, body_wt_g, ear_cm, whisker_idx, squeak_vol, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,wh_idx,sq_vl,age_yr
+1. modules/hagfish_admin/src/main.c (Hagfish Jawless Fish)
+   - Hagfish (Myxine glutinosa) Atlantic hagfish jawless fish management
+   - Features: body_len_cm, body_wt_g, slime_vol_ml, tooth_ct, nose_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,sl_ml,tc,n_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: housing, feeding, breeding, health, market
-   - Prefix: guinea
+   - Categories: tank, feeding, breeding, health, market
+   - Prefix: hagfish
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/gull_admin/src/main.c (Gull Seabird)
-   - Gull (Larus canus) common gull seabird management
-   - Features: body_len_cm, body_wt_kg, wing_span_cm, beak_cm, dive_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,bk_cm,dv_idx,age_yr
-   - Pattern: follow abelia_admin pattern
-   - Categories: habitat, feeding, breeding, health, market
-   - Prefix: gull
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-3. modules/guppy_admin/src/main.c (Guppy Tropical Fish)
-   - Guppy (Poecilia reticulata) common guppy tropical fish management
-   - Features: body_len_cm, body_wt_g, tail_span_cm, color_idx, spot_ct, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_sp,cl_idx,sp_ct,age_yr
+2. modules/halibut_admin/src/main.c (Halibut Flatfish)
+   - Halibut (Hippoglossus hippoglossus) Atlantic halibut flatfish management
+   - Features: body_len_cm, body_wt_kg, eye_dia_cm, scale_idx, swim_depth_m, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,eye_dia,sc_idx,sw_dp,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: tank, feeding, breeding, health, market
-   - Prefix: guppy
+   - Prefix: halibut
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/hamster_admin/src/main.c (Hamster Small Rodent)
+   - Hamster (Mesocricetus auratus) golden hamster rodent management
+   - Features: body_len_cm, body_wt_g, tail_cm, cheek_pouch_idx, wheel_ct, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,chk_idx,wh_ct,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: housing, feeding, breeding, health, market
+   - Prefix: hamster
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1338.0 → v1339.0 (all occurrences)
-  - total modules 3587 → 3590 (all occurrences)
-Update CHANGELOG.md: add "## Phase 976 - v1339.0 (3590 modules, 124 kernel)" entry
+  - version v1339.0 → v1340.0 (all occurrences)
+  - total modules 3590 → 3593 (all occurrences)
+Update CHANGELOG.md: add "## Phase 977 - v1340.0 (3593 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/guinea_admin/guinea_admin.wasm modules/gull_admin/gull_admin.wasm modules/guppy_admin/guppy_admin.wasm modules/guinea_admin/src/main.c modules/gull_admin/src/main.c modules/guppy_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/hagfish_admin/hagfish_admin.wasm modules/halibut_admin/halibut_admin.wasm modules/hamster_admin/hamster_admin.wasm modules/hagfish_admin/src/main.c modules/halibut_admin/src/main.c modules/hamster_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
