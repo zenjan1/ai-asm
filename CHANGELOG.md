@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1078 - v1441.0 (3896 modules, 124 kernel)
+- Added WASM: thylacine_admin (Thylacine extinct marsupial wolf), tasmanian_devil_admin (Tasmanian Devil carnivorous marsupial), macropod_admin (Macropod large marsupeds)
+- Total modules: 3893 → 3896 (thylacine, tasmanian_devil, macropod)
+
 ## Phase 1077 - v1440.0 (3893 modules, 124 kernel)
 - Added WASM: wallaroo_admin (Wallaroo large rock-wallabies), monjon_admin (Monjon small rock-wallabies), tammar_admin (Tammar wallabies)
 - Total modules: 3890 → 3893 (wallaroo, monjon, tammar)

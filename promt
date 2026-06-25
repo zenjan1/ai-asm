@@ -1,36 +1,36 @@
-Phase 1078: Thylacine Tasmanian Devil Macropod Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1079: Thylacines Tasmanian Devils Macropods Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/thylacine_admin/src/main.c (Thylacine extinct marsupial wolf)
-   - Thylacine (Thylacinus) extinct marsupial wolf management
-   - Features: body_len_cm, body_wt_kg, jaw_mm, tail_cm, th_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,jaw_mm,tail_cm,th_idx,age_yr
+1. modules/thylacines_admin/src/main.c (Thylacines extinct marsupial wolves)
+   - Thylacines (Thylacinus) extinct marsupial wolves management
+   - Features: body_len_cm, body_wt_kg, skull_cm, tail_cm, th_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,skull_cm,tail_cm,th_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
    - Prefix: thyl
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/tasmanian_devil_admin/src/main.c (Tasmanian Devil carnivorous marsupial)
-   - Tasmanian Devil (Sarcophilus) carnivorous marsupial management
-   - Features: body_len_cm, body_wt_kg, bite_kg, tail_cm, td_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bite_kg,tail_cm,td_idx,age_yr
+2. modules/tasmanian_devils_admin/src/main.c (Tasmanian Devils carnivorous marsupials)
+   - Tasmanian Devils (Sarcophilus) carnivorous marsupials management
+   - Features: body_len_cm, body_wt_kg, skull_cm, tail_cm, td_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,skull_cm,tail_cm,td_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
    - Prefix: tdvl
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/macropod_admin/src/main.c (Macropod large marsupeds)
-   - Macropod (Macropodidae) large marsupeds management
-   - Features: body_len_cm, body_wt_kg, leap_cm, tail_cm, mp_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leap_cm,tail_cm,mp_idx,age_yr
+3. modules/macropods_admin/src/main.c (Macropods large marsupeds)
+   - Macropods (Macropodidae) large marsupeds management
+   - Features: body_len_cm, body_wt_kg, hind_cm, tail_cm, mp_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hind_cm,tail_cm,mp_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
    - Prefix: mcpd
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1440.0 → v1441.0 (all occurrences)
-  - total modules 3893 → 3896 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1078 - v1441.0 (3896 modules, 124 kernel)" entry
+  - version v1441.0 → v1442.0 (all occurrences)
+  - total modules 3896 → 3899 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1079 - v1442.0 (3899 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/thylacine_admin/thylacine_admin.wasm modules/tasmanian_devil_admin/tasmanian_devil_admin.wasm modules/macropod_admin/macropod_admin.wasm modules/thylacine_admin/src/main.c modules/tasmanian_devil_admin/src/main.c modules/macropod_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/thylacines_admin/thylacines_admin.wasm modules/tasmanian_devils_admin/tasmanian_devils_admin.wasm modules/macropods_admin/macropods_admin.wasm modules/thylacines_admin/src/main.c modules/tasmanian_devils_admin/src/main.c modules/macropods_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
