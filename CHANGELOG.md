@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1018 - v1381.0 (3716 modules, 124 kernel)
+- Added WASM: cheetah_admin (Fast spotted feline predator), chicken_admin (Domestic poultry), chimpanzee_admin (Common great ape)
+- Total modules: 3713 → 3716 (fastest land animal, domestic egg-laying bird, intelligent forest ape)
+
 ## Phase 1017 - v1380.0 (3713 modules, 124 kernel)
 - Added WASM: camel_admin (Dromedary desert ungulate), canary_admin (Domestic songbird), cat_admin (Domestic feline predator)
 - Total modules: 3710 → 3713 (single-humped desert ungulate, colorful singing songbird, domestic feline predator)
