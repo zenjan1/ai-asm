@@ -1,36 +1,36 @@
-Phase 1025: Dragonfly Duck Dugong Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1026: Eagle Earwig Echidna Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/dragonfly_admin/src/main.c (Dragonfly Flying Insect)
-   - Dragonfly (Anax imperator) emperor dragonfly flying insect management
-   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, eye_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,ey_idx,age_yr
+1. modules/eagle_admin/src/main.c (Eagle Large Raptor)
+   - Eagle (Aquila chrysaetos) golden eagle large raptor management
+   - Features: body_len_cm, body_wt_kg, wing_cm, fly_speed, feather_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,ft_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: pond, feeding, breeding, health, market
-   - Prefix: dragonfly
+   - Categories: cliff, feeding, breeding, health, market
+   - Prefix: eagle
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/duck_admin/src/main.c (Duck Waterfowl)
-   - Duck (Anas platyrhynchos) mallard duck waterfowl management
-   - Features: body_len_cm, body_wt_kg, bill_cm, swim_speed, plum_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bill_cm,sw_sp,pm_idx,age_yr
+2. modules/earwig_admin/src/main.c (Earwig Pincher Insect)
+   - Earwig (Forficula auricularia) common earwig pincher insect management
+   - Features: body_len_cm, body_wt_g, cerci_cm, crawl_speed, ant_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,cerc_cm,cr_sp,an_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: pond, feeding, breeding, health, market
-   - Prefix: duck
+   - Categories: garden, feeding, breeding, health, market
+   - Prefix: earwig
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/dugong_admin/src/main.c (Dugong Marine Mammal)
-   - Dugong (Dugong dugon) dugong marine herbivorous mammal management
-   - Features: body_len_cm, body_wt_kg, flipper_cm, swim_speed, skin_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,flip_cm,sw_sp,sk_idx,age_yr
+3. modules/echidna_admin/src/main.c (Echidna Spiny Mammal)
+   - Echidna (Tachyglossus aculeatus) short-beaked echidna spiny mammal management
+   - Features: body_len_cm, body_wt_kg, spine_cm, dig_speed, quill_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,spine_cm,dg_sp,ql_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: coast, feeding, breeding, health, market
-   - Prefix: dugong
+   - Categories: bush, feeding, breeding, health, market
+   - Prefix: echidna
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1387.0 → v1388.0 (all occurrences)
-  - total modules 3734 → 3737 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1025 - v1388.0 (3737 modules, 124 kernel)" entry
+  - version v1388.0 → v1389.0 (all occurrences)
+  - total modules 3737 → 3740 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1026 - v1389.0 (3740 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/dragonfly_admin/dragonfly_admin.wasm modules/duck_admin/duck_admin.wasm modules/dugong_admin/dugong_admin.wasm modules/dragonfly_admin/src/main.c modules/duck_admin/src/main.c modules/dugong_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/eagle_admin/eagle_admin.wasm modules/earwig_admin/earwig_admin.wasm modules/echidna_admin/echidna_admin.wasm modules/eagle_admin/src/main.c modules/earwig_admin/src/main.c modules/echidna_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

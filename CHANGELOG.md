@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1025 - v1388.0 (3737 modules, 124 kernel)
+- Added WASM: dragonfly_admin (Emperor flying insect), duck_admin (Mallard waterfowl), dugong_admin (Marine herbivorous mammal)
+- Total modules: 3734 → 3737 (large hovering predatory insect, dabbling pond waterfowl, sea cow seagrass feeder)
+
 ## Phase 1024 - v1387.0 (3734 modules, 124 kernel)
 - Added WASM: dolphin_admin (Common marine mammal), donkey_admin (Domestic equine), dove_admin (Eurasian collared dove)
 - Total modules: 3731 → 3734 (intelligent social cetacean, long-eared pack animal, cooing garden bird)
