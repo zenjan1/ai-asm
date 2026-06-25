@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1001 - v1364.0 (3665 modules, 124 kernel)
+- Added WASM: shrimp_admin (Giant tiger prawn crustacean), skunk_admin (Striped skunk small mammal), sloth_admin (Three-toed sloth arboreal mammal)
+- Total modules: 3662 → 3665 (farmed prawn crustacean, black-white striped mammal, slow tree-dwelling mammal)
+
 ## Phase 1000 - v1363.0 (3662 modules, 124 kernel)
 - Added WASM: seahorse_admin (Giant seahorse marine fish), shark_admin (Great white shark apex predator), sheep_admin (Domestic sheep woolly livestock)
 - Total modules: 3659 → 3662 (curled-tail marine fish, oceanic apex predator, woolly pasture animal)
