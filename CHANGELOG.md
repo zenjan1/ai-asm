@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 994 - v1357.0 (3644 modules, 124 kernel)
+- Added WASM: pelican_admin (Brown pelican large waterbird), penguin_admin (Emperor penguin flightless seabird), pheasant_admin (Ring-necked pheasant game bird)
+- Total modules: 3641 → 3644 (pouch-billed coastal diver, Antarctic tuxedo bird, colorful game bird)
+
 ## Phase 993 - v1356.0 (3641 modules, 124 kernel)
 - Added WASM: panda_admin (Giant panda bear), panther_admin (Black panther big cat), parrot_admin (Turquoise-fronted parrot)
 - Total modules: 3638 → 3641 (bamboo-eating black-white bear, stealthy black cat, talking tropical bird)

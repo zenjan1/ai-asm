@@ -1,36 +1,36 @@
-Phase 994: Pelican Penguin Pheasant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 995: Platypus Porcupine Python Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/pelican_admin/src/main.c (Pelican Large Waterbird)
-   - Pelican (Pelecanus occidentalis) brown pelican large waterbird management
-   - Features: body_len_cm, body_wt_kg, wing_span_cm, beak_cm, pouch_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,bk_cm,ph_idx,age_yr
+1. modules/platypus_admin/src/main.c (Platypus Egg-Laying Mammal)
+   - Platypus (Ornithorhynchus anatinus) duck-billed platypus management
+   - Features: body_len_cm, body_wt_kg, bill_cm, dive_sec, venom_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bill_cm,dv_sc,vm_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: coast, feeding, breeding, health, market
-   - Prefix: pelican
+   - Categories: burrow, feeding, breeding, health, market
+   - Prefix: platypus
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/penguin_admin/src/main.c (Penguin Flightless Seabird)
-   - Penguin (Aptenodytes forsteri) emperor penguin flightless seabird management
-   - Features: body_len_cm, body_wt_kg, flipper_cm, dive_m, colony_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,flip_cm,dv_m,cl_idx,age_yr
+2. modules/porcupine_admin/src/main.c (Porcupine Spiny Rodent)
+   - Porcupine (Erethizon dorsatum) North American porcupine management
+   - Features: body_len_cm, body_wt_kg, quill_ct, tail_len, climb_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,qu_ct,tail_ln,cl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: ice, feeding, breeding, health, market
-   - Prefix: penguin
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: porcupine
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/pheasant_admin/src/main.c (Pheasant Game Bird)
-   - Pheasant (Phasianus colchicus) ring-necked pheasant game bird management
-   - Features: body_len_cm, body_wt_kg, tail_len_cm, call_vol, plumage_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,cl_vl,pl_idx,age_yr
+3. modules/python_admin/src/main.c (Python Large Constrictor)
+   - Python (Python regius) ball python large constrictor management
+   - Features: body_len_cm, body_wt_kg, coil_str, strike_speed, scale_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,coil_st,sk_sp,sc_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: field, feeding, breeding, health, market
-   - Prefix: pheasant
+   - Categories: terrarium, feeding, breeding, health, market
+   - Prefix: python
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1356.0 → v1357.0 (all occurrences)
-  - total modules 3641 → 3644 (all occurrences)
-Update CHANGELOG.md: add "## Phase 994 - v1357.0 (3644 modules, 124 kernel)" entry
+  - version v1357.0 → v1358.0 (all occurrences)
+  - total modules 3644 → 3647 (all occurrences)
+Update CHANGELOG.md: add "## Phase 995 - v1358.0 (3647 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/pelican_admin/pelican_admin.wasm modules/penguin_admin/penguin_admin.wasm modules/pheasant_admin/pheasant_admin.wasm modules/pelican_admin/src/main.c modules/penguin_admin/src/main.c modules/pheasant_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/platypus_admin/platypus_admin.wasm modules/porcupine_admin/porcupine_admin.wasm modules/python_admin/python_admin.wasm modules/platypus_admin/src/main.c modules/porcupine_admin/src/main.c modules/python_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
