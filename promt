@@ -1,36 +1,36 @@
-Phase 1034: Iguana Impala Insect Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1035: Jackal Jaguar Jellyfish Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/iguana_admin/src/main.c (Iguana Large Tree Reptile)
-   - Iguana (Iguana iguana) green iguana large tree reptile management
-   - Features: body_len_cm, body_wt_kg, tail_cm, climb_speed, scale_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,cl_sp,sc_idx,age_yr
+1. modules/jackal_admin/src/main.c (Jackal Wild Canid Mammal)
+   - Jackal (Canis aureus) golden jackal wild canid mammal management
+   - Features: body_len_cm, body_wt_kg, ear_cm, run_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,rn_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: tree, feeding, breeding, health, market
-   - Prefix: igua
+   - Categories: scrub, feeding, breeding, health, market
+   - Prefix: jack
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/impala_admin/src/main.c (Impala Graceful Antelope)
-   - Impala (Aepyceros melampus) impala graceful antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, jump_ht, coat_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,jp_ht,ct_idx,age_yr
+2. modules/jaguar_admin/src/main.c (Jaguar Big Cat Predator)
+   - Jaguar (Panthera onca) jaguar big cat predator management
+   - Features: body_len_cm, body_wt_kg, claw_cm, run_speed, spot_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_cm,rn_sp,sp_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: savanna, feeding, breeding, health, market
-   - Prefix: imp
+   - Categories: jungle, feeding, breeding, health, market
+   - Prefix: jag
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/insect_admin/src/main.c (Insect Common Arthropod)
-   - Insect (Insecta) common insect arthropod management
-   - Features: body_len_mm, body_wt_mg, wing_mm, fly_speed, seg_idx, age_week
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wng_mm,fl_sp,sg_idx,age_wk
+3. modules/jellyfish_admin/src/main.c (Jellyfish Marine Invertebrate)
+   - Jellyfish (Medusozoa) jellyfish marine invertebrate management
+   - Features: bell_dia_cm, body_wt_g, tentacle_cm, drift_speed, stg_idx, age_week
+   - Data: 16 entries with location,bl_dia,bdy_wt,ten_cm,dr_sp,st_idx,age_wk
    - Pattern: follow abelia_admin pattern
-   - Categories: field, feeding, breeding, health, market
-   - Prefix: ins
+   - Categories: ocean, feeding, breeding, health, market
+   - Prefix: jlf
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1396.0 → v1397.0 (all occurrences)
-  - total modules 3761 → 3764 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1034 - v1397.0 (3764 modules, 124 kernel)" entry
+  - version v1397.0 → v1398.0 (all occurrences)
+  - total modules 3764 → 3767 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1035 - v1398.0 (3767 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/iguana_admin/iguana_admin.wasm modules/impala_admin/impala_admin.wasm modules/insect_admin/insect_admin.wasm modules/iguana_admin/src/main.c modules/impala_admin/src/main.c modules/insect_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/jackal_admin/jackal_admin.wasm modules/jaguar_admin/jaguar_admin.wasm modules/jellyfish_admin/jellyfish_admin.wasm modules/jackal_admin/src/main.c modules/jaguar_admin/src/main.c modules/jellyfish_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

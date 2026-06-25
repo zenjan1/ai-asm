@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1034 - v1397.0 (3764 modules, 124 kernel)
+- Added WASM: iguana_admin (Green iguana large tree reptile), impala_admin (Impala graceful antelope), insect_admin (Common insect arthropod)
+- Total modules: 3761 → 3764 (green tree-climbing reptile, graceful leaping antelope, common field arthropod)
+
 ## Phase 1033 - v1396.0 (3761 modules, 124 kernel)
 - Added WASM: hippo_admin (Common hippopotamus large semi-aquatic mammal), horse_admin (Domesticated horse equine mammal), hyena_admin (Spotted hyena scavenger canid)
 - Total modules: 3758 → 3761 (river-dwelling aquatic mammal, domesticated riding equine, spotted scavenging canid)
