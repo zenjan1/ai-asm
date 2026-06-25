@@ -1,36 +1,36 @@
-Phase 1005: Swordfish Tetra Tiger Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1006: Toad Toucan Turkey Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/swordfish_admin/src/main.c (Swordfish Billfish)
-   - Swordfish (Xiphias gladius) swordfish billfish management
-   - Features: body_len_cm, body_wt_kg, sword_cm, swim_speed, fin_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,sword_cm,sw_sp,fn_idx,age_yr
+1. modules/toad_admin/src/main.c (Toad Amphibian)
+   - Toad (Bufo bufo) common toad amphibian management
+   - Features: body_len_cm, body_wt_g, leg_cm, jump_speed, wart_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,jp_sp,wt_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: ocean, feeding, breeding, health, market
-   - Prefix: swordfish
+   - Categories: pond, feeding, breeding, health, market
+   - Prefix: toad
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/tetra_admin/src/main.c (Tetra Freshwater Fish)
-   - Tetra (Tetraodon tetra) freshwater tetra fish management
-   - Features: body_len_cm, body_wt_g, fin_cm, swim_speed, color_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,cl_idx,age_yr
+2. modules/toucan_admin/src/main.c (Toucan Tropical Bird)
+   - Toucan (Ramphastos toco) toco toucan tropical bird management
+   - Features: body_len_cm, body_wt_g, bill_cm, fly_speed, plmg_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bill_cm,fl_sp,pg_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: aquarium, feeding, breeding, health, market
-   - Prefix: tetra
+   - Categories: canopy, feeding, breeding, health, market
+   - Prefix: toucan
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/tiger_admin/src/main.c (Tiger Big Cat Predator)
-   - Tiger (Panthera tigris) Bengal tiger big cat predator management
-   - Features: body_len_cm, body_wt_kg, claw_cm, run_speed, stripe_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_cm,run_sp,st_idx,age_yr
+3. modules/turkey_admin/src/main.c (Turkey Poultry Bird)
+   - Turkey (Meleagris gallopavo) wild turkey poultry bird management
+   - Features: body_len_cm, body_wt_kg, tail_cm, run_speed, feather_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,run_sp,ft_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: jungle, feeding, breeding, health, market
-   - Prefix: tiger
+   - Categories: farm, feeding, breeding, health, market
+   - Prefix: turkey
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1367.0 → v1368.0 (all occurrences)
-  - total modules 3674 → 3677 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1005 - v1368.0 (3677 modules, 124 kernel)" entry
+  - version v1368.0 → v1369.0 (all occurrences)
+  - total modules 3677 → 3680 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1006 - v1369.0 (3680 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/swordfish_admin/swordfish_admin.wasm modules/tetra_admin/tetra_admin.wasm modules/tiger_admin/tiger_admin.wasm modules/swordfish_admin/src/main.c modules/tetra_admin/src/main.c modules/tiger_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/toad_admin/toad_admin.wasm modules/toucan_admin/toucan_admin.wasm modules/turkey_admin/turkey_admin.wasm modules/toad_admin/src/main.c modules/toucan_admin/src/main.c modules/turkey_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
