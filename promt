@@ -1,36 +1,36 @@
-Phase 1093: Dunnart-Mouse Rock-Wallaby Bilbie Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1094: Bandicoot-Bettong Marsupial-Mouse Fat-Tailed-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/dunnart-mouse_admin/src/main.c (Dunnart-mouse tiny dasyurid marsupials)
-   - Dunnart-mouse (Sminthopsis) tiny dasyurid marsupials management
-   - Features: body_len_cm, body_wt_g, ear_len, tail_cm, dm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_len,tail_cm,dm_idx,age_yr
+1. modules/bandicoot-bettong_admin/src/main.c (Bandicoot-bettong hybrid marsupials)
+   - Bandicoot-bettong hybrid marsupials management
+   - Features: body_len_cm, body_wt_g, nose_len, tail_cm, btb_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,nose_len,tail_cm,btb_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: dmou
+   - Prefix: btbt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/rock-wallaby_admin/src/main.c (Rock-wallaby Petrogale single species)
-   - Rock-wallaby (Petrogale) single rock-wallaby species management
-   - Features: body_len_cm, body_wt_g, jump_ht, tail_cm, rwb_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,jump_ht,tail_cm,rwb_idx,age_yr
+2. modules/marsupial-mouse_admin/src/main.c (Marsupial-mouse tiny mammals)
+   - Marsupial-mouse tiny mammals management
+   - Features: body_len_cm, body_wt_g, eye_diam, tail_cm, mm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,eye_diam,tail_cm,mm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rklw
+   - Prefix: mmou
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/bilbie_admin/src/main.c (Bilbie (Macrotis) greater bilby species)
-   - Bilbie (Macrotis) greater bilby species management
-   - Features: body_len_cm, body_wt_g, claw_len, tail_cm, bb_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_len,tail_cm,bb_idx,age_yr
+3. modules/fat-tailed-mouse_admin/src/main.c (Fat-tailed-mouse small rodents)
+   - Fat-tailed-mouse small rodents management
+   - Features: body_len_cm, body_wt_g, tail_width, tail_cm, ftm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_width,tail_cm,ftm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: bilb
+   - Prefix: ftmm
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1455.0 → v1456.0 (all occurrences)
-  - total modules 3938 → 3941 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1093 - v1456.0 (3941 modules, 124 kernel)" entry
+  - version v1456.0 → v1457.0 (all occurrences)
+  - total modules 3941 → 3944 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1094 - v1457.0 (3944 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/dunnart-mouse_admin/dunnart-mouse_admin.wasm modules/rock-wallaby_admin/rock-wallaby_admin.wasm modules/bilbie_admin/bilbie_admin.wasm modules/dunnart-mouse_admin/src/main.c modules/rock-wallaby_admin/src/main.c modules/bilbie_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/bandicoot-bettong_admin/bandicoot-bettong_admin.wasm modules/marsupial-mouse_admin/marsupial-mouse_admin.wasm modules/fat-tailed-mouse_admin/fat-tailed-mouse_admin.wasm modules/bandicoot-bettong_admin/src/main.c modules/marsupial-mouse_admin/src/main.c modules/fat-tailed-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

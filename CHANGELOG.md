@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1093 - v1456.0 (3941 modules, 124 kernel)
+- Added WASM: dunnart-mouse_admin (Dunnart-mouse tiny dasyurid marsupials), rock-wallaby_admin (Rock-wallaby single species), bilbie_admin (Bilbie greater bilby species)
+- Total modules: 3938 → 3941 (dunnart-mouse, rock-wallaby, bilbie)
+
 ## Phase 1092 - v1455.0 (3938 modules, 124 kernel)
 - Added WASM: dasykaluta_admin (Dasykaluta small carnivorous marsupials), rock-wallabies_admin (Rock-wallabies rock-dwelling marsupials), potoroins_admin (Potoroins rat-kangaroo species)
 - Total modules: 3935 → 3938 (dasykaluta, rock-wallabies, potoroins)
