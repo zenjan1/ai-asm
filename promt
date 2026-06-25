@@ -1,36 +1,36 @@
-Phase 1062: Sitatunga Lechwe Bontebok Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1063: Saiga Chiru Takhi Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/sitatunga_admin/src/main.c (Sitatunga Marsh Antelope)
-   - Sitatunga (Tragelaphus spekii) marsh-dwelling antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, swim_speed, st_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,sw_sp,st_idx,age_yr
+1. modules/saiga_admin/src/main.c (Saiga Antelope)
+   - Saiga (Saiga tatarica) critically endangered steppe antelope management
+   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, sg_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,rn_sp,sg_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: marsh, feeding, breeding, health, market
-   - Prefix: sitt
+   - Categories: steppe, feeding, breeding, health, market
+   - Prefix: saig
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/lechwe_admin/src/main.c (Lechwe Aquatic Antelope)
-   - Lechwe (Kobus leche) aquatic antelope of Zambezian floodplains management
-   - Features: body_len_cm, body_wt_kg, horn_cm, wade_speed, lc_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,wd_sp,lc_idx,age_yr
+2. modules/chiru_admin/src/main.c (Chiru Tibetan Antelope)
+   - Chiru (Pantholops hodgsonii) Tibetan plateau antelope management
+   - Features: body_len_cm, body_wt_kg, horn_cm, gallop_speed, ch_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,gl_sp,ch_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: wetland, feeding, breeding, health, market
-   - Prefix: lech
+   - Categories: plateau, feeding, breeding, health, market
+   - Prefix: chir
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/bontebok_admin/src/main.c (Bontebok Cape Antelope)
-   - Bontebok (Damaliscus dorcas) rare Cape flat antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, bb_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,rn_sp,bb_idx,age_yr
+3. modules/takhi_admin/src/main.c (Takhi Przewalski Horse)
+   - Takhi (Equus ferus przewalskii) wild horse species management
+   - Features: body_len_cm, body_wt_kg, mane_cm, gallop_speed, tk_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,mn_cm,gl_sp,tk_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: fynbos, feeding, breeding, health, market
-   - Prefix: bont
+   - Categories: grassland, feeding, breeding, health, market
+   - Prefix: takh
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1424.0 → v1425.0 (all occurrences)
-  - total modules 3845 → 3848 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1062 - v1425.0 (3848 modules, 124 kernel)" entry
+  - version v1425.0 → v1426.0 (all occurrences)
+  - total modules 3848 → 3851 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1063 - v1426.0 (3851 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/sitatunga_admin/sitatunga_admin.wasm modules/lechwe_admin/lechwe_admin.wasm modules/bontebok_admin/bontebok_admin.wasm modules/sitatunga_admin/src/main.c modules/lechwe_admin/src/main.c modules/bontebok_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/saiga_admin/saiga_admin.wasm modules/chiru_admin/chiru_admin.wasm modules/takhi_admin/takhi_admin.wasm modules/saiga_admin/src/main.c modules/chiru_admin/src/main.c modules/takhi_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1062 - v1425.0 (3848 modules, 124 kernel)
+- Added WASM: sitatunga_admin (Sitatunga marsh antelope), lechwe_admin (Lechwe aquatic antelope), bontebok_admin (Bontebok Cape antelope)
+- Total modules: 3845 → 3848 (sitatunga, kafue lechwe, bontebok)
+
 ## Phase 1061 - v1424.0 (3845 modules, 124 kernel)
 - Added WASM: gerenuk_admin (Gerenuk long-necked antelope), addax_admin (Addax desert antelope), bongo_admin (Bongo forest antelope)
 - Total modules: 3842 → 3845 (gerenuk, addax, bongo)
