@@ -1,36 +1,36 @@
-Phase 1047: Urchin Peafowl Tuna Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1048: Ant Bear Mule Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/urchin_admin/src/main.c (Urchin Marine Invertebrate)
-   - Urchin (Paracentrotus lividus) purple sea urchin marine invertebrate management
-   - Features: body_diam_cm, body_wt_g, spine_cm, swim_speed, sp_idx, age_year
-   - Data: 16 entries with location,bd_dm,bdy_wt,spn_cm,sw_sp,sp_idx,age_yr
+1. modules/ant_admin/src/main.c (Ant Social Insect)
+   - Ant (Formica rufa) red wood ant social insect management
+   - Features: body_len_mm, body_wt_mg, antenna_mm, walk_speed, cl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ant_mm,wk_sp,cl_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: seabed, feeding, breeding, health, market
-   - Prefix: urch
+   - Categories: colony, feeding, breeding, health, market
+   - Prefix: ant
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/peafowl_admin/src/main.c (Peafowl Ornamental Bird)
-   - Peafowl (Pavo cristatus) Indian peafowl ornamental bird management
-   - Features: body_len_cm, body_wt_kg, tail_cm, fly_speed, pl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,fl_sp,pl_idx,age_yr
+2. modules/bear_admin/src/main.c (Bear Large Mammal)
+   - Bear (Ursus arctos) brown bear large mammal management
+   - Features: body_len_cm, body_wt_kg, claw_cm, walk_speed, fr_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_cm,wk_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: park, feeding, breeding, health, market
-   - Prefix: pfow
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: bear
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/tuna_admin/src/main.c (Tuna Marine Fish)
-   - Tuna (Thunnus thynnus) Atlantic bluefin tuna marine fish management
-   - Features: body_len_cm, body_wt_kg, fin_cm, swim_speed, fn_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,fn_idx,age_yr
+3. modules/mule_admin/src/main.c (Mule Pack Animal)
+   - Mule (Equus mulus) domestic mule pack animal management
+   - Features: body_len_cm, body_wt_kg, ear_cm, walk_speed, hr_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,wk_sp,hr_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: pelagic, feeding, breeding, health, market
-   - Prefix: tuna
+   - Categories: stable, feeding, breeding, health, market
+   - Prefix: mule
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1409.0 → v1410.0 (all occurrences)
-  - total modules 3800 → 3803 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1047 - v1410.0 (3803 modules, 124 kernel)" entry
+  - version v1410.0 → v1411.0 (all occurrences)
+  - total modules 3803 → 3806 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1048 - v1411.0 (3806 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/urchin_admin/urchin_admin.wasm modules/peafowl_admin/peafowl_admin.wasm modules/tuna_admin/tuna_admin.wasm modules/urchin_admin/src/main.c modules/peafowl_admin/src/main.c modules/tuna_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/ant_admin/ant_admin.wasm modules/bear_admin/bear_admin.wasm modules/mule_admin/mule_admin.wasm modules/ant_admin/src/main.c modules/bear_admin/src/main.c modules/mule_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

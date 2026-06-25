@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1047 - v1410.0 (3803 modules, 124 kernel)
+- Added WASM: urchin_admin (Urchin marine invertebrate), peafowl_admin (Peafowl ornamental bird), tuna_admin (Tuna marine fish)
+- Total modules: 3800 → 3803 (purple sea urchin, Indian peafowl, Atlantic bluefin tuna)
+
 ## Phase 1046 - v1409.0 (3800 modules, 124 kernel)
 - Added WASM: sponge_admin (Sponge marine organism), stingray_admin (Stingray marine fish), trout_admin (Trout freshwater fish)
 - Total modules: 3797 → 3800 (common sea sponge, common stingray, brown trout)
