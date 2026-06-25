@@ -1,36 +1,36 @@
-Phase 992: Osprey Ostrich Otter Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 993: Panda Panther Parrot Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/osprey_admin/src/main.c (Osprey Fish Hawk)
-   - Osprey (Pandion haliaetus) osprey fish hawk management
-   - Features: body_len_cm, body_wt_kg, wing_span_cm, dive_speed, talon_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,dv_sp,tl_idx,age_yr
+1. modules/panda_admin/src/main.c (Panda Giant Bear)
+   - Panda (Ailuropoda melanoleuca) giant panda bear management
+   - Features: body_len_cm, body_wt_kg, paw_cm, bamboo_kg, patch_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,paw_cm,bm_kg,pt_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: nest, feeding, breeding, health, market
-   - Prefix: osprey
+   - Categories: bamboo, feeding, breeding, health, market
+   - Prefix: panda
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/ostrich_admin/src/main.c (Ostrich Flightless Bird)
-   - Ostrich (Struthio camelus) common ostrich flightless bird management
-   - Features: body_len_cm, body_wt_kg, leg_cm, run_speed, egg_wt, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,run_sp,eg_wt,age_yr
+2. modules/panther_admin/src/main.c (Panther Big Cat)
+   - Panther (Panthera pardus) black panther big cat management
+   - Features: body_len_cm, body_wt_kg, tail_len_cm, roar_vol, stripe_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,rr_vl,st_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: savanna, feeding, breeding, health, market
-   - Prefix: ostrich
+   - Categories: jungle, feeding, breeding, health, market
+   - Prefix: panther
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/otter_admin/src/main.c (Otter Semi-Aquatic Mammal)
-   - Otter (Lontra canadensis) North American river otter management
-   - Features: body_len_cm, body_wt_kg, tail_len_cm, dive_sec, fur_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,dv_sc,fr_idx,age_yr
+3. modules/parrot_admin/src/main.c (Parrot Tropical Bird)
+   - Parrot (Amazona aestiva) turquoise-fronted parrot management
+   - Features: body_len_cm, body_wt_g, wing_cm, talk_vol, color_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,tk_vl,cl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: river, feeding, breeding, health, market
-   - Prefix: otter
+   - Categories: aviary, feeding, breeding, health, market
+   - Prefix: parrot
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1354.0 → v1355.0 (all occurrences)
-  - total modules 3635 → 3638 (all occurrences)
-Update CHANGELOG.md: add "## Phase 992 - v1355.0 (3638 modules, 124 kernel)" entry
+  - version v1355.0 → v1356.0 (all occurrences)
+  - total modules 3638 → 3641 (all occurrences)
+Update CHANGELOG.md: add "## Phase 993 - v1356.0 (3641 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/osprey_admin/osprey_admin.wasm modules/ostrich_admin/ostrich_admin.wasm modules/otter_admin/otter_admin.wasm modules/osprey_admin/src/main.c modules/ostrich_admin/src/main.c modules/otter_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/panda_admin/panda_admin.wasm modules/panther_admin/panther_admin.wasm modules/parrot_admin/parrot_admin.wasm modules/panda_admin/src/main.c modules/panther_admin/src/main.c modules/parrot_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

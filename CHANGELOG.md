@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 992 - v1355.0 (3638 modules, 124 kernel)
+- Added WASM: osprey_admin (Osprey fish hawk), ostrich_admin (Common ostrich flightless bird), otter_admin (North American river otter)
+- Total modules: 3635 → 3638 (fish-diving raptor, largest flightless bird, playful semi-aquatic mammal)
+
 ## Phase 991 - v1354.0 (3635 modules, 124 kernel)
 - Added WASM: ocelot_admin (Ocelot spotted wildcat), octopus_admin (Common octopus cephalopod), oriole_admin (Baltimore oriole songbird)
 - Total modules: 3632 → 3635 (rosette-spotted wildcat, eight-armed cephalopod, orange-black songbird)
