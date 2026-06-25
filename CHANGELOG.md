@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1012 - v1375.0 (3698 modules, 124 kernel)
+- Added WASM: adder_admin (Venomous viper snake), albatross_admin (Wandering oceanic seabird), antelope_admin (Blackbuck swift ungulate)
+- Total modules: 3695 → 3698 (venomous heathland viper, large-winged oceanic seabird, swift horned ungulate)
+
 ## Phase 1011 - v1374.0 (3695 modules, 124 kernel)
 - Added WASM: yellowjacket_admin (Common yellowjacket social wasp), zebra_admin (Plains zebra striped equine), zebu_admin (Humped zebu cattle)
 - Total modules: 3692 → 3695 (stinging yellow social wasp, striped African equine, humped South Asian cattle)

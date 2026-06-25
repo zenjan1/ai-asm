@@ -1,36 +1,36 @@
-Phase 1012: Adder Albatross Antelope Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1013: Ape Armadillo Avocet Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/adder_admin/src/main.c (Adder Viper Snake)
-   - Adder (Vipera berus) venomous viper snake management
-   - Features: body_len_cm, body_wt_g, fang_cm, strike_speed, scale_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fang_cm,stk_sp,sc_idx,age_yr
+1. modules/ape_admin/src/main.c (Ape Great Ape Primate)
+   - Ape (Gorilla gorilla) western gorilla great ape management
+   - Features: body_len_cm, body_wt_kg, arm_cm, climb_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,arm_cm,cl_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: heathland, feeding, breeding, health, market
-   - Prefix: adder
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: ape
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/albatross_admin/src/main.c (Albatross Oceanic Seabird)
-   - Albatross (Diomedea exulans) wandering albatross oceanic seabird management
-   - Features: body_len_cm, body_wt_kg, wing_cm, fly_speed, feather_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,ft_idx,age_yr
+2. modules/armadillo_admin/src/main.c (Armadillo Armored Mammal)
+   - Armadillo (Dasypus novemcinctus) nine-banded armadillo armored mammal management
+   - Features: body_len_cm, body_wt_kg, shell_cm, dig_speed, plate_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,shl_cm,dg_sp,pl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: ocean, feeding, breeding, health, market
-   - Prefix: albatross
+   - Categories: burrow, feeding, breeding, health, market
+   - Prefix: armadillo
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/antelope_admin/src/main.c (Antelope Swift Ungulate)
-   - Antelope (Antilope cervicapra) blackbuck swift ungulate management
-   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, hair_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,run_sp,hr_idx,age_yr
+3. modules/avocet_admin/src/main.c (Avocet Wading Shorebird)
+   - Avocet (Recurvirostra avosetta) pied avocet wading shorebird management
+   - Features: body_len_cm, body_wt_g, bill_cm, wade_speed, plum_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bill_cm,wd_sp,pm_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: savanna, feeding, breeding, health, market
-   - Prefix: antelope
+   - Categories: wetland, feeding, breeding, health, market
+   - Prefix: avocet
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1374.0 → v1375.0 (all occurrences)
-  - total modules 3695 → 3698 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1012 - v1375.0 (3698 modules, 124 kernel)" entry
+  - version v1375.0 → v1376.0 (all occurrences)
+  - total modules 3698 → 3701 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1013 - v1376.0 (3701 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/adder_admin/adder_admin.wasm modules/albatross_admin/albatross_admin.wasm modules/antelope_admin/antelope_admin.wasm modules/adder_admin/src/main.c modules/albatross_admin/src/main.c modules/antelope_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/ape_admin/ape_admin.wasm modules/armadillo_admin/armadillo_admin.wasm modules/avocet_admin/avocet_admin.wasm modules/ape_admin/src/main.c modules/armadillo_admin/src/main.c modules/avocet_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
