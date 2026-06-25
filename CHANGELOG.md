@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1091 - v1454.0 (3935 modules, 124 kernel)
+- Added WASM: xantus_admin (Xantus small exotic mammals), dibbler_admin (Dibbler small marsupials), ningaui_admin (Ningaui tiny dasyurid marsupials)
+- Total modules: 3932 → 3935 (xantus, dibbler, ningaui)
+
 ## Phase 1090 - v1453.0 (3932 modules, 124 kernel)
 - Added WASM: mulgara_admin (Mulgara small carnivorous marsupials), kowari_admin (Kowari small dasyurid marsupials), kultarr_admin (Kultarr tiny dasyurid marsupials)
 - Total modules: 3929 → 3932 (mulgara, kowari, kultarr)
