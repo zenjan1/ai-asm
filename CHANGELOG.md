@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1041 - v1404.0 (3785 modules, 124 kernel)
+- Added WASM: pig_admin (Pig domestic farm animal), pigeon_admin (Pigeon rock dove bird), puma_admin (Puma mountain lion)
+- Total modules: 3782 → 3785 (domestic pig, rock dove pigeon, mountain lion puma)
+
 ## Phase 1040 - v1403.0 (3782 modules, 124 kernel)
 - Added WASM: owl_admin (Owl nocturnal bird of prey), oyster_admin (Oyster marine bivalve), okapi_admin (Okapi forest giraffid)
 - Total modules: 3779 → 3782 (Eurasian eagle-owl, Pacific oyster, forest okapi giraffid)
