@@ -1,36 +1,36 @@
-Phase 1027: Eel Egret Elephant Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1028: Elk Emu Falcon Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/eel_admin/src/main.c (Eel Elongated Fish)
-   - Eel (Anguilla anguilla) European eel elongated fish management
-   - Features: body_len_cm, body_wt_g, fin_cm, swim_speed, scale_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,sc_idx,age_yr
+1. modules/elk_admin/src/main.c (Elk Large Antlered Mammal)
+   - Elk (Cervus canadensis) North American elk large antlered mammal management
+   - Features: body_len_cm, body_wt_kg, antler_cm, run_speed, rack_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ant_cm,rn_sp,rk_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: river, feeding, breeding, health, market
-   - Prefix: eel
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: elk
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/egret_admin/src/main.c (Egret White Wading Bird)
-   - Egret (Ardea alba) great egret white wading bird management
-   - Features: body_len_cm, body_wt_g, beak_cm, fly_speed, plum_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,fl_sp,pm_idx,age_yr
+2. modules/emu_admin/src/main.c (Emu Large Flightless Bird)
+   - Emu (Dromaius novaehollandiae) Australian emu large flightless bird management
+   - Features: body_len_cm, body_wt_kg, leg_cm, run_speed, plm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,rn_sp,pl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: marsh, feeding, breeding, health, market
-   - Prefix: egret
+   - Categories: outback, feeding, breeding, health, market
+   - Prefix: emu
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/elephant_admin/src/main.c (Elephant Large Mammal)
-   - Elephant (Loxodonta africana) African elephant large mammal management
-   - Features: body_len_cm, body_wt_kg, tusk_cm, walk_speed, ear_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tusk_cm,wk_sp,er_idx,age_yr
+3. modules/falcon_admin/src/main.c (Falcon Fast Raptor Bird)
+   - Falcon (Falco peregrinus) Peregrine falcon fast diving raptor management
+   - Features: body_len_cm, body_wt_g, wing_cm, dive_speed, fth_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wng_cm,dv_sp,fth_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: savanna, feeding, breeding, health, market
-   - Prefix: elephant
+   - Categories: cliff, feeding, breeding, health, market
+   - Prefix: flcn
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1389.0 → v1390.0 (all occurrences)
-  - total modules 3740 → 3743 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1027 - v1390.0 (3743 modules, 124 kernel)" entry
+  - version v1390.0 → v1391.0 (all occurrences)
+  - total modules 3743 → 3746 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1028 - v1391.0 (3746 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/eel_admin/eel_admin.wasm modules/egret_admin/egret_admin.wasm modules/elephant_admin/elephant_admin.wasm modules/eel_admin/src/main.c modules/egret_admin/src/main.c modules/elephant_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/elk_admin/elk_admin.wasm modules/emu_admin/emu_admin.wasm modules/falcon_admin/falcon_admin.wasm modules/elk_admin/src/main.c modules/emu_admin/src/main.c modules/falcon_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

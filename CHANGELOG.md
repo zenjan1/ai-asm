@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1027 - v1390.0 (3743 modules, 124 kernel)
+- Added WASM: eel_admin (European eel elongated fish), egret_admin (Great egret white wading bird), elephant_admin (African elephant large mammal)
+- Total modules: 3740 → 3743 (elongated river fish, white marsh wading bird, large savanna mammal)
+
 ## Phase 1026 - v1389.0 (3740 modules, 124 kernel)
 - Added WASM: eagle_admin (Golden eagle large raptor), earwig_admin (Common pincher insect), echidna_admin (Short-beaked spiny mammal)
 - Total modules: 3737 → 3740 (powerful soaring raptor, nocturnal garden pincher, egg-laying spiny monotreme)
