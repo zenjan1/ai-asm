@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1065 - v1428.0 (3857 modules, 124 kernel)
+- Added WASM: tapir_admin (Tapir browsing mammal), peccary_admin (Peccary wild pig), bongu_admin (Bongu tree hyrax)
+- Total modules: 3854 → 3857 (South American tapir, collared peccary, tree hyrax)
+
 ## Phase 1064 - v1427.0 (3854 modules, 124 kernel)
 - Added WASM: quagga_admin (Quagga extinct zebra), onager_admin (Onager Asian wild ass), kiang_admin (Kiang Tibetan wild ass)
 - Total modules: 3851 → 3854 (quagga, onager, kiang)

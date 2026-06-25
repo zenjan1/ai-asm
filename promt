@@ -1,36 +1,36 @@
-Phase 1065: Tapir Peccary Bongu Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1066: Capybara Bilby Numbat Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/tapir_admin/src/main.c (Tapir Odd-toed Ungulate)
-   - Tapir (Tapirus terrestris) large browsing mammal management
-   - Features: body_len_cm, body_wt_kg, snout_cm, swim_speed, tp_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,sn_cm,sw_sp,tp_idx,age_yr
+1. modules/capybara_admin/src/main.c (Capybara Largest Rodent)
+   - Capybara (Hydrochoerus hydrochaeris) semi-aquatic largest rodent management
+   - Features: body_len_cm, body_wt_kg, ear_cm, swim_speed, cp_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,sw_sp,cp_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
+   - Categories: wetland, feeding, breeding, health, market
+   - Prefix: capy
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+2. modules/bilby_admin/src/main.c (Bilby Bandicoot)
+   - Bilby (Macrotis lagotis) rabbit-eared bandicoot marsupial management
+   - Features: body_len_cm, body_wt_kg, ear_cm, dig_speed, bl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,dg_sp,bl_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: desert, feeding, breeding, health, market
+   - Prefix: bilb
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/numbat_admin/src/main.c (Numbat Termite-eater)
+   - Numbat (Myrmecobius fasciatus) striped termite-eating marsupial management
+   - Features: body_len_cm, body_wt_g, tail_cm, tongue_cm, nm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,tg_cm,nm_idx,age_yr
+   - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tapr
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-2. modules/peccary_admin/src/main.c (Peccary Wild Pig)
-   - Peccary (Pecari tajacu) collared peccary wild pig management
-   - Features: body_len_cm, body_wt_kg, tusk_cm, run_speed, pc_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tsk_cm,rn_sp,pc_idx,age_yr
-   - Pattern: follow abelia_admin pattern
-   - Categories: scrub, feeding, breeding, health, market
-   - Prefix: pecr
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-3. modules/bongu_admin/src/main.c (Bongu Mountain Mammal)
-   - Bongu (Dendrohyrax arboreus) tree-dwelling hyrax management
-   - Features: body_len_cm, body_wt_kg, ear_cm, climb_speed, bg_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,cl_sp,bg_idx,age_yr
-   - Pattern: follow abelia_admin pattern
-   - Categories: tree, feeding, breeding, health, market
-   - Prefix: bong
+   - Prefix: numb
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1427.0 → v1428.0 (all occurrences)
-  - total modules 3854 → 3857 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1065 - v1428.0 (3857 modules, 124 kernel)" entry
+  - version v1428.0 → v1429.0 (all occurrences)
+  - total modules 3857 → 3860 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1066 - v1429.0 (3860 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/tapir_admin/tapir_admin.wasm modules/peccary_admin/peccary_admin.wasm modules/bongu_admin/bongu_admin.wasm modules/tapir_admin/src/main.c modules/peccary_admin/src/main.c modules/bongu_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/capybara_admin/capybara_admin.wasm modules/bilby_admin/bilby_admin.wasm modules/numbat_admin/numbat_admin.wasm modules/capybara_admin/src/main.c modules/bilby_admin/src/main.c modules/numbat_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
