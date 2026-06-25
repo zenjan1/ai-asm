@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 987 - v1350.0 (3623 modules, 124 kernel)
+- Added WASM: mallard_admin (Mallard dabbling duck), manatee_admin (West Indian manatee sea cow), meerkat_admin (Meerkat sentinel mongoose)
+- Total modules: 3620 → 3623 (dabbling river duck, gentle sea cow, sentinel desert mongoose)
+
 ## Phase 986 - v1349.0 (3620 modules, 124 kernel)
 - Added WASM: macaw_admin (Scarlet macaw tropical parrot), mackerel_admin (Atlantic mackerel pelagic fish), magpie_admin (Eurasian magpie corvid bird)
 - Total modules: 3617 → 3620 (colorful tropical parrot, fast pelagic schoolfish, intelligent black-white corvid)
