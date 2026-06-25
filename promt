@@ -1,36 +1,36 @@
-Phase 1006: Toad Toucan Turkey Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1007: Turtle Viper Vulture Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/toad_admin/src/main.c (Toad Amphibian)
-   - Toad (Bufo bufo) common toad amphibian management
-   - Features: body_len_cm, body_wt_g, leg_cm, jump_speed, wart_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,jp_sp,wt_idx,age_yr
+1. modules/turtle_admin/src/main.c (Turtle Shelled Reptile)
+   - Turtle (Chelonia mydas) green sea turtle shelled reptile management
+   - Features: shell_cm, body_wt_kg, flipper_cm, swim_speed, scute_idx, age_year
+   - Data: 16 entries with location,shl_cm,bdy_wt,flpr_cm,sw_sp,sc_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: pond, feeding, breeding, health, market
-   - Prefix: toad
+   - Categories: ocean, feeding, breeding, health, market
+   - Prefix: turtle
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/toucan_admin/src/main.c (Toucan Tropical Bird)
-   - Toucan (Ramphastos toco) toco toucan tropical bird management
-   - Features: body_len_cm, body_wt_g, bill_cm, fly_speed, plmg_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bill_cm,fl_sp,pg_idx,age_yr
+2. modules/viper_admin/src/main.c (Viper Venomous Snake)
+   - Viper (Vipera berus) European adder venomous snake management
+   - Features: body_len_cm, body_wt_kg, fang_cm, strike_speed, scale_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fang_cm,st_sp,sc_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: canopy, feeding, breeding, health, market
-   - Prefix: toucan
+   - Categories: heathland, feeding, breeding, health, market
+   - Prefix: viper
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/turkey_admin/src/main.c (Turkey Poultry Bird)
-   - Turkey (Meleagris gallopavo) wild turkey poultry bird management
-   - Features: body_len_cm, body_wt_kg, tail_cm, run_speed, feather_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,run_sp,ft_idx,age_yr
+3. modules/vulture_admin/src/main.c (Vulture Scavenger Bird)
+   - Vulture (Gyps fulvus) griffon vulture scavenger bird management
+   - Features: body_len_cm, body_wt_kg, wing_cm, soar_speed, plum_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,sr_sp,pl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: farm, feeding, breeding, health, market
-   - Prefix: turkey
+   - Categories: savanna, feeding, breeding, health, market
+   - Prefix: vulture
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1368.0 → v1369.0 (all occurrences)
-  - total modules 3677 → 3680 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1006 - v1369.0 (3680 modules, 124 kernel)" entry
+  - version v1369.0 → v1370.0 (all occurrences)
+  - total modules 3680 → 3683 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1007 - v1370.0 (3683 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/toad_admin/toad_admin.wasm modules/toucan_admin/toucan_admin.wasm modules/turkey_admin/turkey_admin.wasm modules/toad_admin/src/main.c modules/toucan_admin/src/main.c modules/turkey_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/turtle_admin/turtle_admin.wasm modules/viper_admin/viper_admin.wasm modules/vulture_admin/vulture_admin.wasm modules/turtle_admin/src/main.c modules/viper_admin/src/main.c modules/vulture_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

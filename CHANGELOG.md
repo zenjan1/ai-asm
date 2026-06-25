@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1006 - v1369.0 (3680 modules, 124 kernel)
+- Added WASM: toad_admin (Common toad amphibian), toucan_admin (Toco toucan tropical bird), turkey_admin (Wild turkey poultry bird)
+- Total modules: 3677 → 3680 (warty pond-dwelling amphibian, large-billed colorful bird, fan-tailed farm bird)
+
 ## Phase 1005 - v1368.0 (3677 modules, 124 kernel)
 - Added WASM: swordfish_admin (Swordfish billfish), tetra_admin (Freshwater tetra fish), tiger_admin (Bengal tiger big cat predator)
 - Total modules: 3674 → 3677 (long-billed ocean predator, colorful aquarium fish, striped jungle apex cat)
