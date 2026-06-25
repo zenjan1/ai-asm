@@ -1,36 +1,36 @@
-Phase 1045: Seagull Shrew Spider Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1046: Sponge Stingray Trout Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/seagull_admin/src/main.c (Seagull Coastal Seabird)
-   - Seagull (Larus argentatus) herring gull coastal seabird management
-   - Features: body_len_cm, body_wt_g, wingspan_cm, fly_speed, bk_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wn_sp,fl_sp,bk_idx,age_yr
+1. modules/sponge_admin/src/main.c (Sponge Marine Organism)
+   - Sponge (Spongia officinalis) common sea sponge marine organism management
+   - Features: body_len_cm, body_wt_g, pore_idx, wt_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,pr_idx,wt_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: coast, feeding, breeding, health, market
-   - Prefix: sgul
+   - Categories: reef, feeding, breeding, health, market
+   - Prefix: spng
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/shrew_admin/src/main.c (Shrew Small Mammal)
-   - Shrew (Sorex araneus) common shrew small insectivore mammal management
-   - Features: body_len_cm, body_wt_g, tail_cm, run_speed, ns_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,rn_sp,ns_idx,age_yr
+2. modules/stingray_admin/src/main.c (Stingray Marine Fish)
+   - Stingray (Dasyatis pastinaca) common stingray marine fish management
+   - Features: body_len_cm, body_wt_kg, tail_cm, swim_speed, sp_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sw_sp,sp_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: meadow, feeding, breeding, health, market
-   - Prefix: shrw
+   - Categories: ocean, feeding, breeding, health, market
+   - Prefix: stry
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/spider_admin/src/main.c (Spider Arachnid)
-   - Spider (Araneus diadematus) European garden spider arachnid management
-   - Features: body_len_cm, body_wt_g, leg_span_cm, walk_speed, wb_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,lg_sp,wk_sp,wb_idx,age_yr
+3. modules/trout_admin/src/main.c (Trout Freshwater Fish)
+   - Trout (Salmo trutta) brown trout freshwater fish management
+   - Features: body_len_cm, body_wt_g, fin_cm, swim_speed, sc_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,sc_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: garden, feeding, breeding, health, market
-   - Prefix: spdr
+   - Categories: stream, feeding, breeding, health, market
+   - Prefix: trut
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1407.0 → v1408.0 (all occurrences)
-  - total modules 3794 → 3797 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1045 - v1408.0 (3797 modules, 124 kernel)" entry
+  - version v1408.0 → v1409.0 (all occurrences)
+  - total modules 3797 → 3800 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1046 - v1409.0 (3800 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/seagull_admin/seagull_admin.wasm modules/shrew_admin/shrew_admin.wasm modules/spider_admin/spider_admin.wasm modules/seagull_admin/src/main.c modules/shrew_admin/src/main.c modules/spider_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/sponge_admin/sponge_admin.wasm modules/stingray_admin/stingray_admin.wasm modules/trout_admin/trout_admin.wasm modules/sponge_admin/src/main.c modules/stingray_admin/src/main.c modules/trout_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

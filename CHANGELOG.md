@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1045 - v1408.0 (3797 modules, 124 kernel)
+- Added WASM: seagull_admin (Seagull coastal seabird), shrew_admin (Shrew small insectivore), spider_admin (Spider garden arachnid)
+- Total modules: 3794 → 3797 (herring gull, common shrew, European garden spider)
+
 ## Phase 1044 - v1407.0 (3794 modules, 124 kernel)
 - Added WASM: rooster_admin (Rooster domestic fowl), salamander_admin (Salamander fire amphibian), scorpion_admin (Scorpion forest arachnid)
 - Total modules: 3791 → 3794 (domestic rooster, fire salamander, Asian forest scorpion)
