@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 977 - v1340.0 (3593 modules, 124 kernel)
+- Added WASM: hagfish_admin (Atlantic hagfish jawless fish), halibut_admin (Atlantic halibut flatfish), hamster_admin (Golden hamster rodent)
+- Total modules: 3590 → 3593 (slime-producing jawless fish, largest flatfish, popular pet rodent)
+
 ## Phase 976 - v1339.0 (3590 modules, 124 kernel)
 - Added WASM: guinea_admin (Domestic guinea pig rodent), gull_admin (Common gull seabird), guppy_admin (Common guppy tropical fish)
 - Total modules: 3587 → 3590 (domestic rodent pet, coastal scavenger bird, colorful aquarium fish)
