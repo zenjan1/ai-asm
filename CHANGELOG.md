@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 997 - v1360.0 (3653 modules, 124 kernel)
+- Added WASM: rabbit_admin (European rabbit small mammal), raccoon_admin (Common raccoon masked mammal), raven_admin (Common raven large corvid)
+- Total modules: 3650 → 3653 (long-eared burrowing mammal, dexterous masked scavenger, intelligent black corvid)
+
 ## Phase 996 - v1359.0 (3650 modules, 124 kernel)
 - Added WASM: quail_admin (Common quail small game bird), quetzal_admin (Resplendent quetzal tropical bird), quokka_admin (Quokka small marsupial)
 - Total modules: 3647 → 3650 (small ground-nesting bird, long-tailed tropical bird, smiling island marsupial)
