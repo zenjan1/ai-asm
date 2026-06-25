@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 983 - v1346.0 (3611 modules, 124 kernel)
+- Added WASM: jellyfish_admin (Moon jellyfish marine invertebrate), kangaroo_admin (Red kangaroo marsupial), koala_admin (Koala arboreal marsupial)
+- Total modules: 3608 → 3611 (translucent drifter, leaping marsupial, eucalyptus-eating marsupial)
+
 ## Phase 982 - v1345.0 (3608 modules, 124 kernel)
 - Added WASM: impala_admin (Impala antelope ungulate), jackal_admin (Golden jackal canid), jaguar_admin (Jaguar big cat)
 - Total modules: 3605 → 3608 (leaping antelope, opportunistic canid, spotted big cat)

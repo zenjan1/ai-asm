@@ -1,36 +1,36 @@
-Phase 983: Jellyfish Kangaroo Koala Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 984: Lemur Leopard Llama Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/jellyfish_admin/src/main.c (Jellyfish Marine Invertebrate)
-   - Jellyfish (Aurelia aurita) moon jellyfish marine invertebrate management
-   - Features: bell_dia_cm, body_wt_g, tentacle_cm, sting_idx, pulse_rate, age_year
-   - Data: 16 entries with location,bl_dia,bdy_wt,tn_cm,st_idx,pl_rt,age_yr
+1. modules/lemur_admin/src/main.c (Lemur Primate)
+   - Lemur (Lemur catta) ring-tailed lemur primate management
+   - Features: body_len_cm, body_wt_kg, tail_cm, leap_m, vocal_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,lp_m,v_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: tank, feeding, breeding, health, market
-   - Prefix: jellyfish
+   - Categories: habitat, feeding, breeding, health, market
+   - Prefix: lemur
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/kangaroo_admin/src/main.c (Kangaroo Marsupial)
-   - Kangaroo (Macropus rufus) red kangaroo marsupial management
-   - Features: body_len_cm, body_wt_kg, leap_m, tail_cm, pouch_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,lp_m,tail_cm,p_idx,age_yr
+2. modules/leopard_admin/src/main.c (Leopard Big Cat)
+   - Leopard (Panthera pardus) leopard big cat management
+   - Features: body_len_cm, body_wt_kg, tail_cm, sprint_kmh, climb_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sp_kh,cl_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: habitat, feeding, breeding, health, market
-   - Prefix: kangaroo
+   - Prefix: leopard
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/koala_admin/src/main.c (Koala Arboreal Marsupial)
-   - Koala (Phascolarctos cinereus) koala arboreal marsupial management
-   - Features: body_len_cm, body_wt_kg, ear_cm, sleep_hr, leaf_ct, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,sl_hr,lf_ct,age_yr
+3. modules/llama_admin/src/main.c (Llama Camelid)
+   - Llama (Lama glama) domestic llama camelid management
+   - Features: body_len_cm, body_wt_kg, neck_cm, wool_g, spit_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,neck_cm,wl_g,sp_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: habitat, feeding, breeding, health, market
-   - Prefix: koala
+   - Categories: pasture, feeding, breeding, health, market
+   - Prefix: llama
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1345.0 → v1346.0 (all occurrences)
-  - total modules 3608 → 3611 (all occurrences)
-Update CHANGELOG.md: add "## Phase 983 - v1346.0 (3611 modules, 124 kernel)" entry
+  - version v1346.0 → v1347.0 (all occurrences)
+  - total modules 3611 → 3614 (all occurrences)
+Update CHANGELOG.md: add "## Phase 984 - v1347.0 (3614 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/jellyfish_admin/jellyfish_admin.wasm modules/kangaroo_admin/kangaroo_admin.wasm modules/koala_admin/koala_admin.wasm modules/jellyfish_admin/src/main.c modules/kangaroo_admin/src/main.c modules/koala_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/lemur_admin/lemur_admin.wasm modules/leopard_admin/leopard_admin.wasm modules/llama_admin/llama_admin.wasm modules/lemur_admin/src/main.c modules/leopard_admin/src/main.c modules/llama_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
