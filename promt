@@ -1,36 +1,36 @@
-Phase 1055: Nyala Oribi Suni Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1056: Puku Blesbok Steenbok Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/nyala_admin/src/main.c (Nyala Brushland Antelope)
-   - Nyala (Tragelaphus angasii) Southern African bushveld antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, ny_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,rn_sp,ny_idx,age_yr
+1. modules/puku_admin/src/main.c (Puku Floodplain Antelope)
+   - Puku (Kobus vardonii) Central African floodplain antelope management
+   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, pk_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,rn_sp,pk_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: bushveld, feeding, breeding, health, market
-   - Prefix: nyala
+   - Categories: floodplain, feeding, breeding, health, market
+   - Prefix: puku
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/oribi_admin/src/main.c (Oribi Small Graceful Antelope)
-   - Oribi (Ourebia ourebi) small graceful African antelope management
-   - Features: body_len_cm, body_wt_kg, ear_cm, jump_cm, or_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,jp_cm,or_idx,age_yr
+2. modules/blesbok_admin/src/main.c (Blesbok White-fronted Antelope)
+   - Blesbok (Damaliscus pygargus) white-fronted South African antelope management
+   - Features: body_len_cm, body_wt_kg, horn_cm, jump_cm, bl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,jp_cm,bl_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: grassland, feeding, breeding, health, market
-   - Prefix: orib
+   - Prefix: bles
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/suni_admin/src/main.c (Suni Tiny Antelope)
-   - Suni (Neotragus moschatus) smallest antelope species management
-   - Features: body_len_cm, body_wt_g, ear_cm, sprint_speed, sn_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,sp_sp,sn_idx,age_yr
+3. modules/steenbok_admin/src/main.c (Steenbok Tiny Bush Antelope)
+   - Steenbok (Raphicerus campestris) tiny bush antelope management
+   - Features: body_len_cm, body_wt_kg, ear_cm, sprint_speed, st_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,sp_sp,st_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: forest, feeding, breeding, health, market
-   - Prefix: suni
+   - Categories: thicket, feeding, breeding, health, market
+   - Prefix: stnb
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1417.0 → v1418.0 (all occurrences)
-  - total modules 3824 → 3827 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1055 - v1418.0 (3827 modules, 124 kernel)" entry
+  - version v1418.0 → v1419.0 (all occurrences)
+  - total modules 3827 → 3830 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1056 - v1419.0 (3830 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/nyala_admin/nyala_admin.wasm modules/oribi_admin/oribi_admin.wasm modules/suni_admin/suni_admin.wasm modules/nyala_admin/src/main.c modules/oribi_admin/src/main.c modules/suni_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/puku_admin/puku_admin.wasm modules/blesbok_admin/blesbok_admin.wasm modules/steenbok_admin/steenbok_admin.wasm modules/puku_admin/src/main.c modules/blesbok_admin/src/main.c modules/steenbok_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

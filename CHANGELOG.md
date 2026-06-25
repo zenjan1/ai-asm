@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1055 - v1418.0 (3827 modules, 124 kernel)
+- Added WASM: nyala_admin (Nyala bushveld antelope), oribi_admin (Oribi small antelope), suni_admin (Suni tiny antelope)
+- Total modules: 3824 → 3827 (nyala, oribi, suni)
+
 ## Phase 1054 - v1417.0 (3824 modules, 124 kernel)
 - Added WASM: springbok_admin (Springbok leaping antelope), kudu_admin (Kudu spiral-horned antelope), eland_admin (Eland largest antelope)
 - Total modules: 3821 → 3824 (springbok, greater kudu, common eland)
