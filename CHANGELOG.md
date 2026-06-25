@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1021 - v1384.0 (3725 modules, 124 kernel)
+- Added WASM: coyote_admin (Wild canine), crab_admin (Edible decapod crustacean), crane_admin (Common tall wading bird)
+- Total modules: 3722 → 3725 (howling desert canine, pincer-armed crustacean, long-legged dancing bird)
+
 ## Phase 1020 - v1383.0 (3722 modules, 124 kernel)
 - Added WASM: condor_admin (Andean large vulture), cormorant_admin (Great diving seabird), cow_admin (Domestic cattle bovine)
 - Total modules: 3719 → 3722 (largest flying land bird, fish-diving dark seabird, domesticated dairy/meat bovine)
