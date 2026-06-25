@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1097 - v1460.0 (3953 modules, 124 kernel)
+- Added WASM: spinifex-mouse_admin (Spinifex-mouse desert-dwelling rodents), grassland-mouse_admin (Grassland-mouse meadow rodents), bush-mouse_admin (Bush-mouse shrub-dwelling rodents)
+- Total modules: 3950 → 3953 (spinifex-mouse, grassland-mouse, bush-mouse)
+
 ## Phase 1096 - v1459.0 (3950 modules, 124 kernel)
 - Added WASM: long-tailed-mouse_admin (Long-tailed-mouse small rodents), short-tailed-mouse_admin (Short-tailed-mouse small rodents), desert-mouse_admin (Desert-mouse arid-region rodents)
 - Total modules: 3947 → 3950 (long-tailed-mouse, short-tailed-mouse, desert-mouse)
