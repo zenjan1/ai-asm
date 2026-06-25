@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1052 - v1415.0 (3818 modules, 124 kernel)
+- Added WASM: uakari_admin (Uakari red-faced monkey), vicuna_admin (Vicuna Andean camelid), wallaby_admin (Wallaby small macropod)
+- Total modules: 3815 → 3818 (Amazonian uakari, Andean vicuna, red-necked wallaby)
+
 ## Phase 1051 - v1414.0 (3815 modules, 124 kernel)
 - Added WASM: marmot_admin (Marmot alpine ground squirrel), hyrax_admin (Hyrax rock mammal), tarsier_admin (Tarsier small primate)
 - Total modules: 3812 → 3815 (alpine marmot, cape rock hyrax, philippine tarsier)
