@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1095 - v1458.0 (3947 modules, 124 kernel)
+- Added WASM: mouse-marsupial_admin (Mouse-marsupial tiny mammals), stripe-faced-mouse_admin (Stripe-faced-mouse small rodents), planigale-mouse_admin (Planigale-mouse flat-headed mammals)
+- Total modules: 3944 → 3947 (mouse-marsupial, stripe-faced-mouse, planigale-mouse)
+
 ## Phase 1094 - v1457.0 (3944 modules, 124 kernel)
 - Added WASM: bandicoot-bettong_admin (Bandicoot-bettong hybrid marsupials), marsupial-mouse_admin (Marsupial-mouse tiny mammals), fat-tailed-mouse_admin (Fat-tailed-mouse small rodents)
 - Total modules: 3941 → 3944 (bandicoot-bettong, marsupial-mouse, fat-tailed-mouse)
