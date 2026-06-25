@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1040 - v1403.0 (3782 modules, 124 kernel)
+- Added WASM: owl_admin (Owl nocturnal bird of prey), oyster_admin (Oyster marine bivalve), okapi_admin (Okapi forest giraffid)
+- Total modules: 3779 → 3782 (Eurasian eagle-owl, Pacific oyster, forest okapi giraffid)
+
 ## Phase 1039 - v1402.0 (3779 modules, 124 kernel)
 - Added WASM: narwhal_admin (Narwhal arctic tusked whale), newt_admin (Newt small amphibian), nightingale_admin (Nightingale songbird)
 - Total modules: 3776 → 3779 (arctic tusked whale, smooth newt amphibian, common nightingale songbird)

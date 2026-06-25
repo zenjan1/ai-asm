@@ -1,36 +1,36 @@
-Phase 1040: Owl Oyster Okapi Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1041: Pig Pigeon Puma Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/owl_admin/src/main.c (Owl Nocturnal Bird of Prey)
-   - Owl (Bubo bubo) Eurasian eagle-owl nocturnal raptor management
-   - Features: body_len_cm, body_wt_g, wingspan_cm, fly_speed, tl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wn_sp,fl_sp,tl_idx,age_yr
+1. modules/pig_admin/src/main.c (Pig Domestic Farm Animal)
+   - Pig (Sus scrofa domesticus) domestic pig farm animal management
+   - Features: body_len_cm, body_wt_kg, snout_cm, walk_speed, br_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,snt_cm,wk_sp,br_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: forest, feeding, breeding, health, market
-   - Prefix: owl
+   - Categories: farm, feeding, breeding, health, market
+   - Prefix: pig
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/oyster_admin/src/main.c (Oyster Marine Bivalve)
-   - Oyster (Crassostrea gigas) Pacific oyster marine bivalve management
-   - Features: shell_len_cm, body_wt_g, gill_cm, wt_idx, age_year
-   - Data: 16 entries with location,sh_ln,bdy_wt,gl_cm,wt_idx,age_yr
+2. modules/pigeon_admin/src/main.c (Pigeon Rock Dove Bird)
+   - Pigeon (Columba livia) rock dove pigeon bird management
+   - Features: body_len_cm, body_wt_g, beak_cm, fly_speed, ft_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,fl_sp,ft_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: estuary, feeding, breeding, health, market
-   - Prefix: oyst
+   - Categories: rooftop, feeding, breeding, health, market
+   - Prefix: pgon
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/okapi_admin/src/main.c (Okapi Forest Giraffid)
-   - Okapi (Okapia johnstoni) okapi forest giraffid mammal management
-   - Features: body_len_cm, body_wt_kg, leg_cm, walk_speed, tg_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,wk_sp,tg_idx,age_yr
+3. modules/puma_admin/src/main.c (Puma Mountain Lion Cat)
+   - Puma (Puma concolor) puma mountain lion large cat management
+   - Features: body_len_cm, body_wt_kg, tail_cm, run_speed, cl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,rn_sp,cl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: forest, feeding, breeding, health, market
-   - Prefix: okap
+   - Categories: mountain, feeding, breeding, health, market
+   - Prefix: puma
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1402.0 → v1403.0 (all occurrences)
-  - total modules 3779 → 3782 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1040 - v1403.0 (3782 modules, 124 kernel)" entry
+  - version v1403.0 → v1404.0 (all occurrences)
+  - total modules 3782 → 3785 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1041 - v1404.0 (3785 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/owl_admin/owl_admin.wasm modules/oyster_admin/oyster_admin.wasm modules/okapi_admin/okapi_admin.wasm modules/owl_admin/src/main.c modules/oyster_admin/src/main.c modules/okapi_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/pig_admin/pig_admin.wasm modules/pigeon_admin/pigeon_admin.wasm modules/puma_admin/puma_admin.wasm modules/pig_admin/src/main.c modules/pigeon_admin/src/main.c modules/puma_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
