@@ -1,36 +1,36 @@
-Phase 1020: Condor Cormorant Cow Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1021: Coyote Crab Crane Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/condor_admin/src/main.c (Condor Large Vulture)
-   - Condor (Vultur gryphus) Andean condor large vulture management
-   - Features: body_len_cm, body_wt_kg, wing_cm, fly_speed, feather_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,ft_idx,age_yr
+1. modules/coyote_admin/src/main.c (Coyote Wild Canine)
+   - Coyote (Canis latrans) coyote wild canine management
+   - Features: body_len_cm, body_wt_kg, tail_cm, run_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,run_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: mountain, feeding, breeding, health, market
-   - Prefix: condor
+   - Categories: desert, feeding, breeding, health, market
+   - Prefix: coyote
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/cormorant_admin/src/main.c (Cormorant Diving Seabird)
-   - Cormorant (Phalacrocorax carbo) great cormorant diving seabird management
-   - Features: body_len_cm, body_wt_g, beak_cm, swim_speed, plum_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,sw_sp,pm_idx,age_yr
+2. modules/crab_admin/src/main.c (Crab Decapod Crustacean)
+   - Crab (Cancer pagurus) edible crab decapod crustacean management
+   - Features: body_len_cm, body_wt_g, claw_cm, walk_speed, shell_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_cm,wk_sp,sh_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: coast, feeding, breeding, health, market
-   - Prefix: cormorant
+   - Categories: shore, feeding, breeding, health, market
+   - Prefix: crab
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cow_admin/src/main.c (Cow Domestic Bovine)
-   - Cow (Bos taurus) domestic cattle bovine management
-   - Features: body_len_cm, body_wt_kg, horn_cm, walk_speed, hide_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,wk_sp,hd_idx,age_yr
+3. modules/crane_admin/src/main.c (Crane Tall Wading Bird)
+   - Crane (Grus grus) common crane tall wading bird management
+   - Features: body_len_cm, body_wt_g, leg_cm, fly_speed, neck_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,fl_sp,nk_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: pasture, feeding, breeding, health, market
-   - Prefix: cow
+   - Categories: marsh, feeding, breeding, health, market
+   - Prefix: crane
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1382.0 → v1383.0 (all occurrences)
-  - total modules 3719 → 3722 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1020 - v1383.0 (3722 modules, 124 kernel)" entry
+  - version v1383.0 → v1384.0 (all occurrences)
+  - total modules 3722 → 3725 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1021 - v1384.0 (3725 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/condor_admin/condor_admin.wasm modules/cormorant_admin/cormorant_admin.wasm modules/cow_admin/cow_admin.wasm modules/condor_admin/src/main.c modules/cormorant_admin/src/main.c modules/cow_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/coyote_admin/coyote_admin.wasm modules/crab_admin/crab_admin.wasm modules/crane_admin/crane_admin.wasm modules/coyote_admin/src/main.c modules/crab_admin/src/main.c modules/crane_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1020 - v1383.0 (3722 modules, 124 kernel)
+- Added WASM: condor_admin (Andean large vulture), cormorant_admin (Great diving seabird), cow_admin (Domestic cattle bovine)
+- Total modules: 3719 → 3722 (largest flying land bird, fish-diving dark seabird, domesticated dairy/meat bovine)
+
 ## Phase 1019 - v1382.0 (3719 modules, 124 kernel)
 - Added WASM: cobra_admin (Indian venomous snake), cockatoo_admin (Sulphur-crested parrot), cod_admin (Atlantic marine fish)
 - Total modules: 3716 → 3719 (hooded venomous snake, crested noisy parrot, important commercial food fish)
