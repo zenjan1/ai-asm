@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1037 - v1400.0 (3773 modules, 124 kernel)
+- Added WASM: llama_admin (Domesticated llama pack animal), lemur_admin (Ring-tailed lemur tree primate), leopard_admin (Leopard spotted big cat)
+- Total modules: 3770 → 3773 (Andean pack animal, Madagascar tree primate, spotted stealth big cat)
+
 ## Phase 1036 - v1399.0 (3770 modules, 124 kernel)
 - Added WASM: kangaroo_admin (Red kangaroo marsupial jumper), koala_admin (Koala tree-dwelling marsupial), kiwi_admin (North Island kiwi flightless bird)
 - Total modules: 3767 → 3770 (outback-leaping marsupial, eucalyptus-dwelling marsupial, forest nocturnal flightless bird)
