@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1086 - v1449.0 (3920 modules, 124 kernel)
+- Added WASM: potoroin_admin (Potoroin rat-kangaroos), echymiperas_admin (Echymiperas echidna bandicoots), isoodons_admin (Isoodons short-nosed bandicoots)
+- Total modules: 3917 → 3920 (potoroin, echymiperas, isoodons)
+
 ## Phase 1085 - v1448.0 (3917 modules, 124 kernel)
 - Added WASM: setifers_admin (Setifers tenrec-like mammals), tenrecs_admin (Tenrecs insectivorous mammals), rufouses_admin (Rufouses rufous bettongs)
 - Total modules: 3914 → 3917 (setifers, tenrecs, rufouses)
