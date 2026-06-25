@@ -1,36 +1,36 @@
-Phase 1043: Prawn Pike Perch Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1044: Rooster Salamander Scorpion Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/prawn_admin/src/main.c (Prawn Marine Crustacean)
-   - Prawn (Penaeus monodon) giant tiger prawn marine crustacean management
-   - Features: body_len_cm, body_wt_g, tail_cm, swim_speed, sh_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sw_sp,sh_idx,age_yr
+1. modules/rooster_admin/src/main.c (Rooster Domestic Fowl)
+   - Rooster (Gallus gallus domesticus) domestic rooster fowl management
+   - Features: body_len_cm, body_wt_kg, comb_cm, walk_speed, cm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,comb_cm,wk_sp,cm_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: ocean, feeding, breeding, health, market
-   - Prefix: praw
+   - Categories: farmyard, feeding, breeding, health, market
+   - Prefix: roos
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/pike_admin/src/main.c (Pike Freshwater Fish)
-   - Pike (Esox lucius) northern pike freshwater predatory fish management
-   - Features: body_len_cm, body_wt_kg, jaw_cm, swim_speed, fn_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,jaw_cm,sw_sp,fn_idx,age_yr
+2. modules/salamander_admin/src/main.c (Salamander Amphibian)
+   - Salamander (Salamandra salamandra) fire salamander amphibian management
+   - Features: body_len_cm, body_wt_g, tail_cm, walk_speed, sk_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,wk_sp,sk_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: lake, feeding, breeding, health, market
-   - Prefix: pike
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: slmd
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/perch_admin/src/main.c (Perch Freshwater Fish)
-   - Perch (Perca fluviatilis) European perch freshwater fish management
-   - Features: body_len_cm, body_wt_g, fin_cm, swim_speed, sc_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,sc_idx,age_yr
+3. modules/scorpion_admin/src/main.c (Scorpion Arachnid)
+   - Scorpion (Heterometrus spinifer) Asian forest scorpion arachnid management
+   - Features: body_len_cm, body_wt_g, tail_cm, walk_speed, st_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,wk_sp,st_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: river, feeding, breeding, health, market
-   - Prefix: perch
+   - Categories: desert, feeding, breeding, health, market
+   - Prefix: scor
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1405.0 → v1406.0 (all occurrences)
-  - total modules 3788 → 3791 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1043 - v1406.0 (3791 modules, 124 kernel)" entry
+  - version v1406.0 → v1407.0 (all occurrences)
+  - total modules 3791 → 3794 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1044 - v1407.0 (3794 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/prawn_admin/prawn_admin.wasm modules/pike_admin/pike_admin.wasm modules/perch_admin/perch_admin.wasm modules/prawn_admin/src/main.c modules/pike_admin/src/main.c modules/perch_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/rooster_admin/rooster_admin.wasm modules/salamander_admin/salamander_admin.wasm modules/scorpion_admin/scorpion_admin.wasm modules/rooster_admin/src/main.c modules/salamander_admin/src/main.c modules/scorpion_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

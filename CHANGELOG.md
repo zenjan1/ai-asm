@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1043 - v1406.0 (3791 modules, 124 kernel)
+- Added WASM: prawn_admin (Prawn marine crustacean), pike_admin (Pike freshwater fish), perch_admin (Perch freshwater fish)
+- Total modules: 3788 → 3791 (giant tiger prawn, northern pike, European perch)
+
 ## Phase 1042 - v1405.0 (3788 modules, 124 kernel)
 - Added WASM: peacock_admin (Peacock male peafowl bird), pangolin_admin (Pangolin scaly mammal), puffin_admin (Puffin seabird)
 - Total modules: 3785 → 3788 (Indian peacock, Sunda pangolin, Atlantic puffin)
