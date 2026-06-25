@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1090 - v1453.0 (3932 modules, 124 kernel)
+- Added WASM: mulgara_admin (Mulgara small carnivorous marsupials), kowari_admin (Kowari small dasyurid marsupials), kultarr_admin (Kultarr tiny dasyurid marsupials)
+- Total modules: 3929 → 3932 (mulgara, kowari, kultarr)
+
 ## Phase 1089 - v1452.0 (3929 modules, 124 kernel)
 - Added WASM: ngapa_admin (Ngapa burrowing marsupials), marloo_admin (Marloo rock-wallaby species), quenda_admin (Quenda short-nosed bandicoots)
 - Total modules: 3926 → 3929 (ngapa, marloo, quenda)

@@ -1,36 +1,36 @@
-Phase 1090: Mulgara Kowari Kultarr Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1091: Xantus Dibbler Ningaui Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/mulgara_admin/src/main.c (Mulgara small carnivorous marsupials)
-   - Mulgara (Dasycercus) small carnivorous marsupials management
-   - Features: body_len_cm, body_wt_g, tooth_ct, tail_cm, mg_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tooth_ct,tail_cm,mg_idx,age_yr
+1. modules/xantus_admin/src/main.c (Xantus small exotic mammals)
+   - Xantus small exotic mammals management
+   - Features: body_len_cm, body_wt_g, spine_ct, tail_cm, xt_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,spine_ct,tail_cm,xt_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: mgar
+   - Prefix: xant
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/kowari_admin/src/main.c (Kowari small dasyurid marsupials)
-   - Kowari (Dasyuroides) small dasyurid marsupials management
-   - Features: body_len_cm, body_wt_g, claw_ct, tail_cm, kw_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,claw_ct,tail_cm,kw_idx,age_yr
+2. modules/dibbler_admin/src/main.c (Dibbler (Parantechinus) small marsupials)
+   - Dibbler (Parantechinus) small marsupials management
+   - Features: body_len_cm, body_wt_g, pouch_ct, tail_cm, db_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,pouch_ct,tail_cm,db_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: kwar
+   - Prefix: dibb
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/kultarr_admin/src/main.c (Kultarr tiny dasyurid marsupials)
-   - Kultarr (Antechinomys) tiny dasyurid marsupials management
-   - Features: body_len_cm, body_wt_g, fur_len, tail_cm, kt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fur_len,tail_cm,kt_idx,age_yr
+3. modules/ningaui_admin/src/main.c (Ningaui tiny dasyurid marsupials)
+   - Ningaui tiny dasyurid marsupials management
+   - Features: body_len_cm, body_wt_g, whisker_ct, tail_cm, ng_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,whisker_ct,tail_cm,ng_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: ktar
+   - Prefix: ning
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1452.0 → v1453.0 (all occurrences)
-  - total modules 3929 → 3932 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1090 - v1453.0 (3932 modules, 124 kernel)" entry
+  - version v1453.0 → v1454.0 (all occurrences)
+  - total modules 3932 → 3935 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1091 - v1454.0 (3935 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/mulgara_admin/mulgara_admin.wasm modules/kowari_admin/kowari_admin.wasm modules/kultarr_admin/kultarr_admin.wasm modules/mulgara_admin/src/main.c modules/kowari_admin/src/main.c modules/kultarr_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/xantus_admin/xantus_admin.wasm modules/dibbler_admin/dibbler_admin.wasm modules/ningaui_admin/ningaui_admin.wasm modules/xantus_admin/src/main.c modules/dibbler_admin/src/main.c modules/ningaui_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
