@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1064 - v1427.0 (3854 modules, 124 kernel)
+- Added WASM: quagga_admin (Quagga extinct zebra), onager_admin (Onager Asian wild ass), kiang_admin (Kiang Tibetan wild ass)
+- Total modules: 3851 → 3854 (quagga, onager, kiang)
+
 ## Phase 1063 - v1426.0 (3851 modules, 124 kernel)
 - Added WASM: saiga_admin (Saiga steppe antelope), chiru_admin (Chiru Tibetan antelope), takhi_admin (Takhi wild horse)
 - Total modules: 3848 → 3851 (saiga, Tibetan antelope, Przewalski horse)

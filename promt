@@ -1,36 +1,36 @@
-Phase 1064: Quagga Onager Kiang Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1065: Tapir Peccary Bongu Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/quagga_admin/src/main.c (Quagga Extinct Zebra)
-   - Quagga (Equus quagga quagga) extinct plains zebra subspecies management
-   - Features: body_len_cm, body_wt_kg, mane_cm, run_speed, qu_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,mn_cm,rn_sp,qu_idx,age_yr
+1. modules/tapir_admin/src/main.c (Tapir Odd-toed Ungulate)
+   - Tapir (Tapirus terrestris) large browsing mammal management
+   - Features: body_len_cm, body_wt_kg, snout_cm, swim_speed, tp_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,sn_cm,sw_sp,tp_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: plains, feeding, breeding, health, market
-   - Prefix: quag
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: tapr
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/onager_admin/src/main.c (Onager Asian Wild Ass)
-   - Onager (Equus hemionus) Central Asian wild ass management
-   - Features: body_len_cm, body_wt_kg, ear_cm, gallop_speed, on_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,gl_sp,on_idx,age_yr
+2. modules/peccary_admin/src/main.c (Peccary Wild Pig)
+   - Peccary (Pecari tajacu) collared peccary wild pig management
+   - Features: body_len_cm, body_wt_kg, tusk_cm, run_speed, pc_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tsk_cm,rn_sp,pc_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: desert, feeding, breeding, health, market
-   - Prefix: onag
+   - Categories: scrub, feeding, breeding, health, market
+   - Prefix: pecr
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/kiang_admin/src/main.c (Kiang Tibetan Wild Ass)
-   - Kiang (Equus kiang) Tibetan plateau wild ass management
-   - Features: body_len_cm, body_wt_kg, ear_cm, run_speed, ki_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,rn_sp,ki_idx,age_yr
+3. modules/bongu_admin/src/main.c (Bongu Mountain Mammal)
+   - Bongu (Dendrohyrax arboreus) tree-dwelling hyrax management
+   - Features: body_len_cm, body_wt_kg, ear_cm, climb_speed, bg_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,cl_sp,bg_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: plateau, feeding, breeding, health, market
-   - Prefix: kiang
+   - Categories: tree, feeding, breeding, health, market
+   - Prefix: bong
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1426.0 → v1427.0 (all occurrences)
-  - total modules 3851 → 3854 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1064 - v1427.0 (3854 modules, 124 kernel)" entry
+  - version v1427.0 → v1428.0 (all occurrences)
+  - total modules 3854 → 3857 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1065 - v1428.0 (3857 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/quagga_admin/quagga_admin.wasm modules/onager_admin/onager_admin.wasm modules/kiang_admin/kiang_admin.wasm modules/quagga_admin/src/main.c modules/onager_admin/src/main.c modules/kiang_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/tapir_admin/tapir_admin.wasm modules/peccary_admin/peccary_admin.wasm modules/bongu_admin/bongu_admin.wasm modules/tapir_admin/src/main.c modules/peccary_admin/src/main.c modules/bongu_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
