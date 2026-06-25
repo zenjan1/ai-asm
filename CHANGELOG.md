@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1098 - v1461.0 (3956 modules, 124 kernel)
+- Added WASM: scrub-mouse_admin (Scrub-mouse scrubland rodents), heath-mouse_admin (Heath-mouse heathland rodents), field-mouse_admin (Field-mouse meadow-dwelling rodents)
+- Total modules: 3953 → 3956 (scrub-mouse, heath-mouse, field-mouse)
+
 ## Phase 1097 - v1460.0 (3953 modules, 124 kernel)
 - Added WASM: spinifex-mouse_admin (Spinifex-mouse desert-dwelling rodents), grassland-mouse_admin (Grassland-mouse meadow rodents), bush-mouse_admin (Bush-mouse shrub-dwelling rodents)
 - Total modules: 3950 → 3953 (spinifex-mouse, grassland-mouse, bush-mouse)
