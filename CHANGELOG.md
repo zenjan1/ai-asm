@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 982 - v1345.0 (3608 modules, 124 kernel)
+- Added WASM: impala_admin (Impala antelope ungulate), jackal_admin (Golden jackal canid), jaguar_admin (Jaguar big cat)
+- Total modules: 3605 → 3608 (leaping antelope, opportunistic canid, spotted big cat)
+
 ## Phase 981 - v1344.0 (3605 modules, 124 kernel)
 - Added WASM: hyena_admin (Spotted hyena scavenger mammal), ibex_admin (Alpine ibex mountain goat), iguana_admin (Green iguana large lizard)
 - Total modules: 3602 → 3605 (laughing scavenger, cliff-climbing goat, spiny arboreal lizard)
