@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 989 - v1352.0 (3629 modules, 124 kernel)
+- Added WASM: mosquito_admin (Yellow fever mosquito disease vector), moth_admin (Domestic silk moth nocturnal insect), mouse_admin (House mouse small rodent)
+- Total modules: 3626 → 3629 (disease-carrying vector, silk-producing moth, ubiquitous small rodent)
+
 ## Phase 988 - v1351.0 (3626 modules, 124 kernel)
 - Added WASM: mink_admin (American mink semi-aquatic mustelid), monkey_admin (Rhesus macaque monkey primate), moose_admin (Eurasian moose large deer)
 - Total modules: 3623 → 3626 (slick-furred mustelid, intelligent primate, antlered forest deer)

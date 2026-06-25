@@ -1,36 +1,36 @@
-Phase 989: Mosquito Moth Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 990: Narwhal Newt Nightingale Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/mosquito_admin/src/main.c (Mosquito Disease Vector Insect)
-   - Mosquito (Aedes aegypti) yellow fever mosquito disease vector management
-   - Features: body_len_mm, body_wt_mg, wing_hz, bite_force, resist_idx, age_day
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_hz,bt_fc,rs_idx,age_dy
+1. modules/narwhal_admin/src/main.c (Narwhal Arctic Whale)
+   - Narwhal (Monodon monoceros) narwhal Arctic whale management
+   - Features: body_len_cm, body_wt_kg, tusk_cm, dive_m, tusk_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tusk_cm,dv_m,tk_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: swamp, feeding, breeding, health, market
-   - Prefix: mosquito
+   - Categories: arctic, feeding, breeding, health, market
+   - Prefix: narwhal
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/moth_admin/src/main.c (Moth Nocturnal Insect)
-   - Moth (Bombyx mori) domestic silk moth nocturnal insect management
-   - Features: wing_span_cm, body_wt_g, antenna_cm, pheromone_idx, silk_yield, age_day
-   - Data: 16 entries with location,wing_sp,bdy_wt,ant_cm,ph_idx,sl_yd,age_dy
+2. modules/newt_admin/src/main.c (Newt Salamander Amphibian)
+   - Newt (Triturus cristatus) crested newt salamander amphibian management
+   - Features: body_len_cm, body_wt_g, tail_cm, skin_idx, egg_ct, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sk_idx,eg_ct,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: cocoon, feeding, breeding, health, market
-   - Prefix: moth
+   - Categories: pond, feeding, breeding, health, market
+   - Prefix: newt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/mouse_admin/src/main.c (Mouse Small Rodent)
-   - Mouse (Mus musculus) house mouse small rodent management
-   - Features: body_len_cm, body_wt_g, tail_len_cm, whisker_idx, nest_size, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,wh_idx,ns_sz,age_yr
+3. modules/nightingale_admin/src/main.c (Nightingale Songbird)
+   - Nightingale (Luscinia megarhynchos) common nightingale songbird management
+   - Features: body_len_cm, body_wt_g, wing_cm, song_vol, plumage_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,sg_vl,pl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: nest, feeding, breeding, health, market
-   - Prefix: mouse
+   - Categories: grove, feeding, breeding, health, market
+   - Prefix: nightingale
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1351.0 → v1352.0 (all occurrences)
-  - total modules 3626 → 3629 (all occurrences)
-Update CHANGELOG.md: add "## Phase 989 - v1352.0 (3629 modules, 124 kernel)" entry
+  - version v1352.0 → v1353.0 (all occurrences)
+  - total modules 3629 → 3632 (all occurrences)
+Update CHANGELOG.md: add "## Phase 990 - v1353.0 (3632 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/mosquito_admin/mosquito_admin.wasm modules/moth_admin/moth_admin.wasm modules/mouse_admin/mouse_admin.wasm modules/mosquito_admin/src/main.c modules/moth_admin/src/main.c modules/mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/narwhal_admin/narwhal_admin.wasm modules/newt_admin/newt_admin.wasm modules/nightingale_admin/nightingale_admin.wasm modules/narwhal_admin/src/main.c modules/newt_admin/src/main.c modules/nightingale_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
