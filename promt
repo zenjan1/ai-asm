@@ -1,30 +1,30 @@
-Phase 1040: Octopus Ostrich Otter Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1040: Owl Oyster Okapi Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/octopus_admin/src/main.c (Octopus Marine Cephalopod)
-   - Octopus (Octopus vulgaris) common octopus marine cephalopod management
-   - Features: body_len_cm, body_wt_g, arm_cm, swim_speed, sk_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,arm_cm,sw_sp,sk_idx,age_yr
+1. modules/owl_admin/src/main.c (Owl Nocturnal Bird of Prey)
+   - Owl (Bubo bubo) Eurasian eagle-owl nocturnal raptor management
+   - Features: body_len_cm, body_wt_g, wingspan_cm, fly_speed, tl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wn_sp,fl_sp,tl_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: reef, feeding, breeding, health, market
-   - Prefix: octp
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: owl
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/ostrich_admin/src/main.c (Ostrich Large Flightless Bird)
-   - Ostrich (Struthio camelus) common ostrich large flightless bird management
-   - Features: body_len_cm, body_wt_kg, leg_cm, run_speed, ft_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,rn_sp,ft_idx,age_yr
+2. modules/oyster_admin/src/main.c (Oyster Marine Bivalve)
+   - Oyster (Crassostrea gigas) Pacific oyster marine bivalve management
+   - Features: shell_len_cm, body_wt_g, gill_cm, wt_idx, age_year
+   - Data: 16 entries with location,sh_ln,bdy_wt,gl_cm,wt_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: savanna, feeding, breeding, health, market
-   - Prefix: ostr
+   - Categories: estuary, feeding, breeding, health, market
+   - Prefix: oyst
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/otter_admin/src/main.c (Otter Semi-aquatic Mammal)
-   - Otter (Lutra lutra) Eurasian otter semi-aquatic mammal management
-   - Features: body_len_cm, body_wt_kg, tail_cm, swim_speed, fr_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sw_sp,fr_idx,age_yr
+3. modules/okapi_admin/src/main.c (Okapi Forest Giraffid)
+   - Okapi (Okapia johnstoni) okapi forest giraffid mammal management
+   - Features: body_len_cm, body_wt_kg, leg_cm, walk_speed, tg_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,wk_sp,tg_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: river, feeding, breeding, health, market
-   - Prefix: ottr
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: okap
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
@@ -32,5 +32,5 @@ Build all 3 WASM modules. Update README:
   - total modules 3779 → 3782 (all occurrences)
 Update CHANGELOG.md: add "## Phase 1040 - v1403.0 (3782 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/octopus_admin/octopus_admin.wasm modules/ostrich_admin/ostrich_admin.wasm modules/otter_admin/otter_admin.wasm modules/octopus_admin/src/main.c modules/ostrich_admin/src/main.c modules/otter_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/owl_admin/owl_admin.wasm modules/oyster_admin/oyster_admin.wasm modules/okapi_admin/okapi_admin.wasm modules/owl_admin/src/main.c modules/oyster_admin/src/main.c modules/okapi_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
