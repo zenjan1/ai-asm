@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1067 - v1430.0 (3863 modules, 124 kernel)
+- Added WASM: dunnart_admin (Dunnart small marsupial mouse), phascogale_admin (Phascogale carnivorous marsupial), potoroo_admin (Potoroo rat-kangaroo)
+- Total modules: 3860 → 3863 (dunnart, phascogale, potoroo)
+
 ## Phase 1066 - v1429.0 (3860 modules, 124 kernel)
 - Added WASM: capybara_admin (Capybara largest rodent), bilby_admin (Bilby rabbit-eared bandicoot), numbat_admin (Numbat striped termite-eater)
 - Total modules: 3857 → 3860 (capybara, bilby, numbat)

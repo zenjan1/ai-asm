@@ -1,36 +1,36 @@
-Phase 1067: Dunnart Phascogale Potoroo Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1068: Cuscus Pademelon Bettong Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/dunnart_admin/src/main.c (Dunnart small marsupial mouse)
-   - Dunnart (Sminthopsis) small insectivorous marsupial management
-   - Features: body_len_cm, body_wt_g, tail_cm, ear_cm, dn_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,ear_cm,dn_idx,age_yr
+1. modules/cuscus_admin/src/main.c (Cuscus arboreal marsupial)
+   - Cuscus (Phalanger) arboreal marsupial management
+   - Features: body_len_cm, body_wt_kg, tail_cm, grip_kg, cs_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,grip_kg,cs_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: desert, feeding, breeding, health, market
-   - Prefix: dnrt
+   - Categories: canopy, feeding, breeding, health, market
+   - Prefix: cscs
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/phascogale_admin/src/main.c (Phascogale small carnivorous marsupial)
-   - Phascogale (Phascogale) small carnivorous marsupial management
-   - Features: body_len_cm, body_wt_g, tail_cm, claw_mm, pg_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,claw_mm,pg_idx,age_yr
+2. modules/pademelon_admin/src/main.c (Pademelon small wallaby)
+   - Pademelon (Thylogale) small wallaby marsupial management
+   - Features: body_len_cm, body_wt_kg, ear_cm, hop_cm, pm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,hop_cm,pm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: phsc
+   - Prefix: pdmn
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/potoroo_admin/src/main.c (Potoroo small rat-kangaroo)
-   - Potoroo (Potorous) small rat-kangaroo marsupial management
-   - Features: body_len_cm, body_wt_kg, foot_cm, jump_cm, pt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,foot_cm,jmp_cm,pt_idx,age_yr
+3. modules/bettong_admin/src/main.c (Bettong rat-kangaroo nest-builder)
+   - Bettong (Bettongia) rat-kangaroo nest-building marsupial management
+   - Features: body_len_cm, body_wt_kg, pouch_cm, claw_mm, bt_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,pouch_cm,claw_mm,bt_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: scrub, feeding, breeding, health, market
-   - Prefix: ptro
+   - Categories: burrow, feeding, breeding, health, market
+   - Prefix: btng
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1429.0 → v1430.0 (all occurrences)
-  - total modules 3860 → 3863 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1067 - v1430.0 (3863 modules, 124 kernel)" entry
+  - version v1430.0 → v1431.0 (all occurrences)
+  - total modules 3863 → 3866 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1068 - v1431.0 (3866 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/dunnart_admin/dunnart_admin.wasm modules/phascogale_admin/phascogale_admin.wasm modules/potoroo_admin/potoroo_admin.wasm modules/dunnart_admin/src/main.c modules/phascogale_admin/src/main.c modules/potoroo_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cuscus_admin/cuscus_admin.wasm modules/pademelon_admin/pademelon_admin.wasm modules/bettong_admin/bettong_admin.wasm modules/cuscus_admin/src/main.c modules/pademelon_admin/src/main.c modules/bettong_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
