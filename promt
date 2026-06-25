@@ -1,36 +1,36 @@
-Phase 981: Hyena Ibex Iguana Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 982: Impala Jackal Jaguar Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/hyena_admin/src/main.c (Hyena Scavenger Mammal)
-   - Hyena (Crocuta crocuta) spotted hyena scavenger mammal management
-   - Features: body_len_cm, body_wt_kg, jaw_kgf, laugh_vol, pack_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,jaw_kgf,lf_vl,pk_idx,age_yr
+1. modules/impala_admin/src/main.c (Impala Antelope)
+   - Impala (Aepyceros melampus) impala antelope ungulate management
+   - Features: body_len_cm, body_wt_kg, horn_cm, leap_m, coat_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,lp_m,ct_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: habitat, feeding, breeding, health, market
-   - Prefix: hyena
+   - Prefix: impala
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/ibex_admin/src/main.c (Ibex Mountain Goat)
-   - Ibex (Capra ibex) Alpine ibex mountain goat management
-   - Features: body_len_cm, body_wt_kg, horn_cm, climb_idx, hoof_grip, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,cl_idx,hf_gr,age_yr
+2. modules/jackal_admin/src/main.c (Jackal Canid)
+   - Jackal (Canis aureus) golden jackal canid management
+   - Features: body_len_cm, body_wt_kg, ear_cm, howl_vol, hunt_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,hw_vl,hnt_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: habitat, feeding, breeding, health, market
-   - Prefix: ibex
+   - Prefix: jackal
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/iguana_admin/src/main.c (Iguana Large Lizard)
-   - Iguana (Iguana iguana) green iguana large lizard management
-   - Features: body_len_cm, body_wt_kg, tail_cm, crest_cm, dewlap_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,cr_cm,dw_idx,age_yr
+3. modules/jaguar_admin/src/main.c (Jaguar Big Cat)
+   - Jaguar (Panthera onca) jaguar big cat management
+   - Features: body_len_cm, body_wt_kg, tail_cm, bite_kgf, spot_ct, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,bt_kgf,sp_ct,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: enclosure, feeding, breeding, health, market
-   - Prefix: iguana
+   - Categories: habitat, feeding, breeding, health, market
+   - Prefix: jaguar
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1343.0 → v1344.0 (all occurrences)
-  - total modules 3602 → 3605 (all occurrences)
-Update CHANGELOG.md: add "## Phase 981 - v1344.0 (3605 modules, 124 kernel)" entry
+  - version v1344.0 → v1345.0 (all occurrences)
+  - total modules 3605 → 3608 (all occurrences)
+Update CHANGELOG.md: add "## Phase 982 - v1345.0 (3608 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/hyena_admin/hyena_admin.wasm modules/ibex_admin/ibex_admin.wasm modules/iguana_admin/iguana_admin.wasm modules/hyena_admin/src/main.c modules/ibex_admin/src/main.c modules/iguana_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/impala_admin/impala_admin.wasm modules/jackal_admin/jackal_admin.wasm modules/jaguar_admin/jaguar_admin.wasm modules/impala_admin/src/main.c modules/jackal_admin/src/main.c modules/jaguar_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

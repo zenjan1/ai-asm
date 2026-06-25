@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 981 - v1344.0 (3605 modules, 124 kernel)
+- Added WASM: hyena_admin (Spotted hyena scavenger mammal), ibex_admin (Alpine ibex mountain goat), iguana_admin (Green iguana large lizard)
+- Total modules: 3602 → 3605 (laughing scavenger, cliff-climbing goat, spiny arboreal lizard)
+
 ## Phase 980 - v1343.0 (3602 modules, 124 kernel)
 - Added WASM: hippo_admin (Common hippopotamus aquatic mammal), hornet_admin (European hornet large insect), horse_admin (Domestic horse equine mammal)
 - Total modules: 3599 → 3602 (massive semi-aquatic herbivore, largest European wasp, domestic equine)
