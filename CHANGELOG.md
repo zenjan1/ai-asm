@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1079 - v1442.0 (3899 modules, 124 kernel)
+- Added WASM: thylacines_admin (Thylacines extinct marsupial wolves), tasmanian_devils_admin (Tasmanian Devils carnivorous marsupials), macropods_admin (Macropods large marsupeds)
+- Total modules: 3896 → 3899 (thylacines, tasmanian_devils, macropods)
+
 ## Phase 1078 - v1441.0 (3896 modules, 124 kernel)
 - Added WASM: thylacine_admin (Thylacine extinct marsupial wolf), tasmanian_devil_admin (Tasmanian Devil carnivorous marsupial), macropod_admin (Macropod large marsupeds)
 - Total modules: 3893 → 3896 (thylacine, tasmanian_devil, macropod)
