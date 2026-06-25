@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1094 - v1457.0 (3944 modules, 124 kernel)
+- Added WASM: bandicoot-bettong_admin (Bandicoot-bettong hybrid marsupials), marsupial-mouse_admin (Marsupial-mouse tiny mammals), fat-tailed-mouse_admin (Fat-tailed-mouse small rodents)
+- Total modules: 3941 → 3944 (bandicoot-bettong, marsupial-mouse, fat-tailed-mouse)
+
 ## Phase 1093 - v1456.0 (3941 modules, 124 kernel)
 - Added WASM: dunnart-mouse_admin (Dunnart-mouse tiny dasyurid marsupials), rock-wallaby_admin (Rock-wallaby single species), bilbie_admin (Bilbie greater bilby species)
 - Total modules: 3938 → 3941 (dunnart-mouse, rock-wallaby, bilbie)

@@ -1,36 +1,36 @@
-Phase 1094: Bandicoot-Bettong Marsupial-Mouse Fat-Tailed-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1095: Mouse-Marsupial Stripe-Faced-Mouse Planigale-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/bandicoot-bettong_admin/src/main.c (Bandicoot-bettong hybrid marsupials)
-   - Bandicoot-bettong hybrid marsupials management
-   - Features: body_len_cm, body_wt_g, nose_len, tail_cm, btb_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,nose_len,tail_cm,btb_idx,age_yr
+1. modules/mouse-marsupial_admin/src/main.c (Mouse-marsupial tiny mammals)
+   - Mouse-marsupial tiny mammals management
+   - Features: body_len_cm, body_wt_g, paw_len, tail_cm, msm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,paw_len,tail_cm,msm_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: btbt
+   - Prefix: msmm
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/marsupial-mouse_admin/src/main.c (Marsupial-mouse tiny mammals)
-   - Marsupial-mouse tiny mammals management
-   - Features: body_len_cm, body_wt_g, eye_diam, tail_cm, mm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,eye_diam,tail_cm,mm_idx,age_yr
+2. modules/stripe-faced-mouse_admin/src/main.c (Stripe-faced-mouse small rodents)
+   - Stripe-faced-mouse small rodents management
+   - Features: body_len_cm, body_wt_g, stripe_ct, tail_cm, sfm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,stripe_ct,tail_cm,sfm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: mmou
+   - Prefix: sfmm
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/fat-tailed-mouse_admin/src/main.c (Fat-tailed-mouse small rodents)
-   - Fat-tailed-mouse small rodents management
-   - Features: body_len_cm, body_wt_g, tail_width, tail_cm, ftm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_width,tail_cm,ftm_idx,age_yr
+3. modules/planigale-mouse_admin/src/main.c (Planigale-mouse flat-headed mammals)
+   - Planigale-mouse flat-headed mammals management
+   - Features: body_len_cm, body_wt_g, head_width, tail_cm, pmm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,head_width,tail_cm,pmm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: ftmm
+   - Prefix: pmmm
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1456.0 → v1457.0 (all occurrences)
-  - total modules 3941 → 3944 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1094 - v1457.0 (3944 modules, 124 kernel)" entry
+  - version v1457.0 → v1458.0 (all occurrences)
+  - total modules 3944 → 3947 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1095 - v1458.0 (3947 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/bandicoot-bettong_admin/bandicoot-bettong_admin.wasm modules/marsupial-mouse_admin/marsupial-mouse_admin.wasm modules/fat-tailed-mouse_admin/fat-tailed-mouse_admin.wasm modules/bandicoot-bettong_admin/src/main.c modules/marsupial-mouse_admin/src/main.c modules/fat-tailed-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/mouse-marsupial_admin/mouse-marsupial_admin.wasm modules/stripe-faced-mouse_admin/stripe-faced-mouse_admin.wasm modules/planigale-mouse_admin/planigale-mouse_admin.wasm modules/mouse-marsupial_admin/src/main.c modules/stripe-faced-mouse_admin/src/main.c modules/planigale-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
