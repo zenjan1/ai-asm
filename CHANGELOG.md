@@ -1,5 +1,9 @@
 # Changelog
 
+
+## Phase 1051 - v1414.0 (3815 modules, 124 kernel)
+- Added WASM: marmot_admin (Marmot alpine ground squirrel), hyrax_admin (Hyrax rock mammal), tarsier_admin (Tarsier small primate)
+- Total modules: 3812 → 3815 (alpine marmot, cape rock hyrax, philippine tarsier)
 ## Phase 1050 - v1413.0 (3812 modules, 124 kernel)
 - Added WASM: ibis_admin (Ibis wading bird), possum_admin (Possum marsupial), chipmunk_admin (Chipmunk small squirrel)
 - Total modules: 3809 → 3812 (white ibis, brushtail possum, eastern chipmunk)

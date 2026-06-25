@@ -1,36 +1,36 @@
-Phase 1051: Marmot Hyrax Tarsier Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1052: Uakari Vicuna Wallaby Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/marmot_admin/src/main.c (Marmot Large Ground Squirrel)
-   - Marmot (Marmota marmos) alpine marmot large ground squirrel management
-   - Features: body_len_cm, body_wt_kg, tail_cm, walk_speed, fr_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,wk_sp,fr_idx,age_yr
+1. modules/uakari_admin/src/main.c (Uakari Red-faced Monkey)
+   - Uakari (Cacajao uakarii) Amazonian red-faced bald monkey management
+   - Features: body_len_cm, body_wt_kg, tail_cm, climb_speed, fr_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,cl_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: alpine, feeding, breeding, health, market
-   - Prefix: marm
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-2. modules/hyrax_admin/src/main.c (Hyrax Small Mammal)
-   - Hyrax (Procavia capensis) rock hyrax small mammal management
-   - Features: body_len_cm, body_wt_kg, ear_cm, walk_speed, cl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,wk_sp,cl_idx,age_yr
-   - Pattern: follow abelia_admin pattern
-   - Categories: rocky, feeding, breeding, health, market
-   - Prefix: hyrx
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-3. modules/tarsier_admin/src/main.c (Tarsier Small Primate)
-   - Tarsier (Tarsius syrichta) Philippine tarsier small primate management
-   - Features: body_len_cm, body_wt_g, arm_cm, jump_cm, ey_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,arm_cm,jp_cm,ey_idx,age_yr
-   - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tars
+   - Prefix: ukar
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+2. modules/vicuna_admin/src/main.c (Vicuna Andean Camelid)
+   - Vicuna (Vicugna vicugna) South American highland camelid management
+   - Features: body_len_cm, body_wt_kg, neck_cm, run_speed, fl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,neck_cm,rn_sp,fl_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: highland, feeding, breeding, health, market
+   - Prefix: vicu
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/wallaby_admin/src/main.c (Wallaby Small Macropod)
+   - Wallaby (Macropus rufogriseus) small macropod marsupial management
+   - Features: body_len_cm, body_wt_kg, ear_cm, jump_cm, hr_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,jp_cm,hr_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: bush, feeding, breeding, health, market
+   - Prefix: wall
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1413.0 → v1414.0 (all occurrences)
-  - total modules 3812 → 3815 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1051 - v1414.0 (3815 modules, 124 kernel)" entry
+  - version v1414.0 → v1415.0 (all occurrences)
+  - total modules 3815 → 3818 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1052 - v1415.0 (3818 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/marmot_admin/marmot_admin.wasm modules/hyrax_admin/hyrax_admin.wasm modules/tarsier_admin/tarsier_admin.wasm modules/marmot_admin/src/main.c modules/hyrax_admin/src/main.c modules/tarsier_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/uakari_admin/uakari_admin.wasm modules/vicuna_admin/vicuna_admin.wasm modules/wallaby_admin/wallaby_admin.wasm modules/uakari_admin/src/main.c modules/vicuna_admin/src/main.c modules/wallaby_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
