@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1076 - v1439.0 (3890 modules, 124 kernel)
+- Added WASM: dasyures_admin (Dasyures carnivorous marsupials), phascogales_admin (Phascogales small carnivorous marsupials), bandicoots_admin (Bandicoots omnivorous marsupials)
+- Total modules: 3887 → 3890 (dasyures, phascogales, bandicoots)
+
 ## Phase 1075 - v1438.0 (3887 modules, 124 kernel)
 - Added WASM: kangaroos_admin (Kangaroos large macropods), possums_admin (Possums arboreal marsupials), gliders_admin (Gliders flying marsupials)
 - Total modules: 3884 → 3887 (kangaroos, possums, gliders)
