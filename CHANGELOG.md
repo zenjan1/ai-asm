@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1057 - v1420.0 (3833 modules, 124 kernel)
+- Added WASM: grysbok_admin (Grysbok small antelope), duiker_admin (Duiker forest antelope), klipspringer_admin (Klipspringer rock antelope)
+- Total modules: 3830 → 3833 (sharpe grysbok, common duiker, klipspringer)
+
 ## Phase 1056 - v1419.0 (3830 modules, 124 kernel)
 - Added WASM: puku_admin (Puku floodplain antelope), blesbok_admin (Blesbok white-fronted antelope), steenbok_admin (Steenbok tiny bush antelope)
 - Total modules: 3827 → 3830 (puku, blesbok, steenbok)
