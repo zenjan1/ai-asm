@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 986 - v1349.0 (3620 modules, 124 kernel)
+- Added WASM: macaw_admin (Scarlet macaw tropical parrot), mackerel_admin (Atlantic mackerel pelagic fish), magpie_admin (Eurasian magpie corvid bird)
+- Total modules: 3617 → 3620 (colorful tropical parrot, fast pelagic schoolfish, intelligent black-white corvid)
+
 ## Phase 985 - v1348.0 (3617 modules, 124 kernel)
 - Added WASM: lobster_admin (American lobster crustacean), locust_admin (Migratory locust insect), loon_admin (Common loon diving bird)
 - Total modules: 3614 → 3617 (hard-shell crustacean, swarming migratory insect, deep-diving waterbird)
