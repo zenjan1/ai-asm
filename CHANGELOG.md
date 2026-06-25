@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1042 - v1405.0 (3788 modules, 124 kernel)
+- Added WASM: peacock_admin (Peacock male peafowl bird), pangolin_admin (Pangolin scaly mammal), puffin_admin (Puffin seabird)
+- Total modules: 3785 → 3788 (Indian peacock, Sunda pangolin, Atlantic puffin)
+
 ## Phase 1041 - v1404.0 (3785 modules, 124 kernel)
 - Added WASM: pig_admin (Pig domestic farm animal), pigeon_admin (Pigeon rock dove bird), puma_admin (Puma mountain lion)
 - Total modules: 3782 → 3785 (domestic pig, rock dove pigeon, mountain lion puma)

@@ -1,36 +1,36 @@
-Phase 1042: Peacock Pangolin Puffin Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1043: Prawn Pike Perch Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/peacock_admin/src/main.c (Peacock Male Peafowl Bird)
-   - Peacock (Pavo cristatus) Indian peacock male peafowl bird management
-   - Features: body_len_cm, body_wt_kg, tail_feather_cm, fly_speed, pl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tf_cm,fl_sp,pl_idx,age_yr
+1. modules/prawn_admin/src/main.c (Prawn Marine Crustacean)
+   - Prawn (Penaeus monodon) giant tiger prawn marine crustacean management
+   - Features: body_len_cm, body_wt_g, tail_cm, swim_speed, sh_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sw_sp,sh_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: garden, feeding, breeding, health, market
-   - Prefix: peck
+   - Categories: ocean, feeding, breeding, health, market
+   - Prefix: praw
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/pangolin_admin/src/main.c (Pangolin Scaly Mammal)
-   - Pangolin (Manis javanica) Sunda pangolin scaly mammal management
-   - Features: body_len_cm, body_wt_kg, tail_cm, walk_speed, sc_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,wk_sp,sc_idx,age_yr
+2. modules/pike_admin/src/main.c (Pike Freshwater Fish)
+   - Pike (Esox lucius) northern pike freshwater predatory fish management
+   - Features: body_len_cm, body_wt_kg, jaw_cm, swim_speed, fn_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,jaw_cm,sw_sp,fn_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: forest, feeding, breeding, health, market
-   - Prefix: pang
+   - Categories: lake, feeding, breeding, health, market
+   - Prefix: pike
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/puffin_admin/src/main.c (Puffin Seabird)
-   - Puffin (Fratercula arctica) Atlantic puffin seabird management
-   - Features: body_len_cm, body_wt_g, beak_cm, fly_speed, bk_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,fl_sp,bk_idx,age_yr
+3. modules/perch_admin/src/main.c (Perch Freshwater Fish)
+   - Perch (Perca fluviatilis) European perch freshwater fish management
+   - Features: body_len_cm, body_wt_g, fin_cm, swim_speed, sc_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,sc_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: cliff, feeding, breeding, health, market
-   - Prefix: puff
+   - Categories: river, feeding, breeding, health, market
+   - Prefix: perch
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1404.0 → v1405.0 (all occurrences)
-  - total modules 3785 → 3788 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1042 - v1405.0 (3788 modules, 124 kernel)" entry
+  - version v1405.0 → v1406.0 (all occurrences)
+  - total modules 3788 → 3791 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1043 - v1406.0 (3791 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/peacock_admin/peacock_admin.wasm modules/pangolin_admin/pangolin_admin.wasm modules/puffin_admin/puffin_admin.wasm modules/peacock_admin/src/main.c modules/pangolin_admin/src/main.c modules/puffin_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/prawn_admin/prawn_admin.wasm modules/pike_admin/pike_admin.wasm modules/perch_admin/perch_admin.wasm modules/prawn_admin/src/main.c modules/pike_admin/src/main.c modules/perch_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
