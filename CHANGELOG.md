@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 996 - v1359.0 (3650 modules, 124 kernel)
+- Added WASM: quail_admin (Common quail small game bird), quetzal_admin (Resplendent quetzal tropical bird), quokka_admin (Quokka small marsupial)
+- Total modules: 3647 → 3650 (small ground-nesting bird, long-tailed tropical bird, smiling island marsupial)
+
 ## Phase 995 - v1358.0 (3647 modules, 124 kernel)
 - Added WASM: platypus_admin (Duck-billed platypus egg-laying mammal), porcupine_admin (North American porcupine spiny rodent), python_admin (Ball python large constrictor)
 - Total modules: 3644 → 3647 (venomous aquatic mammal, quill-covered rodent, coiling constrictor snake)

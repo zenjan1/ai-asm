@@ -1,36 +1,36 @@
-Phase 996: Quail Quetzal Quokka Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 997: Rabbit Raccoon Raven Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/quail_admin/src/main.c (Quail Small Game Bird)
-   - Quail (Coturnix coturnix) common quail small game bird management
-   - Features: body_len_cm, body_wt_g, wing_cm, call_vol, plumage_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,cl_vl,pl_idx,age_yr
+1. modules/rabbit_admin/src/main.c (Rabbit Small Mammal)
+   - Rabbit (Oryctolagus cuniculus) European rabbit small mammal management
+   - Features: body_len_cm, body_wt_kg, ear_cm, hop_speed, litter_ct, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,hp_sp,lt_ct,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: field, feeding, breeding, health, market
-   - Prefix: quail
+   - Categories: burrow, feeding, breeding, health, market
+   - Prefix: rabbit
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/quetzal_admin/src/main.c (Quetzal Tropical Bird)
-   - Quetzal (Pharomachrus mocinno) resplendent quetzal tropical bird management
-   - Features: body_len_cm, body_wt_g, tail_len_cm, color_idx, fruit_ct, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,cl_idx,fr_ct,age_yr
+2. modules/raccoon_admin/src/main.c (Raccoon Masked Mammal)
+   - Raccoon (Procyon lotor) common raccoon masked mammal management
+   - Features: body_len_cm, body_wt_kg, tail_len_cm, paw_idx, night_vol, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,pw_idx,ng_vl,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: canopy, feeding, breeding, health, market
-   - Prefix: quetzal
+   - Categories: den, feeding, breeding, health, market
+   - Prefix: raccoon
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/quokka_admin/src/main.c (Quokka Small Marsupial)
-   - Quokka (Setonix brachyurus) quokka small marsupial management
-   - Features: body_len_cm, body_wt_kg, tail_len_cm, smile_idx, hop_dist, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_ln,sm_idx,hp_dst,age_yr
+3. modules/raven_admin/src/main.c (Raven Large Corvid)
+   - Raven (Corvus corax) common raven large corvid management
+   - Features: body_len_cm, body_wt_kg, wing_span_cm, call_vol, cache_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,cl_vl,ch_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: island, feeding, breeding, health, market
-   - Prefix: quokka
+   - Categories: cliff, feeding, breeding, health, market
+   - Prefix: raven
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1358.0 → v1359.0 (all occurrences)
-  - total modules 3647 → 3650 (all occurrences)
-Update CHANGELOG.md: add "## Phase 996 - v1359.0 (3650 modules, 124 kernel)" entry
+  - version v1359.0 → v1360.0 (all occurrences)
+  - total modules 3650 → 3653 (all occurrences)
+Update CHANGELOG.md: add "## Phase 997 - v1360.0 (3653 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/quail_admin/quail_admin.wasm modules/quetzal_admin/quetzal_admin.wasm modules/quokka_admin/quokka_admin.wasm modules/quail_admin/src/main.c modules/quetzal_admin/src/main.c modules/quokka_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/rabbit_admin/rabbit_admin.wasm modules/raccoon_admin/raccoon_admin.wasm modules/raven_admin/raven_admin.wasm modules/rabbit_admin/src/main.c modules/raccoon_admin/src/main.c modules/raven_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
