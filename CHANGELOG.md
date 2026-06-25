@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1080 - v1443.0 (3902 modules, 124 kernel)
+- Added WASM: bettongs_admin (Bettongs rat-kangaroos), wallaroos_admin (Wallaroos large rock-wallabies), quokkas_admin (Quokkas small macropods)
+- Total modules: 3899 → 3902 (bettongs, wallaroos, quokkas)
+
 ## Phase 1079 - v1442.0 (3899 modules, 124 kernel)
 - Added WASM: thylacines_admin (Thylacines extinct marsupial wolves), tasmanian_devils_admin (Tasmanian Devils carnivorous marsupials), macropods_admin (Macropods large marsupeds)
 - Total modules: 3896 → 3899 (thylacines, tasmanian_devils, macropods)

@@ -1,36 +1,36 @@
-Phase 1080: Bettongs Wallaroos Quokkas Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1081: Monjons Tammars Echymipera Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/bettongs_admin/src/main.c (Bettongs rat-kangaroos)
-   - Bettongs (Bettongia) rat-kangaroos management
-   - Features: body_len_cm, body_wt_g, tail_cm, foot_cm, bt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,foot_cm,bt_idx,age_yr
+1. modules/monjons_admin/src/main.c (Monjons small rock-wallabies)
+   - Monjons (Petrogale) small rock-wallabies management
+   - Features: body_len_cm, body_wt_g, foot_cm, tail_cm, mj_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,foot_cm,tail_cm,mj_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: btng
+   - Prefix: mjon
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/wallaroos_admin/src/main.c (Wallaroos large rock-wallabies)
-   - Wallaroos (Macropus) large rock-wallabies management
-   - Features: body_len_cm, body_wt_kg, ear_cm, tail_cm, wl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,tail_cm,wl_idx,age_yr
+2. modules/tammars_admin/src/main.c (Tammars tammar wallabies)
+   - Tammars (Notamacropus) tammar wallabies management
+   - Features: body_len_cm, body_wt_kg, pouch_cm, tail_cm, tm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,pouch_cm,tail_cm,tm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: wllr
+   - Prefix: tmmr
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/quokkas_admin/src/main.c (Quokkas small macropods)
-   - Quokkas (Setonix) small macropods management
-   - Features: body_len_cm, body_wt_kg, tail_cm, ear_cm, qk_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,ear_cm,qk_idx,age_yr
+3. modules/echymipera_admin/src/main.c (Echymipera echidna bandicoots)
+   - Echymipera (Echymipera) echidna bandicoots management
+   - Features: body_len_cm, body_wt_kg, snout_cm, tail_cm, ec_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,snout_cm,tail_cm,ec_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: qkks
+   - Prefix: ecmp
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1442.0 → v1443.0 (all occurrences)
-  - total modules 3899 → 3902 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1080 - v1443.0 (3902 modules, 124 kernel)" entry
+  - version v1443.0 → v1444.0 (all occurrences)
+  - total modules 3902 → 3905 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1081 - v1444.0 (3905 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/bettongs_admin/bettongs_admin.wasm modules/wallaroos_admin/wallaroos_admin.wasm modules/quokkas_admin/quokkas_admin.wasm modules/bettongs_admin/src/main.c modules/wallaroos_admin/src/main.c modules/quokkas_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/monjons_admin/monjons_admin.wasm modules/tammars_admin/tammars_admin.wasm modules/echymipera_admin/echymipera_admin.wasm modules/monjons_admin/src/main.c modules/tammars_admin/src/main.c modules/echymipera_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
