@@ -1,36 +1,36 @@
-Phase 1003: Squid Squirrel Starfish Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1004: Stork Swan Swift Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/squid_admin/src/main.c (Squid Cephalopod)
-   - Squid (Dosidicus gigas) Humboldt squid cephalopod management
-   - Features: mantle_cm, body_wt_kg, tentacle_cm, swim_speed, spot_idx, age_year
-   - Data: 16 entries with location,mntl_cm,bdy_wt,tnt_cm,sw_sp,sp_idx,age_yr
+1. modules/stork_admin/src/main.c (Stork Large Wading Bird)
+   - Stork (Ciconia ciconia) white stork large wading bird management
+   - Features: body_len_cm, body_wt_kg, wing_cm, fly_speed, bill_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,bl_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: deep_sea, feeding, breeding, health, market
-   - Prefix: squid
+   - Categories: wetland, feeding, breeding, health, market
+   - Prefix: stork
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/squirrel_admin/src/main.c (Squirrel Rodent)
-   - Squirrel (Sciurus carolinensis) eastern gray squirrel rodent management
-   - Features: body_len_cm, body_wt_kg, tail_cm, run_speed, fur_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,run_sp,fr_idx,age_yr
+2. modules/swan_admin/src/main.c (Swan Large Waterfowl)
+   - Swan (Cygnus olor) mute swan large waterfowl management
+   - Features: body_len_cm, body_wt_kg, wing_cm, swim_speed, neck_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,sw_sp,nk_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: park, feeding, breeding, health, market
-   - Prefix: squirrel
+   - Categories: lake, feeding, breeding, health, market
+   - Prefix: swan
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/starfish_admin/src/main.c (Starfish Echinoderm)
-   - Starfish (Asterias rubens) common starfish echinoderm management
-   - Features: arm_span_cm, body_wt_g, arm_ct, move_speed, color_idx, age_year
-   - Data: 16 entries with location,arm_sp,bdy_wt,arm_ct,mv_sp,cl_idx,age_yr
+3. modules/swift_admin/src/main.c (Swift Fast Flying Bird)
+   - Swift (Apus apus) common swift fast flying bird management
+   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, plg_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,pg_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: tidepool, feeding, breeding, health, market
-   - Prefix: starfish
+   - Categories: skyline, feeding, breeding, health, market
+   - Prefix: swift
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1365.0 → v1366.0 (all occurrences)
-  - total modules 3668 → 3671 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1003 - v1366.0 (3671 modules, 124 kernel)" entry
+  - version v1366.0 → v1367.0 (all occurrences)
+  - total modules 3671 → 3674 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1004 - v1367.0 (3674 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/squid_admin/squid_admin.wasm modules/squirrel_admin/squirrel_admin.wasm modules/starfish_admin/starfish_admin.wasm modules/squid_admin/src/main.c modules/squirrel_admin/src/main.c modules/starfish_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/stork_admin/stork_admin.wasm modules/swan_admin/swan_admin.wasm modules/swift_admin/swift_admin.wasm modules/stork_admin/src/main.c modules/swan_admin/src/main.c modules/swift_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

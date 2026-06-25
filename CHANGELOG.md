@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1003 - v1366.0 (3671 modules, 124 kernel)
+- Added WASM: squid_admin (Humboldt squid cephalopod), squirrel_admin (Eastern gray squirrel rodent), starfish_admin (Common starfish echinoderm)
+- Total modules: 3668 → 3671 (deep-sea jet-propelled cephalopod, bushy-tailed park rodent, five-armed tidepool echinoderm)
+
 ## Phase 1002 - v1365.0 (3668 modules, 124 kernel)
 - Added WASM: snail_admin (Brown garden snail mollusk), snake_admin (Reticulated python reptile), sparrow_admin (House sparrow common bird)
 - Total modules: 3665 → 3668 (spiraled garden snail, large constrictor python, small urban songbird)
