@@ -1,36 +1,36 @@
-Phase 1050: Ibis Possum Chipmunk Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1051: Marmot Hyrax Tarsier Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/ibis_admin/src/main.c (Ibis Wading Bird)
-   - Ibis (Eudocimus albus) white ibis wading bird management
-   - Features: body_len_cm, body_wt_g, beak_cm, walk_speed, pl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,wk_sp,pl_idx,age_yr
+1. modules/marmot_admin/src/main.c (Marmot Large Ground Squirrel)
+   - Marmot (Marmota marmos) alpine marmot large ground squirrel management
+   - Features: body_len_cm, body_wt_kg, tail_cm, walk_speed, fr_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,wk_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: wetland, feeding, breeding, health, market
-   - Prefix: ibis
+   - Categories: alpine, feeding, breeding, health, market
+   - Prefix: marm
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/possum_admin/src/main.c (Possum Marsupial)
-   - Possum (Trichosurus vulpecula) common brushtail possum marsupial management
-   - Features: body_len_cm, body_wt_kg, tail_cm, climb_speed, fr_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,cl_sp,fr_idx,age_yr
+2. modules/hyrax_admin/src/main.c (Hyrax Small Mammal)
+   - Hyrax (Procavia capensis) rock hyrax small mammal management
+   - Features: body_len_cm, body_wt_kg, ear_cm, walk_speed, cl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,wk_sp,cl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: woodland, feeding, breeding, health, market
-   - Prefix: poss
+   - Categories: rocky, feeding, breeding, health, market
+   - Prefix: hyrx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/chipmunk_admin/src/main.c (Chipmunk Small Squirrel)
-   - Chipmunk (Tamias striatus) eastern chipmunk small squirrel management
-   - Features: body_len_cm, body_wt_g, tail_cm, run_speed, ch_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,rn_sp,ch_idx,age_yr
+3. modules/tarsier_admin/src/main.c (Tarsier Small Primate)
+   - Tarsier (Tarsius syrichta) Philippine tarsier small primate management
+   - Features: body_len_cm, body_wt_g, arm_cm, jump_cm, ey_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,arm_cm,jp_cm,ey_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: burrow, feeding, breeding, health, market
-   - Prefix: chip
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: tars
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1412.0 → v1413.0 (all occurrences)
-  - total modules 3809 → 3812 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1050 - v1413.0 (3812 modules, 124 kernel)" entry
+  - version v1413.0 → v1414.0 (all occurrences)
+  - total modules 3812 → 3815 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1051 - v1414.0 (3815 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/ibis_admin/ibis_admin.wasm modules/possum_admin/possum_admin.wasm modules/chipmunk_admin/chipmunk_admin.wasm modules/ibis_admin/src/main.c modules/possum_admin/src/main.c modules/chipmunk_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/marmot_admin/marmot_admin.wasm modules/hyrax_admin/hyrax_admin.wasm modules/tarsier_admin/tarsier_admin.wasm modules/marmot_admin/src/main.c modules/hyrax_admin/src/main.c modules/tarsier_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

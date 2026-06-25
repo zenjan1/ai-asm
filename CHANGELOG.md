@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1050 - v1413.0 (3812 modules, 124 kernel)
+- Added WASM: ibis_admin (Ibis wading bird), possum_admin (Possum marsupial), chipmunk_admin (Chipmunk small squirrel)
+- Total modules: 3809 → 3812 (white ibis, brushtail possum, eastern chipmunk)
+
 ## Phase 1049 - v1412.0 (3809 modules, 124 kernel)
 - Added WASM: ox_admin (Ox draft animal), rat_admin (Rat small rodent), chinchilla_admin (Chinchilla small rodent)
 - Total modules: 3806 → 3809 (domestic ox, brown rat, long-tailed chinchilla)
