@@ -1,36 +1,36 @@
-Phase 979: Hedgehog Heron Herring Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 980: Hippo Hornet Horse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/hedgehog_admin/src/main.c (Hedgehog Spiny Mammal)
-   - Hedgehog (Erinaceus europaeus) European hedgehog spiny mammal management
-   - Features: body_len_cm, body_wt_g, spine_ct, curl_idx, snout_cm, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,sp_ct,crl_idx,sn_cm,age_yr
+1. modules/hippo_admin/src/main.c (Hippo Aquatic Mammal)
+   - Hippo (Hippopotamus amphibius) common hippopotamus aquatic mammal management
+   - Features: body_len_cm, body_wt_kg, tusk_cm, bite_kgf, submerge_min, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tusk_cm,bt_kgf,sub_mn,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: housing, feeding, breeding, health, market
-   - Prefix: hedgehog
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-2. modules/heron_admin/src/main.c (Heron Wading Bird)
-   - Heron (Ardea cinerea) grey heron wading bird management
-   - Features: body_len_cm, body_wt_kg, leg_cm, beak_cm, fish_ct, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leg_cm,bk_cm,f_ct,age_yr
-   - Pattern: follow abelia_admin pattern
    - Categories: habitat, feeding, breeding, health, market
-   - Prefix: heron
+   - Prefix: hippo
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/herring_admin/src/main.c (Herring Forage Fish)
-   - Herring (Clupea harengus) Atlantic herring forage fish management
-   - Features: body_len_cm, body_wt_g, scale_ct, swim_speed_kmh, school_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,sc_ct,sw_kh,sch_idx,age_yr
+2. modules/hornet_admin/src/main.c (Hornet Large Insect)
+   - Hornet (Vespa crabro) European hornet large insect management
+   - Features: body_len_cm, body_wt_g, wing_span_cm, sting_idx, nest_ct, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_sp,st_idx,n_ct,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: tank, feeding, breeding, health, market
-   - Prefix: herring
+   - Categories: nest, feeding, breeding, health, market
+   - Prefix: hornet
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/horse_admin/src/main.c (Horse Equine Mammal)
+   - Horse (Equus caballus) domestic horse equine mammal management
+   - Features: body_len_cm, body_wt_kg, height_cm, gallop_kmh, hoof_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ht_cm,gl_kh,hf_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: stable, feeding, breeding, health, market
+   - Prefix: horse
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1341.0 → v1342.0 (all occurrences)
-  - total modules 3596 → 3599 (all occurrences)
-Update CHANGELOG.md: add "## Phase 979 - v1342.0 (3599 modules, 124 kernel)" entry
+  - version v1342.0 → v1343.0 (all occurrences)
+  - total modules 3599 → 3602 (all occurrences)
+Update CHANGELOG.md: add "## Phase 980 - v1343.0 (3602 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/hedgehog_admin/hedgehog_admin.wasm modules/heron_admin/heron_admin.wasm modules/herring_admin/herring_admin.wasm modules/hedgehog_admin/src/main.c modules/heron_admin/src/main.c modules/herring_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/hippo_admin/hippo_admin.wasm modules/hornet_admin/hornet_admin.wasm modules/horse_admin/horse_admin.wasm modules/hippo_admin/src/main.c modules/hornet_admin/src/main.c modules/horse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 979 - v1342.0 (3599 modules, 124 kernel)
+- Added WASM: hedgehog_admin (European hedgehog spiny mammal), heron_admin (Grey heron wading bird), herring_admin (Atlantic herring forage fish)
+- Total modules: 3596 → 3599 (spiny insectivore, fish-catching wader, schooling forage fish)
+
 ## Phase 978 - v1341.0 (3596 modules, 124 kernel)
 - Added WASM: hare_admin (European hare lagomorph), harpy_admin (Harpy eagle raptor), hawk_admin (Common buzzard hawk raptor)
 - Total modules: 3593 → 3596 (fast leaping lagomorph, powerful forest eagle, soaring buzzard)
