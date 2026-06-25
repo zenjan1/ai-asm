@@ -1,36 +1,36 @@
-Phase 1054: Springbok Kudu Eland Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1055: Nyala Oribi Suni Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/springbok_admin/src/main.c (Springbok Leaping Antelope)
-   - Springbok (Antidorcas marsupialis) Southern African leaping antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, jump_cm, sp_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,jp_cm,sp_idx,age_yr
+1. modules/nyala_admin/src/main.c (Nyala Brushland Antelope)
+   - Nyala (Tragelaphus angasii) Southern African bushveld antelope management
+   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, ny_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,rn_sp,ny_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: veld, feeding, breeding, health, market
-   - Prefix: spbk
+   - Categories: bushveld, feeding, breeding, health, market
+   - Prefix: nyala
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/kudu_admin/src/main.c (Kudu Large Horned Antelope)
-   - Kudu (Tragelaphus strepsiceros) large spiral-horned antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, kn_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,rn_sp,kn_idx,age_yr
+2. modules/oribi_admin/src/main.c (Oribi Small Graceful Antelope)
+   - Oribi (Ourebia ourebi) small graceful African antelope management
+   - Features: body_len_cm, body_wt_kg, ear_cm, jump_cm, or_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,jp_cm,or_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: woodland, feeding, breeding, health, market
-   - Prefix: kudu
+   - Categories: grassland, feeding, breeding, health, market
+   - Prefix: orib
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/eland_admin/src/main.c (Eland Largest Antelope)
-   - Eland (Taurotragus oryx) largest antelope species management
-   - Features: body_len_cm, body_wt_kg, horn_cm, walk_speed, el_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,wk_sp,el_idx,age_yr
+3. modules/suni_admin/src/main.c (Suni Tiny Antelope)
+   - Suni (Neotragus moschatus) smallest antelope species management
+   - Features: body_len_cm, body_wt_g, ear_cm, sprint_speed, sn_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,sp_sp,sn_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: savanna, feeding, breeding, health, market
-   - Prefix: elnd
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: suni
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1416.0 → v1417.0 (all occurrences)
-  - total modules 3821 → 3824 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1054 - v1417.0 (3824 modules, 124 kernel)" entry
+  - version v1417.0 → v1418.0 (all occurrences)
+  - total modules 3824 → 3827 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1055 - v1418.0 (3827 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/springbok_admin/springbok_admin.wasm modules/kudu_admin/kudu_admin.wasm modules/eland_admin/eland_admin.wasm modules/springbok_admin/src/main.c modules/kudu_admin/src/main.c modules/eland_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/nyala_admin/nyala_admin.wasm modules/oribi_admin/oribi_admin.wasm modules/suni_admin/suni_admin.wasm modules/nyala_admin/src/main.c modules/oribi_admin/src/main.c modules/suni_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

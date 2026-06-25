@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1054 - v1417.0 (3824 modules, 124 kernel)
+- Added WASM: springbok_admin (Springbok leaping antelope), kudu_admin (Kudu spiral-horned antelope), eland_admin (Eland largest antelope)
+- Total modules: 3821 → 3824 (springbok, greater kudu, common eland)
+
 ## Phase 1053 - v1416.0 (3821 modules, 124 kernel)
 - Added WASM: xerus_admin (Xerus ground squirrel), zorilla_admin (Zorilla striped polecat), dikdik_admin (Dikdik small antelope)
 - Total modules: 3818 → 3821 (Cape ground squirrel, striped polecat, Kirk dikdik)
