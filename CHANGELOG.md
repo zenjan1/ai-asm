@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1088 - v1451.0 (3926 modules, 124 kernel)
+- Added WASM: woylies_admin (Woylies medium potoroid marsupials), boodie_admin (Boodie burrowing bettongs), chuditch_admin (Chuditch western quoll)
+- Total modules: 3923 → 3926 (woylies, boodie, chuditch)
+
 ## Phase 1087 - v1450.0 (3923 modules, 124 kernel)
 - Added WASM: planigales_admin (Planigales tiny marsupials), antechinuses_admin (Antechinuses marsupial mice), kalutas_admin (Kalutas small carnivorous marsupials)
 - Total modules: 3920 → 3923 (planigales, antechinuses, kalutas)
