@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1089 - v1452.0 (3929 modules, 124 kernel)
+- Added WASM: ngapa_admin (Ngapa burrowing marsupials), marloo_admin (Marloo rock-wallaby species), quenda_admin (Quenda short-nosed bandicoots)
+- Total modules: 3926 → 3929 (ngapa, marloo, quenda)
+
 ## Phase 1088 - v1451.0 (3926 modules, 124 kernel)
 - Added WASM: woylies_admin (Woylies medium potoroid marsupials), boodie_admin (Boodie burrowing bettongs), chuditch_admin (Chuditch western quoll)
 - Total modules: 3923 → 3926 (woylies, boodie, chuditch)
