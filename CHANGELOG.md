@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1038 - v1401.0 (3776 modules, 124 kernel)
+- Added WASM: moose_admin (Moose large forest deer), monkey_admin (Crab-eating monkey agile primate), mouse_admin (House mouse small rodent)
+- Total modules: 3773 → 3776 (boreal forest deer with palmate antlers, agile jungle primate, small house-dwelling rodent)
+
 ## Phase 1037 - v1400.0 (3773 modules, 124 kernel)
 - Added WASM: llama_admin (Domesticated llama pack animal), lemur_admin (Ring-tailed lemur tree primate), leopard_admin (Leopard spotted big cat)
 - Total modules: 3770 → 3773 (Andean pack animal, Madagascar tree primate, spotted stealth big cat)

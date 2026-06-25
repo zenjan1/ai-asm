@@ -1,36 +1,36 @@
-Phase 1038: Moose Monkey Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1039: Narwhal Newt Nightingale Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/moose_admin/src/main.c (Moose Large Forest Deer)
-   - Moose (Alces alces) moose large forest deer management
-   - Features: body_len_cm, body_wt_kg, antler_cm, walk_speed, hide_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,antler_cm,wk_sp,hd_idx,age_yr
+1. modules/narwhal_admin/src/main.c (Narwhal Arctic Tusked Whale)
+   - Narwhal (Monodon monoceros) narwhal arctic tusked whale management
+   - Features: body_len_cm, body_wt_kg, tusk_cm, swim_speed, tsk_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tusk_cm,sw_sp,ts_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: boreal, feeding, breeding, health, market
-   - Prefix: moose
+   - Categories: arctic, feeding, breeding, health, market
+   - Prefix: narw
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/monkey_admin/src/main.c (Monkey Agile Primate)
-   - Monkey (Macaca fascicularis) crab-eating monkey agile primate management
-   - Features: body_len_cm, body_wt_kg, tail_cm, climb_speed, fur_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,cl_sp,fr_idx,age_yr
+2. modules/newt_admin/src/main.c (Newt Small Amphibian)
+   - Newt (Triturus vulgaris) smooth newt small amphibian management
+   - Features: body_len_cm, body_wt_g, tail_cm, swim_speed, skin_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,sw_sp,sk_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: jungle, feeding, breeding, health, market
-   - Prefix: monk
+   - Categories: pond, feeding, breeding, health, market
+   - Prefix: newt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/mouse_admin/src/main.c (Mouse Small Rodent)
-   - Mouse (Mus musculus) house mouse small rodent management
-   - Features: body_len_cm, body_wt_g, tail_cm, run_speed, fur_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,rn_sp,fr_idx,age_yr
+3. modules/nightingale_admin/src/main.c (Nightingale Songbird)
+   - Nightingale (Luscinia megarhynchos) common nightingale songbird management
+   - Features: body_len_cm, body_wt_g, beak_cm, fly_speed, plm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,fl_sp,pm_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: house, feeding, breeding, health, market
-   - Prefix: mouse
+   - Categories: thicket, feeding, breeding, health, market
+   - Prefix: ntgl
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1400.0 → v1401.0 (all occurrences)
-  - total modules 3773 → 3776 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1038 - v1401.0 (3776 modules, 124 kernel)" entry
+  - version v1401.0 → v1402.0 (all occurrences)
+  - total modules 3776 → 3779 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1039 - v1402.0 (3779 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/moose_admin/moose_admin.wasm modules/monkey_admin/monkey_admin.wasm modules/mouse_admin/mouse_admin.wasm modules/moose_admin/src/main.c modules/monkey_admin/src/main.c modules/mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/narwhal_admin/narwhal_admin.wasm modules/newt_admin/newt_admin.wasm modules/nightingale_admin/nightingale_admin.wasm modules/narwhal_admin/src/main.c modules/newt_admin/src/main.c modules/nightingale_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
