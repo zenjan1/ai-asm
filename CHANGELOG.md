@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1022 - v1385.0 (3728 modules, 124 kernel)
+- Added WASM: crocodile_admin (Nile large reptile), crow_admin (Common raven intelligent bird), cuckoo_admin (Common brood parasite bird)
+- Total modules: 3725 → 3728 (ambush-hunting river reptile, tool-using black bird, nest-parasitizing songbird)
+
 ## Phase 1021 - v1384.0 (3725 modules, 124 kernel)
 - Added WASM: coyote_admin (Wild canine), crab_admin (Edible decapod crustacean), crane_admin (Common tall wading bird)
 - Total modules: 3722 → 3725 (howling desert canine, pincer-armed crustacean, long-legged dancing bird)

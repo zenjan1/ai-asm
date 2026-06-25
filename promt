@@ -1,36 +1,36 @@
-Phase 1022: Crocodile Crow Cuckoo Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1023: Deer Dingo Dog Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/crocodile_admin/src/main.c (Crocodile Large Reptile)
-   - Crocodile (Crocodylus niloticus) Nile crocodile large reptile management
-   - Features: body_len_cm, body_wt_kg, tooth_cm, swim_speed, scale_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tooth_cm,sw_sp,sc_idx,age_yr
+1. modules/deer_admin/src/main.c (Deer Forest Ungulate)
+   - Deer (Cervus elaphus) red deer forest ungulate management
+   - Features: body_len_cm, body_wt_kg, antler_cm, run_speed, hide_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,antler_cm,run_sp,hd_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: river, feeding, breeding, health, market
-   - Prefix: croc
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: deer
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/crow_admin/src/main.c (Crow Intelligent Bird)
-   - Crow (Corvus corax) common raven intelligent bird management
-   - Features: body_len_cm, body_wt_g, wing_cm, fly_speed, feather_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,ft_idx,age_yr
+2. modules/dingo_admin/src/main.c (Dingo Wild Canine)
+   - Dingo (Canis dingo) Australian dingo wild canine management
+   - Features: body_len_cm, body_wt_kg, tail_cm, run_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,run_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: urban, feeding, breeding, health, market
-   - Prefix: crow
+   - Categories: outback, feeding, breeding, health, market
+   - Prefix: dingo
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cuckoo_admin/src/main.c (Cuckoo Brood Parasite)
-   - Cuckoo (Cuculus canorus) common cuckoo brood parasite bird management
-   - Features: body_len_cm, body_wt_g, tail_cm, fly_speed, plum_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,fl_sp,pm_idx,age_yr
+3. modules/dog_admin/src/main.c (Dog Domestic Canine)
+   - Dog (Canis lupus familiaris) domestic dog canine management
+   - Features: body_len_cm, body_wt_kg, tail_cm, run_speed, fur_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,run_sp,fr_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: woodland, feeding, breeding, health, market
-   - Prefix: cuckoo
+   - Categories: household, feeding, breeding, health, market
+   - Prefix: dog
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1384.0 → v1385.0 (all occurrences)
-  - total modules 3725 → 3728 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1022 - v1385.0 (3728 modules, 124 kernel)" entry
+  - version v1385.0 → v1386.0 (all occurrences)
+  - total modules 3728 → 3731 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1023 - v1386.0 (3731 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/crocodile_admin/crocodile_admin.wasm modules/crow_admin/crow_admin.wasm modules/cuckoo_admin/cuckoo_admin.wasm modules/crocodile_admin/src/main.c modules/crow_admin/src/main.c modules/cuckoo_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/deer_admin/deer_admin.wasm modules/dingo_admin/dingo_admin.wasm modules/dog_admin/dog_admin.wasm modules/deer_admin/src/main.c modules/dingo_admin/src/main.c modules/dog_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
