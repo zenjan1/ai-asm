@@ -1,36 +1,36 @@
-Phase 1019: Cobra Cockatoo Cod Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1020: Condor Cormorant Cow Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/cobra_admin/src/main.c (Cobra Venomous Snake)
-   - Cobra (Naja naja) Indian cobra venomous snake management
-   - Features: body_len_cm, body_wt_g, hood_cm, strike_speed, scale_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hood_cm,stk_sp,sc_idx,age_yr
+1. modules/condor_admin/src/main.c (Condor Large Vulture)
+   - Condor (Vultur gryphus) Andean condor large vulture management
+   - Features: body_len_cm, body_wt_kg, wing_cm, fly_speed, feather_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,fl_sp,ft_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: jungle, feeding, breeding, health, market
-   - Prefix: cobra
+   - Categories: mountain, feeding, breeding, health, market
+   - Prefix: condor
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/cockatoo_admin/src/main.c (Cockatoo Parrot)
-   - Cockatoo (Cacatua galerita) sulphur-crested cockatoo parrot management
-   - Features: body_len_cm, body_wt_g, beak_cm, fly_speed, crest_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,fl_sp,cr_idx,age_yr
+2. modules/cormorant_admin/src/main.c (Cormorant Diving Seabird)
+   - Cormorant (Phalacrocorax carbo) great cormorant diving seabird management
+   - Features: body_len_cm, body_wt_g, beak_cm, swim_speed, plum_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,beak_cm,sw_sp,pm_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: aviary, feeding, breeding, health, market
-   - Prefix: cockatoo
+   - Categories: coast, feeding, breeding, health, market
+   - Prefix: cormorant
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cod_admin/src/main.c (Cod Marine Fish)
-   - Cod (Gadus morhua) Atlantic cod marine fish management
-   - Features: body_len_cm, body_wt_kg, fin_cm, swim_speed, scale_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fin_cm,sw_sp,sc_idx,age_yr
+3. modules/cow_admin/src/main.c (Cow Domestic Bovine)
+   - Cow (Bos taurus) domestic cattle bovine management
+   - Features: body_len_cm, body_wt_kg, horn_cm, walk_speed, hide_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_cm,wk_sp,hd_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: ocean, feeding, breeding, health, market
-   - Prefix: cod
+   - Categories: pasture, feeding, breeding, health, market
+   - Prefix: cow
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1381.0 → v1382.0 (all occurrences)
-  - total modules 3716 → 3719 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1019 - v1382.0 (3719 modules, 124 kernel)" entry
+  - version v1382.0 → v1383.0 (all occurrences)
+  - total modules 3719 → 3722 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1020 - v1383.0 (3722 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/cobra_admin/cobra_admin.wasm modules/cockatoo_admin/cockatoo_admin.wasm modules/cod_admin/cod_admin.wasm modules/cobra_admin/src/main.c modules/cockatoo_admin/src/main.c modules/cod_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/condor_admin/condor_admin.wasm modules/cormorant_admin/cormorant_admin.wasm modules/cow_admin/cow_admin.wasm modules/condor_admin/src/main.c modules/cormorant_admin/src/main.c modules/cow_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
