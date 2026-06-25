@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1068 - v1431.0 (3866 modules, 124 kernel)
+- Added WASM: cuscus_admin (Cuscus arboreal marsupial), pademelon_admin (Pademelon small wallaby), bettong_admin (Bettong rat-kangaroo)
+- Total modules: 3863 → 3866 (cuscus, pademelon, bettong)
+
 ## Phase 1067 - v1430.0 (3863 modules, 124 kernel)
 - Added WASM: dunnart_admin (Dunnart small marsupial mouse), phascogale_admin (Phascogale carnivorous marsupial), potoroo_admin (Potoroo rat-kangaroo)
 - Total modules: 3860 → 3863 (dunnart, phascogale, potoroo)

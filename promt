@@ -1,36 +1,36 @@
-Phase 1068: Cuscus Pademelon Bettong Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1069: Bandicoot Glider Kaluta Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/cuscus_admin/src/main.c (Cuscus arboreal marsupial)
-   - Cuscus (Phalanger) arboreal marsupial management
-   - Features: body_len_cm, body_wt_kg, tail_cm, grip_kg, cs_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,grip_kg,cs_idx,age_yr
+1. modules/bandicoot_admin/src/main.c (Bandicoot omnivorous marsupial)
+   - Bandicoot (Perameles) omnivorous marsupial management
+   - Features: body_len_cm, body_wt_kg, snout_cm, claw_mm, bc_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,snout_cm,claw_mm,bc_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: canopy, feeding, breeding, health, market
-   - Prefix: cscs
-   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
-
-2. modules/pademelon_admin/src/main.c (Pademelon small wallaby)
-   - Pademelon (Thylogale) small wallaby marsupial management
-   - Features: body_len_cm, body_wt_kg, ear_cm, hop_cm, pm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_cm,hop_cm,pm_idx,age_yr
-   - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pdmn
+   - Prefix: bdct
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/bettong_admin/src/main.c (Bettong rat-kangaroo nest-builder)
-   - Bettong (Bettongia) rat-kangaroo nest-building marsupial management
-   - Features: body_len_cm, body_wt_kg, pouch_cm, claw_mm, bt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,pouch_cm,claw_mm,bt_idx,age_yr
+2. modules/glider_admin/src/main.c (Glider flying marsupial)
+   - Glider (Petaurus) flying marsupial management
+   - Features: body_len_cm, body_wt_g, wing_cm, glide_m, gl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wing_cm,glide_m,gl_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: burrow, feeding, breeding, health, market
-   - Prefix: btng
+   - Categories: glide, feeding, breeding, health, market
+   - Prefix: glrd
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/kaluta_admin/src/main.c (Kaluta small carnivorous marsupial)
+   - Kaluta (Dasykaluta) small carnivorous marsupial management
+   - Features: body_len_cm, body_wt_g, tail_cm, ear_mm, kl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tail_cm,ear_mm,kl_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: desert, feeding, breeding, health, market
+   - Prefix: klta
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1430.0 → v1431.0 (all occurrences)
-  - total modules 3863 → 3866 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1068 - v1431.0 (3866 modules, 124 kernel)" entry
+  - version v1431.0 → v1432.0 (all occurrences)
+  - total modules 3866 → 3869 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1069 - v1432.0 (3869 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/cuscus_admin/cuscus_admin.wasm modules/pademelon_admin/pademelon_admin.wasm modules/bettong_admin/bettong_admin.wasm modules/cuscus_admin/src/main.c modules/pademelon_admin/src/main.c modules/bettong_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/bandicoot_admin/bandicoot_admin.wasm modules/glider_admin/glider_admin.wasm modules/kaluta_admin/kaluta_admin.wasm modules/bandicoot_admin/src/main.c modules/glider_admin/src/main.c modules/kaluta_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
