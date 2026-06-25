@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1035 - v1398.0 (3767 modules, 124 kernel)
+- Added WASM: jackal_admin (Golden jackal wild canid mammal), jaguar_admin (Jaguar big cat predator), jellyfish_admin (Jellyfish marine invertebrate)
+- Total modules: 3764 → 3767 (scrub-dwelling wild canid, spotted jungle big cat, drifting ocean invertebrate)
+
 ## Phase 1034 - v1397.0 (3764 modules, 124 kernel)
 - Added WASM: iguana_admin (Green iguana large tree reptile), impala_admin (Impala graceful antelope), insect_admin (Common insect arthropod)
 - Total modules: 3761 → 3764 (green tree-climbing reptile, graceful leaping antelope, common field arthropod)
