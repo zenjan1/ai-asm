@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 1044 - v1407.0 (3794 modules, 124 kernel)
+- Added WASM: rooster_admin (Rooster domestic fowl), salamander_admin (Salamander fire amphibian), scorpion_admin (Scorpion forest arachnid)
+- Total modules: 3791 → 3794 (domestic rooster, fire salamander, Asian forest scorpion)
+
 ## Phase 1043 - v1406.0 (3791 modules, 124 kernel)
 - Added WASM: prawn_admin (Prawn marine crustacean), pike_admin (Pike freshwater fish), perch_admin (Perch freshwater fish)
 - Total modules: 3788 → 3791 (giant tiger prawn, northern pike, European perch)
