@@ -1,5 +1,9 @@
 # Changelog
 
+## Phase 998 - v1361.0 (3656 modules, 124 kernel)
+- Added WASM: reindeer_admin (Reindeer Arctic deer), rhino_admin (Indian rhinoceros large herbivore), robin_admin (European robin songbird)
+- Total modules: 3653 → 3656 (Arctic antlered deer, large horned herbivore, red-breasted songbird)
+
 ## Phase 997 - v1360.0 (3653 modules, 124 kernel)
 - Added WASM: rabbit_admin (European rabbit small mammal), raccoon_admin (Common raccoon masked mammal), raven_admin (Common raven large corvid)
 - Total modules: 3650 → 3653 (long-eared burrowing mammal, dexterous masked scavenger, intelligent black corvid)
