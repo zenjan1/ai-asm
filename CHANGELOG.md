@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1081 - v1444.0 (3905 modules, 124 kernel)
+- Added WASM: monjons_admin (Monjons small rock-wallabies), tammars_admin (Tammars tammar wallabies), echymipera_admin (Echymipera echidna bandicoots)
+- Total modules: 3902 → 3905 (monjons, tammars, echymipera)
+
 ## Phase 1080 - v1443.0 (3902 modules, 124 kernel)
 - Added WASM: bettongs_admin (Bettongs rat-kangaroos), wallaroos_admin (Wallaroos large rock-wallabies), quokkas_admin (Quokkas small macropods)
 - Total modules: 3899 → 3902 (bettongs, wallaroos, quokkas)

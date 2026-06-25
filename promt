@@ -1,36 +1,36 @@
-Phase 1081: Monjons Tammars Echymipera Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1082: Rock Wallaby Peragale Perameles Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/monjons_admin/src/main.c (Monjons small rock-wallabies)
-   - Monjons (Petrogale) small rock-wallabies management
-   - Features: body_len_cm, body_wt_g, foot_cm, tail_cm, mj_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,foot_cm,tail_cm,mj_idx,age_yr
+1. modules/rock_wallaby_admin/src/main.c (Rock Wallaby small wallabies)
+   - Rock Wallaby (Petrogale) small wallabies management
+   - Features: body_len_cm, body_wt_kg, foot_cm, tail_cm, rw_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,foot_cm,tail_cm,rw_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: mjon
+   - Prefix: rkwl
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/tammars_admin/src/main.c (Tammars tammar wallabies)
-   - Tammars (Notamacropus) tammar wallabies management
-   - Features: body_len_cm, body_wt_kg, pouch_cm, tail_cm, tm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,pouch_cm,tail_cm,tm_idx,age_yr
+2. modules/peragale_admin/src/main.c (Peragale striped bandicoots)
+   - Peragale (Perameles) striped bandicoots management
+   - Features: body_len_cm, body_wt_kg, snout_cm, tail_cm, pg_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,snout_cm,tail_cm,pg_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tmmr
+   - Prefix: perg
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/echymipera_admin/src/main.c (Echymipera echidna bandicoots)
-   - Echymipera (Echymipera) echidna bandicoots management
-   - Features: body_len_cm, body_wt_kg, snout_cm, tail_cm, ec_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,snout_cm,tail_cm,ec_idx,age_yr
+3. modules/perameles_admin/src/main.c (Perameles bandicoots)
+   - Perameles (Perameles) bandicoots management
+   - Features: body_len_cm, body_wt_kg, nose_cm, tail_cm, pm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,nose_cm,tail_cm,pm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: ecmp
+   - Prefix: prml
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1443.0 → v1444.0 (all occurrences)
-  - total modules 3902 → 3905 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1081 - v1444.0 (3905 modules, 124 kernel)" entry
+  - version v1444.0 → v1445.0 (all occurrences)
+  - total modules 3905 → 3908 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1082 - v1445.0 (3908 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/monjons_admin/monjons_admin.wasm modules/tammars_admin/tammars_admin.wasm modules/echymipera_admin/echymipera_admin.wasm modules/monjons_admin/src/main.c modules/tammars_admin/src/main.c modules/echymipera_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/rock_wallaby_admin/rock_wallaby_admin.wasm modules/peragale_admin/peragale_admin.wasm modules/perameles_admin/perameles_admin.wasm modules/rock_wallaby_admin/src/main.c modules/peragale_admin/src/main.c modules/perameles_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
