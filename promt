@@ -1,36 +1,36 @@
-Phase 1060: Gnu Hartebeest Topi Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1061: Gerenuk Addax Bongo Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/gnu_admin/src/main.c (Gnu Wildebeest)
-   - Gnu (Connochaetes taurinus) blue wildebeest large antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, gn_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,rn_sp,gn_idx,age_yr
+1. modules/gerenuk_admin/src/main.c (Gerenuk Long-necked Antelope)
+   - Gerenuk (Litocranius walleri) long-necked antelope management
+   - Features: body_len_cm, body_wt_kg, neck_cm, jump_cm, ge_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,neck_cm,jp_cm,ge_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
-   - Categories: plains, feeding, breeding, health, market
-   - Prefix: gnu
+   - Categories: thicket, feeding, breeding, health, market
+   - Prefix: gern
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/hartebeest_admin/src/main.c (Hartebeest Large Antelope)
-   - Hartebeest (Alcelaphus buselaphus) large African antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, gallop_speed, hb_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,gl_sp,hb_idx,age_yr
+2. modules/addax_admin/src/main.c (Addax White Antelope)
+   - Addax (Addax nasomaculatus) spiral-horned desert antelope management
+   - Features: body_len_cm, body_wt_kg, horn_cm, run_speed, ad_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,rn_sp,ad_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: savanna, feeding, breeding, health, market
-   - Prefix: hbee
+   - Categories: desert, feeding, breeding, health, market
+   - Prefix: addx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/topi_admin/src/main.c (Topi Fast Antelope)
-   - Topi (Damaliscus lunatus) fast-running savanna antelope management
-   - Features: body_len_cm, body_wt_kg, horn_cm, sprint_speed, tp_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,sp_sp,tp_idx,age_yr
+3. modules/bongo_admin/src/main.c (Bongo Large Forest Antelope)
+   - Bongo (Tragelaphus eurycerus) large forest antelope management
+   - Features: body_len_cm, body_wt_kg, horn_cm, sprint_speed, bg_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hn_cm,sp_sp,bg_idx,age_yr
    - Pattern: follow abelia_admin pattern
-   - Categories: grassland, feeding, breeding, health, market
-   - Prefix: topi
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: bngo
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1422.0 → v1423.0 (all occurrences)
-  - total modules 3839 → 3842 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1060 - v1423.0 (3842 modules, 124 kernel)" entry
+  - version v1423.0 → v1424.0 (all occurrences)
+  - total modules 3842 → 3845 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1061 - v1424.0 (3845 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/gnu_admin/gnu_admin.wasm modules/hartebeest_admin/hartebeest_admin.wasm modules/topi_admin/topi_admin.wasm modules/gnu_admin/src/main.c modules/hartebeest_admin/src/main.c modules/topi_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/gerenuk_admin/gerenuk_admin.wasm modules/addax_admin/addax_admin.wasm modules/bongo_admin/bongo_admin.wasm modules/gerenuk_admin/src/main.c modules/addax_admin/src/main.c modules/bongo_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
