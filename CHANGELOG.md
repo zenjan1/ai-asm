@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1165 - v1528.0 (4157 modules, 124 kernel)
+- Added WASM: sorghum-mouse_admin (Sorghum-mouse vegetable rodents), millet-mouse_admin (Millet-mouse vegetable rodents), quinoa-mouse_admin (Quinoa-mouse vegetable rodents)
+- Total modules: 4154 → 4157 (sorghum-mouse, millet-mouse, quinoa-mouse)
+
 ## Phase 1164 - v1527.0 (4154 modules, 124 kernel)
 - Added WASM: dasheen-mouse_admin (Dasheen-mouse vegetable rodents), tannia-mouse_admin (Tannia-mouse vegetable rodents), xanthosoma-mouse_admin (Xanthosoma-mouse vegetable rodents)
 - Total modules: 4151 → 4154 (dasheen-mouse, tannia-mouse, xanthosoma-mouse)

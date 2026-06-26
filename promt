@@ -1,39 +1,39 @@
-Phase 1165: Sorghum-Mouse Millet-Mouse Quinoa-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1166: Amaranth-Mouse Buckwheat-Mouse Spelt-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/sorghum-mouse_admin/src/main.c (Sorghum-mouse vegetable rodents)
-   - Sorghum-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, grain_wt, tail_cm, srgmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,grain_wt,tail_cm,srgmx_idx,age_yr
+1. modules/amaranth-mouse_admin/src/main.c (Amaranth-mouse vegetable rodents)
+   - Amaranth-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, flower_ht, tail_cm, amrmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,flower_ht,tail_cm,amrmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: srgmx
-   - Note: use gw as param name for grain_wt
+   - Prefix: amrmx
+   - Note: use fh as param name for flower_ht
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/millet-mouse_admin/src/main.c (Millet-mouse vegetable rodents)
-   - Millet-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, seed_wt, tail_cm, mltmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_wt,tail_cm,mltmx_idx,age_yr
+2. modules/buckwheat-mouse_admin/src/main.c (Buckwheat-mouse vegetable rodents)
+   - Buckwheat-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, hull_th, tail_cm, bkwmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hull_th,tail_cm,bkwmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: mltmx
-   - Note: use sw as param name for seed_wt
+   - Prefix: bkwmx
+   - Note: use ht as param name for hull_th
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/quinoa-mouse_admin/src/main.c (Quinoa-mouse vegetable rodents)
-   - Quinoa-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, seed_sz, tail_cm, qnamx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_sz,tail_cm,qnamx_idx,age_yr
+3. modules/spelt-mouse_admin/src/main.c (Spelt-mouse vegetable rodents)
+   - Spelt-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, grain_ln, tail_cm, sptmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,grain_ln,tail_cm,sptmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: qnamx
-   - Note: use ss as param name for seed_sz
+   - Prefix: sptmx
+   - Note: use gl as param name for grain_ln
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1527.0 → v1528.0 (all occurrences)
-  - total modules 4154 → 4157 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1165 - v1528.0 (4157 modules, 124 kernel)" entry
+  - version v1528.0 → v1529.0 (all occurrences)
+  - total modules 4157 → 4160 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1166 - v1529.0 (4160 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/sorghum-mouse_admin/sorghum-mouse_admin.wasm modules/millet-mouse_admin/millet-mouse_admin.wasm modules/quinoa-mouse_admin/quinoa-mouse_admin.wasm modules/sorghum-mouse_admin/src/main.c modules/millet-mouse_admin/src/main.c modules/quinoa-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/amaranth-mouse_admin/amaranth-mouse_admin.wasm modules/buckwheat-mouse_admin/buckwheat-mouse_admin.wasm modules/spelt-mouse_admin/spelt-mouse_admin.wasm modules/amaranth-mouse_admin/src/main.c modules/buckwheat-mouse_admin/src/main.c modules/spelt-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
