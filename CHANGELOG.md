@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1156 - v1519.0 (4130 modules, 124 kernel)
+- Added WASM: taro-mouse_admin (Taro-mouse vegetable rodents), shallot-mouse_admin (Shallot-mouse vegetable rodents), scallion-mouse_admin (Scallion-mouse vegetable rodents)
+- Total modules: 4127 → 4130 (taro-mouse, shallot-mouse, scallion-mouse)
+
 ## Phase 1155 - v1518.0 (4127 modules, 124 kernel)
 - Added WASM: arugula-mouse_admin (Arugula-mouse vegetable rodents), okra-mouse_admin (Okra-mouse vegetable rodents), yam-mouse_admin (Yam-mouse vegetable rodents)
 - Total modules: 4124 → 4127 (arugula-mouse, okra-mouse, yam-mouse)

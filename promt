@@ -1,36 +1,39 @@
-Phase 1156: Taro-Mouse Shallot-Mouse Scallion-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1157: Chard-Mouse Collard-Mouse Bok-Choy-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/taro-mouse_admin/src/main.c (Taro-mouse vegetable rodents)
-   - Taro-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, corm_sz, tail_cm, tarmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,corm_sz,tail_cm,tarmx_idx,age_yr
+1. modules/chard-mouse_admin/src/main.c (Chard-mouse vegetable rodents)
+   - Chard-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, leaf_wt, tail_cm, chdmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_wt,tail_cm,chdmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tarmx
+   - Prefix: chdmx
+   - Note: use lw as param name for leaf_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/shallot-mouse_admin/src/main.c (Shallot-mouse vegetable rodents)
-   - Shallot-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, bulb_ct, tail_cm, shlmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bulb_ct,tail_cm,shlmx_idx,age_yr
+2. modules/collard-mouse_admin/src/main.c (Collard-mouse vegetable rodents)
+   - Collard-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, leaf_wt, tail_cm, colmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_wt,tail_cm,colmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: shlmx
+   - Prefix: colmx
+   - Note: use lw as param name for leaf_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/scallion-mouse_admin/src/main.c (Scallion-mouse vegetable rodents)
-   - Scallion-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, stalk_ln, tail_cm, scrmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,stalk_ln,tail_cm,scrmx_idx,age_yr
+3. modules/bok-choy-mouse_admin/src/main.c (Bok-choy-mouse vegetable rodents)
+   - Bok-choy-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, head_wt, tail_cm, bokmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,head_wt,tail_cm,bokmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: scrmx
+   - Prefix: bokmx
+   - Note: use hw as param name for head_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1518.0 → v1519.0 (all occurrences)
-  - total modules 4127 → 4130 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1156 - v1519.0 (4130 modules, 124 kernel)" entry
+  - version v1519.0 → v1520.0 (all occurrences)
+  - total modules 4130 → 4133 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1157 - v1520.0 (4133 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/taro-mouse_admin/taro-mouse_admin.wasm modules/shallot-mouse_admin/shallot-mouse_admin.wasm modules/scallion-mouse_admin/scallion-mouse_admin.wasm modules/taro-mouse_admin/src/main.c modules/shallot-mouse_admin/src/main.c modules/scallion-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/chard-mouse_admin/chard-mouse_admin.wasm modules/collard-mouse_admin/collard-mouse_admin.wasm modules/bok-choy-mouse_admin/bok-choy-mouse_admin.wasm modules/chard-mouse_admin/src/main.c modules/collard-mouse_admin/src/main.c modules/bok-choy-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
