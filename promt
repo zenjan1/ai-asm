@@ -1,36 +1,36 @@
-Phase 1108: Oak-Mouse Pine-Mouse Birch-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1109: Willow-Mouse Maple-Mouse Fern-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/oak-mouse_admin/src/main.c (Oak-mouse woodland rodents)
-   - Oak-mouse woodland rodents management
-   - Features: body_len_cm, body_wt_g, acorn_cap, tail_cm, okm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,acorn_cap,tail_cm,okm_idx,age_yr
+1. modules/willow-mouse_admin/src/main.c (Willow-mouse riparian rodents)
+   - Willow-mouse riparian rodents management
+   - Features: body_len_cm, body_wt_g, flex_rat, tail_cm, wlm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,flex_rat,tail_cm,wlm_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: okmx
+   - Prefix: wlmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/pine-mouse_admin/src/main.c (Pine-mouse coniferous rodents)
-   - Pine-mouse coniferous rodents management
-   - Features: body_len_cm, body_wt_g, cone_scl, tail_cm, pnm2_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,cone_scl,tail_cm,pnm2_idx,age_yr
+2. modules/maple-mouse_admin/src/main.c (Maple-mouse woodland rodents)
+   - Maple-mouse woodland rodents management
+   - Features: body_len_cm, body_wt_g, sap_sgr, tail_cm, mpl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,sap_sgr,tail_cm,mpl_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pnmx
+   - Prefix: mplx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/birch-mouse_admin/src/main.c (Birch-mouse boreal rodents)
-   - Birch-mouse boreal rodents management
-   - Features: body_len_cm, body_wt_g, bark_th, tail_cm, brm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bark_th,tail_cm,brm_idx,age_yr
+3. modules/fern-mouse_admin/src/main.c (Fern-mouse understory rodents)
+   - Fern-mouse understory rodents management
+   - Features: body_len_cm, body_wt_g, frond_cv, tail_cm, fnm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,frond_cv,tail_cm,fnm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: brmx
+   - Prefix: fnmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1470.0 → v1471.0 (all occurrences)
-  - total modules 3983 → 3986 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1108 - v1471.0 (3986 modules, 124 kernel)" entry
+  - version v1471.0 → v1472.0 (all occurrences)
+  - total modules 3986 → 3989 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1109 - v1472.0 (3989 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/oak-mouse_admin/oak-mouse_admin.wasm modules/pine-mouse_admin/pine-mouse_admin.wasm modules/birch-mouse_admin/birch-mouse_admin.wasm modules/oak-mouse_admin/src/main.c modules/pine-mouse_admin/src/main.c modules/birch-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/willow-mouse_admin/willow-mouse_admin.wasm modules/maple-mouse_admin/maple-mouse_admin.wasm modules/fern-mouse_admin/fern-mouse_admin.wasm modules/willow-mouse_admin/src/main.c modules/maple-mouse_admin/src/main.c modules/fern-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

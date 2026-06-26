@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1108 - v1471.0 (3986 modules, 124 kernel)
+- Added WASM: oak-mouse_admin (Oak-mouse woodland rodents), pine-mouse_admin (Pine-mouse coniferous rodents), birch-mouse_admin (Birch-mouse boreal rodents)
+- Total modules: 3983 → 3986 (oak-mouse, pine-mouse, birch-mouse)
+
 ## Phase 1107 - v1470.0 (3983 modules, 124 kernel)
 - Added WASM: jungle-mouse_admin (Jungle-mouse tropical rodents), bamboo-mouse_admin (Bamboo-mouse forest-dwelling rodents), cactus-mouse_admin (Cactus-mouse desert rodents)
 - Total modules: 3980 → 3983 (jungle-mouse, bamboo-mouse, cactus-mouse)
