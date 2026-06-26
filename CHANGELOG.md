@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1203 - v1566.0 (4271 modules, 124 kernel)
+- Added WASM: zizin-mouse_admin (Zizin-mouse vegetable rodents), friss-mouse_admin (Friss-mouse vegetable rodents), zambel-mouse_admin (Zambel-mouse vegetable rodents)
+- Total modules: 4268 → 4271 (zizin-mouse, friss-mouse, zambel-mouse)
+
 ## Phase 1202 - v1565.0 (4268 modules, 124 kernel)
 - Added WASM: ghett-mouse_admin (Ghett-mouse vegetable rodents), mugnoli-mouse_admin (Mugnoli-mouse vegetable rodents), fregula-mouse_admin (Fregula-mouse vegetable rodents)
 - Total modules: 4265 → 4268 (ghett-mouse, mugnoli-mouse, fregula-mouse)
