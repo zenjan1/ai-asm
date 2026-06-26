@@ -1,36 +1,36 @@
-Phase 1131: Coffee-Mouse Tea-Mouse Vanilla-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1132: Cinnamon-Mouse Ginger-Mouse Pepper-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/coffee-mouse_admin/src/main.c (Coffee-mouse bean rodents)
-   - Coffee-mouse bean rodents management
-   - Features: body_len_cm, body_wt_g, roast_lv, tail_cm, cefmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,roast_lv,tail_cm,cefmx_idx,age_yr
+1. modules/cinnamon-mouse_admin/src/main.c (Cinnamon-mouse spice rodents)
+   - Cinnamon-mouse spice rodents management
+   - Features: body_len_cm, body_wt_g, bark_thk, tail_cm, cinmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bark_thk,tail_cm,cinmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: cefmx
+   - Prefix: cinmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/tea-mouse_admin/src/main.c (Tea-mouse leaf rodents)
-   - Tea-mouse leaf rodents management
-   - Features: body_len_cm, body_wt_g, leaf_age, tail_cm, teamx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_age,tail_cm,teamx_idx,age_yr
+2. modules/ginger-mouse_admin/src/main.c (Ginger-mouse spice rodents)
+   - Ginger-mouse spice rodents management
+   - Features: body_len_cm, body_wt_g, root_lg, tail_cm, gngmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,root_lg,tail_cm,gngmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: teamx
+   - Prefix: gngmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/vanilla-mouse_admin/src/main.c (Vanilla-mouse pod rodents)
-   - Vanilla-mouse pod rodents management
-   - Features: body_len_cm, body_wt_g, pod_lg, tail_cm, vanmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,pod_lg,tail_cm,vanmx_idx,age_yr
+3. modules/pepper-mouse_admin/src/main.c (Pepper-mouse spice rodents)
+   - Pepper-mouse spice rodents management
+   - Features: body_len_cm, body_wt_g, heat_lv, tail_cm, pepmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,heat_lv,tail_cm,pepmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: vanmx
+   - Prefix: pepmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1493.0 → v1494.0 (all occurrences)
-  - total modules 4052 → 4055 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1131 - v1494.0 (4055 modules, 124 kernel)" entry
+  - version v1494.0 → v1495.0 (all occurrences)
+  - total modules 4055 → 4058 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1132 - v1495.0 (4058 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/coffee-mouse_admin/coffee-mouse_admin.wasm modules/tea-mouse_admin/tea-mouse_admin.wasm modules/vanilla-mouse_admin/vanilla-mouse_admin.wasm modules/coffee-mouse_admin/src/main.c modules/tea-mouse_admin/src/main.c modules/vanilla-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cinnamon-mouse_admin/cinnamon-mouse_admin.wasm modules/ginger-mouse_admin/ginger-mouse_admin.wasm modules/pepper-mouse_admin/pepper-mouse_admin.wasm modules/cinnamon-mouse_admin/src/main.c modules/ginger-mouse_admin/src/main.c modules/pepper-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
