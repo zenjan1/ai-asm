@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1132 - v1495.0 (4058 modules, 124 kernel)
+- Added WASM: cinnamon-mouse_admin (Cinnamon-mouse spice rodents), ginger-mouse_admin (Ginger-mouse spice rodents), pepper-mouse_admin (Pepper-mouse spice rodents)
+- Total modules: 4055 → 4058 (cinnamon-mouse, ginger-mouse, pepper-mouse)
+
 ## Phase 1131 - v1494.0 (4055 modules, 124 kernel)
 - Added WASM: coffee-mouse_admin (Coffee-mouse bean rodents), tea-mouse_admin (Tea-mouse leaf rodents), vanilla-mouse_admin (Vanilla-mouse pod rodents)
 - Total modules: 4052 → 4055 (coffee-mouse, tea-mouse, vanilla-mouse)
