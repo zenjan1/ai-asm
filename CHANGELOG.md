@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1197 - v1560.0 (4253 modules, 124 kernel)
+- Added WASM: cornetti-mouse_admin (Cornetti-mouse vegetable rodents), galani-mouse_admin (Galani-mouse vegetable rodents), rosole-mouse_admin (Rosole-mouse vegetable rodents)
+- Total modules: 4250 → 4253 (cornetti-mouse, galani-mouse, rosole-mouse)
+
 ## Phase 1196 - v1559.0 (4250 modules, 124 kernel)
 - Added WASM: busiate-mouse_admin (Busiate-mouse vegetable rodents), testaroli-mouse_admin (Testaroli-mouse vegetable rodents), pici-mouse_admin (Pici-mouse vegetable rodents)
 - Total modules: 4247 → 4250 (busiate-mouse, testaroli-mouse, pici-mouse)

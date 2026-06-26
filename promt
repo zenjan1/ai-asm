@@ -1,39 +1,39 @@
-Phase 1197: Cornetti-Mouse Galani-Mouse Rosole-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1198: Culurgiones-Mouse Fogassine-Mouse Sasellu-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/cornetti-mouse_admin/src/main.c (Cornetti-mouse vegetable rodents)
-   - Cornetti-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, horn_ct, tail_cm, crntx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_ct,tail_cm,crntx_idx,age_yr
+1. modules/culurgiones-mouse_admin/src/main.c (Culurgiones-mouse vegetable rodents)
+   - Culurgiones-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, seal_ct, tail_cm, clrgx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,seal_ct,tail_cm,clrgx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: crntx
-   - Note: use hc as param name for horn_ct
+   - Prefix: clrgx
+   - Note: use sc as param name for seal_ct
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/galani-mouse_admin/src/main.c (Galani-mouse vegetable rodents)
-   - Galani-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, crisp_lv, tail_cm, glxi_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,crisp_lv,tail_cm,glxi_idx,age_yr
+2. modules/fogassine-mouse_admin/src/main.c (Fogassine-mouse vegetable rodents)
+   - Fogassine-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, puff_lv, tail_cm, fgssx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,puff_lv,tail_cm,fgssx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: glxi
-   - Note: use cl as param name for crisp_lv
+   - Prefix: fgssx
+   - Note: use pl as param name for puff_lv
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/rosole-mouse_admin/src/main.c (Rosole-mouse vegetable rodents)
-   - Rosole-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, petal_ct, tail_cm, rslx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,petal_ct,tail_cm,rslx_idx,age_yr
+3. modules/sasellu-mouse_admin/src/main.c (Sasellu-mouse vegetable rodents)
+   - Sasellu-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, grain_sz, tail_cm, sslxi_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,grain_sz,tail_cm,sslxi_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rslx
-   - Note: use pc as param name for petal_ct
+   - Prefix: sslxi
+   - Note: use gs as param name for grain_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1559.0 → v1560.0 (all occurrences)
-  - total modules 4250 → 4253 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1197 - v1560.0 (4253 modules, 124 kernel)" entry
+  - version v1560.0 → v1561.0 (all occurrences)
+  - total modules 4253 → 4256 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1198 - v1561.0 (4256 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/cornetti-mouse_admin/cornetti-mouse_admin.wasm modules/galani-mouse_admin/galani-mouse_admin.wasm modules/rosole-mouse_admin/rosole-mouse_admin.wasm modules/cornetti-mouse_admin/src/main.c modules/galani-mouse_admin/src/main.c modules/rosole-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/culurgiones-mouse_admin/culurgiones-mouse_admin.wasm modules/fogassine-mouse_admin/fogassine-mouse_admin.wasm modules/sasellu-mouse_admin/sasellu-mouse_admin.wasm modules/culurgiones-mouse_admin/src/main.c modules/fogassine-mouse_admin/src/main.c modules/sasellu-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
