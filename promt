@@ -1,36 +1,36 @@
-Phase 1110: Sage-Mouse Heather-Mouse Thistle-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1111: Cedar-Mouse Ash-Mouse Elm-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/sage-mouse_admin/src/main.c (Sage-mouse shrubland rodents)
-   - Sage-mouse shrubland rodents management
-   - Features: body_len_cm, body_wt_g, aroma_int, tail_cm, sgm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,aroma_int,tail_cm,sgm_idx,age_yr
+1. modules/cedar-mouse_admin/src/main.c (Cedar-mouse coniferous rodents)
+   - Cedar-mouse coniferous rodents management
+   - Features: body_len_cm, body_wt_g, resin_tol, tail_cm, cdm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,resin_tol,tail_cm,cdm_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: sgmx
+   - Prefix: cdmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/heather-mouse_admin/src/main.c (Heather-mouse moorland rodents)
-   - Heather-mouse moorland rodents management
-   - Features: body_len_cm, body_wt_g, bloom_den, tail_cm, htm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bloom_den,tail_cm,htm_idx,age_yr
+2. modules/ash-mouse_admin/src/main.c (Ash-mouse deciduous rodents)
+   - Ash-mouse deciduous rodents management
+   - Features: body_len_cm, body_wt_g, seed_hrd, tail_cm, ash_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_hrd,tail_cm,ash_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: htmx
+   - Prefix: ashmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/thistle-mouse_admin/src/main.c (Thistle-mouse meadow rodents)
-   - Thistle-mouse meadow rodents management
-   - Features: body_len_cm, body_wt_g, spine_dens, tail_cm, tsm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,spine_dens,tail_cm,tsm_idx,age_yr
+3. modules/elm-mouse_admin/src/main.c (Elm-mouse woodland rodents)
+   - Elm-mouse woodland rodents management
+   - Features: body_len_cm, body_wt_g, bark_rough, tail_cm, elm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bark_rough,tail_cm,elm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tsmx
+   - Prefix: elmmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1472.0 → v1473.0 (all occurrences)
-  - total modules 3989 → 3992 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1110 - v1473.0 (3992 modules, 124 kernel)" entry
+  - version v1473.0 → v1474.0 (all occurrences)
+  - total modules 3992 → 3995 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1111 - v1474.0 (3995 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/sage-mouse_admin/sage-mouse_admin.wasm modules/heather-mouse_admin/heather-mouse_admin.wasm modules/thistle-mouse_admin/thistle-mouse_admin.wasm modules/sage-mouse_admin/src/main.c modules/heather-mouse_admin/src/main.c modules/thistle-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cedar-mouse_admin/cedar-mouse_admin.wasm modules/ash-mouse_admin/ash-mouse_admin.wasm modules/elm-mouse_admin/elm-mouse_admin.wasm modules/cedar-mouse_admin/src/main.c modules/ash-mouse_admin/src/main.c modules/elm-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

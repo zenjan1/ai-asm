@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1110 - v1473.0 (3992 modules, 124 kernel)
+- Added WASM: sage-mouse_admin (Sage-mouse shrubland rodents), heather-mouse_admin (Heather-mouse moorland rodents), thistle-mouse_admin (Thistle-mouse meadow rodents)
+- Total modules: 3989 → 3992 (sage-mouse, heather-mouse, thistle-mouse)
+
 ## Phase 1109 - v1472.0 (3989 modules, 124 kernel)
 - Added WASM: willow-mouse_admin (Willow-mouse riparian rodents), maple-mouse_admin (Maple-mouse woodland rodents), fern-mouse_admin (Fern-mouse understory rodents)
 - Total modules: 3986 → 3989 (willow-mouse, maple-mouse, fern-mouse)
