@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1123 - v1486.0 (4031 modules, 124 kernel)
+- Added WASM: peony-mouse_admin (Peony-mouse tuberous rodents), poppy-mouse_admin (Poppy-mouse seed rodents), parsley-mouse_admin (Parsley-mouse herb rodents)
+- Total modules: 4028 → 4031 (peony-mouse, poppy-mouse, parsley-mouse)
+
 ## Phase 1122 - v1485.0 (4028 modules, 124 kernel)
 - Added WASM: tulip-mouse_admin (Tulip-mouse bulbous rodents), orchid-mouse_admin (Orchid-mouse epiphyte rodents), violet-mouse_admin (Violet-mouse shade rodents)
 - Total modules: 4025 → 4028 (tulip-mouse, orchid-mouse, violet-mouse)

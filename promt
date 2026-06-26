@@ -1,36 +1,36 @@
-Phase 1123: Peony-Mouse Poppy-Mouse Parsley-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1124: Wheat-Mouse Barley-Mouse Oat-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/peony-mouse_admin/src/main.c (Peony-mouse tuberous rodents)
-   - Peony-mouse tuberous rodents management
-   - Features: body_len_cm, body_wt_g, root_sz, tail_cm, pnymx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,root_sz,tail_cm,pnymx_idx,age_yr
+1. modules/wheat-mouse_admin/src/main.c (Wheat-mouse grain rodents)
+   - Wheat-mouse grain rodents management
+   - Features: body_len_cm, body_wt_g, kern_wt, tail_cm, whtmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,kern_wt,tail_cm,whtmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pnymx
+   - Prefix: whtmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/poppy-mouse_admin/src/main.c (Poppy-mouse seed rodents)
-   - Poppy-mouse seed rodents management
-   - Features: body_len_cm, body_wt_g, seed_cnt, tail_cm, ppymx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_cnt,tail_cm,ppymx_idx,age_yr
+2. modules/barley-mouse_admin/src/main.c (Barley-mouse grain rodents)
+   - Barley-mouse grain rodents management
+   - Features: body_len_cm, body_wt_g, spike_len, tail_cm, brlm x_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,spike_len,tail_cm,brlm x_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: ppymx
+   - Prefix: brlm x
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/parsley-mouse_admin/src/main.c (Parsley-mouse herb rodents)
-   - Parsley-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, leaf_cnt, tail_cm, prsmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_cnt,tail_cm,prsmx_idx,age_yr
+3. modules/oat-mouse_admin/src/main.c (Oat-mouse grain rodents)
+   - Oat-mouse grain rodents management
+   - Features: body_len_cm, body_wt_g, hull_thk, tail_cm, oatmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hull_thk,tail_cm,oatmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: prsmx
+   - Prefix: oatmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1485.0 → v1486.0 (all occurrences)
-  - total modules 4028 → 4031 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1123 - v1486.0 (4031 modules, 124 kernel)" entry
+  - version v1486.0 → v1487.0 (all occurrences)
+  - total modules 4031 → 4034 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1124 - v1487.0 (4034 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/peony-mouse_admin/peony-mouse_admin.wasm modules/poppy-mouse_admin/poppy-mouse_admin.wasm modules/parsley-mouse_admin/parsley-mouse_admin.wasm modules/peony-mouse_admin/src/main.c modules/poppy-mouse_admin/src/main.c modules/parsley-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/wheat-mouse_admin/wheat-mouse_admin.wasm modules/barley-mouse_admin/barley-mouse_admin.wasm modules/oat-mouse_admin/oat-mouse_admin.wasm modules/wheat-mouse_admin/src/main.c modules/barley-mouse_admin/src/main.c modules/oat-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
