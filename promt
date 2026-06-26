@@ -1,36 +1,36 @@
-Phase 1138: Chive-Mouse Marjoram-Mouse Tarragon-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1139: Lavender-Mouse Bay-Mouse Lemongrass-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/chive-mouse_admin/src/main.c (Chive-mouse herb rodents)
-   - Chive-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, bulb_ct, tail_cm, chvmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bulb_ct,tail_cm,chvmx_idx,age_yr
+1. modules/lavender-mouse_admin/src/main.c (Lavender-mouse herb rodents)
+   - Lavender-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, flower_dn, tail_cm, lvdmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,flower_dn,tail_cm,lvdmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: chvmx
+   - Prefix: lvdmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/marjoram-mouse_admin/src/main.c (Marjoram-mouse herb rodents)
-   - Marjoram-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, petal_ln, tail_cm, mrjmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,petal_ln,tail_cm,mrjmx_idx,age_yr
+2. modules/bay-mouse_admin/src/main.c (Bay-mouse herb rodents)
+   - Bay-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, leaf_wt, tail_cm, baymx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_wt,tail_cm,baymx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: mrjmx
+   - Prefix: baymx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/tarragon-mouse_admin/src/main.c (Tarragon-mouse herb rodents)
-   - Tarragon-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, root_ln, tail_cm, trgmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,root_ln,tail_cm,trgmx_idx,age_yr
+3. modules/lemongrass-mouse_admin/src/main.c (Lemongrass-mouse herb rodents)
+   - Lemongrass-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, stalk_ht, tail_cm, lmgmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,stalk_ht,tail_cm,lmgmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: trgmx
+   - Prefix: lmgmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1500.0 → v1501.0 (all occurrences)
-  - total modules 4073 → 4076 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1138 - v1501.0 (4076 modules, 124 kernel)" entry
+  - version v1501.0 → v1502.0 (all occurrences)
+  - total modules 4076 → 4079 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1139 - v1502.0 (4079 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/chive-mouse_admin/chive-mouse_admin.wasm modules/marjoram-mouse_admin/marjoram-mouse_admin.wasm modules/tarragon-mouse_admin/tarragon-mouse_admin.wasm modules/chive-mouse_admin/src/main.c modules/marjoram-mouse_admin/src/main.c modules/tarragon-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/lavender-mouse_admin/lavender-mouse_admin.wasm modules/bay-mouse_admin/bay-mouse_admin.wasm modules/lemongrass-mouse_admin/lemongrass-mouse_admin.wasm modules/lavender-mouse_admin/src/main.c modules/bay-mouse_admin/src/main.c modules/lemongrass-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
