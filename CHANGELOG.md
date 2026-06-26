@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1139 - v1502.0 (4079 modules, 124 kernel)
+- Added WASM: lavender-mouse_admin (Lavender-mouse herb rodents), bay-mouse_admin (Bay-mouse herb rodents), lemongrass-mouse_admin (Lemongrass-mouse herb rodents)
+- Total modules: 4076 → 4079 (lavender-mouse, bay-mouse, lemongrass-mouse)
+
 ## Phase 1138 - v1501.0 (4076 modules, 124 kernel)
 - Added WASM: chive-mouse_admin (Chive-mouse herb rodents), marjoram-mouse_admin (Marjoram-mouse herb rodents), tarragon-mouse_admin (Tarragon-mouse herb rodents)
 - Total modules: 4073 → 4076 (chive-mouse, marjoram-mouse, tarragon-mouse)
