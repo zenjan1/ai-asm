@@ -1,39 +1,39 @@
-Phase 1199: Chizzuoli-Mouse Balestrzz-Mouse Puntin-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1200: Tordelli-Mouse Slatin-Mouse Branzitt-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/chizzuoli-mouse_admin/src/main.c (Chizzuoli-mouse vegetable rodents)
-   - Chizzuoli-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, cheese_ct, tail_cm, chzxi_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,cheese_ct,tail_cm,chzxi_idx,age_yr
+1. modules/tordelli-mouse_admin/src/main.c (Tordelli-mouse vegetable rodents)
+   - Tordelli-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, twist_lv, tail_cm, trdx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,twist_lv,tail_cm,trdx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: chzxi
-   - Note: use cc as param name for cheese_ct
+   - Prefix: trdx
+   - Note: use tl as param name for twist_lv
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/balestrzz-mouse_admin/src/main.c (Balestrzz-mouse vegetable rodents)
-   - Balestrzz-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, curl_rad, tail_cm, blsxi_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,curl_rad,tail_cm,blsxi_idx,age_yr
+2. modules/slatin-mouse_admin/src/main.c (Slatin-mouse vegetable rodents)
+   - Slatin-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, salt_lv, tail_cm, sltx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,salt_lv,tail_cm,sltx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: blsxi
-   - Note: use cr as param name for curl_rad
+   - Prefix: sltx
+   - Note: use sl as param name for salt_lv
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/puntin-mouse_admin/src/main.c (Puntin-mouse vegetable rodents)
-   - Puntin-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, dot_sz, tail_cm, puntx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,dot_sz,tail_cm,puntx_idx,age_yr
+3. modules/branzitt-mouse_admin/src/main.c (Branzitt-mouse vegetable rodents)
+   - Branzitt-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, bran_ct, tail_cm, brzx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bran_ct,tail_cm,brzx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: puntx
-   - Note: use ds as param name for dot_sz
+   - Prefix: brzx
+   - Note: use bc as param name for bran_ct
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1561.0 → v1562.0 (all occurrences)
-  - total modules 4256 → 4259 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1199 - v1562.0 (4259 modules, 124 kernel)" entry
+  - version v1562.0 → v1563.0 (all occurrences)
+  - total modules 4259 → 4262 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1200 - v1563.0 (4262 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/chizzuoli-mouse_admin/chizzuoli-mouse_admin.wasm modules/balestrzz-mouse_admin/balestrzz-mouse_admin.wasm modules/puntin-mouse_admin/puntin-mouse_admin.wasm modules/chizzuoli-mouse_admin/src/main.c modules/balestrzz-mouse_admin/src/main.c modules/puntin-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/tordelli-mouse_admin/tordelli-mouse_admin.wasm modules/slatin-mouse_admin/slatin-mouse_admin.wasm modules/branzitt-mouse_admin/branzitt-mouse_admin.wasm modules/tordelli-mouse_admin/src/main.c modules/slatin-mouse_admin/src/main.c modules/branzitt-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
