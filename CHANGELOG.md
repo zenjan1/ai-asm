@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1112 - v1475.0 (3998 modules, 124 kernel)
+- Added WASM: poplar-mouse_admin (Poplar-mouse riparian rodents), spruce-mouse_admin (Spruce-mouse boreal rodents), fir-mouse_admin (Fir-mouse alpine rodents)
+- Total modules: 3995 → 3998 (poplar-mouse, spruce-mouse, fir-mouse)
+
 ## Phase 1111 - v1474.0 (3995 modules, 124 kernel)
 - Added WASM: cedar-mouse_admin (Cedar-mouse coniferous rodents), ash-mouse_admin (Ash-mouse deciduous rodents), elm-mouse_admin (Elm-mouse woodland rodents)
 - Total modules: 3992 → 3995 (cedar-mouse, ash-mouse, elm-mouse)
