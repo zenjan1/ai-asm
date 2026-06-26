@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1113 - v1476.0 (4001 modules, 124 kernel)
+- Added WASM: larch-mouse_admin (Larch-mouse taiga rodents), clover-mouse_admin (Clover-mouse grassland rodents), basil-mouse_admin (Basil-mouse herb rodents)
+- Total modules: 3998 → 4001 (larch-mouse, clover-mouse, basil-mouse)
+
 ## Phase 1112 - v1475.0 (3998 modules, 124 kernel)
 - Added WASM: poplar-mouse_admin (Poplar-mouse riparian rodents), spruce-mouse_admin (Spruce-mouse boreal rodents), fir-mouse_admin (Fir-mouse alpine rodents)
 - Total modules: 3995 → 3998 (poplar-mouse, spruce-mouse, fir-mouse)
