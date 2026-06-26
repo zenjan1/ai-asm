@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1180 - v1543.0 (4202 modules, 124 kernel)
+- Added WASM: ditalini-mouse_admin (Ditalini-mouse vegetable rodents), lumache-mouse_admin (Lumache-mouse vegetable rodents), tubetti-mouse_admin (Tubetti-mouse vegetable rodents)
+- Total modules: 4199 → 4202 (ditalini-mouse, lumache-mouse, tubetti-mouse)
+
 ## Phase 1179 - v1542.0 (4199 modules, 124 kernel)
 - Added WASM: campanelle-mouse_admin (Campanelle-mouse vegetable rodents), cavatappi-mouse_admin (Cavatappi-mouse vegetable rodents), orecchiette-mouse_admin (Orecchiette-mouse vegetable rodents)
 - Total modules: 4196 → 4199 (campanelle-mouse, cavatappi-mouse, orecchiette-mouse)
