@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1134 - v1497.0 (4064 modules, 124 kernel)
+- Added WASM: turmeric-mouse_admin (Turmeric-mouse spice rodents), saffron-mouse_admin (Saffron-mouse spice rodents), cumin-mouse_admin (Cumin-mouse spice rodents)
+- Total modules: 4061 → 4064 (turmeric-mouse, saffron-mouse, cumin-mouse)
+
 ## Phase 1133 - v1496.0 (4061 modules, 124 kernel)
 - Added WASM: nutmeg-mouse_admin (Nutmeg-mouse spice rodents), clove-mouse_admin (Clove-mouse spice rodents), cardamom-mouse_admin (Cardamom-mouse spice rodents)
 - Total modules: 4058 → 4061 (nutmeg-mouse, clove-mouse, cardamom-mouse)
