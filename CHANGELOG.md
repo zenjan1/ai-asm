@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1181 - v1544.0 (4205 modules, 124 kernel)
+- Added WASM: tagliatelle-mouse_admin (Tagliatelle-mouse vegetable rodents), tortellini-mouse_admin (Tortellini-mouse vegetable rodents), risoni-mouse_admin (Risoni-mouse vegetable rodents)
+- Total modules: 4202 → 4205 (tagliatelle-mouse, tortellini-mouse, risoni-mouse)
+
 ## Phase 1180 - v1543.0 (4202 modules, 124 kernel)
 - Added WASM: ditalini-mouse_admin (Ditalini-mouse vegetable rodents), lumache-mouse_admin (Lumache-mouse vegetable rodents), tubetti-mouse_admin (Tubetti-mouse vegetable rodents)
 - Total modules: 4199 → 4202 (ditalini-mouse, lumache-mouse, tubetti-mouse)

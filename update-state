@@ -1,1 +1,41 @@
+Phase 1181: Tagliatelle-Mouse Tortellini-Mouse Risoni-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+
+1. modules/tagliatelle-mouse_admin/src/main.c (Tagliatelle-mouse vegetable rodents)
+   - Tagliatelle-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, ribbon_wd, tail_cm, tgmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ribbon_wd,tail_cm,tgmx_idx,age_yr
+   - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: tgmx
+   - Note: use rwd as param name for ribbon_wd
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+2. modules/tortellini-mouse_admin/src/main.c (Tortellini-mouse vegetable rodents)
+   - Tortellini-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, ring_dia, tail_cm, trtlx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ring_dia,tail_cm,trtlx_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: trtlx
+   - Note: use rd as param name for ring_dia
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+3. modules/risoni-mouse_admin/src/main.c (Risoni-mouse vegetable rodents)
+   - Risoni-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, grain_ln, tail_cm, rsnx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,grain_ln,tail_cm,rsnx_idx,age_yr
+   - Pattern: follow abelia_admin pattern
+   - Categories: forest, feeding, breeding, health, market
+   - Prefix: rsnx
+   - Note: use gl as param name for grain_ln
+   - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
+
+Build all 3 WASM modules. Update README:
+  - version v1543.0 → v1544.0 (all occurrences)
+  - total modules 4202 → 4205 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1181 - v1544.0 (4205 modules, 124 kernel)" entry
+Set UPDATE=1
+git add -f modules/tagliatelle-mouse_admin/tagliatelle-mouse_admin.wasm modules/tortellini-mouse_admin/tortellini-mouse_admin.wasm modules/risoni-mouse_admin/risoni-mouse_admin.wasm modules/tagliatelle-mouse_admin/src/main.c modules/tortellini-mouse_admin/src/main.c modules/risoni-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+Commit and push to origin arm-v2.
+
 1
