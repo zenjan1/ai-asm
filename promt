@@ -1,37 +1,38 @@
-Phase 1149: Cabbage-Mouse Broccoli-Mouse Cauliflower-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1150: Zucchini-Mouse Pumpkin-Mouse Cucumber-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/cabbage-mouse_admin/src/main.c (Cabbage-mouse vegetable rodents)
-   - Cabbage-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, crown_ht, tail_cm, cabmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,crown_ht,tail_cm,cabmx_idx,age_yr
+1. modules/zucchini-mouse_admin/src/main.c (Zucchini-mouse vegetable rodents)
+   - Zucchini-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, fruit_ln, tail_cm, zucmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fruit_ln,tail_cm,zucmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: cabmx
+   - Prefix: zucmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/broccoli-mouse_admin/src/main.c (Broccoli-mouse vegetable rodents)
-   - Broccoli-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, bead_ct, tail_cm, brsmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bead_ct,tail_cm,brsmx_idx,age_yr
+2. modules/pumpkin-mouse_admin/src/main.c (Pumpkin-mouse vegetable rodents)
+   - Pumpkin-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, rind_th, tail_cm, pukmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,rind_th,tail_cm,pukmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: brsmx
+   - Prefix: pukmx
+   - Note: use pm as idx param to avoid conflict with pi function
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cauliflower-mouse_admin/src/main.c (Cauliflower-mouse vegetable rodents)
-   - Cauliflower-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, curd_wt, tail_cm, caimx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,curd_wt,tail_cm,caimx_idx,age_yr
+3. modules/cucumber-mouse_admin/src/main.c (Cucumber-mouse vegetable rodents)
+   - Cucumber-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, skin_th, tail_cm, cucmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,skin_th,tail_cm,cucmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: caimx
-   - Note: use cw as param name for curd_wt to avoid conflict
+   - Prefix: cucmx
+   - Note: use cu as idx param to avoid conflict
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1511.0 → v1512.0 (all occurrences)
-  - total modules 4106 → 4109 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1149 - v1512.0 (4109 modules, 124 kernel)" entry
+  - version v1512.0 → v1513.0 (all occurrences)
+  - total modules 4109 → 4112 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1150 - v1513.0 (4112 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/cabbage-mouse_admin/cabbage-mouse_admin.wasm modules/broccoli-mouse_admin/broccoli-mouse_admin.wasm modules/cauliflower-mouse_admin/cauliflower-mouse_admin.wasm modules/cabbage-mouse_admin/src/main.c modules/broccoli-mouse_admin/src/main.c modules/cauliflower-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/zucchini-mouse_admin/zucchini-mouse_admin.wasm modules/pumpkin-mouse_admin/pumpkin-mouse_admin.wasm modules/cucumber-mouse_admin/cucumber-mouse_admin.wasm modules/zucchini-mouse_admin/src/main.c modules/pumpkin-mouse_admin/src/main.c modules/cucumber-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

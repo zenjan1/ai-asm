@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1149 - v1512.0 (4109 modules, 124 kernel)
+- Added WASM: cabbage-mouse_admin (Cabbage-mouse vegetable rodents), broccoli-mouse_admin (Broccoli-mouse vegetable rodents), cauliflower-mouse_admin (Cauliflower-mouse vegetable rodents)
+- Total modules: 4106 → 4109 (cabbage-mouse, broccoli-mouse, cauliflower-mouse)
+
 ## Phase 1148 - v1511.0 (4106 modules, 124 kernel)
 - Added WASM: spinach-mouse_admin (Spinach-mouse vegetable rodents), kale-mouse_admin (Kale-mouse vegetable rodents), lettuce-mouse_admin (Lettuce-mouse vegetable rodents)
 - Total modules: 4103 → 4106 (spinach-mouse, kale-mouse, lettuce-mouse)
