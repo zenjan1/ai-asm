@@ -1,39 +1,39 @@
-Phase 1160: Rapini-Mouse Fennel-Bulb-Mouse Squash-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1161: Bamboo-Shoots-Mouse Lotus-Root-Mouse Water-Chestnut-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/rapini-mouse_admin/src/main.c (Rapini-mouse vegetable rodents)
-   - Rapini-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, head_dia, tail_cm, rapmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,head_dia,tail_cm,rapmx_idx,age_yr
+1. modules/bamboo-shoots-mouse_admin/src/main.c (Bamboo-shoots-mouse vegetable rodents)
+   - Bamboo-shoots-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, shoot_ht, tail_cm, bbsmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,shoot_ht,tail_cm,bbsmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rapmx
-   - Note: use hd as param name for head_dia
+   - Prefix: bbsmx
+   - Note: use sht as param name for shoot_ht
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/fennel-bulb-mouse_admin/src/main.c (Fennel-bulb-mouse vegetable rodents)
-   - Fennel-bulb-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, bulb_wt, tail_cm, fenbmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bulb_wt,tail_cm,fenbmx_idx,age_yr
+2. modules/lotus-root-mouse_admin/src/main.c (Lotus-root-mouse vegetable rodents)
+   - Lotus-root-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, root_dia, tail_cm, ltrmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,root_dia,tail_cm,ltrmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: fenbmx
-   - Note: use bwt as param name for bulb_wt
+   - Prefix: ltrmx
+   - Note: use rd as param name for root_dia
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/squash-mouse_admin/src/main.c (Squash-mouse vegetable rodents)
-   - Squash-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, fruit_wt, tail_cm, sqsmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fruit_wt,tail_cm,sqsmx_idx,age_yr
+3. modules/water-chestnut-mouse_admin/src/main.c (Water-chestnut-mouse vegetable rodents)
+   - Water-chestnut-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, nut_wt, tail_cm, wchmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,nut_wt,tail_cm,wchmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: sqsmx
-   - Note: use fw as param name for fruit_wt
+   - Prefix: wchmx
+   - Note: use nw as param name for nut_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1522.0 → v1523.0 (all occurrences)
-  - total modules 4139 → 4142 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1160 - v1523.0 (4142 modules, 124 kernel)" entry
+  - version v1523.0 → v1524.0 (all occurrences)
+  - total modules 4142 → 4145 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1161 - v1524.0 (4145 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/rapini-mouse_admin/rapini-mouse_admin.wasm modules/fennel-bulb-mouse_admin/fennel-bulb-mouse_admin.wasm modules/squash-mouse_admin/squash-mouse_admin.wasm modules/rapini-mouse_admin/src/main.c modules/fennel-bulb-mouse_admin/src/main.c modules/squash-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/bamboo-shoots-mouse_admin/bamboo-shoots-mouse_admin.wasm modules/lotus-root-mouse_admin/lotus-root-mouse_admin.wasm modules/water-chestnut-mouse_admin/water-chestnut-mouse_admin.wasm modules/bamboo-shoots-mouse_admin/src/main.c modules/lotus-root-mouse_admin/src/main.c modules/water-chestnut-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

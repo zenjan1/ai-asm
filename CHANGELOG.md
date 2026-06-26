@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1160 - v1523.0 (4142 modules, 124 kernel)
+- Added WASM: rapini-mouse_admin (Rapini-mouse vegetable rodents), fennel-bulb-mouse_admin (Fennel-bulb-mouse vegetable rodents), squash-mouse_admin (Squash-mouse vegetable rodents)
+- Total modules: 4139 → 4142 (rapini-mouse, fennel-bulb-mouse, squash-mouse)
+
 ## Phase 1159 - v1522.0 (4139 modules, 124 kernel)
 - Added WASM: daikon-mouse_admin (Daikon-mouse vegetable rodents), jicama-mouse_admin (Jicama-mouse vegetable rodents), celeriac-mouse_admin (Celeriac-mouse vegetable rodents)
 - Total modules: 4136 → 4139 (daikon-mouse, jicama-mouse, celeriac-mouse)
