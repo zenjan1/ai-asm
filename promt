@@ -1,38 +1,37 @@
-Phase 1150: Zucchini-Mouse Pumpkin-Mouse Cucumber-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1151: Pepper-Mouse Tomato-Mouse Eggplant-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/zucchini-mouse_admin/src/main.c (Zucchini-mouse vegetable rodents)
-   - Zucchini-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, fruit_ln, tail_cm, zucmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fruit_ln,tail_cm,zucmx_idx,age_yr
+1. modules/pepper-mouse_admin/src/main.c (Pepper-mouse vegetable rodents)
+   - Pepper-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, seed_ct, tail_cm, pepmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_ct,tail_cm,pepmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: zucmx
+   - Prefix: pepmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/pumpkin-mouse_admin/src/main.c (Pumpkin-mouse vegetable rodents)
-   - Pumpkin-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, rind_th, tail_cm, pukmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,rind_th,tail_cm,pukmx_idx,age_yr
+2. modules/tomato-mouse_admin/src/main.c (Tomato-mouse vegetable rodents)
+   - Tomato-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, fruit_ct, tail_cm, tommx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fruit_ct,tail_cm,tommx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pukmx
-   - Note: use pm as idx param to avoid conflict with pi function
+   - Prefix: tommx
+   - Note: use tf as param for fruit_ct to avoid conflict with pi function
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cucumber-mouse_admin/src/main.c (Cucumber-mouse vegetable rodents)
-   - Cucumber-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, skin_th, tail_cm, cucmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,skin_th,tail_cm,cucmx_idx,age_yr
+3. modules/eggplant-mouse_admin/src/main.c (Eggplant-mouse vegetable rodents)
+   - Eggplant-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, skin_gls, tail_cm, egpmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,skin_gls,tail_cm,egpmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: cucmx
-   - Note: use cu as idx param to avoid conflict
+   - Prefix: egpmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1512.0 → v1513.0 (all occurrences)
-  - total modules 4109 → 4112 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1150 - v1513.0 (4112 modules, 124 kernel)" entry
+  - version v1513.0 → v1514.0 (all occurrences)
+  - total modules 4112 → 4115 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1151 - v1514.0 (4115 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/zucchini-mouse_admin/zucchini-mouse_admin.wasm modules/pumpkin-mouse_admin/pumpkin-mouse_admin.wasm modules/cucumber-mouse_admin/cucumber-mouse_admin.wasm modules/zucchini-mouse_admin/src/main.c modules/pumpkin-mouse_admin/src/main.c modules/cucumber-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/pepper-mouse_admin/pepper-mouse_admin.wasm modules/tomato-mouse_admin/tomato-mouse_admin.wasm modules/eggplant-mouse_admin/eggplant-mouse_admin.wasm modules/pepper-mouse_admin/src/main.c modules/tomato-mouse_admin/src/main.c modules/eggplant-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
