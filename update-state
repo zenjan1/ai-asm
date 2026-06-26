@@ -1,41 +1,41 @@
-Phase 1194: Casoncelli-Mouse Tagliolini-Mouse Spaccatelle-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1195: Sorrentini-Mouse Maritati-Mouse Anolini-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/casoncelli-mouse_admin/src/main.c (Casoncelli-mouse vegetable rodents)
-   - Casoncelli-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, fill_rt, tail_cm, csnx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fill_rt,tail_cm,csnx_idx,age_yr
+1. modules/sorrentini-mouse_admin/src/main.c (Sorrentini-mouse vegetable rodents)
+   - Sorrentini-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, fold_r, tail_cm, srtxi_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fold_r,tail_cm,srtxi_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: csnx
-   - Note: use fr as param name for fill_rt
+   - Prefix: srtxi
+   - Note: use fr as param name for fold_r
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/tagliolini-mouse_admin/src/main.c (Tagliolini-mouse vegetable rodents)
-   - Tagliolini-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, cut_wd, tail_cm, tglxi_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,cut_wd,tail_cm,tglxi_idx,age_yr
+2. modules/maratiti-mouse_admin/src/main.c (Maritati-mouse vegetable rodents)
+   - Maritati-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, knot_ct, tail_cm, mrttx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,knot_ct,tail_cm,mrttx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tglxi
-   - Note: use cw as param name for cut_wd
+   - Prefix: mrttx
+   - Note: use kc as param name for knot_ct
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/spaccatelle-mouse_admin/src/main.c (Spaccatelle-mouse vegetable rodents)
-   - Spaccatelle-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, crk_dp, tail_cm, spctl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,crk_dp,tail_cm,spctl_idx,age_yr
+3. modules/anolini-mouse_admin/src/main.c (Anolini-mouse vegetable rodents)
+   - Anolini-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, rim_th, tail_cm, anlxi_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,rim_th,tail_cm,anlxi_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: spctl
-   - Note: use cd as param name for crk_dp
+   - Prefix: anlxi
+   - Note: use rt as param name for rim_th
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1556.0 → v1557.0 (all occurrences)
-  - total modules 4241 → 4244 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1194 - v1557.0 (4244 modules, 124 kernel)" entry
+  - version v1557.0 → v1558.0 (all occurrences)
+  - total modules 4244 → 4247 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1195 - v1558.0 (4247 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/casoncelli-mouse_admin/casoncelli-mouse_admin.wasm modules/tagliolini-mouse_admin/tagliolini-mouse_admin.wasm modules/spaccatelle-mouse_admin/spaccatelle-mouse_admin.wasm modules/casoncelli-mouse_admin/src/main.c modules/tagliolini-mouse_admin/src/main.c modules/spaccatelle-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/sorrentini-mouse_admin/sorrentini-mouse_admin.wasm modules/maratiti-mouse_admin/maratiti-mouse_admin.wasm modules/anolini-mouse_admin/anolini-mouse_admin.wasm modules/sorrentini-mouse_admin/src/main.c modules/maratiti-mouse_admin/src/main.c modules/anolini-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1
