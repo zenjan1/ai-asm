@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1158 - v1521.0 (4136 modules, 124 kernel)
+- Added WASM: watercress-mouse_admin (Watercress-mouse vegetable rodents), kohlrabi-mouse_admin (Kohlrabi-mouse vegetable rodents), rutabaga-mouse_admin (Rutabaga-mouse vegetable rodents)
+- Total modules: 4133 → 4136 (watercress-mouse, kohlrabi-mouse, rutabaga-mouse)
+
 ## Phase 1157 - v1520.0 (4133 modules, 124 kernel)
 - Added WASM: chard-mouse_admin (Chard-mouse vegetable rodents), collard-mouse_admin (Collard-mouse vegetable rodents), bok-choy-mouse_admin (Bok-choy-mouse vegetable rodents)
 - Total modules: 4130 → 4133 (chard-mouse, collard-mouse, bok-choy-mouse)

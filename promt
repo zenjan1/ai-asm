@@ -1,36 +1,37 @@
-Phase 1158: Watercress-Mouse Kohlrabi-Mouse Rutabaga-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1159: Daikon-Mouse Jicama-Mouse Celeriac-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/watercress-mouse_admin/src/main.c (Watercress-mouse vegetable rodents)
-   - Watercress-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, leaf_sz, tail_cm, wtcmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_sz,tail_cm,wtcmx_idx,age_yr
+1. modules/daikon-mouse_admin/src/main.c (Daikon-mouse vegetable rodents)
+   - Daikon-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, root_ln, tail_cm, daikmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,root_ln,tail_cm,daikmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: wtcmx
+   - Prefix: daikmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/kohlrabi-mouse_admin/src/main.c (Kohlrabi-mouse vegetable rodents)
-   - Kohlrabi-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, bulb_dia, tail_cm, khlmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bulb_dia,tail_cm,khlmx_idx,age_yr
+2. modules/jicama-mouse_admin/src/main.c (Jicama-mouse vegetable rodents)
+   - Jicama-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, tuber_dia, tail_cm, jicmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tuber_dia,tail_cm,jicmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: khlmx
+   - Prefix: jicmx
+   - Note: use td as param name for tuber_dia
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/rutabaga-mouse_admin/src/main.c (Rutabaga-mouse vegetable rodents)
-   - Rutabaga-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, root_sz, tail_cm, rtamx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,root_sz,tail_cm,rtamx_idx,age_yr
+3. modules/celeriac-mouse_admin/src/main.c (Celeriac-mouse vegetable rodents)
+   - Celeriac-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, bulb_sz, tail_cm, celrmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bulb_sz,tail_cm,celrmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rtamx
+   - Prefix: celrmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1520.0 → v1521.0 (all occurrences)
-  - total modules 4133 → 4136 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1158 - v1521.0 (4136 modules, 124 kernel)" entry
+  - version v1521.0 → v1522.0 (all occurrences)
+  - total modules 4136 → 4139 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1159 - v1522.0 (4139 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/watercress-mouse_admin/watercress-mouse_admin.wasm modules/kohlrabi-mouse_admin/kohlrabi-mouse_admin.wasm modules/rutabaga-mouse_admin/rutabaga-mouse_admin.wasm modules/watercress-mouse_admin/src/main.c modules/kohlrabi-mouse_admin/src/main.c modules/rutabaga-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/daikon-mouse_admin/daikon-mouse_admin.wasm modules/jicama-mouse_admin/jicama-mouse_admin.wasm modules/celeriac-mouse_admin/celeriac-mouse_admin.wasm modules/daikon-mouse_admin/src/main.c modules/jicama-mouse_admin/src/main.c modules/celeriac-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
