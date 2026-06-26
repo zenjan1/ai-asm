@@ -1,36 +1,36 @@
-Phase 1102: Lake-Mouse Pond-Mouse Tundra-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1103: Glacier-Mouse Volcano-Mouse Swamp-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/lake-mouse_admin/src/main.c (Lake-mouse lacustrine rodents)
-   - Lake-mouse lacustrine rodents management
-   - Features: body_len_cm, body_wt_g, swim_dur, tail_cm, lkm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,swim_dur,tail_cm,lkm_idx,age_yr
+1. modules/glacier-mouse_admin/src/main.c (Glacier-mouse ice-dwelling rodents)
+   - Glacier-mouse ice-dwelling rodents management
+   - Features: body_len_cm, body_wt_g, ice_tol, tail_cm, glm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ice_tol,tail_cm,glm_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: lkmx
+   - Prefix: glmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/pond-mouse_admin/src/main.c (Pond-mouse freshwater rodents)
-   - Pond-mouse freshwater rodents management
-   - Features: body_len_cm, body_wt_g, forage_dp, tail_cm, pnm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,forage_dp,tail_cm,pnm_idx,age_yr
+2. modules/volcano-mouse_admin/src/main.c (Volcano-mouse geothermal rodents)
+   - Volcano-mouse geothermal rodents management
+   - Features: body_len_cm, body_wt_g, heat_res, tail_cm, vlm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,heat_res,tail_cm,vlm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pnm
+   - Prefix: vlmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/tundra-mouse_admin/src/main.c (Tundra-mouse arctic rodents)
-   - Tundra-mouse arctic rodents management
-   - Features: body_len_cm, body_wt_g, cold_tol, tail_cm, tnm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,cold_tol,tail_cm,tnm_idx,age_yr
+3. modules/swamp-mouse_admin/src/main.c (Swamp-mouse wetland rodents)
+   - Swamp-mouse wetland rodents management
+   - Features: body_len_cm, body_wt_g, wade_dep, tail_cm, swm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wade_dep,tail_cm,swm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tnm
+   - Prefix: swmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1464.0 → v1465.0 (all occurrences)
-  - total modules 3965 → 3968 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1102 - v1465.0 (3968 modules, 124 kernel)" entry
+  - version v1465.0 → v1466.0 (all occurrences)
+  - total modules 3968 → 3971 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1103 - v1466.0 (3971 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/lake-mouse_admin/lake-mouse_admin.wasm modules/pond-mouse_admin/pond-mouse_admin.wasm modules/tundra-mouse_admin/tundra-mouse_admin.wasm modules/lake-mouse_admin/src/main.c modules/pond-mouse_admin/src/main.c modules/tundra-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/glacier-mouse_admin/glacier-mouse_admin.wasm modules/volcano-mouse_admin/volcano-mouse_admin.wasm modules/swamp-mouse_admin/swamp-mouse_admin.wasm modules/glacier-mouse_admin/src/main.c modules/volcano-mouse_admin/src/main.c modules/swamp-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
