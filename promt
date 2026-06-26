@@ -1,37 +1,36 @@
-Phase 1151: Pepper-Mouse Tomato-Mouse Eggplant-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1152: Pea-Mouse Bean-Mouse Corn-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/pepper-mouse_admin/src/main.c (Pepper-mouse vegetable rodents)
-   - Pepper-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, seed_ct, tail_cm, pepmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_ct,tail_cm,pepmx_idx,age_yr
+1. modules/pea-mouse_admin/src/main.c (Pea-mouse vegetable rodents)
+   - Pea-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, pod_ln, tail_cm, peamx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,pod_ln,tail_cm,peamx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pepmx
+   - Prefix: peamx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/tomato-mouse_admin/src/main.c (Tomato-mouse vegetable rodents)
-   - Tomato-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, fruit_ct, tail_cm, tommx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fruit_ct,tail_cm,tommx_idx,age_yr
+2. modules/bean-mouse_admin/src/main.c (Bean-mouse vegetable rodents)
+   - Bean-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, seed_sz, tail_cm, beanmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_sz,tail_cm,beanmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tommx
-   - Note: use tf as param for fruit_ct to avoid conflict with pi function
+   - Prefix: beanmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/eggplant-mouse_admin/src/main.c (Eggplant-mouse vegetable rodents)
-   - Eggplant-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, skin_gls, tail_cm, egpmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,skin_gls,tail_cm,egpmx_idx,age_yr
+3. modules/corn-mouse_admin/src/main.c (Corn-mouse vegetable rodents)
+   - Corn-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, cob_ln, tail_cm, cornmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,cob_ln,tail_cm,cornmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: egpmx
+   - Prefix: cornmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1513.0 → v1514.0 (all occurrences)
-  - total modules 4112 → 4115 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1151 - v1514.0 (4115 modules, 124 kernel)" entry
+  - version v1514.0 → v1515.0 (all occurrences)
+  - total modules 4115 → 4118 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1152 - v1515.0 (4118 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/pepper-mouse_admin/pepper-mouse_admin.wasm modules/tomato-mouse_admin/tomato-mouse_admin.wasm modules/eggplant-mouse_admin/eggplant-mouse_admin.wasm modules/pepper-mouse_admin/src/main.c modules/tomato-mouse_admin/src/main.c modules/eggplant-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/pea-mouse_admin/pea-mouse_admin.wasm modules/bean-mouse_admin/bean-mouse_admin.wasm modules/corn-mouse_admin/corn-mouse_admin.wasm modules/pea-mouse_admin/src/main.c modules/bean-mouse_admin/src/main.c modules/corn-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

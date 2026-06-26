@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1151 - v1514.0 (4115 modules, 124 kernel)
+- Added WASM: pepper-mouse_admin (Pepper-mouse vegetable rodents), tomato-mouse_admin (Tomato-mouse vegetable rodents), eggplant-mouse_admin (Eggplant-mouse vegetable rodents)
+- Total modules: 4112 → 4115 (pepper-mouse, tomato-mouse, eggplant-mouse)
+
 ## Phase 1150 - v1513.0 (4112 modules, 124 kernel)
 - Added WASM: zucchini-mouse_admin (Zucchini-mouse vegetable rodents), pumpkin-mouse_admin (Pumpkin-mouse vegetable rodents), cucumber-mouse_admin (Cucumber-mouse vegetable rodents)
 - Total modules: 4109 → 4112 (zucchini-mouse, pumpkin-mouse, cucumber-mouse)
