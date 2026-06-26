@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1161 - v1524.0 (4145 modules, 124 kernel)
+- Added WASM: bamboo-shoots-mouse_admin (Bamboo-shoots-mouse vegetable rodents), lotus-root-mouse_admin (Lotus-root-mouse vegetable rodents), water-chestnut-mouse_admin (Water-chestnut-mouse vegetable rodents)
+- Total modules: 4142 → 4145 (bamboo-shoots-mouse, lotus-root-mouse, water-chestnut-mouse)
+
 ## Phase 1160 - v1523.0 (4142 modules, 124 kernel)
 - Added WASM: rapini-mouse_admin (Rapini-mouse vegetable rodents), fennel-bulb-mouse_admin (Fennel-bulb-mouse vegetable rodents), squash-mouse_admin (Squash-mouse vegetable rodents)
 - Total modules: 4139 → 4142 (rapini-mouse, fennel-bulb-mouse, squash-mouse)
