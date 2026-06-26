@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1204 - v1567.0 (4274 modules, 124 kernel)
+- Added WASM: pizzocher-mouse_admin (Pizzocher-mouse vegetable rodents), crescentin-mouse_admin (Crescentin-mouse vegetable rodents), curzell-mouse_admin (Curzell-mouse vegetable rodents)
+- Total modules: 4271 → 4274 (pizzocher-mouse, crescentin-mouse, curzell-mouse)
+
 ## Phase 1203 - v1566.0 (4271 modules, 124 kernel)
 - Added WASM: zizin-mouse_admin (Zizin-mouse vegetable rodents), friss-mouse_admin (Friss-mouse vegetable rodents), zambel-mouse_admin (Zambel-mouse vegetable rodents)
 - Total modules: 4268 → 4271 (zizin-mouse, friss-mouse, zambel-mouse)

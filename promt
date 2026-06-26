@@ -1,39 +1,39 @@
-Phase 1204: Pizzocher-Mouse Crescentin-Mouse Curzell-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1205: Frissul-Mouse Fregnacc-Mouse Zampogn-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/pizzocher-mouse_admin/src/main.c (Pizzocher-mouse vegetable rodents)
-   - Pizzocher-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, notch_ct, tail_cm, pzcx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,notch_ct,tail_cm,pzcx_idx,age_yr
+1. modules/frissul-mouse_admin/src/main.c (Frissul-mouse vegetable rodents)
+   - Frissul-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, crisp_ct, tail_cm, frsxl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,crisp_ct,tail_cm,frsxl_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pzcx
-   - Note: use nc as param name for notch_ct
+   - Prefix: frsxl
+   - Note: use cc as param name for crisp_ct
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/crescentin-mouse_admin/src/main.c (Crescentin-mouse vegetable rodents)
-   - Crescentin-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, moon_arc, tail_cm, crsx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,moon_arc,tail_cm,crsx_idx,age_yr
+2. modules/fregnacc-mouse_admin/src/main.c (Fregnacc-mouse vegetable rodents)
+   - Fregnacc-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, flame_lv, tail_cm, frgnc_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,flame_lv,tail_cm,frgnc_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: crsx
-   - Note: use ma as param name for moon_arc
+   - Prefix: frgnc
+   - Note: use fl as param name for flame_lv
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/curzell-mouse_admin/src/main.c (Curzell-mouse vegetable rodents)
-   - Curzell-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, eye_ct, tail_cm, crzl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,eye_ct,tail_cm,crzl_idx,age_yr
+3. modules/zampogn-mouse_admin/src/main.c (Zampogn-mouse vegetable rodents)
+   - Zampogn-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, horn_lv, tail_cm, zmpxi_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,horn_lv,tail_cm,zmpxi_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: crzl
-   - Note: use ec as param name for eye_ct
+   - Prefix: zmpxi
+   - Note: use hl as param name for horn_lv
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1566.0 → v1567.0 (all occurrences)
-  - total modules 4271 → 4274 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1204 - v1567.0 (4274 modules, 124 kernel)" entry
+  - version v1567.0 → v1568.0 (all occurrences)
+  - total modules 4274 → 4277 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1205 - v1568.0 (4277 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/pizzocher-mouse_admin/pizzocher-mouse_admin.wasm modules/crescentin-mouse_admin/crescentin-mouse_admin.wasm modules/curzell-mouse_admin/curzell-mouse_admin.wasm modules/pizzocher-mouse_admin/src/main.c modules/crescentin-mouse_admin/src/main.c modules/curzell-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/frissul-mouse_admin/frissul-mouse_admin.wasm modules/fregnacc-mouse_admin/fregnacc-mouse_admin.wasm modules/zampogn-mouse_admin/zampogn-mouse_admin.wasm modules/frissul-mouse_admin/src/main.c modules/fregnacc-mouse_admin/src/main.c modules/zampogn-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
