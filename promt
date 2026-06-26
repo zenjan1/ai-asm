@@ -1,39 +1,39 @@
-Phase 1188: Tortiglioni-Mouse Anellini-Mouse Filini-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1189: Linguettine-Mouse Galli-Mouse Occhialini-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/tortiglioni-mouse_admin/src/main.c (Tortiglioni-mouse vegetable rodents)
-   - Tortiglioni-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, ridge_ct, tail_cm, trtgx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ridge_ct,tail_cm,trtgx_idx,age_yr
+1. modules/linguettine-mouse_admin/src/main.c (Linguettine-mouse vegetable rodents)
+   - Linguettine-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, tongue_ln, tail_cm, lgtx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tongue_ln,tail_cm,lgtx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: trtgx
-   - Note: use rc as param name for ridge_ct
+   - Prefix: lgtx
+   - Note: use tl as param name for tongue_ln
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/anellini-mouse_admin/src/main.c (Anellini-mouse vegetable rodents)
-   - Anellini-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, ring_th, tail_cm, anlnx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ring_th,tail_cm,anlnx_idx,age_yr
+2. modules/galli-mouse_admin/src/main.c (Galli-mouse vegetable rodents)
+   - Galli-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, comb_ct, tail_cm, glx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,comb_ct,tail_cm,glx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: anlnx
-   - Note: use rt as param name for ring_th
+   - Prefix: glx
+   - Note: use cc as param name for comb_ct
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/filini-mouse_admin/src/main.c (Filini-mouse vegetable rodents)
-   - Filini-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, wire_ln, tail_cm, flnx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,wire_ln,tail_cm,flnx_idx,age_yr
+3. modules/occhialini-mouse_admin/src/main.c (Occhialini-mouse vegetable rodents)
+   - Occhialini-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, lens_dia, tail_cm, occhx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,lens_dia,tail_cm,occhx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: flnx
-   - Note: use wl as param name for wire_ln
+   - Prefix: occhx
+   - Note: use ld as param name for lens_dia
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1550.0 → v1551.0 (all occurrences)
-  - total modules 4223 → 4226 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1188 - v1551.0 (4226 modules, 124 kernel)" entry
+  - version v1551.0 → v1552.0 (all occurrences)
+  - total modules 4226 → 4229 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1189 - v1552.0 (4229 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/tortiglioni-mouse_admin/tortiglioni-mouse_admin.wasm modules/anellini-mouse_admin/anellini-mouse_admin.wasm modules/filini-mouse_admin/filini-mouse_admin.wasm modules/tortiglioni-mouse_admin/src/main.c modules/anellini-mouse_admin/src/main.c modules/filini-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/linguettine-mouse_admin/linguettine-mouse_admin.wasm modules/galli-mouse_admin/galli-mouse_admin.wasm modules/occhialini-mouse_admin/occhialini-mouse_admin.wasm modules/linguettine-mouse_admin/src/main.c modules/galli-mouse_admin/src/main.c modules/occhialini-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
