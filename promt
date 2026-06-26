@@ -1,36 +1,36 @@
-Phase 1120: Juniper-Mouse Lemon-Mouse Lime-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1121: Orange-Mouse Lily-Mouse Iris-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/juniper-mouse_admin/src/main.c (Juniper-mouse coniferous rodents)
-   - Juniper-mouse coniferous rodents management
-   - Features: body_len_cm, body_wt_g, cone_sz, tail_cm, jnpmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,cone_sz,tail_cm,jnpmx_idx,age_yr
+1. modules/orange-mouse_admin/src/main.c (Orange-mouse citrus rodents)
+   - Orange-mouse citrus rodents management
+   - Features: body_len_cm, body_wt_g, pulp_thk, tail_cm, orrmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,pulp_thk,tail_cm,orrmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: jnpmx
+   - Prefix: orrmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/lemon-mouse_admin/src/main.c (Lemon-mouse citrus rodents)
-   - Lemon-mouse citrus rodents management
-   - Features: body_len_cm, body_wt_g, peel_thk, tail_cm, lmnmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,peel_thk,tail_cm,lmnmx_idx,age_yr
+2. modules/lily-mouse_admin/src/main.c (Lily-mouse bulbous rodents)
+   - Lily-mouse bulbous rodents management
+   - Features: body_len_cm, body_wt_g, petal_ln, tail_cm, llmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,petal_ln,tail_cm,llmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: lmnmx
+   - Prefix: llmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/lime-mouse_admin/src/main.c (Lime-mouse citrus rodents)
-   - Lime-mouse citrus rodents management
-   - Features: body_len_cm, body_wt_g, juice_pct, tail_cm, lmemx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,juice_pct,tail_cm,lmemx_idx,age_yr
+3. modules/iris-mouse_admin/src/main.c (Iris-mouse rhizome rodents)
+   - Iris-mouse rhizome rodents management
+   - Features: body_len_cm, body_wt_g, sepal_ht, tail_cm, irsmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,sepal_ht,tail_cm,irsmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: lmemx
+   - Prefix: irsmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1482.0 → v1483.0 (all occurrences)
-  - total modules 4019 → 4022 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1120 - v1483.0 (4022 modules, 124 kernel)" entry
+  - version v1483.0 → v1484.0 (all occurrences)
+  - total modules 4022 → 4025 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1121 - v1484.0 (4025 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/juniper-mouse_admin/juniper-mouse_admin.wasm modules/lemon-mouse_admin/lemon-mouse_admin.wasm modules/lime-mouse_admin/lime-mouse_admin.wasm modules/juniper-mouse_admin/src/main.c modules/lemon-mouse_admin/src/main.c modules/lime-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/orange-mouse_admin/orange-mouse_admin.wasm modules/lily-mouse_admin/lily-mouse_admin.wasm modules/iris-mouse_admin/iris-mouse_admin.wasm modules/orange-mouse_admin/src/main.c modules/lily-mouse_admin/src/main.c modules/iris-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

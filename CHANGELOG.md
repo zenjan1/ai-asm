@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1120 - v1483.0 (4022 modules, 124 kernel)
+- Added WASM: juniper-mouse_admin (Juniper-mouse coniferous rodents), lemon-mouse_admin (Lemon-mouse citrus rodents), lime-mouse_admin (Lime-mouse citrus rodents)
+- Total modules: 4019 → 4022 (juniper-mouse, lemon-mouse, lime-mouse)
+
 ## Phase 1119 - v1482.0 (4019 modules, 124 kernel)
 - Added WASM: hazel-mouse_admin (Hazel-mouse nut rodents), chestnut-mouse_admin (Chestnut-mouse nut rodents), walnut-mouse_admin (Walnut-mouse nut rodents)
 - Total modules: 4016 → 4019 (hazel-mouse, chestnut-mouse, walnut-mouse)
