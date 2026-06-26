@@ -1,39 +1,39 @@
-Phase 1174: Ravioli-Mouse Gnocchi-Mouse Rigatoni-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1175: Fettuccine-Mouse Lasagna-Mouse Penne-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/ravioli-mouse_admin/src/main.c (Ravioli-mouse vegetable rodents)
-   - Ravioli-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, filling_wt, tail_cm, ravmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,filling_wt,tail_cm,ravmx_idx,age_yr
+1. modules/fettuccine-mouse_admin/src/main.c (Fettuccine-mouse vegetable rodents)
+   - Fettuccine-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, ribbon_wt, tail_cm, fttmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ribbon_wt,tail_cm,fttmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: ravmx
-   - Note: use fv as param name for filling_wt
+   - Prefix: fttmx
+   - Note: use rw as param name for ribbon_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/gnocchi-mouse_admin/src/main.c (Gnocchi-mouse vegetable rodents)
-   - Gnocchi-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, potato_wt, tail_cm, gnemx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,potato_wt,tail_cm,gnemx_idx,age_yr
+2. modules/lasagna-mouse_admin/src/main.c (Lasagna-mouse vegetable rodents)
+   - Lasagna-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, layers, tail_cm, lsgmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,layers,tail_cm,lsgmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: gnemx
-   - Note: use pw as param name for potato_wt
+   - Prefix: lsgmx
+   - Note: use ly as param name for layers
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/rigatoni-mouse_admin/src/main.c (Rigatoni-mouse vegetable rodents)
-   - Rigatoni-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, tube_dia, tail_cm, rgtmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tube_dia,tail_cm,rgtmx_idx,age_yr
+3. modules/penne-mouse_admin/src/main.c (Penne-mouse vegetable rodents)
+   - Penne-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, angle_deg, tail_cm, pnnmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,angle_deg,tail_cm,pnnmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rgtmx
-   - Note: use td as param name for tube_dia
+   - Prefix: pnnmx
+   - Note: use ad as param name for angle_deg
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1536.0 → v1537.0 (all occurrences)
-  - total modules 4181 → 4184 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1174 - v1537.0 (4184 modules, 124 kernel)" entry
+  - version v1537.0 → v1538.0 (all occurrences)
+  - total modules 4184 → 4187 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1175 - v1538.0 (4187 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/ravioli-mouse_admin/ravioli-mouse_admin.wasm modules/gnocchi-mouse_admin/gnocchi-mouse_admin.wasm modules/rigatoni-mouse_admin/rigatoni-mouse_admin.wasm modules/ravioli-mouse_admin/src/main.c modules/gnocchi-mouse_admin/src/main.c modules/rigatoni-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/fettuccine-mouse_admin/fettuccine-mouse_admin.wasm modules/lasagna-mouse_admin/lasagna-mouse_admin.wasm modules/penne-mouse_admin/penne-mouse_admin.wasm modules/fettuccine-mouse_admin/src/main.c modules/lasagna-mouse_admin/src/main.c modules/penne-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
