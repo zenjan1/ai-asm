@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1184 - v1547.0 (4214 modules, 124 kernel)
+- Added WASM: cappelletti-mouse_admin (Cappelletti-mouse vegetable rodents), taglierini-mouse_admin (Taglierini-mouse vegetable rodents), bigoli-mouse_admin (Bigoli-mouse vegetable rodents)
+- Total modules: 4211 → 4214 (cappelletti-mouse, taglierini-mouse, bigoli-mouse)
+
 ## Phase 1183 - v1546.0 (4211 modules, 124 kernel)
 - Added WASM: picagge-mouse_admin (Picagge-mouse vegetable rodents), pizzoccheri-mouse_admin (Pizzoccheri-mouse vegetable rodents), agnolotti-mouse_admin (Agnolotti-mouse vegetable rodents)
 - Total modules: 4208 → 4211 (picagge-mouse, pizzoccheri-mouse, agnolotti-mouse)

@@ -1,39 +1,39 @@
-Phase 1184: Cappelletti-Mouse Taglierini-Mouse Bigoli-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1185: Fregola-Mouse Pastina-Mouse Stelline-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/cappelletti-mouse_admin/src/main.c (Cappelletti-mouse vegetable rodents)
-   - Cappelletti-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, hat_wd, tail_cm, cpltx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hat_wd,tail_cm,cpltx_idx,age_yr
+1. modules/fregola-mouse_admin/src/main.c (Fregola-mouse vegetable rodents)
+   - Fregola-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, pearl_dia, tail_cm, frgx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,pearl_dia,tail_cm,frgx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: cpltx
-   - Note: use hw as param name for hat_wd
+   - Prefix: frgx
+   - Note: use pd as param name for pearl_dia
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/taglierini-mouse_admin/src/main.c (Taglierini-mouse vegetable rodents)
-   - Taglierini-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, cut_wd, tail_cm, tglrx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,cut_wd,tail_cm,tglrx_idx,age_yr
+2. modules/pastina-mouse_admin/src/main.c (Pastina-mouse vegetable rodents)
+   - Pastina-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, dot_sz, tail_cm, pstnx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,dot_sz,tail_cm,pstnx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tglrx
-   - Note: use cw as param name for cut_wd
+   - Prefix: pstnx
+   - Note: use ds as param name for dot_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/bigoli-mouse_admin/src/main.c (Bigoli-mouse vegetable rodents)
-   - Bigoli-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, thick_wd, tail_cm, bglx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,thick_wd,tail_cm,bglx_idx,age_yr
+3. modules/stelline-mouse_admin/src/main.c (Stelline-mouse vegetable rodents)
+   - Stelline-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, star_pt, tail_cm, stllx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,star_pt,tail_cm,stllx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: bglx
-   - Note: use tw as param name for thick_wd
+   - Prefix: stllx
+   - Note: use sp as param name for star_pt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1546.0 → v1547.0 (all occurrences)
-  - total modules 4211 → 4214 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1184 - v1547.0 (4214 modules, 124 kernel)" entry
+  - version v1547.0 → v1548.0 (all occurrences)
+  - total modules 4214 → 4217 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1185 - v1548.0 (4217 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/cappelletti-mouse_admin/cappelletti-mouse_admin.wasm modules/taglierini-mouse_admin/taglierini-mouse_admin.wasm modules/bigoli-mouse_admin/bigoli-mouse_admin.wasm modules/cappelletti-mouse_admin/src/main.c modules/taglierini-mouse_admin/src/main.c modules/bigoli-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/fregola-mouse_admin/fregola-mouse_admin.wasm modules/pastina-mouse_admin/pastina-mouse_admin.wasm modules/stelline-mouse_admin/stelline-mouse_admin.wasm modules/fregola-mouse_admin/src/main.c modules/pastina-mouse_admin/src/main.c modules/stelline-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
