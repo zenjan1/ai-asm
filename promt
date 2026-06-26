@@ -1,36 +1,36 @@
-Phase 1106: Alpine-Mouse Arctic-Mouse Savanna-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1107: Jungle-Mouse Bamboo-Mouse Cactus-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/alpine-mouse_admin/src/main.c (Alpine-mouse high-altitude rodents)
-   - Alpine-mouse high-altitude rodents management
-   - Features: body_len_cm, body_wt_g, alt_tol, tail_cm, apm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,alt_tol,tail_cm,apm_idx,age_yr
+1. modules/jungle-mouse_admin/src/main.c (Jungle-mouse tropical rodents)
+   - Jungle-mouse tropical rodents management
+   - Features: body_len_cm, body_wt_g, swing_rng, tail_cm, jgm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,swing_rng,tail_cm,jgm_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: apmx
+   - Prefix: jgmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/arctic-mouse_admin/src/main.c (Arctic-mouse polar rodents)
-   - Arctic-mouse polar rodents management
-   - Features: body_len_cm, body_wt_g, frost_res, tail_cm, arm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,frost_res,tail_cm,arm_idx,age_yr
+2. modules/bamboo-mouse_admin/src/main.c (Bamboo-mouse forest-dwelling rodents)
+   - Bamboo-mouse forest-dwelling rodents management
+   - Features: body_len_cm, body_wt_g, chew_frc, tail_cm, bbm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,chew_frc,tail_cm,bbm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: armx
+   - Prefix: bbmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/savanna-mouse_admin/src/main.c (Savanna-mouse grassland rodents)
-   - Savanna-mouse grassland rodents management
-   - Features: body_len_cm, body_wt_g, run_end, tail_cm, svm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,run_end,tail_cm,svm_idx,age_yr
+3. modules/cactus-mouse_admin/src/main.c (Cactus-mouse desert rodents)
+   - Cactus-mouse desert rodents management
+   - Features: body_len_cm, body_wt_g, spine_res, tail_cm, ccm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,spine_res,tail_cm,ccm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: svmx
+   - Prefix: ccmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1468.0 → v1469.0 (all occurrences)
-  - total modules 3977 → 3980 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1106 - v1469.0 (3980 modules, 124 kernel)" entry
+  - version v1469.0 → v1470.0 (all occurrences)
+  - total modules 3980 → 3983 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1107 - v1470.0 (3983 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/alpine-mouse_admin/alpine-mouse_admin.wasm modules/arctic-mouse_admin/arctic-mouse_admin.wasm modules/savanna-mouse_admin/savanna-mouse_admin.wasm modules/alpine-mouse_admin/src/main.c modules/arctic-mouse_admin/src/main.c modules/savanna-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/jungle-mouse_admin/jungle-mouse_admin.wasm modules/bamboo-mouse_admin/bamboo-mouse_admin.wasm modules/cactus-mouse_admin/cactus-mouse_admin.wasm modules/jungle-mouse_admin/src/main.c modules/bamboo-mouse_admin/src/main.c modules/cactus-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
