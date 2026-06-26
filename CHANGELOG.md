@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1152 - v1515.0 (4118 modules, 124 kernel)
+- Added WASM: pea-mouse_admin (Pea-mouse vegetable rodents), bean-mouse_admin (Bean-mouse vegetable rodents), corn-mouse_admin (Corn-mouse vegetable rodents)
+- Total modules: 4115 → 4118 (pea-mouse, bean-mouse, corn-mouse)
+
 ## Phase 1151 - v1514.0 (4115 modules, 124 kernel)
 - Added WASM: pepper-mouse_admin (Pepper-mouse vegetable rodents), tomato-mouse_admin (Tomato-mouse vegetable rodents), eggplant-mouse_admin (Eggplant-mouse vegetable rodents)
 - Total modules: 4112 → 4115 (pepper-mouse, tomato-mouse, eggplant-mouse)
