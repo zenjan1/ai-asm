@@ -1,39 +1,39 @@
-Phase 1172: Semolina-Mouse Farina-Mouse Polenta-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1173: Orzo-Mouse Soba-Mouse Udon-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/semolina-mouse_admin/src/main.c (Semolina-mouse vegetable rodents)
-   - Semolina-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, grind_ct, tail_cm, semmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,grind_ct,tail_cm,semmx_idx,age_yr
+1. modules/orzo-mouse_admin/src/main.c (Orzo-mouse vegetable rodents)
+   - Orzo-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, flour_ct, tail_cm, orzmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,flour_ct,tail_cm,orzmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: semmx
-   - Note: use gc as param name for grind_ct
+   - Prefix: orzmx
+   - Note: use fc as param name for flour_ct
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/farina-mouse_admin/src/main.c (Farina-mouse vegetable rodents)
-   - Farina-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, meal_wt, tail_cm, farmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,meal_wt,tail_cm,farmx_idx,age_yr
+2. modules/soba-mouse_admin/src/main.c (Soba-mouse vegetable rodents)
+   - Soba-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, noodle_ln, tail_cm, sobmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,noodle_ln,tail_cm,sobmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: farmx
-   - Note: use mw as param name for meal_wt
+   - Prefix: sobmx
+   - Note: use nl as param name for noodle_ln
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/polenta-mouse_admin/src/main.c (Polenta-mouse vegetable rodents)
-   - Polenta-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, corn_wt, tail_cm, polmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,corn_wt,tail_cm,polmx_idx,age_yr
+3. modules/udon-mouse_admin/src/main.c (Udon-mouse vegetable rodents)
+   - Udon-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, thickness, tail_cm, udmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,thickness,tail_cm,udmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: polmx
-   - Note: use cw as param name for corn_wt
+   - Prefix: udmx
+   - Note: use th as param name for thickness
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1534.0 → v1535.0 (all occurrences)
-  - total modules 4175 → 4178 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1172 - v1535.0 (4178 modules, 124 kernel)" entry
-Set UPDATE=0
-git add -f modules/semolina-mouse_admin/semolina-mouse_admin.wasm modules/farina-mouse_admin/farina-mouse_admin.wasm modules/polenta-mouse_admin/polenta-mouse_admin.wasm modules/semolina-mouse_admin/src/main.c modules/farina-mouse_admin/src/main.c modules/polenta-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+  - version v1535.0 → v1536.0 (all occurrences)
+  - total modules 4178 → 4181 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1173 - v1536.0 (4181 modules, 124 kernel)" entry
+Set UPDATE=1
+git add -f modules/orzo-mouse_admin/orzo-mouse_admin.wasm modules/soba-mouse_admin/soba-mouse_admin.wasm modules/udon-mouse_admin/udon-mouse_admin.wasm modules/orzo-mouse_admin/src/main.c modules/soba-mouse_admin/src/main.c modules/udon-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
