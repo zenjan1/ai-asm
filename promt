@@ -1,36 +1,36 @@
-Phase 1122: Tulip-Mouse Orchid-Mouse Violet-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1123: Peony-Mouse Poppy-Mouse Parsley-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/tulip-mouse_admin/src/main.c (Tulip-mouse bulbous rodents)
-   - Tulip-mouse bulbous rodents management
-   - Features: body_len_cm, body_wt_g, bulb_sz, tail_cm, tlpmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bulb_sz,tail_cm,tlpmx_idx,age_yr
+1. modules/peony-mouse_admin/src/main.c (Peony-mouse tuberous rodents)
+   - Peony-mouse tuberous rodents management
+   - Features: body_len_cm, body_wt_g, root_sz, tail_cm, pnymx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,root_sz,tail_cm,pnymx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tlpmx
+   - Prefix: pnymx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/orchid-mouse_admin/src/main.c (Orchid-mouse epiphyte rodents)
-   - Orchid-mouse epiphyte rodents management
-   - Features: body_len_cm, body_wt_g, root_thk, tail_cm, orchmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,root_thk,tail_cm,orchmx_idx,age_yr
+2. modules/poppy-mouse_admin/src/main.c (Poppy-mouse seed rodents)
+   - Poppy-mouse seed rodents management
+   - Features: body_len_cm, body_wt_g, seed_cnt, tail_cm, ppymx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_cnt,tail_cm,ppymx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: orchmx
+   - Prefix: ppymx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/violet-mouse_admin/src/main.c (Violet-mouse shade rodents)
-   - Violet-mouse shade rodents management
-   - Features: body_len_cm, body_wt_g, flr_dia, tail_cm, vltmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,flr_dia,tail_cm,vltmx_idx,age_yr
+3. modules/parsley-mouse_admin/src/main.c (Parsley-mouse herb rodents)
+   - Parsley-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, leaf_cnt, tail_cm, prsmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_cnt,tail_cm,prsmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: vltmx
+   - Prefix: prsmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1484.0 → v1485.0 (all occurrences)
-  - total modules 4025 → 4028 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1122 - v1485.0 (4028 modules, 124 kernel)" entry
+  - version v1485.0 → v1486.0 (all occurrences)
+  - total modules 4028 → 4031 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1123 - v1486.0 (4031 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/tulip-mouse_admin/tulip-mouse_admin.wasm modules/orchid-mouse_admin/orchid-mouse_admin.wasm modules/violet-mouse_admin/violet-mouse_admin.wasm modules/tulip-mouse_admin/src/main.c modules/orchid-mouse_admin/src/main.c modules/violet-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/peony-mouse_admin/peony-mouse_admin.wasm modules/poppy-mouse_admin/poppy-mouse_admin.wasm modules/parsley-mouse_admin/parsley-mouse_admin.wasm modules/peony-mouse_admin/src/main.c modules/poppy-mouse_admin/src/main.c modules/parsley-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
