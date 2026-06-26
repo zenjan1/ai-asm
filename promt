@@ -1,39 +1,39 @@
-Phase 1171: Emmer-Mouse Einkorn-Mouse Durum-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1172: Semolina-Mouse Farina-Mouse Polenta-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/emmer-mouse_admin/src/main.c (Emmer-mouse vegetable rodents)
-   - Emmer-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, kernel_ln, tail_cm, emrmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,kernel_ln,tail_cm,emrmx_idx,age_yr
+1. modules/semolina-mouse_admin/src/main.c (Semolina-mouse vegetable rodents)
+   - Semolina-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, grind_ct, tail_cm, semmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,grind_ct,tail_cm,semmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: emrmx
-   - Note: use kl as param name for kernel_ln
+   - Prefix: semmx
+   - Note: use gc as param name for grind_ct
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/einkorn-mouse_admin/src/main.c (Einkorn-mouse vegetable rodents)
-   - Einkorn-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, berry_sz, tail_cm, eikmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,berry_sz,tail_cm,eikmx_idx,age_yr
+2. modules/farina-mouse_admin/src/main.c (Farina-mouse vegetable rodents)
+   - Farina-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, meal_wt, tail_cm, farmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,meal_wt,tail_cm,farmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: eikmx
-   - Note: use bs as param name for berry_sz
+   - Prefix: farmx
+   - Note: use mw as param name for meal_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/durum-mouse_admin/src/main.c (Durum-mouse vegetable rodents)
-   - Durum-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, protein_wt, tail_cm, durmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,protein_wt,tail_cm,durmx_idx,age_yr
+3. modules/polenta-mouse_admin/src/main.c (Polenta-mouse vegetable rodents)
+   - Polenta-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, corn_wt, tail_cm, polmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,corn_wt,tail_cm,polmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: durmx
-   - Note: use pw as param name for protein_wt
+   - Prefix: polmx
+   - Note: use cw as param name for corn_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1533.0 → v1534.0 (all occurrences)
-  - total modules 4172 → 4175 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1171 - v1534.0 (4175 modules, 124 kernel)" entry
+  - version v1534.0 → v1535.0 (all occurrences)
+  - total modules 4175 → 4178 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1172 - v1535.0 (4178 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/emmer-mouse_admin/emmer-mouse_admin.wasm modules/einkorn-mouse_admin/einkorn-mouse_admin.wasm modules/durum-mouse_admin/durum-mouse_admin.wasm modules/emmer-mouse_admin/src/main.c modules/einkorn-mouse_admin/src/main.c modules/durum-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/semolina-mouse_admin/semolina-mouse_admin.wasm modules/farina-mouse_admin/farina-mouse_admin.wasm modules/polenta-mouse_admin/polenta-mouse_admin.wasm modules/semolina-mouse_admin/src/main.c modules/farina-mouse_admin/src/main.c modules/polenta-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
