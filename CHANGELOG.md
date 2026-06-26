@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1178 - v1541.0 (4196 modules, 124 kernel)
+- Added WASM: pappardelle-mouse_admin (Pappardelle-mouse vegetable rodents), bucatini-mouse_admin (Bucatini-mouse vegetable rodents), gemelli-mouse_admin (Gemelli-mouse vegetable rodents)
+- Total modules: 4193 → 4196 (pappardelle-mouse, bucatini-mouse, gemelli-mouse)
+
 ## Phase 1177 - v1540.0 (4193 modules, 124 kernel)
 - Added WASM: fusilli-mouse_admin (Fusilli-mouse vegetable rodents), farfalle-mouse_admin (Farfalle-mouse vegetable rodents), rotini-mouse_admin (Rotini-mouse vegetable rodents)
 - Total modules: 4190 → 4193 (fusilli-mouse, farfalle-mouse, rotini-mouse)
