@@ -1,38 +1,37 @@
-Phase 1146: Turnip-Mouse Parsnip-Mouse Onion-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1147: Garlic-Mouse Leek-Mouse Celery-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/turnip-mouse_admin/src/main.c (Turnip-mouse vegetable rodents)
-   - Turnip-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, bulb_wt, tail_cm, trnmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bulb_wt,tail_cm,trnmx_idx,age_yr
+1. modules/garlic-mouse_admin/src/main.c (Garlic-mouse vegetable rodents)
+   - Garlic-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, clove_ct, tail_cm, grlmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,clove_ct,tail_cm,grlmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: trnmx
-   - Note: use bwt as param name for bulb_wt to avoid conflict with bw (body_wt)
+   - Prefix: grlmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/parsnip-mouse_admin/src/main.c (Parsnip-mouse vegetable rodents)
-   - Parsnip-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, root_dn, tail_cm, prsmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,root_dn,tail_cm,prsmx_idx,age_yr
+2. modules/leek-mouse_admin/src/main.c (Leek-mouse vegetable rodents)
+   - Leek-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, stem_ht, tail_cm, leemx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,stem_ht,tail_cm,leemx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: prsmx
+   - Prefix: leemx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/onion-mouse_admin/src/main.c (Onion-mouse vegetable rodents)
-   - Onion-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, layer_ct, tail_cm, onimx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,layer_ct,tail_cm,onimx_idx,age_yr
+3. modules/celery-mouse_admin/src/main.c (Celery-mouse vegetable rodents)
+   - Celery-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, stalk_wt, tail_cm, clrmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,stalk_wt,tail_cm,clrmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: onimx
-   - Note: use ly as param name for layer_ct to avoid conflict with lc (location)
+   - Prefix: clrmx
+   - Note: use stw as param name for stalk_wt to avoid conflict with sw
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1508.0 → v1509.0 (all occurrences)
-  - total modules 4097 → 4100 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1146 - v1509.0 (4100 modules, 124 kernel)" entry
+  - version v1509.0 → v1510.0 (all occurrences)
+  - total modules 4100 → 4103 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1147 - v1510.0 (4103 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/turnip-mouse_admin/turnip-mouse_admin.wasm modules/parsnip-mouse_admin/parsnip-mouse_admin.wasm modules/onion-mouse_admin/onion-mouse_admin.wasm modules/turnip-mouse_admin/src/main.c modules/parsnip-mouse_admin/src/main.c modules/onion-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/garlic-mouse_admin/garlic-mouse_admin.wasm modules/leek-mouse_admin/leek-mouse_admin.wasm modules/celery-mouse_admin/celery-mouse_admin.wasm modules/garlic-mouse_admin/src/main.c modules/leek-mouse_admin/src/main.c modules/celery-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

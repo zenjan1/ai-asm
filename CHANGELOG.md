@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1146 - v1509.0 (4100 modules, 124 kernel)
+- Added WASM: turnip-mouse_admin (Turnip-mouse vegetable rodents), parsnip-mouse_admin (Parsnip-mouse vegetable rodents), onion-mouse_admin (Onion-mouse vegetable rodents)
+- Total modules: 4097 → 4100 (turnip-mouse, parsnip-mouse, onion-mouse)
+
 ## Phase 1145 - v1508.0 (4097 modules, 124 kernel)
 - Added WASM: carrot-mouse_admin (Carrot-mouse vegetable rodents), beet-mouse_admin (Beet-mouse vegetable rodents), radish-mouse_admin (Radish-mouse vegetable rodents)
 - Total modules: 4094 → 4097 (carrot-mouse, beet-mouse, radish-mouse)
