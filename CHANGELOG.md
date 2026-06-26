@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1143 - v1506.0 (4091 modules, 124 kernel)
+- Added WASM: tansy-mouse_admin (Tansy-mouse herb rodents), rue-mouse_admin (Rue-mouse herb rodents), lemon-balm-mouse_admin (Lemon-balm-mouse herb rodents)
+- Total modules: 4088 → 4091 (tansy-mouse, rue-mouse, lemon-balm-mouse)
+
 ## Phase 1142 - v1505.0 (4088 modules, 124 kernel)
 - Added WASM: yarrow-mouse_admin (Yarrow-mouse herb rodents), lovage-mouse_admin (Lovage-mouse herb rodents), wormwood-mouse_admin (Wormwood-mouse herb rodents)
 - Total modules: 4085 → 4088 (yarrow-mouse, lovage-mouse, wormwood-mouse)

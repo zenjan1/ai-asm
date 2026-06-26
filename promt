@@ -1,36 +1,36 @@
-Phase 1143: Tansy-Mouse Rue-Mouse Lemon-Balm-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1144: Woodruff-Mouse Costmary-Mouse Burnet-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/tansy-mouse_admin/src/main.c (Tansy-mouse herb rodents)
-   - Tansy-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, flower_ct, tail_cm, tnsMX_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,flower_ct,tail_cm,tnsmx_idx,age_yr
+1. modules/woodruff-mouse_admin/src/main.c (Woodruff-mouse herb rodents)
+   - Woodruff-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, seed_dn, tail_cm, wdrmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_dn,tail_cm,wdrmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tnsmx
+   - Prefix: wdrmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/rue-mouse_admin/src/main.c (Rue-mouse herb rodents)
-   - Rue-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, root_wd, tail_cm, ruemx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,root_wd,tail_cm,ruemx_idx,age_yr
+2. modules/costmary-mouse_admin/src/main.c (Costmary-mouse herb rodents)
+   - Costmary-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, leaf_wt, tail_cm, csrmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_wt,tail_cm,csrmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: ruemx
+   - Prefix: csrmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/lemon-balm-mouse_admin/src/main.c (Lemon-balm-mouse herb rodents)
-   - Lemon-balm-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, oil_ct, tail_cm, lbmmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,oil_ct,tail_cm,lbmmx_idx,age_yr
+3. modules/burnet-mouse_admin/src/main.c (Burnet-mouse herb rodents)
+   - Burnet-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, root_ht, tail_cm, bntmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,root_ht,tail_cm,bntmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: lbmmx
+   - Prefix: bntmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1505.0 → v1506.0 (all occurrences)
-  - total modules 4088 → 4091 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1143 - v1506.0 (4091 modules, 124 kernel)" entry
+  - version v1506.0 → v1507.0 (all occurrences)
+  - total modules 4091 → 4094 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1144 - v1507.0 (4094 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/tansy-mouse_admin/tansy-mouse_admin.wasm modules/rue-mouse_admin/rue-mouse_admin.wasm modules/lemon-balm-mouse_admin/lemon-balm-mouse_admin.wasm modules/tansy-mouse_admin/src/main.c modules/rue-mouse_admin/src/main.c modules/lemon-balm-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/woodruff-mouse_admin/woodruff-mouse_admin.wasm modules/costmary-mouse_admin/costmary-mouse_admin.wasm modules/burnet-mouse_admin/burnet-mouse_admin.wasm modules/woodruff-mouse_admin/src/main.c modules/costmary-mouse_admin/src/main.c modules/burnet-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
