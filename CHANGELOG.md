@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1104 - v1467.0 (3974 modules, 124 kernel)
+- Added WASM: mangrove-mouse_admin (Mangrove-mouse coastal rodents), reed-mouse_admin (Reed-mouse marsh-dwelling rodents), moss-mouse_admin (Moss-mouse forest-floor rodents)
+- Total modules: 3971 → 3974 (mangrove-mouse, reed-mouse, moss-mouse)
+
 ## Phase 1103 - v1466.0 (3971 modules, 124 kernel)
 - Added WASM: glacier-mouse_admin (Glacier-mouse ice-dwelling rodents), volcano-mouse_admin (Volcano-mouse geothermal rodents), swamp-mouse_admin (Swamp-mouse wetland rodents)
 - Total modules: 3968 → 3971 (glacier-mouse, volcano-mouse, swamp-mouse)

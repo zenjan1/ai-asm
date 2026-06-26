@@ -1,36 +1,36 @@
-Phase 1104: Mangrove-Mouse Reed-Mouse Moss-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1105: Coral-Mouse Steppe-Mouse Prairie-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/mangrove-mouse_admin/src/main.c (Mangrove-mouse coastal rodents)
-   - Mangrove-mouse coastal rodents management
-   - Features: body_len_cm, body_wt_g, climb_ht, tail_cm, mgm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,climb_ht,tail_cm,mgm_idx,age_yr
+1. modules/coral-mouse_admin/src/main.c (Coral-mouse reef-dwelling rodents)
+   - Coral-mouse reef-dwelling rodents management
+   - Features: body_len_cm, body_wt_g, buoy_frc, tail_cm, crm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,buoy_frc,tail_cm,crm_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: mgmx
+   - Prefix: crmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/reed-mouse_admin/src/main.c (Reed-mouse marsh-dwelling rodents)
-   - Reed-mouse marsh-dwelling rodents management
-   - Features: body_len_cm, body_wt_g, nest_ht, tail_cm, rdm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,nest_ht,tail_cm,rdm_idx,age_yr
+2. modules/steppe-mouse_admin/src/main.c (Steppe-mouse grassland rodents)
+   - Steppe-mouse grassland rodents management
+   - Features: body_len_cm, body_wt_g, sprint_sp, tail_cm, spm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,sprint_sp,tail_cm,spm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rdmx
+   - Prefix: spmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/moss-mouse_admin/src/main.c (Moss-mouse forest-floor rodents)
-   - Moss-mouse forest-floor rodents management
-   - Features: body_len_cm, body_wt_g, fur_dens, tail_cm, msm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fur_dens,tail_cm,msm_idx,age_yr
+3. modules/prairie-mouse_admin/src/main.c (Prairie-mouse meadow rodents)
+   - Prairie-mouse meadow rodents management
+   - Features: body_len_cm, body_wt_g, burrow_dp, tail_cm, prm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,burrow_dp,tail_cm,prm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: msmx
+   - Prefix: prmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1466.0 → v1467.0 (all occurrences)
-  - total modules 3971 → 3974 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1104 - v1467.0 (3974 modules, 124 kernel)" entry
+  - version v1467.0 → v1468.0 (all occurrences)
+  - total modules 3974 → 3977 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1105 - v1468.0 (3977 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/mangrove-mouse_admin/mangrove-mouse_admin.wasm modules/reed-mouse_admin/reed-mouse_admin.wasm modules/moss-mouse_admin/moss-mouse_admin.wasm modules/mangrove-mouse_admin/src/main.c modules/reed-mouse_admin/src/main.c modules/moss-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/coral-mouse_admin/coral-mouse_admin.wasm modules/steppe-mouse_admin/steppe-mouse_admin.wasm modules/prairie-mouse_admin/prairie-mouse_admin.wasm modules/coral-mouse_admin/src/main.c modules/steppe-mouse_admin/src/main.c modules/prairie-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
