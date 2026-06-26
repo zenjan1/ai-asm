@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1118 - v1481.0 (4016 modules, 124 kernel)
+- Added WASM: yew-mouse_admin (Yew-mouse coniferous rodents), beech-mouse_admin (Beech-mouse hardwood rodents), alder-mouse_admin (Alder-mouse riparian rodents)
+- Total modules: 4013 → 4016 (yew-mouse, beech-mouse, alder-mouse)
+
 ## Phase 1117 - v1480.0 (4013 modules, 124 kernel)
 - Added WASM: laurel-mouse_admin (Laurel-mouse evergreen rodents), myrtle-mouse_admin (Myrtle-mouse berry rodents), holly-mouse_admin (Holly-mouse spiny rodents)
 - Total modules: 4010 → 4013 (laurel-mouse, myrtle-mouse, holly-mouse)
