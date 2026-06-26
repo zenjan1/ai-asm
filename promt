@@ -1,36 +1,36 @@
-Phase 1116: Fennel-Mouse Chive-Mouse Oregano-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1117: Laurel-Mouse Myrtle-Mouse Holly-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/fennel-mouse_admin/src/main.c (Fennel-mouse herb rodents)
-   - Fennel-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, bulb_wt, tail_cm, fnlmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bulb_wt,tail_cm,fnlmx_idx,age_yr
+1. modules/laurel-mouse_admin/src/main.c (Laurel-mouse evergreen rodents)
+   - Laurel-mouse evergreen rodents management
+   - Features: body_len_cm, body_wt_g, wax_amt, tail_cm, lrlmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wax_amt,tail_cm,lrlmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: fnlmx
+   - Prefix: lrlmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/chive-mouse_admin/src/main.c (Chive-mouse herb rodents)
-   - Chive-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, stem_hgt, tail_cm, chvmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,stem_hgt,tail_cm,chvmx_idx,age_yr
+2. modules/myrtle-mouse_admin/src/main.c (Myrtle-mouse berry rodents)
+   - Myrtle-mouse berry rodents management
+   - Features: body_len_cm, body_wt_g, berry_wt, tail_cm, myrmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,berry_wt,tail_cm,myrmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: chvmx
+   - Prefix: myrmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/oregano-mouse_admin/src/main.c (Oregano-mouse aromatic rodents)
-   - Oregano-mouse aromatic rodents management
-   - Features: body_len_cm, body_wt_g, oil_pct, tail_cm, orgmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,oil_pct,tail_cm,orgmx_idx,age_yr
+3. modules/holly-mouse_admin/src/main.c (Holly-mouse spiny rodents)
+   - Holly-mouse spiny rodents management
+   - Features: body_len_cm, body_wt_g, spine_len, tail_cm, hlmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,spine_len,tail_cm,hlmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: orgmx
+   - Prefix: hlmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1478.0 → v1479.0 (all occurrences)
-  - total modules 4007 → 4010 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1116 - v1479.0 (4010 modules, 124 kernel)" entry
+  - version v1479.0 → v1480.0 (all occurrences)
+  - total modules 4010 → 4013 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1117 - v1480.0 (4013 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/fennel-mouse_admin/fennel-mouse_admin.wasm modules/chive-mouse_admin/chive-mouse_admin.wasm modules/oregano-mouse_admin/oregano-mouse_admin.wasm modules/fennel-mouse_admin/src/main.c modules/chive-mouse_admin/src/main.c modules/oregano-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/laurel-mouse_admin/laurel-mouse_admin.wasm modules/myrtle-mouse_admin/myrtle-mouse_admin.wasm modules/holly-mouse_admin/holly-mouse_admin.wasm modules/laurel-mouse_admin/src/main.c modules/myrtle-mouse_admin/src/main.c modules/holly-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

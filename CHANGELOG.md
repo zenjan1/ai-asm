@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1116 - v1479.0 (4010 modules, 124 kernel)
+- Added WASM: fennel-mouse_admin (Fennel-mouse herb rodents), chive-mouse_admin (Chive-mouse herb rodents), oregano-mouse_admin (Oregano-mouse aromatic rodents)
+- Total modules: 4007 → 4010 (fennel-mouse, chive-mouse, oregano-mouse)
+
 ## Phase 1115 - v1478.0 (4007 modules, 124 kernel)
 - Added WASM: rosemary-mouse_admin (Rosemary-mouse aromatic rodents), thyme-mouse_admin (Thyme-mouse aromatic rodents), dill-mouse_admin (Dill-mouse herb rodents)
 - Total modules: 4004 → 4007 (rosemary-mouse, thyme-mouse, dill-mouse)
