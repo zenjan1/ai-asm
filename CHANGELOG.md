@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1190 - v1553.0 (4232 modules, 124 kernel)
+- Added WASM: lumachine-mouse_admin (Lumachine-mouse vegetable rodents), tubettini-mouse_admin (Tubettini-mouse vegetable rodents), ditali-mouse_admin (Ditali-mouse vegetable rodents)
+- Total modules: 4229 → 4232 (lumachine-mouse, tubettini-mouse, ditali-mouse)
+
 ## Phase 1189 - v1552.0 (4229 modules, 124 kernel)
 - Added WASM: linguettine-mouse_admin (Linguettine-mouse vegetable rodents), galli-mouse_admin (Galli-mouse vegetable rodents), occhialini-mouse_admin (Occhialini-mouse vegetable rodents)
 - Total modules: 4226 → 4229 (linguettine-mouse, galli-mouse, occhialini-mouse)

@@ -1,39 +1,39 @@
-Phase 1190: Ravioli-Mouse Capunti-Mouse Cicatelli-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1191: Gnocchetti-Mouse Fusi-Mouse Mafaldine-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/ravioli-mouse_admin/src/main.c (Ravioli-mouse vegetable rodents)
-   - Ravioli-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, fill_wt, tail_cm, rvx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fill_wt,tail_cm,rvx_idx,age_yr
+1. modules/gnocchetti-mouse_admin/src/main.c (Gnocchetti-mouse vegetable rodents)
+   - Gnocchetti-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, ridge_ct, tail_cm, gcctx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,ridge_ct,tail_cm,gcctx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rvx
-   - Note: use fw as param name for fill_wt
+   - Prefix: gcctx
+   - Note: use rc as param name for ridge_ct
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/capunti-mouse_admin/src/main.c (Capunti-mouse vegetable rodents)
-   - Capunti-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, cup_dp, tail_cm, cptx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,cup_dp,tail_cm,cptx_idx,age_yr
+2. modules/fusi-mouse_admin/src/main.c (Fusi-mouse vegetable rodents)
+   - Fusi-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, spin_ln, tail_cm, fusx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,spin_ln,tail_cm,fusx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: cptx
-   - Note: use cd as param name for cup_dp
+   - Prefix: fusx
+   - Note: use sl as param name for spin_ln
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cicatelli-mouse_admin/src/main.c (Cicatelli-mouse vegetable rodents)
-   - Cicatelli-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, notch_ct, tail_cm, cctx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,notch_ct,tail_cm,cctx_idx,age_yr
+3. modules/mafdaline-mouse_admin/src/main.c (Mafaldine-mouse vegetable rodents)
+   - Mafaldine-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, wave_h, tail_cm, mfdlx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,wave_h,tail_cm,mfdlx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: cctx
-   - Note: use nc as param name for notch_ct
+   - Prefix: mfdlx
+   - Note: use wh as param name for wave_h
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1552.0 → v1553.0 (all occurrences)
-  - total modules 4229 → 4232 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1190 - v1553.0 (4232 modules, 124 kernel)" entry
+  - version v1553.0 → v1554.0 (all occurrences)
+  - total modules 4232 → 4235 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1191 - v1554.0 (4235 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/ravioli-mouse_admin/ravioli-mouse_admin.wasm modules/capunti-mouse_admin/capunti-mouse_admin.wasm modules/cicatelli-mouse_admin/cicatelli-mouse_admin.wasm modules/ravioli-mouse_admin/src/main.c modules/capunti-mouse_admin/src/main.c modules/cicatelli-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/gnocchetti-mouse_admin/gnocchetti-mouse_admin.wasm modules/fusi-mouse_admin/fusi-mouse_admin.wasm modules/mafdaline-mouse_admin/mafdaline-mouse_admin.wasm modules/gnocchetti-mouse_admin/src/main.c modules/fusi-mouse_admin/src/main.c modules/mafdaline-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
