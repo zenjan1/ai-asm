@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1192 - v1555.0 (4238 modules, 124 kernel)
+- Added WASM: spaccatelli-mouse_admin (Spaccatelli-mouse vegetable rodents), ferretti-mouse_admin (Ferretti-mouse vegetable rodents), reginette-mouse_admin (Reginette-mouse vegetable rodents)
+- Total modules: 4235 → 4238 (spaccatelli-mouse, ferretti-mouse, reginette-mouse)
+
 ## Phase 1191 - v1554.0 (4235 modules, 124 kernel)
 - Added WASM: gnocchetti-mouse_admin (Gnocchetti-mouse vegetable rodents), fusi-mouse_admin (Fusi-mouse vegetable rodents), mafdaline-mouse_admin (Mafdaline-mouse vegetable rodents)
 - Total modules: 4232 → 4235 (gnocchetti-mouse, fusi-mouse, mafdaline-mouse)
