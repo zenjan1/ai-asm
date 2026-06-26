@@ -1,39 +1,39 @@
-Phase 1179: Campanelle-Mouse Cavatappi-Mouse Orecchiette-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1180: Ditalini-Mouse Lumache-Mouse Tubetti-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/campanelle-mouse_admin/src/main.c (Campanelle-mouse vegetable rodents)
-   - Campanelle-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, bell_dia, tail_cm, cpmmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bell_dia,tail_cm,cpmmx_idx,age_yr
+1. modules/ditalini-mouse_admin/src/main.c (Ditalini-mouse vegetable rodents)
+   - Ditalini-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, thimble_dia, tail_cm, ditmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,thimble_dia,tail_cm,ditmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: cpmmx
-   - Note: use bd as param name for bell_dia
+   - Prefix: ditmx
+   - Note: use thd as param name for thimble_dia
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/cavatappi-mouse_admin/src/main.c (Cavatappi-mouse vegetable rodents)
-   - Cavatappi-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, corkscrew_ct, tail_cm, cvtmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,corkscrew_ct,tail_cm,cvtmx_idx,age_yr
+2. modules/lumache-mouse_admin/src/main.c (Lumache-mouse vegetable rodents)
+   - Lumache-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, shell_wt, tail_cm, lumx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,shell_wt,tail_cm,lumx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: cvtmx
-   - Note: use cc as param name for corkscrew_ct
+   - Prefix: lumx
+   - Note: use shw as param name for shell_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/orecchiette-mouse_admin/src/main.c (Orecchiette-mouse vegetable rodents)
-   - Orecchiette-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, ear_wt, tail_cm, orcmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_wt,tail_cm,orcmx_idx,age_yr
+3. modules/tubetti-mouse_admin/src/main.c (Tubetti-mouse vegetable rodents)
+   - Tubetti-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, pipe_ln, tail_cm, tubmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,pipe_ln,tail_cm,tubmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: orcmx
-   - Note: use ew as param name for ear_wt
+   - Prefix: tubmx
+   - Note: use pl as param name for pipe_ln
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1541.0 → v1542.0 (all occurrences)
-  - total modules 4196 → 4199 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1179 - v1542.0 (4199 modules, 124 kernel)" entry
+  - version v1542.0 → v1543.0 (all occurrences)
+  - total modules 4199 → 4202 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1180 - v1543.0 (4202 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/campanelle-mouse_admin/campanelle-mouse_admin.wasm modules/cavatappi-mouse_admin/cavatappi-mouse_admin.wasm modules/orecchiette-mouse_admin/orecchiette-mouse_admin.wasm modules/campanelle-mouse_admin/src/main.c modules/cavatappi-mouse_admin/src/main.c modules/orecchiette-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/ditalini-mouse_admin/ditalini-mouse_admin.wasm modules/lumache-mouse_admin/lumache-mouse_admin.wasm modules/tubetti-mouse_admin/tubetti-mouse_admin.wasm modules/ditalini-mouse_admin/src/main.c modules/lumache-mouse_admin/src/main.c modules/tubetti-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
