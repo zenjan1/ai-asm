@@ -1,36 +1,36 @@
-Phase 1105: Coral-Mouse Steppe-Mouse Prairie-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1106: Alpine-Mouse Arctic-Mouse Savanna-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/coral-mouse_admin/src/main.c (Coral-mouse reef-dwelling rodents)
-   - Coral-mouse reef-dwelling rodents management
-   - Features: body_len_cm, body_wt_g, buoy_frc, tail_cm, crm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,buoy_frc,tail_cm,crm_idx,age_yr
+1. modules/alpine-mouse_admin/src/main.c (Alpine-mouse high-altitude rodents)
+   - Alpine-mouse high-altitude rodents management
+   - Features: body_len_cm, body_wt_g, alt_tol, tail_cm, apm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,alt_tol,tail_cm,apm_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: crmx
+   - Prefix: apmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/steppe-mouse_admin/src/main.c (Steppe-mouse grassland rodents)
-   - Steppe-mouse grassland rodents management
-   - Features: body_len_cm, body_wt_g, sprint_sp, tail_cm, spm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,sprint_sp,tail_cm,spm_idx,age_yr
+2. modules/arctic-mouse_admin/src/main.c (Arctic-mouse polar rodents)
+   - Arctic-mouse polar rodents management
+   - Features: body_len_cm, body_wt_g, frost_res, tail_cm, arm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,frost_res,tail_cm,arm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: spmx
+   - Prefix: armx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/prairie-mouse_admin/src/main.c (Prairie-mouse meadow rodents)
-   - Prairie-mouse meadow rodents management
-   - Features: body_len_cm, body_wt_g, burrow_dp, tail_cm, prm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,burrow_dp,tail_cm,prm_idx,age_yr
+3. modules/savanna-mouse_admin/src/main.c (Savanna-mouse grassland rodents)
+   - Savanna-mouse grassland rodents management
+   - Features: body_len_cm, body_wt_g, run_end, tail_cm, svm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,run_end,tail_cm,svm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: prmx
+   - Prefix: svmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1467.0 → v1468.0 (all occurrences)
-  - total modules 3974 → 3977 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1105 - v1468.0 (3977 modules, 124 kernel)" entry
+  - version v1468.0 → v1469.0 (all occurrences)
+  - total modules 3977 → 3980 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1106 - v1469.0 (3980 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/coral-mouse_admin/coral-mouse_admin.wasm modules/steppe-mouse_admin/steppe-mouse_admin.wasm modules/prairie-mouse_admin/prairie-mouse_admin.wasm modules/coral-mouse_admin/src/main.c modules/steppe-mouse_admin/src/main.c modules/prairie-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/alpine-mouse_admin/alpine-mouse_admin.wasm modules/arctic-mouse_admin/arctic-mouse_admin.wasm modules/savanna-mouse_admin/savanna-mouse_admin.wasm modules/alpine-mouse_admin/src/main.c modules/arctic-mouse_admin/src/main.c modules/savanna-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
