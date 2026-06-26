@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1164 - v1527.0 (4154 modules, 124 kernel)
+- Added WASM: dasheen-mouse_admin (Dasheen-mouse vegetable rodents), tannia-mouse_admin (Tannia-mouse vegetable rodents), xanthosoma-mouse_admin (Xanthosoma-mouse vegetable rodents)
+- Total modules: 4151 → 4154 (dasheen-mouse, tannia-mouse, xanthosoma-mouse)
+
 ## Phase 1163 - v1526.0 (4151 modules, 124 kernel)
 - Added WASM: breadfruit-mouse_admin (Breadfruit-mouse vegetable rodents), chayote-mouse_admin (Chayote-mouse vegetable rodents), eddo-mouse_admin (Eddo-mouse vegetable rodents)
 - Total modules: 4148 → 4151 (breadfruit-mouse, chayote-mouse, eddo-mouse)
