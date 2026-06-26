@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1187 - v1550.0 (4223 modules, 124 kernel)
+- Added WASM: marubini-mouse_admin (Marubini-mouse vegetable rodents), maltagliati-mouse_admin (Maltagliati-mouse vegetable rodents), sedani-mouse_admin (Sedani-mouse vegetable rodents)
+- Total modules: 4220 → 4223 (marubini-mouse, maltagliati-mouse, sedani-mouse)
+
 ## Phase 1186 - v1549.0 (4220 modules, 124 kernel)
 - Added WASM: acini-mouse_admin (Acini-mouse vegetable rodents), cavatelli-mouse_admin (Cavatelli-mouse vegetable rodents), conchigliette-mouse_admin (Conchigliette-mouse vegetable rodents)
 - Total modules: 4217 → 4220 (acini-mouse, cavatelli-mouse, conchigliette-mouse)
