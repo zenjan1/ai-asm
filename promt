@@ -1,39 +1,39 @@
-Phase 1170: Farro-Mouse Freekeh-Mouse Bulgur-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1171: Emmer-Mouse Einkorn-Mouse Durum-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/farro-mouse_admin/src/main.c (Farro-mouse vegetable rodents)
-   - Farro-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, hull_wt, tail_cm, frrmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hull_wt,tail_cm,frrmx_idx,age_yr
+1. modules/emmer-mouse_admin/src/main.c (Emmer-mouse vegetable rodents)
+   - Emmer-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, kernel_ln, tail_cm, emrmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,kernel_ln,tail_cm,emrmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: frrmx
-   - Note: use hw as param name for hull_wt
+   - Prefix: emrmx
+   - Note: use kl as param name for kernel_ln
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/freekeh-mouse_admin/src/main.c (Freekeh-mouse vegetable rodents)
-   - Freekeh-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, char_lv, tail_cm, frkmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,char_lv,tail_cm,frkmx_idx,age_yr
+2. modules/einkorn-mouse_admin/src/main.c (Einkorn-mouse vegetable rodents)
+   - Einkorn-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, berry_sz, tail_cm, eikmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,berry_sz,tail_cm,eikmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: frkmx
-   - Note: use cl as param name for char_lv
+   - Prefix: eikmx
+   - Note: use bs as param name for berry_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/bulgur-mouse_admin/src/main.c (Bulgur-mouse vegetable rodents)
-   - Bulgur-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, grind_ct, tail_cm, blgmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,grind_ct,tail_cm,blgmx_idx,age_yr
+3. modules/durum-mouse_admin/src/main.c (Durum-mouse vegetable rodents)
+   - Durum-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, protein_wt, tail_cm, durmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,protein_wt,tail_cm,durmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: blgmx
-   - Note: use gc as param name for grind_ct
+   - Prefix: durmx
+   - Note: use pw as param name for protein_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1532.0 → v1533.0 (all occurrences)
-  - total modules 4169 → 4172 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1170 - v1533.0 (4172 modules, 124 kernel)" entry
+  - version v1533.0 → v1534.0 (all occurrences)
+  - total modules 4172 → 4175 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1171 - v1534.0 (4175 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/farro-mouse_admin/farro-mouse_admin.wasm modules/freekeh-mouse_admin/freekeh-mouse_admin.wasm modules/bulgur-mouse_admin/bulgur-mouse_admin.wasm modules/farro-mouse_admin/src/main.c modules/freekeh-mouse_admin/src/main.c modules/bulgur-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/emmer-mouse_admin/emmer-mouse_admin.wasm modules/einkorn-mouse_admin/einkorn-mouse_admin.wasm modules/durum-mouse_admin/durum-mouse_admin.wasm modules/emmer-mouse_admin/src/main.c modules/einkorn-mouse_admin/src/main.c modules/durum-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
