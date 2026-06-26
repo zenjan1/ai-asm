@@ -1,36 +1,36 @@
-Phase 1127: Buckwheat-Mouse Amaranth-Mouse Chia-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1128: Flax-Mouse Hemp-Mouse Sesame-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/buckwheat-mouse_admin/src/main.c (Buckwheat-mouse grain rodents)
-   - Buckwheat-mouse grain rodents management
-   - Features: body_len_cm, body_wt_g, achene_sz, tail_cm, bkwmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,achene_sz,tail_cm,bkwmx_idx,age_yr
+1. modules/flax-mouse_admin/src/main.c (Flax-mouse seed rodents)
+   - Flax-mouse seed rodents management
+   - Features: body_len_cm, body_wt_g, fiber_lg, tail_cm, flxmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fiber_lg,tail_cm,flxmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: bkwmx
+   - Prefix: flxmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/amaranth-mouse_admin/src/main.c (Amaranth-mouse grain rodents)
-   - Amaranth-mouse grain rodents management
-   - Features: body_len_cm, body_wt_g, panicle_lg, tail_cm, amrmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,panicle_lg,tail_cm,amrmx_idx,age_yr
+2. modules/hemp-mouse_admin/src/main.c (Hemp-mouse seed rodents)
+   - Hemp-mouse seed rodents management
+   - Features: body_len_cm, body_wt_g, cbd_pct, tail_cm, hmpmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,cbd_pct,tail_cm,hmpmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: amrmx
+   - Prefix: hmpmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/chia-mouse_admin/src/main.c (Chia-mouse grain rodents)
-   - Chia-mouse grain rodents management
-   - Features: body_len_cm, body_wt_g, oil_pct, tail_cm, chmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,oil_pct,tail_cm,chmx_idx,age_yr
+3. modules/sesame-mouse_admin/src/main.c (Sesame-mouse seed rodents)
+   - Sesame-mouse seed rodents management
+   - Features: body_len_cm, body_wt_g, oil_pct, tail_cm, sesmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,oil_pct,tail_cm,sesmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: chmx
+   - Prefix: sesmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1489.0 → v1490.0 (all occurrences)
-  - total modules 4040 → 4043 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1127 - v1490.0 (4043 modules, 124 kernel)" entry
+  - version v1490.0 → v1491.0 (all occurrences)
+  - total modules 4043 → 4046 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1128 - v1491.0 (4046 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/buckwheat-mouse_admin/buckwheat-mouse_admin.wasm modules/amaranth-mouse_admin/amaranth-mouse_admin.wasm modules/chia-mouse_admin/chia-mouse_admin.wasm modules/buckwheat-mouse_admin/src/main.c modules/amaranth-mouse_admin/src/main.c modules/chia-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/flax-mouse_admin/flax-mouse_admin.wasm modules/hemp-mouse_admin/hemp-mouse_admin.wasm modules/sesame-mouse_admin/sesame-mouse_admin.wasm modules/flax-mouse_admin/src/main.c modules/hemp-mouse_admin/src/main.c modules/sesame-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
