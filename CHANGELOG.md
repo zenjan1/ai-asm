@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1162 - v1525.0 (4148 modules, 124 kernel)
+- Added WASM: malanga-mouse_admin (Malanga-mouse vegetable rodents), cassava-mouse_admin (Cassava-mouse vegetable rodents), plantain-mouse_admin (Plantain-mouse vegetable rodents)
+- Total modules: 4145 → 4148 (malanga-mouse, cassava-mouse, plantain-mouse)
+
 ## Phase 1161 - v1524.0 (4145 modules, 124 kernel)
 - Added WASM: bamboo-shoots-mouse_admin (Bamboo-shoots-mouse vegetable rodents), lotus-root-mouse_admin (Lotus-root-mouse vegetable rodents), water-chestnut-mouse_admin (Water-chestnut-mouse vegetable rodents)
 - Total modules: 4142 → 4145 (bamboo-shoots-mouse, lotus-root-mouse, water-chestnut-mouse)
