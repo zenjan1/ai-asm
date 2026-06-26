@@ -1,39 +1,39 @@
-Phase 1163: Breadfruit-Mouse Chayote-Mouse Eddo-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1164: Dasheen-Mouse Tannia-Mouse Xanthosoma-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/breadfruit-mouse_admin/src/main.c (Breadfruit-mouse vegetable rodents)
-   - Breadfruit-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, seed_ct, tail_cm, brfmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_ct,tail_cm,brfmx_idx,age_yr
+1. modules/dasheen-mouse_admin/src/main.c (Dasheen-mouse vegetable rodents)
+   - Dasheen-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, leaf_wt, tail_cm, dsmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_wt,tail_cm,dsmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: brfmx
-   - Note: use sc as param name for seed_ct
+   - Prefix: dsmx
+   - Note: use lw as param name for leaf_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/chayote-mouse_admin/src/main.c (Chayote-mouse vegetable rodents)
-   - Chayote-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, fruit_wt, tail_cm, chymx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fruit_wt,tail_cm,chymx_idx,age_yr
+2. modules/tannia-mouse_admin/src/main.c (Tannia-mouse vegetable rodents)
+   - Tannia-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, corm_sz, tail_cm, tnnmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,corm_sz,tail_cm,tnnmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: chymx
-   - Note: use fw as param name for fruit_wt
+   - Prefix: tnnmx
+   - Note: use cs as param name for corm_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/eddo-mouse_admin/src/main.c (Eddo-mouse vegetable rodents)
-   - Eddo-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, tuber_wt, tail_cm, eddmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tuber_wt,tail_cm,eddmx_idx,age_yr
+3. modules/xanthosoma-mouse_admin/src/main.c (Xanthosoma-mouse vegetable rodents)
+   - Xanthosoma-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, root_wt, tail_cm, xthmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,root_wt,tail_cm,xthmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: eddmx
-   - Note: use tw as param name for tuber_wt
+   - Prefix: xthmx
+   - Note: use rw as param name for root_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1525.0 → v1526.0 (all occurrences)
-  - total modules 4148 → 4151 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1163 - v1526.0 (4151 modules, 124 kernel)" entry
+  - version v1526.0 → v1527.0 (all occurrences)
+  - total modules 4151 → 4154 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1164 - v1527.0 (4154 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/breadfruit-mouse_admin/breadfruit-mouse_admin.wasm modules/chayote-mouse_admin/chayote-mouse_admin.wasm modules/eddo-mouse_admin/eddo-mouse_admin.wasm modules/breadfruit-mouse_admin/src/main.c modules/chayote-mouse_admin/src/main.c modules/eddo-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/dasheen-mouse_admin/dasheen-mouse_admin.wasm modules/tannia-mouse_admin/tannia-mouse_admin.wasm modules/xanthosoma-mouse_admin/xanthosoma-mouse_admin.wasm modules/dasheen-mouse_admin/src/main.c modules/tannia-mouse_admin/src/main.c modules/xanthosoma-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

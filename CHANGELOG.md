@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1163 - v1526.0 (4151 modules, 124 kernel)
+- Added WASM: breadfruit-mouse_admin (Breadfruit-mouse vegetable rodents), chayote-mouse_admin (Chayote-mouse vegetable rodents), eddo-mouse_admin (Eddo-mouse vegetable rodents)
+- Total modules: 4148 → 4151 (breadfruit-mouse, chayote-mouse, eddo-mouse)
+
 ## Phase 1162 - v1525.0 (4148 modules, 124 kernel)
 - Added WASM: malanga-mouse_admin (Malanga-mouse vegetable rodents), cassava-mouse_admin (Cassava-mouse vegetable rodents), plantain-mouse_admin (Plantain-mouse vegetable rodents)
 - Total modules: 4145 → 4148 (malanga-mouse, cassava-mouse, plantain-mouse)
