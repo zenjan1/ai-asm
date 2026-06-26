@@ -1,37 +1,36 @@
-Phase 1154: Asparagus-Mouse Artichoke-Mouse Endive-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1155: Arugula-Mouse Okra-Mouse Yam-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/asparagus-mouse_admin/src/main.c (Asparagus-mouse vegetable rodents)
-   - Asparagus-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, spear_ht, tail_cm, aspmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,spear_ht,tail_cm,aspmx_idx,age_yr
+1. modules/arugula-mouse_admin/src/main.c (Arugula-mouse vegetable rodents)
+   - Arugula-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, lobe_ln, tail_cm, arumx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,lobe_ln,tail_cm,arumx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: aspmx
+   - Prefix: arumx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/artichoke-mouse_admin/src/main.c (Artichoke-mouse vegetable rodents)
-   - Artichoke-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, head_wt, tail_cm, artmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,head_wt,tail_cm,artmx_idx,age_yr
+2. modules/okra-mouse_admin/src/main.c (Okra-mouse vegetable rodents)
+   - Okra-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, pod_ct, tail_cm, okrmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,pod_ct,tail_cm,okrmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: artmx
-   - Note: use hw as param name for head_wt
+   - Prefix: okrmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/endive-mouse_admin/src/main.c (Endive-mouse vegetable rodents)
-   - Endive-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, leaf_wd, tail_cm, endmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_wd,tail_cm,endmx_idx,age_yr
+3. modules/yam-mouse_admin/src/main.c (Yam-mouse vegetable rodents)
+   - Yam-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, tuber_ln, tail_cm, yammx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tuber_ln,tail_cm,yammx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: endmx
+   - Prefix: yammx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1516.0 → v1517.0 (all occurrences)
-  - total modules 4121 → 4124 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1154 - v1517.0 (4124 modules, 124 kernel)" entry
+  - version v1517.0 → v1518.0 (all occurrences)
+  - total modules 4124 → 4127 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1155 - v1518.0 (4127 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/asparagus-mouse_admin/asparagus-mouse_admin.wasm modules/artichoke-mouse_admin/artichoke-mouse_admin.wasm modules/endive-mouse_admin/endive-mouse_admin.wasm modules/asparagus-mouse_admin/src/main.c modules/artichoke-mouse_admin/src/main.c modules/endive-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/arugula-mouse_admin/arugula-mouse_admin.wasm modules/okra-mouse_admin/okra-mouse_admin.wasm modules/yam-mouse_admin/yam-mouse_admin.wasm modules/arugula-mouse_admin/src/main.c modules/okra-mouse_admin/src/main.c modules/yam-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
