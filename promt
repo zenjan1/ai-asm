@@ -1,39 +1,39 @@
-Phase 1201: Risseu-Mouse Mattaloa-Mouse Pretaia-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1202: Ghett-Mouse Mugnoli-Mouse Fregula-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/risseu-mouse_admin/src/main.c (Risseu-mouse vegetable rodents)
-   - Risseu-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, ridge_ct, tail_cm, rssxi_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ridge_ct,tail_cm,rssxi_idx,age_yr
+1. modules/ghett-mouse_admin/src/main.c (Ghett-mouse vegetable rodents)
+   - Ghett-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, net_lv, tail_cm, ghtxi_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,net_lv,tail_cm,ghtxi_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rssxi
-   - Note: use rc as param name for ridge_ct
+   - Prefix: ghtxi
+   - Note: use nl as param name for net_lv
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/mattaloa-mouse_admin/src/main.c (Mattaloa-mouse vegetable rodents)
-   - Mattaloa-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, mat_th, tail_cm, mtlxi_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,mat_th,tail_cm,mtlxi_idx,age_yr
+2. modules/mugnoli-mouse_admin/src/main.c (Mugnoli-mouse vegetable rodents)
+   - Mugnoli-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, pod_ct, tail_cm, mgx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,pod_ct,tail_cm,mgx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: mtlxi
-   - Note: use mt as param name for mat_th
+   - Prefix: mgx
+   - Note: use pc as param name for pod_ct
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/pretaia-mouse_admin/src/main.c (Pretaia-mouse vegetable rodents)
-   - Pretaia-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, stone_ct, tail_cm, prtx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,stone_ct,tail_cm,prtx_idx,age_yr
+3. modules/fregula-mouse_admin/src/main.c (Fregula-mouse vegetable rodents)
+   - Fregula-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, toast_lv, tail_cm, frgxi_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,toast_lv,tail_cm,frgxi_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: prtx
-   - Note: use sc as param name for stone_ct
+   - Prefix: frgxi
+   - Note: use tl as param name for toast_lv
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1563.0 → v1564.0 (all occurrences)
-  - total modules 4262 → 4265 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1201 - v1564.0 (4265 modules, 124 kernel)" entry
+  - version v1564.0 → v1565.0 (all occurrences)
+  - total modules 4265 → 4268 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1202 - v1565.0 (4268 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/risseu-mouse_admin/risseu-mouse_admin.wasm modules/mattaloa-mouse_admin/mattaloa-mouse_admin.wasm modules/pretaia-mouse_admin/pretaia-mouse_admin.wasm modules/risseu-mouse_admin/src/main.c modules/mattaloa-mouse_admin/src/main.c modules/pretaia-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/ghett-mouse_admin/ghett-mouse_admin.wasm modules/mugnoli-mouse_admin/mugnoli-mouse_admin.wasm modules/fregula-mouse_admin/fregula-mouse_admin.wasm modules/ghett-mouse_admin/src/main.c modules/mugnoli-mouse_admin/src/main.c modules/fregula-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

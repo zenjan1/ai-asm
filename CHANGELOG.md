@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1201 - v1564.0 (4265 modules, 124 kernel)
+- Added WASM: risseu-mouse_admin (Risseu-mouse vegetable rodents), mattaloa-mouse_admin (Mattaloa-mouse vegetable rodents), pretaia-mouse_admin (Pretaia-mouse vegetable rodents)
+- Total modules: 4262 → 4265 (risseu-mouse, mattaloa-mouse, pretaia-mouse)
+
 ## Phase 1200 - v1563.0 (4262 modules, 124 kernel)
 - Added WASM: tordelli-mouse_admin (Tordelli-mouse vegetable rodents), slatin-mouse_admin (Slatin-mouse vegetable rodents), branzitt-mouse_admin (Branzitt-mouse vegetable rodents)
 - Total modules: 4259 → 4262 (tordelli-mouse, slatin-mouse, branzitt-mouse)
