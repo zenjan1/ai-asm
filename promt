@@ -1,36 +1,36 @@
-Phase 1114: Mint-Mouse Ivy-Mouse Daisy-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1115: Rosemary-Mouse Thyme-Mouse Dill-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/mint-mouse_admin/src/main.c (Mint-mouse aromatic rodents)
-   - Mint-mouse aromatic rodents management
-   - Features: body_len_cm, body_wt_g, water_drp, tail_cm, mntmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,water_drp,tail_cm,mntmx_idx,age_yr
+1. modules/rosemary-mouse_admin/src/main.c (Rosemary-mouse aromatic rodents)
+   - Rosemary-mouse aromatic rodents management
+   - Features: body_len_cm, body_wt_g, resin_amt, tail_cm, rsymx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,resin_amt,tail_cm,rsymx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: mntmx
+   - Prefix: rsymx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/ivy-mouse_admin/src/main.c (Ivy-mouse climbing rodents)
-   - Ivy-mouse climbing rodents management
-   - Features: body_len_cm, body_wt_g, vine_len, tail_cm, ivymx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,vine_len,tail_cm,ivymx_idx,age_yr
+2. modules/thyme-mouse_admin/src/main.c (Thyme-mouse aromatic rodents)
+   - Thyme-mouse aromatic rodents management
+   - Features: body_len_cm, body_wt_g, leaf_oil, tail_cm, thymx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_oil,tail_cm,thymx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: ivymx
+   - Prefix: thymx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/daisy-mouse_admin/src/main.c (Daisy-mouse meadow rodents)
-   - Daisy-mouse meadow rodents management
-   - Features: body_len_cm, body_wt_g, ray_len, tail_cm, dsymx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ray_len,tail_cm,dsymx_idx,age_yr
+3. modules/dill-mouse_admin/src/main.c (Dill-mouse herb rodents)
+   - Dill-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, seed_wt, tail_cm, dlmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_wt,tail_cm,dlmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: dsymx
+   - Prefix: dlmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1476.0 → v1477.0 (all occurrences)
-  - total modules 4001 → 4004 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1114 - v1477.0 (4004 modules, 124 kernel)" entry
+  - version v1477.0 → v1478.0 (all occurrences)
+  - total modules 4004 → 4007 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1115 - v1478.0 (4007 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/mint-mouse_admin/mint-mouse_admin.wasm modules/ivy-mouse_admin/ivy-mouse_admin.wasm modules/daisy-mouse_admin/daisy-mouse_admin.wasm modules/mint-mouse_admin/src/main.c modules/ivy-mouse_admin/src/main.c modules/daisy-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/rosemary-mouse_admin/rosemary-mouse_admin.wasm modules/thyme-mouse_admin/thyme-mouse_admin.wasm modules/dill-mouse_admin/dill-mouse_admin.wasm modules/rosemary-mouse_admin/src/main.c modules/thyme-mouse_admin/src/main.c modules/dill-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
