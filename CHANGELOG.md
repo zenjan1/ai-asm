@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1115 - v1478.0 (4007 modules, 124 kernel)
+- Added WASM: rosemary-mouse_admin (Rosemary-mouse aromatic rodents), thyme-mouse_admin (Thyme-mouse aromatic rodents), dill-mouse_admin (Dill-mouse herb rodents)
+- Total modules: 4004 → 4007 (rosemary-mouse, thyme-mouse, dill-mouse)
+
 ## Phase 1114 - v1477.0 (4004 modules, 124 kernel)
 - Added WASM: mint-mouse_admin (Mint-mouse aromatic rodents), ivy-mouse_admin (Ivy-mouse climbing rodents), daisy-mouse_admin (Daisy-mouse meadow rodents)
 - Total modules: 4001 → 4004 (mint-mouse, ivy-mouse, daisy-mouse)
