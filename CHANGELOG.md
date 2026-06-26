@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1129 - v1492.0 (4049 modules, 124 kernel)
+- Added WASM: sunflower-mouse_admin (Sunflower-mouse seed rodents), pumpkin-mouse_admin (Pumpkin-mouse seed rodents), safflower-mouse_admin (Safflower-mouse seed rodents)
+- Total modules: 4046 → 4049 (sunflower-mouse, pumpkin-mouse, safflower-mouse)
+
 ## Phase 1128 - v1491.0 (4046 modules, 124 kernel)
 - Added WASM: flax-mouse_admin (Flax-mouse seed rodents), hemp-mouse_admin (Hemp-mouse seed rodents), sesame-mouse_admin (Sesame-mouse seed rodents)
 - Total modules: 4043 → 4046 (flax-mouse, hemp-mouse, sesame-mouse)

@@ -1,36 +1,36 @@
-Phase 1129: Sunflower-Mouse Pumpkin-Mouse Safflower-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1130: Cotton-Mouse Tobacco-Mouse Cocoa-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/sunflower-mouse_admin/src/main.c (Sunflower-mouse seed rodents)
-   - Sunflower-mouse seed rodents management
-   - Features: body_len_cm, body_wt_g, head_dia, tail_cm, snfmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,head_dia,tail_cm,snfmx_idx,age_yr
+1. modules/cotton-mouse_admin/src/main.c (Cotton-mouse fiber rodents)
+   - Cotton-mouse fiber rodents management
+   - Features: body_len_cm, body_wt_g, boll_wt, tail_cm, cttmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,boll_wt,tail_cm,cttmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: snfmx
+   - Prefix: cttmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/pumpkin-mouse_admin/src/main.c (Pumpkin-mouse seed rodents)
-   - Pumpkin-mouse seed rodents management
-   - Features: body_len_cm, body_wt_g, seed_lg, tail_cm, pmpmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_lg,tail_cm,pmpmx_idx,age_yr
+2. modules/tobacco-mouse_admin/src/main.c (Tobacco-mouse leaf rodents)
+   - Tobacco-mouse leaf rodents management
+   - Features: body_len_cm, body_wt_g, leaf_lg, tail_cm, tbcmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_lg,tail_cm,tbcmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pmpmx
+   - Prefix: tbcmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/safflower-mouse_admin/src/main.c (Safflower-mouse seed rodents)
-   - Safflower-mouse seed rodents management
-   - Features: body_len_cm, body_wt_g, petal_ct, tail_cm, safrmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,petal_ct,tail_cm,safrmx_idx,age_yr
+3. modules/cocoa-mouse_admin/src/main.c (Cocoa-mouse bean rodents)
+   - Cocoa-mouse bean rodents management
+   - Features: body_len_cm, body_wt_g, bean_wt, tail_cm, ccemx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bean_wt,tail_cm,ccemx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: safrmx
+   - Prefix: ccemx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1491.0 → v1492.0 (all occurrences)
-  - total modules 4046 → 4049 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1129 - v1492.0 (4049 modules, 124 kernel)" entry
+  - version v1492.0 → v1493.0 (all occurrences)
+  - total modules 4049 → 4052 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1130 - v1493.0 (4052 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/sunflower-mouse_admin/sunflower-mouse_admin.wasm modules/pumpkin-mouse_admin/pumpkin-mouse_admin.wasm modules/safflower-mouse_admin/safflower-mouse_admin.wasm modules/sunflower-mouse_admin/src/main.c modules/pumpkin-mouse_admin/src/main.c modules/safflower-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cotton-mouse_admin/cotton-mouse_admin.wasm modules/tobacco-mouse_admin/tobacco-mouse_admin.wasm modules/cocoa-mouse_admin/cocoa-mouse_admin.wasm modules/cotton-mouse_admin/src/main.c modules/tobacco-mouse_admin/src/main.c modules/cocoa-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
