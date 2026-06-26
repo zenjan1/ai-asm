@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1148 - v1511.0 (4106 modules, 124 kernel)
+- Added WASM: spinach-mouse_admin (Spinach-mouse vegetable rodents), kale-mouse_admin (Kale-mouse vegetable rodents), lettuce-mouse_admin (Lettuce-mouse vegetable rodents)
+- Total modules: 4103 → 4106 (spinach-mouse, kale-mouse, lettuce-mouse)
+
 ## Phase 1147 - v1510.0 (4103 modules, 124 kernel)
 - Added WASM: garlic-mouse_admin (Garlic-mouse vegetable rodents), leek-mouse_admin (Leek-mouse vegetable rodents), celery-mouse_admin (Celery-mouse vegetable rodents)
 - Total modules: 4100 → 4103 (garlic-mouse, leek-mouse, celery-mouse)

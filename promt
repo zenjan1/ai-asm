@@ -1,37 +1,37 @@
-Phase 1148: Spinach-Mouse Kale-Mouse Lettuce-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1149: Cabbage-Mouse Broccoli-Mouse Cauliflower-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/spinach-mouse_admin/src/main.c (Spinach-mouse vegetable rodents)
-   - Spinach-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, leaf_ct, tail_cm, spinmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_ct,tail_cm,spinmx_idx,age_yr
+1. modules/cabbage-mouse_admin/src/main.c (Cabbage-mouse vegetable rodents)
+   - Cabbage-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, crown_ht, tail_cm, cabmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,crown_ht,tail_cm,cabmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: spinmx
+   - Prefix: cabmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/kale-mouse_admin/src/main.c (Kale-mouse vegetable rodents)
-   - Kale-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, curl_ht, tail_cm, kalmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,curl_ht,tail_cm,kalmx_idx,age_yr
+2. modules/broccoli-mouse_admin/src/main.c (Broccoli-mouse vegetable rodents)
+   - Broccoli-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, bead_ct, tail_cm, brsmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bead_ct,tail_cm,brsmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: kalmx
+   - Prefix: brsmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/lettuce-mouse_admin/src/main.c (Lettuce-mouse vegetable rodents)
-   - Lettuce-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, head_dia, tail_cm, letmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,head_dia,tail_cm,letmx_idx,age_yr
+3. modules/cauliflower-mouse_admin/src/main.c (Cauliflower-mouse vegetable rodents)
+   - Cauliflower-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, curd_wt, tail_cm, caimx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,curd_wt,tail_cm,caimx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: letmx
-   - Note: use hd as param name for head_dia
+   - Prefix: caimx
+   - Note: use cw as param name for curd_wt to avoid conflict
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1510.0 → v1511.0 (all occurrences)
-  - total modules 4103 → 4106 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1148 - v1511.0 (4106 modules, 124 kernel)" entry
+  - version v1511.0 → v1512.0 (all occurrences)
+  - total modules 4106 → 4109 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1149 - v1512.0 (4109 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/spinach-mouse_admin/spinach-mouse_admin.wasm modules/kale-mouse_admin/kale-mouse_admin.wasm modules/lettuce-mouse_admin/lettuce-mouse_admin.wasm modules/spinach-mouse_admin/src/main.c modules/kale-mouse_admin/src/main.c modules/lettuce-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cabbage-mouse_admin/cabbage-mouse_admin.wasm modules/broccoli-mouse_admin/broccoli-mouse_admin.wasm modules/cauliflower-mouse_admin/cauliflower-mouse_admin.wasm modules/cabbage-mouse_admin/src/main.c modules/broccoli-mouse_admin/src/main.c modules/cauliflower-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
