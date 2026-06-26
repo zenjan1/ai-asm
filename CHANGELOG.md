@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1109 - v1472.0 (3989 modules, 124 kernel)
+- Added WASM: willow-mouse_admin (Willow-mouse riparian rodents), maple-mouse_admin (Maple-mouse woodland rodents), fern-mouse_admin (Fern-mouse understory rodents)
+- Total modules: 3986 → 3989 (willow-mouse, maple-mouse, fern-mouse)
+
 ## Phase 1108 - v1471.0 (3986 modules, 124 kernel)
 - Added WASM: oak-mouse_admin (Oak-mouse woodland rodents), pine-mouse_admin (Pine-mouse coniferous rodents), birch-mouse_admin (Birch-mouse boreal rodents)
 - Total modules: 3983 → 3986 (oak-mouse, pine-mouse, birch-mouse)
