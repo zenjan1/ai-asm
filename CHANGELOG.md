@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1167 - v1530.0 (4163 modules, 124 kernel)
+- Added WASM: oat-mouse_admin (Oat-mouse vegetable rodents), barley-mouse_admin (Barley-mouse vegetable rodents), rye-mouse_admin (Rye-mouse vegetable rodents)
+- Total modules: 4160 → 4163 (oat-mouse, barley-mouse, rye-mouse)
+
 ## Phase 1166 - v1529.0 (4160 modules, 124 kernel)
 - Added WASM: amaranth-mouse_admin (Amaranth-mouse vegetable rodents), buckwheat-mouse_admin (Buckwheat-mouse vegetable rodents), spelt-mouse_admin (Spelt-mouse vegetable rodents)
 - Total modules: 4157 → 4160 (amaranth-mouse, buckwheat-mouse, spelt-mouse)
