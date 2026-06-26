@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1173 - v1536.0 (4181 modules, 124 kernel)
+- Added WASM: orzo-mouse_admin (Orzo-mouse vegetable rodents), soba-mouse_admin (Soba-mouse vegetable rodents), udon-mouse_admin (Udon-mouse vegetable rodents)
+- Total modules: 4178 → 4181 (orzo-mouse, soba-mouse, udon-mouse)
+
 ## Phase 1172 - v1535.0 (4178 modules, 124 kernel)
 - Added WASM: semolina-mouse_admin (Semolina-mouse vegetable rodents), farina-mouse_admin (Farina-mouse vegetable rodents), polenta-mouse_admin (Polenta-mouse vegetable rodents)
 - Total modules: 4175 → 4178 (semolina-mouse, farina-mouse, polenta-mouse)
