@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1126 - v1489.0 (4040 modules, 124 kernel)
+- Added WASM: rice-mouse_admin (Rice-mouse grain rodents), sorghum-mouse_admin (Sorghum-mouse grain rodents), quinoa-mouse_admin (Quinoa-mouse grain rodents)
+- Total modules: 4037 → 4040 (rice-mouse, sorghum-mouse, quinoa-mouse)
+
 ## Phase 1125 - v1488.0 (4037 modules, 124 kernel)
 - Added WASM: rye-mouse_admin (Rye-mouse grain rodents), corn-mouse_admin (Corn-mouse grain rodents), millet-mouse_admin (Millet-mouse grain rodents)
 - Total modules: 4034 → 4037 (rye-mouse, corn-mouse, millet-mouse)
