@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1166 - v1529.0 (4160 modules, 124 kernel)
+- Added WASM: amaranth-mouse_admin (Amaranth-mouse vegetable rodents), buckwheat-mouse_admin (Buckwheat-mouse vegetable rodents), spelt-mouse_admin (Spelt-mouse vegetable rodents)
+- Total modules: 4157 → 4160 (amaranth-mouse, buckwheat-mouse, spelt-mouse)
+
 ## Phase 1165 - v1528.0 (4157 modules, 124 kernel)
 - Added WASM: sorghum-mouse_admin (Sorghum-mouse vegetable rodents), millet-mouse_admin (Millet-mouse vegetable rodents), quinoa-mouse_admin (Quinoa-mouse vegetable rodents)
 - Total modules: 4154 → 4157 (sorghum-mouse, millet-mouse, quinoa-mouse)
