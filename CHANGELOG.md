@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1136 - v1499.0 (4070 modules, 124 kernel)
+- Added WASM: basil-mouse_admin (Basil-mouse herb rodents), mint-mouse_admin (Mint-mouse herb rodents), oregano-mouse_admin (Oregano-mouse herb rodents)
+- Total modules: 4067 → 4070 (basil-mouse, mint-mouse, oregano-mouse)
+
 ## Phase 1135 - v1498.0 (4067 modules, 124 kernel)
 - Added WASM: fennel-mouse_admin (Fennel-mouse herb rodents), dill-mouse_admin (Dill-mouse herb rodents), coriander-mouse_admin (Coriander-mouse herb rodents)
 - Total modules: 4064 → 4067 (fennel-mouse, dill-mouse, coriander-mouse)
