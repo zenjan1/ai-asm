@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1168 - v1531.0 (4166 modules, 124 kernel)
+- Added WASM: teff-mouse_admin (Teff-mouse vegetable rodents), fonio-mouse_admin (Fonio-mouse vegetable rodents), triticale-mouse_admin (Triticale-mouse vegetable rodents)
+- Total modules: 4163 → 4166 (teff-mouse, fonio-mouse, triticale-mouse)
+
 ## Phase 1167 - v1530.0 (4163 modules, 124 kernel)
 - Added WASM: oat-mouse_admin (Oat-mouse vegetable rodents), barley-mouse_admin (Barley-mouse vegetable rodents), rye-mouse_admin (Rye-mouse vegetable rodents)
 - Total modules: 4160 → 4163 (oat-mouse, barley-mouse, rye-mouse)

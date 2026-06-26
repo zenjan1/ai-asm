@@ -1,39 +1,39 @@
-Phase 1168: Teff-Mouse Fonio-Mouse Triticale-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1169: Wheat-Mouse Rice-Mouse Kamut-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/teff-mouse_admin/src/main.c (Teff-mouse vegetable rodents)
-   - Teff-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, seed_wt, tail_cm, tefmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_wt,tail_cm,tefmx_idx,age_yr
+1. modules/wheat-mouse_admin/src/main.c (Wheat-mouse vegetable rodents)
+   - Wheat-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, berry_wt, tail_cm, whtmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,berry_wt,tail_cm,whtmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tefmx
-   - Note: use sw as param name for seed_wt
+   - Prefix: whtmx
+   - Note: use bwt as param name for berry_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/fonio-mouse_admin/src/main.c (Fonio-mouse vegetable rodents)
-   - Fonio-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, grain_sz, tail_cm, fonmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,grain_sz,tail_cm,fonmx_idx,age_yr
+2. modules/rice-mouse_admin/src/main.c (Rice-mouse vegetable rodents)
+   - Rice-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, grain_ln, tail_cm, ricmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,grain_ln,tail_cm,ricmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: fonmx
-   - Note: use gs as param name for grain_sz
+   - Prefix: ricmx
+   - Note: use gl as param name for grain_ln
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/triticale-mouse_admin/src/main.c (Triticale-mouse vegetable rodents)
-   - Triticale-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, ear_wt, tail_cm, trtmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ear_wt,tail_cm,trtmx_idx,age_yr
+3. modules/kamut-mouse_admin/src/main.c (Kamut-mouse vegetable rodents)
+   - Kamut-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, kernel_wt, tail_cm, kmtmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,kernel_wt,tail_cm,kmtmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: trtmx
-   - Note: use ew as param name for ear_wt
+   - Prefix: kmtmx
+   - Note: use kw as param name for kernel_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1530.0 → v1531.0 (all occurrences)
-  - total modules 4163 → 4166 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1168 - v1531.0 (4166 modules, 124 kernel)" entry
+  - version v1531.0 → v1532.0 (all occurrences)
+  - total modules 4166 → 4169 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1169 - v1532.0 (4169 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/teff-mouse_admin/teff-mouse_admin.wasm modules/fonio-mouse_admin/fonio-mouse_admin.wasm modules/triticale-mouse_admin/triticale-mouse_admin.wasm modules/teff-mouse_admin/src/main.c modules/fonio-mouse_admin/src/main.c modules/triticale-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/wheat-mouse_admin/wheat-mouse_admin.wasm modules/rice-mouse_admin/rice-mouse_admin.wasm modules/kamut-mouse_admin/kamut-mouse_admin.wasm modules/wheat-mouse_admin/src/main.c modules/rice-mouse_admin/src/main.c modules/kamut-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
