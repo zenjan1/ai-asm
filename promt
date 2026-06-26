@@ -1,36 +1,36 @@
-Phase 1133: Nutmeg-Mouse Clove-Mouse Cardamom-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1134: Turmeric-Mouse Saffron-Mouse Cumin-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/nutmeg-mouse_admin/src/main.c (Nutmeg-mouse spice rodents)
-   - Nutmeg-mouse spice rodents management
-   - Features: body_len_cm, body_wt_g, seed_hrd, tail_cm, nutmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_hrd,tail_cm,nutmx_idx,age_yr
+1. modules/turmeric-mouse_admin/src/main.c (Turmeric-mouse spice rodents)
+   - Turmeric-mouse spice rodents management
+   - Features: body_len_cm, body_wt_g, rzm_pct, tail_cm, trmmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,rzm_pct,tail_cm,trmmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: nutmx
+   - Prefix: trmmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/clove-mouse_admin/src/main.c (Clove-mouse spice rodents)
-   - Clove-mouse spice rodents management
-   - Features: body_len_cm, body_wt_g, bud_lg, tail_cm, clvmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bud_lg,tail_cm,clvmx_idx,age_yr
+2. modules/saffron-mouse_admin/src/main.c (Saffron-mouse spice rodents)
+   - Saffron-mouse spice rodents management
+   - Features: body_len_cm, body_wt_g, stigma_ct, tail_cm, safrnx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,stigma_ct,tail_cm,safrnx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: clvmx
+   - Prefix: safrnx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cardamom-mouse_admin/src/main.c (Cardamom-mouse spice rodents)
-   - Cardamom-mouse spice rodents management
-   - Features: body_len_cm, body_wt_g, pod_ct, tail_cm, cdmmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,pod_ct,tail_cm,cdmmx_idx,age_yr
+3. modules/cumin-mouse_admin/src/main.c (Cumin-mouse spice rodents)
+   - Cumin-mouse spice rodents management
+   - Features: body_len_cm, body_wt_g, seed_ct, tail_cm, cummx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_ct,tail_cm,cummx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: cdmmx
+   - Prefix: cummx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1495.0 → v1496.0 (all occurrences)
-  - total modules 4058 → 4061 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1133 - v1496.0 (4061 modules, 124 kernel)" entry
+  - version v1496.0 → v1497.0 (all occurrences)
+  - total modules 4061 → 4064 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1134 - v1497.0 (4064 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/nutmeg-mouse_admin/nutmeg-mouse_admin.wasm modules/clove-mouse_admin/clove-mouse_admin.wasm modules/cardamom-mouse_admin/cardamom-mouse_admin.wasm modules/nutmeg-mouse_admin/src/main.c modules/clove-mouse_admin/src/main.c modules/cardamom-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/turmeric-mouse_admin/turmeric-mouse_admin.wasm modules/saffron-mouse_admin/saffron-mouse_admin.wasm modules/cumin-mouse_admin/cumin-mouse_admin.wasm modules/turmeric-mouse_admin/src/main.c modules/saffron-mouse_admin/src/main.c modules/cumin-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
