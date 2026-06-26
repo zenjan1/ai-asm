@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1121 - v1484.0 (4025 modules, 124 kernel)
+- Added WASM: orange-mouse_admin (Orange-mouse citrus rodents), lily-mouse_admin (Lily-mouse bulbous rodents), iris-mouse_admin (Iris-mouse rhizome rodents)
+- Total modules: 4022 → 4025 (orange-mouse, lily-mouse, iris-mouse)
+
 ## Phase 1120 - v1483.0 (4022 modules, 124 kernel)
 - Added WASM: juniper-mouse_admin (Juniper-mouse coniferous rodents), lemon-mouse_admin (Lemon-mouse citrus rodents), lime-mouse_admin (Lime-mouse citrus rodents)
 - Total modules: 4019 → 4022 (juniper-mouse, lemon-mouse, lime-mouse)
