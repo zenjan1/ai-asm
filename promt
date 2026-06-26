@@ -1,36 +1,36 @@
-Phase 1119: Hazel-Mouse Chestnut-Mouse Walnut-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1120: Juniper-Mouse Lemon-Mouse Lime-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/hazel-mouse_admin/src/main.c (Hazel-mouse nut rodents)
-   - Hazel-mouse nut rodents management
-   - Features: body_len_cm, body_wt_g, shell_thk, tail_cm, hzlmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,shell_thk,tail_cm,hzlmx_idx,age_yr
+1. modules/juniper-mouse_admin/src/main.c (Juniper-mouse coniferous rodents)
+   - Juniper-mouse coniferous rodents management
+   - Features: body_len_cm, body_wt_g, cone_sz, tail_cm, jnpmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,cone_sz,tail_cm,jnpmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: hzlmx
+   - Prefix: jnpmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/chestnut-mouse_admin/src/main.c (Chestnut-mouse nut rodents)
-   - Chestnut-mouse nut rodents management
-   - Features: body_len_cm, body_wt_g, burr_spn, tail_cm, chtmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,burr_spn,tail_cm,chtmx_idx,age_yr
+2. modules/lemon-mouse_admin/src/main.c (Lemon-mouse citrus rodents)
+   - Lemon-mouse citrus rodents management
+   - Features: body_len_cm, body_wt_g, peel_thk, tail_cm, lmnmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,peel_thk,tail_cm,lmnmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: chtmx
+   - Prefix: lmnmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/walnut-mouse_admin/src/main.c (Walnut-mouse nut rodents)
-   - Walnut-mouse nut rodents management
-   - Features: body_len_cm, body_wt_g, hull_thk, tail_cm, wlmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,hull_thk,tail_cm,wlmx_idx,age_yr
+3. modules/lime-mouse_admin/src/main.c (Lime-mouse citrus rodents)
+   - Lime-mouse citrus rodents management
+   - Features: body_len_cm, body_wt_g, juice_pct, tail_cm, lmemx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,juice_pct,tail_cm,lmemx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: wlmx
+   - Prefix: lmemx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1481.0 → v1482.0 (all occurrences)
-  - total modules 4016 → 4019 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1119 - v1482.0 (4019 modules, 124 kernel)" entry
+  - version v1482.0 → v1483.0 (all occurrences)
+  - total modules 4019 → 4022 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1120 - v1483.0 (4022 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/hazel-mouse_admin/hazel-mouse_admin.wasm modules/chestnut-mouse_admin/chestnut-mouse_admin.wasm modules/walnut-mouse_admin/walnut-mouse_admin.wasm modules/hazel-mouse_admin/src/main.c modules/chestnut-mouse_admin/src/main.c modules/walnut-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/juniper-mouse_admin/juniper-mouse_admin.wasm modules/lemon-mouse_admin/lemon-mouse_admin.wasm modules/lime-mouse_admin/lime-mouse_admin.wasm modules/juniper-mouse_admin/src/main.c modules/lemon-mouse_admin/src/main.c modules/lime-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
