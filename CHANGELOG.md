@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1140 - v1503.0 (4082 modules, 124 kernel)
+- Added WASM: sorrel-mouse_admin (Sorrel-mouse herb rodents), borage-mouse_admin (Borage-mouse herb rodents), hyssop-mouse_admin (Hyssop-mouse herb rodents)
+- Total modules: 4079 → 4082 (sorrel-mouse, borage-mouse, hyssop-mouse)
+
 ## Phase 1139 - v1502.0 (4079 modules, 124 kernel)
 - Added WASM: lavender-mouse_admin (Lavender-mouse herb rodents), bay-mouse_admin (Bay-mouse herb rodents), lemongrass-mouse_admin (Lemongrass-mouse herb rodents)
 - Total modules: 4076 → 4079 (lavender-mouse, bay-mouse, lemongrass-mouse)

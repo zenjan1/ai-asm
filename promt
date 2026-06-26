@@ -1,36 +1,36 @@
-Phase 1140: Sorrel-Mouse Borage-Mouse Hyssop-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1141: Savory-Mouse Catnip-Mouse Chamomile-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/sorrel-mouse_admin/src/main.c (Sorrel-mouse herb rodents)
-   - Sorrel-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, leaf_wd, tail_cm, sormx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_wd,tail_cm,sormx_idx,age_yr
+1. modules/savory-mouse_admin/src/main.c (Savory-mouse herb rodents)
+   - Savory-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, oil_dn, tail_cm, svrmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,oil_dn,tail_cm,svrmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: sormx
+   - Prefix: svrmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/borage-mouse_admin/src/main.c (Borage-mouse herb rodents)
-   - Borage-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, seed_wt, tail_cm, brgmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,seed_wt,tail_cm,brgmx_idx,age_yr
+2. modules/catnip-mouse_admin/src/main.c (Catnip-mouse herb rodents)
+   - Catnip-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, petal_ct, tail_cm, ctnmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,petal_ct,tail_cm,ctnmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: brgmx
+   - Prefix: ctnmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/hyssop-mouse_admin/src/main.c (Hyssop-mouse herb rodents)
-   - Hyssop-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, stem_ht, tail_cm, hysmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,stem_ht,tail_cm,hysmx_idx,age_yr
+3. modules/chamomile-mouse_admin/src/main.c (Chamomile-mouse herb rodents)
+   - Chamomile-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, flower_wt, tail_cm, chmmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,flower_wt,tail_cm,chmmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: hysmx
+   - Prefix: chmmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1502.0 → v1503.0 (all occurrences)
-  - total modules 4079 → 4082 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1140 - v1503.0 (4082 modules, 124 kernel)" entry
+  - version v1503.0 → v1504.0 (all occurrences)
+  - total modules 4082 → 4085 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1141 - v1504.0 (4085 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/sorrel-mouse_admin/sorrel-mouse_admin.wasm modules/borage-mouse_admin/borage-mouse_admin.wasm modules/hyssop-mouse_admin/hyssop-mouse_admin.wasm modules/sorrel-mouse_admin/src/main.c modules/borage-mouse_admin/src/main.c modules/hyssop-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/savory-mouse_admin/savory-mouse_admin.wasm modules/catnip-mouse_admin/catnip-mouse_admin.wasm modules/chamomile-mouse_admin/chamomile-mouse_admin.wasm modules/savory-mouse_admin/src/main.c modules/catnip-mouse_admin/src/main.c modules/chamomile-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
