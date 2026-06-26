@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1124 - v1487.0 (4034 modules, 124 kernel)
+- Added WASM: wheat-mouse_admin (Wheat-mouse grain rodents), barley-mouse_admin (Barley-mouse grain rodents), oat-mouse_admin (Oat-mouse grain rodents)
+- Total modules: 4031 → 4034 (wheat-mouse, barley-mouse, oat-mouse)
+
 ## Phase 1123 - v1486.0 (4031 modules, 124 kernel)
 - Added WASM: peony-mouse_admin (Peony-mouse tuberous rodents), poppy-mouse_admin (Poppy-mouse seed rodents), parsley-mouse_admin (Parsley-mouse herb rodents)
 - Total modules: 4028 → 4031 (peony-mouse, poppy-mouse, parsley-mouse)
