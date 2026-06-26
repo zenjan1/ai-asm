@@ -1,39 +1,39 @@
-Phase 1207: Frollin-Mouse Scalopp-Mouse Spongat-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1208: Tornat-Mouse Brascio-Mouse Pestell-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/frollin-mouse_admin/src/main.c (Frollin-mouse vegetable rodents)
-   - Frollin-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, crust_lv, tail_cm, frlx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,crust_lv,tail_cm,frlx_idx,age_yr
+1. modules/tornat-mouse_admin/src/main.c (Tornat-mouse vegetable rodents)
+   - Tornat-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, shell_t, tail_cm, tornt_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,shell_t,tail_cm,tornt_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: frlx
-   - Note: use cl as param name for crust_lv
+   - Prefix: tornt
+   - Note: use sh as param name for shell_t
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/scalopp-mouse_admin/src/main.c (Scalopp-mouse vegetable rodents)
-   - Scalopp-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, slice_th, tail_cm, sclpp_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,slice_th,tail_cm,sclpp_idx,age_yr
+2. modules/brascio-mouse_admin/src/main.c (Brascio-mouse vegetable rodents)
+   - Brascio-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, roll_d, tail_cm, brscx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,roll_d,tail_cm,brscx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: sclpp
-   - Note: use st as param name for slice_th
+   - Prefix: brscx
+   - Note: use rd as param name for roll_d
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/spongat-mouse_admin/src/main.c (Spongat-mouse vegetable rodents)
-   - Spongat-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, honey_v, tail_cm, spngt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,honey_v,tail_cm,spngt_idx,age_yr
+3. modules/pestell-mouse_admin/src/main.c (Pestell-mouse vegetable rodents)
+   - Pestell-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, leaf_w, tail_cm, pstll_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_w,tail_cm,pstll_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: spngt
-   - Note: use hv as param name for honey_v
+   - Prefix: pstll
+   - Note: use lw as param name for leaf_w
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1569.0 → v1570.0 (all occurrences)
-  - total modules 4280 → 4283 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1207 - v1570.0 (4283 modules, 124 kernel)" entry
+  - version v1570.0 → v1571.0 (all occurrences)
+  - total modules 4283 → 4286 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1208 - v1571.0 (4286 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/frollin-mouse_admin/frollin-mouse_admin.wasm modules/scalopp-mouse_admin/scalopp-mouse_admin.wasm modules/spongat-mouse_admin/spongat-mouse_admin.wasm modules/frollin-mouse_admin/src/main.c modules/scalopp-mouse_admin/src/main.c modules/spongat-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/tornat-mouse_admin/tornat-mouse_admin.wasm modules/brascio-mouse_admin/brascio-mouse_admin.wasm modules/pestell-mouse_admin/pestell-mouse_admin.wasm modules/tornat-mouse_admin/src/main.c modules/brascio-mouse_admin/src/main.c modules/pestell-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
