@@ -1,37 +1,39 @@
-Phase 1159: Daikon-Mouse Jicama-Mouse Celeriac-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1160: Rapini-Mouse Fennel-Bulb-Mouse Squash-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/daikon-mouse_admin/src/main.c (Daikon-mouse vegetable rodents)
-   - Daikon-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, root_ln, tail_cm, daikmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,root_ln,tail_cm,daikmx_idx,age_yr
+1. modules/rapini-mouse_admin/src/main.c (Rapini-mouse vegetable rodents)
+   - Rapini-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, head_dia, tail_cm, rapmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,head_dia,tail_cm,rapmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: daikmx
+   - Prefix: rapmx
+   - Note: use hd as param name for head_dia
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/jicama-mouse_admin/src/main.c (Jicama-mouse vegetable rodents)
-   - Jicama-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, tuber_dia, tail_cm, jicmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tuber_dia,tail_cm,jicmx_idx,age_yr
+2. modules/fennel-bulb-mouse_admin/src/main.c (Fennel-bulb-mouse vegetable rodents)
+   - Fennel-bulb-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, bulb_wt, tail_cm, fenbmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bulb_wt,tail_cm,fenbmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: jicmx
-   - Note: use td as param name for tuber_dia
+   - Prefix: fenbmx
+   - Note: use bwt as param name for bulb_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/celeriac-mouse_admin/src/main.c (Celeriac-mouse vegetable rodents)
-   - Celeriac-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, bulb_sz, tail_cm, celrmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bulb_sz,tail_cm,celrmx_idx,age_yr
+3. modules/squash-mouse_admin/src/main.c (Squash-mouse vegetable rodents)
+   - Squash-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, fruit_wt, tail_cm, sqsmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fruit_wt,tail_cm,sqsmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: celrmx
+   - Prefix: sqsmx
+   - Note: use fw as param name for fruit_wt
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1521.0 → v1522.0 (all occurrences)
-  - total modules 4136 → 4139 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1159 - v1522.0 (4139 modules, 124 kernel)" entry
+  - version v1522.0 → v1523.0 (all occurrences)
+  - total modules 4139 → 4142 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1160 - v1523.0 (4142 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/daikon-mouse_admin/daikon-mouse_admin.wasm modules/jicama-mouse_admin/jicama-mouse_admin.wasm modules/celeriac-mouse_admin/celeriac-mouse_admin.wasm modules/daikon-mouse_admin/src/main.c modules/jicama-mouse_admin/src/main.c modules/celeriac-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/rapini-mouse_admin/rapini-mouse_admin.wasm modules/fennel-bulb-mouse_admin/fennel-bulb-mouse_admin.wasm modules/squash-mouse_admin/squash-mouse_admin.wasm modules/rapini-mouse_admin/src/main.c modules/fennel-bulb-mouse_admin/src/main.c modules/squash-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
