@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1145 - v1508.0 (4097 modules, 124 kernel)
+- Added WASM: carrot-mouse_admin (Carrot-mouse vegetable rodents), beet-mouse_admin (Beet-mouse vegetable rodents), radish-mouse_admin (Radish-mouse vegetable rodents)
+- Total modules: 4094 → 4097 (carrot-mouse, beet-mouse, radish-mouse)
+
 ## Phase 1144 - v1507.0 (4094 modules, 124 kernel)
 - Added WASM: woodruff-mouse_admin (Woodruff-mouse herb rodents), costmary-mouse_admin (Costmary-mouse herb rodents), burnet-mouse_admin (Burnet-mouse herb rodents)
 - Total modules: 4091 → 4094 (woodruff-mouse, costmary-mouse, burnet-mouse)

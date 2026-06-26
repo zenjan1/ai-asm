@@ -1,36 +1,38 @@
-Phase 1145: Carrot-Mouse Beet-Mouse Radish-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1146: Turnip-Mouse Parsnip-Mouse Onion-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/carrot-mouse_admin/src/main.c (Carrot-mouse vegetable rodents)
-   - Carrot-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, root_wt, tail_cm, crrmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,root_wt,tail_cm,crrmx_idx,age_yr
+1. modules/turnip-mouse_admin/src/main.c (Turnip-mouse vegetable rodents)
+   - Turnip-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, bulb_wt, tail_cm, trnmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bulb_wt,tail_cm,trnmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: crrmx
+   - Prefix: trnmx
+   - Note: use bwt as param name for bulb_wt to avoid conflict with bw (body_wt)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/beet-mouse_admin/src/main.c (Beet-mouse vegetable rodents)
-   - Beet-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, tap_wt, tail_cm, betmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tap_wt,tail_cm,betmx_idx,age_yr
+2. modules/parsnip-mouse_admin/src/main.c (Parsnip-mouse vegetable rodents)
+   - Parsnip-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, root_dn, tail_cm, prsmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,root_dn,tail_cm,prsmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: betmx
+   - Prefix: prsmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/radish-mouse_admin/src/main.c (Radish-mouse vegetable rodents)
-   - Radish-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, root_ln, tail_cm, rdmmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,root_ln,tail_cm,rdmmx_idx,age_yr
+3. modules/onion-mouse_admin/src/main.c (Onion-mouse vegetable rodents)
+   - Onion-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, layer_ct, tail_cm, onimx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,layer_ct,tail_cm,onimx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rdmmx
+   - Prefix: onimx
+   - Note: use ly as param name for layer_ct to avoid conflict with lc (location)
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1507.0 → v1508.0 (all occurrences)
-  - total modules 4094 → 4097 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1145 - v1508.0 (4097 modules, 124 kernel)" entry
+  - version v1508.0 → v1509.0 (all occurrences)
+  - total modules 4097 → 4100 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1146 - v1509.0 (4100 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/carrot-mouse_admin/carrot-mouse_admin.wasm modules/beet-mouse_admin/beet-mouse_admin.wasm modules/radish-mouse_admin/radish-mouse_admin.wasm modules/carrot-mouse_admin/src/main.c modules/beet-mouse_admin/src/main.c modules/radish-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/turnip-mouse_admin/turnip-mouse_admin.wasm modules/parsnip-mouse_admin/parsnip-mouse_admin.wasm modules/onion-mouse_admin/onion-mouse_admin.wasm modules/turnip-mouse_admin/src/main.c modules/parsnip-mouse_admin/src/main.c modules/onion-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
