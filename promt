@@ -1,39 +1,39 @@
-Phase 1183: Picagge-Mouse Pizzoccheri-Mouse Agnolotti-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1184: Cappelletti-Mouse Taglierini-Mouse Bigoli-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/picagge-mouse_admin/src/main.c (Picagge-mouse vegetable rodents)
-   - Picagge-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, string_ln, tail_cm, pcgx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,string_ln,tail_cm,pcgx_idx,age_yr
+1. modules/cappelletti-mouse_admin/src/main.c (Cappelletti-mouse vegetable rodents)
+   - Cappelletti-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, hat_wd, tail_cm, cpltx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,hat_wd,tail_cm,cpltx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pcgx
-   - Note: use stl as param name for string_ln
+   - Prefix: cpltx
+   - Note: use hw as param name for hat_wd
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/pizzoccheri-mouse_admin/src/main.c (Pizzoccheri-mouse vegetable rodents)
-   - Pizzoccheri-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, sheet_wd, tail_cm, pzzcx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,sheet_wd,tail_cm,pzzcx_idx,age_yr
+2. modules/taglierini-mouse_admin/src/main.c (Taglierini-mouse vegetable rodents)
+   - Taglierini-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, cut_wd, tail_cm, tglrx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,cut_wd,tail_cm,tglrx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pzzcx
-   - Note: use sw as param name for sheet_wd
+   - Prefix: tglrx
+   - Note: use cw as param name for cut_wd
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/agnolotti-mouse_admin/src/main.c (Agnolotti-mouse vegetable rodents)
-   - Agnolotti-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, pouch_sz, tail_cm, agnpx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,pouch_sz,tail_cm,agnpx_idx,age_yr
+3. modules/bigoli-mouse_admin/src/main.c (Bigoli-mouse vegetable rodents)
+   - Bigoli-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, thick_wd, tail_cm, bglx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,thick_wd,tail_cm,bglx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: agnpx
-   - Note: use psz as param name for pouch_sz
+   - Prefix: bglx
+   - Note: use tw as param name for thick_wd
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1545.0 → v1546.0 (all occurrences)
-  - total modules 4208 → 4211 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1183 - v1546.0 (4211 modules, 124 kernel)" entry
+  - version v1546.0 → v1547.0 (all occurrences)
+  - total modules 4211 → 4214 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1184 - v1547.0 (4214 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/picagge-mouse_admin/picagge-mouse_admin.wasm modules/pizzoccheri-mouse_admin/pizzoccheri-mouse_admin.wasm modules/agnolotti-mouse_admin/agnolotti-mouse_admin.wasm modules/picagge-mouse_admin/src/main.c modules/pizzoccheri-mouse_admin/src/main.c modules/agnolotti-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cappelletti-mouse_admin/cappelletti-mouse_admin.wasm modules/taglierini-mouse_admin/taglierini-mouse_admin.wasm modules/bigoli-mouse_admin/bigoli-mouse_admin.wasm modules/cappelletti-mouse_admin/src/main.c modules/taglierini-mouse_admin/src/main.c modules/bigoli-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
