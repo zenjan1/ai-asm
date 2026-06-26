@@ -1,36 +1,36 @@
-Phase 1135: Fennel-Mouse Dill-Mouse Coriander-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1136: Basil-Mouse Mint-Mouse Oregano-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/fennel-mouse_admin/src/main.c (Fennel-mouse herb rodents)
-   - Fennel-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, bulb_dia, tail_cm, fenmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,bulb_dia,tail_cm,fenmx_idx,age_yr
+1. modules/basil-mouse_admin/src/main.c (Basil-mouse herb rodents)
+   - Basil-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, leaf_span, tail_cm, basmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_span,tail_cm,basmx_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: fenmx
+   - Prefix: basmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/dill-mouse_admin/src/main.c (Dill-mouse herb rodents)
-   - Dill-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, frond_lg, tail_cm, dilmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,frond_lg,tail_cm,dilmx_idx,age_yr
+2. modules/mint-mouse_admin/src/main.c (Mint-mouse herb rodents)
+   - Mint-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, node_ct, tail_cm, mntmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,node_ct,tail_cm,mntmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: dilmx
+   - Prefix: mntmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/coriander-mouse_admin/src/main.c (Coriander-mouse herb rodents)
-   - Coriander-mouse herb rodents management
-   - Features: body_len_cm, body_wt_g, leaf_ct, tail_cm, crlmx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_ct,tail_cm,crlmx_idx,age_yr
+3. modules/oregano-mouse_admin/src/main.c (Oregano-mouse herb rodents)
+   - Oregano-mouse herb rodents management
+   - Features: body_len_cm, body_wt_g, flower_ct, tail_cm, orgmx_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,flower_ct,tail_cm,orgmx_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: crlmx
+   - Prefix: orgmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1497.0 → v1498.0 (all occurrences)
-  - total modules 4064 → 4067 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1135 - v1498.0 (4067 modules, 124 kernel)" entry
+  - version v1498.0 → v1499.0 (all occurrences)
+  - total modules 4067 → 4070 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1136 - v1499.0 (4070 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/fennel-mouse_admin/fennel-mouse_admin.wasm modules/dill-mouse_admin/dill-mouse_admin.wasm modules/coriander-mouse_admin/coriander-mouse_admin.wasm modules/fennel-mouse_admin/src/main.c modules/dill-mouse_admin/src/main.c modules/coriander-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/basil-mouse_admin/basil-mouse_admin.wasm modules/mint-mouse_admin/mint-mouse_admin.wasm modules/oregano-mouse_admin/oregano-mouse_admin.wasm modules/basil-mouse_admin/src/main.c modules/mint-mouse_admin/src/main.c modules/oregano-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
