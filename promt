@@ -1,36 +1,36 @@
-Phase 1101: River-Mouse Dune-Mouse Salt-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1102: Lake-Mouse Pond-Mouse Tundra-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/river-mouse_admin/src/main.c (River-mouse riparian rodents)
-   - River-mouse riparian rodents management
-   - Features: body_len_cm, body_wt_g, dive_dep, tail_cm, rvm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,dive_dep,tail_cm,rvm_idx,age_yr
+1. modules/lake-mouse_admin/src/main.c (Lake-mouse lacustrine rodents)
+   - Lake-mouse lacustrine rodents management
+   - Features: body_len_cm, body_wt_g, swim_dur, tail_cm, lkm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,swim_dur,tail_cm,lkm_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rvmx
+   - Prefix: lkmx
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/dune-mouse_admin/src/main.c (Dune-mouse desert-dwelling rodents)
-   - Dune-mouse desert-dwelling rodents management
-   - Features: body_len_cm, body_wt_g, leap_dst, tail_cm, dnm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leap_dst,tail_cm,dnm_idx,age_yr
+2. modules/pond-mouse_admin/src/main.c (Pond-mouse freshwater rodents)
+   - Pond-mouse freshwater rodents management
+   - Features: body_len_cm, body_wt_g, forage_dp, tail_cm, pnm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,forage_dp,tail_cm,pnm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: dnmx
+   - Prefix: pnm
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/salt-mouse_admin/src/main.c (Salt-mouse halophile rodents)
-   - Salt-mouse halophile rodents management
-   - Features: body_len_cm, body_wt_g, salt_tol, tail_cm, slm_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,salt_tol,tail_cm,slm_idx,age_yr
+3. modules/tundra-mouse_admin/src/main.c (Tundra-mouse arctic rodents)
+   - Tundra-mouse arctic rodents management
+   - Features: body_len_cm, body_wt_g, cold_tol, tail_cm, tnm_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,cold_tol,tail_cm,tnm_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: slmx
+   - Prefix: tnm
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1463.0 → v1464.0 (all occurrences)
-  - total modules 3962 → 3965 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1101 - v1464.0 (3965 modules, 124 kernel)" entry
+  - version v1464.0 → v1465.0 (all occurrences)
+  - total modules 3965 → 3968 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1102 - v1465.0 (3968 modules, 124 kernel)" entry
 Set UPDATE=0
-git add -f modules/river-mouse_admin/river-mouse_admin.wasm modules/dune-mouse_admin/dune-mouse_admin.wasm modules/salt-mouse_admin/salt-mouse_admin.wasm modules/river-mouse_admin/src/main.c modules/dune-mouse_admin/src/main.c modules/salt-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/lake-mouse_admin/lake-mouse_admin.wasm modules/pond-mouse_admin/pond-mouse_admin.wasm modules/tundra-mouse_admin/tundra-mouse_admin.wasm modules/lake-mouse_admin/src/main.c modules/pond-mouse_admin/src/main.c modules/tundra-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.

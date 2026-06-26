@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1101 - v1464.0 (3965 modules, 124 kernel)
+- Added WASM: river-mouse_admin (River-mouse riparian rodents), dune-mouse_admin (Dune-mouse desert-dwelling rodents), salt-mouse_admin (Salt-mouse halophile rodents)
+- Total modules: 3962 → 3965 (river-mouse, dune-mouse, salt-mouse)
+
 ## Phase 1100 - v1463.0 (3962 modules, 124 kernel)
 - Added WASM: rock-mouse_admin (Rock-mouse cliff-dwelling rodents), water-mouse_admin (Water-mouse aquatic rodents), cave-mouse_admin (Cave-mouse subterranean rodents)
 - Total modules: 3959 → 3962 (rock-mouse, water-mouse, cave-mouse)
