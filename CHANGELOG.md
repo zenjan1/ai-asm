@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1128 - v1491.0 (4046 modules, 124 kernel)
+- Added WASM: flax-mouse_admin (Flax-mouse seed rodents), hemp-mouse_admin (Hemp-mouse seed rodents), sesame-mouse_admin (Sesame-mouse seed rodents)
+- Total modules: 4043 → 4046 (flax-mouse, hemp-mouse, sesame-mouse)
+
 ## Phase 1127 - v1490.0 (4043 modules, 124 kernel)
 - Added WASM: buckwheat-mouse_admin (Buckwheat-mouse grain rodents), amaranth-mouse_admin (Amaranth-mouse grain rodents), chia-mouse_admin (Chia-mouse grain rodents)
 - Total modules: 4040 → 4043 (buckwheat-mouse, amaranth-mouse, chia-mouse)
