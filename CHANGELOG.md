@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1117 - v1480.0 (4013 modules, 124 kernel)
+- Added WASM: laurel-mouse_admin (Laurel-mouse evergreen rodents), myrtle-mouse_admin (Myrtle-mouse berry rodents), holly-mouse_admin (Holly-mouse spiny rodents)
+- Total modules: 4010 → 4013 (laurel-mouse, myrtle-mouse, holly-mouse)
+
 ## Phase 1116 - v1479.0 (4010 modules, 124 kernel)
 - Added WASM: fennel-mouse_admin (Fennel-mouse herb rodents), chive-mouse_admin (Chive-mouse herb rodents), oregano-mouse_admin (Oregano-mouse aromatic rodents)
 - Total modules: 4007 → 4010 (fennel-mouse, chive-mouse, oregano-mouse)
