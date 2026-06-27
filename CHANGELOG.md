@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1208 - v1571.0 (4286 modules, 124 kernel)
+- Added WASM: tornat-mouse_admin (Tornat-mouse vegetable rodents), brascio-mouse_admin (Brascio-mouse vegetable rodents), pestell-mouse_admin (Pestell-mouse vegetable rodents)
+- Total modules: 4283 → 4286 (tornat-mouse, brascio-mouse, pestell-mouse)
+
 ## Phase 1207 - v1570.0 (4283 modules, 124 kernel)
 - Added WASM: frollin-mouse_admin (Frollin-mouse vegetable rodents), scalopp-mouse_admin (Scalopp-mouse vegetable rodents), spongat-mouse_admin (Spongat-mouse vegetable rodents)
 - Total modules: 4280 → 4283 (frollin-mouse, scalopp-mouse, spongat-mouse)
