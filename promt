@@ -1,41 +1,41 @@
-Phase 1214: Lasagn-Mouse Pappard-Mouse Taglier-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1215: Fusi-Mouse Orecch-Mouse Conchigl-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/lasagn-mouse_admin/src/main.c (Lasagn-mouse vegetable rodents)
-   - Lasagn-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, lasagna_l, tail_cm, lsgn_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,lasagna_l,tail_cm,lsgn_idx,age_yr
+1. modules/fusi-mouse_admin/src/main.c (Fusi-mouse vegetable rodents)
+   - Fusi-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, fusi_l, tail_cm, fusi_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,fusi_l,tail_cm,fusi_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: lsgn
-   - Note: use ll as param name for lasagna_l
+   - Prefix: fusi
+   - Note: use fl as param name for fusi_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/pappard-mouse_admin/src/main.c (Pappard-mouse vegetable rodents)
-   - Pappard-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, pappard_w, tail_cm, ppprd_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,pappard_w,tail_cm,ppprd_idx,age_yr
+2. modules/orecch-mouse_admin/src/main.c (Orecch-mouse vegetable rodents)
+   - Orecch-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, orecch_w, tail_cm, orcch_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,orecch_w,tail_cm,orcch_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: ppprd
-   - Note: use pw as param name for pappard_w
+   - Prefix: orcch
+   - Note: use ow as param name for orecch_w
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/taglier-mouse_admin/src/main.c (Taglier-mouse vegetable rodents)
-   - Taglier-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, tagliere_sz, tail_cm, tglier_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,tagliere_sz,tail_cm,tglier_idx,age_yr
+3. modules/conchigl-mouse_admin/src/main.c (Conchigl-mouse vegetable rodents)
+   - Conchigl-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, conchigl_sz, tail_cm, cnchgl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,conchigl_sz,tail_cm,cnchgl_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tglier
-   - Note: use tz as param name for tagliere_sz
+   - Prefix: cnchgl
+   - Note: use cz as param name for conchigl_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1576.0 → v1577.0 (all occurrences)
-  - total modules 4301 → 4304 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1214 - v1577.0 (4304 modules, 124 kernel)" entry
+  - version v1577.0 → v1578.0 (all occurrences)
+  - total modules 4304 → 4307 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1215 - v1578.0 (4307 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/lasagn-mouse_admin/lasagn-mouse_admin.wasm modules/pappard-mouse_admin/pappard-mouse_admin.wasm modules/taglier-mouse_admin/taglier-mouse_admin.wasm modules/lasagn-mouse_admin/src/main.c modules/pappard-mouse_admin/src/main.c modules/taglier-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/fusi-mouse_admin/fusi-mouse_admin.wasm modules/orecch-mouse_admin/orecch-mouse_admin.wasm modules/conchigl-mouse_admin/conchigl-mouse_admin.wasm modules/fusi-mouse_admin/src/main.c modules/orecch-mouse_admin/src/main.c modules/conchigl-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1
