@@ -2,6 +2,10 @@
 
 
 
+## Phase 1225 - v1588.0 (4337 modules, 124 kernel)
+- Added WASM: lasag-mouse_admin (Lasag-mouse vegetable rodents), tiram-mouse_admin (Tiram-mouse vegetable rodents), panac-mouse_admin (Panac-mouse vegetable rodents)
+- Total modules: 4334 → 4337 (lasag-mouse, tiram-mouse, panac-mouse)
+
 ## Phase 1224 - v1587.0 (4334 modules, 124 kernel)
 - Added WASM: poli-mouse_admin (Poli-mouse vegetable rodents), fritt-mouse_admin (Fritt-mouse vegetable rodents), calzo-mouse_admin (Calzo-mouse vegetable rodents)
 - Total modules: 4331 → 4334 (poli-mouse, fritt-mouse, calzo-mouse)
