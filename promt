@@ -1,41 +1,41 @@
-Phase 1212: Fricand-Mouse Raviol-Mouse Cappel-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1213: Strazz-Mouse Cannell-Mouse Timball-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/fricand-mouse_admin/src/main.c (Fricand-mouse vegetable rodents)
-   - Fricand-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, fricand_l, tail_cm, frcnd_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fricand_l,tail_cm,frcnd_idx,age_yr
+1. modules/strazz-mouse_admin/src/main.c (Strazz-mouse vegetable rodents)
+   - Strazz-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, stracc_l, tail_cm, strzz_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,stracc_l,tail_cm,strzz_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: frcnd
-   - Note: use fl as param name for fricand_l
+   - Prefix: strzz
+   - Note: use sl as param name for stracc_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/raviol-mouse_admin/src/main.c (Raviol-mouse vegetable rodents)
-   - Raviol-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, raviol_w, tail_cm, rvio_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,raviol_w,tail_cm,rvio_idx,age_yr
+2. modules/cannell-mouse_admin/src/main.c (Cannell-mouse vegetable rodents)
+   - Cannell-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, cannell_l, tail_cm, cnnll_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,cannell_l,tail_cm,cnnll_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rvio
-   - Note: use rw as param name for raviol_w
+   - Prefix: cnnll
+   - Note: use cl as param name for cannell_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cappel-mouse_admin/src/main.c (Cappel-mouse vegetable rodents)
-   - Cappel-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, cappel_sz, tail_cm, cppl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,cappel_sz,tail_cm,cppl_idx,age_yr
+3. modules/timball-mouse_admin/src/main.c (Timball-mouse vegetable rodents)
+   - Timball-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, timball_sz, tail_cm, tmbll_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,timball_sz,tail_cm,tmbll_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: cppl
-   - Note: use cz as param name for cappel_sz
+   - Prefix: tmbll
+   - Note: use tz as param name for timball_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1574.0 → v1575.0 (all occurrences)
-  - total modules 4295 → 4298 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1212 - v1575.0 (4298 modules, 124 kernel)" entry
+  - version v1575.0 → v1576.0 (all occurrences)
+  - total modules 4298 → 4301 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1213 - v1576.0 (4301 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/fricand-mouse_admin/fricand-mouse_admin.wasm modules/raviol-mouse_admin/raviol-mouse_admin.wasm modules/cappel-mouse_admin/cappel-mouse_admin.wasm modules/fricand-mouse_admin/src/main.c modules/raviol-mouse_admin/src/main.c modules/cappel-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/strazz-mouse_admin/strazz-mouse_admin.wasm modules/cannell-mouse_admin/cannell-mouse_admin.wasm modules/timball-mouse_admin/timball-mouse_admin.wasm modules/strazz-mouse_admin/src/main.c modules/cannell-mouse_admin/src/main.c modules/timball-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1
