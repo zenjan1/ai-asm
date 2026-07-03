@@ -1,41 +1,41 @@
-Phase 1208: Tornat-Mouse Brascio-Mouse Pestell-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1209: Grattin-Mouse Crocett-Mouse Fagottin-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/tornat-mouse_admin/src/main.c (Tornat-mouse vegetable rodents)
-   - Tornat-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, shell_t, tail_cm, tornt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,shell_t,tail_cm,tornt_idx,age_yr
+1. modules/grattin-mouse_admin/src/main.c (Grattin-mouse vegetable rodents)
+   - Grattin-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, grate_d, tail_cm, grttn_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,grate_d,tail_cm,grttn_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: tornt
-   - Note: use sh as param name for shell_t
+   - Prefix: grttn
+   - Note: use gd as param name for grate_d
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/brascio-mouse_admin/src/main.c (Brascio-mouse vegetable rodents)
-   - Brascio-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, roll_d, tail_cm, brscx_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,roll_d,tail_cm,brscx_idx,age_yr
+2. modules/crocett-mouse_admin/src/main.c (Crocett-mouse vegetable rodents)
+   - Crocett-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, cross_w, tail_cm, crctt_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,cross_w,tail_cm,crctt_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: brscx
-   - Note: use rd as param name for roll_d
+   - Prefix: crctt
+   - Note: use cw as param name for cross_w
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/pestell-mouse_admin/src/main.c (Pestell-mouse vegetable rodents)
-   - Pestell-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, leaf_w, tail_cm, pstll_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,leaf_w,tail_cm,pstll_idx,age_yr
+3. modules/fagottin-mouse_admin/src/main.c (Fagottin-mouse vegetable rodents)
+   - Fagottin-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, bundle_r, tail_cm, fgttn_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,bundle_r,tail_cm,fgttn_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pstll
-   - Note: use lw as param name for leaf_w
+   - Prefix: fgttn
+   - Note: use br as param name for bundle_r
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1570.0 → v1571.0 (all occurrences)
-  - total modules 4283 → 4286 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1208 - v1571.0 (4286 modules, 124 kernel)" entry
+  - version v1571.0 → v1572.0 (all occurrences)
+  - total modules 4286 → 4289 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1209 - v1572.0 (4289 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/tornat-mouse_admin/tornat-mouse_admin.wasm modules/brascio-mouse_admin/brascio-mouse_admin.wasm modules/pestell-mouse_admin/pestell-mouse_admin.wasm modules/tornat-mouse_admin/src/main.c modules/brascio-mouse_admin/src/main.c modules/pestell-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/grattin-mouse_admin/grattin-mouse_admin.wasm modules/crocett-mouse_admin/crocett-mouse_admin.wasm modules/fagottin-mouse_admin/fagottin-mouse_admin.wasm modules/grattin-mouse_admin/src/main.c modules/crocett-mouse_admin/src/main.c modules/fagottin-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1
