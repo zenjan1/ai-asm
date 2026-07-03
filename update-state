@@ -1,41 +1,41 @@
-Phase 1210: Sagnett-Mouse Ravisol-Mouse Pansott-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1211: Casonc-Mouse Tortell-Mouse Gnocch-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/sagnett-mouse_admin/src/main.c (Sagnett-mouse vegetable rodents)
-   - Sagnett-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, ribbon_l, tail_cm, sgntt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ribbon_l,tail_cm,sgntt_idx,age_yr
+1. modules/casonc-mouse_admin/src/main.c (Casonc-mouse vegetable rodents)
+   - Casonc-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, casing_l, tail_cm, casonc_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,casing_l,tail_cm,casonc_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: sgntt
-   - Note: use rl as param name for ribbon_l
+   - Prefix: casonc
+   - Note: use cl as param name for casing_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/ravisol-mouse_admin/src/main.c (Ravisol-mouse vegetable rodents)
-   - Ravisol-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, ravioli_w, tail_cm, rvsol_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ravioli_w,tail_cm,rvsol_idx,age_yr
+2. modules/tortell-mouse_admin/src/main.c (Tortell-mouse vegetable rodents)
+   - Tortell-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, tortelli_w, tail_cm, trtll_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tortelli_w,tail_cm,trtll_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: rvsol
-   - Note: use rw as param name for ravioli_w
+   - Prefix: trtll
+   - Note: use tw as param name for tortelli_w
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/pansott-mouse_admin/src/main.c (Pansott-mouse vegetable rodents)
-   - Pansott-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, pan_sz, tail_cm, pnsot_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,pan_sz,tail_cm,pnsot_idx,age_yr
+3. modules/gnocch-mouse_admin/src/main.c (Gnocch-mouse vegetable rodents)
+   - Gnocch-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, gnocchi_sz, tail_cm, gnocch_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,gnocchi_sz,tail_cm,gnocch_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pnsot
-   - Note: use pz as param name for pan_sz
+   - Prefix: gnocch
+   - Note: use gz as param name for gnocchi_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1572.0 → v1573.0 (all occurrences)
-  - total modules 4289 → 4292 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1210 - v1573.0 (4292 modules, 124 kernel)" entry
+  - version v1573.0 → v1574.0 (all occurrences)
+  - total modules 4292 → 4295 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1211 - v1574.0 (4295 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/sagnett-mouse_admin/sagnett-mouse_admin.wasm modules/ravisol-mouse_admin/ravisol-mouse_admin.wasm modules/pansott-mouse_admin/pansott-mouse_admin.wasm modules/sagnett-mouse_admin/src/main.c modules/ravisol-mouse_admin/src/main.c modules/pansott-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/casonc-mouse_admin/casonc-mouse_admin.wasm modules/tortell-mouse_admin/tortell-mouse_admin.wasm modules/gnocch-mouse_admin/gnocch-mouse_admin.wasm modules/casonc-mouse_admin/src/main.c modules/tortell-mouse_admin/src/main.c modules/gnocch-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1

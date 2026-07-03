@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1211 - v1574.0 (4295 modules, 124 kernel)
+- Added WASM: casonc-mouse_admin (Casonc-mouse vegetable rodents), tortell-mouse_admin (Tortell-mouse vegetable rodents), gnocch-mouse_admin (Gnocch-mouse vegetable rodents)
+- Total modules: 4292 → 4295 (casonc-mouse, tortell-mouse, gnocch-mouse)
+
 ## Phase 1210 - v1573.0 (4292 modules, 124 kernel)
 - Added WASM: sagnett-mouse_admin (Sagnett-mouse vegetable rodents), ravisol-mouse_admin (Ravisol-mouse vegetable rodents), pansott-mouse_admin (Pansott-mouse vegetable rodents)
 - Total modules: 4289 → 4292 (sagnett-mouse, ravisol-mouse, pansott-mouse)
