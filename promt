@@ -1,41 +1,41 @@
-Phase 1215: Fusi-Mouse Orecch-Mouse Conchigl-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1216: Stellin-Mouse Dital-Mouse Pipe-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/fusi-mouse_admin/src/main.c (Fusi-mouse vegetable rodents)
-   - Fusi-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, fusi_l, tail_cm, fusi_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fusi_l,tail_cm,fusi_idx,age_yr
+1. modules/stellin-mouse_admin/src/main.c (Stellin-mouse vegetable rodents)
+   - Stellin-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, stellin_l, tail_cm, stlln_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,stellin_l,tail_cm,stlln_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: fusi
-   - Note: use fl as param name for fusi_l
+   - Prefix: stlln
+   - Note: use sl as param name for stellin_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/orecch-mouse_admin/src/main.c (Orecch-mouse vegetable rodents)
-   - Orecch-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, orecch_w, tail_cm, orcch_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,orecch_w,tail_cm,orcch_idx,age_yr
+2. modules/dital-mouse_admin/src/main.c (Dital-mouse vegetable rodents)
+   - Dital-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, dital_l, tail_cm, dtal_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,dital_l,tail_cm,dtal_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: orcch
-   - Note: use ow as param name for orecch_w
+   - Prefix: dtal
+   - Note: use dl as param name for dital_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/conchigl-mouse_admin/src/main.c (Conchigl-mouse vegetable rodents)
-   - Conchigl-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, conchigl_sz, tail_cm, cnchgl_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,conchigl_sz,tail_cm,cnchgl_idx,age_yr
+3. modules/pipe-mouse_admin/src/main.c (Pipe-mouse vegetable rodents)
+   - Pipe-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, pipe_sz, tail_cm, pipe_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,pipe_sz,tail_cm,pipe_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: cnchgl
-   - Note: use cz as param name for conchigl_sz
+   - Prefix: pipe
+   - Note: use pz as param name for pipe_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1577.0 → v1578.0 (all occurrences)
-  - total modules 4304 → 4307 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1215 - v1578.0 (4307 modules, 124 kernel)" entry
+  - version v1578.0 → v1579.0 (all occurrences)
+  - total modules 4307 → 4310 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1216 - v1579.0 (4310 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/fusi-mouse_admin/fusi-mouse_admin.wasm modules/orecch-mouse_admin/orecch-mouse_admin.wasm modules/conchigl-mouse_admin/conchigl-mouse_admin.wasm modules/fusi-mouse_admin/src/main.c modules/orecch-mouse_admin/src/main.c modules/conchigl-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/stellin-mouse_admin/stellin-mouse_admin.wasm modules/dital-mouse_admin/dital-mouse_admin.wasm modules/pipe-mouse_admin/pipe-mouse_admin.wasm modules/stellin-mouse_admin/src/main.c modules/dital-mouse_admin/src/main.c modules/pipe-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1

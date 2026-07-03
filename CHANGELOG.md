@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1215 - v1578.0 (4307 modules, 124 kernel)
+- Added WASM: rotin-mouse_admin (Rotin-mouse vegetable rodents), orecch-mouse_admin (Orecch-mouse vegetable rodents), conchigl-mouse_admin (Conchigl-mouse vegetable rodents)
+- Total modules: 4304 → 4307 (rotin-mouse, orecch-mouse, conchigl-mouse)
+
 ## Phase 1214 - v1577.0 (4304 modules, 124 kernel)
 - Added WASM: lasagn-mouse_admin (Lasagn-mouse vegetable rodents), pappard-mouse_admin (Pappard-mouse vegetable rodents), taglier-mouse_admin (Taglier-mouse vegetable rodents)
 - Total modules: 4301 → 4304 (lasagn-mouse, pappard-mouse, taglier-mouse)
