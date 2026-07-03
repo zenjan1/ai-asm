@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1216 - v1579.0 (4310 modules, 124 kernel)
+- Added WASM: stellin-mouse_admin (Stellin-mouse vegetable rodents), dital-mouse_admin (Dital-mouse vegetable rodents), pipe-mouse_admin (Pipe-mouse vegetable rodents)
+- Total modules: 4307 → 4310 (stellin-mouse, dital-mouse, pipe-mouse)
+
 ## Phase 1215 - v1578.0 (4307 modules, 124 kernel)
 - Added WASM: rotin-mouse_admin (Rotin-mouse vegetable rodents), orecch-mouse_admin (Orecch-mouse vegetable rodents), conchigl-mouse_admin (Conchigl-mouse vegetable rodents)
 - Total modules: 4304 → 4307 (rotin-mouse, orecch-mouse, conchigl-mouse)
