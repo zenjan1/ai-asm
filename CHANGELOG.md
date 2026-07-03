@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1213 - v1576.0 (4301 modules, 124 kernel)
+- Added WASM: strazz-mouse_admin (Strazz-mouse vegetable rodents), cannell-mouse_admin (Cannell-mouse vegetable rodents), timball-mouse_admin (Timball-mouse vegetable rodents)
+- Total modules: 4298 → 4301 (strazz-mouse, cannell-mouse, timball-mouse)
+
 ## Phase 1212 - v1575.0 (4298 modules, 124 kernel)
 - Added WASM: fricand-mouse_admin (Fricand-mouse vegetable rodents), raviol-mouse_admin (Raviol-mouse vegetable rodents), cappel-mouse_admin (Cappel-mouse vegetable rodents)
 - Total modules: 4295 → 4298 (fricand-mouse, raviol-mouse, cappel-mouse)
