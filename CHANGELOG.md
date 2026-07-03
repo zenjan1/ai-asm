@@ -1,6 +1,10 @@
 # Changelog
 
 
+
+## Phase 1221 - v1584.0 (4325 modules, 124 kernel)
+- Added WASM: matt-mouse_admin (Matt-mouse vegetable rodents), tonnar-mouse_admin (Tonnar-mouse vegetable rodents), quadrucc-mouse_admin (Quadrucc-mouse vegetable rodents)
+- Total modules: 4322 → 4325 (matt-mouse, tonnar-mouse, quadrucc-mouse)
 ## Phase 1220 - v1583.0 (4322 modules, 124 kernel)
 - Added WASM: filet-mouse_admin (Filet-mouse vegetable rodents), strozz-mouse_admin (Strozz-mouse vegetable rodents), bigoll-mouse_admin (Bigoll-mouse vegetable rodents)
 - Total modules: 4319 → 4322 (filet-mouse, strozz-mouse, bigoll-mouse)
