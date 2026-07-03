@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1217 - v1580.0 (4313 modules, 124 kernel)
+- Added WASM: paccher-mouse_admin (Paccher-mouse vegetable rodents), tuff-mouse_admin (Tuff-mouse vegetable rodents), sagn-mouse_admin (Sagn-mouse vegetable rodents)
+- Total modules: 4310 → 4313 (paccher-mouse, tuff-mouse, sagn-mouse)
+
 ## Phase 1216 - v1579.0 (4310 modules, 124 kernel)
 - Added WASM: stellin-mouse_admin (Stellin-mouse vegetable rodents), dital-mouse_admin (Dital-mouse vegetable rodents), pipe-mouse_admin (Pipe-mouse vegetable rodents)
 - Total modules: 4307 → 4310 (stellin-mouse, dital-mouse, pipe-mouse)
