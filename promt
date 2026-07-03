@@ -1,41 +1,41 @@
-Phase 1227: Zuppe-Mouse Crema-Mouse Gelat-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1228: Mascarp-Mouse Biscot-Mouse Amaret-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/zuppe-mouse_admin/src/main.c (Zuppe-mouse vegetable rodents)
-   - Zuppe-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, zupe_l, tail_cm, zupe_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,zupe_l,tail_cm,zupe_idx,age_yr
+1. modules/mascarp-mouse_admin/src/main.c (Mascarp-mouse vegetable rodents)
+   - Mascarp-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, mascarp_l, tail_cm, mascarp_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,mascarp_l,tail_cm,mascarp_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: zupe
-   - Note: use zl as param name for zupe_l
+   - Prefix: mascarp
+   - Note: use ml as param name for mascarp_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/crema-mouse_admin/src/main.c (Crema-mouse vegetable rodents)
-   - Crema-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, crema_w, tail_cm, crema_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,crema_w,tail_cm,crema_idx,age_yr
+2. modules/biscot-mouse_admin/src/main.c (Biscot-mouse vegetable rodents)
+   - Biscot-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, biscot_w, tail_cm, biscot_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,biscot_w,tail_cm,biscot_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: crema
-   - Note: use cw as param name for crema_w
+   - Prefix: biscot
+   - Note: use bw as param name for biscot_w
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/gelat-mouse_admin/src/main.c (Gelat-mouse vegetable rodents)
-   - Gelat-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, gelat_sz, tail_cm, gelat_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,gelat_sz,tail_cm,gelat_idx,age_yr
+3. modules/amaret-mouse_admin/src/main.c (Amaret-mouse vegetable rodents)
+   - Amaret-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, amaret_sz, tail_cm, amaret_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,amaret_sz,tail_cm,amaret_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: gelat
-   - Note: use gz as param name for gelat_sz
+   - Prefix: amaret
+   - Note: use az as param name for amaret_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1589.0 → v1590.0 (all occurrences)
-  - total modules 4340 → 4343 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1227 - v1590.0 (4343 modules, 124 kernel)" entry
+  - version v1590.0 → v1591.0 (all occurrences)
+  - total modules 4343 → 4346 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1228 - v1591.0 (4346 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/zuppe-mouse_admin/zuppe-mouse_admin.wasm modules/crema-mouse_admin/crema-mouse_admin.wasm modules/gelat-mouse_admin/gelat-mouse_admin.wasm modules/zuppe-mouse_admin/src/main.c modules/crema-mouse_admin/src/main.c modules/gelat-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/mascarp-mouse_admin/mascarp-mouse_admin.wasm modules/biscot-mouse_admin/biscot-mouse_admin.wasm modules/amaret-mouse_admin/amaret-mouse_admin.wasm modules/mascarp-mouse_admin/src/main.c modules/biscot-mouse_admin/src/main.c modules/amaret-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1
