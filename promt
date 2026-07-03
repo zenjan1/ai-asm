@@ -1,41 +1,41 @@
-Phase 1222: Pest-Mouse Ravi-Mouse Gnoc-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1223: Tort-Mouse Cann-Mouse Risot-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/pest-mouse_admin/src/main.c (Pest-mouse vegetable rodents)
-   - Pest-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, pest_l, tail_cm, pest_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,pest_l,tail_cm,pest_idx,age_yr
+1. modules/tort-mouse_admin/src/main.c (Tort-mouse vegetable rodents)
+   - Tort-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, tort_l, tail_cm, tort_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tort_l,tail_cm,tort_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pest
-   - Note: use pl as param name for pest_l
+   - Prefix: tort
+   - Note: use tl as param name for tort_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/ravi-mouse_admin/src/main.c (Ravi-mouse vegetable rodents)
-   - Ravi-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, ravi_w, tail_cm, ravi_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,ravi_w,tail_cm,ravi_idx,age_yr
+2. modules/cann-mouse_admin/src/main.c (Cann-mouse vegetable rodents)
+   - Cann-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, cann_w, tail_cm, cann_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,cann_w,tail_cm,cann_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: ravi
-   - Note: use rw as param name for ravi_w
+   - Prefix: cann
+   - Note: use cw as param name for cann_w
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/gnoc-mouse_admin/src/main.c (Gnoc-mouse vegetable rodents)
-   - Gnoc-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, gnoc_sz, tail_cm, gnoc_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,gnoc_sz,tail_cm,gnoc_idx,age_yr
+3. modules/risot-mouse_admin/src/main.c (Risot-mouse vegetable rodents)
+   - Risot-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, risot_sz, tail_cm, risot_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,risot_sz,tail_cm,risot_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: gnoc
-   - Note: use gz as param name for gnoc_sz
+   - Prefix: risot
+   - Note: use rz as param name for risot_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1584.0 → v1585.0 (all occurrences)
-  - total modules 4325 → 4328 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1222 - v1585.0 (4328 modules, 124 kernel)" entry
+  - version v1585.0 → v1586.0 (all occurrences)
+  - total modules 4328 → 4331 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1223 - v1586.0 (4331 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/pest-mouse_admin/pest-mouse_admin.wasm modules/ravi-mouse_admin/ravi-mouse_admin.wasm modules/gnoc-mouse_admin/gnoc-mouse_admin.wasm modules/pest-mouse_admin/src/main.c modules/ravi-mouse_admin/src/main.c modules/gnoc-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/tort-mouse_admin/tort-mouse_admin.wasm modules/cann-mouse_admin/cann-mouse_admin.wasm modules/risot-mouse_admin/risot-mouse_admin.wasm modules/tort-mouse_admin/src/main.c modules/cann-mouse_admin/src/main.c modules/risot-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1

@@ -2,6 +2,10 @@
 
 
 
+## Phase 1222 - v1585.0 (4328 modules, 124 kernel)
+- Added WASM: pest-mouse_admin (Pest-mouse vegetable rodents), ravi-mouse_admin (Ravi-mouse vegetable rodents), gnoc-mouse_admin (Gnoc-mouse vegetable rodents)
+- Total modules: 4325 → 4328 (pest-mouse, ravi-mouse, gnoc-mouse)
+
 ## Phase 1221 - v1584.0 (4325 modules, 124 kernel)
 - Added WASM: matt-mouse_admin (Matt-mouse vegetable rodents), tonnar-mouse_admin (Tonnar-mouse vegetable rodents), quadrucc-mouse_admin (Quadrucc-mouse vegetable rodents)
 - Total modules: 4322 → 4325 (matt-mouse, tonnar-mouse, quadrucc-mouse)
