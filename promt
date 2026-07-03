@@ -1,41 +1,41 @@
-Phase 1228: Mascarp-Mouse Biscot-Mouse Amaret-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1229: Cassat-Mouse Cannol-Mouse Sfogl-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/mascarp-mouse_admin/src/main.c (Mascarp-mouse vegetable rodents)
-   - Mascarp-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, mascarp_l, tail_cm, mascarp_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,mascarp_l,tail_cm,mascarp_idx,age_yr
+1. modules/cassat-mouse_admin/src/main.c (Cassat-mouse vegetable rodents)
+   - Cassat-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, cassat_l, tail_cm, cassat_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,cassat_l,tail_cm,cassat_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: mascarp
-   - Note: use ml as param name for mascarp_l
+   - Prefix: cassat
+   - Note: use cl as param name for cassat_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/biscot-mouse_admin/src/main.c (Biscot-mouse vegetable rodents)
-   - Biscot-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, biscot_w, tail_cm, biscot_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,biscot_w,tail_cm,biscot_idx,age_yr
+2. modules/cannol-mouse_admin/src/main.c (Cannol-mouse vegetable rodents)
+   - Cannol-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, cannol_w, tail_cm, cannol_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,cannol_w,tail_cm,cannol_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: biscot
-   - Note: use bw as param name for biscot_w
+   - Prefix: cannol
+   - Note: use cw as param name for cannol_w
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/amaret-mouse_admin/src/main.c (Amaret-mouse vegetable rodents)
-   - Amaret-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, amaret_sz, tail_cm, amaret_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,amaret_sz,tail_cm,amaret_idx,age_yr
+3. modules/sfogl-mouse_admin/src/main.c (Sfogl-mouse vegetable rodents)
+   - Sfogl-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, sfogl_sz, tail_cm, sfogl_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,sfogl_sz,tail_cm,sfogl_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: amaret
-   - Note: use az as param name for amaret_sz
+   - Prefix: sfogl
+   - Note: use sz as param name for sfogl_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1590.0 → v1591.0 (all occurrences)
-  - total modules 4343 → 4346 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1228 - v1591.0 (4346 modules, 124 kernel)" entry
+  - version v1591.0 → v1592.0 (all occurrences)
+  - total modules 4346 → 4349 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1229 - v1592.0 (4349 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/mascarp-mouse_admin/mascarp-mouse_admin.wasm modules/biscot-mouse_admin/biscot-mouse_admin.wasm modules/amaret-mouse_admin/amaret-mouse_admin.wasm modules/mascarp-mouse_admin/src/main.c modules/biscot-mouse_admin/src/main.c modules/amaret-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/cassat-mouse_admin/cassat-mouse_admin.wasm modules/cannol-mouse_admin/cannol-mouse_admin.wasm modules/sfogl-mouse_admin/sfogl-mouse_admin.wasm modules/cassat-mouse_admin/src/main.c modules/cannol-mouse_admin/src/main.c modules/sfogl-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1

@@ -2,6 +2,10 @@
 
 
 
+## Phase 1228 - v1591.0 (4346 modules, 124 kernel)
+- Added WASM: mascarp-mouse_admin (Mascarp-mouse vegetable rodents), biscot-mouse_admin (Biscot-mouse vegetable rodents), amaret-mouse_admin (Amaret-mouse vegetable rodents)
+- Total modules: 4343 → 4346 (mascarp-mouse, biscot-mouse, amaret-mouse)
+
 ## Phase 1227 - v1590.0 (4343 modules, 124 kernel)
 - Added WASM: zupe-mouse_admin (Zuppe-mouse vegetable rodents), crema-mouse_admin (Crema-mouse vegetable rodents), gelat-mouse_admin (Gelat-mouse vegetable rodents)
 - Total modules: 4340 → 4343 (zupe-mouse, crema-mouse, gelat-mouse)
