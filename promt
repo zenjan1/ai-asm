@@ -1,41 +1,41 @@
-Phase 1224: Poli-Mouse Fritt-Mouse Calzo-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1225: Lasag-Mouse Tiram-Mouse Panac-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/poli-mouse_admin/src/main.c (Poli-mouse vegetable rodents)
-   - Poli-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, poli_l, tail_cm, poli_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,poli_l,tail_cm,poli_idx,age_yr
+1. modules/lasag-mouse_admin/src/main.c (Lasag-mouse vegetable rodents)
+   - Lasag-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, lasag_l, tail_cm, lasag_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,lasag_l,tail_cm,lasag_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: poli
-   - Note: use pl as param name for poli_l
+   - Prefix: lasag
+   - Note: use ll as param name for lasag_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/fritt-mouse_admin/src/main.c (Fritt-mouse vegetable rodents)
-   - Fritt-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, fritt_w, tail_cm, fritt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fritt_w,tail_cm,fritt_idx,age_yr
+2. modules/tiram-mouse_admin/src/main.c (Tiram-mouse vegetable rodents)
+   - Tiram-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, tiram_w, tail_cm, tiram_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tiram_w,tail_cm,tiram_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: fritt
-   - Note: use fw as param name for fritt_w
+   - Prefix: tiram
+   - Note: use tw as param name for tiram_w
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/calzo-mouse_admin/src/main.c (Calzo-mouse vegetable rodents)
-   - Calzo-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, calzo_sz, tail_cm, calzo_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,calzo_sz,tail_cm,calzo_idx,age_yr
+3. modules/panac-mouse_admin/src/main.c (Panac-mouse vegetable rodents)
+   - Panac-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, panac_sz, tail_cm, panac_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,panac_sz,tail_cm,panac_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: calzo
-   - Note: use cz as param name for calzo_sz
+   - Prefix: panac
+   - Note: use pz as param name for panac_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1586.0 → v1587.0 (all occurrences)
-  - total modules 4331 → 4334 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1224 - v1587.0 (4334 modules, 124 kernel)" entry
+  - version v1587.0 → v1588.0 (all occurrences)
+  - total modules 4334 → 4337 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1225 - v1588.0 (4337 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/poli-mouse_admin/poli-mouse_admin.wasm modules/fritt-mouse_admin/fritt-mouse_admin.wasm modules/calzo-mouse_admin/calzo-mouse_admin.wasm modules/poli-mouse_admin/src/main.c modules/fritt-mouse_admin/src/main.c modules/calzo-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/lasag-mouse_admin/lasag-mouse_admin.wasm modules/tiram-mouse_admin/tiram-mouse_admin.wasm modules/panac-mouse_admin/panac-mouse_admin.wasm modules/lasag-mouse_admin/src/main.c modules/tiram-mouse_admin/src/main.c modules/panac-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1
