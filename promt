@@ -1,41 +1,41 @@
-Phase 1220: Filet-Mouse Strozz-Mouse Pici-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1221: Matt-Mouse Tonnar-Mouse Quadrucc-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/filet-mouse_admin/src/main.c (Filet-mouse vegetable rodents)
-   - Filet-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, filet_l, tail_cm, flet_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,filet_l,tail_cm,flet_idx,age_yr
+1. modules/matt-mouse_admin/src/main.c (Matt-mouse vegetable rodents)
+   - Matt-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, matt_l, tail_cm, matt_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,matt_l,tail_cm,matt_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: flet
-   - Note: use fl as param name for filet_l
+   - Prefix: matt
+   - Note: use ml as param name for matt_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/strozz-mouse_admin/src/main.c (Strozz-mouse vegetable rodents)
-   - Strozz-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, strozz_w, tail_cm, strzz_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,strozz_w,tail_cm,strzz_idx,age_yr
+2. modules/tonnar-mouse_admin/src/main.c (Tonnar-mouse vegetable rodents)
+   - Tonnar-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, tonnar_w, tail_cm, tnnr_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,tonnar_w,tail_cm,tnnr_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: strzz
-   - Note: use sw as param name for strozz_w
+   - Prefix: tnnr
+   - Note: use tw as param name for tonnar_w
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/pici-mouse_admin/src/main.c (Pici-mouse vegetable rodents)
-   - Pici-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, pici_sz, tail_cm, pici_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,pici_sz,tail_cm,pici_idx,age_yr
+3. modules/quadrucc-mouse_admin/src/main.c (Quadrucc-mouse vegetable rodents)
+   - Quadrucc-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, quadrucc_sz, tail_cm, qdrcc_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,quadrucc_sz,tail_cm,qdrcc_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: pici
-   - Note: use pz as param name for pici_sz
+   - Prefix: qdrcc
+   - Note: use qz as param name for quadrucc_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1582.0 → v1583.0 (all occurrences)
-  - total modules 4319 → 4322 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1220 - v1583.0 (4322 modules, 124 kernel)" entry
+  - version v1583.0 → v1584.0 (all occurrences)
+  - total modules 4322 → 4325 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1221 - v1584.0 (4325 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/filet-mouse_admin/filet-mouse_admin.wasm modules/strozz-mouse_admin/strozz-mouse_admin.wasm modules/pici-mouse_admin/pici-mouse_admin.wasm modules/filet-mouse_admin/src/main.c modules/strozz-mouse_admin/src/main.c modules/pici-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/matt-mouse_admin/matt-mouse_admin.wasm modules/tonnar-mouse_admin/tonnar-mouse_admin.wasm modules/quadrucc-mouse_admin/quadrucc-mouse_admin.wasm modules/matt-mouse_admin/src/main.c modules/tonnar-mouse_admin/src/main.c modules/quadrucc-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1

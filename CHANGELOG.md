@@ -1,6 +1,10 @@
 # Changelog
 
 
+## Phase 1220 - v1583.0 (4322 modules, 124 kernel)
+- Added WASM: filet-mouse_admin (Filet-mouse vegetable rodents), strozz-mouse_admin (Strozz-mouse vegetable rodents), bigoll-mouse_admin (Bigoll-mouse vegetable rodents)
+- Total modules: 4319 → 4322 (filet-mouse, strozz-mouse, bigoll-mouse)
+
 ## Phase 1219 - v1582.0 (4319 modules, 124 kernel)
 - Added WASM: sbrisc-mouse_admin (Sbrisc-mouse vegetable rodents), strasc-mouse_admin (Strasc-mouse vegetable rodents), penn-mouse_admin (Penn-mouse vegetable rodents)
 - Total modules: 4316 → 4319 (sbrisc-mouse, strasc-mouse, penn-mouse)
