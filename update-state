@@ -1,41 +1,41 @@
-Phase 1218: Fregn-Mouse Scialat-Mouse Cicciott-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1219: Sbrisc-Mouse Strasc-Mouse Penn-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/fregn-mouse_admin/src/main.c (Fregn-mouse vegetable rodents)
-   - Fregn-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, fregn_l, tail_cm, frgn_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,fregn_l,tail_cm,frgn_idx,age_yr
+1. modules/sbrisc-mouse_admin/src/main.c (Sbrisc-mouse vegetable rodents)
+   - Sbrisc-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, sbrisc_l, tail_cm, sbrsc_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,sbrisc_l,tail_cm,sbrsc_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: frgn
-   - Note: use fl as param name for fregn_l
+   - Prefix: sbrsc
+   - Note: use sl as param name for sbrisc_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/scialat-mouse_admin/src/main.c (Scialat-mouse vegetable rodents)
-   - Scialat-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, scialat_w, tail_cm, sclt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,scialat_w,tail_cm,sclt_idx,age_yr
+2. modules/strasc-mouse_admin/src/main.c (Strasc-mouse vegetable rodents)
+   - Strasc-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, strasc_w, tail_cm, strsc_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,strasc_w,tail_cm,strsc_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: sclt
-   - Note: use sw as param name for scialat_w
+   - Prefix: strsc
+   - Note: use sw as param name for strasc_w
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/cicciott-mouse_admin/src/main.c (Cicciott-mouse vegetable rodents)
-   - Cicciott-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, cicciott_sz, tail_cm, ccctt_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,cicciott_sz,tail_cm,ccctt_idx,age_yr
+3. modules/penn-mouse_admin/src/main.c (Penn-mouse vegetable rodents)
+   - Penn-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, penn_sz, tail_cm, penn_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,penn_sz,tail_cm,penn_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: ccctt
-   - Note: use cz as param name for cicciott_sz
+   - Prefix: penn
+   - Note: use pz as param name for penn_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1580.0 → v1581.0 (all occurrences)
-  - total modules 4313 → 4316 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1218 - v1581.0 (4316 modules, 124 kernel)" entry
+  - version v1581.0 → v1582.0 (all occurrences)
+  - total modules 4316 → 4319 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1219 - v1582.0 (4319 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/fregn-mouse_admin/fregn-mouse_admin.wasm modules/scialat-mouse_admin/scialat-mouse_admin.wasm modules/cicciott-mouse_admin/cicciott-mouse_admin.wasm modules/fregn-mouse_admin/src/main.c modules/scialat-mouse_admin/src/main.c modules/cicciott-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/sbrisc-mouse_admin/sbrisc-mouse_admin.wasm modules/strasc-mouse_admin/strasc-mouse_admin.wasm modules/penn-mouse_admin/penn-mouse_admin.wasm modules/sbrisc-mouse_admin/src/main.c modules/strasc-mouse_admin/src/main.c modules/penn-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1
