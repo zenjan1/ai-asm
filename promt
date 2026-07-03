@@ -1,41 +1,41 @@
-Phase 1226: Brioche-Mouse Crost-Mouse Semig-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
+Phase 1227: Zuppe-Mouse Crema-Mouse Gelat-Mouse Domain WASM Modules - 3 updated AArch64 WASM application modules:
 
-1. modules/brioche-mouse_admin/src/main.c (Brioche-mouse vegetable rodents)
-   - Brioche-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, brioche_l, tail_cm, brioche_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,brioche_l,tail_cm,brioche_idx,age_yr
+1. modules/zuppe-mouse_admin/src/main.c (Zuppe-mouse vegetable rodents)
+   - Zuppe-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, zupe_l, tail_cm, zupe_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,zupe_l,tail_cm,zupe_idx,age_yr
    - Pattern: follow abelia_admin pattern (host imports, ps/pi helpers, N=16 entries, 5 categories + report + state)
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: brioche
-   - Note: use bl as param name for brioche_l
+   - Prefix: zupe
+   - Note: use zl as param name for zupe_l
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-2. modules/crost-mouse_admin/src/main.c (Crost-mouse vegetable rodents)
-   - Crost-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, crost_w, tail_cm, crost_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,crost_w,tail_cm,crost_idx,age_yr
+2. modules/crema-mouse_admin/src/main.c (Crema-mouse vegetable rodents)
+   - Crema-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, crema_w, tail_cm, crema_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,crema_w,tail_cm,crema_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: crost
-   - Note: use cw as param name for crost_w
+   - Prefix: crema
+   - Note: use cw as param name for crema_w
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
-3. modules/semig-mouse_admin/src/main.c (Semig-mouse vegetable rodents)
-   - Semig-mouse vegetable rodents management
-   - Features: body_len_cm, body_wt_g, semig_sz, tail_cm, semig_idx, age_year
-   - Data: 16 entries with location,bdy_ln,bdy_wt,semig_sz,tail_cm,semig_idx,age_yr
+3. modules/gelat-mouse_admin/src/main.c (Gelat-mouse vegetable rodents)
+   - Gelat-mouse vegetable rodents management
+   - Features: body_len_cm, body_wt_g, gelat_sz, tail_cm, gelat_idx, age_year
+   - Data: 16 entries with location,bdy_ln,bdy_wt,gelat_sz,tail_cm,gelat_idx,age_yr
    - Pattern: follow abelia_admin pattern
    - Categories: forest, feeding, breeding, health, market
-   - Prefix: semig
-   - Note: use sz as param name for semig_sz
+   - Prefix: gelat
+   - Note: use gz as param name for gelat_sz
    - Build: clang --target=wasm32-unknown-unknown -Oz -nostdlib -fno-builtin -Wl,--no-entry -Wl,--export=main
 
 Build all 3 WASM modules. Update README:
-  - version v1588.0 → v1589.0 (all occurrences)
-  - total modules 4337 → 4340 (all occurrences)
-Update CHANGELOG.md: add "## Phase 1226 - v1589.0 (4340 modules, 124 kernel)" entry
+  - version v1589.0 → v1590.0 (all occurrences)
+  - total modules 4340 → 4343 (all occurrences)
+Update CHANGELOG.md: add "## Phase 1227 - v1590.0 (4343 modules, 124 kernel)" entry
 Set UPDATE=1
-git add -f modules/brioche-mouse_admin/brioche-mouse_admin.wasm modules/crost-mouse_admin/crost-mouse_admin.wasm modules/semig-mouse_admin/semig-mouse_admin.wasm modules/brioche-mouse_admin/src/main.c modules/crost-mouse_admin/src/main.c modules/semig-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
+git add -f modules/zuppe-mouse_admin/zuppe-mouse_admin.wasm modules/crema-mouse_admin/crema-mouse_admin.wasm modules/gelat-mouse_admin/gelat-mouse_admin.wasm modules/zuppe-mouse_admin/src/main.c modules/crema-mouse_admin/src/main.c modules/gelat-mouse_admin/src/main.c README.md CHANGELOG.md promt update-state
 Commit and push to origin arm-v2.
 
 1
