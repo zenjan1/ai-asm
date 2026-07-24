@@ -2,10 +2,15 @@
 build/
 *.wasm
 *.lock
+linux_runtime
+rootfs/usr/bin/aiasm
 
 # Claude automation state
 .claude/scheduled_tasks.json
 .claude/scheduled_tasks.lock
+
+# Qwen cache
+.qwen/
 
 # Debug logs
 *.log
